@@ -1,0 +1,147 @@
+---
+title: "Google Analytics_R for Data Visualization"
+author: "Jiuru Lyu"
+date: "Jul 21, 2022"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{r}
+library("ggplot2")
+library("palmerpenguins")
+```
+
+# ggplot2 First Impression
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g))
+```
+
+1.  `ggplot(data=data_name)` tells what data frame ggplot2 should work with.
+2.  The plus sign (`+`) adds a layer to the plot. ggplot2 creates plots using multiple layers.
+3.  `geom_point` tells ggplot2 to use points to represent data points.
+4.  `mapping=aes()` tells ggplot2 the aesthetic.
+
+**`ggplot(data=<DATA>)+<GEOM_FUNCTION>(mapping=aes(<AESTHETIC MAPPINGS>))`**
+
+***Example:***
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=bill_length_mm,y=bill_depth_mm))
+```
+
+# Explore Aesthetics in Analysis
+
+Adding a new aesthetic to our previous code:
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))
+```
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species,shape=species,size=species))
+```
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,alpha=species))
+```
+
+You can also add code outside the aes function. In this case, you are not mapping to the variable, but you are changing the overall plot.
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g),color="purple")
+```
+
+## Different Types of Geom
+
+1.  geom_point: scatter plot
+2.  geom_bar: bar charts
+3.  geom_line
+4.  geom_smooth: a smooth line with the existing data points
+5.  geom_jitter: when the data is hard to recognize, use it for better vizulization
+
+```{r}
+ggplot(data=penguins) + 
+  geom_smooth(mapping=aes(x=flipper_length_mm,y=body_mass_g)) +
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g))
+```
+
+```{r}
+ggplot(data=penguins) + 
+  geom_smooth(mapping=aes(x=flipper_length_mm,y=body_mass_g,linetype=species))
+```
+
+```{r}
+ggplot(data=diamonds) + 
+  geom_bar(mapping=aes(x=cut,fill=cut))
+```
+
+```{r}
+ggplot(data=diamonds) + 
+  geom_bar(mapping=aes(x=cut,fill=clarity))
+```
+
+## Aesthetics and Facets
+
+1.  facet_wrap: facet the plot with a single variable
+2.  facet_grid: facet the plot with two variables
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species)) + 
+  facet_wrap(~species)
+```
+
+```{r}
+ggplot(data=diamonds) + 
+  geom_bar(mapping=aes(x=color,fill=cut)) + 
+  facet_wrap(~cut)
+
+```
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species)) + 
+  facet_grid(sex~species)
+
+```
+
+# Annotation on the Plot
+
+Adding titles, subtitles, and captions to the plot:
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species)) + 
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Length",subtitle="Sample of Three Penguin Species",caption="Data collected by Dr. Kristen Gorman")
+```
+
+Adding annotation to the plot:
+
+```{r}
+ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species)) + 
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Length",subtitle="Sample of Three Penguin Species",caption="Data collected by Dr. Kristen Gorman") + 
+  annotate("text",x=220,y=3500,label="The Gentoos are the largest",color="purple",fontface="bold",size=4.5)
+```
+
+You can assign your code to variables, so you do not need to type super long codes.
+
+```{r}
+p <- ggplot(data=penguins) + 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species)) + 
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Length",subtitle="Sample of Three Penguin Species",caption="Data collected by Dr. Kristen Gorman")
+
+p + annotate("text",x=220,y=3500,label="The Gentoos are the largest",color="purple",fontface="bold",angle=25)
+```
+
+# Save the Plots
+
+Use ggsave("name") to save plots.
