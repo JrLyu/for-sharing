@@ -1,3 +1,5 @@
+# Goolge Data Analytics Learning Notes
+
 This collects my learning notes of the Specialization **Google Data Analytics** from *Coursera*. 
 
 I completed this specialization in around two months. Click the [link](https://coursera.org/share/bd44023a9a39d4bfb3c9a381fdf57b65) to view my certificate.
