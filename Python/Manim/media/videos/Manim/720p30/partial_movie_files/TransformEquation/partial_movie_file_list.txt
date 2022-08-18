@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/TransformEquation/1342159004_1804042621_1268572568.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/TransformEquation/1353618911_4243249752_230770454.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/TransformEquation/1353618911_329969645_504086760.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/TransformEquation/1353618911_52703813_4121291445.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/TransformEquation/1353618911_329969645_4238324615.mp4'

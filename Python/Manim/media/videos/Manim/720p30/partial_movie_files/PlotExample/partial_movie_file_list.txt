@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/PlotExample/1342159004_3088497593_223132457.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/PlotExample/1353618911_4036517618_4019446556.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/PlotExample/1353618911_832089636_1223277923.mp4'

@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/AnimateSyntax/1342159004_1706500295_223132457.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/AnimateSyntax/1353618911_613373258_4033882181.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/AnimateSyntax/1353618911_3743636496_4033882181.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/AnimateSyntax/1353618911_1693039750_4033882181.mp4'
+file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/AnimateSyntax/1353618911_2754219568_4033882181.mp4'
