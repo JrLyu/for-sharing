@@ -1,0 +1,121 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{ntheorem}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{subfigure} 
+\usepackage{arydshln}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{chemfig}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\definecolor{blue}{rgb}{0,0.45,1.14}
+\definecolor{red}{rgb}{0.77,0.12,0.23}
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{green}{rgb}{0,0.42,0.24}
+\definecolor{orange}{rgb}{2.07,0.69,0.32}
+
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{df}{Definition}[subsection]
+\newtheorem{eg}{Example}[subsection]
+\newtheorem{rmk}{Remark}[subsection]
+\newtheorem{prf}{Proof}[subsection]
+\newtheorem{cor}{Corollary}[subsection]
+\newtheorem{lem}{Lemma}[subsection]
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{conj}{Conjecture}[subsection]
+
+\lstset{language=Python}
+\lstset{
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\color{green},
+	commentstyle=\color{lightgray},
+	frame=shadownbox,
+	rulesepcolor=\color{lightblack},
+	escapeinside='',
+	xleftmargin=2em,aboveskip=1em,
+	framexleftmargin=2em
+	}
+
+\rhead{\thepage}
+\linespread{1.15}
+
+\title{\textbf{This is a title}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\RE{{\mathrm{Re}}}
+\def\IM{{\mathrm{Im}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+
+\begin{document}
+
+\section{This is the section name}
+\subsection{This is the subsection name}
+
+\begin{thm}
+	This is a theorem
+\end{thm}
+
+\begin{df}
+	This is a definition
+\end{df}
+
+\begin{eg}
+	This is an example
+\end{eg}
+
+\begin{rmk}
+	This is a remark
+\end{rmk}
+
+\begin{prf}
+	This is a proof
+\end{prf}
+
+\begin{cor}
+	This is a corollary
+\end{cor}
+
+\begin{lem}
+	This is a lemma
+\end{lem}
+
+\begin{prop}
+	This is a proposition
+\end{prop}
+
+\begin{conj}
+	This is a conjecture
+\end{conj}
+	
+\end{document}
+
