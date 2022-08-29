@@ -19,25 +19,300 @@ install.packages('tidyverse')
 library(tidyverse)
 ```
 
-THe tidyverse includes a variety amount of packages, such as dplyr for data wrangling, ggplot2 for data visualization, etc. 
+THe tidyverse includes a variety amount of packages, such as dplyr for data wrangling, ggplot2 for data visualization, etc.
 
 ## Data Wrangling
+
 We use `dplyr` for data wrangling. We load the package first. To facilitate the illustration, we will use a data set in the `gapminder`. We also load the package.
+
 ```{r}
 library(dplyr)
-install.packages('gapminder')
 library(gapminder)
 ```
-Now, let's have a preview of the `gapminder` data set. 
+
+Now, let's have a preview of the `gapminder` data set.
+
 ```{r}
 gapminder
 ```
-## Filter Data
+
+### Filter Data
+
 To filter the data, we can use the `filter` function. In the code below, we filter the table with lines where year is 1957.
+
 ```{r}
 gapminder %>%
   filter(year == 1957)
 ```
+
+To find the data for China in the year of 2002, we run the following code:
+
+```{r}
+gapminder %>%
+  filter(country == 'China' & year == 2002)
+```
+
+### Sorting Data
+
+We use the `arrange` function to sort the data in ascending or descending order. In the example, we arrange the data in ascending order of the variable `lifeExp`.
+
+```{r}
+gapminder %>%
+  arrange(lifeExp)
+```
+
+If we want to sort the data in descending order, we need to use the `desc()` function.
+
+```{r}
+gapminder %>%
+  arrange(desc(lifeExp))
+```
+
+To combine filtering and sorting:
+
+```{r}
+gapminder %>%
+  arrange(desc(pop)) %>%
+  filter(year == 1957)
+```
+
+### Change a column or Create a new column
+
+We can use the `mutate` function to change a column or to create a new column. For example, we can convert the `lifeExp` column from years to months by multiplying the original column by 12.
+
+```{r}
+gapminder %>%
+  mutate(
+    lifeExp = lifeExp * 12
+  )
+```
+
+Similarly, we can also create a new column to show that change.
+
+```{r}
+gapminder %>%
+  mutate(
+    lifeExpMOnths = lifeExp * 12
+  )
+```
+
+Now, we can combine `filter`, `arrange`, and `mutate` together.
+
+```{r}
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(lifeExpMonths = lifeExp * 12) %>%
+  arrange(desc(lifeExpMonths))
+```
+
+## Data Visualization
+### Plotting data - very first attempt
+Now, we need to load the `ggplot2` package for data visualization.
+```{r}
+library(ggplot2)
+```
+For illustration purpose, we will only focus on the `gapminder` data for the year of 1952. So now we are assign the data to a name so we can easily refer to if afterwards. 
+```{r}
+gapminder_1952 <- gapminder %>% filter(year == 1952)
+```
+Now, we are creating our very first visualization.
+```{r}
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) + 
+  geom_point()
+```
+Here's another try:
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = lifeExp)) + 
+  geom_point()
+```
+### Plotting data in a log scale
+As you can see from the previous plot, as the population value ranges widely, we consider to convert the x-axis into a log scare. Here are two ways of doing so: 
+1. Using `mutate()`: 
+```{r}
+gapminder_1952 %>%
+  mutate(pop = log(pop)) %>%
+  ggplot(aes(x = pop, y = lifeExp)) + 
+  geom_point()
+```
+
+2. Using `scale_x_log10()`:
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = lifeExp)) + 
+  geom_point() + 
+  scale_x_log10()
+```
+No matter which method we choose, the final output looks exactly the same. 
+Here's another example:
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = gdpPercap)) + 
+  geom_point() + 
+  scale_x_log10() + scale_y_log10()
+```
+### Additional aesthetics
+The first additional aesthetic that we can add is COLOR. In the example below, we use color to distinguish the data points for different continents. 
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = lifeExp, color = continent)) + 
+  geom_point() + 
+  scale_x_log10()
+```
+Apart from adding color, we can also modify the size of the data points. Now, we are adding the size aesthetic to our plot to present different GPD per capita of a country. 
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = lifeExp, color = continent, size = gdpPercap)) + 
+  geom_point() + 
+  scale_x_log10()
+```
+### Faceting
+We can use faceting to create sub-graphs from the original graph. Here's an example creating sub-graphs for different continent using `facet_wrap`.
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = pop, y = lifeExp)) + 
+  geom_point() + 
+  scale_x_log10() + 
+  facet_wrap(~continent)
+```
+Here's another example combining additional aesthetic and faceting: 
+```{r}
+gapminder %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) + 
+  geom_point() + 
+  scale_x_log10() + 
+  facet_wrap(~year)
+```
+## Grouping and Summarizing
+### Summarize
+We can use the `summarize()` to find the median value of the data by using the `median()` function.
+```{r}
+medianLifeExp <- summarize(gapminder, median(lifeExp))
+
+medianLifeExp
+```
+Here's another example of using the `summarize()` function.
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  summarize(medianLifeExp = median(lifeExp))
+```
+If there are more than one things you want to include in the `summarize()` function, you can separate them by using comma. 
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+### Group_by
+You can use the `group_by` function to group the data into groups according to your specified criteria. 
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+As always, you can combine what you have learned with the `group_by` and `summarize` function.
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  group_by(continent) %>%
+    summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+You may include more than one variables in the `group_by` function.
+```{r}
+gapminder %>%
+  group_by(continent, year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+### Visualizing summarized data
+We can use `ggplot2` to visualize summarized data. 
+```{r}
+by_year <- gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+
+by_year %>%
+  ggplot(aes(x = year, y = medianLifeExp)) + 
+  geom_point() + 
+  expand_limits(y = 0)
+```
+This is another example: 
+```{r}
+by_year_continent <- gapminder %>%
+  group_by(continent, year) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+by_year_continent %>%
+  ggplot(aes(x = year, y = medianGdpPercap, color = continent)) + 
+  geom_point() + 
+  expand_limits(y = 0)
+```
+## More on Visualization
+### Line
+To draw a line plot, simply substitute `geom_point()` by `geom_line()`.
+```{r}
+by_year_2 <- gapminder %>%
+  group_by(year) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+by_year_2 %>%
+  ggplot(aes(x = year, y = medianGdpPercap)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+You can also create colorful line plots. 
+```{r}
+by_year_continent_2 <- gapminder %>%
+  group_by(year, continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+by_year_continent_2 %>%
+  ggplot(aes(x = year, y = medianGdpPercap, color = continent)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+### Bar plots
+This is an example of how you can create a bar chart: 
+```{r}
+by_continent <- gapminder %>%
+  filter(year == 1952) %>%
+  group_by(continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+by_continent %>%
+  ggplot(aes(x = continent, y = medianGdpPercap)) + 
+  geom_col()
+```
+### Histograms
+This is an example of how you can create a histogram using `ggplot2`:
+```{r}
+gapminder_1952_2 <- gapminder %>%
+  filter(year == 1952) %>%
+  mutate(
+    pop_by_mil = pop / 1000000
+  )
+
+gapminder_1952_2 %>%
+  ggplot(aes(x = pop_by_mil)) + 
+  geom_histogram(bins = 50)
+```
+### Box plots
+Here's an example of how to create a box plot:
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = continent, y = gdpPercap)) + 
+  geom_boxplot() + 
+  scale_y_log10()
+```
+### Adding a title to the graph
+To add a title, we use the `ggtitle()` function. 
+```{r}
+gapminder_1952 %>%
+  ggplot(aes(x = continent, y = gdpPercap)) + 
+  geom_boxplot() + 
+  scale_y_log10() + 
+  ggtitle("Comparing GDP per capita across continents")
+```
+
 
 
 
