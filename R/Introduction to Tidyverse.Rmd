@@ -1,0 +1,43 @@
+---
+title: "Introduction to Tidyverse"
+author: "Jiuru Lyu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installation and Loading
+
+```{r}
+install.packages('tidyverse')
+```
+
+```{r}
+library(tidyverse)
+```
+
+THe tidyverse includes a variety amount of packages, such as dplyr for data wrangling, ggplot2 for data visualization, etc. 
+
+## Data Wrangling
+We use `dplyr` for data wrangling. We load the package first. To facilitate the illustration, we will use a data set in the `gapminder`. We also load the package.
+```{r}
+library(dplyr)
+install.packages('gapminder')
+library(gapminder)
+```
+Now, let's have a preview of the `gapminder` data set. 
+```{r}
+gapminder
+```
+## Filter Data
+To filter the data, we can use the `filter` function. In the code below, we filter the table with lines where year is 1957.
+```{r}
+gapminder %>%
+  filter(year == 1957)
+```
+
+
+
