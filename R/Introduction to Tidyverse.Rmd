@@ -12,10 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Installation and Loading
 
 ```{r}
-install.packages('tidyverse')
-```
-
-```{r}
 library(tidyverse)
 ```
 
