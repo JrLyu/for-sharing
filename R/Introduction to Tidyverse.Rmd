@@ -12,10 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Installation and Loading
 
 ```{r}
-install.packages('tidyverse')
-```
-
-```{r}
 library(tidyverse)
 ```
 
@@ -34,6 +30,19 @@ Now, let's have a preview of the `gapminder` data set.
 
 ```{r}
 gapminder
+```
+
+### Select Data
+We can use the `glimpse()` function to take an overview of the data: 
+```{r}
+glimpse(gapminder)
+```
+After knowing different names of the columns, we can use the `select()` function.
+```{r}
+gapminder_selected <- gapminder %>%
+  select(country, continent, year)
+
+gapminder_selected
 ```
 
 ### Filter Data
@@ -86,7 +95,7 @@ gapminder %>%
     lifeExp = lifeExp * 12
   )
 ```
-
+c
 Similarly, we can also create a new column to show that change.
 
 ```{r}
@@ -104,6 +113,30 @@ gapminder %>%
   mutate(lifeExpMonths = lifeExp * 12) %>%
   arrange(desc(lifeExpMonths))
 ```
+
+### Aggregating Data
+We can use the `count()` function to count the number of one value. 
+```{r}
+gapminder %>%
+  count(continent, sort = TRUE)
+```
+If we set `sort=TRUE`, the `count()` will return the results in descending order. `sort` is an optional argument, and if we omit this value, R will set it to `FALSE` automatically, returning the results in ascending order. 
+
+We can also include a third argument in count, which is the `wt` argument. This argument specifies a weight for the `count()` function. 
+```{r}
+gapminder %>%
+  count(continent, wt = lifeExp, sort=TRUE)
+```
+
+We can combine mutating and counting together: 
+```{r}
+gapminder %>%
+  mutate(
+    gdp = gdpPercap * pop
+  ) %>%
+  count(continent, wt = gdp, sort=TRUE)
+```
+
 
 ## Data Visualization
 ### Plotting data - very first attempt
@@ -223,6 +256,57 @@ gapminder %>%
   group_by(continent, year) %>%
   summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
 ```
+
+We can use the `top_n()` function to return the top n rows of the data frame. For example, `top_n(df, 1)` returns the first column.
+```{r}
+# Which country in each continent has the highest lifeExp in 1952? 
+gapminder %>%
+  filter(year == 1952) %>%
+  select(country, continent, lifeExp) %>%
+  group_by(continent) %>%
+  top_n(1)
+```
+```{r}
+# Which country in each year has the highest pop? 
+gapminder %>%
+  select(country, year, pop) %>%
+  group_by(year) %>%
+  top_n(1)
+```
+As always, we can combine all we have learned together: 
+```{r}
+gapminder %>%
+  select(country, continent, year, gdpPercap) %>%
+  group_by(year, continent) %>%
+  summarize(total_gdpPercap = sum(gdpPercap)) %>%
+  top_n(1, total_gdpPercap)
+```
+
+### Data Selection
+We can use `start_with()` and `end_with()` to select columns that starts or ends with a specific text string. For example, we want to select all columns that ends with the word "work", we can write the following code: `select(end_with('word'))`.
+
+You can use the `rename()` function to rename one or more column of the table, using the syntax `rename(new_name = old_name)` 
+```{r}
+gapminder %>%
+  rename(population = pop)
+```
+When using the `select()` function, we can use `select(new_name = col_name)` to specify a new name for a column. 
+```{r}
+gapminder %>%
+  select(country, continent, life_expactancy = lifeExp)
+```
+
+To create a new column and drop the original column, we can use the `transmute()` function: 
+```{r}
+gapminder %>%
+  filter(year == 1952) %>%
+  transmute(country, continent,lifeExp, gdp = pop * gdpPercap) %>%
+  ggplot(aes(x=lifeExp, y=gdp, color=continent)) + 
+  geom_point() + 
+  scale_y_log10()
+```
+
+
 ### Visualizing summarized data
 We can use `ggplot2` to visualize summarized data. 
 ```{r}
