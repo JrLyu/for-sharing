@@ -1,0 +1,60 @@
+---
+title: "Data Visualization via ggplot2"
+author: "Jiuru Lyu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loading Packages and Data sets
+```{r}
+library(tidyverse)
+```
+```{r}
+glimpse(diamonds)
+```
+
+## Introduction to ggplot2
+To create a plot, we run the code: 
+```{r}
+ggplot(diamonds, mapping = aes(x, price)) + 
+  geom_point()
+```
+
+We use `+` sign to add a layer on the graph. 
+```{r}
+ggplot(diamonds, aes(carat, price)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+We can map some aesthetics to other data. 
+```{r}
+ggplot(diamonds, aes(carat, price, color = clarity)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+Further, we can add arguments within the `geom_point()` layer. The following example sets the point translucent to `0.4`. 
+```{r}
+ggplot(diamonds, aes(carat, price, color = clarity)) + 
+  geom_point(alpha = 0.4) + 
+  geom_smooth()
+```
+
+There's a different way to create the plot. 
+```{r}
+plt_carat_vs_price <- ggplot(
+  diamonds, 
+  aes(carat, price)
+  )
+
+plt_carat_vs_price + geom_point()
+```
+```{r}
+plt_carat_vs_price + geom_point(mapping = aes(color = clarity))
+```
+
