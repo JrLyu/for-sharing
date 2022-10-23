@@ -1,0 +1,712 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Analyze Data to Answer Questions · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="6.html" />
+    
+    
+    <link rel="prev" href="4.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    Foundations Data, Data, Everywhere
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    Ask Questions to Make Data-Driven Decisions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    Prepare Data for Exploration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    Process Data from Dirty to Clean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    Analyze Data to Answer Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    Share Data Through the Art of Visualization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7.html">
+            
+                <a href="7.html">
+            
+                    
+                    Data Analysis with R Programming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="8.html">
+            
+                <a href="8.html">
+            
+                    
+                    Google Data Analytics Capstone Complete a Case Study
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Analyze Data to Answer Questions</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="analyze-data-to-answer-questions">Analyze Data to Answer Questions</h1>
+<h1 id="organizing-data">Organizing Data</h1>
+<blockquote>
+<p><strong>Analysis</strong>: The process used to make sense of the data collected.</p>
+</blockquote>
+<h2 id="sorting-and-filtering">Sorting and Filtering</h2>
+<p>Using SQL to filter data: </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> _____
+<span class="hljs-keyword">FROM</span>   _____
+<span class="hljs-keyword">WHERE</span> _____  <span class="hljs-keyword">AND</span> _____
+</code></pre>
+<h2 id="sorting-data-in-spreadsheets">Sorting Data in Spreadsheets</h2>
+<blockquote>
+<p><strong>Sort sheet</strong>: A spreadsheet menu function that sorts all data by the ranking of a specific sorted column and keeps data together across rows.</p>
+<p><strong>Sort range</strong>: A spreadsheet menu function that sorts a specified range and preserves the cells outside the range.</p>
+</blockquote>
+<p>Writing the SORT function</p>
+<pre><code>SORT(DataRange,ColumnNumber,True/False)
+*True means sort the data in ascending order. 
+**False means to sort the data in descending order.
+</code></pre><p>You can add another sorting criterion. </p>
+<h2 id="sorting-data-in-sql">Sorting Data in SQL</h2>
+<blockquote>
+<p><strong>ORDER BY</strong>: A SQL clause that sorts results returned in a query.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> _____
+<span class="hljs-keyword">FROM</span> _____
+<span class="hljs-keyword">WHERE</span> _____ <span class="hljs-keyword">AND</span> _____
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">&quot;Criteria&quot;</span> (<span class="hljs-keyword">DESC</span>)
+#<span class="hljs-keyword">If</span> you <span class="hljs-keyword">include</span> <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">in</span> the clause, <span class="hljs-keyword">SQL</span> will <span class="hljs-keyword">sort</span> the <span class="hljs-keyword">data</span> <span class="hljs-keyword">in</span> descending <span class="hljs-keyword">order</span>. 
+#<span class="hljs-keyword">If</span> <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> included, <span class="hljs-keyword">SQL</span> will <span class="hljs-keyword">sort</span> the <span class="hljs-keyword">data</span> <span class="hljs-keyword">in</span> ascending <span class="hljs-keyword">order</span>.
+</code></pre>
+<h1 id="converting-and-formatting-data">Converting and Formatting Data</h1>
+<h2 id="convert-and-format-data">Convert and Format Data</h2>
+<h3 id="using-the-spreadsheet">Using the Spreadsheet</h3>
+<h3 id="using-sql">Using SQL</h3>
+<p>The <code>CAST</code> function: </p>
+<pre><code class="lang-sql">CAST (expression AS typename)
+#expression is the data to be converted 
+#typename is the data type to be returned
+</code></pre>
+<p>Converting a number to a string</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CAST</span> (MyCount <span class="hljs-keyword">AS</span> <span class="hljs-keyword">STRING</span>) <span class="hljs-keyword">FROM</span> MyTable
+#<span class="hljs-keyword">SELECT</span> indicates that you will be selecting <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span> a <span class="hljs-keyword">table</span>
+#<span class="hljs-keyword">CAST</span> indicates that you will be converting the <span class="hljs-keyword">data</span> you <span class="hljs-keyword">select</span> <span class="hljs-keyword">to</span> a different <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span>
+#<span class="hljs-keyword">AS</span> comes <span class="hljs-keyword">before</span> <span class="hljs-keyword">and</span> identifies the <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span> which you <span class="hljs-keyword">are</span> casting <span class="hljs-keyword">to</span>
+#<span class="hljs-keyword">STRING</span> indicates that you <span class="hljs-keyword">are</span> converting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">to</span> a <span class="hljs-keyword">string</span>
+#<span class="hljs-keyword">FROM</span> indicates which <span class="hljs-keyword">table</span> you <span class="hljs-keyword">are</span> selecting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span>
+</code></pre>
+<p>Converting a string to a number</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CAST</span> (MyVarcharCol <span class="hljs-keyword">AS</span> <span class="hljs-built_in">INT</span>) <span class="hljs-keyword">FROM</span> MyTable
+#<span class="hljs-keyword">SELECT</span> indicates that you will be selecting <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span> a <span class="hljs-keyword">table</span>
+#<span class="hljs-keyword">CAST</span> indicates that you will be converting the <span class="hljs-keyword">data</span> you <span class="hljs-keyword">select</span> <span class="hljs-keyword">to</span> a different <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span>
+#<span class="hljs-keyword">AS</span> comes <span class="hljs-keyword">before</span> <span class="hljs-keyword">and</span> identifies the <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span> which you <span class="hljs-keyword">are</span> casting <span class="hljs-keyword">to</span>
+#<span class="hljs-built_in">INT</span> indicates that you <span class="hljs-keyword">are</span> converting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">to</span> an <span class="hljs-built_in">integer</span>
+#<span class="hljs-keyword">FROM</span> indicates which <span class="hljs-keyword">table</span> you <span class="hljs-keyword">are</span> selecting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span>
+</code></pre>
+<p>Converting a date to a string</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CAST</span> (MyDate <span class="hljs-keyword">AS</span> <span class="hljs-keyword">STRING</span>) <span class="hljs-keyword">FROM</span> MyTable
+#<span class="hljs-keyword">SELECT</span> indicates that you will be selecting <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span> a <span class="hljs-keyword">table</span>
+#<span class="hljs-keyword">CAST</span> indicates that you will be converting the <span class="hljs-keyword">data</span> you <span class="hljs-keyword">select</span> <span class="hljs-keyword">to</span> a different <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span>
+#<span class="hljs-keyword">AS</span> comes <span class="hljs-keyword">before</span> <span class="hljs-keyword">and</span> identifies the <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span> which you <span class="hljs-keyword">are</span> casting <span class="hljs-keyword">to</span>
+#<span class="hljs-keyword">STRING</span> indicates that you <span class="hljs-keyword">are</span> converting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">to</span> a <span class="hljs-keyword">string</span>
+#<span class="hljs-keyword">FROM</span> indicates which <span class="hljs-keyword">table</span> you <span class="hljs-keyword">are</span> selecting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span>
+</code></pre>
+<p>Converting a date to a datetime</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CAST</span> (MyDate <span class="hljs-keyword">AS</span> DATETIME) <span class="hljs-keyword">FROM</span> MyTable
+#<span class="hljs-keyword">SELECT</span> indicates that you will be selecting <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span> a <span class="hljs-keyword">table</span>
+#<span class="hljs-keyword">CAST</span> indicates that you will be converting the <span class="hljs-keyword">data</span> you <span class="hljs-keyword">select</span> <span class="hljs-keyword">to</span> a different <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span>
+#<span class="hljs-keyword">AS</span> comes <span class="hljs-keyword">before</span> <span class="hljs-keyword">and</span> identifies the <span class="hljs-keyword">data</span> <span class="hljs-keyword">type</span> which you <span class="hljs-keyword">are</span> casting <span class="hljs-keyword">to</span>
+#DATETIME indicates that you <span class="hljs-keyword">are</span> converting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">to</span> a datetime <span class="hljs-keyword">value</span>
+#<span class="hljs-keyword">FROM</span> indicates which <span class="hljs-keyword">table</span> you <span class="hljs-keyword">are</span> selecting the <span class="hljs-keyword">data</span> <span class="hljs-keyword">from</span>
+</code></pre>
+<p>The <code>SAFE_CAST</code> function: </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> SAFE_CAST (MyDate <span class="hljs-keyword">AS</span> <span class="hljs-keyword">STRING</span>) <span class="hljs-keyword">FROM</span> MyTable
+</code></pre>
+<h2 id="combine-multiple-datasets">Combine Multiple Datasets</h2>
+<blockquote>
+<p><strong>Dataset</strong>: A collection of data that can be manipulated or analyzed as one unit.</p>
+<p><strong>Ranking</strong>: A system to position values of a dataset within a scale of achievement or status.</p>
+</blockquote>
+<p>Using the <code>CONCAT</code> function</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span> (<span class="hljs-string">&apos;Data&apos;</span>,<span class="hljs-string">&apos;analysis&apos;</span>)
+</code></pre>
+<p>The result will be <code>Dataanalysis</code>.</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span> (<span class="hljs-string">&apos;Data&apos;</span>,<span class="hljs-string">&apos; &apos;</span>,<span class="hljs-string">&apos;analysis&apos;</span>)
+</code></pre>
+<p>The result will be <code>Data analysis</code>.</p>
+<p><code>CONCAT_WS</code>: A function that adds two or more strings together with a separator.</p>
+<pre><code class="lang-sql">CONCAT_WS (&#x2018; . &#x2019;, &#x2018;www&#x2019;, &#x2018;google&#x2019;, &#x2018;com&#x2019;)
+#The separator (being the period) gets input before and after Google when you run the SQL function
+</code></pre>
+<p><code>CONCAT with +</code>: Adds two or more strings together using the + operator</p>
+<blockquote>
+<p><strong>LIMIT</strong>: A SQL clause that specifies the maximum number of records returned in a query.</p>
+</blockquote>
+<p><strong><em>Example:</em></strong> </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    usertype,
+    <span class="hljs-keyword">CONCAT</span>(start_station_name, <span class="hljs-string">&quot; to &quot;</span>, end_station_name) <span class="hljs-keyword">AS</span> route,
+    <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">as</span> num_trips,
+    <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(<span class="hljs-keyword">CAST</span>(tripduration <span class="hljs-keyword">as</span> int64)/<span class="hljs-number">60</span>),<span class="hljs-number">2</span>) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">duration</span>
+<span class="hljs-keyword">FROM</span>
+    <span class="hljs-string">&apos;bigquery-public-data,new_york,citibike_trips&apos;</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    start_station_name, end_station_name, usertype
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>
+    num_trips <span class="hljs-keyword">DESC</span>
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">10</span>
+</code></pre>
+<blockquote>
+<p><strong>ROUND</strong>: A SQL function that returns a number rounded to a certain number of decimal places.</p>
+</blockquote>
+<h1 id="data-aggregation">Data Aggregation</h1>
+<blockquote>
+<p><strong>Aggregation</strong>: The process of collecting or gathering many separate pieces into a whole.</p>
+<p><strong>Data aggregation</strong>: The process of gathering data from multiple sources and combining it into a single, summarized collection.</p>
+</blockquote>
+<h2 id="using-vlookup-in-spreadsheets">Using VLOOKUP in Spreadsheets</h2>
+<blockquote>
+<p><strong>MATCH</strong>: A spreadsheet function used to locate the position of a specific lookup value.</p>
+<p><strong>VALUE</strong>: A spreadsheet function that converts a text string that represents a number to a numeric value.</p>
+</blockquote>
+<p>Basic syntax: =VLOOKUP(&#x201D;value_to_search&#x201D;, sheet2!$A$1:$D$10, column_number, FALSE)</p>
+<p>TRUE searches for approximate results, and FALSE searches for exact matches. </p>
+<blockquote>
+<p><strong>Absolute reference</strong>: A reference within a function that is locked so that rows and columns won&#x2019;t change if the function is copied.</p>
+</blockquote>
+<h2 id="using-join-in-sql">Using JOIN in SQL</h2>
+<blockquote>
+<p><strong>JOIN</strong>: A SQL function that is used to combine rows from two or more tables based on a related column.</p>
+</blockquote>
+<p><strong><em>Example:</em></strong></p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    employees.<span class="hljs-keyword">name</span> <span class="hljs-keyword">AS</span> employee_name,
+    employees.<span class="hljs-keyword">role</span> <span class="hljs-keyword">AS</span> employy_role,
+    departments.<span class="hljs-keyword">name</span> <span class="hljs-keyword">AS</span> department_name
+<span class="hljs-keyword">FROM</span>
+    employees
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span>
+    deparments <span class="hljs-keyword">ON</span>
+    employees.deparment_id = deparments.deparment_id
+</code></pre>
+<p>Other JOINs: LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN</p>
+<blockquote>
+<p><strong>INNER JOIN</strong>: A SQL function that returns records with matching values in both tables.</p>
+<p><strong>LEFT JOIN</strong>: A SQL function that will return all the records from the left table and only the matching records from the right table.</p>
+<p><strong>RIGHT JOIN</strong>: A SQL function that will return all records from the right table and only the matching records from the left.</p>
+<p><strong>OUTER JOIN</strong>: A SQL function that combines RIGHT and LEFT JOIN to return all matching records in both tables.</p>
+</blockquote>
+<h2 id="using-count-and-count-distinct-in-sql">Using COUNT and COUNT DISTINCT in SQL</h2>
+<blockquote>
+<p><strong>COUNT DISTINCT</strong>: A SQL function that only returns the distinct values in a specified range.</p>
+</blockquote>
+<p><strong><em>Example:</em></strong> </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    orders.*,
+    warehouse.warehouse_alias,
+    warehouse.state
+<span class="hljs-keyword">FROM</span> 
+    warehouse_orders.Orders <span class="hljs-keyword">AS</span> orders
+<span class="hljs-keyword">JOIN</span>
+    warehouse_orders.Warehouse <span class="hljs-keyword">AS</span> warehouse <span class="hljs-keyword">ON</span>
+    orders.warehouse_id = warehouse.warehouse_id
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">100</span>
+
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> warehouse.state) <span class="hljs-keyword">AS</span> num_states
+<span class="hljs-keyword">FROM</span> 
+    warehouse_orders.Orders <span class="hljs-keyword">AS</span> orders
+<span class="hljs-keyword">JOIN</span>
+    warehouse_orders.Warehouse <span class="hljs-keyword">AS</span> warehouse <span class="hljs-keyword">ON</span>
+    orders.warehouse_id = warehouse.warehouse_id
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    warehouse.state
+</code></pre>
+<blockquote>
+<p><strong>Aliasing</strong>: Temporarily naming a table or column in a query to make it easier to read and write.</p>
+</blockquote>
+<h2 id="work-with-subqueries">Work with Subqueries</h2>
+<blockquote>
+<p><strong>Subquery</strong>: A SQL query that is nested inside a larger query.</p>
+<p><strong>Inner query</strong>: A SQL subquery that is inside of another SQL statement.</p>
+<p><strong>Outer query</strong>: A SQL statement containing a subquery.</p>
+</blockquote>
+<p><strong><em>Examples:</em></strong></p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    station_id,
+    num_bikes_available
+    (<span class="hljs-keyword">SELECT</span>
+        <span class="hljs-keyword">AVG</span>(num_bikes_available)
+    <span class="hljs-keyword">FROM</span> bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.citibike_stations) <span class="hljs-keyword">AS</span> avg_num_bikes_available
+<span class="hljs-keyword">FROM</span> 
+    bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.citibike_stations
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    station_id,
+    <span class="hljs-keyword">name</span>,
+    number_of_rides <span class="hljs-keyword">AS</span> number_of_rides_starting_at_station
+<span class="hljs-keyword">FROM</span>
+    (
+        <span class="hljs-keyword">SELECT</span>
+            start_station_id
+            <span class="hljs-keyword">COUNT</span>(*) number_of_rides
+        <span class="hljs-keyword">FROM</span>
+            bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.trips
+        <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+            start_station_id
+        )
+<span class="hljs-keyword">AS</span> station_num_trips
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span>
+    bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.citibike_stations <span class="hljs-keyword">ON</span>
+    station_id = start_station_id
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>
+    number_of_rides <span class="hljs-keyword">DESC</span>
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    station_id,
+    <span class="hljs-keyword">name</span>
+<span class="hljs-keyword">FROM</span>
+        bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.citibike_stations
+<span class="hljs-keyword">WHERE</span>
+    station_id <span class="hljs-keyword">IN</span>
+    (
+        <span class="hljs-keyword">SELECT</span>
+            start_station_id
+        <span class="hljs-keyword">FROM</span>
+            bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-keyword">data</span>.new_york.trips
+        <span class="hljs-keyword">WHERE</span>
+            usertype = <span class="hljs-string">&apos;Subscriber&apos;</span>
+    )
+</code></pre>
+<p>Use HAVING and CASE in subqueries. </p>
+<blockquote>
+<p><strong>HAVING</strong>: A SQL clause that adds a filter to a query instead of the underlying table that can only be used with aggregate functions.</p>
+</blockquote>
+<p><strong><em>Example:</em></strong></p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    Warehouse.warehouse_id,
+    <span class="hljs-keyword">CONCAT</span>(Warehouse.state, <span class="hljs-string">&apos;: &apos;</span>, Warehouse.warehouse_alias) <span class="hljs-keyword">AS</span> warehouse_name
+    <span class="hljs-keyword">COUNT</span>(Orders.order_id) <span class="hljs-keyword">AS</span> number_of_orders,
+    (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-keyword">COUNT</span>(*)
+        <span class="hljs-keyword">FROM</span> warehouse_orders.Orders Orders
+    )
+    <span class="hljs-keyword">AS</span> total_orders,
+    <span class="hljs-keyword">CASE</span>
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-keyword">COUNT</span>(Orders.order_id)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> warehouse_orders.Orders Orders) &lt;= <span class="hljs-number">0.20</span>
+        <span class="hljs-keyword">THEN</span> <span class="hljs-string">&quot;Fulfilled 0-20% of Orders&quot;</span>
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-keyword">COUNT</span>(Orders.order_id)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> warehouse_orders.Orders Orders) &gt; <span class="hljs-number">0.20</span>
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">COUNT</span>(Orders.order_id)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> warehouse_orders.Orders Orders) &lt;= <span class="hljs-number">0.60</span>
+        <span class="hljs-keyword">THEN</span> <span class="hljs-string">&quot;Fulfilled 21-60% of Orders&quot;</span>
+    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&quot;Fulfilled moree than 60% of Orders&quot;</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> fulfillment_summary
+<span class="hljs-keyword">FROM</span>
+    warehouse_orders.Warehouse Warehouse
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span>
+    warehouse_orders.Orders Orders <span class="hljs-keyword">ON</span>
+    Orders.warehouse_id = Warehouse.warehouse_id
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    Warehouse.warehouse_id,
+    warehouse_name
+<span class="hljs-keyword">HAVING</span> 
+    <span class="hljs-keyword">COUNT</span>(Orders.order_id) &gt; <span class="hljs-number">0</span>
+</code></pre>
+<h1 id="data-calculation">Data Calculation</h1>
+<blockquote>
+<p><strong>Statistics</strong>: The study of how to collect, analyze, summarize, and present data.</p>
+<p><strong>Calculus</strong>: A branch of mathematics that involves the study of rates of change and the changes between values that are related by a function.</p>
+<p><strong>Causation</strong>: When an action directly leads to an outcome, such as cause-effect relationship.</p>
+<p><strong>Correlation</strong>: The measure of the degree to which two variables change in relationship to each other.</p>
+</blockquote>
+<h2 id="data-calculation-in-spreadsheets">Data Calculation in Spreadsheets</h2>
+<h3 id="formula">Formula</h3>
+<blockquote>
+<p><strong>Array</strong>: A collection of values in spreadsheet cells.</p>
+<p><strong>Modulo</strong>: An operator (%) that returns the remainder when one number is divided by another.</p>
+<p><strong>SUMIF</strong>: A spreadsheet function that adds numeric data based on one condition.</p>
+<p><strong>AVERAGEIF</strong>: A spreadsheet function that returns the average of all cell values from a given range that meet a specified condition.</p>
+<p><strong>SUMPRODUCT</strong>: A function that multiplies arrays and returns the sum of those products.</p>
+<p><strong>MAXIFS</strong>: A spreadsheet function that returns the maximum value from a given range that meets a specified condition.</p>
+<p><strong>MINIFS</strong>: A spreadsheet function that returns the minimum value from a given range that meets a specified condition.</p>
+</blockquote>
+<h3 id="pivot-table">Pivot Table</h3>
+<blockquote>
+<p><strong>Summary table</strong>: A table used to summarize statistical information about data.</p>
+<p><strong>Calculated field</strong>: A new field within a pivot table that carries out certain calculations based on the values of other fields.</p>
+<p><strong>Profit margin</strong>: A percentage that indicates how many cents of profit has been generated for each dollar of sale.</p>
+</blockquote>
+<h2 id="data-calculation-in-sql">Data Calculation in SQL</h2>
+<blockquote>
+<p><strong>GROUP</strong> <strong>BY</strong>: A SQL clause that groups rows that have the same values from a table into summary rows.</p>
+</blockquote>
+<p>The simplest way to embed calculations in SQL:</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    columnA,
+    columnB,
+    columnA/columnB <span class="hljs-keyword">AS</span> columnX
+<span class="hljs-keyword">FROM</span>
+    table_name
+</code></pre>
+<h2 id="data-validation">Data Validation</h2>
+<blockquote>
+<p><strong>Data validation process</strong>: The process of checking and rechecking the quality of data so that it is complete, accurate, secure, and consistent.</p>
+<p><strong>Underscores</strong>: Lines used to underline words and connect text characters.</p>
+</blockquote>
+<h2 id="temporary-tables-in-sql">Temporary Tables in SQL</h2>
+<blockquote>
+<p><strong>Temporary table</strong>: A database table that is created and exists temporarily on a database server.</p>
+<p><strong>CONVERT</strong>: A SQL function that changes the unit of measurement of a value in data.</p>
+</blockquote>
+<p>Create a temporary table using the <code>WITH</code> clause: </p>
+<blockquote>
+<p><strong>WITH</strong>: A SQL clause that creates a temporary table that can be queried multiple times.</p>
+</blockquote>
+<pre><code class="lang-sql">WITH trips_over_1_hr AS (
+    <span class="hljs-keyword">SELECT</span>
+        *
+    <span class="hljs-keyword">FROM</span>
+        bigquery-<span class="hljs-keyword">public</span>-<span class="hljs-built_in">date</span>.new_york.citibike_trips
+    <span class="hljs-keyword">WHERE</span>
+        tripduration &gt;= <span class="hljs-number">60</span>
+    )
+
+## <span class="hljs-keyword">Count</span> how many trips <span class="hljs-keyword">are</span> <span class="hljs-number">60</span>+ munite <span class="hljs-keyword">long</span>: 
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> cnt
+<span class="hljs-keyword">FROM</span>
+    trips_over_1_hr
+</code></pre>
+<p>Use the <code>SELECT INTO</code> statement: </p>
+<blockquote>
+<p><strong>SELECT INTO</strong>: A SQL clause that copies data from one table into a temporary table without adding the new table to the database.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    *
+<span class="hljs-keyword">INTO</span>
+    Africa_Sales
+<span class="hljs-keyword">FROM</span>
+    Global_Sales
+<span class="hljs-keyword">WHERE</span>
+    Region = <span class="hljs-string">&quot;Africa&quot;</span>
+</code></pre>
+<p>Use the <code>CREATE TABLE</code> clause: </p>
+<blockquote>
+<p><strong>CREATE TABLE</strong>: A SQL clause that adds a temporary table to a database that can be used by multiple people.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Africa_Sales <span class="hljs-keyword">AS</span>
+(
+    <span class="hljs-keyword">SELECT</span>
+        *
+    <span class="hljs-keyword">FROM</span>
+        Global_Sales
+    <span class="hljs-keyword">WHERE</span>
+        Region = <span class="hljs-string">&quot;Africa&quot;</span>
+    )
+</code></pre>
+<blockquote>
+<p><strong>DROP TABLE</strong>: A SQL clause that removes a temporary table from a database.</p>
+</blockquote>
+<p><a href="Analyze%20Data%20to%20Answer%20Questions%20a2d98075461148e1aec056d3d5d46695/Intermediate_Guide_to_SQL.pdf">Intermediate Guide to SQL.pdf</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4.html" class="navigation navigation-prev " aria-label="Previous page: Process Data from Dirty to Clean">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="6.html" class="navigation navigation-next " aria-label="Next page: Share Data Through the Art of Visualization">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Analyze Data to Answer Questions","level":"1.7","depth":1,"next":{"title":"Share Data Through the Art of Visualization","level":"1.8","depth":1,"path":"6.md","ref":"6.md","articles":[]},"previous":{"title":"Process Data from Dirty to Clean","level":"1.6","depth":1,"path":"4.md","ref":"4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"5.md","mtime":"2022-07-22T06:11:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-23T02:21:42.370Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

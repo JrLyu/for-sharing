@@ -34,11 +34,16 @@
 \definecolor{green}{rgb}{0,0.42,0.24}
 \definecolor{orange}{rgb}{2.07,0.69,0.32}
 
+\theorembodyfont{\upshape}
+\theoremseparator{:}
+\theoremstyle{definition}
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newtheorem{rmk}{Remark}[subsection]
-\newtheorem{prf}{Proof}[subsection]
+\newtheorem*{sol}{\indent\bf Solution}
+\newtheorem*{rmk}{\indent Remark}
+\newtheorem*{prf}{\indent Proof}
+\newtheorem*{ext}{\indent Extension}
 \newtheorem{cor}{Corollary}[subsection]
 \newtheorem{lem}{Lemma}[subsection]
 \newtheorem{prop}{Proposition}[subsection]
@@ -81,7 +86,7 @@
 \section{This is the section name}
 \subsection{This is the subsection name}
 
-\begin{thm}
+\begin{thm}[Name of thm]
 	This is a theorem
 \end{thm}
 
@@ -92,6 +97,10 @@
 \begin{eg}
 	This is an example
 \end{eg}
+\begin{sol}
+	
+\end{sol}
+
 
 \begin{rmk}
 	This is a remark

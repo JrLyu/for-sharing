@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  28 JUL 2022 21:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  14 OCT 2022 15:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -898,21 +898,28 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
 LaTeX Info: Redefining \hbar on input line 50.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip149
+\fb@frw=\dimen304
+\fb@frh=\dimen305
+\FrameRule=\dimen306
+\FrameSep=\dimen307
 ) (/usr/local/texlive/2020/texmf-dist/tex/generic/chemfig/chemfig.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/chemfig/chemfig.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/simplekv/simplekv.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfarrowinset=\dimen304
-\pgfarrowlength=\dimen305
-\pgfarrowwidth=\dimen306
-\pgfarrowlinewidth=\dimen307
+\pgfarrowinset=\dimen308
+\pgfarrowlength=\dimen309
+\pgfarrowwidth=\dimen310
+\pgfarrowlinewidth=\dimen311
 )
 \CF_cntatomgroup=\count346
 \CF_cntgroup=\count347
 \CF_cntatom=\count348
 \CF_cntcycle=\count349
 \CF_cntcompound=\count350
-\CF_dim=\dimen308
-\CF_arrowsize=\dimen309
-\CF_zero=\dimen310
+\CF_dim=\dimen312
+\CF_arrowsize=\dimen313
+\CF_zero=\dimen314
 \CF_boxlewis=\box128
 \CF_box=\box129
 \CF_boxstuff=\box130
@@ -922,53 +929,58 @@ File: pgflibraryarrows.meta.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
 Package: chemfig 2020/03/05 v1.5 Draw molecule with an easy syntax (CT)
 )
+
+LaTeX Warning: Unknown theoremstyle `definition'. Using `plain' on input line 39.
+
 \c@thm=\count351
 \c@df=\count352
 \c@eg=\count353
-\c@rmk=\count354
-\c@prf=\count355
-\c@cor=\count356
-\c@lem=\count357
-\c@prop=\count358
-\c@conj=\count359
- (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+\c@sol=\count354
+\c@rmk=\count355
+\c@prf=\count356
+\c@ext=\count357
+\c@cor=\count358
+\c@lem=\count359
+\c@prop=\count360
+\c@conj=\count361
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/Users/richardlyu/Documents/Projects/Latex/Standard Template/.texpadtmp/Template.aux)
+) (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/Standard Template/.texpadtmp/Template.aux)
 \openout1 = `Template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 84.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 \AtBeginShipoutBox=\box133
  (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count360
-\scratchdimen=\dimen311
+\scratchcounter=\count362
+\scratchdimen=\dimen315
 \scratchbox=\box134
-\nofMPsegments=\count361
-\nofMParguments=\count362
+\nofMPsegments=\count363
+\nofMParguments=\count364
 \everyMPshowfont=\toks61
-\MPscratchCnt=\count363
-\MPscratchDim=\dimen312
-\MPnumerator=\count364
-\makeMPintoPDFobject=\count365
+\MPscratchCnt=\count365
+\MPscratchDim=\dimen316
+\MPnumerator=\count366
+\makeMPintoPDFobject=\count367
 \everyMPtoPDFconversion=\toks62
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -976,7 +988,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
-Package hyperref Info: Link coloring OFF on input line 80.
+Package hyperref Info: Link coloring OFF on input line 84.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
@@ -984,19 +996,19 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/local/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count366
+\c@section@level=\count368
 )
-LaTeX Info: Redefining \ref on input line 80.
-LaTeX Info: Redefining \pageref on input line 80.
-LaTeX Info: Redefining \nameref on input line 80.
- (/Users/richardlyu/Documents/Projects/Latex/Standard Template/.texpadtmp/Template.out) (/Users/richardlyu/Documents/Projects/Latex/Standard Template/.texpadtmp/Template.out)
+LaTeX Info: Redefining \ref on input line 84.
+LaTeX Info: Redefining \pageref on input line 84.
+LaTeX Info: Redefining \nameref on input line 84.
+ (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/Standard Template/.texpadtmp/Template.out) (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/Standard Template/.texpadtmp/Template.out)
 \@outlinefile=\write6
 \openout6 = `Template.out'.
 
-\c@lstlisting=\count367
+\c@lstlisting=\count369
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 80.
+(lastpage)             ! on input line 84.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1033,17 +1045,18 @@ Package lastpage Info: Please have a look at the pageslts package at
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package mathptmx Warning: There are no bold math fonts on input line 86.
+Package mathptmx Warning: There are no bold math fonts on input line 89.
 
-Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 86.
-Package hyperref Info: bookmark level for unknown df defaults to 0 on input line 90.
-Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 94.
-Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 98.
-Package hyperref Info: bookmark level for unknown prf defaults to 0 on input line 102.
-Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 106.
-Package hyperref Info: bookmark level for unknown lem defaults to 0 on input line 110.
-Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 114.
-Package hyperref Info: bookmark level for unknown conj defaults to 0 on input line 118.
+Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 89.
+Package hyperref Info: bookmark level for unknown df defaults to 0 on input line 94.
+Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 98.
+Package hyperref Info: bookmark level for unknown sol defaults to 0 on input line 101.
+Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 106.
+Package hyperref Info: bookmark level for unknown prf defaults to 0 on input line 110.
+Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 114.
+Package hyperref Info: bookmark level for unknown lem defaults to 0 on input line 118.
+Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 122.
+Package hyperref Info: bookmark level for unknown conj defaults to 0 on input line 126.
 \tf@thm=\write7
 \openout7 = `Template.thm'.
 
@@ -1052,27 +1065,27 @@ AED: lastpage setting LastPage
 [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
- (/Users/richardlyu/Documents/Projects/Latex/Standard Template/.texpadtmp/Template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
+ (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/Standard Template/.texpadtmp/Template.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
 Package rerunfilecheck Info: File `Template.out' has not changed.
 (rerunfilecheck)             Checksum: 865AC0670B2DB1C53064074C4425F0E7;135.
  ) 
 Here is how much of TeX's memory you used:
- 29045 strings out of 480608
- 584440 string characters out of 5903630
- 1079847 words of memory out of 5000000
- 44405 multiletter control sequences out of 15000+600000
- 550667 words of font info for 38 fonts, out of 8000000 for 9000
+ 29150 strings out of 480608
+ 585943 string characters out of 5903630
+ 1081977 words of memory out of 5000000
+ 44508 multiletter control sequences out of 15000+600000
+ 547819 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,5n,103p,831b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "/Users/richardlyu/Documents/Projects/Latex/Standard Template/.texpadtmp/Template.pdf" (1 page, 28349 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on "/Users/richardlyu/Documents/GitHub/Enrichment/Latex/Standard Template/.texpadtmp/Template.pdf" (1 page, 27440 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
+ 83 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
  173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

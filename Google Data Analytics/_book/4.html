@@ -1,0 +1,558 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Process Data from Dirty to Clean · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="5.html" />
+    
+    
+    <link rel="prev" href="3.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    Foundations Data, Data, Everywhere
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    Ask Questions to Make Data-Driven Decisions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    Prepare Data for Exploration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    Process Data from Dirty to Clean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    Analyze Data to Answer Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    Share Data Through the Art of Visualization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7.html">
+            
+                <a href="7.html">
+            
+                    
+                    Data Analysis with R Programming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="8.html">
+            
+                <a href="8.html">
+            
+                    
+                    Google Data Analytics Capstone Complete a Case Study
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Process Data from Dirty to Clean</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="process-data-from-dirty-to-clean">Process Data from Dirty to Clean</h1>
+<h1 id="data-integrity">Data Integrity</h1>
+<blockquote>
+<p><strong>Data integrity</strong>: The accuracy, completeness, consistency, and trustworthiness of data throughout its life cycle.</p>
+<p><strong>Accuracy</strong>: The degree to which the data conforms to the actual entity being measured or described.</p>
+<p><strong>Completeness</strong>: The degree to which the data contains all desired components or measures.</p>
+<p><strong>Consistency</strong>: The degree to which data is repeatable from different points of entry or collection.</p>
+<p><strong>Data constrains</strong>: The criteria that determine whether a piece of a data is clean and valid.</p>
+<p><strong>Validity</strong>: The degree to which the data conforms to constraints when it is input, collected, or created.</p>
+<p><strong>Cross-field validation</strong>: A process that ensures certain conditions for multiple data fields are satisfied.</p>
+</blockquote>
+<h2 id="dealing-with-insufficient-data">Dealing with Insufficient Data</h2>
+<blockquote>
+<p><strong>Data range</strong>: Numerical values that fall between predefined maximum and minimum values.</p>
+<p><strong>Estimated response rate</strong>: The average number of people who typically complete a survey.</p>
+<p><strong>Data manipulation</strong>: The process of changing data to make it more organized and easier to read.</p>
+<p><strong>Data replication</strong>: The process of storing data in multiple locations.</p>
+<p><strong>Data transfer</strong>: The process of copying data from a storage device to computer memory or from one computer to another.</p>
+<p><strong>Random sampling</strong>: A way of selecting a sample from a population so that every possible type of the sample has an equal chance of being chosen.</p>
+</blockquote>
+<h1 id="using-statistics">Using Statistics</h1>
+<h2 id="statistical-power">Statistical Power</h2>
+<blockquote>
+<p><strong>Statistical Power</strong>: The probability that a test of significance will recognize an effect that is present.</p>
+<p><strong>DATEDIF</strong>: A spreadsheet function that calculates the number of days, months, or years between two dates.</p>
+<p><strong>VLOOKUP</strong>: A spreadsheet function that vertically searches for a certain value in a column to return a corresponding piece of information.</p>
+<p><strong>Regular expression (RegEx)</strong>: A rule that says the values in a table must match a prescribed pattern.</p>
+<p><strong>Mandatory</strong>: A data value that cannot be left blank or empty.</p>
+</blockquote>
+<h2 id="hypothesis-testing">Hypothesis testing</h2>
+<blockquote>
+<p><strong>Hypothesis testing</strong>: A process to determine if a survey or experiment has meaningful results.</p>
+<p><strong>Statistical significance</strong>: The probability that sample results are not due to random chance.</p>
+<p><strong>Confidence interval</strong>: A range of values that conveys how likely a statistical estimate reflects the population.</p>
+<p><strong>Confidence level</strong>: The probability that a sample size accurately reflects the greater population.</p>
+<p><strong>Margin of error</strong>: The maximum amount that the sample results are expected to differ from those of the actual population.</p>
+<p><strong>A/B testing</strong>: The process of testing two variations of the same web page to determine which page is more successful at attracting user traffic and generating revenue.</p>
+</blockquote>
+<h1 id="ways-to-clean-data">Ways to Clean Data</h1>
+<blockquote>
+<p><strong>Clean data</strong>: Data that is complete, correct, and relevant to the problem being solved.</p>
+<p><strong>Dirty data</strong>: Data that is incomplete, incorrect, or irrelevant to problem to be solved.</p>
+<p><strong>Data mapping</strong>: The process of matching fields from one data source to another.</p>
+<p><strong>Data merging</strong>: The process of combing two or more datasets into a single dataset.</p>
+<p><strong>Data validation</strong>: A tool for checking the accuracy and quality of data.</p>
+</blockquote>
+<h2 id="why-cleaning-data-is-important">Why Cleaning Data is Important?</h2>
+<blockquote>
+<p><strong>Compatibility</strong>: How well two or more datasets are able to work together.</p>
+<p><strong>Duplicate data</strong>: Any record that inadvertently shares data with another record.</p>
+<p><strong>Incomplete data</strong>: Data that is important fields.</p>
+<p><strong>Inconsistent data</strong>: Data that uses different formats to represent the same thing.</p>
+<p><strong>Incorrect/Inaccurate data</strong>: Data that is complete but inaccurate.</p>
+<p><strong>Outdated data</strong>: Any data that has been superseded by newer and more accurate information.</p>
+<p><strong>Null</strong>: An indication that a value does not exist in a dataset.</p>
+<p><strong>Data engineer</strong>: A professional who transforms data into a useful format for analysis and gives it a reliable infrastructure.</p>
+<p><strong>Data warehousing specialist</strong>: A professional who develops processes and procedures to effectively store and organize data.</p>
+<p><strong>Merger</strong>: An agreement that unites two organizations into a single new one.</p>
+</blockquote>
+<h2 id="cleaning-data-using-spreadsheets">Cleaning Data Using Spreadsheets</h2>
+<blockquote>
+<p><strong>Syntax</strong>: The predetermined structure of a language that includes all required words, symbols, and punctuation, as well as their proper placement.</p>
+<p><strong>Conditional formatting</strong>: A spreadsheet tool that changes how cells appear when values meet specific conditions.</p>
+<p><strong>Remove duplicates</strong>: A spreadsheet tool that automatically searches for and eliminates duplicate entries from a spreadsheet.</p>
+<p><strong>Split</strong>: A function that divides text around a specified character and puts each fragment into a new, separate cell.</p>
+<p><strong>CONCATENATE</strong>: A spreadsheet function that joins together two or more text strings.</p>
+<p><strong>COUNTIF</strong>: A spreadsheet function that returns the number of cells that match a specified value.</p>
+<p><strong>Text string</strong>: A group of characters within a cell, most often composed of letters.</p>
+<p><strong>Substring</strong>: A smaller subset of a text string.</p>
+<p><strong>LEFT</strong>: A function that returns a set number of characters from the left side of a text string.</p>
+<p><strong>RIGHT</strong>: A function that returns a set number of characters from the right side of a text string.</p>
+<p><strong>Length</strong>: The number of characters in a text string.</p>
+<p><strong>LEN</strong>: A function that returns the length of a text string by counting the number of characters it contains.</p>
+<p><strong>MID</strong>: A function that returns a segment from the middle of a text string.</p>
+<p><strong>TRIM</strong>: A function that removes leading, trailing, and repeated spaces in data.</p>
+<p><strong>Delimiter</strong>: A character that indicates the beginning or end of a data item.</p>
+<p><strong>Field length</strong>: A tool for determining how many characters can be keyed into a spreadsheet field.</p>
+</blockquote>
+<h1 id="using-sql-to-clean-data">Using SQL to Clean Data</h1>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">name</span>
+<span class="hljs-keyword">FROM</span>
+    table_name
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> xxx ()
+<span class="hljs-keyword">VALUES</span> ()
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">UPDATE</span> table_name
+<span class="hljs-keyword">SET</span> variable_nanme1 = <span class="hljs-string">&apos;value1&apos;</span>
+<span class="hljs-keyword">WHERE</span> variable_name2 = <span class="hljs-string">&apos;value2&apos;</span>
+</code></pre>
+<p>To avoid duplicated data, we can use the <code>DISTINCT</code> function.</p>
+<blockquote>
+<p><strong>DISTINCT</strong>: A keyword that is added to a SQL SELECT statement to retrieve only non-duplicate entries.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">DISTINCT</span> variable_name
+<span class="hljs-keyword">FROM</span>
+    table_name
+</code></pre>
+<p>Use the <code>LENGTH</code> or <code>LEN</code> function to check if the text string variable matches. </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">LENGTH</span>(variable_name) <span class="hljs-keyword">AS</span> column_name
+<span class="hljs-keyword">FROM</span>
+    table_nanme
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    variable_nanme
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-keyword">LENGTH</span>(coulumn_nanme) &gt; <span class="hljs-built_in">number</span>
+</code></pre>
+<p>Use <code>SUBSTR</code> function to select data we want. </p>
+<blockquote>
+<p><strong>SUBSTR</strong>: A SQL function that extracts a substring from a string variable.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">DISTINCT</span> variable_name
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-keyword">SUBSTR</span>(column_nanme,start_letter_position,number_of_letter) = <span class="hljs-string">&apos;value&apos;</span>
+</code></pre>
+<p>Use the <code>TRIM</code> function to remove extra spaces. </p>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">DISTINCT</span> variable_name
+<span class="hljs-keyword">FROM</span>
+    table_nanme
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-keyword">TRIM</span>(variable_name) = <span class="hljs-string">&apos;value&apos;</span>
+</code></pre>
+<blockquote>
+<p><strong>Typecasting</strong>: Converting data from one type to another.</p>
+</blockquote>
+<p>Use <code>CAST</code> function to convert data into different data types.</p>
+<blockquote>
+<p><strong>CAST</strong>: A SQL function that converts data from one datatype to another.</p>
+<p><strong>Float</strong>: A number that contains a decimal.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">CAST</span>(variable_name <span class="hljs-keyword">AS</span> FLOAT64)
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>
+    <span class="hljs-keyword">CAST</span>(variable_name <span class="hljs-keyword">AS</span> FLOAT64) <span class="hljs-keyword">DESC</span>
+</code></pre>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">CAST</span>(<span class="hljs-built_in">date</span> <span class="hljs-keyword">AS</span> <span class="hljs-built_in">date</span>) <span class="hljs-keyword">AS</span> date_only, variable_name2
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-built_in">date</span> <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">&apos;2020-12-01&apos;</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">&apos;2020-12-31&apos;</span>
+</code></pre>
+<p>Use <code>CONCAT</code> function to combine two columns.</p>
+<blockquote>
+<p><strong>CONCAT</strong>: A SQL function that adds strings together to create new text strings that can be used as unique keys.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">CONCAT</span>(varibale_name1,variable_name2) <span class="hljs-keyword">AS</span> new_name
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-keyword">variable</span> = <span class="hljs-string">&apos;value&apos;</span>
+</code></pre>
+<p>When some information is missing, <code>COALESCE</code> function gives a secondary reference. </p>
+<blockquote>
+<p><strong>COALESCE</strong>: A SQL function that returns non-null values in a list.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    <span class="hljs-keyword">COALESCE</span>(variable_name1,variable_name2) <span class="hljs-keyword">AS</span> new_name
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+    <span class="hljs-keyword">variable</span> = <span class="hljs-string">&apos;value&apos;</span>
+</code></pre>
+<h1 id="reporting-and-validating-clean-data">Reporting and Validating Clean Data</h1>
+<h2 id="using-spreadsheet">Using Spreadsheet</h2>
+<blockquote>
+<p><strong>COUNTA</strong>: A spreadsheet function that counts the total number of values within a specified range.</p>
+<p><strong>Find and replace</strong>: A tool that finds a specified search term and replaces it with something else.</p>
+</blockquote>
+<h2 id="using-sql">Using SQL</h2>
+<p>Use the <code>CASE</code> function</p>
+<blockquote>
+<p><strong>CASE</strong>: A SQL statement that returns record that meet conditions by including an if/then statement in a query.</p>
+</blockquote>
+<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span>
+    variable_name1
+    <span class="hljs-keyword">CASE</span>
+        <span class="hljs-keyword">WHEN</span> variable_name2 = <span class="hljs-string">&apos;wrong_value&apos;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&apos;correct_value&apos;</span>
+        <span class="hljs-keyword">ELSE</span> variable_name2
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> new_variable_name
+<span class="hljs-keyword">FROM</span>
+    table_name
+<span class="hljs-keyword">WHERE</span>
+</code></pre>
+<h2 id="the-change-log">The Change Log</h2>
+<blockquote>
+<p><strong>Change log:</strong> A file containing a chronologically ordered list of modifications made to a project.</p>
+<p><strong>Verification</strong>: A process to confirm that a data-cleaning effort was well executed and the resulting data is accurate and reliable.</p>
+</blockquote>
+<h1 id="build-your-resume">Build Your Resume</h1>
+<blockquote>
+<p><strong>Estimated response rate</strong>: The average number of people who typically complete a survey.</p>
+<p><strong>Soft skills</strong>: Non-technical traits and behaviors that relate to how people work.</p>
+<p><strong>Transferable skills</strong>: Skills and qualities that can transfer from one job or industry to another.</p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.html" class="navigation navigation-prev " aria-label="Previous page: Prepare Data for Exploration">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="5.html" class="navigation navigation-next " aria-label="Next page: Analyze Data to Answer Questions">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Process Data from Dirty to Clean","level":"1.6","depth":1,"next":{"title":"Analyze Data to Answer Questions","level":"1.7","depth":1,"path":"5.md","ref":"5.md","articles":[]},"previous":{"title":"Prepare Data for Exploration","level":"1.5","depth":1,"path":"3.md","ref":"3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"4.md","mtime":"2022-07-22T06:11:28.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-23T02:21:42.370Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
