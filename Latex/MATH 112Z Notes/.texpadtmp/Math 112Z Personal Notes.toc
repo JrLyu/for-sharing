@@ -27,3 +27,5 @@
 \contentsline {subsection}{\numberline {4.7}Practice Using Various Tests for Series}{80}{subsection.4.7}%
 \contentsline {subsection}{\numberline {4.8}Power Series}{82}{subsection.4.8}%
 \contentsline {subsection}{\numberline {4.9}Representation of Functions as Power Series}{87}{subsection.4.9}%
+\contentsline {subsection}{\numberline {4.10}Maclaurin and Taylor Series}{92}{subsection.4.10}%
+\contentsline {subsection}{\numberline {4.11}Application of Taylor Polynomials}{98}{subsection.4.11}%

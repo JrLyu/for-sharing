@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  2 NOV 2022 00:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  12 NOV 2022 21:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -808,7 +808,7 @@ Package hyperref Warning: Invalid value `001'
 (hyperref)                for option `pdfborder'.
 (hyperref)                Option setting is ignored on input line 52.
 
-(/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.aux)
+(/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.aux)
 \openout1 = `"Math 112Z Personal Notes.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
@@ -903,7 +903,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 105.
 LaTeX Info: Redefining \pageref on input line 105.
 LaTeX Info: Redefining \nameref on input line 105.
- (/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.out) (/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.out)
+ (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.out) (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.out)
 \@outlinefile=\write6
 \openout6 = `"Math 112Z Personal Notes.out"'.
 
@@ -929,7 +929,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 107.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 107.
- (/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.toc
+ (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.toc
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
@@ -1043,34 +1043,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 2746--2749
 
  []
 
-[89]
+[89] [90] [91] [92] [93] [94] [95] [96] [97] [98] [99]
+Underfull \hbox (badness 10000) in paragraph at lines 3064--3065
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3098--3100
+
+ []
+
+[100]
 \tf@thm=\write8
 \openout8 = `"Math 112Z Personal Notes.thm"'.
 
  
 AED: lastpage setting LastPage
-[90]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2795.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2795.
- (/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2795.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2795.
+[101]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3145.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3145.
+ (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3145.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3145.
 Package rerunfilecheck Info: File `"Math 112Z Personal Notes".out' has not changed.
-(rerunfilecheck)             Checksum: E87BEBF9D41D2DA6261227B2B530ECB4;2300.
+(rerunfilecheck)             Checksum: EB97E7F6E8FB5E7C4F918EB40673D126;2472.
  ) 
 Here is how much of TeX's memory you used:
- 26685 strings out of 480608
- 532856 string characters out of 5903630
- 852311 words of memory out of 5000000
- 41840 multiletter control sequences out of 15000+600000
+ 26725 strings out of 480608
+ 532839 string characters out of 5903630
+ 852321 words of memory out of 5000000
+ 41867 multiletter control sequences out of 15000+600000
  591661 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,17n,103p,849b,1104s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,19n,103p,849b,1104s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "/Users/richardlyu/Library/CloudStorage/OneDrive-EmoryUniversity/2 Freshman/1 Fall 2022/MATH 112Z/Persoonal Notes/.texpadtmp/Math 112Z Personal Notes.pdf" (90 pages, 412811 bytes).
+Output written on "/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 112Z Notes/.texpadtmp/Math 112Z Personal Notes.pdf" (101 pages, 453062 bytes).
 PDF statistics:
- 735 PDF objects out of 1000 (max. 8388607)
- 600 compressed objects within 6 object streams
- 182 named destinations out of 1000 (max. 500000)
- 389 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 794 PDF objects out of 1000 (max. 8388607)
+ 647 compressed objects within 7 object streams
+ 195 named destinations out of 1000 (max. 500000)
+ 405 words of extra memory for PDF output out of 10000 (max. 10000000)
 
