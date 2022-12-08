@@ -107,10 +107,47 @@
 \tableofcontents
 \newpage
 
+\section{Preface}
+These is my personal notes for Emory University MATH 112Z Calculus II course. 
+
+After mastering Calculus I (which covers contents concerning limits, differentiation, and basic integration), this course focuses on integration technics, differential equations, series, and polar coordinates. The book used for this course is \textit{Single Variable Calculus Early Transcendentals, 8th Edition} by James Stewart. 
+
+Throughout this personal note, I use special ``tcolorboxes" to differentiate different contents, including definitions, theorems, proofs, examples, extensions, and remarks. To be more specific: 
+\begin{df}{Terminology}
+	This is a \textbf{definition}.	
+\end{df}
+\begin{thm}{Theorem Name}
+	This is a \textbf{theorem}.	
+\end{thm}
+\begin{eg}{Example Number}
+	This is the \textit{question} part of an \textbf{example}. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	This is the \textit{answer} part of an \textbf{example}. 
+\end{eg}
+\begin{rmk}{Remark}
+	This is a \textbf{remark} of a definition, theorem, example, or proof. 
+\end{rmk}
+\begin{prf}{Proof}
+	This is a \textbf{proof} of a theorem. 
+\end{prf}
+\begin{ext}{Extension}
+	This is a \textbf{extension} of a theorem, proof, or example. 	
+\end{ext}
+
+To better ace this course, it is recommended to do more questions than provided as examples under each section. Although each example is distinctive and representative, more questions and practice is still needed to deepen the understanding of this course. 
+
+Even though I put efforts into making as few flaws as possible when encoding these learning notes, some errors may still exist in this note. If you find any, please contact me via email: \url{lvjiuru@hotmail.com}. 
+
+I hope you will find my notes helpful when learning Calculus II, a fundamental course for other Math courses. 
+
+\rightline{Cheers,}
+\rightline{Jiuru Lyu}
+
+\newpage
 \section{Review - Pre-Calculus \& Derivative}
 \subsection{Inverse Functions}
 \begin{df}{Inverse Functions}
-	Functions that "undo" each other.
+	Functions that ``undo" each other.
 \end{df}
 \begin{eg}{Examples of Inverse Functions}
 	$$f(x)=x+1 \Longleftrightarrow f^{-1}(x)=x-1$$
@@ -226,6 +263,8 @@ Recall the definition of inverse trigonometric functions and the restrictions on
 Similarly, we can define the restrictions on the domain of other inverse trigonometric functions. 
 
 Also recall derivatives of inverse trigonometric functions. 
+
+\newpage
 \section{Integration Technics}
 \subsection{Integration by Parts}
 \begin{df}{Integration by Parts}
@@ -421,7 +460,7 @@ We can compute derivatives and integrals of hyperbolic trigonometric functions b
 	\end{aligned}$$
 \end{eg}
 \begin{eg}{Example 10}
-	Use integration by parts to establish the "reduction formula":
+	Use integration by parts to establish the ``reduction formula":
 	$$\int x^ne^x\ \d x=x^ne^x-n\int x^{n-1}e^x\ \d x$$
 	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
 	Let $\begin{cases}u=x^n\\\d v=e^x\end{cases}$, so we have $\begin{cases}\d u=nx^{n-1}\\v=e^{x}\end{cases}$
@@ -477,7 +516,7 @@ In this section, we will use trigonometric identities to integrate certain combi
 	\begin{itemize}
 		\item If either $m$ or $n$ is odd: 
 		\begin{itemize}
-			\item Separate out part of the integral as "$\d u$"
+			\item Separate out part of the integral as ``$\d u$"
 			\item Use trigonometric identities to rewrite remaining parts in terms of an appropriate $u$ substitution.
 		\end{itemize}
 		\item If both $m$ and $n$ are even, then use half angle formulas. 
@@ -522,7 +561,7 @@ In this section, we will use trigonometric identities to integrate certain combi
 	\begin{itemize}
 		\item If either $m$ is odd or $n$ is even: 
 		\begin{itemize}
-			\item Separate out part of the integrand as "$\d u$".
+			\item Separate out part of the integrand as ``$\d u$".
 			\item Use trigonometric identities to rewrite remaining parts in terms of an appropriate $u$ substitution. 
 		\end{itemize}
 		\item If $m$ is even and $n$ is odd, then will likely need integration by parts. 
@@ -702,7 +741,7 @@ $$\begin{aligned}
 	&=\ln\left|\frac{x-1}{x+1}\right|+C
 \end{aligned}$$
 \begin{eg}{The Goal of Partial Fractions}
-	Given something like $\dfrac{2}{x^2-1}$, "undo" the common denominator. That is, if possible, find constants $A$ and $B$ such that
+	Given something like $\dfrac{2}{x^2-1}$, ``undo" the common denominator. That is, if possible, find constants $A$ and $B$ such that
 	$$\frac{2}{(x-1)(x+2)}=\frac{A}{x-1}+\frac{B}{x+1}$$
 	Then, 
 	$$\int\frac{2}{x^2-1}\ \d x = \int\frac{2}{(x-1)(x+2)}\ \d x = \int\frac{A}{x-1}\ \d x+\int\frac{B}{x+1}\ \d x$$
@@ -1002,6 +1041,7 @@ By examining the definition of proper integrals, we know there are two types of 
 	As $\displaystyle\int_1^\infty\frac{1}{x}\ \d x$ is divergent, $\displaystyle\int_1^\infty\frac{1+e^{-x}}{x}\ \d x$ is also divergent. 
 \end{eg}
 
+\newpage
 \section{Differential Equations}
 \subsection{Introduction to Ordinary Differential Equations}
 Physical quantities often change with time (e.g. population changes with time), or position. So we model how quantities change with derivatives (Rates of change).
@@ -1262,7 +1302,7 @@ In this section, we consider some ODEs that are used to model population growth 
 	Here we use the simple assumption that growth rate is proportional to population size. \\
 	Let $P(t)=$Population size at any time $t$.\\
 	Then $$\frac{\d P}{\d t}=k\cdot P.$$
-	Note: $$\frac{1}{P}\cdot\frac{\d P}{\d t}=\frac{\d P/\d t}{P}=\frac{\text{Rate of growth}}{\text{population size}}=\text{"Relative growth rate"}$$
+	Note: $$\frac{1}{P}\cdot\frac{\d P}{\d t}=\frac{\d P/\d t}{P}=\frac{\text{Rate of growth}}{\text{population size}}=\text{``Relative growth rate"}$$
 	$$\therefore k=\frac{1}{P}\frac{\d P}{\d t}=\text{Relative growth rate}.$$
 	The OED: $\displaystyle\frac{\d P}{\d t}=kP$ is separable. 
 	$$\begin{aligned}
@@ -1328,7 +1368,7 @@ In this section, we consider some ODEs that are used to model population growth 
 		\end{aligned}$$
 	\end{eg}
 	\item The Logistic Model:\\
-	A more realistic model is that population growth should level off, and approach a "carrying capacity" because of limited resources. \\
+	A more realistic model is that population growth should level off, and approach a ``carrying capacity" because of limited resources. \\
 	\textbf{Assumptions}: 
 	\begin{itemize}
 		\item If $P$ is small, then $\displaystyle\frac{\d P}{\d t}\approx kP.$	
@@ -1337,7 +1377,7 @@ In this section, we consider some ODEs that are used to model population growth 
 		That is 
 		$$\frac{\d P}{\d t}>0\quad\text{for}\quad P<M$$
 		$$\frac{\d P}{\d t}<0\quad\text{for}\quad P>M$$
-		where $M$ is the "carrying capacity" of $P$.
+		where $M$ is the ``carrying capacity" of $P$.
 	\end{itemize}
 	\textbf{An ODE model that incorporates these assumptions is}: 
 	$$\frac{\d P}{\d t}=kP\left(1-\frac{P}{M}\right),\ k>0,\ M>0$$
@@ -1377,7 +1417,7 @@ In this section, we consider some ODEs that are used to model population growth 
 	$$\frac{M}{A+1}=P_0\ \Rightarrow\ \frac{M}{P_0}=A+1\ \Rightarrow A=\frac{M}{P_0}-1=\frac{M-P_0}{P_0}$$
 	Therefore: $$P(t)=\frac{M}{\dfrac{M-P_0}{P_0}e^{-kt}+1}$$
 	\begin{thm}{Logistic Growth ODE Model and Solution}
-		Assume $M$ is the "carrying capacity" of the population. 
+		Assume $M$ is the ``carrying capacity" of the population. 
 		$$\begin{aligned}
 			\text{IVP: }&\qquad\frac{\d P}{\d t}=kP\left(1-\frac{P}{M}\right),\ P(0)=P_0\\
 			\text{General Solution: }&\qquad P(t)=\frac{M}{1+Ae^{-kt}},\ \text{where }A\text{ is a constant. }\\
@@ -1534,6 +1574,7 @@ $$\begin{aligned}
 	\end{aligned}$$
 \end{ext}
 
+\newpage
 \section{Series}\label{series}
 \subsection{Sequences}\label{sequence}
 In section \ref{series}, we will study the very important topics of infinite sequences, and infinite series (i.e., adding an infinite sequence of numbers).
@@ -1573,7 +1614,7 @@ In section \ref{sequence}, we will introduce the concept of infinite sequences.
 	Sequences are often written with brackets: 
 	$$\left\{\frac{1}{n}\right\},\ \left\{(-1)^{n-1}n\right\},\ \left\{a_n\right\}.$$
 \end{rmk}
-An important question to answer in this section is that "Does the sequence $\left\{a_n\right\}$ has a definite trend, or is it indecisive, as $n$ increases?" That is, does $\displaystyle\lim_{n\to\infty}a_n$ exist? If the limit exists, is it finite? 
+An important question to answer in this section is that ``Does the sequence $\left\{a_n\right\}$ has a definite trend, or is it indecisive, as $n$ increases?" That is, does $\displaystyle\lim_{n\to\infty}a_n$ exist? If the limit exists, is it finite? 
 $$\lim_{n\to\infty}a_n=L\quad\text{If }L\text{ is finite }\Rightarrow\text{ converges; otherwise, diverges.}$$
 \begin{df}{Convergence of a Sequence}
 	\begin{itemize}
@@ -1919,7 +1960,7 @@ In this section, we start to look at adding up an infinite number of terms, whic
 
 \subsection{Integral Test and Estimates of Sums}
 \begin{thm}{Integral Test}
-	Suppose $\displaystyle\sum_{n=1}^{\infty}a_n$ is a "positive term" series, and let $f(x)$ be a function with $f(n)=a_n.$\\
+	Suppose $\displaystyle\sum_{n=1}^{\infty}a_n$ is a ``positive term" series, and let $f(x)$ be a function with $f(n)=a_n.$\\
 	If
 	\begin{itemize}
 		\item $f(x)\geq0\ \forall x\geq1$
@@ -2823,7 +2864,7 @@ Note:
 	\end{itemize}
 \end{eg}
 
-\subsection{Maclaurin and Taylor Series}
+\subsection{Maclaurin and Taylor Series}\label{taylor}
 \textbf{\underline{Question}}: Given a function $f(x$ that is \underline{continuously differentiable}, can we find constants $c_0, c_1, c_2,\cdots$ such that $$f(x)=\sum^\infty_{n=0}c_nx^n?$$
 $$\begin{aligned}
 	f(x)&=\sum^\infty_{n=0}c_nx^n\\
@@ -3000,6 +3041,7 @@ Note:
 \end{eg}
 
 \subsection{Application of Taylor Polynomials}
+\subsubsection{Taylor Inequality}
 \begin{df}{$n$th degree Taylor Polynomial Approximation}
 	If a Taylor series for $f(x)$ about $x=a$ is given as
 	$$\begin{aligned}
@@ -3059,7 +3101,8 @@ Note:
 	$$|R_n(x)|=|f(x)-T_n(x)|\leq\frac{M}{(n+1)!}|x-a|^{n+1},\quad |x-a|\leq d$$
 \end{thm}
 \begin{eg}{Example 2}
-	Consider $f(a)=\cos{x}$
+	Consider $f(a)=\cos{x}$\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
 	\begin{enumerate}
 		\item[(a)] Find a $4$th degree Taylor polynomial approximation to $f(x)$ about $\displaystyle x=\frac{\pi}{3}$ (or equivalently, at $\displaystyle a=\frac{\pi}{3}$).\\
 		$$\begin{aligned}
@@ -3105,6 +3148,367 @@ Note:
 		$$\therefore |R_4(x)|\leq\frac{1}{5!}\left(\frac{\pi}{3}\right)^5$$
 	\end{enumerate}	
 \end{eg}
+\begin{eg}{Example 3}
+	Consider $f(x)=\ln{x}$\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{enumerate}
+		\item[(a)] Recall from section \ref{taylor}, we found the Taylor series for $f(x)=\ln{x}$ at $a=1$: $$f(x)=\sum^\infty_{k=1}(-1)^{k-1}\frac{(x-1)^k}{k}$$
+		\item[(b)] Fina a Taylor polynomial of degree $n=3$ at $a=1$ to approximate $f(x).$ $$T_3=(x-1)-\frac{(x-a)^2}{2}+\frac{(x-a)^3}{3}=(x-a)-\frac{1}{2}(x-1)^2+\frac{1}{3}(x-1)^3$$
+		\item[(c)] Use Taylor's inequality to estimate the accuracy of the approximation $f(x)\approx T_3(x)$ for $0.9\leq x\leq1.1.$ 
+		$$\begin{aligned}
+			|R_n(x)|=\frac{M}{(n+1)!}|x-a|^{n+1},\ &a=1,\ n=3,\ n+1=4\\
+			&|f^{(n+1)}(x)|\leq M\text{ on }0.9\leq x\leq 1.1\\
+			R_3(x)\leq\frac{M}{4!}|x-1|^4,\ &|f^{(4)}(x)|\leq M\text{ on }0.9\leq x\leq 1.1
+		\end{aligned}$$
+		\begin{itemize}
+			\item We need to find $\displaystyle\max_{0.9\leq x\leq1.1}|f^{(4)}(x)|$ $$f(x)=\ln{x},\ f'(x)=x^{-1},\ f''(x=)-x^{-2},\ f'''(x)=2x^{-3},\ f^{(4)}(x)=-6x^{-4}$$
+			\item $\displaystyle |f^{(4)}(x)|=\left|\frac{6}{x^4}\right|$ find maximum on $0.9\leq x\leq 1.1$\\
+			Notice: $\displaystyle\left|\frac{6}{x^4}\right|$ is decreasing on $0.9\leq x\leq 1.1$
+			$$\therefore|f^{(4)}(x)|=\left|\frac{6}{x^4}\right|\leq\frac{6}{(0.9)^4}=M$$
+			\item We need to find $\displaystyle\max_{0.9\leq x\leq 1.1}|x-1|$.\\
+			Here, the max occurs at either $x=0.9$ or $x=1.1$
+			$$\therefore|0.9-1|=|1.1-1|=0.1$$
+			$$\therefore\max_{0.9\leq x\leq1.1}|x-1|^4=0.1^4=\frac{1}{10^4}$$
+			\item $$|R_3(x)|\leq\frac{\frac{6}{(0.9)^4}}{4!}\cdot\frac{1}{10^4}=\frac{6}{4!(0.9)^4}\cdot\frac{1}{10^4}$$
+		\end{itemize}
+	\end{enumerate}
+\end{eg}
+\begin{eg}{Example 4}
+	Consider $f(x)=\ln{(1+2x)}$\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{enumerate}
+		\item[(a)] Find a Taylor polynomial of degree $n=3$ at $a=1$ to approximate $f(x)$
+		$$\begin{aligned}
+			T_3&=\sum^3_{k=0}\frac{f^{(k)}(a)}{k!}(x-a)^k,\ a=1\\
+			&=\sum^3_{k=0}\frac{f^{(k)}(1)}{k!}(x-1)^k\\
+			&=f(1)+f'(1)(x-1)+\frac{f''(1)}{2!}(x-1)^2+\frac{f'''(1)}{3!}(x-1)^3
+		\end{aligned}$$
+		\begin{center}
+			\begin{tabular}{c|c|c}
+				&$f^{(n)}(x)$ & $f^{(n)}\left(\frac{\pi}{3}\right)$\\
+				\hline
+				$k=0$&$f(x)=\ln{(1+2x)}$&$f(1)=\ln{3}$\\
+				$k=1$&$f'(x)=2(1+2x)^{-1}$&$f'(1)=\frac{2}{3}$\\
+				$k=2$&$f''(x)=-4(1+2x)^{-2}$&$f''(1)=-\frac{4}{9}$\\
+				$k=3$&$f'''(x)=16(1+2x)^{-3}$&$f'''(1)=\frac{16}{27}$\\
+				$k=4$&$f^{(4)}(x)=-96(1+2x)^{-4}$&
+			\end{tabular}
+		\end{center}
+		$$\begin{aligned}
+			\therefore T_4(x)&=f(1)+f'(1)(x-1)+\frac{f''(1)}{2!}(x-1)^2+\frac{f'''(1)}{3!}(x-1)^3\\
+			&=\ln(3)+\frac{2}{3}(x-1)-\frac{4}{9}\cdot\frac{1}{2}(x-1)^2+\frac{16}{27}\cdot\frac{1}{6}(x-1)^3\\
+			&=\ln(3)+\frac{2}{3}(x-1)-\frac{2}{9}(x-1)^2+\frac{8}{81}(x-1)^3
+		\end{aligned}$$
+		\item[(b)] Use Taylor's inequality to estimate the accuracy of the approximation $f(x)\approx T_3(x)$ for $0.5\leq x\leq 1.5$
+		$$\begin{aligned}
+			|R_n(x)|\leq\frac{M}{(n+1)!}|x-a|^{n+1},\quad &a=1,\ n=3,\ n+1=4\\
+			&|f^{(4)}(x)|\leq M\\
+			\therefore|R_3(x)|\leq\frac{M}{4!}|x-1|^4&
+		\end{aligned}$$
+		$$M=\max_{0.5\leq x\leq 1.5}|f^{(4)}(x)|=\max_{0.5\leq x\leq 1.5}|-96(1+2x)^{-4}|=\max_{0.5\leq x\leq 1.5}\frac{96}{(1+2x)^4}$$
+		\begin{itemize}
+			\item Notice, $(1+2x)^4$ is increasing for all $0.5\leq x\leq 1.5$. 
+			$\displaystyle\Rightarrow\frac{96}{(1+2x)^4}$ is decreasing for all $0.5\leq x\leq 1.5$.
+			$\therefore$ maximum occurs at $x=0.5$, i.e., 
+			$$M=\frac{96}{(1+2\times0.5)^4}=\frac{96}{2^4}=\frac{96}{16}=6$$
+			\item Similar to the previous example, $|x-1|^4$ is largest at either $x=0.5$ or $x=1.5$: 
+			$$|x-1|^4\leq|1.5-1|^4=|0.5|^4=\frac{1}{16}\quad\text{or}\quad0.5\leq x\leq1.5$$
+		\end{itemize}
+		$$\therefore|R_3(x)|\leq\frac{6}{4!}\cdot\frac{1}{16}=\frac{1}{64}$$
+	\end{enumerate}
+\end{eg}
+\subsubsection{Approximating Derivatives}
+Recall that a Taylor series of $f(z)$ about a point $a$ is: \[f(z)=f(a)+f'(a)(z-a)+\frac{f''(a)}{2!}(z-a)^2+\frac{f'''(a)}{3!}(z-a)^3++\frac{f^{(4)}(a)}{4!}(z-a)^4+\cdots\]
+Now, consider two forms of this Taylor series: 
+\begin{enumerate}
+	\item Use $z=x+h$ and $a=x$: \[f(x+h)=f(x)+f'(x)h+\frac{f''(x)}{2!}h^2+\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\]
+	\item Use $z=x-h$ and $a=x$: \[f(x-h)=f(x)-f'(x)h+\frac{f''(x)}{2!}h^2-\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\]	
+\end{enumerate}
+\begin{rmk}{For these Taylor series to exist, we need:}
+	\begin{itemize}
+		\item $f$ to be ``sufficiently smooth" (i.e., the derivatives $f^{(n)}(x)$ exist in an open interval containing $x$, $n=0,\ 1,\ 2,\cdots$)
+		\item The series must converge (i.e., the terms in the series must go to $0$ sufficiently fast. )
+	\end{itemize}	
+\end{rmk}
+\begin{thm}{Approximating $f'(x)$ using ``forward finite difference"}
+	Use the first Taylor series: 
+	\[\begin{aligned}
+		f(x+h)&=f(x)+f'(x)h+\frac{f''(x)}{2!}h^2+\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		f(x+h)-f(x)&=f'(x)h+\frac{f''(x)}{2!}h^2+\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\frac{f(x+h)-f(x)}{h}&=f'(x)+\underbrace{\frac{f''(x)}{2!}h+\frac{f'''(x)}{3!}h^2+\frac{f^{(4)}(x)}{4!}h^3+\cdots}_{\text{If }h\text{ is small, truncate. i.e., discard these terms}}
+	\end{aligned}\]
+	Forward difference approximation of $f'(x)$: 
+	\[\boxed{\therefore f'(x)\approx\frac{f(x+h)-f(x)}{h}}\]
+	Recall: The definition of derivative is \[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\]
+	$\therefore$ If we take $h$ small, we can use $\displaystyle\frac{f(x+h)-f(x)}{h}$ as an approximation of $f'(x).$\\
+	However, if we take $h$ too small on a computer, we can run into other errors. 
+\end{thm}
+\begin{thm}{Approximating $f'(x)$ using ``backward finite difference"}
+	Let's use the second Taylor series: 
+	\[\begin{aligned}
+		f(x-h)&=f(x)-f'(x)h+\frac{f''(x)}{2!}h^2-\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		f(x-h)-f(x)&=-f'(x)h+\frac{f''(x)}{2!}h^2-\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\frac{f(x)-f(x-h)}{h}&=f'(x)-\underbrace{\frac{f''(x)}{2!}h+\frac{f'''(x)}{3!}h^2-\frac{f^{(4)}(x)}{4!}h^3+\cdots}_{\text{If }h\text{ is small, discard these terms}}
+	\end{aligned}\]	
+	Backward difference approximation of $f'(x)$: 
+	\[\boxed{\therefore f'(x)\approx\frac{f(x)-f(x-h)}{h}}\]
+\end{thm}
+\begin{thm}{Approximating $f'(x)$ using ``centered finite difference"}
+	Subtract the second Taylor series from the first: 	
+	\[\begin{aligned}
+		\textcircled{1} f(x+h)&=f(x)+f'(x)h+\frac{f''(x)}{2!}h^2+\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\textcircled{2} f(x-h)&=f(x)-f'(x)h+\frac{f''(x)}{2!}h^2-\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\therefore \textcircled{1}-\textcircled{2}: & f(x+h)-f(x-h)=2f'(x)h+\frac{2}{3!}f'''(x)h^3+\frac{2}{5!}f^{(5)}(x)h^5+\dots\\
+		&\frac{f(x+h)-f(x-h)}{2h}=f'(x)+\underbrace{\frac{f'''(x)}{3!}h^2+\frac{f^{(5)}(x)}{5!}h^4+\cdots}_{\text{If we take }h\text{ small, discard these terms}}
+	\end{aligned}\]
+	Centered finite difference approximation of $f'(x)$: 
+	\[\boxed{\therefore f'(x)\approx\frac{f(x+h)-f(x-h)}{2h}}\]
+\end{thm}
+Generally, the centered finite difference approximation is better than forward or backward differences. \\
+Notes: If $h=0$, then \[\begin{aligned} f(x+h)-f(x)&=f(x)-f(x)=0\\f(x+h)-f(x-h)=f(x)-f(x)=0\end{aligned}\]
+So, \[\frac{f(x+h)-f(x)}{h}=\frac{0}{0}\qquad\text{and}\qquad\frac{f(x+h)-f(x-h)}{h}=\frac{0}{0}\]
+These are indeterminant forms to the computer, so it will return ``Not a Number" (i.e., NaN). 
+\begin{thm}{Approximating $f''(x)$ using ``centered finite difference"}
+	Add the two Taylor series: 	
+	\[\begin{aligned}
+		\textcircled{1} f(x+h)&=f(x)+f'(x)h+\frac{f''(x)}{2!}h^2+\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\textcircled{2} f(x-h)&=f(x)-f'(x)h+\frac{f''(x)}{2!}h^2-\frac{f'''(x)}{3!}h^3+\frac{f^{(4)}(x)}{4!}h^4+\cdots\\
+		\therefore \textcircled{1}+\textcircled{2}: & f(x+h)+f(x-h)=2f(x)+2\cdot\frac{f''(x)}{2!}h^2+\frac{2}{4!}f^{(4)}(x)h^4+\frac{2}{6!}f^{(6)}(x)h^6+\dots\\
+		& f(x+h)+f(x-h)-2f(x)=f''(x)h^2+2\cdot\frac{f^{(4)}(x)}{4!}h^4+2\cdot\frac{f^{(6)}(x)}{6!}h^6+\cdots\\
+		&\frac{f(x+h)+f(x-h)-2f(x)}{h^2}=f''(x)+\underbrace{2\cdot\frac{f^{(4)}(x)}{4!}h^2+2\cdot\frac{f^{(6)}(x)}{6!}h^4+\cdots}_{\text{If }h\text{ is small, truncate these terms}}
+	\end{aligned}\]
+	Centered finite difference approximation of $f''(x)$: 
+	\[\boxed{\therefore f''(x)\approx\frac{f(x+h)-2f(x)+f(x-h)}{h^2}}\]
+\end{thm}
+
+\newpage
+\section{Parametric Equations \& Polar Coordinate}
+\subsection{Parametric Equations}
+\begin{df}{Parametric Curves}
+	Use parametric equations (functions) to define points on a curve: \[x=f(t),\ y=g(t)\]
+	For each value of $t$, we get a point $(x,y)=(f(t), g(t)).$	
+\end{df}
+\begin{eg}{Example 1}
+	Consider the functions $x=f(t)=t,\ y=g(t)=t+1$. Eliminate the parameter $t$ to find a Cartesian equation of the curve. 	\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}x=t,\ y&=t+1\\\Rightarrow y&=x+1\end{aligned}\]
+	A line with slope $=1$, $y$-intercept $(0,1)$
+\end{eg}
+Note: The graph of any function $y=h(x)$ can be represented parametrically. 
+\begin{prf}{Proof}
+	If $h(x)$ is a function, the points on its graph can be written as \[(x, y)=(x, h(x))\]
+	We can define parametric equations: 	\[x=f(t)=t,\ y=g(t)=h(t)\]\[(x, y)=(t, h(t))\]
+\end{prf}
+BUT, not all parametric curves can be written as functions. 
+\begin{eg}{Example 2}
+	Consider the functions $x=f(t)=t^2-2t,\ y=g(t)=t+1$. Eliminate the parameter $t$ to find a Cartesian equation of the curve. 	\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[x=t^2-2t,\ y=t+1\]
+	\[\begin{aligned}
+		\therefore t&=y-1\\
+		\therefore x&=(y-1)^2-2(y-1)\\
+		&=y^2-2y+1-2y+2\\
+		&\boxed{x=y^2-4y+3}
+	\end{aligned}\]
+\end{eg}
+\begin{eg}{Example 3}
+	Consider the functions $x=f(t)=\cos{t},\ y=g(t)=\sin{t}$,\ with $0\leq t\leq2\pi$ Eliminate the parameter $t$ to find a Cartesian equation of the curve. 	\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[x=\cos{t},\ y=\sin{t}\]
+	\[x^2+y^2=\cos^2t+\sin^2t=1\]
+	\[\boxed{x^2+y^2=1}\]
+\end{eg}
+
+\subsection{Calculus with Parametric Curves}
+\begin{eg}{Example 1}
+	Consider a curve $C$ defined by parametric equations \[x=2t,\ y=t^2-1,\ -1\leq t\leq2\]	
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{itemize}
+		\item Eliminate $t$: \[t=\frac{x}{2}\ \Rightarrow\ y=\left(\frac{x}{2}\right)^2-1=\frac{x^2}{4}-1\]
+		\item Points on $C$ lie on the parabola \[h(x)=\frac{x^2}{4}-1\]
+		\item The slope of the tangent line to the curve $C$ at a point is: \[h'(x)=\frac{1}{2}x=t\]
+		\item That is, we found a slope of tangent suing only $t$. 
+	\end{itemize}
+\end{eg}
+\textbf{Question:} How do we find the slope of the tangent line of a curve directly from parametric equations? 
+\begin{itemize}
+	\item Suppose $x=f(t)$, $y=g(t)$ are parametric equations for a curve $C$.
+	\item Suppose $C$ can be represented as $y=h(x)$, where $h(x)$ is a function of $x$ {\color{green}{[C is a function.]}}
+	\item Assume $f,\ g,$ and $h$ are differentiable {\color{green}{(and continuous)}}
+	\item The point $(f(t),\ g(t))$ is on $C$. 
+	\[\begin{aligned}
+		\therefore y=h(x) &\Rightarrow g(t)=h(f(t))\\
+		&\Rightarrow g'(t)=h'(f(t))f'(t) {\color{green}{\text{[Chain Rule]}}}=h'(x)f'(t)\\
+		&\Rightarrow\boxed{h'(x)=\frac{g'(t)}{f'(t)}},\ f'(t)\neq0
+	\end{aligned}\]
+	Another way to write this: \[\boxed{\frac{\d y}{\dx}=\frac{\d y/\d t}{\dx/\d t}}=\frac{\d y}{\d t}\cdot\frac{\d t}{\dx},\ \frac{\dx}{\d t}\neq0.\]
+\end{itemize}
+\begin{rmk}{Remark}
+	\begin{itemize}
+		\item If $\displaystyle\frac{\d x}{\d t}=f'(t)=0$ and $\displaystyle\frac{\d y}{\d t}=g'(t)\neq0$, then $C$ has a vertical tangent line. 
+		\item If $\displaystyle\frac{\d x}{\d t}=f'(t)=0$ and $\displaystyle\frac{\d y}{\d t}=g'(t)=$, then it's in the indeterminant form.
+		\item If $\displaystyle\frac{\d y}{\d t}=g'(t)=0$ and $\displaystyle\frac{\d x}{\d t}=f'(t)\neq0$, then $C$ has a horizontal tangent line. 
+	\end{itemize}	
+\end{rmk}
+\begin{eg}{Example 2}
+	Suppose $C$ has parametric equations \[x=t^3-3t,\ y=t^2-5t-1,\ t\in\R \]	
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\dydx=\frac{\d y/\d t}{\dx/\d t}=\frac{2t-5}{3t^2-3}\]
+	At $t=2$, slope of the tangent: \[m_\text{tan}=\dydx\bigg|_{t=2}=\frac{4-5}{2\times4-3}=-\frac{1}{9}\]
+	The point corresponding to $t=2$: \[(f(2),\ g(2))=(2^3-3\times2,\ 2^2-5\times2-1)=(2,\ -7)\]
+	$\therefore$ The tangent line: $y-y_0=m(x-x_0)$ \[y+7=-\frac{1}{9}(x-2)\]
+\end{eg}
+\begin{thm}{Concavity of $C$}
+	Concavity is defined by the $2^\text{nd}$ derivative, $\displaystyle\frac{\d^2 y}{\dx^2}$. If $y'$ is differentiable, then: \[\boxed{\frac{\d^2 y}{\dx^2}=\ddx(y')=\frac{\frac{\d}{\d t}(y')}{\dx/\d t}}\]
+\end{thm}
+\textbf{\underline{Computing Areas with Parametric Curves}}\\
+Recall: The area between curve (graph) of $F(x)$ from $x=a$ to $x=b$, with $a<b$, is: \[A=\int_a^bF(x)\ \dx\]
+\textbf{Question}: What do we do fi the curve is given by parametric equations, $x=f(t),\ y=g(t)$? 
+\[x=f(t)\ \Rightarrow\ \dx=f'(t)\ \d t,\ F(x)=y=g(t)\]
+\[A=\int_{x=a}^{x=b}y\ \dx=\int\alpha^\beta g(t)f'(t)\ \d t, \] where $\alpha$ is the starting $t$ for the curve $C$ (i.e., the $t$ corresponding to $(a,\ F(a))$) and $\beta$ is the ending $t$ for the curve $C$ (i.e., the $t$ corresponding to $(n, F(b))$).
+\begin{eg}{Example 3}
+	Find the area of a circle with radius $r$ by integrating with appropriate parametric equations. \\	
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	Parametric equations for a circle centered at the origin, radius$=r$: \[x=f(t)=r\cos{t},\ y=g(t)=r\sin{t}, f'(t)=-r\sin{t}\]
+	Using symmetry, let's find area on the top half and double it. 
+	\[\begin{aligned}
+		A&=2\int_\pi^0(r\sin{t})(-r\sin{t})\ \d t\\
+		&=-2r^2\int_\pi^0\sin^2t\ \d t=2r^2\int_0^\pi\frac{1}{2}(1-\cos{2t})\ \d t\\
+		&=r^2\bigg[t-\frac{1}{2}\sin{2t}\bigg]_0^\pi=r^2\left[(\pi-0)-\left(\frac{1}{2}\sin{2\pi}-\frac{1}{2}\sin{0}\right)\right]\\
+		&=\pi r^2
+	\end{aligned}\]
+	Or, we can also just do a corner of the circle: \[A=4\int_{\pi/2}^0(r\sin{t})(-r\sin{t})\ \d t\]
+\end{eg}
+
+\subsection{Polar Coordinate}
+\begin{df}{Polar Coordinates}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}       
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw (100,114) -- (316.01,114) ;
+		\draw [shift={(318.01,114)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75] (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29);
+		\draw [color={rgb, 255:red, 208; green, 2; blue, 27 },draw opacity=1 ] (181,114) -- (250.01,71.14);
+		\draw [color={rgb, 255:red, 208; green, 2; blue, 27 },draw opacity=1 ] (181,114) -- (258.01,114);
+		\draw (207,96.4) node [anchor=north west][inner sep=0.75pt] {$\theta $};
+		\draw (253,115.4) node [anchor=north west][inner sep=0.75pt]{$r$};
+		\draw (252,61.4) node [anchor=north west][inner sep=0.75pt]{$P( r,\ \theta )$};
+	\end{tikzpicture}
+	\end{center}
+	We can use polar grids to plot points on the polar coordinates. \\
+	Notice that the points $(3,\ \pi/4),\ (3,\ 9\pi/4),$ and $(3,\ -7\pi/4$ are all the same point. 
+\end{df}
+\begin{thm}{Transforming between Polar and Cartesian Coordinates}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,228.66) -- (413.5,228.66)(86.35,22.56) -- (86.35,251.56) (406.5,223.66) -- (413.5,228.66) -- (406.5,233.66) (81.35,29.56) -- (86.35,22.56) -- (91.35,29.56)  ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (86.35,228.66) -- (219.01,131.28) ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (219.01,131.28) -- (219.01,228.28) ;
+	\draw (412,233.4) node [anchor=north west][inner sep=0.75pt] {$x$};
+	\draw (66,16.37) node [anchor=north west][inner sep=0.75pt] {$y$};
+	\draw (70,231.4) node [anchor=north west][inner sep=0.75pt] {$O$};
+	\draw (221,111.4) node [anchor=north west][inner sep=0.75pt] {$P( x,\ y) =( r,\ \theta )$};
+	\draw (119,230.4) node [anchor=north west][inner sep=0.75pt] {$x=r\cos \theta $};
+	\draw (223,167.4) node [anchor=north west][inner sep=0.75pt] {$y=r\sin \theta $};
+	\draw (103,213.4) node [anchor=north west][inner sep=0.75pt] {$\theta $};
+	\draw (140,165.4) node [anchor=north west][inner sep=0.75pt] {$r$};
+	\end{tikzpicture}
+	\end{center}
+	\[x=r\cos\theta,\qquad y=r\sin\theta\]
+	\[x^2+y^2=r^2,\qquad\tan\theta=\frac{y}{x}\]
+\end{thm}
+\begin{eg}{Example 1}
+	If the polar point is $(r,\theta)=(4,3\pi),$ find the corresponding Cartesian point.\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}
+		x=r\cos\theta &=4\cos{3\pi}=-4\\
+		y=r\sin\theta &=4\sin{3\pi}=0\\
+		\therefore P(x,y)&=(-4,0)
+	\end{aligned}\]
+\end{eg}
+\begin{eg}{Example 2}
+	If the Cartesian point is $(x,y)=(-1,-\sqrt{3}),$ find a corresponding polar point. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[r^2=x^2+y^2=(-1)^2+(-\sqrt{3})^2=1+3=4\]
+	\[\therefore r=\pm\sqrt{4}=\pm2\]
+	\[\tan\theta=\frac{y}{x}=\frac{-\sqrt{3}}{-1}=\sqrt{3}\]
+	\[\therefore\theta=\arctan(\sqrt{3})=\frac{\pi}{3}\]
+	\[\therefore P\left(-2,\frac{\pi}{3}\right)\quad\text{ or }\quad P\left(2,\frac{\pi}{3}\right)\]
+	Note: the point is at the $3^\text{rd}$ quadrant. 
+\end{eg}
+\begin{eg}{Example 3}
+	Given the polar equation $r=4\sin\theta$, find a corresponding Cartesian equation for the same curve. 	\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}
+		r&=4\sin\theta\\
+		r\cdot r&=4\cdot r\cdot\sin\theta\qquad \text{(multiply both sides by }r\text{ ).}\\
+		r^2&=4\cdot(r\sin\theta)\\
+		x^2+y^2&=4y\\
+		x^2+y^2-4y&=0\\
+		x^2+y^2-4y+4&=4\\
+		x^2+(y-2)^2&=4
+	\end{aligned}\]
+	$\therefore$ This is a circle centered at $(0,2)$, with a radius $=2$.
+\end{eg}
+\begin{eg}{Example 4}
+	Given the polar equation $\displaystyle r=\frac{1}{1+2\sin\theta}$, find a corresponding Cartesian equation for the same curve. 	\\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}
+		r(1+2\sin\theta)&=1\\
+		r+2r\sin\theta &=1\\
+		\sqrt{x^2+y^2}+2y&=1
+	\end{aligned}\]
+\end{eg}
+\begin{eg}{Example 5}
+	Given the Cartesian equation $y=2x-1$, find a corresponding polar equation for the same curve. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[y=r\sin\theta,\quad x=r\cos\theta\]
+	\[\therefore r\sin\theta=2r\cos\theta-1\]
+	\[r(2\cos\theta-\sin\theta)=1\]
+	\[\therefore r=\frac{1}{2\cos\theta-\sin\theta}\]	
+\end{eg}
+\begin{eg}{Example 6}
+	Given the Cartesian equation $x^2=4y$, find a corresponding polar equation for the same curve. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}
+		r^2\cos^2\theta&=4r\sin\theta\\
+		r&=\frac{4\sin\theta}{\cos^2\theta}=4\frac{\sin\theta}{\cos\theta}\cdot\frac{1}{\cos\theta}\\
+		\therefore r&=4\tan\theta\sec\theta
+	\end{aligned}\]	
+\end{eg}
+\begin{thm}{Tangents to Polar Curves}
+	Consider $r=f(\theta)$, then \[x=r\cos\theta=f(\theta)\cos\theta,\qquad y=r\sin\theta=f(\theta)\sin{\theta}\] are parametric equations. \\
+	$\therefore$ Use conclusion from the previous section: 
+	\[\therefore \frac{\dx}{\d\theta}=f'(\theta)\cos\theta-f(\theta)\sin\theta,\quad\frac{\d y}{\d\theta}=f'(\theta)\sin\theta+f(\theta)\cos\theta\]
+	\[\therefore\dydx=\frac{\d y/\d\theta}{\dx/\d\theta}=\frac{f'(\theta)\sin\theta+f(\theta)\cos\theta}{f'(\theta)\cos\theta-f(\theta)\sin\theta}=\frac{\frac{\d r}{\d\theta}\sin\theta+f(\theta)\cos\theta}{\frac{\d r}{\d\theta}\cos\theta-f(\theta)\sin\theta}\]
+	Note: at $r=0$:
+	\[\dydx\bigg|_{r=0}=\frac{\frac{\d r}{\d\theta}\cos\theta}{\frac{\d r}{\d\theta}\sin\theta}\bigg|_{r=0}=\frac{\sin\theta}{\cos\theta}\bigg|_{r=0}=\tan\theta,\ \frac{\d r}{\d\theta}\neq0\]
+\end{thm}
+\begin{eg}{Example 7}
+	Consider the polar equation $r=\cos\theta+\sin\theta$. \\
+	Find the slope of the tangent line at $\theta=\pi/4$. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\[\begin{aligned}
+		\frac{\d r}{\d\theta}&=-\sin\theta+\cos\theta=\cos\theta-\sin\theta\\
+		\therefore\dydx&=\frac{\frac{\d r}{\d\theta}\sin\theta+f(\theta)\cos\theta}{\frac{\d r}{\d\theta}\cos\theta-f(\theta)\sin\theta}\\
+		&=\frac{(\cos\theta-\sin\theta)\sin\theta+(\cos\theta+\sin\theta)\cos\theta}{(\cos\theta-\sin\theta)\cos\theta-(\cos\theta+\sin\theta)\sin\theta}\\
+		&=\cdots\qquad\text{[The middle steps are omitted.]}\\
+		&=\frac{1+\sin\theta}{1-\sin\theta}
+	\end{aligned}\]
+	\[\therefore\dydx\bigg|_{\theta=\pi/4}=\frac{1+\sin\frac{\pi}{4}}{1-\sin\frac{\pi}{4}}=\frac{1+\frac{\sqrt{2}}{2}}{1-\frac{\sqrt{2}}{2}}\]
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

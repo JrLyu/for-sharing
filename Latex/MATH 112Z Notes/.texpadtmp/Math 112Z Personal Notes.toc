@@ -1,31 +1,38 @@
-\contentsline {section}{\numberline {1}Review - Pre-Calculus \& Derivative}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Inverse Functions}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Exponentials and Logs}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Derivatives}{5}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Inverse Trigonometric Functions}{6}{subsection.1.4}%
-\contentsline {section}{\numberline {2}Integration Technics}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Integration by Parts}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Trigonometric Integrals}{14}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Trigonometric Substitutions}{18}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Partial Fractions}{22}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Improper Integrals}{27}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Type I Improper Integrals: Infinite Intervals}{28}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Type II improper Integrals: Discontinuous Integrals}{31}{subsubsection.2.5.2}%
-\contentsline {section}{\numberline {3}Differential Equations}{33}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Introduction to Ordinary Differential Equations}{33}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Direction Fields and Euler's Method to Solve ODEs}{35}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Separate Variables to Solve ODEs}{37}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}ODE Models for Population Growth}{40}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Linear Equations}{44}{subsection.3.5}%
-\contentsline {section}{\numberline {4}Series}{49}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Sequences}{49}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Infinite Series}{56}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Integral Test and Estimates of Sums}{63}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Comparison Tests}{68}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Alternating Series Test}{72}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Absolute Convergence and the Ratio and Root Tests}{77}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Practice Using Various Tests for Series}{80}{subsection.4.7}%
-\contentsline {subsection}{\numberline {4.8}Power Series}{82}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Representation of Functions as Power Series}{87}{subsection.4.9}%
-\contentsline {subsection}{\numberline {4.10}Maclaurin and Taylor Series}{92}{subsection.4.10}%
-\contentsline {subsection}{\numberline {4.11}Application of Taylor Polynomials}{98}{subsection.4.11}%
+\contentsline {section}{\numberline {1}Preface}{3}{section.1}%
+\contentsline {section}{\numberline {2}Review - Pre-Calculus \& Derivative}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Inverse Functions}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Exponentials and Logs}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Derivatives}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Inverse Trigonometric Functions}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Integration Technics}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Integration by Parts}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Trigonometric Integrals}{15}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Trigonometric Substitutions}{20}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Partial Fractions}{23}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Improper Integrals}{28}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Type I Improper Integrals: Infinite Intervals}{29}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Type II improper Integrals: Discontinuous Integrals}{32}{subsubsection.3.5.2}%
+\contentsline {section}{\numberline {4}Differential Equations}{35}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introduction to Ordinary Differential Equations}{35}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Direction Fields and Euler's Method to Solve ODEs}{37}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Separate Variables to Solve ODEs}{39}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}ODE Models for Population Growth}{42}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Linear Equations}{46}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Series}{52}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sequences}{52}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Infinite Series}{59}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Integral Test and Estimates of Sums}{66}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Comparison Tests}{70}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Alternating Series Test}{74}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Absolute Convergence and the Ratio and Root Tests}{79}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Practice Using Various Tests for Series}{82}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Power Series}{85}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Representation of Functions as Power Series}{90}{subsection.5.9}%
+\contentsline {subsection}{\numberline {5.10}Maclaurin and Taylor Series}{95}{subsection.5.10}%
+\contentsline {subsection}{\numberline {5.11}Application of Taylor Polynomials}{101}{subsection.5.11}%
+\contentsline {subsubsection}{\numberline {5.11.1}Taylor Inequality}{101}{subsubsection.5.11.1}%
+\contentsline {subsubsection}{\numberline {5.11.2}Approximating Derivatives}{107}{subsubsection.5.11.2}%
+\contentsline {section}{\numberline {6}Parametric Equations \& Polar Coordinate}{110}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Parametric Equations}{110}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Calculus with Parametric Curves}{111}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Polar Coordinate}{114}{subsection.6.3}%
