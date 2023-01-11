@@ -1,0 +1,465 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{ntheorem}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{geometry}
+\usepackage{arydshln}
+\usepackage{setspace}
+\usepackage{mathptmx}
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\textsl{\leftmark}}
+\fancyhead[R]{\textsl{\rightmark}}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\definecolor{darkblue}{HTML}{003472}
+\definecolor{lightblue}{HTML}{70f3ff}
+\definecolor{red}{HTML}{da291c}
+\definecolor{lightred}{HTML}{f47983}
+\definecolor{green}{HTML}{057748}
+\definecolor{lightgreen}{HTML}{a4e2c6}
+\definecolor{gray}{HTML}{758a99}
+\definecolor{lightgray}{HTML}{41555d}
+\definecolor{lightblack}{HTML}{424c50}
+\definecolor{orange}{HTML}{9b4400}
+\definecolor{yellow}{HTML}{ffa631}
+\definecolor{white}{HTML}{f0fcff}
+\definecolor{purple}{HTML}{6558B1}
+
+\hypersetup{
+	colorlinks = false,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = purple
+}
+
+
+\tcbuselibrary{skins, breakable, theorems}
+\newtcolorbox{df}[2][]{
+	colback=lightgray!5, colframe=lightblack,colbacktitle=lightblack, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{thm}[2][]{
+	colback=lightblue!5, colframe=darkblue,colbacktitle=darkblue, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{eg}[2][]{
+	colback=lightgreen!5, colframe=green,colbacktitle=green, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{prf}[2][]{
+	colback=orange!5, colframe=orange,colbacktitle=orange, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{ext}[2][]{
+	colback=yellow!5, colframe=yellow,colbacktitle=yellow, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{rmk}[2][]{
+	colback=lightred!5, colframe=red,colbacktitle=red, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+\tcbset{highlight math/.append style={left=0mm,right=0mm,top=0mm,bottom=0mm, colframe=white}}
+
+
+\title{Emory University\\\textbf{MATH 211 - Advanced Calculus (Multivariable) Learning Notes}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\linespread{1.22}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\RE{{\mathrm{Re}}}
+\def\IM{{\mathrm{Im}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+\def\qed{\rightline{$\blacksquare$}}
+\def\ddx{\frac{\d}{\d x}}
+\def\dydx{\frac{\d y}{\d x}}
+\def\dx{\d x}
+\def\DNE{\mathrm{D.N.E.}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section*{Preface}
+These is my personal notes for Emory University MATH 211 Advanced Calculus (Multivariable Calculus) course. 
+
+After mastering Calculus I (which covers contents concerning limits, differentiation, and basic integration) and Calculus II (which includes integration techniques and series), this course focuses on multivariable calculus, including vectors, multivariable functions, partial derivatives, optimization, multiple integrations, vector and scalar fields, Green’s and Stokes’ theorems, and the divergence theorem. The book used for this course is \textit{Multivariable Calculus, 8th Edition} by James Stewart. 
+
+Throughout this personal note, I use special ``tcolorboxes'' to differentiate different contents, including definitions, theorems, proofs, examples, extensions, and remarks. To be more specific: 
+\begin{df}{Terminology}
+	This is a \textbf{definition}.	
+\end{df}
+\begin{thm}{Theorem Name}
+	This is a \textbf{theorem}.	
+\end{thm}
+\begin{eg}{Example Number}
+	This is the \textit{question} part of an \textbf{example}. \\
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	This is the \textit{answer} part of an \textbf{example}. 
+\end{eg}
+\begin{rmk}{Remark}
+	This is a \textbf{remark} of a definition, theorem, example, or proof. 
+\end{rmk}
+\begin{prf}{Proof}
+	This is a \textbf{proof} of a theorem. 
+\end{prf}
+\begin{ext}{Extension}
+	This is a \textbf{extension} of a theorem, proof, or example. 	
+\end{ext}
+
+To better ace this course, it is recommended to do more questions than provided as examples under each section. Although each example is distinctive and representative, more questions and practice is still needed to deepen the understanding of this course. 
+
+Even though I put efforts into making as few flaws as possible when encoding these learning notes, some errors may still exist in this note. If you find any, please contact me via email: \url{lvjiuru@hotmail.com}. 
+
+I hope you will find my notes helpful when learning Multivariable Calculus.
+\rightline{Cheers,}
+\rightline{Jiuru Lyu}
+
+\newpage
+\section{Vectors and Geometry of Space}
+\subsection{Three Dimensional Coordinate System}
+\begin{df}{Coordinate System}
+	A \textbf{coordinate system} is a system that uses coordinate of a point to uniquely determine the position of the point in the space or plane.	
+\end{df}
+The Cartesian coordinate system is defined in different dimensions.
+\begin{df}{One Dimensional Cartesian System}
+	\textbf{One Dimensional Cartesian System} is a straight line with a fixed point as the origin and positive and negative directions.
+	\begin{rmk}{Remark}
+		The one dimensional cartesian system is the number line: 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}	
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw    (150,111) -- (361.83,111) ;
+		\draw [shift={(363.83,111)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw [shift={(148,111)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (249.83,111) .. controls (249.83,109.32) and (251.19,107.96) .. (252.87,107.96) .. controls (254.55,107.96) and (255.91,109.32) .. (255.91,111) .. controls (255.91,112.68) and (254.55,114.04) .. (252.87,114.04) .. controls (251.19,114.04) and (249.83,112.68) .. (249.83,111) -- cycle ;
+		\draw (150,114.4) node [anchor=north west][inner sep=0.75pt]    {$-$};
+		\draw (349.83,114.4) node [anchor=north west][inner sep=0.75pt]    {$+$};
+		\draw (251.83,114.4) node [anchor=north west][inner sep=0.75pt]    {$O$};
+		\end{tikzpicture}	
+		\end{center}
+	\end{rmk}
+\end{df}
+
+Any point in the one dimensional Cartesian system corresponds to a number $\in\R$ and any number $\in\R$ has a location on the line.
+
+The two dimensional Cartesian system is the regular coordinate system. 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}      
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (50,146.61) -- (219.83,146.61)(134.83,58) -- (134.83,227.83) (212.83,141.61) -- (219.83,146.61) -- (212.83,151.61) (129.83,65) -- (134.83,58) -- (139.83,65)  ;
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (198.83,90.41) .. controls (198.83,89.54) and (199.54,88.83) .. (200.41,88.83) .. controls (201.29,88.83) and (202,89.54) .. (202,90.41) .. controls (202,91.29) and (201.29,92) .. (200.41,92) .. controls (199.54,92) and (198.83,91.29) .. (198.83,90.41) -- cycle ;
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (200.41,90.41) -- (200.41,146.61) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (200.41,90.41) -- (135.83,90.41) ;
+\draw (166,97.4) node [anchor=north west][inner sep=0.75pt]    {$I$};
+\draw (84,97.4) node [anchor=north west][inner sep=0.75pt]    {$II$};
+\draw (80,174.4) node [anchor=north west][inner sep=0.75pt]    {$III$};
+\draw (164,174.4) node [anchor=north west][inner sep=0.75pt]    {$IV$};
+\draw (220,149.4) node [anchor=north west][inner sep=0.75pt]    {$x-\text{axis}$};
+\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$y-\text{axis}$};
+\draw (205,82.4) node [anchor=north west][inner sep=0.75pt]    {$P( a,b)$};
+\draw (117,150.4) node [anchor=north west][inner sep=0.75pt]    {$O$};
+\draw (172,148.4) node [anchor=north west][inner sep=0.75pt]    {$x=a$};
+\draw (91,81.4) node [anchor=north west][inner sep=0.75pt]    {$y=b$};
+\end{tikzpicture}	
+\end{center}
+
+The three dimensional Cartesian system includes three perpendicular axes. 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+\draw    (134.83,146.61) -- (72.36,198.78) ;
+\draw [shift={(70.83,200.06)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (221,149.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+\draw (134.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$O$};
+\draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\end{tikzpicture}	
+\end{center}
+\begin{df}{Octant}
+	A \textbf{Octant} is one of the eight divisions of the three dimensional coordinate system.	
+\end{df}
+\begin{df}{Hyperplane}
+The hyperplane of $y=2$ is given as below: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+	\draw    (134.83,146.61) -- (72.36,198.78) ;
+	\draw [shift={(70.83,200.06)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (206.66,17.26) -- (207.13,113.23) -- (82.3,226.03) -- (81.83,130.06) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (167.74,146.61) .. controls (167.74,145.45) and (168.68,144.52) .. (169.83,144.52) .. controls (170.98,144.52) and (171.91,145.45) .. (171.91,146.61) .. controls (171.91,147.76) and (170.98,148.69) .. (169.83,148.69) .. controls (168.68,148.69) and (167.74,147.76) .. (167.74,146.61) -- cycle ;
+	\draw (221,149.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (134.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$O$};
+	\draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (169.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$y=2$};
+	\end{tikzpicture}
+	\end{center}
+	
+	Specially: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+	\draw    (134.83,146.61) -- (72.36,198.78) ;
+	\draw [shift={(70.83,200.06)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (134.99,146.79) -- (230.08,146.79) -- (167.39,197.52) -- (72.3,197.52) -- cycle ;
+	\draw   (134.83,43.03) -- (134.83,146.61) -- (75.88,195.27) -- (75.88,91.7) -- cycle ;
+	\draw   (134.83,43.42) -- (230.83,43.42) -- (230.83,146.52) -- (134.83,146.52) -- cycle ;
+	\draw (221,149.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (134.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$O$};
+	\draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (179,184.4) node [anchor=north west][inner sep=0.75pt]    {$xy\text{ plane} :\ z=0$};
+	\draw (15,100.4) node [anchor=north west][inner sep=0.75pt]    {$xz\text{ plane} :\ y=0$};
+	\draw (171,86.4) node [anchor=north west][inner sep=0.75pt]    {$yz\text{ plane} :\ x=0$};
+	\end{tikzpicture}
+	\end{center}
+\end{df}
+\begin{df}{Points in the Three Dimensional System}
+	$P(a,b,c)$ indicates the intersection of the three hyperplanes: $x=a$, $y=b$, and $z=c$.	
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+	\draw    (134.83,146.61) -- (72.36,198.78) ;
+	\draw [shift={(70.83,200.06)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.74,111.42) .. controls (157.74,110.27) and (158.68,109.34) .. (159.83,109.34) .. controls (160.98,109.34) and (161.91,110.27) .. (161.91,111.42) .. controls (161.91,112.58) and (160.98,113.51) .. (159.83,113.51) .. controls (158.68,113.51) and (157.74,112.58) .. (157.74,111.42) -- cycle ;
+	\draw    (159.83,111.42) -- (159.83,180.42) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (199.83,147.42) -- (159.83,179.42) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (159.83,179.42) -- (94.83,179.42) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (159.83,179.42) -- (134.83,146.61) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (159.83,112.51) -- (134.83,79.69) ;
+	\draw (221,149.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (134.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$O$};
+	\draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (166,98.4) node [anchor=north west][inner sep=0.75pt]    {$P\ ( a,b,c)$};
+	\draw (161.83,182.82) node [anchor=north west][inner sep=0.75pt]    {$( a,b,0)$};
+	\draw (82.83,163.82) node [anchor=north west][inner sep=0.75pt]    {$a$};
+	\draw (195.83,128.82) node [anchor=north west][inner sep=0.75pt]    {$b$};
+	\draw (121.83,75.82) node [anchor=north west][inner sep=0.75pt]    {$c$};
+	\end{tikzpicture}
+	\end{center}
+\end{df}
+
+For spaces in the higher dimension, we understand them via the Cartesian product. 
+\begin{df}{Cartesian Product}
+	\[\R\times\R\times\cdots\times\R=\{(x_1,\cdots,x_n)|x_i\in\R\forall i=1,\cdots,n\}\] is the set of all $n$-tuples of real numbers and is denoted by $\R^n$.
+\end{df}
+\begin{eg}{Example 1}
+		$(3,4,5)\in\R^3$ is 3 dimensional.
+		
+		$(3,4,5,6)\in\R^4$ is 4 dimensional.	
+\end{eg}
+\begin{eg}{Example 2}
+	Which point(s) $(x,y,z)$ satisfies the equations \[x^2+y^2=1\quad\text{and}\quad x=3? \]	
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (132.74,146.61) .. controls (132.74,145.45) and (133.68,144.52) .. (134.83,144.52) .. controls (135.98,144.52) and (136.91,145.45) .. (136.91,146.61) .. controls (136.91,147.76) and (135.98,148.69) .. (134.83,148.69) .. controls (133.68,148.69) and (132.74,147.76) .. (132.74,146.61) -- cycle ;
+	\draw    (134.83,146.61) -- (72.36,198.78) ;
+	\draw [shift={(70.83,200.06)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (165,91.9) -- (165,167.95) .. controls (165,179.26) and (151.57,188.42) .. (135,188.42) .. controls (118.43,188.42) and (105,179.26) .. (105,167.95) -- (105,91.9)(165,91.9) .. controls (165,103.21) and (151.57,112.37) .. (135,112.37) .. controls (118.43,112.37) and (105,103.21) .. (105,91.9) .. controls (105,80.59) and (118.43,71.42) .. (135,71.42) .. controls (151.57,71.42) and (165,80.59) .. (165,91.9) -- cycle ;
+	\draw   (89.83,75.42) -- (263.83,75.42) -- (192.83,133.69) -- (18.83,133.69) -- cycle ;
+	\draw (221,149.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (134.74,150.01) node [anchor=north west][inner sep=0.75pt]    {$O$};
+	\draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (193,86.4) node [anchor=north west][inner sep=0.75pt]    {$z=3$};
+	\end{tikzpicture}
+	\end{center}
+	Those points form a circle in the hyperplane of $z=3$ centered at the point $(0,0,3)$ with a radius of $1$.
+\end{eg}
+\begin{thm}{Distance Formula in Three Dimension}
+	For given points $P_1(x_1,y_1,z_1)$ and $P_2(x_2,y_2,z_2)$, the distance between them is denoted by $|P_1P_2|$ and is defined by \[|P_1P_2|=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}.\]	
+\end{thm}
+\begin{thm}{Equation of a Sphere}
+	An equation of a sphere with a center of $(a,b,c)$ and a radius of $r$ is defined as \[(x-a)^2+(y-b)^2+(z-c)^2=r^2.\]	
+\end{thm}
+\begin{eg}{Example 3}
+	What is the region in $\R^3$ represented by the inequalities \[1\leq x^2+y^2+z^2\leq4\quad\text{and}\quad z\leq0? \]	
+	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125.83,75.79) -- (219.83,75.79)(133.83,58) -- (133.83,155.06) (212.83,70.79) -- (219.83,75.79) -- (212.83,80.79) (128.83,65) -- (133.83,58) -- (138.83,65)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (131.74,75.87) .. controls (131.74,74.72) and (132.68,73.79) .. (133.83,73.79) .. controls (134.98,73.79) and (135.91,74.72) .. (135.91,75.87) .. controls (135.91,77.02) and (134.98,77.96) .. (133.83,77.96) .. controls (132.68,77.96) and (131.74,77.02) .. (131.74,75.87) -- cycle ;
+	\draw    (133.83,75.79) -- (71.36,127.96) ;
+	\draw [shift={(69.83,129.24)}, rotate = 320.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (114.83,90.79) .. controls (126.83,107.79) and (160.83,102.79) .. (161.83,75.79) ;
+	\draw    (114.83,90.79) .. controls (127.83,121.79) and (169.83,104.79) .. (161.83,75.79) ;
+	\draw    (96.83,105.54) .. controls (119.08,139.26) and (182.11,129.34) .. (183.97,75.79) ;
+	\draw    (96.83,105.54) .. controls (120.93,167.02) and (198.8,133.31) .. (183.97,75.79) ;
+	\draw (221,73.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (140,55.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (137.91,79.27) node [anchor=north west][inner sep=0.75pt]    {$O$};
+	\draw (71.83,132.64) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\end{tikzpicture}
+	\end{center}
+	The region is the difference between the half spheres (the lower half of the sphere) centered at $(0,0,0)$ with a radius of $1$ and $2$.
+\end{eg}
+
+\subsection{Vectors}
+\begin{df}{Vectors}
+	Vectors are used to indicate a quantity that has both magnitude and direction. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,124) -- (219.12,51.82) ;
+	\draw [shift={(220.83,50.79)}, rotate = 148.79] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (83,127) node [anchor=north west][inner sep=0.75pt]   [align=left] {Tail of the vector (Initial Point)};
+	\draw (221,40) node [anchor=north west][inner sep=0.75pt]   [align=left] {Tip of the vector (Terminal Point)};
+	\end{tikzpicture}	
+	\end{center}
+	\begin{enumerate}
+		\item Vectors are denoted as $\vec{v}.$
+		\item Magnitude
+		\begin{df}{Magnitude}
+			A vector is a line segment, of which the magnitude of vector denoted by $|\vec{v}|$ is the length of it and the arrow points the direction of the vector. 
+		\end{df}
+	\end{enumerate}	
+\end{df}
+
+Vectors are operated in a different way. 
+\begin{enumerate}
+	\item Addition of Vectors: 
+	\begin{enumerate}
+		\item The triangle law: 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw    (252,160) -- (371.12,87.82) ;
+		\draw [shift={(372.83,86.79)}, rotate = 148.79] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (107.83,159.79) -- (250,160) ;
+		\draw [shift={(252,160)}, rotate = 180.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (107.83,159.79) -- (370.9,87.32) ;
+		\draw [shift={(372.83,86.79)}, rotate = 164.6] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (188,165.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+		\draw (301,140.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+		\draw (188,104.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v} +\vec{u}$};
+		\end{tikzpicture}	
+		\end{center}
+		\item The parallelogram law: 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (252,160) -- (371.12,87.82) ;
+		\draw [shift={(372.83,86.79)}, rotate = 148.79] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (107.83,159.79) -- (250,160) ;
+		\draw [shift={(252,160)}, rotate = 180.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (107.83,159.79) -- (370.9,87.32) ;
+		\draw [shift={(372.83,86.79)}, rotate = 164.6] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (107.83,159.79) -- (226.95,87.61) ;
+		\draw [shift={(228.66,86.57)}, rotate = 148.79] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (228.66,86.57) -- (370.83,86.78) ;
+		\draw [shift={(372.83,86.79)}, rotate = 180.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (188,165.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+		\draw (136,108.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+		\draw (203,106.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v} +\vec{u}$};
+		\end{tikzpicture}
+		\end{center}
+	\end{enumerate}
+	\item Scalar Multiplications: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (237.83,126.79) -- (349.03,72.66) ;
+	\draw [shift={(350.83,71.79)}, rotate = 154.05] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ]   (237.83,126.79) -- (126.63,180.91) ;
+	\draw [shift={(124.83,181.79)}, rotate = 334.05] [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (237.83,126.79) -- (292.53,100.16) ;
+	\draw [shift={(294.33,99.29)}, rotate = 154.05] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (352.83,75.19) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\draw (166.83,164.19) node [anchor=north west][inner sep=0.75pt]    {$-\vec{v}$};
+	\draw (268.08,116.44) node [anchor=north west][inner sep=0.75pt]    {$\frac{1}{2}\vec{v}$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{df}{Scalar Multiplication}
+		If $c\in\R$ and $\vec{v}$ is a vector, then $c\vec{v}$ is in the same direction of $\vec{v}$ if $c>0$ and in the opposite direction if $c<0$.
+	\end{df}
+	\begin{thm}{Magnitude After Scalar Multiplication}
+		The magnitude of $c\vec{v}$: $|c\vec{v}|=c|\vec{v}|$.	
+	\end{thm}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

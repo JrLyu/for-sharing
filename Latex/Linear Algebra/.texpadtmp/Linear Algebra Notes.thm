@@ -1,0 +1,193 @@
+\contentsline {df}{{Definition}{0.0.{1}}{Terminology}}{3}{df.0.0.1}%
+\contentsline {thm}{{Theorem}{0.0.{1}}{Theorem Name}}{3}{thm.0.0.1}%
+\contentsline {cor}{{Corollary}{0.0.{1}}{}}{3}{cor.0.0.1}%
+\contentsline {lem}{{Lemma}{0.0.{1}}{}}{3}{lem.0.0.1}%
+\contentsline {prop}{{Proposition}{0.0.{1}}{}}{3}{prop.0.0.1}%
+\contentsline {conj}{{Conjecture}{0.0.{1}}{}}{3}{conj.0.0.1}%
+\contentsline {eg}{{Example}{0.0.{1}}{}}{3}{eg.0.0.1}%
+\contentsline {rmk}{{\indent Remark}{1}{}}{3}{rmk.1}%
+\contentsline {ext}{{\indent Extension}{1}{}}{3}{ext.1}%
+\contentsline {df}{{Definition}{1.1.{1}}{Linear Equations}}{4}{df.1.1.1}%
+\contentsline {eg}{{Example}{1.1.{1}}{}}{4}{eg.1.1.1}%
+\contentsline {df}{{Definition}{1.1.{2}}{System of Linear Equations}}{4}{df.1.1.2}%
+\contentsline {df}{{Definition}{1.1.{3}}{Solution of a System}}{4}{df.1.1.3}%
+\contentsline {df}{{Definition}{1.1.{4}}{Solution Set of a System}}{4}{df.1.1.4}%
+\contentsline {df}{{Definition}{1.1.{5}}{Solving a System}}{4}{df.1.1.5}%
+\contentsline {df}{{Definition}{1.1.{6}}{Consistency and Inconsistency of a System}}{4}{df.1.1.6}%
+\contentsline {eg}{{Example}{1.1.{2}}{}}{4}{eg.1.1.2}%
+\contentsline {rmk}{{\indent Remark}{2}{}}{4}{rmk.2}%
+\contentsline {rmk}{{\indent Remark}{3}{}}{4}{rmk.3}%
+\contentsline {df}{{Definition}{1.1.{7}}{$\R ^n$}}{4}{df.1.1.7}%
+\contentsline {eg}{{Example}{1.1.{3}}{}}{4}{eg.1.1.3}%
+\contentsline {df}{{Definition}{1.1.{8}}{Line}}{5}{df.1.1.8}%
+\contentsline {df}{{Definition}{1.1.{9}}{Plane}}{5}{df.1.1.9}%
+\contentsline {thm}{{Theorem}{1.1.{1}}{}}{5}{thm.1.1.1}%
+\contentsline {eg}{{Example}{1.1.{4}}{}}{5}{eg.1.1.4}%
+\contentsline {thm}{{Theorem}{1.1.{2}}{Elementary Operations}}{5}{thm.1.1.2}%
+\contentsline {thm}{{Theorem}{1.2.{1}}{The Elimination Method}}{6}{thm.1.2.1}%
+\contentsline {df}{{Definition}{1.2.{1}}{Augmented Matrices and Row Operations}}{6}{df.1.2.1}%
+\contentsline {df}{{Definition}{1.2.{2}}{Matrix}}{6}{df.1.2.2}%
+\contentsline {eg}{{Example}{1.2.{1}}{}}{6}{eg.1.2.1}%
+\contentsline {rmk}{{\indent Remark}{4}{}}{6}{rmk.4}%
+\contentsline {df}{{Definition}{1.2.{3}}{Row equivalent}}{7}{df.1.2.3}%
+\contentsline {df}{{Definition}{1.2.{4}}{Row Echelon Form (\emph {ref}) of Matrix}}{7}{df.1.2.4}%
+\contentsline {eg}{{Example}{1.2.{2}}{}}{7}{eg.1.2.2}%
+\contentsline {df}{{Definition}{1.2.{5}}{Pivot}}{7}{df.1.2.5}%
+\contentsline {df}{{Definition}{1.2.{6}}{Reduced Row Echelon Form (\emph {rref}) of a Matrix}}{7}{df.1.2.6}%
+\contentsline {eg}{{Example}{1.2.{3}}{}}{7}{eg.1.2.3}%
+\contentsline {thm}{{Theorem}{1.2.{2}}{}}{7}{thm.1.2.2}%
+\contentsline {df}{{Definition}{1.2.{7}}{Pivot Position}}{8}{df.1.2.7}%
+\contentsline {df}{{Definition}{1.2.{8}}{Pivot Column}}{8}{df.1.2.8}%
+\contentsline {thm}{{Theorem}{1.2.{3}}{The Row Echelon Form of an Inconsistent System}}{8}{thm.1.2.3}%
+\contentsline {df}{{Definition}{1.3.{1}}{Free Variable}}{8}{df.1.3.1}%
+\contentsline {eg}{{Example}{1.3.{1}}{}}{8}{eg.1.3.1}%
+\contentsline {df}{{Definition}{1.3.{2}}{Implicit Equations}}{8}{df.1.3.2}%
+\contentsline {df}{{Definition}{1.3.{3}}{Parameterized Equations}}{8}{df.1.3.3}%
+\contentsline {eg}{{Example}{1.3.{2}}{}}{8}{eg.1.3.2}%
+\contentsline {rmk}{{\indent Remark}{5}{}}{9}{rmk.5}%
+\contentsline {thm}{{Theorem}{1.3.{1}}{Number of Solutions}}{9}{thm.1.3.1}%
+\contentsline {eg}{{Example}{1.3.{3}}{}}{9}{eg.1.3.3}%
+\contentsline {df}{{Definition}{2.1.{1}}{Vector}}{10}{df.2.1.1}%
+\contentsline {df}{{Definition}{2.1.{2}}{$\R ^n$}}{10}{df.2.1.2}%
+\contentsline {thm}{{Theorem}{2.1.{1}}{Vector Addition}}{10}{thm.2.1.1}%
+\contentsline {thm}{{Theorem}{2.1.{2}}{Scalar multiplication}}{10}{thm.2.1.2}%
+\contentsline {eg}{{Example}{2.1.{1}}{}}{10}{eg.2.1.1}%
+\contentsline {ext}{{\indent Extension}{2}{}}{11}{ext.2}%
+\contentsline {ext}{{\indent Extension}{3}{}}{11}{ext.3}%
+\contentsline {df}{{Definition}{2.1.{3}}{Linear Combinations}}{11}{df.2.1.3}%
+\contentsline {df}{{Definition}{2.2.{1}}{Vector Equation}}{11}{df.2.2.1}%
+\contentsline {eg}{{Example}{2.2.{1}}{}}{11}{eg.2.2.1}%
+\contentsline {rmk}{{\indent Remark}{6}{}}{11}{rmk.6}%
+\contentsline {thm}{{Theorem}{2.2.{1}}{}}{12}{thm.2.2.1}%
+\contentsline {eg}{{Example}{2.2.{2}}{}}{12}{eg.2.2.2}%
+\contentsline {thm}{{Theorem}{2.2.{2}}{}}{12}{thm.2.2.2}%
+\contentsline {eg}{{Example}{2.2.{3}}{}}{12}{eg.2.2.3}%
+\contentsline {df}{{Definition}{2.3.{1}}{Linear Transformation}}{12}{df.2.3.1}%
+\contentsline {df}{{Definition}{2.3.{2}}{Standard Basis Vectors}}{13}{df.2.3.2}%
+\contentsline {thm}{{Theorem}{2.3.{1}}{}}{13}{thm.2.3.1}%
+\contentsline {thm}{{Theorem}{2.3.{2}}{}}{13}{thm.2.3.2}%
+\contentsline {eg}{{Example}{2.3.{1}}{}}{13}{eg.2.3.1}%
+\contentsline {df}{{Definition}{2.3.{3}}{Geometric Definition of Linear Transformation}}{13}{df.2.3.3}%
+\contentsline {eg}{{Example}{2.3.{2}}{}}{14}{eg.2.3.2}%
+\contentsline {eg}{{Example}{2.3.{3}}{}}{15}{eg.2.3.3}%
+\contentsline {thm}{{Theorem}{3.1.{1}}{Procedure of Matrix Multiplication}}{16}{thm.3.1.1}%
+\contentsline {eg}{{Example}{3.1.{1}}{}}{16}{eg.3.1.1}%
+\contentsline {rmk}{{\indent Remark}{7}{Conceptualizing Matrix Multiplication}}{17}{rmk.7}%
+\contentsline {eg}{{Example}{3.1.{2}}{}}{17}{eg.3.1.2}%
+\contentsline {eg}{{Example}{3.1.{3}}{Application: Double Angle Formulae}}{18}{eg.3.1.3}%
+\contentsline {rmk}{{\indent Remark}{8}{}}{18}{rmk.8}%
+\contentsline {thm}{{Theorem}{3.1.{2}}{}}{18}{thm.3.1.2}%
+\contentsline {eg}{{Example}{3.1.{4}}{}}{18}{eg.3.1.4}%
+\contentsline {eg}{{Example}{3.2.{1}}{Guiding Question}}{19}{eg.3.2.1}%
+\contentsline {df}{{Definition}{3.2.{1}}{Inverse of a Matrix}}{19}{df.3.2.1}%
+\contentsline {rmk}{{\indent Remark}{9}{}}{19}{rmk.9}%
+\contentsline {thm}{{Theorem}{3.2.{1}}{}}{19}{thm.3.2.1}%
+\contentsline {df}{{Definition}{3.2.{2}}{Identity matrix}}{20}{df.3.2.2}%
+\contentsline {rmk}{{\indent Remark}{10}{}}{20}{rmk.10}%
+\contentsline {thm}{{Theorem}{3.2.{2}}{}}{20}{thm.3.2.2}%
+\contentsline {eg}{{Example}{3.2.{2}}{}}{20}{eg.3.2.2}%
+\contentsline {thm}{{Theorem}{3.2.{3}}{Function theoretic definition of $\matrixA ^{-1}$}}{21}{thm.3.2.3}%
+\contentsline {eg}{{Example}{3.2.{3}}{}}{21}{eg.3.2.3}%
+\contentsline {thm}{{Theorem}{3.2.{4}}{A new way to find $\matrixA ^{-1}$}}{21}{thm.3.2.4}%
+\contentsline {eg}{{Example}{3.2.{4}}{Problems concerning inverting matrices}}{21}{eg.3.2.4}%
+\contentsline {thm}{{Theorem}{3.3.{1}}{}}{22}{thm.3.3.1}%
+\contentsline {eg}{{Example}{3.3.{1}}{}}{22}{eg.3.3.1}%
+\contentsline {df}{{Definition}{3.3.{1}}{Zero Vector}}{22}{df.3.3.1}%
+\contentsline {eg}{{Example}{3.3.{2}}{}}{22}{eg.3.3.2}%
+\contentsline {thm}{{Theorem}{3.3.{2}}{}}{22}{thm.3.3.2}%
+\contentsline {df}{{Definition}{3.3.{2}}{Kernel of a Matrix}}{23}{df.3.3.2}%
+\contentsline {thm}{{Theorem}{3.3.{3}}{}}{23}{thm.3.3.3}%
+\contentsline {thm}{{Theorem}{3.3.{4}}{}}{23}{thm.3.3.4}%
+\contentsline {eg}{{Example}{3.3.{3}}{}}{23}{eg.3.3.3}%
+\contentsline {df}{{Definition}{3.3.{3}}{Span}}{24}{df.3.3.3}%
+\contentsline {eg}{{Example}{3.3.{4}}{}}{24}{eg.3.3.4}%
+\contentsline {df}{{Definition}{3.3.{4}}{Image of a Matrix}}{24}{df.3.3.4}%
+\contentsline {thm}{{Theorem}{3.3.{5}}{}}{24}{thm.3.3.5}%
+\contentsline {rmk}{{\indent Remark}{11}{}}{24}{rmk.11}%
+\contentsline {thm}{{Theorem}{4.1.{1}}{}}{26}{thm.4.1.1}%
+\contentsline {df}{{Definition}{4.1.{1}}{Redundancy}}{26}{df.4.1.1}%
+\contentsline {df}{{Definition}{4.1.{2}}{Span of an Empty Set}}{26}{df.4.1.2}%
+\contentsline {df}{{Definition}{4.1.{3}}{Linear Independence}}{26}{df.4.1.3}%
+\contentsline {eg}{{Example}{4.1.{1}}{}}{26}{eg.4.1.1}%
+\contentsline {thm}{{Theorem}{4.1.{2}}{}}{26}{thm.4.1.2}%
+\contentsline {df}{{Definition}{4.1.{4}}{Subspace}}{26}{df.4.1.4}%
+\contentsline {eg}{{Example}{4.1.{2}}{}}{27}{eg.4.1.2}%
+\contentsline {rmk}{{\indent Remark}{12}{}}{28}{rmk.12}%
+\contentsline {df}{{Definition}{4.1.{5}}{}}{28}{df.4.1.5}%
+\contentsline {eg}{{Example}{4.1.{3}}{}}{28}{eg.4.1.3}%
+\contentsline {thm}{{Theorem}{4.1.{3}}{Computing a basis for $\IM (\matrixA )$}}{28}{thm.4.1.3}%
+\contentsline {eg}{{Example}{4.1.{4}}{}}{28}{eg.4.1.4}%
+\contentsline {rmk}{{\indent Remark}{13}{}}{29}{rmk.13}%
+\contentsline {eg}{{Example}{4.1.{5}}{}}{29}{eg.4.1.5}%
+\contentsline {thm}{{Theorem}{4.1.{4}}{Computing a basis for $\Ker (\matrixA )$}}{29}{thm.4.1.4}%
+\contentsline {eg}{{Example}{4.1.{6}}{}}{30}{eg.4.1.6}%
+\contentsline {thm}{{Theorem}{4.2.{1}}{}}{30}{thm.4.2.1}%
+\contentsline {df}{{Definition}{4.2.{1}}{The Dimension of a Subspace}}{30}{df.4.2.1}%
+\contentsline {df}{{Definition}{4.2.{2}}{Rank of $\matrixA $}}{30}{df.4.2.2}%
+\contentsline {df}{{Definition}{4.2.{3}}{Nullity of $\matrixA $}}{30}{df.4.2.3}%
+\contentsline {thm}{{Theorem}{4.2.{2}}{The Rank-Nullity Theorem}}{30}{thm.4.2.2}%
+\contentsline {eg}{{Example}{4.2.{1}}{}}{30}{eg.4.2.1}%
+\contentsline {eg}{{Example}{4.2.{2}}{Geometric Perspective of Rank-Nullity Theorem}}{31}{eg.4.2.2}%
+\contentsline {thm}{{Theorem}{4.2.{3}}{Invertibility Criteria}}{32}{thm.4.2.3}%
+\contentsline {rmk}{{\indent Remark}{14}{Goal of Coordinates}}{33}{rmk.14}%
+\contentsline {df}{{Definition}{4.3.{1}}{Standard coordinates on $\R ^n$}}{33}{df.4.3.1}%
+\contentsline {eg}{{Example}{4.3.{1}}{}}{33}{eg.4.3.1}%
+\contentsline {thm}{{Theorem}{4.3.{1}}{}}{33}{thm.4.3.1}%
+\contentsline {eg}{{Example}{4.3.{2}}{}}{33}{eg.4.3.2}%
+\contentsline {df}{{Definition}{4.3.{2}}{$\beta $ coordinates}}{33}{df.4.3.2}%
+\contentsline {eg}{{Example}{4.3.{3}}{}}{33}{eg.4.3.3}%
+\contentsline {rmk}{{\indent Remark}{15}{}}{34}{rmk.15}%
+\contentsline {eg}{{Example}{4.3.{4}}{}}{34}{eg.4.3.4}%
+\contentsline {rmk}{{\indent Remark}{16}{}}{34}{rmk.16}%
+\contentsline {eg}{{Example}{4.3.{5}}{$\beta $-coordinates Under Linear Transformation}}{34}{eg.4.3.5}%
+\contentsline {thm}{{Theorem}{4.3.{2}}{}}{35}{thm.4.3.2}%
+\contentsline {thm}{{Theorem}{4.3.{3}}{}}{35}{thm.4.3.3}%
+\contentsline {eg}{{Example}{4.3.{6}}{}}{35}{eg.4.3.6}%
+\contentsline {df}{{Definition}{5.1.{1}}{Dot Product}}{36}{df.5.1.1}%
+\contentsline {eg}{{Example}{5.1.{1}}{}}{36}{eg.5.1.1}%
+\contentsline {thm}{{Theorem}{5.1.{1}}{}}{36}{thm.5.1.1}%
+\contentsline {df}{{Definition}{5.1.{2}}{Length}}{36}{df.5.1.2}%
+\contentsline {eg}{{Example}{5.1.{2}}{}}{36}{eg.5.1.2}%
+\contentsline {rmk}{{\indent Remark}{17}{}}{36}{rmk.17}%
+\contentsline {thm}{{Theorem}{5.1.{2}}{Angle Between Vectors}}{36}{thm.5.1.2}%
+\contentsline {thm}{{Theorem}{5.1.{3}}{}}{37}{thm.5.1.3}%
+\contentsline {df}{{Definition}{5.1.{3}}{Perpendicular}}{38}{df.5.1.3}%
+\contentsline {thm}{{Theorem}{5.1.{4}}{}}{38}{thm.5.1.4}%
+\contentsline {thm}{{Theorem}{5.1.{5}}{}}{38}{thm.5.1.5}%
+\contentsline {thm}{{Theorem}{5.1.{6}}{}}{38}{thm.5.1.6}%
+\contentsline {thm}{{Theorem}{5.1.{7}}{}}{39}{thm.5.1.7}%
+\contentsline {df}{{Definition}{5.1.{4}}{Orthogonal Complement}}{39}{df.5.1.4}%
+\contentsline {eg}{{Example}{5.1.{3}}{}}{39}{eg.5.1.3}%
+\contentsline {thm}{{Theorem}{5.1.{8}}{}}{39}{thm.5.1.8}%
+\contentsline {thm}{{Theorem}{5.1.{9}}{}}{39}{thm.5.1.9}%
+\contentsline {eg}{{Example}{5.1.{4}}{}}{40}{eg.5.1.4}%
+\contentsline {thm}{{Theorem}{5.2.{1}}{}}{40}{thm.5.2.1}%
+\contentsline {df}{{Definition}{5.2.{1}}{Orthogonal Projection}}{40}{df.5.2.1}%
+\contentsline {thm}{{Theorem}{5.2.{2}}{}}{40}{thm.5.2.2}%
+\contentsline {eg}{{Example}{5.2.{1}}{}}{41}{eg.5.2.1}%
+\contentsline {df}{{Definition}{5.2.{2}}{Transpose of a Matrix}}{42}{df.5.2.2}%
+\contentsline {thm}{{Theorem}{5.2.{3}}{}}{42}{thm.5.2.3}%
+\contentsline {rmk}{{\indent Remark}{18}{}}{42}{rmk.18}%
+\contentsline {thm}{{Theorem}{5.2.{4}}{}}{42}{thm.5.2.4}%
+\contentsline {eg}{{Example}{5.2.{2}}{}}{43}{eg.5.2.2}%
+\contentsline {eg}{{Example}{5.3.{1}}{}}{43}{eg.5.3.1}%
+\contentsline {thm}{{Theorem}{5.3.{1}}{Fundamental Problem of Graph fitting}}{44}{thm.5.3.1}%
+\contentsline {eg}{{Example}{5.3.{2}}{}}{44}{eg.5.3.2}%
+\contentsline {eg}{{Example}{5.3.{3}}{}}{44}{eg.5.3.3}%
+\contentsline {rmk}{{\indent Remark}{19}{}}{45}{rmk.19}%
+\contentsline {thm}{{Theorem}{5.3.{2}}{General Problem of Graph Fitting}}{45}{thm.5.3.2}%
+\contentsline {df}{{Definition}{5.4.{1}}{Orthogonal Transformation}}{46}{df.5.4.1}%
+\contentsline {eg}{{Example}{5.4.{1}}{}}{46}{eg.5.4.1}%
+\contentsline {df}{{Definition}{5.4.{2}}{}}{46}{df.5.4.2}%
+\contentsline {thm}{{Theorem}{5.4.{1}}{Property of $\Ref _V$}}{46}{thm.5.4.1}%
+\contentsline {df}{{Definition}{5.4.{3}}{Orthogonal Matrices}}{47}{df.5.4.3}%
+\contentsline {thm}{{Theorem}{5.4.{2}}{}}{47}{thm.5.4.2}%
+\contentsline {thm}{{Theorem}{5.4.{3}}{}}{47}{thm.5.4.3}%
+\contentsline {ext}{{\indent Extension}{4}{}}{47}{ext.4}%
+\contentsline {thm}{{Theorem}{5.4.{4}}{}}{47}{thm.5.4.4}%
+\contentsline {eg}{{Example}{5.4.{2}}{}}{48}{eg.5.4.2}%
+\contentsline {thm}{{Theorem}{5.4.{5}}{}}{48}{thm.5.4.5}%
+\contentsline {ext}{{\indent Extension}{5}{}}{48}{ext.5}%
+\contentsline {thm}{{Theorem}{5.4.{6}}{}}{48}{thm.5.4.6}%
+\contentsline {eg}{{Example}{5.4.{3}}{}}{48}{eg.5.4.3}%
+\contentsline {thm}{{Theorem}{5.4.{7}}{}}{49}{thm.5.4.7}%
