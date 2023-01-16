@@ -1,82 +1,63 @@
 \documentclass[12pt,a4paper]{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage{fontenc}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{ntheorem}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
 \usepackage[most]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{subfigure} 
 \usepackage{arydshln}
+\usepackage{multicol}
+\usepackage{url}
 \usepackage{setspace}
+\usepackage[T1]{fontenc}
 \usepackage{mathptmx}
 \usepackage{framed}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{chemfig}
+\usepackage{tikz}
+\usepackage{pifont}
+
+
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[L]{\textsl{\leftmark}}
-\fancyhead[R]{\textsl{\rightmark}}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
 \fancyfoot{}
 \fancyfoot[C]{\thepage}
 %\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\definecolor{darkblue}{HTML}{003472}
-\definecolor{lightblue}{HTML}{70f3ff}
-\definecolor{red}{HTML}{da291c}
-\definecolor{lightred}{HTML}{f47983}
-\definecolor{green}{HTML}{057748}
-\definecolor{lightgreen}{HTML}{a4e2c6}
-\definecolor{gray}{HTML}{758a99}
-\definecolor{lightgray}{HTML}{41555d}
-\definecolor{lightblack}{HTML}{424c50}
-\definecolor{orange}{HTML}{9b4400}
-\definecolor{yellow}{HTML}{ffa631}
-\definecolor{white}{HTML}{f0fcff}
-\definecolor{purple}{HTML}{6558B1}
+\definecolor{blue}{rgb}{0,0.45,1.14}
+\definecolor{red}{rgb}{0.77,0.12,0.23}
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{green}{rgb}{0,0.42,0.24}
+\definecolor{orange}{rgb}{2.07,0.69,0.32}
 
-\hypersetup{
-	colorlinks = false,
-	bookmarks = true,
-	bookmarksnumbered = true,
-	pdfborder = 001,
-	linkcolor = purple
-}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{df}{Definition}[subsection]
+\newtheorem{eg}{Example}[subsection]
+\newenvironment*{sol}{\indent\textbf{Solution. }}{\hfill{$\square$}\par}
+\newtheorem*{rmk}{\indent Remark}
+\newenvironment*{prf}{\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newtheorem*{ext}{\indent Extension}
 
-
-\tcbuselibrary{skins, breakable, theorems}
-\newtcolorbox{df}[2][]{
-	colback=lightgray!5, colframe=lightblack,colbacktitle=lightblack, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-
-\newtcolorbox{thm}[2][]{
-	colback=lightblue!5, colframe=darkblue,colbacktitle=darkblue, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-
-\newtcolorbox{eg}[2][]{
-	colback=lightgreen!5, colframe=green,colbacktitle=green, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-
-\newtcolorbox{prf}[2][]{
-	colback=orange!5, colframe=orange,colbacktitle=orange, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-
-\newtcolorbox{ext}[2][]{
-	colback=yellow!5, colframe=yellow,colbacktitle=yellow, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-
-\newtcolorbox{rmk}[2][]{
-	colback=lightred!5, colframe=red,colbacktitle=red, coltitle=white,title={#2},fonttitle=\bfseries,breakable
-}
-\tcbset{highlight math/.append style={left=0mm,right=0mm,top=0mm,bottom=0mm, colframe=white}}
+\linespread{1.25}
 
 
 \title{Emory University\\\textbf{MATH 211 - Advanced Calculus (Multivariable) Learning Notes}}
@@ -96,11 +77,25 @@
 \def\IM{{\mathrm{Im}}}
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
+\def\Proj{\mathrm{Proj}}
 \def\qed{\rightline{$\blacksquare$}}
 \def\ddx{\frac{\d}{\d x}}
 \def\dydx{\frac{\d y}{\d x}}
 \def\dx{\d x}
+\def\vecx{\vec{x}}
+\def\vecy{\vec{y}}
+\def\vecv{\vec{v}}
+\def\vecw{\vec{w}}
+\def\vecu{\vec{u}}
+\def\veca{\vec{a}}
+\def\vecb{\vec{b}}
+\def\vecc{\vec{c}}
+\def\vece{\boldsymbol{\textbf{e}}}
+\def\veci{\boldsymbol{\textbf{i}}}
+\def\vecj{\boldsymbol{\textbf{j}}}
+\def\veck{\boldsymbol{\textbf{k}}}
 \def\DNE{\mathrm{D.N.E.}}
+\def\LI{\mathrm{L.I.}}
 
 \begin{document}
 \maketitle
@@ -112,46 +107,49 @@ These is my personal notes for Emory University MATH 211 Advanced Calculus (Mult
 
 After mastering Calculus I (which covers contents concerning limits, differentiation, and basic integration) and Calculus II (which includes integration techniques and series), this course focuses on multivariable calculus, including vectors, multivariable functions, partial derivatives, optimization, multiple integrations, vector and scalar fields, Green’s and Stokes’ theorems, and the divergence theorem. The book used for this course is \textit{Multivariable Calculus, 8th Edition} by James Stewart. 
 
-Throughout this personal note, I use special ``tcolorboxes'' to differentiate different contents, including definitions, theorems, proofs, examples, extensions, and remarks. To be more specific: 
-\begin{df}{Terminology}
-	This is a \textbf{definition}.	
+Throughout this personal note, I use different formats to differentiate different contents, including definitions, theorems, proofs, examples, extensions, and remarks. To be more specific: 
+\begin{df}[Terminology]
+    This is a \textbf{definition}.	
 \end{df}
-\begin{thm}{Theorem Name}
-	This is a \textbf{theorem}.	
+\begin{thm}[Theorem Name]
+    This is a \textbf{theorem}.	
 \end{thm}
-\begin{eg}{Example Number}
-	This is the \textit{question} part of an \textbf{example}. \\
-	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
-	This is the \textit{answer} part of an \textbf{example}. 
+\begin{eg}
+    This is  an \textbf{example}. 
 \end{eg}
-\begin{rmk}{Remark}
+
+\begin{sol}
+    This is the \textit{answer} part of an \textbf{example}. 
+\end{sol}
+\begin{rmk}
 	This is a \textbf{remark} of a definition, theorem, example, or proof. 
 \end{rmk}
-\begin{prf}{Proof}
+
+\begin{prf}
 	This is a \textbf{proof} of a theorem. 
 \end{prf}
-\begin{ext}{Extension}
+\begin{ext}
 	This is a \textbf{extension} of a theorem, proof, or example. 	
 \end{ext}
-
 To better ace this course, it is recommended to do more questions than provided as examples under each section. Although each example is distinctive and representative, more questions and practice is still needed to deepen the understanding of this course. 
 
 Even though I put efforts into making as few flaws as possible when encoding these learning notes, some errors may still exist in this note. If you find any, please contact me via email: \url{lvjiuru@hotmail.com}. 
 
 I hope you will find my notes helpful when learning Multivariable Calculus.
+
 \rightline{Cheers,}
 \rightline{Jiuru Lyu}
 
 \newpage
 \section{Vectors and Geometry of Space}
 \subsection{Three Dimensional Coordinate System}
-\begin{df}{Coordinate System}
+\begin{df}[Coordinate System]
 	A \textbf{coordinate system} is a system that uses coordinate of a point to uniquely determine the position of the point in the space or plane.	
 \end{df}
 The Cartesian coordinate system is defined in different dimensions.
-\begin{df}{One Dimensional Cartesian System}
+\begin{df}[One Dimensional Cartesian System]
 	\textbf{One Dimensional Cartesian System} is a straight line with a fixed point as the origin and positive and negative directions.
-	\begin{rmk}{Remark}
+	\begin{rmk}
 		The one dimensional cartesian system is the number line: 
 		\begin{center}
 		\tikzset{every picture/.style={line width=0.75pt}}	
@@ -167,9 +165,7 @@ The Cartesian coordinate system is defined in different dimensions.
 		\end{center}
 	\end{rmk}
 \end{df}
-
 Any point in the one dimensional Cartesian system corresponds to a number $\in\R$ and any number $\in\R$ has a location on the line.
-
 The two dimensional Cartesian system is the regular coordinate system. 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}}      
@@ -191,7 +187,6 @@ The two dimensional Cartesian system is the regular coordinate system.
 \draw (91,81.4) node [anchor=north west][inner sep=0.75pt]    {$y=b$};
 \end{tikzpicture}	
 \end{center}
-
 The three dimensional Cartesian system includes three perpendicular axes. 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}}
@@ -206,10 +201,10 @@ The three dimensional Cartesian system includes three perpendicular axes.
 \draw (72.83,203.46) node [anchor=north west][inner sep=0.75pt]    {$x$};
 \end{tikzpicture}	
 \end{center}
-\begin{df}{Octant}
+\begin{df}[Octant]
 	A \textbf{Octant} is one of the eight divisions of the three dimensional coordinate system.	
 \end{df}
-\begin{df}{Hyperplane}
+\begin{df}[Hyperplane]
 The hyperplane of $y=2$ is given as below: 
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}
@@ -249,7 +244,7 @@ The hyperplane of $y=2$ is given as below:
 	\end{tikzpicture}
 	\end{center}
 \end{df}
-\begin{df}{Points in the Three Dimensional System}
+\begin{df}[Points in the Three Dimensional System]
 	$P(a,b,c)$ indicates the intersection of the three hyperplanes: $x=a$, $y=b$, and $z=c$.	
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -275,17 +270,14 @@ The hyperplane of $y=2$ is given as below:
 	\end{tikzpicture}
 	\end{center}
 \end{df}
-
 For spaces in the higher dimension, we understand them via the Cartesian product. 
-\begin{df}{Cartesian Product}
+\begin{df}[Cartesian Product]
 	\[\R\times\R\times\cdots\times\R=\{(x_1,\cdots,x_n)|x_i\in\R\forall i=1,\cdots,n\}\] is the set of all $n$-tuples of real numbers and is denoted by $\R^n$.
 \end{df}
-\begin{eg}{Example 1}
-		$(3,4,5)\in\R^3$ is 3 dimensional.
-		
-		$(3,4,5,6)\in\R^4$ is 4 dimensional.	
+\begin{eg}
+		$(3,4,5)\in\R^3$ is 3 dimensional. $(3,4,5,6)\in\R^4$ is 4 dimensional.	
 \end{eg}
-\begin{eg}{Example 2}
+\begin{eg}
 	Which point(s) $(x,y,z)$ satisfies the equations \[x^2+y^2=1\quad\text{and}\quad x=3? \]	
 	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
 	\begin{center}
@@ -305,15 +297,15 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 	\end{center}
 	Those points form a circle in the hyperplane of $z=3$ centered at the point $(0,0,3)$ with a radius of $1$.
 \end{eg}
-\begin{thm}{Distance Formula in Three Dimension}
+\begin{thm}[Distance Formula in Three Dimension]
 	For given points $P_1(x_1,y_1,z_1)$ and $P_2(x_2,y_2,z_2)$, the distance between them is denoted by $|P_1P_2|$ and is defined by \[|P_1P_2|=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}.\]	
 \end{thm}
-\begin{thm}{Equation of a Sphere}
+\begin{thm}[Equation of a Sphere]
 	An equation of a sphere with a center of $(a,b,c)$ and a radius of $r$ is defined as \[(x-a)^2+(y-b)^2+(z-c)^2=r^2.\]	
 \end{thm}
-\begin{eg}{Example 3}
+\begin{eg}
 	What is the region in $\R^3$ represented by the inequalities \[1\leq x^2+y^2+z^2\leq4\quad\text{and}\quad z\leq0? \]	
-	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+	\begin{sol}
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 	\draw  (125.83,75.79) -- (219.83,75.79)(133.83,58) -- (133.83,155.06) (212.83,70.79) -- (219.83,75.79) -- (212.83,80.79) (128.83,65) -- (133.83,58) -- (138.83,65)  ;
@@ -331,11 +323,12 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 	\end{tikzpicture}
 	\end{center}
 	The region is the difference between the half spheres (the lower half of the sphere) centered at $(0,0,0)$ with a radius of $1$ and $2$.
+	\end{sol}
 \end{eg}
 
 \subsection{Vectors}
-\begin{df}{Vectors}
-	Vectors are used to indicate a quantity that has both magnitude and direction. 
+\begin{df}[Vectors]
+	\textbf{Vectors} are used to indicate a quantity that has both magnitude and direction. 
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 	\draw    (100,124) -- (219.12,51.82) ;
@@ -347,13 +340,12 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 	\begin{enumerate}
 		\item Vectors are denoted as $\vec{v}.$
 		\item Magnitude
-		\begin{df}{Magnitude}
-			A vector is a line segment, of which the magnitude of vector denoted by $|\vec{v}|$ is the length of it and the arrow points the direction of the vector. 
+		\begin{df}[Magnitude]
+			A vector is a line segment, of which the \textbf{magnitude} of vector denoted by $|\vec{v}|$ is the length of it and the arrow points the direction of the vector. 
 		\end{df}
 	\end{enumerate}	
 \end{df}
-
-Vectors are operated in a different way. 
+Vectors are operated in a different way: 
 \begin{enumerate}
 	\item Addition of Vectors: 
 	\begin{enumerate}
@@ -407,54 +399,226 @@ Vectors are operated in a different way.
 	\draw (268.08,116.44) node [anchor=north west][inner sep=0.75pt]    {$\frac{1}{2}\vec{v}$};
 	\end{tikzpicture}
 	\end{center}
-	\begin{df}{Scalar Multiplication}
+	\begin{df}[Scalar Multiplication]
 		If $c\in\R$ and $\vec{v}$ is a vector, then $c\vec{v}$ is in the same direction of $\vec{v}$ if $c>0$ and in the opposite direction if $c<0$.
 	\end{df}
-	\begin{thm}{Magnitude After Scalar Multiplication}
-		The magnitude of $c\vec{v}$: $|c\vec{v}|=c|\vec{v}|$.	
+	\begin{thm}
+		The magnitude of $c\vec{v}$: \[|c\vec{v}|=c|\vec{v}|.\]
 	\end{thm}
+	\item Differences of Vectors: 
+	\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (237.83,126.79) -- (349.03,72.66) ;
+	\draw [shift={(350.83,71.79)}, rotate = 154.05] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ]   (237.83,126.79) -- (126.63,180.91) ;
+	\draw [shift={(124.83,181.79)}, rotate = 334.05] [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (237.83,126.79) -- (372.37,126.79) ;
+	\draw [shift={(374.37,126.79)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (374.37,126.79) -- (263.17,180.91) ;
+	\draw [shift={(261.37,181.79)}, rotate = 334.05] [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (237.83,126.79) -- (260.59,179.95) ;
+	\draw [shift={(261.37,181.79)}, rotate = 246.82] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (350.83,71.79) -- (373.59,124.95) ;
+	\draw [shift={(374.37,126.79)}, rotate = 246.82] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (313.83,60.19) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\draw (166.83,164.19) node [anchor=north west][inner sep=0.75pt]    {$-\vec{v}$};
+	\draw (351,132.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+	\draw (254,137.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u} -\vec{v}$};
+	\draw (363,77.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u} -\vec{v}$};
+	\end{tikzpicture}
+	\end{center}
+ 	The difference of vectors $\vecu$ and $\vecv$ is denoted by $\vecu-\vecv$ and is defined by \[\vecu-\vecv=\vecu+(-\vecv)\]
+ 	\item Properties of vectors: \\Suppose $\veca,\ \vecb,\ \vecc$ are vectors in $V_n$ and $c$ and $d$ are scalars (\textit{Those properties can be proven geometrically}): 
+ 	\begin{enumerate}
+ 		\item $\veca+\vecb=\vecb+\veca$
+ 		\item $\veca+(\vecb+\vecc)=(\veca+\vecb)+\vecc$
+ 		\item $\veca+0=\veca$
+ 		\item $\veca+(-\veca)=0$
+ 		\item $c(\veca+\vecb)=c\veca+c\vecb$
+ 		\item $(c+d)\veca=c\veca+d\veca$
+ 		\item $(cd)\veca=c(d\veca)$
+ 		\item $1\cdot\veca=\veca$
+ 	\end{enumerate}
+\end{enumerate}
+We can link the coordinate system and vectors together:  
+\begin{enumerate}
+	\item \begin{df}[Components of Vectors] We will denote vector $\vecv$ as \[\vecv=\langle a_1,a_2\rangle,\] where $a_1$ and $a_2$ are called the \textbf{components} of $\vecv.$ \end{df}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,191.25) -- (200.37,191.25)(65.04,69) -- (65.04,204.83) (193.37,186.25) -- (200.37,191.25) -- (193.37,196.25) (60.04,76) -- (65.04,69) -- (70.04,76)  ;
+	\draw    (65.04,191.25) -- (145.8,128.06) ;
+	\draw [shift={(147.37,126.83)}, rotate = 141.96] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (26,194.4) node [anchor=north west][inner sep=0.75pt]    {$( 0,0)$};
+	\draw (149.37,130.23) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,a_{2})$};
+	\draw (120,156.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\end{tikzpicture}
+	\end{center}
+	\item In the three dimension: \[\vecv=\langle a_1,a_2,a_3\rangle\]
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (131,163.25) -- (281.37,163.25)(146.04,41) -- (146.04,176.83) (274.37,158.25) -- (281.37,163.25) -- (274.37,168.25) (141.04,48) -- (146.04,41) -- (151.04,48)  ;
+	\draw    (146.04,163.25) -- (226.8,100.06) ;
+	\draw [shift={(228.37,98.83)}, rotate = 141.96] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (146.04,163.25) -- (88.61,236.53) ;
+	\draw [shift={(87.37,238.1)}, rotate = 308.09] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (90,144.4) node [anchor=north west][inner sep=0.75pt]    {$( 0,0,0)$};
+	\draw (230.37,102.23) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,a_{2} ,a_{3})$};
+	\draw (201,128.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\draw (97,236.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (281,169.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (127,40.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\end{tikzpicture}
+	\end{center}
+	\item \begin{df} If $A(x_1,y_1,z_1)$ as the tail of vector $\vecv$ and $B(x_1,y_1,z_1)$ as the tip of vector $\vecv$, then \[\overrightarrow{AB}=\langle x_2-x_1,\ y_2-y_1,\ z_2-z_1\rangle\]\[|\overrightarrow{AB}|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}\]\end{df}
+	\item \begin{thm}If $\vecv=\langle a,b,c\rangle$ and $\vecu=\langle a',b',c'\rangle$, then \[\vecu+\vecv=\langle a'+a,\ b'+b,\ c'+c\rangle\]\[\vecu-\vecv=\langle a'-a,\ b'-b,\ c'-c\rangle\]\[\alpha\vecu=\langle\alpha a',\ \alpha b',\ \alpha c'\rangle,\text{ where }\alpha\text{ is a scalar.}\]\end{thm}
 \end{enumerate}
 
+\begin{df}[Standard Basis Vectors]
+	In 2-D, $\veci=\langle 1,0\rangle$ and $\vecj=\langle0,1\rangle$; and in 3-D, $\veci=\langle1,0,0\rangle$, $\vecj=\langle0,1,0\rangle$, and $\veck=\langle0,0,1\rangle$ are called the \textbf{standard basis vectors}. 
+	\begin{rmk} Any vectors in 2D and 3D can be written as \[\vecv=\langle a,b,c\rangle=a\veci+b\vecj+c\veck.\]\end{rmk}
+\end{df}
+\begin{df}[Unit Vector]
+	A \textbf{unit vector}is a vector of magnitude of $1$. 
+	\begin{eg} \[|\veci|=|\vecj|=|\veck|=1\text{ are unit vectors.}\]\end{eg}
+	\begin{thm}
+		To find a unit vector in the direction of any vector $\vecv$, we use $\displaystyle\frac{1}{|\vecv|}\vecv$. The length of vector $\displaystyle\frac{\vecv}{|\vecv|}$ is $1$ and its direction is the same as $\vecv$.	
+	\end{thm}
+\end{df}
+\begin{eg}
+	If the vectors in the figure satisfy $|\vecu|=|\vecv|=1$, and $\vecu+\vecv+\vecw=0$, find $|\vecw|$.
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,136.1) -- (222.37,136.1) ;
+	\draw [shift={(224.37,136.1)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,136.1) -- (51.89,87.99) ;
+	\draw [shift={(50.47,86.57)}, rotate = 45] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,136.1) -- (52.79,183.31) ;
+	\draw [shift={(51.37,184.73)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (85.66,136.16) -- (92.8,128.96) -- (100,136.1) -- (92.86,143.3) -- cycle ;
+	\draw (61,75.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+	\draw (67,174.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\draw (204,143.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{w}$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{sol}
+	Decompose the vectors: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,136.1) -- (222.37,136.1) ;
+	\draw [shift={(224.37,136.1)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,136.1) -- (51.89,87.99) ;
+	\draw [shift={(50.47,86.57)}, rotate = 45] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,136.1) -- (52.79,183.31) ;
+	\draw [shift={(51.37,184.73)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (85.66,136.16) -- (92.8,128.96) -- (100,136.1) -- (92.86,143.3) -- cycle ;
+	\draw  (34.17,136.1) -- (280.55,136.1)(100,59.56) -- (100,214.82) (273.55,131.1) -- (280.55,136.1) -- (273.55,141.1) (95,66.56) -- (100,59.56) -- (105,66.56)  ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (50.47,86.57) -- (100.37,86.57) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (50.47,86.57) -- (51.37,184.73) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (51.37,184.73) -- (101.28,184.73) ;
+	\draw (75,96.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+	\draw (75,158.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\draw (164.19,139.5) node [anchor=north west][inner sep=0.75pt]    {$\vec{w}$};
+	\draw (282,137.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (106,59.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (30,99.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}_{y}$};
+	\draw (31,144.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}_{y}$};
+	\draw (69,61.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}_{x}$};
+	\draw (68,189.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}_{x}$};
+	\end{tikzpicture}
+	\end{center}
+	We then have \[\cos{45^\circ}=\frac{|\vecu_x|}{\vecu}\Longrightarrow|\vecu_x|=|\vecu|\cos{45^\circ}; \] \[\sin{45^\circ}=\frac{|\vecu_y|}{\vecu}\Longrightarrow|\vecu_y|=|\vecu|\sin{45^\circ}; \]
+	\[\begin{aligned}
+		\therefore \vecu=\langle|\vecu_x|,\ |\vecu_y\rangle&=-|\vecu_x|\veci+|\vecu_y|\vecj\\
+		&=-\frac{\sqrt{2}}{2}|\vecu|\veci+\frac{\sqrt{2}}{2}\vecj\\
+		&=\frac{\sqrt{2}}{2}|\vecu|(-\veci+\vecj)
+	\end{aligned}\]
+	Similarly, \[\vecv=\frac{\sqrt{2}}{2}|\vecv|(-\veci-\vecj).\]
+	We know $\vecu+\vecv+\vecw=0$: \[\therefore\vecw+\frac{\sqrt{2}}{2}|\vecu|(-\veci+\vecj)+\frac{\sqrt{2}}{2}|\vecv|(-\veci-\vecj)=0\]
+	We know $|\vecu|=|\vecv|=1$: \[\begin{aligned}
+		\therefore \vecw+\frac{\sqrt{2}}{2}(-\veci+\vecj)+\frac{\sqrt{2}}{2}(-\veci-\vecj)&=0\\
+		\vecw+\frac{\sqrt{2}}{2}(-\veci+\vecj-\veci-\vecj)&=0\\
+		\vecw&=\sqrt{2}\veci
+	\end{aligned}\]
+	\[\therefore \vecw=\langle\sqrt{2},0\rangle\Longrightarrow|\vecw|=\sqrt{2}.\]
+	\end{sol}
+\end{eg}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Dot Product}
+\begin{df}[Dot Product]
+	If $\vecu=\langle x_1,y_1,z_1\rangle$ and $\vecv=\langle x_2,y_2,z_2\rangle$, then the dot product of $\vecu$ and $\vecv$ is defined as \[\begin{aligned}
+		\vecu\cdot\vecv&=\langle x_1,y_1,z_1\rangle\cdot\langle x_2,y_2,z_2\rangle\\
+		&=x_1x_2+y_1y_1+z_1z_2 
+	\end{aligned}\]	
+	\begin{rmk} The dot product of two vectors returns a scalar. \end{rmk}
+	\begin{eg}
+		Let $\vecu=\veci+2\vecj-3\veck$ and $\vecv=2\vecj-\veck$. Find $\vecu\cdot\vecv$.\\
+		\begin{sol}
+			\[\begin{aligned}
+			\vecu\cdot\vecv&=\langle1,2,-3\rangle\cdot\langle0,2,-1\rangle\\
+				&=(1)(0)+(2)(2)+(-3)(-1)=7.
+			\end{aligned}\]	
+		\end{sol}
+	\end{eg}
+\end{df}
+Properties of the dot product: 
+\begin{enumerate}
+	\item $\veca\cdot\vecb=\vecb\cdot\veca$
+	\item $\veca\cdot(\vecv+\vecc)=\veca\vecb+\veca\vecc$
+	\item $m(\veca\cdot\vecb)=(m\veca)\cdot\vecb=\veca\cdot(m\vecb)=(\veca\cdot\vecb)m$
+	\item $\veci\cdot\veci=\vecj\cdot\vecj=\veck\cdot\veck=1$\\$\veci\cdot\vecj=\vecj\cdot\veck=\veck\cdot\veci=0$
+\end{enumerate}
+\begin{thm}
+	\[\vecu\cdot\vecu=|\vecu|^2.\]	
+\end{thm}
+\begin{thm}
+	If $\theta$ is the angle between $\vecu$ and $\vecv$, then \[\boxed{\vecu\cdot\vecv=|\vecu|\cdot|\vecv|\cos\theta}.\]
+	\begin{ext} \[\cos\theta=\frac{\vecu\cdot\vecv}{|\vecu||\vecv|}\]\end{ext}
+	\begin{ext} \[\theta=90^\circ\Longleftrightarrow\vecu\cdot\vecv=0.\]	\end{ext}
+\end{thm}
+\begin{df}[Projections]
+	We use $\Proj_{\veca}\vecb$ to denote the \textbf{projection} of $\vecb$ on $\veca$.
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,118) -- (239.37,118) ;
+	\draw [shift={(241.37,118)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,118) -- (147.89,70.11) ;
+	\draw [shift={(149.3,68.7)}, rotate = 135] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (357,117) -- (496.37,117) ;
+	\draw [shift={(498.37,117)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (357,117) -- (320.54,66.32) ;
+	\draw [shift={(319.37,64.7)}, rotate = 54.27] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,118) -- (147.3,118.67) ;
+	\draw [shift={(149.3,118.7)}, rotate = 180.81] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (149.3,68.7) -- (149.3,118.7) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (272.37,117) -- (357,117) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (319.37,64.7) -- (319.37,116.7) ;
+	\draw    (357,117) -- (321.37,116.71) ;
+	\draw [shift={(319.37,116.7)}, rotate = 0.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (116,99.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+	\draw (354,96.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+	\draw (217,121.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{a}$};
+	\draw (474,119.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{a}$};
+	\draw (127,58.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{b}$};
+	\draw (326,45.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{b}$};
+	\draw (102,121.4) node [anchor=north west][inner sep=0.75pt]    {$\Proj_{\vec{a}}\vec{b}$};
+	\draw (316.69,120.4) node [anchor=north west][inner sep=0.75pt]    {$\Proj_{\vec{a}}\vec{b}$};
+	\end{tikzpicture}
+	\end{center}
+	From the diagrams, \[\cos\theta=\frac{|\Proj_{\veca}\vecb|}{|\vecb|}\Longrightarrow|\Proj_{\veca}\vecb=\boxed{|\vecb|\cos\theta}.\]
+	We know that \[\begin{aligned}
+		\veca\cdot\vecb&=|\veca||\vecb|\cos\theta\\
+		\therefore\frac{\veca\cdot\vecb}{|\veca|}&=\boxed{|\vecb|\cos\theta}\\
+		\therefore |\Proj_{\veca}\vecb|&=\frac{\veca\cdot\vecb}{|\veca|},\text{ which is a scalar.}
+	\end{aligned}\]
+	$|\Proj_{\veca}\vecb|$ is called the \textbf{scalar projection} of $\vecb$ on $\veca$.
+	\[\Proj_{\veca}\vecb=|\Proj_{\veca}\vecb|\cdot\underbrace{\frac{\veca}{|\veca|}}_{\text{unit vector}}=\frac{\veca\cdot\vecb}{|\veca|}\cdot\frac{\veca}{|\veca|}=\frac{\veca\cdot\vecb}{|\veca|^2}\cdot\veca\]
+	$\Proj_{\veca}\vecb$ is called \textbf{projection} of $\vecb$ on $\veca$ and is a vector. 
+\end{df}
 
 
 

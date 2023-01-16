@@ -1,0 +1,38 @@
+\contentsline {df}{{Definition}{0.0.{1}}{Terminology}}{2}{df.0.0.1}%
+\contentsline {thm}{{Theorem}{0.0.{1}}{Theorem Name}}{2}{thm.0.0.1}%
+\contentsline {eg}{{Example}{0.0.{1}}{}}{2}{eg.0.0.1}%
+\contentsline {rmk}{{\indent Remark}{1}{}}{2}{rmk.1}%
+\contentsline {ext}{{\indent Extension}{1}{}}{2}{ext.1}%
+\contentsline {df}{{Definition}{1.1.{1}}{Coordinate System}}{3}{df.1.1.1}%
+\contentsline {df}{{Definition}{1.1.{2}}{One Dimensional Cartesian System}}{3}{df.1.1.2}%
+\contentsline {rmk}{{\indent Remark}{2}{}}{3}{rmk.2}%
+\contentsline {df}{{Definition}{1.1.{3}}{Octant}}{3}{df.1.1.3}%
+\contentsline {df}{{Definition}{1.1.{4}}{Hyperplane}}{3}{df.1.1.4}%
+\contentsline {df}{{Definition}{1.1.{5}}{Points in the Three Dimensional System}}{4}{df.1.1.5}%
+\contentsline {df}{{Definition}{1.1.{6}}{Cartesian Product}}{4}{df.1.1.6}%
+\contentsline {eg}{{Example}{1.1.{1}}{}}{4}{eg.1.1.1}%
+\contentsline {eg}{{Example}{1.1.{2}}{}}{4}{eg.1.1.2}%
+\contentsline {thm}{{Theorem}{1.1.{1}}{Distance Formula in Three Dimension}}{5}{thm.1.1.1}%
+\contentsline {thm}{{Theorem}{1.1.{2}}{Equation of a Sphere}}{5}{thm.1.1.2}%
+\contentsline {eg}{{Example}{1.1.{3}}{}}{5}{eg.1.1.3}%
+\contentsline {df}{{Definition}{1.2.{1}}{Vectors}}{5}{df.1.2.1}%
+\contentsline {df}{{Definition}{1.2.{2}}{Magnitude}}{6}{df.1.2.2}%
+\contentsline {df}{{Definition}{1.2.{3}}{Scalar Multiplication}}{6}{df.1.2.3}%
+\contentsline {thm}{{Theorem}{1.2.{1}}{}}{6}{thm.1.2.1}%
+\contentsline {df}{{Definition}{1.2.{4}}{Components of Vectors}}{7}{df.1.2.4}%
+\contentsline {df}{{Definition}{1.2.{5}}{}}{8}{df.1.2.5}%
+\contentsline {thm}{{Theorem}{1.2.{2}}{}}{8}{thm.1.2.2}%
+\contentsline {df}{{Definition}{1.2.{6}}{Standard Basis Vectors}}{8}{df.1.2.6}%
+\contentsline {rmk}{{\indent Remark}{3}{}}{8}{rmk.3}%
+\contentsline {df}{{Definition}{1.2.{7}}{Unit Vector}}{8}{df.1.2.7}%
+\contentsline {eg}{{Example}{1.2.{1}}{}}{8}{eg.1.2.1}%
+\contentsline {thm}{{Theorem}{1.2.{3}}{}}{8}{thm.1.2.3}%
+\contentsline {eg}{{Example}{1.2.{2}}{}}{8}{eg.1.2.2}%
+\contentsline {df}{{Definition}{1.3.{1}}{Dot Product}}{9}{df.1.3.1}%
+\contentsline {rmk}{{\indent Remark}{4}{}}{9}{rmk.4}%
+\contentsline {eg}{{Example}{1.3.{1}}{}}{9}{eg.1.3.1}%
+\contentsline {thm}{{Theorem}{1.3.{1}}{}}{10}{thm.1.3.1}%
+\contentsline {thm}{{Theorem}{1.3.{2}}{}}{10}{thm.1.3.2}%
+\contentsline {ext}{{\indent Extension}{2}{}}{10}{ext.2}%
+\contentsline {ext}{{\indent Extension}{3}{}}{10}{ext.3}%
+\contentsline {df}{{Definition}{1.3.{2}}{Projections}}{10}{df.1.3.2}%
