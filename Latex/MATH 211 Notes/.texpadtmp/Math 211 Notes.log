@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  16 JAN 2023 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.10)  18 JAN 2023 00:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -946,23 +946,23 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
  (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.aux)
 \openout1 = `"Math 211 Notes.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 100.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 99.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -986,7 +986,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
-Package hyperref Info: Link coloring OFF on input line 100.
+Package hyperref Info: Link coloring OFF on input line 99.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
@@ -996,9 +996,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count362
 )
-LaTeX Info: Redefining \ref on input line 100.
-LaTeX Info: Redefining \pageref on input line 100.
-LaTeX Info: Redefining \nameref on input line 100.
+LaTeX Info: Redefining \ref on input line 99.
+LaTeX Info: Redefining \pageref on input line 99.
+LaTeX Info: Redefining \nameref on input line 99.
  (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.out) (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.out)
 \@outlinefile=\write6
 \openout6 = `"Math 211 Notes.out"'.
@@ -1006,7 +1006,7 @@ LaTeX Info: Redefining \nameref on input line 100.
 \c@lstlisting=\count363
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 100.
+(lastpage)             ! on input line 99.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1042,32 +1042,32 @@ Package lastpage Info: Please have a look at the pageslts package at
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 102.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 101.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 102.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 101.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 102.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 101.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 102.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 101.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 102.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 101.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 102.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 101.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 102.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 101.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 102.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 101.
  (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.toc
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
@@ -1083,14 +1083,14 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package mathptmx Warning: There are no bold math fonts on input line 111.
+Package mathptmx Warning: There are no bold math fonts on input line 110.
 
-Package hyperref Info: bookmark level for unknown df defaults to 0 on input line 111.
-Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 114.
-Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 118.
-Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 125.
-Package hyperref Info: bookmark level for unknown ext defaults to 0 on input line 132.
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 136.
+Package hyperref Info: bookmark level for unknown df defaults to 0 on input line 110.
+Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 113.
+Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 117.
+Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 124.
+Package hyperref Info: bookmark level for unknown ext defaults to 0 on input line 131.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 135.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -1101,38 +1101,43 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2] [3] [4]
-Overfull \hbox (28.39069pt too wide) in paragraph at lines 301--301
+Overfull \hbox (28.39069pt too wide) in paragraph at lines 300--300
 []\T1/ptm/m/n/12 For given points $\OML/ztmcm/m/it/12 P[]\OT1/ztmcm/m/n/12 (\OML/ztmcm/m/it/12 x[]; y[]; z[]\OT1/ztmcm/m/n/12 )$ \T1/ptm/m/n/12 and $\OML/ztmcm/m/it/12 P[]\OT1/ztmcm/m/n/12 (\OML/ztmcm/m/it/12 x[]; y[]; z[]\OT1/ztmcm/m/n/12 )$\T1/ptm/m/n/12 ,
  []
 
-[5] [6] [7] [8] [9]
+[5] [6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (13.26703pt too wide) in paragraph at lines 745--746
+[]\T1/ptm/m/n/12 If we have a point $\OML/ztmcm/m/it/12 P\OT1/ztmcm/m/n/12 (\OML/ztmcm/m/it/12 x[]; y[]\OT1/ztmcm/m/n/12 )$ \T1/ptm/m/n/12 and a di-rec-tion (slope/$\OML/ztmcm/m/it/12 ^^R$\T1/ptm/m/n/12 /another
+ []
+
+[13] [14] [15] [16] [17] [18]
 \tf@thm=\write8
 \openout8 = `"Math 211 Notes.thm"'.
 
  
 AED: lastpage setting LastPage
-[10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 629.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 629.
+[19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 955.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 955.
  (/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 629.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 629.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 955.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 955.
 Package rerunfilecheck Info: File `"Math 211 Notes".out' has not changed.
-(rerunfilecheck)             Checksum: 519A20BA9CB34DBAE47951352B0D5774;264.
+(rerunfilecheck)             Checksum: 1B1EF793F1041C9C175FB269902E33A3;483.
  ) 
 Here is how much of TeX's memory you used:
- 29332 strings out of 480608
- 589508 string characters out of 5903630
- 913585 words of memory out of 5000000
- 44565 multiletter control sequences out of 15000+600000
- 592651 words of font info for 116 fonts, out of 8000000 for 9000
+ 29420 strings out of 480608
+ 590378 string characters out of 5903630
+ 914597 words of memory out of 5000000
+ 44588 multiletter control sequences out of 15000+600000
+ 595079 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,13n,103p,839b,828s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.pdf" (10 pages, 155378 bytes).
+ 73i,20n,103p,839b,828s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on "/Users/richardlyu/Documents/GitHub/Enrichment/Latex/MATH 211 Notes/.texpadtmp/Math 211 Notes.pdf" (19 pages, 192356 bytes).
 PDF statistics:
- 245 PDF objects out of 1000 (max. 8388607)
- 195 compressed objects within 2 object streams
- 79 named destinations out of 1000 (max. 500000)
- 189 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 369 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 141 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -28,8 +28,6 @@
 \usepackage{tikz}
 \usepackage{pifont}
 
-
-
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
 \pagestyle{fancy}
@@ -52,13 +50,12 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newenvironment*{sol}{\indent\textbf{Solution. }}{\hfill{$\square$}\par}
+\newenvironment*{sol}{\par\indent\textbf{Solution. }}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
-
 
 \title{Emory University\\\textbf{MATH 211 - Advanced Calculus (Multivariable) Learning Notes}}
 \author{Jiuru Lyu}
@@ -90,6 +87,8 @@
 \def\veca{\vec{a}}
 \def\vecb{\vec{b}}
 \def\vecc{\vec{c}}
+\def\vecr{\vec{r}}
+\def\vecn{\vec{n}}
 \def\vece{\boldsymbol{\textbf{e}}}
 \def\veci{\boldsymbol{\textbf{i}}}
 \def\vecj{\boldsymbol{\textbf{j}}}
@@ -556,7 +555,7 @@ We can link the coordinate system and vectors together:
 	\end{aligned}\]	
 	\begin{rmk} The dot product of two vectors returns a scalar. \end{rmk}
 	\begin{eg}
-		Let $\vecu=\veci+2\vecj-3\veck$ and $\vecv=2\vecj-\veck$. Find $\vecu\cdot\vecv$.\\
+		Let $\vecu=\veci+2\vecj-3\veck$ and $\vecv=2\vecj-\veck$. Find $\vecu\cdot\vecv$.
 		\begin{sol}
 			\[\begin{aligned}
 			\vecu\cdot\vecv&=\langle1,2,-3\rangle\cdot\langle0,2,-1\rangle\\
@@ -619,7 +618,334 @@ Properties of the dot product:
 	\[\Proj_{\veca}\vecb=|\Proj_{\veca}\vecb|\cdot\underbrace{\frac{\veca}{|\veca|}}_{\text{unit vector}}=\frac{\veca\cdot\vecb}{|\veca|}\cdot\frac{\veca}{|\veca|}=\frac{\veca\cdot\vecb}{|\veca|^2}\cdot\veca\]
 	$\Proj_{\veca}\vecb$ is called \textbf{projection} of $\vecb$ on $\veca$ and is a vector. 
 \end{df}
+\begin{eg}
+	Find the scalar projection and vector projection of vector $\vecu=\langle1,1,2\rangle$ onto $\vecv=\langle-2,3,1\rangle$.
+	\begin{sol}
+		\[\Proj_{\vecv}\vecu=\frac{\vecu\cdot\vecv}{|\vecv|^2}\cdot\vecv\ ;\quad |\Proj_{\vecv}\vecu|=\frac{\vecu\cdot\vecv}{|\vecv|}\]
+		We need $|\vecv|=\sqrt{4+9+1}=\sqrt{14}$ and $\vecu\cdot\vecv=(1)(-2)+(1)(3)+(2)(1)=3$
+		\[\therefore |\Proj_{\vecv}\vecu|=\frac{3}{\sqrt{14}}\]
+		\[\Proj_{\vecv}\vecu=\frac{3}{14}\cdot\vecv=\frac{3}{14}\cdot\langle-2,3,1\rangle=\left\langle-\frac{3}{7},\frac{9}{14},\frac{3}{14}\right\rangle.\]
+	\end{sol}
+\end{eg}
 
+\subsection{Cross Product}
+\begin{df}[Cross Product]
+	The \textbf{cross product} of $\vecu$ and $\vecv$ is denoted by $\vecu\times\vecv$ and is a vector that is perpendicular to both $\vecu$ and $\vecv$. If $\vecu=\langle x_1,y_1,z_1\rangle$ and $\vecv=\langle x_2,y_2,z_2\rangle$, then 
+	\[\begin{aligned}
+		\vecu\times\vecv&=\left|\begin{matrix}\veci&\vecj&\veck\\x_1&y_1&z_1\\x_2&y_2&z_2\end{matrix}\right|=y_1z_2\veci+x_2z_1\vecj+x_1y_2\veck-x_2y_1\veck-y_2z_1\veci-x_1z_2\vecj\\
+		&=(y_1z_2-y_2z_1)\veci+(z_1x_2-z_2x_1)\vecj+(x_1y_2-x_2y_1)\veck
+	\end{aligned}\]
+\end{df}
+\begin{eg}
+	Prove $\vecu\times\vecv$ is perpendicular to both $\vecu$ and $\vecv$.
+	\begin{prf}	
+		\[\begin{aligned}
+			\vecu\cdot(\vecu\times\vecv)&=\langle x_1,y_1,z_1\rangle\cdot\langle y_1z_2-y_2z_1,\ z_1x_2-z_2x_1,\ x_1y_2-x_2y_1\rangle\\
+			&=x_1y_1z_2-x_zy_2z_1+x_2y_1z_1-x_1y_1z_2+x_1y_2z_1-x_2y_1z_1=0
+		\end{aligned}\]
+		\[\therefore \vecu\times\vecv\perp\vecu\]
+		Similarly, $\vecv\cdot(\vecu\times\vecv)=0\Longrightarrow\vecu\times\vecv\perp\vecv.$
+	\end{prf}
+\end{eg}
+\begin{thm}
+	If $\theta$ is the angle between vectors $\vecu$ and $\vecv$, then \[|\vecu\times\vecv|=|\vecu||\vecv|\sin\theta.\]
+	\begin{prf}
+		\[\begin{aligned}
+			|\vecu\times\vecv|^2&=(y_1z_2-y_2z_1)^2+(z_1x_2-z_2x_1)^2+(x_1y_2-x_2y_1)^2\\
+			&=(x_1^2+y_1^2+z_1^2)(x_2^2+y_2^2+z_2^2)-(x_1x_2+y_1y_2+z_1z_2)^2\\
+			&=|\vecu|^2|\vecv|^2-(\vecu\cdot\vecv)^2\\
+			&=|\vecu|^2|\vecv|^2-|\vecu|^2|\vecv|^2\cos^2\theta\\
+			&=|\vecu|^2|\vecv|^2(1-\cos^2\theta)\\
+			&=|\vecu|^2|\vecv|^2\sin^2\theta
+		\end{aligned}\]
+		\[\therefore |\vecu\times\vecv|=|\vecu||\vecv|\sin\theta.\]
+	\end{prf}
+\end{thm}
+\begin{df}[Parallel]
+	If two vectors, $\vecu$ and $\vecv$, are parallel to each other, \[\vecu=c\vecv,\] where $c$ is a scalar.
+	\begin{thm}
+		For two vectors $\vecu$ and $\vecv$, $\vecu\times\vecv=0$ \emph{iff} $\vecu$ and $\vecv$ are parallel to each other.	
+	\end{thm}
+\end{df}
+\begin{thm}
+	The length of the cross product, $|\vecu\times\vecv|$, is the area of the parallelogram determined by the vectors $\vecu$ and $\vecv$.	
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (71.37,131) -- (222,131) ;
+	\draw [shift={(224,131)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (71.37,131) -- (119.95,83.13) ;
+	\draw [shift={(121.37,81.73)}, rotate = 135.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (224,131) -- (272.58,83.13) ;
+	\draw [shift={(274,81.73)}, rotate = 135.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (121.37,81.73) -- (272,81.73) ;
+	\draw [shift={(274,81.73)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (122,100.4) node [anchor=north west][inner sep=0.75pt]    {$A=|\vec{u} \times \vec{v} |$};
+	\draw (94,71.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+	\draw (204,136.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+	\end{tikzpicture}
+	\end{center}
+\end{thm}
+\begin{thm}
+	\[\veci\times\vecj=\veck;\quad\vecj\times\veck=\veci;\quad\veck\times\veci=\vecj\]
+	\[\vecj\times\veci=-\veck;\quad\veck\times\vecj=-\veci;\quad\veci\times\veck=-\vecj\]
+\end{thm}
+Properties of cross product ($\veca$, $\vecb$, and $\vecc$ are vectors, and $c$ is a scalar): 
+\begin{enumerate}
+	\item $\veca\times\vecb=-\vecb\times\veca$
+	\item $(c\veca)\times\vecb=c(\veca\times\vecb)=\veca\times(c\vecb)$
+	\item $\veca\times(\vecb+\vecc)=\veca\times\vecb+\veca\times\vecc$
+	\item $(\veca+\vecb)\times\vecc=\veca\times\vecc+\vecb\times\vecc$
+	\item $\veca\cdot(\vecb\times\vecc)=(\veca\times\vecb)\cdot\vecc$
+	\item $\veca\times(\vecb\times\vecc)=(\veca\cdot\vecc)\vecb-(\veca\cdot\vecb)\vecc$
+\end{enumerate}
+\begin{df}[Triple Product]
+	The \textbf{scalar triple product} is defined by \[\veca\cdot(\vecb\times\vecc).\]
+\end{df}
+\begin{thm}
+	$|\veca\cdot(\vecb\times\vecc)|$	 denotes the volume of the parallelepiped determined by $\veca$, $\vecb$, and $\vecc$.
+	\begin{prf}
+		The area of the base is given by \[A=|\vecb\times\vecc|\]
+		To find the volume, we need to know the height $h$: \[h=|\veca||\cos\theta|\]
+		\[\therefore V=Ah=|\vecb\times\vecc||\veca||\cos\theta|=\veca\cdot(\vecb\times\vecc)\qquad\Big[\vecu\cdot\vecv=|\vecu||\vecv|\cos\theta\Big]\]
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw    (90.37,201) -- (241,201) ;
+		\draw [shift={(243,201)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (90.37,201) -- (138.95,153.13) ;
+		\draw [shift={(140.37,151.73)}, rotate = 135.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (243,201) -- (293,151.73) ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (140.37,151.73) -- (293,151.73) ;
+		\draw    (90.37,201) -- (111.88,116.76) ;
+		\draw [shift={(112.37,114.82)}, rotate = 104.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (112.37,114.82) -- (265,114.82) ;
+		\draw    (243,201) -- (265,114.82) ;
+		\draw    (112.37,114.82) -- (162.37,65.55) ;
+		\draw    (265,114.82) -- (315,65.55) ;
+		\draw    (293,151.73) -- (315,65.55) ;
+		\draw    (162.37,65.55) -- (315,65.55) ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (140.37,151.73) -- (162.37,65.55) ;
+		\draw    (90.37,201) -- (90.37,62.82) ;
+		\draw [shift={(90.37,60.82)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (112.37,114.82) -- (90.37,114.82) ;
+		\draw (124,169.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{c}$};
+		\draw (223,206.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{b}$};
+		\draw (106,135.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{a}$};
+		\draw (50,54.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{b} \times \vec{c}$};
+		\draw (90,142.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+		\draw (75,137.4) node [anchor=north west][inner sep=0.75pt]    {$h$};
+		\end{tikzpicture}
+		\end{center}
+	\end{prf}
+\end{thm}
+
+\subsection{Equations of Lines and Planes}
+\begin{thm}[Equation of Lines in 2D]
+	If we have a point $P(x_0,y_0)$ and a direction (slope/$\theta$/another point on the line), we have the equation of the line: 
+	\[\text{Given }\begin{cases}\text{slope}=m\\P(x_0,y_0)\end{cases}\Longrightarrow\text{ The equation of the line: }y-y_0=m(x-x_0).\]
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,166.58) -- (209.37,166.58)(88.37,71) -- (88.37,217.58) (202.37,161.58) -- (209.37,166.58) -- (202.37,171.58) (83.37,78) -- (88.37,71) -- (93.37,78)  ;
+	\draw    (183.37,86.58) -- (71.37,209.58) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (145,125.79) .. controls (145,123.46) and (146.89,121.58) .. (149.21,121.58) .. controls (151.54,121.58) and (153.42,123.46) .. (153.42,125.79) .. controls (153.42,128.11) and (151.54,130) .. (149.21,130) .. controls (146.89,130) and (145,128.11) .. (145,125.79) -- cycle ;
+	\draw (160,119.4) node [anchor=north west][inner sep=0.75pt]    {$P( x_{0} ,y_{0})$};
+	\draw (124,149.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+	\end{tikzpicture}
+	\end{center}
+\end{thm}
+\begin{df}[Directional Vector]
+	If $\vecv$ is a directional vector of line $L$, \[\veca=t\vecv,\] where $\veca$ is any vector determined by two points on the line. 
+\end{df}
+\begin{df}[Vector Equations of Lines in 3D]
+	Let $\overrightarrow{P_0P}=\veca\Longrightarrow\veca=\langle x-x_0,\ y-y_0\, z-z_0\rangle$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,166.58) -- (209.37,166.58)(88.37,71) -- (88.37,217.58) (202.37,161.58) -- (209.37,166.58) -- (202.37,171.58) (83.37,78) -- (88.37,71) -- (93.37,78)  ;
+	\draw    (217.37,194.58) -- (46.37,89.58) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (147,152.79) .. controls (147,150.46) and (148.89,148.58) .. (151.21,148.58) .. controls (153.54,148.58) and (155.42,150.46) .. (155.42,152.79) .. controls (155.42,155.11) and (153.54,157) .. (151.21,157) .. controls (148.89,157) and (147,155.11) .. (147,152.79) -- cycle ;
+	\draw    (88.37,166.58) -- (23.66,244.04) ;
+	\draw [shift={(22.37,245.58)}, rotate = 309.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (106,127.79) .. controls (106,125.46) and (107.89,123.58) .. (110.21,123.58) .. controls (112.54,123.58) and (114.42,125.46) .. (114.42,127.79) .. controls (114.42,130.11) and (112.54,132) .. (110.21,132) .. controls (107.89,132) and (106,130.11) .. (106,127.79) -- cycle ;
+	\draw    (88.37,166.58) -- (149.26,153.22) ;
+	\draw [shift={(151.21,152.79)}, rotate = 167.62] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (88.37,166.58) -- (109.23,129.53) ;
+	\draw [shift={(110.21,127.79)}, rotate = 119.38] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (151.21,152.79) -- (111.92,128.83) ;
+	\draw [shift={(110.21,127.79)}, rotate = 31.37] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (161,136.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}( x_{0} ,y_{0} ,z_{0})$};
+	\draw (117,107.4) node [anchor=north west][inner sep=0.75pt]    {$P( x ,y ,z)$};
+	\draw (115.79,168.08) node [anchor=north west][inner sep=0.75pt]    {$\overrightarrow{r_{0}}$};
+	\draw (89,131.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{r}$};
+	\draw (35,83.4) node [anchor=north west][inner sep=0.75pt]    {$L$};
+	\end{tikzpicture}
+	\end{center}
+	From the diagram, we also have \[\vecr_0+\veca=\vecr.\]
+	As $\veca=t\vecv$, \[\vecr=\vecr_0+t\vecv,\]
+	which is the \textbf{vector equation} of line $L.$
+\end{df}
+\begin{thm}
+	If $L$ is a line with point $P(x_0,y_0,z_0)$ on it and paralleled to a direction vector $\vecv=\langle a,b,c\rangle$, we have \[\langle x,y,z\rangle=\langle x_0,y_0,z_0\rangle+t\langle a,b,c\rangle,\] where $t$ is a parameter and the equation is called the \textbf{vector equation} of line $L$.	
+\end{thm}
+\begin{ext}[Parametric Equation of $L$]
+	From $\langle x,y,z\rangle=\langle x_0,y_0,z_0\rangle+t\langle a,b,c\rangle,$ we have \[\begin{cases}x=x_0+ta\\y=y_0+tb\\z=z_0+tc\end{cases}\] This system of equations is called the \textbf{parametric equation} of $L$.
+\end{ext}
+\begin{ext}[Symmetric Equation of $L$]
+	From the parametric equation of $L$, we can derive $t$: 
+	\[\begin{cases}x=x_0+ta\quad\Longrightarrow\quad t=\frac{x-x_0}{a}\\y=y_0+tb\quad\Longrightarrow\quad t=\frac{y-y_0}{b}\\z=z_0+tc\quad\Longrightarrow\quad t=\frac{z-z_0}{c}\end{cases}\] As $t$ should be equal: \[\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c},\] which is called the \textbf{symmetric equation} of the line with point $P(x_0,y_0,z_0)$ and a directional vector $\vecv=\langle a,b,c\rangle$.
+\end{ext}
+\begin{rmk}[Three Forms of Equation of a Line]
+	For line $L$ in 3D, $P_0(x_0,y_0,z_0)$ is on $L$ and $\vecv=\langle a,b,c\rangle$ is a directional vector of $L$.
+	\begin{enumerate}
+		\item The vector form: \[\langle x,y,z\rangle=\langle x_0+ta,\ y_0+tb,\ z_0+tc\rangle\]
+		\item The parametric form: \[\begin{cases}x=x_0+ta\\y=y_0+tb\\z=z_0+tc\end{cases}\]
+		\item The symmetric form: \[\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\]	
+	\end{enumerate}
+\end{rmk}
+\begin{eg}
+	Find the parametric and symmetric equations of the line $L$ passing through the points $(-8,1,4)\quad$ and $\quad (3,-2,4).$
+	\begin{sol}
+		Let's set $P_0$ to be $(-8,1,4)$ and $P_1$ to be $(3,-2,4).$ So we can find the directional vector \[\vecv=\overrightarrow{P_0P_1}=\langle3-(-8),\ -2-1,\ 4-4\rangle=\langle11,-3,0\rangle.\]
+		$\therefore$ The parametric equation of $L$: \[\begin{cases}x=-8+11t\\y=1-3t\\z=4+(0)t\end{cases}, \]
+		and the symmetric equation of $L$ is \[\frac{x+8}{11}=\frac{y-1}{-3},\quad z=4.\]
+	\end{sol}
+\end{eg}
+Relationships of two lines in 3D: 
+\begin{enumerate}
+	\item Parallel: directional vectors of the two lines are parallel to each other.
+	\item Intersect: the two lines share one common point
+	\item Skewed: the two lines are neither parallel nor intersecting. 
+\end{enumerate}
+\begin{eg}
+	Let \[L_1: \frac{x-2}{1}=\frac{y-3}{-2}=\frac{z-1}{-3}\quad\text{and}\quad L_2: \frac{x-3}{1}=\frac{y+4}{3}=\frac{z-2}{-7}.\] Find the relationship between $L_1$ and $L_2$.
+	\begin{sol}
+		\[\vecv_1=\langle1,-2,-3\rangle;\quad\vecv_2=\langle1,3,-7\rangle\]	 Because $\vecv_1$ and $\vecv_2$ are not parallel to each other, $L_1$ and $L_2$ are not parallel to each other. \\
+		$\therefore$ $L_1$ and $L_2$ can only be intersecting or skewed. \\ 
+		To further discuss the relationship between $L_1$ and $L_2$, form parametric equations: 
+		\[L_1: \begin{cases}x=2+t\\y=3-2t\\z=1-3t\end{cases}\qquad L_2: \begin{cases}x=3+s\\y=-4+3s\\z=2-7s\end{cases}\]
+		If we can find a set of solutions $t$ and $s$ that satisfy the following system of equations, the two lines have point in common and thus is intersecting: \[\begin{cases}2+t=3+s\\3-2t=-4+3s\\1-3t=2-7s\end{cases}\Longrightarrow\begin{cases}t-s=1\quad&\text{\ding{172}}\\2t+3s=7\quad&\text{\ding{173}}\\3t-7s=-1\quad&\text{\ding{174}}\end{cases}\]
+		From \ding{172}: \[t=s+1\qquad\text{\ding{175}}\]
+		Substitute \ding{173} with \ding{175}: $$\begin{aligned}
+			2(s+1)+3s&=7\\
+			2s+2+3s&=7\quad\Rightarrow\quad4s=5\quad\Rightarrow\quad s=1\\
+			\therefore t=s+1&=1+1=2
+		\end{aligned}$$
+		Substitute $s=1$ and $t=2$ to \ding{174}: \[\text{LHS}=2(3)-7(1)=6-7=-1=\text{RHS}.\]
+		Hence, $\begin{cases}t=2\\s=1\end{cases}$ satisfy all three equations. Substitute $t=2$ to $L_1$: \[x=2+2=4,\quad y=3-2(2)=-1,\quad z=1-3(2)=-5.\]
+		$\therefore$ The two lines intersect at $(4,-1,-5).$
+	\end{sol}
+\end{eg}
+\begin{df}[Normal Vector]
+	A normal vector is the vector perpendicular to the plane	 and is often denoted as $\vecn$.
+\end{df}
+\begin{thm}[Vector Equation of a Plane]
+	As $\vecn\perp\Pi,$ $\vecn\perp\overrightarrow{P_0P}$
+	$$\begin{aligned}
+		\overrightarrow{P_0P}&=\vecr-\vecr_0\\
+		\therefore\vecn\cdot(\vecr-\vecr_0)&=0\\
+		\vecn\cdot\vecr-\vecn\cdot\vecr_0&=0\ \Rightarrow\ \vecn\cdot\vecr=\vecn\cdot\vecr_0,
+	\end{aligned}$$
+	which is called the \textbf{vector equation} of a plane. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (68,124.58) -- (227.37,124.58)(106.37,29) -- (106.37,175.58) (220.37,119.58) -- (227.37,124.58) -- (220.37,129.58) (101.37,36) -- (106.37,29) -- (111.37,36)  ;
+	\draw    (106.37,124.58) -- (41.66,202.04) ;
+	\draw [shift={(40.37,203.58)}, rotate = 309.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (86.61,56.34) -- (230.37,56.34) -- (168.76,112) -- (25,112) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (156,90.67) .. controls (156,88.28) and (157.94,86.34) .. (160.33,86.34) .. controls (162.72,86.34) and (164.66,88.28) .. (164.66,90.67) .. controls (164.66,93.06) and (162.72,95) .. (160.33,95) .. controls (157.94,95) and (156,93.06) .. (156,90.67) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (86,71.67) .. controls (86,69.28) and (87.94,67.34) .. (90.33,67.34) .. controls (92.72,67.34) and (94.66,69.28) .. (94.66,71.67) .. controls (94.66,74.06) and (92.72,76) .. (90.33,76) .. controls (87.94,76) and (86,74.06) .. (86,71.67) -- cycle ;
+	\draw    (160.33,90.67) -- (92.26,72.19) ;
+	\draw [shift={(90.33,71.67)}, rotate = 15.19] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (106.37,124.58) -- (158.64,91.73) ;
+	\draw [shift={(160.33,90.67)}, rotate = 147.85] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (106.37,124.58) -- (90.91,73.58) ;
+	\draw [shift={(90.33,71.67)}, rotate = 73.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (160.33,90.67) -- (160.33,26.43) ;
+	\draw [shift={(160.33,24.43)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (170,77.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}( x_{0} ,y_{0} ,z_{0})$};
+	\draw (23,52.4) node [anchor=north west][inner sep=0.75pt]    {$P( x ,y ,z)$};
+	\draw (144.79,100.08) node [anchor=north west][inner sep=0.75pt]    {$\vec{r}_{0}$};
+	\draw (84.79,89.08) node [anchor=north west][inner sep=0.75pt]    {$\vec{r}$};
+	\draw (167,21.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{n} =\langle a,b,c\rangle $};
+	\draw (232,52.4) node [anchor=north west][inner sep=0.75pt]    {$\text{Plane}( \Pi )$};
+	\end{tikzpicture}
+	\end{center}
+\end{thm}
+\begin{ext}[Scalar Equation of a Plane]
+	From $\vecn\cdot(\vecr-\vecr_0)=0$: As $\vecn=\langle a,b,c\rangle$ and $\vecr-\vecr_0=\langle x-x_0,\ y-y_0,\ z-z_0\rangle$, we have \[\langle a,b,c\rangle\cdot\langle x-x_0,\ y-y_0,\ z-z_0\rangle=0;\]
+	\[\therefore a(x-x_0)+b(y-y_0)+c(z-z_0)=0, \] which is the \textbf{scalar equation} of plane $\Pi$ with point $P_0(x_0,y_0,z_0)$ on it and a normal vector $\vecn=\langle a,b,c\rangle.$
+\end{ext}
+\begin{ext}[Linear Equation of a Plane]
+	From $a(x-x_0)+b(y-y_0)+c(z-z_0)=0$: 
+	\[ax+by+cz-(ax_0+by_0+cz_0)=0\]
+	Take $d=-(ax_0+by_0+cz_0)$: 
+	\[ax+by+cz+d=0,\] which is called the \textbf{linear equation} of plane $\Pi$ with point $P_0(x_0,y_0,z_0)$ on it and a normal vector $\vecn=\langle a,b,c\rangle$.
+\end{ext}
+\begin{rmk}[Equations of a Plane]
+	If point $P_0(x_0,y_0,z_0)$ is on the plane $\Pi$ and a normal vector of $\Pi$ is $\vecn=\langle a,b,c\rangle$: 
+	\begin{enumerate}
+		\item The vector equation: \[\vecn\cdot\vecr=\vecn\cdot\vecr_0\]
+		\item The scalar equation: \[a(x-x_0)+b(y-y_0)+c(z-z_0)=0\]
+		\item The linear equation: \[ax+by+cz+d=0,\] where $d=-(ax_0+by_0+cz_0)=-\langle a,b,c\rangle\cdot\langle x_0,y_0,z_0\rangle$
+	\end{enumerate}
+\end{rmk}
+\begin{eg}
+	Find an equation of the plane crossing through the points $P(1,3,2)$, $Q(3,-1,6)$, and $R(5,2,0)$.
+	\begin{sol}
+		Find the normal vector using the following equation: \[			\vecn=\overrightarrow{PQ}\times\overrightarrow{PR}\]
+		\[\begin{aligned}
+			\overrightarrow{PQ}&=\langle3-1,-1-3,6-2\rangle=\langle2,-4,4\rangle\\
+			\overrightarrow{PR}&=\langle5-1,2-3,0-2\rangle=\langle4,-1,-2\rangle
+		\end{aligned}\]
+		\[\therefore\vecn=\overrightarrow{PQ}\times\overrightarrow{PR}=\left|\begin{matrix}\veci&\vecj&\veck\\2&-4&4\\4&-1&-2\end{matrix}\right|=12\veci+20\vecj+14\veck.\]
+		\[\therefore \vecn=\langle12,20,14\rangle,\qquad P(1,3,2)\]
+		\[\therefore d=-\langle12,20,14\rangle\cdot\langle1,3,2\rangle=-(12+60+28)=-100.\]
+		\[\therefore \text{Linear Equation of } \Pi:\  12x+20y+14z-100=0\quad\Longrightarrow\quad6x+10y+7z-50=0.\]
+	\end{sol}
+\end{eg}
+\begin{thm}[Relationship Between Two Planes]
+	If $\vecn_1$ is a normal vector of plane $\Pi_1$, and $\vecn_2$ is a normal vector of plane $\Pi_2$	, then the angle between the two planes is given by \[\theta=\cos^{-1}\left(\frac{\vecn_1\cdot\vecn_2}{|\vecn_1||\vecn_2|}\right).\]
+	i.e., the angle between the planes is the angle between the normal vectors. 
+\end{thm}
+
+\subsection{Cylinders and Quadric Surfaces}
+\begin{df}[Cylinders]
+	A \textbf{cylinder} is a surface that consists of all lines (called \textbf{rulings}) that are parallel to a given line and pass through a given plane curve. 	
+\end{df}
+\begin{df}[Quadric Surfaces]
+	A \textbf{quadric surface} is the graph of a second-degree equation in three variables $x$, $y$, and $z$. The most general such equation is \[Ax^2+By^2+Cz^2+Dxy+Eyz+Fxz+Gz+Hy+Iz+J=0,\] where $A,B,C,\cdots,J$ are constants, but by translation and rotation it can be brought into one of the standard forms: \[Ax^2+By^2+Cz^2+J=0\quad\text{ or }\quad Ax^2+By^2+Iz=0.\]	
+\end{df}
+\begin{rmk}
+	Graphs of Quadric Surfaces (Refer to Page 877 of the Book): 
+	\begin{enumerate}
+		\item Ellipsoid: \[\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\] All traces are ellipses.\\ If $a=b=c$, the ellipsoid is a sphere.
+		\item Elliptic Paraboloid: \[\frac{z}{c}=\frac{x^2}{a^2}+\frac{y^2}{b^2}\] Horizontal traces are ellipses. Vertical traces are parabolas.\\ The variable raised to the first power indicates the axis of the paraboloid. 
+		\item Hyperbolic Paraboloid: \[\frac{z}{c}=\frac{x^2}{a^2}-\frac{y^2}{b^2}\] Horizontal traces are hyperbolas. Vertical traces are parabolas.
+		\item Cone: \[\frac{z^2}{c^2}=\frac{x^2}{a^2}+\frac{y^2}{b^2}\] Horizontal traces are ellipses.\\ Vertical traces in the planes $x=k$ and $y=k$ are hyperbolas if $k\neq0$ but are pairs of lines if $k=0.$
+		\item Hyperboloid of One Sheet: \[\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\] Horizontal traces are ellipses. Vertical traces are hyperbolas.\\ The axis of symmetry corresponds to the variable whose coefficient is negative. 
+		\item Hyperboloid of Two Sheets: \[-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\] Horizontal traces in $z=k$ are ellipses if $k>c$ or $k<-c$. Vertical traces are hyperbolas.\\ The two minus sign indicate two sheets. 
+	\end{enumerate}	
+\end{rmk}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
