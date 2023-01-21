@@ -910,6 +910,31 @@ Relationships of two lines in 3D:
 	If $\vecn_1$ is a normal vector of plane $\Pi_1$, and $\vecn_2$ is a normal vector of plane $\Pi_2$	, then the angle between the two planes is given by \[\theta=\cos^{-1}\left(\frac{\vecn_1\cdot\vecn_2}{|\vecn_1||\vecn_2|}\right).\]
 	i.e., the angle between the planes is the angle between the normal vectors. 
 \end{thm}
+\begin{thm}[Distance from a Point to a Plane]
+	Distance of the point $P(x_1,y_1,z_1)$ from the plane $ax+by+cz+d=0$: 
+	\begin{equation}\label{d1}
+		D=\frac{|ax_a+by_1+cz_1+d|}{\sqrt{a^2+b^2+c^2}} 	
+	\end{equation}
+	OR
+	\begin{equation}\label{d2}
+	D=\frac{\vecb\cdot\vecn}{|\vecn|}, 	
+	\end{equation}
+	where $\vecn$ is the normal vector. 
+\end{thm}
+\begin{eg}
+	Find the distance between the parallel planes: \[\Pi_1:\ 10x+2y-2z=5\quad\text{and}\quad\Pi_2:\ 5x+y-z=1.\]
+	\begin{sol}
+		Assume point $P(x_1,y_!,z_1)$ is on plane $\Pi_1$: \[\begin{aligned}10x_1+2y_1-2z_1&=5\\\therefore\ 5x_1+y_1-z_1&=\frac{5}{2}\end{aligned}\]	
+		Applying formula \ref{d1}: $\vecn=\langle a,b,c\rangle=\langle5,1,-1rlangle,\ d=-1$: 
+		\[\therefore\ D=\frac{|5x_1+y_1-z_1+d|}{\sqrt{a^2+b^2+c^2}}=\frac{|\frac{5}{2}-1|}{\sqrt{26+1+1}}=\frac{3/2}{\sqrt{27}}=\frac{3}{2\sqrt{27}}\left(=\frac{\sqrt{3}}{6}\right).\]
+	\end{sol}
+\end{eg}
+\begin{ext}
+	Find the distance between two parallel planes: \[\Pi_1:\ ax+by+cz+d=0\quad\text{and}\quad\Pi_2:\ ax+by+cz+d'=0.\]	
+	Let point $P(x_1,y_1,z_1)$ on $\Pi_1$: \[ax_1+by_1+cz_1+d=0\]
+	Apply formula \ref{d1}: \[D=\frac{|ax_1+by_1+cz_1+d'|}{\sqrt{a^2+b^2+c^2}}=\frac{-d+d'}{\sqrt{a^2+b^2+c^2}}.\]
+\end{ext}
+
 
 \subsection{Cylinders and Quadric Surfaces}
 \begin{df}[Cylinders]
@@ -929,6 +954,98 @@ Relationships of two lines in 3D:
 		\item Hyperboloid of Two Sheets: \[-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\] Horizontal traces in $z=k$ are ellipses if $k>c$ or $k<-c$. Vertical traces are hyperbolas.\\ The two minus sign indicate two sheets. 
 	\end{enumerate}	
 \end{rmk}
+
+
+\newpage
+\section{Vector Functions}
+\subsection{Vector Functions and Space Curves}
+\begin{df}[Multivariable Functions]
+	A function of $f$ of $n$ variables is a function that takes any $n$-tuple $(x_1,\cdots,x_n)$ in the set $D$ to a number in $\R$, where \[D=\bigg\{(x_1,\cdots,x_n)|x_i\in\R\text{ and }f\text{ is defined in }(x_1,\cdots,x_n)\bigg\}\]	
+	\begin{eg}
+		$f(x,y)=\sqrt{x^2+y^2-4}$: $f:\begin{array}{l}\R^2\longrightarrow\R\\ (x,y)\longmapsto\text{ a number like }r\end{array}$	
+		
+		Domain of $f$: all $(x,y)\in\R\emph{ s.t. }x^2+y^2-4\geq0.$ (i.e., Everything exclude the circle centered at the origin with a radius of $2$.)
+	\end{eg}
+\end{df}
+\begin{df}[Graphs of a Two-Variable Function]
+	The graph of a two-variable function with domain $D$ is the set of all points $(x,y,z)\in\R^3$ \emph{s.t.} $z=f(x,y)$ and $(x,y)\in D$.	
+\end{df}
+\begin{df}[Vector Functions]
+	\[\vecr:\begin{array}{l}\R\longrightarrow V_n\\ t\longmapsto\langle f(t),\ g(t),\ h(t),\cdots\rangle\end{array}, \] where $V_n$ is a set of all vectors with $n$ components, and $t$ is a parameter. 
+	\begin{rmk}
+		We will only work with $V_3$, i.e., 	$\vecr:\begin{array}{l}\R\longrightarrow V_3\\ t\longmapsto\langle f(t),\ g(t),\ h(t)\rangle\end{array}$.
+	\end{rmk}
+\end{df}
+\begin{df}[Component Functions]
+	$f(t),\ g(t),\ h(t)$ are real valued function and are called \textbf{component functions} of $\vecr(t)$. We write \[\vecr(t)=\langle f(t),\ g(t),\ h(t)\rangle=f(t)\veci+g(t)\vecj+h(t)\veck.\]		
+\end{df}
+\begin{df}[Limit of Vector Functions]
+	To find the limit of a vector function, we check its component functions. That is \[\lim_{t\to a}\vecr(t)=\Big\langle\lim_{t\to a}f(t),\ \lim_{t\to a}g(t),\ \lim_{t\to a}h(t)\Big\rangle\]	
+\end{df}
+\begin{df}[Continuity of Vector Functions]
+	A vector function $\vecr(t)$ is continuous if \[\lim_{t\to a}\vecr(t)=\vecr(a).\]	
+\end{df}
+\begin{eg}
+	\begin{enumerate}
+		\item Find the domain of \[\vecr(t)=\Big\langle\ln(t+1),\ \frac{t}{\sqrt{9-t^2}},\ 2^t\Big\rangle\]
+		\begin{sol}
+			\begin{itemize}
+				\item Domain of $\ln(t+1)$: $D_1L t+1>0,\ t>-1$
+				\item Domain of $\dfrac{t}{\sqrt{9-t^2}}:\ D_2:\ 9-t^2>0,\ -3<t<3$
+				\item Domain of $2^t:\ D_3:\ \R$\\
+				Find the intersection of domains of component functions: \[D_1\cap D_2\cap D_3:\ -1<t<3\ (t\in(-1,3))\]
+			\end{itemize}	
+		\end{sol}
+		\item Find $\displaystyle\lim_{t\to0}\vecr(t).$
+		\begin{sol}
+			\[\begin{aligned}
+			\lim_{t\to0}\vecr(t)&=\Big\langle\lim_{t\to0}\ln(t+1),\ \lim_{t\to0}\frac{t}{\sqrt{9-t^2}},\ \lim_{t\to0}2^t\Big\rangle\\
+			&=\big\langle\ln(1),\ \frac{0}{\sqrt{9}},\ 2^0\big\rangle\\
+			&=\langle0,0,1\rangle=\veck
+			\end{aligned}\]
+		\end{sol}
+	\end{enumerate}	
+\end{eg}
+\begin{eg}
+	\[\begin{aligned}
+		&\lim_{t\to1}\left(\frac{t^2-t}{t-1}\veci+\sin\pi t\vecj+\cos2\pi t\veck\right)\\
+		=&\lim_{t\to1}\left(\frac{t(t-1)}{t-1}\veci+\sin\pi t\vecj+\cos2\pi t\veck\right)\\
+		=&\lim_{t\to1}t\veci+\lim_{t\to1}\sin\pi t\vecj+\lim_{t\to1}\cos2\pi t\veck\\
+		=&\veci+\sin\pi\vecj+\cos2\pi\veck\\
+		=&\veci+\veck
+	\end{aligned}\]
+\end{eg}
+\begin{df}[Graphs of Vector Functions]
+	For a vector function $\vecr(t)=f(t)\veci+g(t)\vecj+h(t)\veck$, the graph of it, curve $C$, is defined by the moving tip of the vectors yielded from the vector function. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (178,160.58) -- (337.37,160.58)(216.37,65) -- (216.37,211.58) (330.37,155.58) -- (337.37,160.58) -- (330.37,165.58) (211.37,72) -- (216.37,65) -- (221.37,72)  ;
+	\draw    (216.37,160.58) -- (151.66,238.04) ;
+	\draw [shift={(150.37,239.58)}, rotate = 309.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ]   (104.82,179.19) .. controls (204.82,58.19) and (308.82,107.19) .. (217.82,147.19) .. controls (126.82,187.19) and (327.82,30.19) .. (360.82,99.19) ;
+	\draw    (216.37,160.58) -- (310.26,85.44) ;
+	\draw [shift={(311.82,84.19)}, rotate = 141.33] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ] (307.23,84.19) .. controls (307.23,81.66) and (309.29,79.6) .. (311.82,79.6) .. controls (314.36,79.6) and (316.41,81.66) .. (316.41,84.19) .. controls (316.41,86.73) and (314.36,88.78) .. (311.82,88.78) .. controls (309.29,88.78) and (307.23,86.73) .. (307.23,84.19) -- cycle ;
+	\draw    (216.37,160.58) -- (144.77,143.65) ;
+	\draw [shift={(142.82,143.19)}, rotate = 13.3] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ] (138.23,143.19) .. controls (138.23,140.66) and (140.29,138.6) .. (142.82,138.6) .. controls (145.36,138.6) and (147.41,140.66) .. (147.41,143.19) .. controls (147.41,145.73) and (145.36,147.78) .. (142.82,147.78) .. controls (140.29,147.78) and (138.23,145.73) .. (138.23,143.19) -- cycle ;
+	\draw (317,53.4) node [anchor=north west][inner sep=0.75pt]    {$P\ ( f( t_{0}) ,\ g( t_{0}) ,\ h( t_{0}))$};
+	\draw (40,167.4) node [anchor=north west][inner sep=0.75pt]    {$P'\ ( f( t_{1}) ,\ g( t_{1}) ,\ h( t_{1}))$};
+	\draw (362.82,102.59) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,opacity=1 ]  {$C$};
+	\draw (152.37,242.98) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (339.37,165.98) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (224.37,58.98) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (266.1,125.79) node [anchor=north west][inner sep=0.75pt]    {$\vec{r}( t_{0}) =\langle f( t_{0}) ,\ g( t_{0}) ,\ h( t_{0}) \rangle $};
+	\end{tikzpicture}
+	\end{center}
+\end{df}
+
+
+
+
+
+
 
 
 

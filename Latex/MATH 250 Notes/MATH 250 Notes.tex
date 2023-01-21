@@ -45,9 +45,9 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newenvironment*{sol}{\indent\textbf{Solution. }}{\hfill{$\square$}\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
@@ -189,12 +189,193 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	\end{eg}
 	\begin{rmk}
 		$\forall\varepsilon\exists\delta$ and $\exists\delta\forall\varepsilon$ are not the same.
+		
+		In $\forall\varepsilon\exists\delta$, $\delta$ depends on $\varepsilon$, but $\delta$ is independent in $\exists\delta\forall\varepsilon$, meaning the same $\delta$ works for all $\varepsilon$.
 		\begin{eg} 
-			Compare $\forall n\in\Z,\ \exists m\in\Z\st m=n^2$ to  $\exists n\in\Z\st\forall m\in\Z,\ m=n^2.$	
+			Compare $\forall n\in\Z,\ \exists m\in\Z\st m=n^2$ to  $\exists n\in\Z\st\forall m\in\Z,\ m=n^2.$
+			\begin{sol}
+				\begin{enumerate}
+					\item $\forall n\in\Z,\ \exists m\in\Z\st m=n^2$: True. The square of an integer is an integer. 
+					\item $\exists n\in\Z\st\forall m\in\Z,\ m=n^2.$: False: $n^2$ is just one integer and cannot be represented by all $m\in\Z$.
+				\end{enumerate}
+			\end{sol}
 		\end{eg}
-
 	\end{rmk}
 \end{df}
+\begin{df}[Negations]
+	If $P$ is a statement, the \textbf{negation} of $P$, written as $\neg P$ (read as ``not $P$'' or ``negation of $P$'') is the statement ``$P$ is false.''	
+	\[\begin{cases}P\text{ is true}\\\neg P\text{ is false}\end{cases}\qquad\begin{cases}P\text{ is false}\\\neg P\text{ is true}\end{cases}\]
+\end{df}
+\begin{eg}
+	Write the negation of $P$: ``All apples are fruits'' and check the truth value of both $P$ and $\neg P$.
+	\begin{sol}
+		$\neg P$: Not all apples are fruits / Some apples are not fruits / There exists an apple that is not a fruit.
+		
+		$P$ is true and $\neg P$ is false. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Write the negation of $P$: ``Everyday this week was hot.''
+	\begin{sol}
+		$\neg P$: Somedays this week were not hot. / Not all days this week were hot. / There was a day this week that was not hot. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	$P$ all primes are odd.
+	
+	$\neg P$: There exists ($\exists$) a prime that is even / Some primes are not odd. (True: 2 is even.)
+\end{eg}
+\begin{eg}
+	$Q$: $\forall x\in\R,\ x^2>x$
+	
+	$\neg Q$: $\exists x\in\R,\st x^2\leq x$ (True: for $x=\dfrac{1}{2},\ x^2=\frac{1}{4}<x$)	
+\end{eg}
+\begin{eg}
+	$R$: There exists a real solution to $x^2+1=0$ / $\exists x\in\R\st x^2+1=0$
+	
+	$\neg R$: $\forall x\in\R,\ x^2+1\neq0$ -- (True	.)
+\end{eg}
+\begin{rmk}[Negating Quantifiers]
+	In general: 
+	\[\neg(\forall x\in S, P(x))=\exists x\in S\st\neg P(x). \]
+	\[\neg(\exists x\in S, P(x))=\forall x\in S, \neg P(x). \]	
+\end{rmk}
+\begin{eg}
+	$\exists n>0\st\forall m>0, m<n$
+	
+	Negation: $\forall n>0, \exists m>0\st m\geq n.$	
+\end{eg}
+\begin{eg}
+	For all $x\in\R$, there exists a $y\in\R$,$\st xy=1$
+	
+	Negation: $\exists x\in\R\st\forall y\in\R,\ xy\neq1$	
+\end{eg}
+
+\subsection{Compound Statements}
+\begin{df}[Conjunction and Disjunction]
+	The \textbf{conjunction} of $P$ and $Q$, denoted $P\wedge Q$	, is the statement ``Both $P$ and $Q$ are true.'' The \textbf{disjunction} of $P$ and $Q$, denoted $P\vee Q$, is the statement ``$P$ is true or $Q$ is true.''
+\end{df}
+\begin{eg}
+	Which of the following are true statements?
+	\begin{enumerate}
+	\item The function $x^2$ is even and it is concave up.
+		
+		$P$: $x^2$ is even (True), $Q$: $x^2$ is concave up (True).
+		\[\therefore P\wedge Q\text{ is true.}\]
+	\item Every student in this class is a math major and a human being.
+		
+		$P$: Every student in this class is a math major (False), $Q$: Every student in this class is a human being (True).
+		\[\therefore P\wedge Q\text{ is false.}\]
+	\item Every student in this class is a math major or a human being.
+		\[P\vee Q\text{ is true.}\]
+	\end{enumerate}
+\end{eg}
+\begin{eg}
+	The following inequality can be written in conjunctions or disjunctions.
+	\begin{enumerate}
+		\item $|x|<3$: ($-3<x<3$) Conjunction: $x>-3$ AND $x<3$
+		\item $|x|>3$: Disjunction: $x<-3$ OR $x>3$	
+	\end{enumerate}
+\end{eg}
+\begin{rmk}
+	$\vee$ is \textbf{inclusive or}, meaning if both $P$ and $Q$ are true, then $P\vee Q$ is also true, as opposed to \textbf{exclusive or}, meaning ``either $P$ or $Q$ but not both.''	
+\end{rmk}
+\begin{df}[Truth Tables]
+	\textbf{Truth tables} are a handy way to organize information. 
+\end{df}
+\begin{eg}
+	Write the truth table for the statement form: $P\vee\neg Q$.
+	\begin{sol}\begin{center}\begin{tabular}{c|c|c|c}
+		$P$&$Q$&$\neg Q$&$P\vee\neg Q$\\
+		\hline
+		T&T&F&T\\
+		T&F&T&T\\
+		F&T&F&F\\
+		F&F&T&T
+	\end{tabular}\end{center}\end{sol}
+\end{eg}
+\begin{df}[Logically Equivalent]
+	Suppose $P$ and $Q$ are statements. We say $P$ and $Q$ are \textbf{logically equivalent}, denoted as $P\equiv Q$, if they are either both true or both false.
+	
+	Note: If two statements are logically equivalent, their truth values match up line by line in a truth table. We use this techniques to prove two statements mathematically (logically) equivalent. 
+\end{df}
+\begin{eg}
+	Proving the following using truth tables.
+	\begin{enumerate}
+		\item $\neg(\neg P)\equiv P.$
+		\begin{sol}\begin{center}\begin{tabular}{c|c|c}
+		$P$&$\neg P$&$\neg(\neg P)$\\
+		\hline
+		T&F&T\\
+		F&T&F
+		\end{tabular}\end{center}\end{sol}
+		\item $P\vee Q\equiv Q\vee P.$
+		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c}
+			$P$&$Q$&$P\vee Q$&$Q\vee P$\\
+			\hline
+			T&T&T&T\\
+			T&F&T&T\\
+			F&T&T&T\\
+			F&F&F&F
+		\end{tabular}\end{center}\end{sol}
+		\item $\neg(P\vee Q)\equiv(\neg P)\wedge(\neg Q).$
+		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
+			$P$&$Q$&$\neg P$&$\neg Q$&$P\vee Q$&$\neg(P\vee Q)$&$(\neg P)\wedge(\neg Q)$\\
+			\hline
+			T&T&F&F&T&F&F\\
+			T&F&F&T&T&F&F\\
+			F&T&T&F&T&F&F\\
+			F&F&T&T&F&T&T
+		\end{tabular}\end{center}\end{sol}
+		\item $P\vee(Q\vee R)\equiv(P\vee Q)\vee R.$
+		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
+			$P$&$Q$&$R$&$Q\vee R$&$P\vee(Q\vee R)$&$P\vee Q$&$(P\vee Q)\vee R$\\
+			\hline
+			T&T&T&T&T&T&T\\
+			T&T&F&T&T&T&T\\
+			T&F&T&T&T&T&T\\
+			T&F&F&F&T&T&T\\
+			F&T&T&T&T&T&T\\
+			F&T&F&T&T&T&T\\
+			F&F&T&T&T&T&T\\
+			F&F&F&F&F&F&F
+		\end{tabular}\end{center}\end{sol}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}[Negating Compound Statements]
+	\[\neg(P\wedge Q)=\neg P\vee\neg Q\]	
+	\[\neg(P\vee Q)=\neg P\wedge\neg Q\]
+\end{thm}
+\begin{eg}
+	It is not true that the numbers $x$ and $y$ are both even. 
+	
+	$P$: $x$ is even; $Q$: $y$ is even.
+	
+	$\neg(P\wedge Q)$: $x$ is odd ($\neg P$) OR $y$ is odd ($\neg Q$).	
+\end{eg}
+\begin{eg}
+	It is not true that $9$ is prime or $9$ is even. 
+	
+	$P$: $9$ is prime; $Q$: $9$ is even.
+	
+	$\neg(P\vee Q)$: $9$ is not prime ($\neg P$) AND $9$ is odd ($\neg Q$)	
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
