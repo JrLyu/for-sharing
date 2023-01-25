@@ -45,7 +45,7 @@
 \contentsline {thm}{{Theorem}{1.4.{3}}{}}{12}{thm.1.4.3}%
 \contentsline {thm}{{Theorem}{1.4.{4}}{}}{12}{thm.1.4.4}%
 \contentsline {df}{{Definition}{1.4.{3}}{Triple Product}}{12}{df.1.4.3}%
-\contentsline {thm}{{Theorem}{1.4.{5}}{}}{12}{thm.1.4.5}%
+\contentsline {thm}{{Theorem}{1.4.{5}}{}}{13}{thm.1.4.5}%
 \contentsline {thm}{{Theorem}{1.5.{1}}{Equation of Lines in 2D}}{13}{thm.1.5.1}%
 \contentsline {df}{{Definition}{1.5.{1}}{Directional Vector}}{13}{df.1.5.1}%
 \contentsline {df}{{Definition}{1.5.{2}}{Vector Equations of Lines in 3D}}{13}{df.1.5.2}%
@@ -64,7 +64,7 @@
 \contentsline {thm}{{Theorem}{1.5.{4}}{Relationship Between Two Planes}}{18}{thm.1.5.4}%
 \contentsline {thm}{{Theorem}{1.5.{5}}{Distance from a Point to a Plane}}{18}{thm.1.5.5}%
 \contentsline {eg}{{Example}{1.5.{4}}{}}{18}{eg.1.5.4}%
-\contentsline {ext}{{\indent Extension}{8}{}}{18}{ext.8}%
+\contentsline {ext}{{\indent Extension}{8}{}}{19}{ext.8}%
 \contentsline {df}{{Definition}{1.6.{1}}{Cylinders}}{19}{df.1.6.1}%
 \contentsline {df}{{Definition}{1.6.{2}}{Quadric Surfaces}}{19}{df.1.6.2}%
 \contentsline {rmk}{{\indent Remark}{7}{}}{19}{rmk.7}%
@@ -79,3 +79,13 @@
 \contentsline {eg}{{Example}{2.1.{2}}{}}{21}{eg.2.1.2}%
 \contentsline {eg}{{Example}{2.1.{3}}{}}{22}{eg.2.1.3}%
 \contentsline {df}{{Definition}{2.1.{7}}{Graphs of Vector Functions}}{22}{df.2.1.7}%
+\contentsline {df}{{Definition}{2.1.{8}}{Space Curve}}{23}{df.2.1.8}%
+\contentsline {df}{{Definition}{2.1.{9}}{Parametric Equation}}{23}{df.2.1.9}%
+\contentsline {df}{{Definition}{2.2.{1}}{Derivative of Vector Functions}}{23}{df.2.2.1}%
+\contentsline {ext}{{\indent Extension}{9}{}}{23}{ext.9}%
+\contentsline {rmk}{{\indent Remark}{9}{Higher Order Derivatives}}{23}{rmk.9}%
+\contentsline {thm}{{Theorem}{2.2.{1}}{Graphic Interpretation of Derivative}}{23}{thm.2.2.1}%
+\contentsline {eg}{{Example}{2.2.{1}}{}}{23}{eg.2.2.1}%
+\contentsline {eg}{{Example}{2.2.{2}}{}}{24}{eg.2.2.2}%
+\contentsline {thm}{{Theorem}{2.2.{2}}{Properties of Differentiation}}{24}{thm.2.2.2}%
+\contentsline {eg}{{Example}{2.2.{3}}{}}{24}{eg.2.2.3}%

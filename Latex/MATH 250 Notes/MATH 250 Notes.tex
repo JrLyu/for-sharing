@@ -1,27 +1,14 @@
 \documentclass[12pt,a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{ntheorem}
-\usepackage[framemethod=TikZ]{mdframed}
 \usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
-\usepackage[most]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{float} 
-\usepackage{subfigure} 
-\usepackage{arydshln}
-\usepackage{url}
-\usepackage{setspace}
 \usepackage{mathptmx}
 \usepackage{framed}
-\usepackage{xcolor}
-\usepackage{tikz}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -34,30 +21,25 @@
 %\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\definecolor{blue}{rgb}{0,0.45,1.14}
-\definecolor{red}{rgb}{0.77,0.12,0.23}
-\definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{green}{rgb}{0,0.42,0.24}
-\definecolor{orange}{rgb}{2.07,0.69,0.32}
-
 \theorembodyfont{\upshape}
 \theoremseparator{.}
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{lem}{Lemma}[subsection]
+\newtheorem{cor}{corollary}[subsection]
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
 
-
 \title{Emory University\\\textbf{MATH 250 - Foundations of Mathematics Learning Notes}}
 \author{Jiuru Lyu}
 \date{\today}
-
-\linespread{1.25}
 
 \def\Z{{\mathbb{Z}}}
 \def\R{{\mathbb{R}}}
@@ -85,7 +67,8 @@
 \def\vece{\vec{e}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
-\def\st{\ \emph{s.t.}\ }
+\def\st{\ \mathrm{s.t.}\ }
+\def\fs{\ \mathrm{f.s.}\ }
 
 \begin{document}
 \maketitle
@@ -360,6 +343,232 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	
 	$\neg(P\vee Q)$: $9$ is not prime ($\neg P$) AND $9$ is odd ($\neg Q$)	
 \end{eg}
+\begin{df}[Distributivity]
+	\[P\wedge (Q\vee R)\equiv(P\wedge Q)\vee(P\wedge R)\]
+	\[P\vee (Q\wedge R)\equiv(P\vee Q)\wedge(P\vee R)\]
+\end{df}
+\begin{rmk}
+	Truth tables can balloon in size. Indeed, if you have $P_1,\cdots,P_n$ statements involved in your statement form, your truth table will contain $2^n$ rows. 
+	
+	Sometimes, prove logical equivalences without using truth tables by taking advantage of the logical equivalences already proven is more approachable. 
+\end{rmk}
+\begin{eg}
+	Prove or disprove without using ruth tables.
+	\begin{enumerate}
+		\item $\neg(P\wedge(\neg Q))\equiv(\neg P)\vee Q.$
+			\begin{prf}
+				\[\begin{aligned}
+					\neg(P\wedge(\neg Q))&\equiv\neg P\vee(\neg(\neg Q))\\
+					&\equiv\neg P\vee Q\qquad\text{[Negation of }\neg Q\equiv Q\text{]}
+				\end{aligned}\]	
+			\end{prf}
+
+		\item $P\wedge((Q\vee R)\vee S)\equiv(P\wedge Q)\vee(P\wedge R)\vee(P\wedge S).$
+			\begin{prf}
+				\[\begin{aligned}
+					P\wedge((Q\vee R)\vee S)&\equiv (P\wedge(Q\vee R))\vee(P\wedge S)\qquad\text{[Distributivity]}\\
+					&\equiv(P\wedge Q)\vee(P\wedge R)\vee(P\wedge S)\qquad\text{[Distributivity]}
+				\end{aligned}\]	
+			\end{prf}
+		\item $P\vee((Q\wedge R)\wedge S)\equiv(P\vee Q)\wedge(P\vee R)\wedge(P\vee S).$
+			\begin{prf}
+				\[\begin{aligned}
+					P\vee((Q\wedge R)\wedge S)&\equiv (P\vee(Q\wedge R))\wedge(P\vee S)\qquad\text{[Distributivity]}\\
+					&\equiv(P\vee Q)\wedge(P\vee R)\wedge(P\vee S)\qquad\text{[Distributivity]}
+				\end{aligned}\]	
+			\end{prf}
+	\end{enumerate}
+\end{eg}
+\begin{df}[Tautology]
+	A statement form that is true in all possible cases (for example, regardless of the truth values of $P$ and $Q$) is called a \textbf{tautology}.	
+\end{df}
+\begin{df}[Contradiction]
+	A statement that is false in all possible cases (for example, regardless of the truth values for $P$ and $Q$)	is called a \textbf{contradiction}.
+\end{df}
+\begin{eg}
+	Classify each of the following as a tautology, a contradiction, or neither.
+	\begin{enumerate}
+		\item $P\vee\neg P$
+		\begin{center}\begin{tabular}{c|c|c}
+			$P$&$\neg P$&$P\vee\neg P$\\
+			\hline
+			T&F&T\\
+			F&T&T
+		\end{tabular}$\qquad\therefore$ Tautology.\end{center}
+		\item $P\wedge\neg P$
+		\begin{center}\begin{tabular}{c|c|c}
+			$P$&$\neg P$&$P\wedge\neg P$\\
+			\hline
+			T&F&F\\
+			F&T&F
+		\end{tabular}$\qquad\therefore$ Contradiction.\end{center}
+		\item $P\vee Q$
+		\begin{center}\begin{tabular}{c|c|c}
+			$P$&$A$&$P\vee Q$\\
+			\hline
+			T&T&T\\
+			T&F&T\\
+			F&T&T\\
+			F&F&F
+		\end{tabular}$\qquad\therefore$ Neither.\end{center}
+	\end{enumerate} 	
+\end{eg}
+
+\subsection{Implications}
+\begin{df}[Implications or Conditional Statements]
+	The symbol $\Rightarrow$ means ``implies.'' So $P\Rightarrow Q$ means ``$P$ implies $Q$'' or ``If $P$, then $Q$.''
+	\begin{eg}
+		\begin{itemize}
+			\item If this is an apple, then it is a fruit.
+			\item If a function $f$ is differentiable, then it is continuous.
+		\end{itemize}	
+	\end{eg}
+	\begin{rmk}
+		In mathematics, the truth value of an implication is \textbf{not} determined by causality. That is, the statement $P\Rightarrow Q$ means that in all circumstances in which $P$ is true, $Q$ is also true.
+		\begin{center}\begin{tabular}{c|c|c}
+			$P$&$Q$&$P\Rightarrow Q$\\
+			\hline
+			T&T&T\\
+			T&F&F\\
+			F&T&T\\
+			F&F&T
+		\end{tabular}\end{center}
+		The only way for $P\Rightarrow Q$ to be false is when $P$ is true but $Q$ is false. This implies that false assumptions can lead to any conclusions. 
+	\end{rmk}
+\end{df}
+\begin{df}{Sufficient Condition and Necessary Condition}
+	If $P\Rightarrow Q$ is true, then $P$ is called a \textbf{sufficient condition} for $Q$, and $Q$ is called a \textbf{necessary condition} for $P$. There are many different ways to write $P\Rightarrow Q$in English: 
+	\[P\implies Q\begin{cases}\text{If }P,\ \text{then }Q.\\Q\text{ if }P.\\Q\text{ whenever }P.\\Q,\ \text{provided that }P\\\text{Whenever }P,\text{ then also }Q.\\P\text{ is a sufficient condition for }Q.\\\text{For }Q\text{, it is sufficient that }P.\\Q\text{ is a necessary condition for }P.\\\text{For }P\text{, it is necessary that }Q.\\P\text{ only if }Q.\end{cases}\]	
+\end{df}
+\begin{thm}[Negation of Implications]
+	Negation of an implication is a conjunction:\[\neg(P\Rightarrow Q)\equiv P\wedge\neg Q\]	
+\end{thm}
+\begin{eg}
+	Negate the following: \[\forall\varepsilon\ \exists\delta>0,\ |x-y|<\varepsilon\implies|x^2-y^2|<\delta.\]
+	\begin{sol}
+		\[\exists\varepsilon\st\forall\delta>0,\ |x-y|<\varepsilon\text{ and }|x^2-y^2|\geq\delta.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Write in symbols and negate the statement $P$: ``For any positive $\varepsilon$ there exists a positive $M$ such that $|f(x)-b|<\varepsilon$ whenever $x>M.$''	
+	\begin{sol}
+		\[P:\ \forall\varepsilon>0,\ \exists M>0\st x>M\implies|f(x)-b|<\varepsilon.\]\[\neg P:\ \exists\varepsilon>0\st\forall M>0,\ x>M\text{ and }|f(x)-b|\geq\varepsilon.\]	
+	\end{sol}
+\end{eg}
+\begin{df}[Axiom]
+	An \textbf{axiom} is a statement which is regarded as being established, accepted, or self-evidently true.
+\end{df}
+\begin{df}[Theorem]
+	A \textbf{theorem} is a statement that is true and has been verified as true.	
+\end{df}
+\begin{df}[Proposition]
+	A \textbf{proposition} is a smaller, less important theorem.	
+\end{df}
+\begin{df}[Lemma]
+	A \textbf{lemma} is a theorem whose main purpose is to help prove another theorem.	
+\end{df}
+\begin{df}[Corollary]
+	A \textbf{corollary} is a result that is the immediate consequence of a theorem. 	
+\end{df}
+\begin{rmk}[Proving a theorem]
+	Want to show (WTS) $P\Rightarrow Q$: If	$P$ is false, $P\Rightarrow Q$ is automatically true, so there's nothing to show here. However, if $P$ is true, we need to show $Q$ is true (for $P\Rightarrow Q$ to be true)l.
+	
+	First line of a direct proof: Suppose $P$.
+	
+	Last line of a direct proof: Therefore $Q$.
+\end{rmk}
+\begin{df}[Divisibility]
+	Let $a$ and $b$ be integers, with $a$ non-zero. We say $a$ \textbf{divides} $b$, written $a\mid b$, if there exists an \emph{integer} $k$ such that $b=ak$.
+	
+	In this case, we way that $a$ is a \textbf{factor} of $b$, and that $b$ is a \textbf{multiple} of $a$.
+	
+	Also note that $a\nmid b$ means that $a$ does not divide $b$. That is, $\nexists k\in\Z$, such that $b=ak$.
+\end{df}
+\begin{df}[Even]
+	Let $n$ be integer. We say $n$ is \textbf{eve} if $2\mid n$.	
+\end{df}
+\begin{df}[Odd]
+	Let $n$ be an integer. We say $n$ is \textbf{odd} if $2\nmid n$, $n=2k+1$, or $n=2k-1$ for some ($\fs$) $k\in\Z.$	
+\end{df}
+\begin{ext}
+	The possible remainders if we divide an integer by $5$ is $0,\ 1,\ 2,\ 3,\ 4$, so we can suppose $n$ to be $5k,\ 5k+1,\ 5k+2,\ 5k+3,\ 5k+4$, respectively. 	
+\end{ext}
+\begin{ax}\label{ax1.1}
+	Integers are closed under addition.	
+\end{ax}
+\begin{ax}\label{ax1.2}
+	If $k\in\Z, (-k)\in\Z$.
+\end{ax}
+\begin{framed}
+\noindent\texttt{Let $a,\ b$ and $c$ be integers, with $a$ non-zero. If $a\mid b$ and $a\mid c$, then $a\mid (b+c).$}
+\begin{prf}
+	Let $a,b,c\in\Z$ with $a\neq0$.\par Suppose $a\mid b$ and $a\mid c$. Then, by definition of divides, $\exists k,l\in\Z\st$\[b=ak\qquad\text{and}\qquad c=al.\] \par Then, $b+c=ak+al=a(k+l).$\par Since $k+l\in\Z$ (Axiom \ref{ax1.1}), by definition, $a\mid(b+c).$	
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $a$ and $b$ be integers, with $a$ non-zero. If $a\mid b$, then $a\mid(-b)$ and $(-a)\mid b$.}
+\begin{prf}
+	Let $a,b\in\Z$, with $a\neq0$.\par Suppose $a\mid b$. Then by definition of divides, $\exists k\in\Z\st b=ak.$\par Multiple both sides of this equation by (-1): \[-b=-ak=a(-k).\]\par Since $(-k)\in\Z,$ we get $a\mid (-b)$.$\qquad[\text{Axiom}\ref{ax1.2}]$\par Multiple $-b=a(-k)$ by $(-1)$ on both sides: \[b=(-a)(-k)\]\par Since $(-k)\in\Z,$ we see that $(-a)\mid b.$
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $a,\ b,\ $and $c$ be integers, with $a$ and $b$ non-zero. If $(ab)\mid(ac)$, then $b\mid c.$}
+\begin{prf}
+	Let	$a,b,c\in\Z$ with $a\neq0$ and $b\neq0$.\par Suppose $(ab)\mid(ac)$. Then $\exists k\in\Z\st ac=(ab)k$.\par Divide both sides of the equation by $a$: \[c=bk.\]\par Since $k\in\Z$, by definition of divides, $b\mid c$.
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $n$ be an integer. If $n$ is of the form $3k+1$ for some integer $k$, then $n^2$ is again of the form $4k'+1$ for some integer $k'$.}
+\begin{prf}
+	Let $n\in\Z$.\par Suppose $n=3k+1\fs k\in\Z$.\par Squaring both sides: \[\begin{aligned}n^2=(3k+1)^2&=9k^2+6k+1\\&=3(3k^2+2k)+1.\end{aligned}\]\par Set $k'=3k^2+2k.$\par As $k\in\Z$, $3k^2, 2k\in\Z$, $k'=3k^2+2k\in\Z$.\par Then, $n^2$ is in the form of $3k'+1\fs k'\in\Z.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $n$ and $m$ be integers. If $n$ and $m$ are even, then $n+m$ is even.}
+\begin{prf}
+	Let $n,m\in\Z$.\par Suppose $n$ and $m$ are even. Then $\exists s,t\in\Z\st$ \[n=2s\qquad\text{and}\qquad m=2t.\]\par Then\[\begin{aligned}n+m&=2s+2t\\&=2(s+t)\end{aligned}\]\par Since $(s+t)\in\Z$, by definition, $n+m$ is even.
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $n$ and $m$ be integers. If $m$ is even, then $mn$ is even.}
+\begin{prf}
+	Let $n,m\in\Z.$\par Suppose $m$ is even. Then $\exists k\in\Z,\st m=2k.$\par So, $mn=(2k)n=2(kn).$\par Since $(kn)\in\Z$, by definition, $mn$ is even.	
+\end{prf}
+\end{framed}
+\begin{df}[Parity]
+	If $x$ and $y$ have the same \textbf{parity}, then $x$ and $y$ both are odd or both are even. 	
+\end{df}
+
+\begin{framed}
+\noindent\texttt{If $x\in\Z$, then $x$ and $x^2$ have the same parity.}
+\begin{rmk} Sometimes, it is helpful to do a case analysis!\end{rmk}
+\begin{prf}
+	Let $x\in\Z$\par $\boxed{\text{Case }1}$ Suppose $x$ is even.\par Then, by definition, $x=2k\fs k\in\Z.$\par So, $x^2=(2k)^2=4k^2=2(2k^2)$.\par Since $(2k^2)\in\Z$, by definition, $x^2$ is even. \par $\boxed{\text{Case }2}$ Suppose $x$ is odd.\par Then, by definition, $x=2l+1\fs l\in\Z.$\par So, $x^2=(2l+1)^2=4l^2+4l+1=2(2l^2+2l)+1$\par Since $(2l^2+2l)\in\Z$, by definition, $x^2$ is odd.
+\end{prf}
+\end{framed}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

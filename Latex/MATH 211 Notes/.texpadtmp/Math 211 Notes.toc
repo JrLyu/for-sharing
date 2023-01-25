@@ -7,3 +7,4 @@
 \contentsline {subsection}{\numberline {1.6}Cylinders and Quadric Surfaces}{19}{subsection.1.6}%
 \contentsline {section}{\numberline {2}Vector Functions}{21}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Vector Functions and Space Curves}{21}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Derivative and Intergral of Vector Functions}{23}{subsection.2.2}%

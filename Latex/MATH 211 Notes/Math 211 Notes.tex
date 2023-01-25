@@ -50,9 +50,9 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newenvironment*{sol}{\par\indent\textbf{Solution. }}{\hfill{$\square$}\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
@@ -78,6 +78,7 @@
 \def\qed{\rightline{$\blacksquare$}}
 \def\ddx{\frac{\d}{\d x}}
 \def\dydx{\frac{\d y}{\d x}}
+\def\ddt{\frac{\d}{\d t}}
 \def\dx{\d x}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
@@ -87,14 +88,16 @@
 \def\veca{\vec{a}}
 \def\vecb{\vec{b}}
 \def\vecc{\vec{c}}
-\def\vecr{\vec{r}}
+\def\vecd{\vec{d}}
+\def\vecr{\vec{\boldsymbol{\textbf{r}}}}
 \def\vecn{\vec{n}}
 \def\vece{\boldsymbol{\textbf{e}}}
-\def\veci{\boldsymbol{\textbf{i}}}
-\def\vecj{\boldsymbol{\textbf{j}}}
-\def\veck{\boldsymbol{\textbf{k}}}
+\def\veci{\hat{\boldsymbol{\textbf{i}}}}
+\def\vecj{\hat{\boldsymbol{\textbf{j}}}}
+\def\veck{\hat{\boldsymbol{\textbf{k}}}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
+\def\st{\mathrm{ s.t. }}
 
 \begin{document}
 \maketitle
@@ -1040,6 +1043,67 @@ Relationships of two lines in 3D:
 	\end{tikzpicture}
 	\end{center}
 \end{df}
+\begin{df}[Space Curve]
+	If $f$, $g$, $h$, are continuous real-valued functions on an interval $I$, then the set $C$ of all points $(x,y,z)$ in space $\st$ \[x=f(t)\quad y=g(t)\quad z=h(t),\quad\text{where}t\in I\] is called a \textbf{space curve}.	
+\end{df}
+\begin{df}[Parametric Equation]
+	The system of equations $\begin{cases}x=f(t)\\y=g(y)\\z=h(t)\end{cases}$ is called a \textbf{parametric equation} of $C$ and $t$ is called the \textbf{parameter}.	
+\end{df}
+
+\subsection{Derivative and Intergral of Vector Functions}
+Limits, continuity, derivative, and integrals of vector functions follow rules similar to those of scalar functions.
+\begin{df}[Derivative of Vector Functions]
+	\[\frac{\d\vecr}{\d t}=\lim_{h\to0}=\frac{\vecr(t+h)-\vecr(t)}{h},\] $\dfrac{\d\vecr}{\d t}$ or $\vecr'(t)$ is the derivative of $\vecr(t)$ is the limit on the right hand side exists. 
+\end{df}
+\begin{ext}
+	If $\vecr(t)=f(t)\veci+g(t)\vecj+h(t)\veck$, then\[\vecr'(t)=f'(t)\veci+g'(t)\vecj+h'(t)\veck.\]	
+\end{ext}
+\begin{rmk}[Higher Order Derivatives]
+	Higher order derivatives $\dfrac{\d^{(n)}\vecr}{dt^{(n)}}$ can be defined similarly. 	
+\end{rmk}
+\begin{thm}[Graphic Interpretation of Derivative]
+	When $h\to0$, the vector \[\dfrac{\vecr(t+h)-\vecr(t)}{h}\] becomes $\vecr(t)$ and therefore, $\vecr'(t)$ approaches to a vector that lies on the tangent line. $\vecr'(t)$ is called the \textbf{tangent vector}, and \[\vec{T}=\dfrac{\vecr'(t)}{|\vecr'(t)|}\] is called the \textbf{unit tangent vector}.
+\end{thm}
+\begin{eg}
+	Find parametric equations of the tangent line to the vector function $\vecr(t)=\langle2\cos{t},\ \sin{t},\ t\rangle$ at point $(0,1,\dfrac{\pi}{2}).$
+	\begin{sol}
+		When $t=\frac{\pi}{2}$, $2\cos{\frac{\pi}{2}}=0,\ \sin{\frac{\pi}{2}}=1$.\par $\therefore(0,1,\frac{\pi}{2})$ is on the space curve of $\vecr(t)$.\par Find \[\begin{aligned}\vecr'(t)&=\langle(2\cos{t})',\ (\sin{t})',\ t'\rangle\\&=\langle-2\sin{t},\ \cos{t}, 1\rangle\end{aligned}\]	\par When $t=\frac{\pi}{2}$, \[\vecr'\left(\frac{\pi}{2}\right)=\langle-2\sin{\left(\frac{\pi}{2}\right)},\ \cos{\left(\frac{\pi}{2}\right)}, 1\rangle=\langle-2,0,1\rangle\]\par $\therefore \vecd$ of tangent line $=\langle-2,0,1\rangle$\par \[\therefore\text{Line: }\langle0,1,\frac{\pi}{2}\rangle+\langle-2,0,1\rangle t=\langle-2t,1,\frac{\pi}{2}+t\rangle\]
+	\end{sol}	
+\end{eg}
+\begin{eg}
+	If $\vecr(t)=(t^3+2t)\veci-3e^{-2t}\vecj+2\sin{5t}\veck$. Find $\dfrac{\d\vecr}{\d t},\ \left|\dfrac{\d\vecr}{\d t}\right|,\ \dfrac{\d^2\vecr}{\d t^2},\ \left|\dfrac{\d^2\vecr}{\d t^2}\right|.$	
+	\begin{sol}
+		\[\dfrac{\d\vecr}{\d t}=\langle3t^2+2,\ 6e^{-2t},\ 10\cos{5t}\rangle\]
+		\[\dfrac{\d^2\vecr}{\d t^2}=\langle6t,\ -12e^{-2t},\ -50\sin{5t}\rangle\]	
+		When $t=0$: 
+		\[\vecr'(0)=\langle2,\ 6,\ 10\rangle;\qquad\vecr''(0)=\langle0,\ -12,\ 0\rangle\]
+		\[\therefore|\vecr'(0)|=\sqrt{4+36+100}=\sqrt{140}(=2\sqrt{70});\quad|\vecr''(0)|=\sqrt{144}=12.\]
+	\end{sol}
+\end{eg}
+\begin{thm}[Properties of Differentiation]
+	\[\ddt[\vecr_1(t)+\vecr_2(t)]=\ddt[\vecr_1(t)]+\ddt[\vecr_2(t)]\]
+	\[\ddt[\alpha\vecr(t)]=\alpha\ddt[\vecr(t)]\]
+	\[\ddt[f(t)\vecr(t)]=f'(t)\vecr(t)+f(t)\vecr'(t)\]
+	\[\ddt[\vecr_1(t)\cdot\vecr_2(t)]=\vecr_1'(t)\cdot\vecr_2(t)+\vecr_1(t)\cdot\vecr_2'(t)\]
+	\[\ddt[\vecr_1(t)\times\vecr_2(t)]=\vecr_1'(t)\times\vecr_2(t)+\vecr_1(t)\times\vecr_2'(t)\]	
+\end{thm}
+\begin{eg}
+	Show that if a curve lies on a sphere with center at the origin, then $\vecr'(t)$ is perpendicular to $\vecr(t)$ for any $t$. 
+	\begin{sol}
+		Let $\vecr(t)$ lies on a sphere, with center at the origin, and radius $R=c$: \[\therefore\vecr(t)=\langle x(t), y(t), z(t)\rangle\quad\text{ and }\quad x^2(t)+y^2(t)+z^2(t)=c^2\]
+		\[x^2(t)+y^2(t)+z^2(t)=|\vecr(t)|^2=\vecr(t)\cdot\vecr(t)\]
+		\[\therefore\vecr(t)\cdot\vecr(t)=c^2\]\par
+		Take derivative of the both sides of the euqation \[\ddt[\vecr(t)\cdot\vecr(t)]=\ddt(c^2)\]
+		\[\therefore\vecr'(t)\cdot\vecr(t)+\vecr(t)\cdot\vecr'(t)=0\implies2\vecr'(t)\cdot\vecr(t)=0\]
+		\[\therefore\vecr'(t)\cdot\vecr(t)=0\implies\vecr'(t)\perp\vecr(t).\]
+	\end{sol}
+\end{eg}
+
+
+
+
+
+
 
 
 
