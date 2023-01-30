@@ -8,24 +8,15 @@
 \usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
-\usepackage[most]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{float} 
-\usepackage{subfigure} 
 \usepackage{arydshln}
-\usepackage{multicol}
 \usepackage{url}
 \usepackage{setspace}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
 \usepackage{framed}
-\usepackage{xcolor}
-\usepackage{listings}
-\usepackage{chemfig}
-\usepackage{tikz}
 \usepackage{pifont}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
@@ -38,12 +29,6 @@
 \fancyfoot[C]{\thepage}
 %\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-
-\definecolor{blue}{rgb}{0,0.45,1.14}
-\definecolor{red}{rgb}{0.77,0.12,0.23}
-\definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{green}{rgb}{0,0.42,0.24}
-\definecolor{orange}{rgb}{2.07,0.69,0.32}
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
@@ -962,23 +947,6 @@ Relationships of two lines in 3D:
 \newpage
 \section{Vector Functions}
 \subsection{Vector Functions and Space Curves}
-\begin{df}[Multivariable Functions]
-	A function of $f$ of $n$ variables is a function that takes any $n$-tuple $(x_1,\cdots,x_n)$ in the set $D$ to a number in $\R$, where \[D=\bigg\{(x_1,\cdots,x_n)|x_i\in\R\text{ and }f\text{ is defined in }(x_1,\cdots,x_n)\bigg\}\]	
-	\begin{eg}
-		$f(x,y)=\sqrt{x^2+y^2-4}$: $f:\begin{array}{l}\R^2\longrightarrow\R\\ (x,y)\longmapsto\text{ a number like }r\end{array}$	
-		
-		Domain of $f$: all $(x,y)\in\R\emph{ s.t. }x^2+y^2-4\geq0.$ (i.e., Everything exclude the circle centered at the origin with a radius of $2$.)
-	\end{eg}
-\end{df}
-\begin{df}[Graphs of a Two-Variable Function]
-	The graph of a two-variable function with domain $D$ is the set of all points $(x,y,z)\in\R^3$ \emph{s.t.} $z=f(x,y)$ and $(x,y)\in D$.	
-\end{df}
-\begin{df}[Vector Functions]
-	\[\vecr:\begin{array}{l}\R\longrightarrow V_n\\ t\longmapsto\langle f(t),\ g(t),\ h(t),\cdots\rangle\end{array}, \] where $V_n$ is a set of all vectors with $n$ components, and $t$ is a parameter. 
-	\begin{rmk}
-		We will only work with $V_3$, i.e., 	$\vecr:\begin{array}{l}\R\longrightarrow V_3\\ t\longmapsto\langle f(t),\ g(t),\ h(t)\rangle\end{array}$.
-	\end{rmk}
-\end{df}
 \begin{df}[Component Functions]
 	$f(t),\ g(t),\ h(t)$ are real valued function and are called \textbf{component functions} of $\vecr(t)$. We write \[\vecr(t)=\langle f(t),\ g(t),\ h(t)\rangle=f(t)\veci+g(t)\vecj+h(t)\veck.\]		
 \end{df}
@@ -1098,6 +1066,79 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 		\[\therefore\vecr'(t)\cdot\vecr(t)=0\implies\vecr'(t)\perp\vecr(t).\]
 	\end{sol}
 \end{eg}
+\begin{df}[Definite Integral of a Vector Function]
+	The definite integral of a continuous vector function $\vecr(t)$ can be defined as \[\int_a^b\vecr(t)\d t=\int_a^bf(t)\d t\veci+\int_a^bg(t)\d t\vecj+\int_a^bh(t)\d t\veck, \] if $\vecr(t)=\Big\langle f(t), g(t), h(t)\Big\rangle.$
+\end{df}
+\begin{eg}
+	\[\begin{aligned}
+	\int_0^1\left(\frac{1}{t+1}\veci+\frac{1}{t^2+1}\vecj+\frac{t}{t^2+1}\veck\right)\d t&=\int_0^1\frac{1}{t+1}\d t\veci+\int_0^1\frac{1}{t^2+1}\d t\vecj+\int_0^1\frac{t}{t^2+1}\d t\veck\\
+	&=\Bigg[\frac{1}{t+1}\Bigg]_0^1\veci+\Bigg[\frac{1}{t^2+1}\Bigg]_0^1\vecj+\Bigg[\frac{t}{t^2+1}\Bigg]_0^1\veck\\
+	&=\ln(2)\veci+\frac{\pi}{4}\vecj+\frac{1}{1}(\ln(2))\veck
+	\end{aligned}\]	
+\end{eg}
+
+\newpage
+\section{Partial Derivative}
+\subsection{Function of Several Variables}
+\begin{df}[Multivariable Functions]
+	A function of $f$ of $n$ variables is a function that takes any $n$-tuple $(x_1,\cdots,x_n)$ in the set $D$ to a number in $\R$, where \[D=\bigg\{(x_1,\cdots,x_n)|x_i\in\R\text{ and }f\text{ is defined in }(x_1,\cdots,x_n)\bigg\}\]	
+	\begin{eg}
+		$f(x,y)=\sqrt{x^2+y^2-4}$: $f:\begin{array}{l}\R^2\longrightarrow\R\\ (x,y)\longmapsto\text{ a number like }r\end{array}$	
+		
+		Domain of $f$: all $(x,y)\in\R\emph{ s.t. }x^2+y^2-4\geq0.$ (i.e., Everything exclude the circle centered at the origin with a radius of $2$.)
+	\end{eg}
+\end{df}
+\begin{df}[Graphs of a Two-Variable Function]
+	The graph of a two-variable function with domain $D$ is the set of all points $(x,y,z)\in\R^3$ \emph{s.t.} $z=f(x,y)$ and $(x,y)\in D$.	
+\end{df}
+\begin{df}[Vector Functions]
+	\[\vecr:\begin{array}{l}\R\longrightarrow V_n\\ t\longmapsto\langle f(t),\ g(t),\ h(t),\cdots\rangle\end{array}, \] where $V_n$ is a set of all vectors with $n$ components, and $t$ is a parameter. 
+	\begin{rmk}
+		We will only work with $V_3$, i.e., 	$\vecr:\begin{array}{l}\R\longrightarrow V_3\\ t\longmapsto\langle f(t),\ g(t),\ h(t)\rangle\end{array}$.
+	\end{rmk}
+\end{df}
+\begin{thm}
+	A multivariable function creates a surface in the space. if two surfaces intersect each other, then the intersection identifies a curve.	
+\end{thm}
+\begin{eg}
+	Find a vector function $\vecr(t)$ that represents the curve of intersection of two surfaces\[z=\sqrt{x^2+y^2}\qquad\text{and}\qquad z=3+y.\]
+	\begin{sol}
+		Solve the system of equation $\begin{cases}x=\sqrt{x^2+y^2}\\z=3+y\end{cases}.$\par
+		Hence, \[\begin{aligned}
+			\sqrt{x^2+y^2}&=3+y\\
+			x^2+y^2&=(3+y)^2=y^2+6y+9\\
+			x^2&=6y+9\\
+			y&=\frac{x^2-9}{6}\\
+			\therefore z=&3+y=\frac{x^2+0}{6}
+ 		\end{aligned}\]\par 
+ 		Let $x=t$: \[\vecr(t)=\langle x,t,z\rangle=\Big\langle t,\ \frac{t^2-9}{6},\ \frac{t^2+9}{6}\Big\rangle\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Do the same for surfaces\[z=3x^2+y^2\qquad\text{and}\qquad y=5x^2\]
+	\begin{sol}
+		Solve the system of equations $\begin{cases}z=3x^2+y^2\\y=5x^2\end{cases}.$\par
+		\[\therefore 5x^2=3x^2+y^2\ \Longrightarrow\ z=3x^2+(5x^2)^2=3x^2+25x^4\]\par 
+		Let $x=t$: \[\vecr(t)=\langle x,t,z\rangle=\Big\langle t,\ 5t^2,\ 3t^2+25t^4\Big\rangle\]	
+	\end{sol}
+\end{eg}
+\begin{df}[Level Curves]
+	The level curve of a two variable function $z=f(x,y)$ is a curve $f(x,y)=k$ (in the $xy$-plane). That means all values of $x$ and $y$ that have the same value $z=k.$
+\end{df}
+\begin{thm}[Application of Level Curve]
+	Given that a point $(a,b)$ is on the level curve of $f(x,y)$ for $k=c$, then we know $f(a,b)=c.$	
+\end{thm}
+
+\subsection{Limit and Continuity}
+\begin{df}[Limit]
+	For two variable function $z=f(x,y)$, we check limit when $(x,y)\to(a,b)$. Therefore, we can make $(x,y)$ closer to $a(b)$ from infinitely many directions. Therefore, \[\lim_{(x,y)\to(a,b)}f(x,y)=L\] if in all directions that $(x,y)$ approaches to $(a,b)$, we have $f(x,y)\to L$.	
+\end{df}
+
+
+
+
+
+
 
 
 

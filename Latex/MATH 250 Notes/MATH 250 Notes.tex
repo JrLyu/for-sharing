@@ -23,6 +23,8 @@
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
@@ -32,7 +34,7 @@
 \newtheorem{cor}{corollary}[subsection]
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof} (\stepcounter{nprf}\thenprf). }\par}{\par\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
@@ -546,6 +548,111 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	Let $x\in\Z$\par $\boxed{\text{Case }1}$ Suppose $x$ is even.\par Then, by definition, $x=2k\fs k\in\Z.$\par So, $x^2=(2k)^2=4k^2=2(2k^2)$.\par Since $(2k^2)\in\Z$, by definition, $x^2$ is even. \par $\boxed{\text{Case }2}$ Suppose $x$ is odd.\par Then, by definition, $x=2l+1\fs l\in\Z.$\par So, $x^2=(2l+1)^2=4l^2+4l+1=2(2l^2+2l)+1$\par Since $(2l^2+2l)\in\Z$, by definition, $x^2$ is odd.
 \end{prf}
 \end{framed}
+
+\subsection{Contrapositive and Converse}
+\begin{framed}
+\noindent\texttt{Let $n$ be an integer. Prove that if $3\nmid n$, then $3\mid n^2-1.$}
+\begin{prf}
+	Let $n\in\Z$. Suppose $3\nmid n$.\par
+	$\boxed{\text{Case }1}$ Then $n=3k+1\fs k\in\Z.$\[\begin{aligned}
+		n^2-1&=(3k+1)^2-1\\&=9k^2+6k+1-1\\&=9k^2+6k\\&=3(3k^2+2k)
+	\end{aligned}\]\par Since $(3k^2+2k)\in\Z$, by definition, $3\mid n^2-1.$\par 
+	$\boxed{\text{Case }2}$ Then $n=3l+2\fs l\in\Z.$\[\begin{aligned}
+		n^2-1&=(3l+2)^2-1\\&=9l^2+18l+4-1\\&=9l^2+18l+3\\&=3(3l^2+6l+1)
+	\end{aligned}\]\par Since $(3l^2+6l+1)\in\Z$, by definition, $3\mid n^2-1.$
+\end{prf}
+\end{framed}
+Sometimes, we can form new implications from old ones. Let $P$ and $Q$ to be statement, and consider the implication $P\Rightarrow Q.$
+\begin{df}[Converse]
+	The \textbf{converse} of $P\Rightarrow Q$ is the implication $Q\Rightarrow P.$	
+\end{df}
+\begin{df}[Contrapositive]
+	The \textbf{contrapositive} of $P\Rightarrow Q$ is the implication $\neg Q\Rightarrow\neg P.$	
+\end{df}
+\begin{rmk} A question that we are interested in is that ``are these equivalent to the original implication?''\end{rmk}
+\begin{thm}
+	\[\neg Q\Rightarrow\neg P\equiv P\Rightarrow Q.\]
+	\begin{center}\begin{tabular}{c|c|c|c|c|c}
+		$P$&$Q$&$P\Rightarrow Q$&$\neg P$&$\neg Q$&$\neg Q\Rightarrow\neg P$\\
+		\hline
+		T&T&T&F&F&T\\
+		T&F&F&F&T&F\\
+		F&T&T&T&F&T\\
+		F&F&T&T&T&T
+	\end{tabular}\end{center}
+\end{thm}
+Since the contrapositive of an implication is logically equivalent to the original implication, we sometimes prove the contrapositive in order to prove the original statement. 
+\begin{framed}
+\noindent\texttt{Prove that if the product of two integers $x$ and $y$ is even, at least one of them must be even.}
+\begin{prf}
+	We will prove the contrapositive: ``If $x$ and $y$ are both odd, then $xy$ is odd.''\par Let $x,y\in\Z$. Suppose $x$ and $y$ are odd.\par Then $\exists k,l\in\Z\st x=2k+1\text{ and }y=2l+1.$\par So, \[\begin{aligned}
+		xy=(2k+1)(2l+1)&=4kl+2k+2l+1\\&=2(2kl+k+l)+1
+	\end{aligned}\]\par Since $2kl+k+l\in\Z$, we see that $xy$ is odd.
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $x\in\Z$. Prove that if $x^2-4x+7$ is even, then $x$ is odd. }\par
+Contrapositive: If $x$ is even, then $x^2-4x+7$ is odd.
+\begin{prf}
+	We will prove the contrapositive.\par Let $x\in\Z$. Suppose $x$ is even. Then $x=2k\fs k\in\Z$.\par Then \[\begin{aligned}
+		x^2-4x+7&=(2k)^2-4(2k)+7\\&=4k^2-8k+7\\&=2(2k^2-4k+3)+1
+	\end{aligned}\]\par Since $2k^2-4k+3\in\Z$, by definition, $x^2-4x+7$ is odd. 
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $n\in\Z$. Prove that if $n^2$ is even, then $n$ is even.}\par 
+Contrapositive: If $n$ is odd, then $n^2$ is odd. 
+\begin{rmk}	This is a special case of Proof (2), where $x=y$ and is odd.\end{rmk}
+\begin{prf}
+	We will prove the contrapositive.\par Let $n\in\Z$. Suppose $n$ is odd. Then $n=2k+1\fs k\in\Z.$\par Then \[\begin{aligned}
+		n^2=(2k+1)^2&=4k^2+4k+1\\&=2(2k^2+2k)+1
+	\end{aligned}\]\par Since $(2k^2+2k)\in\Z$, we see $n^2$ is odd. 
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that every even number is of the form $4k$ or $4k+2$ for some $k\in\Z.$}
+\begin{prf}
+	We will prove the contrapositive: If $x$ is of the form $4k+1$ or $4k+3$, then $x$ is odd. \par Suppose $x\in\Z$.\par $\boxed{\text{Case }1}$ Suppose $x=4k+1\fs k\in\Z$. \par Then $x=4k+1=2(2k)+1$.\par Since $2k\in\Z$, by definition, $x$ is odd. \par $\boxed{\text{Case }2}$ Suppose $x=4k+3\fs k\in\Z.$\par Then $x=4k+3=2(2k+1)+1$\par Since $2k+1\in\Z$, by definition, $x$ is odd. 
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that every odd number is of the form $4k+1$ or $4k+4$ for some $k\in\Z$.}
+\begin{rmk}	This implication is the converse of  as the contrapositive of the previous one. Here, the implication and the converse of it is both true.\end{rmk}
+\begin{prf}
+	We will prove the contrapositive: If $x$ is of the form $4k$ or $4k+2$, then $x$ is even.\par Suppose $x\in\Z.$ \par $\boxed{\text{Case }1}$ Suppose $x=4k\fs k\in\Z$. \par Then $x=4k=2(2k)$.\par Since $2k\in\Z$, by definition, $x$ is even. \par $\boxed{\text{Case }2}$ Suppose $x=4k+2\fs k\in\Z.$\par Then $x=4k+=2=2(2k+1)$\par Since $2k+1\in\Z$, by definition, $x$ is even. 
+\end{prf}
+\end{framed}
+\begin{thm}[Prove by Contradiction]
+	To prove $P$, we assume $\neg P$ and show that this implies an absurd statement (like $1=0$ or $0<0$).
+\end{thm}
+\begin{df}[Simplest-form]
+	Let $m$ and $n$ be integers, with $n$ non-zero. We say the fraction $\dfrac{m}{n}$ is in \textbf{simplest-form} if $m$ and $n$ have no common factors.	
+\end{df}
+\begin{df}[Rational Numbers]
+	Let $x$ be a real number. The number $x$ is said to be $\textbf{rational}$ if there exists integers $m$ and $n$, with $n$ non-zero, such that $x=\dfrac{m}{n}$.	
+\end{df}
+\begin{ax}
+	After a finite number of cancellations, any	fraction $\dfrac{m}{n}$ can be written in simplest form. 
+\end{ax}
+\begin{framed}
+\noindent\texttt{Prove that $\sqrt{2}$ is irrational.}
+\begin{prf}
+	Assume for the sake of contradiction that $\sqrt{2}$ is rational. \par Then, by definition, $\exists p,q\in\Z,$ with $q\neq0\st\sqrt{2}=\dfrac{p}{q}$. We can assume that $p$ and $q$ have no common factors. \par Note that $\sqrt{2}q=p$, squaring both sides, we see that $2q^2=p^2$.\par Since $q^2\in\Z$, by definition, $p^2$ is even. From Proof (4), if $p^2$ is even, then $p$ must be even. By definition, $\exists k\in\Z\st p=2k.$\par Plugging this back to our equation: $2q^2=(2k)^2=4k^2,$ $q^2=2k^2$.\par Since $k^2\in\Z$, we see that $q^2$ is even. Again, from Proof (4), if $q^2$ is even, then $q$ is even. \par \begin{center}{\huge$\divideontimes$} This contradicts the fact that $p,q$ had no common factors.\end{center}\par So, $\sqrt{2}$ must, in fact, be irrational. 
+\end{prf}	
+\end{framed}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
