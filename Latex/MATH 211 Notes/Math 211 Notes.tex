@@ -65,6 +65,17 @@
 \def\dydx{\frac{\d y}{\d x}}
 \def\ddt{\frac{\d}{\d t}}
 \def\dx{\d x}
+\def\der{\partial}
+\def\pdx{\der x}
+\def\pdx{\der y}
+\def\pdfdx{\frac{\der f}{\der x}}
+\def\pdfdy{\frac{\der f}{\der y}}
+\def\pdfdxdx{\frac{\der^2 f}{\der x\ \der x}}
+\def\pdfdydy{\frac{\der^2 f}{\der y\ \der y}}
+\def\pdfdxdy{\frac{\der^2 f}{\der x\ \der y}}
+\def\pdfdydx{\frac{\der^2 f}{\der y\ \der x}}
+\def\pddx{\frac{\der }{\der x}}
+\def\pddy{\frac{\der }{\der y}}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -1133,41 +1144,106 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \begin{df}[Limit]
 	For two variable function $z=f(x,y)$, we check limit when $(x,y)\to(a,b)$. Therefore, we can make $(x,y)$ closer to $a(b)$ from infinitely many directions. Therefore, \[\lim_{(x,y)\to(a,b)}f(x,y)=L\] if in all directions that $(x,y)$ approaches to $(a,b)$, we have $f(x,y)\to L$.	
 \end{df}
+\begin{df}[Precise Definition of Limit]
+	$\forall$ given $\varepsilon>0$, $\exists$ associated $\delta>0\st$ if $(x,y)\in D$ and $d((x,y),(a,b))<\delta\implies d(f(x,y),L)<\varepsilon,$ where $d((x,y),(a,b))$ is the distance between $(x,y)$ and $(a,b)$ and is calculated by $\sqrt{(x-a)^2+(y-b)^2}.$
+\end{df}
+\begin{eg}
+	Consider function $f(x,y)=\dfrac{xy}{x^2+y^2}$, and identify if it is has a limit at $(0,0)$ or not. 
+	\begin{sol}
+		In the direction of $x$-axis ($y=0$), we have $f(x,y)=\dfrac{x\cdot0}{x^2+0^2}=0$ and $\displaystyle\lim_{(x,y)\to(0,0)}f(,y)=0$ along the $x$-axis.\par In the direction of $y$-axis ($x=0$), we have $f(x,y)=0.$, and $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=0$ along the $y$-axis.\par If $y=x$, $f(x,y)=f(x,x)=\dfrac{x^2}{x^2+x^2}=\dfrac{1}{2}$, and $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=\dfrac{1}{2}$ along the line $y=x.$
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^2+y^2}.$
+	\begin{sol}
+		By looking at the graph of the function, we think it has a limit at $(0,0)$. This is not enough, and later we will be able to say that limit exists by converting it to polar coordinate.\par Let $y=mx$: \[f(x,y)=f(x,mx)=\frac{x^2\cdot mx}{x^2+(mx)^2}=\frac{x^3m}{x^2(1+m^2)}=\frac{m}{1+m^2}x\]\[\therefore\lim_{(x,y)\to(0,0)}f(x,y)=0\text{ along the line of }y=mx.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	\[\lim_{(x,y)\to(0,0)}\frac{xy^2}{x^2+y^2}=0\]	
+	\[\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^2+y^4}=0\]
+	\[\lim_{(x,y)\to(0,0)}\frac{3x^3y}{x^4+y^4}\ \DNE \left(\text{check }\begin{cases}x=0\\y=x\end{cases}\right)\]
+\end{eg}
+\begin{df}[Continuity]
+	Functions of two-variables is continues at $(a,b)$ if \[\lim_{(x,y)\to(a,b)}=f(a,b).\]
+\end{df}
+\begin{eg}
+	Find $\displaystyle\lim_{(x,y)\to(1,2)}(x^2y^3-x^3y^2+3x+2y).$
+	\begin{sol}
+		As $x^2y^3-x^3y^2+3x+2y$ is a polynomial and continuous everywhere, so 
+		\[\lim_{(x,y)\to(1,2)}(x^2y^3-x^3y^2+3x+2y)=(1)^2(2)^3-(1)^3(2)^2
+		+3(1)+2(2)=1.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	$f(x,y)=\dfrac{x^2y}{x^2+y^2}$ is not continuous at $(0,0)$, but \[g(x,y)=\begin{cases}\dfrac{x^2y}{x^2+y^2}\qquad &(x,y)\neq(0,0)\\0\qquad &(x,y)=(0,0)\end{cases}\text{ is continuous at }(0,0).\]
+\end{eg}
+
+\subsection{Partial Function}
+In two-variable functions, we will have partial derivatives $f_x$ (derivative with respect to $x$) and $f_y$ (derivative with respect to $y$).
+\begin{df}[Partial Derivative]
+	If $f(x,y)$ is a two variable function, then its partial derivatives are $f_x$ and $f_y$ and is defined as \[\pdfdx=f_x(x,y)=\lim_{h\to0}\frac{f(x+h,y)-f(x,y)}{h}\]\[\pdfdy=f_y(x,y)=\lim_{h\to0}\frac{f(x,y+h)-f(x,y)}{h}\]	
+\end{df}
+\begin{eg}
+	Let $f(x,y)=x^3+x^2y^3-2y$ and find $f_x(2,1)$ and $f_y(2,1)$
+	\begin{sol}
+		Find $f_x(x,y)$: keep $y$ constant.\par $f_x(x,y)=3x^2+2xy^3$\par \[\therefore f_x(2,1)=3(2)^2+2(2)(1)^3=16\]\par Find $f_y(x,y)$: keep $x$ constant.\par $f_y(x,y)=3x^2y^2-2$\par\[\therefore f_y(2,1)=3(2)^2(1)^2-2=10\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Let $f(x,y)=4-x^2-2y^2$. Find $f_x(1,1)$ and interpret the values. 
+	\begin{sol}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (234,181.48) -- (443.44,181.48)(339.19,84) -- (339.19,259.48) (436.44,176.48) -- (443.44,181.48) -- (436.44,186.48) (334.19,91) -- (339.19,84) -- (344.19,91)  ;
+	\draw    (281.19,250.48) .. controls (310.19,49.48) and (372.19,51.48) .. (400.19,250.48) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (307,131.59) .. controls (307,129.61) and (308.61,128) .. (310.59,128) .. controls (312.58,128) and (314.19,129.61) .. (314.19,131.59) .. controls (314.19,133.58) and (312.58,135.19) .. (310.59,135.19) .. controls (308.61,135.19) and (307,133.58) .. (307,131.59) -- cycle ;
+	\draw    (356.19,37.48) -- (258.19,241.48) ;
+	\draw (357,55.4) node [anchor=north west][inner sep=0.75pt]    {$\text{Slope of tangent line: }\dfrac{\partial z}{\partial x}$};
+	\draw (373,102.4) node [anchor=north west][inner sep=0.75pt]    {$z-1=( -2)( x-1) \Rightarrow z=-2x+3$};
+	\draw (249,54.4) node [anchor=north west][inner sep=0.75pt]    {$y=1$};
+	\draw (346,79.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (441,188.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\end{tikzpicture}
+	\end{center}
+		$f(1,1)=4-1-2=1\implies A(1,1,1)$ lies on $f(x,y).$\par $\displaystyle\pdfdx=-2x\implies\pdfdx(1,1)=-2$\par Let's consider $y=1$:\par The plane $y=1$ will intersect with $f(x,y)$ at a line $\vecr(t)$.\par Solve $\vecr(t):\ \begin{cases}z=4-x^2-2y^2\\y=1\end{cases}$\par \[\Rightarrow z=4-x^2-2=2-x^2\]\par \[\therefore \vecr(t)=\langle t,1,2-t^2\rangle,\ \vecr'(t)=\langle 1,0,-2t\rangle\]\par At point $A(1,1,1)$, $t=1$.\par $\qquad\therefore\vecr'(1)=\langle1,0,-2\rangle,$ which is a directional vector of the tangent line. \par $\therefore$ Tangent line: \[L:\ x=1+t,\ y=1,\ z=1-2t\]
+	\end{sol}
+\end{eg}
+\begin{df}[Higher Order Partial Derivative]
+	\[\pdfdxdx=\pddx\left(\pdfdx\right)\]
+	\[\pdfdydy=\pddy\left(\pdfdy\right)\]
+	\[\pdfdxdy=\pddx\left(\pdfdy\right)\]
+	\[\pdfdydx=\pddy\left(\pdfdx\right)\]
+\end{df}
+\begin{thm}[Clairaut's Theorem]
+	If $f$ is continuous on a disk $D$, then \[\pdfdxdy=\pdfdydx.\]
+\end{thm}
+\begin{df}[Functions With More Than Two Variables]
+	If $U=f(x_1,\cdots,x_n),$ its partial derivative with respect to $x_i$ is \[\begin{aligned}
+		\frac{\partial f}{\pdx_i}&=\lim_{h\to0}\frac{f(x_a,\cdots,x_i+h,\cdots,x_n)-f(x_1,\cdots,x_n)}{h}\\&=\frac{\partial U}{\partial x_i}
+	\end{aligned}\]	
+\end{df}
+
+\subsection{Tangent Plane and Linear Approximation}
+\begin{thm}[Tangent Plane]
+	If $f$ has continuous partial derivatives, an equation of the tangent plane to the surface $z=f(x,y)$ at the point $(x_0,y_0,z_0)$ is \[z-z_0=\pdfdx(x_0,y_0)(x-x_0)+\pdfdy(x_0,y_0)(y-y_0).\]	
+\end{thm}
+\begin{eg}
+	Find the tangent plane of $f(x,y)=2x^2+y^2$ at $(1,1,3).$
+	\begin{sol}
+		\[\pdfdx=4x\qquad\pdfdy=2y\]
+		\[\therefore \pdfdx(1,1)=4\qquad\pdfdy(1,1)=2\]
+		$\therefore$ Tangent plane at $(1,1,3)$:\[\Pi: z-3=4(x-1)+2(y-3).\]
+	\end{sol}
+\end{eg}
+\begin{df}[Linearization and Linear Approximation]
+	Similar to single variable calculus, we can approximate the value of a function at a point using the tangent line: \[L(x,y)=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)\]	is the \textbf{linearization} of $f(x,y)$ at point $(a,b)$: \[f(x,y)\approx L(x,y)\] is called the \textbf{linear approximation} or the \textbf{tangent plane approximation} of $f$ at $(a,b).$
+\end{df}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 
 
 

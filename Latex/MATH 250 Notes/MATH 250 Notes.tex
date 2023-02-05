@@ -47,6 +47,7 @@
 \def\R{{\mathbb{R}}}
 \def\C{{\mathbb{C}}}
 \def\Q{{\mathbb{Q}}}
+\def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
@@ -69,8 +70,10 @@
 \def\vece{\vec{e}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
-\def\st{\ \mathrm{s.t.}\ }
-\def\fs{\ \mathrm{f.s.}\ }
+\def\st{\emph{ s.t. }}
+\def\fs{\emph{ f.s. }}
+\def\Iff{\emph{ iff }}
+\def\WTS{\mathit{WTS}}
 
 \begin{document}
 \maketitle
@@ -473,7 +476,7 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	A \textbf{corollary} is a result that is the immediate consequence of a theorem. 	
 \end{df}
 \begin{rmk}[Proving a theorem]
-	Want to show (WTS) $P\Rightarrow Q$: If	$P$ is false, $P\Rightarrow Q$ is automatically true, so there's nothing to show here. However, if $P$ is true, we need to show $Q$ is true (for $P\Rightarrow Q$ to be true)l.
+	Want to show ($\WTS$) $P\Rightarrow Q$: If	$P$ is false, $P\Rightarrow Q$ is automatically true, so there's nothing to show here. However, if $P$ is true, we need to show $Q$ is true (for $P\Rightarrow Q$ to be true)l.
 	
 	First line of a direct proof: Suppose $P$.
 	
@@ -637,49 +640,169 @@ Contrapositive: If $n$ is odd, then $n^2$ is odd.
 \begin{framed}
 \noindent\texttt{Prove that $\sqrt{2}$ is irrational.}
 \begin{prf}
-	Assume for the sake of contradiction that $\sqrt{2}$ is rational. \par Then, by definition, $\exists p,q\in\Z,$ with $q\neq0\st\sqrt{2}=\dfrac{p}{q}$. We can assume that $p$ and $q$ have no common factors. \par Note that $\sqrt{2}q=p$, squaring both sides, we see that $2q^2=p^2$.\par Since $q^2\in\Z$, by definition, $p^2$ is even. From Proof (4), if $p^2$ is even, then $p$ must be even. By definition, $\exists k\in\Z\st p=2k.$\par Plugging this back to our equation: $2q^2=(2k)^2=4k^2,$ $q^2=2k^2$.\par Since $k^2\in\Z$, we see that $q^2$ is even. Again, from Proof (4), if $q^2$ is even, then $q$ is even. \par \begin{center}{\huge$\divideontimes$} This contradicts the fact that $p,q$ had no common factors.\end{center}\par So, $\sqrt{2}$ must, in fact, be irrational. 
+	Assume for the sake of contradiction that $\sqrt{2}$ is rational. \par Then, by definition, $\exists p,q\in\Z,$ with $q\neq0\st\sqrt{2}=\dfrac{p}{q}$. We can assume that $p$ and $q$ have no common factors. \par Note that $\sqrt{2}q=p$, squaring both sides, we see that $2q^2=p^2$.\par Since $q^2\in\Z$, by definition, $p^2$ is even. From Proof (4), if $p^2$ is even, then $p$ must be even. By definition, $\exists k\in\Z\st p=2k.$\par Plugging this back to our equation: $2q^2=(2k)^2=4k^2,$ $q^2=2k^2$.\par Since $k^2\in\Z$, we see that $q^2$ is even. Again, from Proof (4), if $q^2$ is even, then $q$ is even. \par \begin{center}$\divideontimes$ This contradicts the fact that $p,q$ had no common factors.\end{center}\par So, $\sqrt{2}$ must, in fact, be irrational. 
 \end{prf}	
 \end{framed}
+\begin{framed}
+\noindent\texttt{Let $0<\alpha<1.$ Prove that $\sqrt{\alpha}>\alpha.$}
+\begin{prf}
+	\textbf{We will use the Proof by Contradiction.}\par 
+	Suppose $0<\alpha<1.$ Assume for the sake of contradiction that $\sqrt{\alpha}<\alpha.$\par Since $\alpha,\sqrt{\alpha}>0$ and $f(x)=x^2$ is an increasing function for positive $x$, squaring both sides, we have $\alpha\leq\alpha^2.$\par So, $\alpha^2-\alpha\geq0$. Then $\alpha(\alpha-1)\geq0.$\[\begin{cases}\alpha\geq0\\\alpha-1\geq0\end{cases}\qquad\text{or}\begin{cases}\alpha\leq0\\\alpha-1\leq0\end{cases}\]\par We have $\alpha\geq1\quad\text{or}\alpha\leq0$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $0<\alpha<1.$\end{center}\par So, $\sqrt{\alpha}>\alpha.$
+\end{prf}	
+Another way to prove is by contrapositive.
+\begin{prf}
+	We will prove the contrapositive: If $\sqrt{\alpha}\leq\alpha$, then $\alpha\leq0$ or $\alpha\geq1.$\par Suppose $\alpha\in\R$ and $\sqrt{\alpha}\leq\alpha$.\par As $\sqrt{\alpha}$ exists, $\alpha\geq0.$\par Since $\alpha,\sqrt{\alpha}\geq0$ and $f(x)=x^2$ is an increasing function for $x\geq0$: $\alpha\leq\alpha^2.$ \par Then $\alpha^2-\alpha\geq0$, $\alpha(\alpha-1)\geq0$.\par Since $\alpha\geq0$, $\alpha-1$ must also be greater than $0$.\par So, we have $\begin{cases}\alpha\geq0\\\alpha-1\geq0\end{cases}$\par Hence, we have $\alpha\geq1.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that there are no integer solutions to the equation $x^2=4y+2.$}
+\begin{prf}	
+	Assume for the sake of contradiction that $\exists x,y\in\Z\st x^2=4y+2.$\[x^2=4y+2=2(2y+1)\]\par Since $2y+1\in\Z$, $x^2$ is an even number, and thus $x$ is also an even number.\par Then, $\exists k\in\Z\st x=2k.$\[\begin{aligned}\therefore x^2=(2k)^2=4k^2&=4y+1\\2k^2&=2y+1\end{aligned}\]\par $\boxed{\text{Method }1}$\par Since $k^2\in\Z,$ $2k^2$ is even. Since $y\in\Z$, $2y+1$ is odd.\par Then the equation indicates an even number equals to an odd number.\par\begin{center}$\divideontimes$ This contradicts with the fact that even numbers cannot equal to an odd number.\end{center}\par $\boxed{\text{Method }2}$ \[\begin{aligned}2k^2&=2y+1\\2(k^2-y)&=1\\k^2-y&=\frac{1}{2}\end{aligned}\]\par\begin{center}$\divideontimes$ This contradicts with the fact that since $k,y\in\Z$, so does $k^2-y.$\end{center}\par So, our assumption is wrong. There is no integer solutions for $x^2=4y+2.$
+\end{prf}
+\end{framed}
+\begin{df}[Prime Numbers]
+	A prime number is a natural number that is only divisible by $1$ and itself.
+	\begin{eg}2, 3, 5, 7, 11, 13, 17, 19, ...\end{eg}
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove there are infinitely many primes}
+\begin{rmk} This is a very revealing proof by contradiction. It reveals a way to find a larger prime based on the primes that we already have. \end{rmk}
+\begin{prf}
+	Assume for the sake of contradiction that there are exactly $n$ primes, where $n\in\N$. Let's list them as $p_1,\ p_2,\ p_3,\cdots,p_n$, where $p_1=2,\ p_2=3,\cdots,$ $p_n$ is the largest prime.\par Consider the number $q=\underbrace{p_1p_2p_3\cdots p_n}_{\text{product}}+1$. Then notice that since $p_i\geq2\forall i$, we have $q>p_n$.\par Since $q>p_n$, $q$ cannot be prime, based on our assumption.\par So, $\exists p_k\in\{p_1,\ p_2,\ \cdots,\ p_n\}\st p_k\mid q.$ Then, by definition, $q=cp_k\fs c\in\Z.$\par So, \[c=\frac{q}{p_k}=\frac{p_1p_2p_3\cdots p_n+1}{p_k}=\frac{p_1p_2p_3\cdots p_n}{p_k}+\frac{1}{p_k}\]\par Then, \[\frac{1}{p_k}=c-\frac{p_1p_2p_3\cdots p_n}{p_k}\]\par Note that since $p_k$ is one prime among $p_1,\cdots p_n,$ $\dfrac{p_1p_2p_3\cdots p_n}{p_k}\in\Z.$\par Since $c\in\Z$, then $\dfrac{1}{p_k}\in\Z$.\begin{center}$\divideontimes$ This is a contradiction because $p_k\nmid1$ as $p_k\geq2\forall k.$\end{center}\par So, there must be infinitely many primes
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{If $n\in\Z$, then $5n^2+3n+7$ is odd.}
+\begin{prf}
+	Suppose $n\in\Z$.\par $\boxed{\text{Case }1}$ If $n$ is even. Then $\exists k\in\Z\st n=2k.$ \[5n^2+3n+7=5(2k)^2+3(2k)+7=20k^2+6k+7=2(10k^2+3k+3)+1\]\par\hspace{10mm}Since $10k^2+3k+3\in\Z$, $5n^2+3n+7$ is odd.\par $\boxed{\text{Case }2}$ If $n$ is odd. Then $\exists k\in\Z\st n=2k+1$.\[5n^2+3n+7=5(2k+!)^2+3(2k+1)+7=20k^2+26k+15=2(10k^2+13k+7)+1\]\par\hspace{10mm}Since $10k^2+13k+7\in\Z$, $5n^2+3n+7$ is odd.
+\end{prf}
+\end{framed}
+\begin{df}[Equivalence]
+	The prove $P\iff Q$ (equivalence or biconditional, ``if and only if'' or ``$\Iff$'')	we must prove the forward implication $P\implies Q$ and the backward implication $Q\implies P$.
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that for $x,y\in\R$, $(x+y)^2=x^2+y^2$ if and only if $x=0$ or $y=0$.}
+\begin{prf}
+	($\Rightarrow$): We will show that $(x+y)^2=x^2+y^2\implies x=0$ or $y=0$.\par Suppose $x,y\in\Z\st(x+y)^2=x^2+y^2$. So we have \[x^2+y^2+2xy=x^2+y^2\]\par That is, $2xy=0$ or $xy=0$. So $x=0$ or $y=0$\par ($\Leftarrow$): We will show that $x=0$ or $y=0$ $\implies(x+y)^2=x^2+y^2$. \par Notice that the equation retains symmetry. \par Suppose $x,y\in\R$. Assume $x=0$ or $y=0$.\par Without loss of generality (WLOG), we may assume that $x=0$.\par Then, \[\begin{aligned}(x+y)^2=(0+y)^2&=y^2\\x^2+y^2=0^2+y^2&=y^2\end{aligned}\]\par So, $(x+y)^2=x^2+y^2.$
+\end{prf}
+\end{framed}
 
+\newpage
+\section{Sets}
 
+\subsection{Sets and Subsets}
+\begin{df}[Set, Element]
+	A \textbf{set} is a collection of objects, called \textbf{elements}. A set is typically denoted by a capital letter and a set's elements are listed in $\{\}$.
+	\begin{eg}
+	\begin{itemize}
+		\item $A=\{1,2,3\}$
+		\item $F=\{1,2,3,5,8,13,...\}$ the set of Fibonacci numbers
+		\item $\N=\{1,2,3,4,5,...\}$ the \textbf{natural numbers} (Does not include $0$.)
+		\item $\emptyset$ the \textbf{empty set}
+		\item $M=\left\{\begin{pmatrix}1&0\\0&0\end{pmatrix},\begin{pmatrix}0&1\\0&0\end{pmatrix},\begin{pmatrix}0&0\\1&0\end{pmatrix},\begin{pmatrix}0&0\\0&1\end{pmatrix}\right\}$
+		\item $\{\text{Ludacris},\text{T.I.},\text{Killer Mike},\text{Big Boi},\text{Andre 3000},\text{Latto}\}$
+	\end{itemize}	
+	\end{eg}
+\end{df}
+\begin{df}
+	We write $a\in A$ ($a$ is in $A$) to indicate $a$ is an element of $A$ and $a\notin A$ ($a$ is not in $A$) to indicate $a$ is not an element of $A$.	
+\end{df}
+\begin{df}[Cardinality]
+	The \textbf{cardinality} of a set $A$ is the number of elements in $A$ and is denoted $|A|.$
+\end{df}
+\begin{rmk} When listing the elements of a set, each element is listed only once (for example, $\{1,1\}$ is not a set) and the order of the elements doesn't matter ($\{1,2\}=\{2,1\}$). \end{rmk}
+\begin{df}[Set Builder Notation]
+	We can use the set builder notation to describe a general property of the elements.
+	\begin{eg}
+		$\{2n\mid n\in\N\}$ is ``the set of elements of the form $2n$ such that $n$ is a natural number.''	
+	\end{eg}
+	\begin{rmk} We use $2\Z$ to represent $\{2k\mid k\in\Z\}.$ Similarly, we have $5\Z, 10\Z,...$\end{rmk}
+\end{df}
+\begin{df}[Subset]
+	We say a set $A$ is a \textbf{subset} of a set $B$, denoted $A\subseteq B$, if every element of $A$ is an element of $B$ (If $a\in A$, then $a\in B$). We write $A\nsubseteq B$ if $A$ is not a subset of $B$ ($\neg(A\subseteq B)=a\in A\text{ and }a\notin B.$)
+	\begin{itemize}
+		\item $A\subseteq B$: ``$A$ is a subset of $B$''
+		\item $B\supseteq A$: ``$B$ contains $A$''
+		\item $A\subsetneq B$: ``$A$ is a proper subset of $B$'' or ``$A$ is a subset of $B$, but $A\neq B$.''
+	\end{itemize}
+	\begin{rmk}By definition, $A\subseteq A$ (every set is a subset of itself). \end{rmk}
+	\begin{rmk}$\emptyset$ is a subset of any set.\end{rmk}
+\end{df}
+\begin{thm}
+	A set of $n$ elements has $2^n$ subsets.
+	\begin{prf}
+		For every element in the set, they have two options: in the subset or out the subset. Hence, there will be in total $2^n$ subsets.	
+	\end{prf}
+\end{thm}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{df}
+	Building New Sets From Old
+	\begin{itemize}
+		\item \textbf{Intersection}: $A\cap B=\{x\mid x\in\ A\text{ and }x\in B\}$
+		\item \textbf{Union}: $A\cup B=\{x\mid x\in A\text{ or }x\in B\}$
+		\item \textbf{Difference}: $A-B=A\backslash B=\{x\mid x\in A\text{ and }x\notin B\}$
+	\end{itemize}
+\end{df}
+\begin{thm}
+	\[A\cup B=B\cup A\]	
+	\[A\cap B=B\cap A\]
+	\[A-B\neq B-A\]
+\end{thm}
+\begin{df}[Universal Set]
+	A \textbf{universal set} of $A$ is a set within which $A$ exists.	
+\end{df}
+\begin{df}[Complement]
+	The \textbf{complement} of $A$ in its universal set $U$ is $\overline{A}=A^{C}=U-A.$	
+\end{df}
+\begin{thm}
+	\[A\cup\overline{A}=U\]
+	\[A\cap\overline{A}=\emptyset\]	
+	Specially, if $U$ is finite, $|U|=|A|+|\overline{A}|$
+\end{thm}
+\begin{thm}[De Morgan's Laws]
+	\[\overline{A\cup B}=\overline{A}\cap\overline{B}\]	
+	\[\overline{A\cap B}=\overline{A}\cup\overline{B}\]
+\end{thm}
+\textbf{Set Theoretic Proofs}: Prove $a\in A$: To prove an element belongs to a set, we must prove the element satisfies the required properties of the set. 
+\begin{framed}
+\noindent\texttt{Prove that $14\in\{4a+7b:\ a,b\in\Z\}$}	
+\begin{prf}
+	Note that $14=4(0)+7(2)$\par Since $0,2\in\Z$, by definition, $14\in\{4a+7b\mid a,b\in\Z\}.$
+\end{prf}
+\end{framed}
+\begin{thm}
+	Proving $A\subseteq B$: To prove $A\subseteq B$, we must prove that if $a\in A,$ then $a\in B.$ We can do so using any technique:
+	\begin{itemize}
+		\item Direct proof: Suppose $a\in A$...... Therefore, $a\in B.$
+		\item Contrapositive proof: Suppose $a\notin B$...... Therefore, $a\notin A.$
+		\item Contradiction: Suppose $a\in A.$ Assume for the sake of contradiction that $a\in B$......$\divideontimes$
+	\end{itemize}	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Prove that for all $m,n\in\Z$, we have $\{x\in\Z: mn\mid x\}\subseteq\{x\in\Z:m\mid n\}\cap\{x\in\Z:n\mid x\}.$}	
+\begin{prf}
+	Let $x\in\Z\st x\in\{x\in\Z: mn\mid x\}.$ Then, $mn\mid x,$ and so $x=kmn\fs k\in\Z.$\par So, $x=m(kn),$ and since $kn\in\Z$, $x\in\{x\in\Z:m\mid x\}$.\par Also, $x=n(km),$ and since $km\in\Z$, $x\in\{x\in\Z:n\mid x\}$.\par By definition of intersection, $x\in\{x\in\Z:m\mid x\}\cap\{x\in\Z:n\mid x\}$.
+\end{prf}
+\end{framed}
+\begin{df}[Equal]
+	We say two sets $A$ and $B$ are \textbf{equal}, denoted $A=B$, if they have the same elements.
+	\begin{rmk}
+		$A=B\iff A\subseteq B\text{ and }B\subseteq A$	
+	\end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{If $A$, $B$, and $C$ are sets, prove $(A\cap B)-C=(A-C)\cap(B-C)$}
+\begin{prf}
+	($\Rightarrow$): $(A\cap B)-C\subseteq(A-C)\cap(B-C)$\par Suppose $x\in(A\cap B)-C$ ($\WTS$: $x\in(A-C)\cap(B-C)$)\par By definition of intersection, $x\in A$ and $x\in B$\par By definition of difference, $x\notin C.$\par Since $x\in A$ and $x\notin C$, $x\in A-C$. Similarly, since $x\in B$ and $x\notin C$, $x\in B-C$.\par By definition of intersection, $x\in(A-C)\cap(B-C)$\par
+	($\Leftarrow$): $(A-C)\cap(B-C)\subseteq(A\cap B)-C$\par Let $x\in(A-C)\cap(B-C)$.\par By definition of intersection, $x\in A-C$ and $x\in B-C$.\par By definition of difference, $x\in A$, $x\notin C$ and $x\in B$, $x\notin C$.\par Since $x\in A$ and $x\in B$, $x\in(A\cap B)$\par Further since $x\notin C$, by definition of difference, $x\in(A\cap B)-C.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{If $A$ and $B$ are sets, prove that $A\subseteq B$ if and only if $\overline{B}\subseteq\overline{A}$.}
+\begin{prf}
+	($\Rightarrow$): $A\subseteq B\implies\overline{B}\subseteq\overline{A}.$\par Suppose $A\subseteq B.$ ($\WTS$: $\overline{B}\subseteq\overline{A})$\par Suppose $x\in\overline{B}.$ ($\WTS$: $x\in\overline{A}$)\par Since $x\in\overline{B}$, then $x\notin B$. Note that since $A\subseteq B$, by definition, if $x\in A$, then $x\in B.$\par By contrapositive, $x\notin B\implies x\notin A$\par Since $x\notin B$, by assumption, $x\notin A$. That is $x\in\overline{A}.$\par ($\Leftarrow$): $\overline{B}\subseteq\overline{A}\implies A\subseteq B.$\par Suppose $\overline{B}\subseteq\overline{A}$ ($\WTS$: $A\subseteq B$)\par Suppose $x\in A$ ($\WTS$: $x\in B$)\par Since $x\in A,$ then $x\notin\overline{A}.$ Since$\overline{B}\subseteq\overline{A}$, by contrapositive, \[x\notin\overline{A}\implies x\in\overline{B}.\]\par Since $x\notin\overline{A},$ by assumption, $x\notin\overline{B}$. That is, $x\in B$.
+\end{prf}	
+\end{framed}
 
 
 

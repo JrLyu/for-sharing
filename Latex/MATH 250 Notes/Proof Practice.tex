@@ -1,35 +1,40 @@
-\documentclass[11pt,letter]{article}
+\documentclass[10pt,letter]{article}
 \usepackage{amssymb,amsmath,amsthm,amsfonts,epsfig,graphicx,dsfont,bbm, bbold, url, color, setspace, multirow,pinlabel, pifont, framed}
 \usepackage[all]{xy}
 \usepackage{fancyhdr, geometry}
 
 % Page Setting
-\geometry{a4paper, left=2cm, right=1.25in, bottom=1.25cm, top=1.25cm}
+\geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
 \pagestyle{fancy}
-\linespread{1.25}
+\linespread{1.75}
 
 % Head & Foot Setting
 \fancyhead[LO,LE]{} 
 \fancyhead[RO,RE]{}
 \chead{\textbf{Practice Proofs}} 
-\cfoot{\textbf{ }}
-\fancyfoot[LO,LE]{Jiuru Lyu} 
-\fancyfoot[RO,RE]{Page \thepage\ of \pageref{LastPage}} 
-\renewcommand{\footrulewidth}{0.5pt}
-\parindent 4em
+\cfoot{\textbf{Page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[LO,LE]{} 
+\fancyfoot[RO,RE]{} 
+\renewcommand{\headrulewidth}{0.5pt}
+%\renewcommand{\footrulewidth}{0.5pt}
+\parindent 2.5em
 
 % Defining Environments
-\newtheorem{thm}{Theorem}[subsection]
-\newtheorem{df}{Definition}[subsection]
-\newtheorem{eg}{Example}[subsection]
+\newcounter{nq}[section]
+\setcounter{nq}{0}
+\newcounter{np}[section]
+\setcounter{np}{0}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{df}{Definition}[section]
+\newtheorem{eg}{Example}
 \newtheorem{ax}{Axiom}[section]
-\newtheorem{prop}{Proposition}[subsection]
-\newtheorem{lem}{Lemma}[subsection]
-\newtheorem{cor}{corollary}[subsection]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{cor}{corollary}[section]
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{p}{\par\noindent\textbf{\textit{Proof. }}\par}{\par\hfill $\blacksquare$\par}
-\newenvironment*{q}[1]{\centering\emph{#1}\par\noindent\texttt}{}
 \newtheorem*{ext}{\indent Extension}
+\newenvironment*{p}{\par\noindent\textbf{\textit{Proof \stepcounter{np}\thenp. }}\par}{\par\hfill $\blacksquare$\par}
+\newenvironment*{q}[1]{\noindent\emph{\thesection.\stepcounter{nq}\thenq$\quad $ #1}\par\noindent\texttt}{}
 
 
 % Defining Symbols
@@ -37,6 +42,7 @@
 \def\R{{\mathbb{R}}}
 \def\C{{\mathbb{C}}}
 \def\Q{{\mathbb{Q}}}
+\def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
@@ -59,8 +65,9 @@
 \def\vece{\vec{e}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
-\def\st{\ \mathrm{s.t.}\ }
-\def\fs{\ \mathrm{f.s.}\ }
+\def\st{\emph{ s.t. }}
+\def\fs{\emph{ f.s. }}
+\def\Iff{\emph{ iff }}
 
 % Title Information
 \title{Foundations of Mathematics -- \textbf{Proof Practice}}
@@ -68,25 +75,93 @@
 \date{\today}
 
 \begin{document}
-\maketitle
-\marginpar{\textbf{Side Notes}}
 
-\begin{framed}
-\begin{q}{Class Handout, Chapter 1.3, Implications.}{Let $a,\ b,\ $and $c$ be integers, with $a$ and $b$ non-zero. If $(ab)\mid(ac)$, then $b\mid c.$}\end{q}
-\end{framed}
+
+\section{Statements}
+\begin{framed}\begin{q}
+	{Class Handout, Chapter 1.3, Implications.}
+	{Let $a,\ b,\ $and $c$ be integers, with $a$ and $b$ non-zero. If $(ab)\mid(ac)$, then $b\mid c.$}
+\end{q}\end{framed}
 \begin{p}
 	Let	$a,b,c\in\Z$ with $a\neq0$ and $b\neq0$.\par Suppose $(ab)\mid(ac)$. Then $\exists k\in\Z\st ac=(ab)k$.\par Divide both sides of the equation by $a$: \[c=bk.\] \par Since $k\in\Z$, by definition of divides, $b\mid c$.
 \end{p}
-\begin{framed}
 
-\begin{q}
-{Class Handout, Chapter 1.4, Contrapositive and Converse}
-{Prove that for all real numbers $a$ and $b$, if $a\in\Q$ and $ab\notin\Q$, then $n\notin Q$.}	
-\end{q}	
-\end{framed}
+\begin{framed}\begin{q}
+	{Class Handout, Chapter 1.4, Contrapositive and Converse}
+	{Prove that for all real numbers $a$ and $b$, if $a\in\Q$ and $ab\notin\Q$, then $n\notin Q$.}	
+\end{q}\end{framed}
 \begin{p}
-	proof
+	Let $a,b\in\Q$.\par Assume for the sake of contradiction that if $a\in\Q$ and $ab\notin\Q$, we have $b\in\Q$.\par Then, $\exists p,q,m,n\in\Z\st a=\dfrac{m}{n}$ and $b=\dfrac{p}{q}$.\par Hence, \[ab=\frac{m}{n}\cdot\frac{p}{q}=\frac{mp}{nq}\]\par As $mp, nq\in\Z$, $ab\in\Q.$\begin{center}$\divideontimes$ This contradicts with the fact that $ab\notin\Q$.\end{center}\par So, $b$ must not be rational. 
 \end{p}
+
+\begin{framed}\begin{q}
+{Chapter 1.1 \# 7(c)}
+{Prove the square of an even integer is divisible by 4.}	
+\end{q}\end{framed}
+\begin{p}
+	Suppose $x\in\Z$ is even. Then $\exists k\in\Z\st x=2k.$\par Then, $x^2=(2k)^2=4k^2.$\par Since $k^2\in\Z$, we have $4\mid 4k^2$.
+\end{p}
+
+\begin{thm}[Archimedean Principle]\label{AP}
+	For every real number $x$, there is an integer $n$, such that $n>x$.	
+\end{thm}
+
+\begin{framed}\begin{q}
+	{Chapter 1.1 \# 11}
+	{For every positive real number $\varepsilon$, there exists a positive integer $N$ such that $\dfrac{1}{n}<\varepsilon$ for all $n\geq N.$}
+\end{q}\end{framed}
+\begin{p}
+	Suppose $\varepsilon\in\R$ and $\varepsilon>0.$\marginpar{}\par Since $\varepsilon\in\R$, we have $\dfrac{1}{n}\in\R.$\par Then, by Archimedean Principle, $\exists n\in\Z\st n>\dfrac{1}{\varepsilon}.$\par Hence, $n\varepsilon>1$ or $\varepsilon>\dfrac{1}{n}.$\par Suppose $N\in\Z\st N=\left\lceil\dfrac{1}{\varepsilon}\right\rceil$\par\textit{$\left\lceil\dfrac{1}{\varepsilon}\right\rceil$ means the integer greater to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\notin\Z$, and the integer equals to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\in\Z.$}\par Hence, $N\geq\dfrac{1}{\varepsilon}.$\par As $n>\dfrac{1}{\varepsilon},$ we have $n\geq N$
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 1.1 \# 12}
+	{Use the Archimedean Principle (Theorem \ref{AP}) to prove if $x$ is a real number, then there exists a positive integer $n$ such that $-n<x<n.$}
+\end{q}\end{framed}
+\begin{p}
+	Suppose $x\in\R.$\par $\boxed{\text{Case }1}$ If $x>0$, then $-x<0$ (i.e., $-x<0<x$).\par\hspace{10mm} By the Archimedean Principle, $\exists n\in\Z\st n>x.$\par\hspace{10mm} Multiply $(-1)$ on both sides of the inequality: \[-n<-x\]\par\hspace{10mm} As $-x<0<x$, \[-n<-x<0<x<n,\]\par\hspace{10mm} which means $-n<x<n,$ and $n$ is positive.\par $\boxed{\text{Case }2}$ If $x<0,$ then $-x>0$ (i.e., $-x>0>x$)\par\hspace{10mm} Since $x\in\R$, we have $-x\in\R$.\par\hspace{10mm} By the Archimedean Principle, $\exists n\in\Z\st n>-x.$\par\hspace{10mm} Multiply $(-1)$ on both sides of the inequality: \[-n<x\]\par\hspace{10mm} As $x<0<-x,$ \[-n<x<0<-x<n,\]\par\hspace{10mm} which means $-n<x<n,$ and $n$ is positive.\par In all cases, we have proven that $x\in\R\implies\exists n\in\Z,\ n>0\st-n<x<n.$
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 1.1 \# 13}
+	{Prove that if $x$ is a positive real number, then there exists a positive integer $n$ such that $\dfrac{1}{n}<x<n$.}
+\end{q}\end{framed}
+\begin{p}
+	Suppose $x\in\R,\ x>0$\par $\boxed{\text{Case }1}$ If $0<x\leq1,$ then $\dfrac{1}{x}\geq1.$\par\hspace{10mm} Hence, $x\leq1\leq\dfrac{1}{x}.$\par\hspace{10mm} As $x\in\R,$ $\dfrac{1}{x}\in\R$, then by the Archimedean Principle (Theorem \ref{AP}): \[\exists n\in\Z\st n>\dfrac{1}{x}.\]\par\hspace{10mm} Hence, $nx>1$ or $x>\dfrac{1}{n}.$\par\hspace{10mm}As $x\leq\dfrac{1}{x},$ $n>\dfrac{1}{x}$, and $x>\dfrac{1}{n}$, we have \[\frac{1}{n}<x<n.\]\par$\boxed{\text{Case }2}$ If $x>1$, then $0<\dfrac{1}{x}<1.$\par\hspace{10mm} Hence, $\dfrac{1}{x}<1<x.$\par\hspace{10mm} As $x\in\R$, by the Archimedean Principle: \[\exists n\in\Z\st n>x>0\]\par\hspace{10mm} Hence, $\dfrac{1}{n}<\dfrac{1}{x}$\par\hspace{10mm} As $\dfrac{1}{x}<x$, $\dfrac{1}{n}<\dfrac{1}{x},$ and $n>x,$ we have \[\dfrac{1}{n}<x<n\]\par In all cases, we proven that $x\in\R,\ x>0\implies\exists n\in\Z, n>0\st\dfrac{1}{n}<x<n.$
+\end{p}
+
+\begin{framed}\begin{q}
+	{Handout Chapter 1.4-2 More Contradictions and Equivelance}
+	{There are no positive integer solutions to the equation $x^2-y^2=10$.}
+\end{q}\end{framed}
+\begin{p}
+	Assume for the sake of contradiction that there are positive integer solutions to the equation $x^2-y^2=10.$\par Suppose $\exists x,y\in\Z$ and $x>0,\ y>0\st x^2-y^2=10.$\par Then, we have $x^2=10+y^2.$\par Since $x>0,\ x^2>0,$ we have $10+y^2>0.$\par Then, $y^2>-10.$\par\begin{center}$\divideontimes$ This contradicts with the fact that $y^2\geq0$ if $y\in\Z.$\end{center}\par So, our assumption is wrong. There must be no positive integer solutions to the equation $x^2-y^2=10.$
+\end{p}
+
+\begin{framed}\begin{q}
+	{Handout Chapter 1.4-2 More Contradictions and Equivelance}
+	{Show that if $a\in\Q$ and $b\in\Q'$, then $a+b\in\Q'$}
+	\begin{rmk}
+		The notation $\Q$ means the set for rational numbers, and $\Q'$ means the set for irrational numbers.
+	\end{rmk}
+\end{q}\end{framed}
+\begin{p}
+	Suppose $a\in\Q$ and $b\in\Q'$\par Assume for the sake of contradiction that $a+b\in\Q$.\par Then, $\exists m,n,p,q\in\Z$ such that $a=\dfrac{m}{n}$ and $a+b=\dfrac{p}{q}.$\par Then, \[b=\frac{p}{q}-a=\frac{p}{q}-\frac{m}{n}=\frac{pn-mq}{qn}\in\Q\]\par Since $pn-mq\in\Q$ and $qn\in\Z$, we have $b=\dfrac{pn-mq}{qn}\in\Q$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $b\in\Q'$. \end{center}\par So, $a+b$ must be irrational. 
+\end{p}
+
+\begin{framed}\begin{q}
+	{Handout Chapter 1.4-2 More Contradictions and Equivelance}
+	{If $n\in\N$ and $2^n-1$ is prime, then $n$ is prime.}
+\end{q}\end{framed}
+\begin{p}
+	We will prove the contrapositive: if $n$ is not prime, then $2^n-1$ is not prime.\par Suppose $n$ is not prime. Then, $\exists a,b\in\Z$ with $1<a,b<n\st n=ab.$\par Then, $2^n-1=2^{ab}=\left(2^a\right)^b-1.$\par Notice that for $x^w-1$, by polynomial long division, have \[x^w-1=(x-1)\left(x^{w-1}+x^{w-2}+\cdots+1\right),\]\par Substitute $x=2^a$ and $w=b$, we have \[2^n-1=\left(2^a-1\right)\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right].\]\par Since $\left(2^a-1\right)\in\Z$ and $\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right]\in\Z,$ we see that $2^n-1$ is not prime. 
+\end{p}
+
+
+
+
+
+
 
 
 
