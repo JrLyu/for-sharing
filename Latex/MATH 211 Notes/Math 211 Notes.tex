@@ -15,9 +15,9 @@
 \usepackage{url}
 \usepackage{setspace}
 \usepackage[T1]{fontenc}
-\usepackage{mathptmx}
 \usepackage{framed}
 \usepackage{pifont}
+\usepackage{physics}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -65,17 +65,17 @@
 \def\dydx{\frac{\d y}{\d x}}
 \def\ddt{\frac{\d}{\d t}}
 \def\dx{\d x}
-\def\der{\partial}
-\def\pdx{\der x}
-\def\pdx{\der y}
-\def\pdfdx{\frac{\der f}{\der x}}
-\def\pdfdy{\frac{\der f}{\der y}}
-\def\pdfdxdx{\frac{\der^2 f}{\der x\ \der x}}
-\def\pdfdydy{\frac{\der^2 f}{\der y\ \der y}}
-\def\pdfdxdy{\frac{\der^2 f}{\der x\ \der y}}
-\def\pdfdydx{\frac{\der^2 f}{\der y\ \der x}}
-\def\pddx{\frac{\der }{\der x}}
-\def\pddy{\frac{\der }{\der y}}
+\def\del{\partial}
+\def\pdx{\del x}
+\def\pdx{\del y}
+\def\pdfdx{\displaystyle\frac{\del f}{\del x}}
+\def\pdfdy{\displaystyle\frac{\del f}{\del y}}
+\def\pdfdxdx{\displaystyle\frac{\del^2 f}{\del x\del x}}
+\def\pdfdydy{\displaystyle\frac{\del^2 f}{\del y\del y}}
+\def\pdfdxdy{\displaystyle\frac{\del^2 f}{\del x\del y}}
+\def\pdfdydx{\displaystyle\frac{\del^2 f}{\del y\del x}}
+\def\pddx{\displaystyle\frac{\del }{\del x}}
+\def\pddy{\displaystyle\frac{\del }{\del y}}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -1240,6 +1240,35 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \begin{df}[Linearization and Linear Approximation]
 	Similar to single variable calculus, we can approximate the value of a function at a point using the tangent line: \[L(x,y)=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)\]	is the \textbf{linearization} of $f(x,y)$ at point $(a,b)$: \[f(x,y)\approx L(x,y)\] is called the \textbf{linear approximation} or the \textbf{tangent plane approximation} of $f$ at $(a,b).$
 \end{df}
+\begin{df}[Differentiable Functions]
+	A \textbf{differentiable function} is a function that the linear approximation is a good approximation when $(x,y)$ are very close to $(a,b).$	
+\end{df}
+\begin{thm}[A sufficient condition for differentiability]
+	If partial derivative $\displaystyle\pdfdx$ and $\displaystyle\pdfdy$ exists near $(a,b)$ and are continuous at $(a,b),$ then $f$ is differentiable at $(a,b).$
+\end{thm}
+\begin{eg}
+	Show that function $\displaystyle f(x,y)=\frac{\sqrt{x}}{y}$ is differentiable at $(16,5)$ and use it to approximate $\displaystyle\frac{\sqrt{16.02}}{4.96}.$
+	\begin{sol}
+		\[f(16,5)=\frac{\sqrt{16}}{5}=\frac{4}{5};\quad\pdfdx=\frac{1}{2y\sqrt{x}};\quad\pdfdy=-\frac{\sqrt{x}}{y^2}.\]\[\therefore\pdfdx\eval{}_{(16,5)}=\frac{1}{2(5)\sqrt{16}}=\frac{1}{40};\quad\pdfdy\eval{}_{(16,5)}=-\frac{\sqrt{16}}{25}=-\frac{4}{25}.\]	As $\pdfdx$ and $\pdfdy$ exists and is continuous at $(x,y)=(16,5)$, $f(x,y)$ is differentiable at $(16,5).$\par Then, the approximation is \[f(x,y)\approx f(a,b)+\pdfdx(a,b)(x-a)+\pdfdy(a,b)(y-b)\] At $a=16$ and $b=5$: \[\begin{aligned}\frac{\sqrt{x}}{y}&\approx\frac{4}{5}+\frac{1}{40}(x-16)+\qty(-\frac{4}{25})(y-5)\\&=\frac{4}{5}+\frac{1}{40}x-\frac{2}{5}-\frac{4}{25}y+\frac{4}{5}\\&=\frac{1}{40}-\frac{4}{25}y+\frac{6}{5}.\end{aligned}\] Therefore, $\displaystyle\frac{\sqrt{16.02}}{4.96}\approx\frac{1}{40}(16.02)-\frac{4}{25}(4.96)+\frac{6}{5}\approx0.807.$
+	\end{sol}
+\end{eg}
+\begin{df}[Differentials]
+	\[\Delta z=\Delta f=f(a+\Delta x, b+\Delta y)-f(a,b)\]\[\d z=f_x(a,b)\dx+f_y(a,b)\d y\]	
+\end{df}
+\begin{ext}[Differentials in Higher Dimensions]
+	Let $U=f(x_1, x_2,\cdots, x_n),$ we have \[\d U=f_{x_1}(a_1,\cdots,a_n)\dx_1+f_{x_2}(a_1,\cdots,a_n)\dx_2+\cdots+f_{x_n}(a_1,\cdots,a_n)\dx_n\]\[\Delta U=\Delta f=f(x_1+\Delta x_1, x_2+\Delta x_2,\cdots, x_n+\Delta x_n)-f(x_a,\cdots,x_n)\]
+\end{ext}
+
+\subsection{The Chain Rule}
+\begin{thm}[The Multivariable Chain Rule]
+	Let $U$ be a differentiabel function of $n$ variables $x_1,\cdots,x_n$, and each $x_i$ for $i=1,\cdots,n$	is a differentiable function of $t_1,\cdots,t_m$. Then, we have \[\pdv{U}{t_i}=\pdv{U}{x_1}\pdv{x_1}{t_i}+\pdv{U}{x_2}\pdv{x_2}{t_i}+\cdots+\pdv{U}{x_n}\pdv{x_n}{t_i}\]
+\end{thm}
+\begin{eg}
+	Let $U=x^4y+y^2z^3$ and $x=rse^t$, $y=rs^2e^{-t}$, and $z=r^2s\sin(t)$. Find thee value of $\displaystyle\pdv{U}{s}$ when $r=2,\ s=1,\ t=0.$
+	\begin{sol}
+		From the multivariable china rule, we know \[\pdv{U}{s}=\pdv{U}{x}\pdv{x}{s}+\pdv{U}{y}\pdv{y}{s}+\pdv{U}{z}\pdv{z}{s}\]	\[\pdv{U}{x}=4x^3y;\quad\pdv{U}{x}=x^4+2yz^3;\quad\pdv{U}{x}=3y^2z^2;\]\[\pdv{x}{s}=re^t;\quad\pdv{y}{s}=2rse^{-t};\quad\pdv{x}{s}=r^2\sin{t}.\] \[\therefore\pdv{U}{s}=(4x^3y)(re^t)+(x^4+2yz^3)(2rse^{-t})+(3y^2z^2)(r^2\sin{t})\] When $r=2,\ s=1,\ t=0,$ we have \[x=2,\ y=2,\ z=0.\] \[\therefore\pdv{U}{s}\eval{}_{(r,s,t)=(2,1,0)}=(4(2)^3(2))(2)+(2^4)(2\cdot2)+0=128+64=192.\]
+	\end{sol}
+\end{eg}
 
 
 

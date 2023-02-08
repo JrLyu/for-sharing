@@ -7,7 +7,6 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{geometry}
-\usepackage{mathptmx}
 \usepackage{framed}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
@@ -49,6 +48,7 @@
 \def\Q{{\mathbb{Q}}}
 \def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
+\def\P{{\mathcal{P}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
 \def\RE{{\mathrm{Re}}}
@@ -793,8 +793,8 @@ Another way to prove is by contrapositive.
 \begin{framed}
 \noindent\texttt{If $A$, $B$, and $C$ are sets, prove $(A\cap B)-C=(A-C)\cap(B-C)$}
 \begin{prf}
-	($\Rightarrow$): $(A\cap B)-C\subseteq(A-C)\cap(B-C)$\par Suppose $x\in(A\cap B)-C$ ($\WTS$: $x\in(A-C)\cap(B-C)$)\par By definition of intersection, $x\in A$ and $x\in B$\par By definition of difference, $x\notin C.$\par Since $x\in A$ and $x\notin C$, $x\in A-C$. Similarly, since $x\in B$ and $x\notin C$, $x\in B-C$.\par By definition of intersection, $x\in(A-C)\cap(B-C)$\par
-	($\Leftarrow$): $(A-C)\cap(B-C)\subseteq(A\cap B)-C$\par Let $x\in(A-C)\cap(B-C)$.\par By definition of intersection, $x\in A-C$ and $x\in B-C$.\par By definition of difference, $x\in A$, $x\notin C$ and $x\in B$, $x\notin C$.\par Since $x\in A$ and $x\in B$, $x\in(A\cap B)$\par Further since $x\notin C$, by definition of difference, $x\in(A\cap B)-C.$
+	($\subseteq$): $(A\cap B)-C\subseteq(A-C)\cap(B-C)$\par Suppose $x\in(A\cap B)-C$ ($\WTS$: $x\in(A-C)\cap(B-C)$)\par By definition of intersection, $x\in A$ and $x\in B$\par By definition of difference, $x\notin C.$\par Since $x\in A$ and $x\notin C$, $x\in A-C$. Similarly, since $x\in B$ and $x\notin C$, $x\in B-C$.\par By definition of intersection, $x\in(A-C)\cap(B-C)$\par
+	($\supseteq$): $(A-C)\cap(B-C)\subseteq(A\cap B)-C$\par Let $x\in(A-C)\cap(B-C)$.\par By definition of intersection, $x\in A-C$ and $x\in B-C$.\par By definition of difference, $x\in A$, $x\notin C$ and $x\in B$, $x\notin C$.\par Since $x\in A$ and $x\in B$, $x\in(A\cap B)$\par Further since $x\notin C$, by definition of difference, $x\in(A\cap B)-C.$
 \end{prf}
 \end{framed}
 \begin{framed}
@@ -803,6 +803,50 @@ Another way to prove is by contrapositive.
 	($\Rightarrow$): $A\subseteq B\implies\overline{B}\subseteq\overline{A}.$\par Suppose $A\subseteq B.$ ($\WTS$: $\overline{B}\subseteq\overline{A})$\par Suppose $x\in\overline{B}.$ ($\WTS$: $x\in\overline{A}$)\par Since $x\in\overline{B}$, then $x\notin B$. Note that since $A\subseteq B$, by definition, if $x\in A$, then $x\in B.$\par By contrapositive, $x\notin B\implies x\notin A$\par Since $x\notin B$, by assumption, $x\notin A$. That is $x\in\overline{A}.$\par ($\Leftarrow$): $\overline{B}\subseteq\overline{A}\implies A\subseteq B.$\par Suppose $\overline{B}\subseteq\overline{A}$ ($\WTS$: $A\subseteq B$)\par Suppose $x\in A$ ($\WTS$: $x\in B$)\par Since $x\in A,$ then $x\notin\overline{A}.$ Since$\overline{B}\subseteq\overline{A}$, by contrapositive, \[x\notin\overline{A}\implies x\in\overline{B}.\]\par Since $x\notin\overline{A},$ by assumption, $x\notin\overline{B}$. That is, $x\in B$.
 \end{prf}	
 \end{framed}
+
+\subsection{Combining Sets}
+\begin{framed}
+\noindent\texttt{Prove that $A\subseteq B$ if and only if $A-B=\emptyset$.}
+\begin{prf}
+	($\Rightarrow$): WTS: $A\subseteq B\implies A-B=\emptyset$.\par Let $A$, $B$ be sets. Suppose $A\subseteq B.$\par Assume for the sake of contradiction that $A-B\neq\emptyset$. Then $x\in A-B$.\par By definition of set difference, $x\in A$ and $x\notin B$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $A\subseteq B$, and thus \end{center}\[A\subseteq B\implies A-B=\emptyset.\]
+	($\Leftarrow$): WTS: $A-B=\emptyset\implies A\subseteq B.$\par $\boxed{\text{Method }1}$ We will prove the contrapositive: $A\nsubseteq B\implies A-B\neq\emptyset$.\par Suppose $A\nsubseteq B$. Then $\exists x\in A \st x\notin B$.\par By definition of set difference, $x\in A-B,$ so $A-B\neq\emptyset$ as desired.\par $\boxed{\text{Method }2}$ Direct proof.\par Suppose $A-B=\emptyset$.\par By definition of set difference, $\forall x\in A, x\in B.$\par By definition of subsets, $A\subseteq B.$
+\end{prf}	
+\end{framed}
+\begin{df}[Power set]
+	The \textbf{power set} of $A$, denoted $\P(A)$, is the set of all subset of $A$. Therefore, $|\P(A)|=2^n$ when $|A|=n.$
+\end{df}
+\begin{thm}
+	\[x\in\P(A)\iff x\subseteq A\]	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Let $A, B$ be sets. Prove that $\P(A)\cup\P(B)\subseteq\P(A\cup B)$}
+\begin{prf}
+	Let $A$, $B$ be sets.\par Suppose $X\in\P(A)\cup\P(B)$ $\big[$Notation: Capital $X$ because $X$ is a set!$\big]$\par Then, by definition of union, $X\in\P(A)$ or $X\in\P(B).$\par WLOG, suppose $X\in\P(A).$ By definition of the power set, $X\subseteq A$.\par Since $A\subseteq A\cup B$, if $X\subseteq A$, then $X\subseteq A\cup B$.\par By definition of the power set, $X\in\P(A\cup B).$\par Hence, $\P(A)\cup\P(B)\subseteq\P(A\cup B).$
+\end{prf}
+\end{framed}
+\begin{df}[Cartesian Product]
+	The \textbf{Cartesian product} of two sets $A$ and $B$, denoted $A\times B$, is the set of ordered pairs (or tuples) $(a,b)$ where $a\in A$ and $b\in B$, so \[A\times B=\{(a,b)\mid a\in A, b\in B\}\]
+\end{df}
+\begin{rmk} In general, $A\times B\neq B\times A.$\end{rmk}
+\begin{thm}
+	\[|A\times B|=|A|\times|B|\]	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Let $A$, $B$, and $C$ be sets. Prove that if $B\subseteq C,$ then $A\times B\subseteq A\times C.$}
+\begin{prf}
+	Let $A$, $B$, and $C$ be sets. Suppose $B\subseteq C$. WTS: $A\times B\subseteq A\times C.$\par Let $x\in A\times B$. Then $x=(a,b)$ where $a\in A$ and $b\in B.$\par Since $B\subseteq C,$ if $b\in B$, then $b\in C.$\par So, $x=(a,b)\in A\times C.$\par Hence, $A\times B\subseteq A\times C.$	
+\end{prf}
+\end{framed}
+\begin{df}[Cartesian Power]
+	For a set $A$ and $n\in\N$, the \textbf{Cartesian power} $A^n$ is the set \[A^n=A\times A\times A\times\cdots\times A=\{\underbrace{(a_1,a_2,a_3,\cdots,a_n)}_{n\text{-tuple}}\mid a_1,a_2,a_3,\cdots,a_n\in A\}.\]	
+\end{df}
+\begin{eg}
+	Most common example: the Euclidean space: $\R^n$.	
+\end{eg}
+\begin{df}[Indexed Sets]
+	\[\bigcup_{i=1}^nA_i=A_1\cup A_2\cup A_3\cup\cdots\cup A_n=\{x\mid x\in A_i \fs i\}\] and \[\bigcap_{i=1}^nA_i=A_1\cap A_2\cap A_3\cap\cdots\cap A_n=\{x\mid x\in A_i\ \forall i\}\] This notation also works when we don't have specified stopping point: $\displaystyle\bigcup_{i=1}A_i=\{x\mid x\in A_i\fs i\}$ and $\displaystyle \bigcap_{i=1}A_i=\{x\mid x\in A_i\ \forall i\}$
+\end{df}
+
 
 
 
