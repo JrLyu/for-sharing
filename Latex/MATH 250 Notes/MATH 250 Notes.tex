@@ -56,6 +56,7 @@
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
 \def\Proj{\mathrm{Proj}}
+\def\emptyset{\varnothing}
 \def\qed{\rightline{$\blacksquare$}}
 \def\ddx{\frac{\d}{\d x}}
 \def\dydx{\frac{\d y}{\d x}}
@@ -619,7 +620,7 @@ Contrapositive: If $n$ is odd, then $n^2$ is odd.
 \end{prf}
 \end{framed}
 \begin{framed}
-\noindent\texttt{Prove that every odd number is of the form $4k+1$ or $4k+4$ for some $k\in\Z$.}
+\noindent\texttt{Prove that every odd number is of the form $4k+1$ or $4k+3$ for some $k\in\Z$.}
 \begin{rmk}	This implication is the converse of  as the contrapositive of the previous one. Here, the implication and the converse of it is both true.\end{rmk}
 \begin{prf}
 	We will prove the contrapositive: If $x$ is of the form $4k$ or $4k+2$, then $x$ is even.\par Suppose $x\in\Z.$ \par $\boxed{\text{Case }1}$ Suppose $x=4k\fs k\in\Z$. \par Then $x=4k=2(2k)$.\par Since $2k\in\Z$, by definition, $x$ is even. \par $\boxed{\text{Case }2}$ Suppose $x=4k+2\fs k\in\Z.$\par Then $x=4k+=2=2(2k+1)$\par Since $2k+1\in\Z$, by definition, $x$ is even. 
@@ -808,7 +809,7 @@ Another way to prove is by contrapositive.
 \begin{framed}
 \noindent\texttt{Prove that $A\subseteq B$ if and only if $A-B=\emptyset$.}
 \begin{prf}
-	($\Rightarrow$): WTS: $A\subseteq B\implies A-B=\emptyset$.\par Let $A$, $B$ be sets. Suppose $A\subseteq B.$\par Assume for the sake of contradiction that $A-B\neq\emptyset$. Then $x\in A-B$.\par By definition of set difference, $x\in A$ and $x\notin B$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $A\subseteq B$, and thus \end{center}\[A\subseteq B\implies A-B=\emptyset.\]
+	($\Rightarrow$): WTS: $A\subseteq B\implies A-B=\emptyset$.\par Let $A$, $B$ be sets. Suppose $A\subseteq B.$\par Assume for the sake of contradiction that $A-B\neq\emptyset$. Then $x\in A-B$.\par By definition of set difference, $x\in A$ and $x\notin B$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $A\subseteq B$, and thus \end{center}\[A\subseteq B\implies A-B=\emptyset.\]\par
 	($\Leftarrow$): WTS: $A-B=\emptyset\implies A\subseteq B.$\par $\boxed{\text{Method }1}$ We will prove the contrapositive: $A\nsubseteq B\implies A-B\neq\emptyset$.\par Suppose $A\nsubseteq B$. Then $\exists x\in A \st x\notin B$.\par By definition of set difference, $x\in A-B,$ so $A-B\neq\emptyset$ as desired.\par $\boxed{\text{Method }2}$ Direct proof.\par Suppose $A-B=\emptyset$.\par By definition of set difference, $\forall x\in A, x\in B.$\par By definition of subsets, $A\subseteq B.$
 \end{prf}	
 \end{framed}
