@@ -35,6 +35,7 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
+\newtheorem{cor}{Corollary}[section]
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
@@ -46,7 +47,13 @@
 \author{Jiuru Lyu}
 \date{\today}
 
-\linespread{1.22}
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
 
 \def\Z{{\mathbb{Z}}}
 \def\R{{\mathbb{R}}}
@@ -758,7 +765,7 @@ Properties of cross product ($\veca$, $\vecb$, and $\vecc$ are vectors, and $c$ 
 	If $\vecv$ is a directional vector of line $L$, \[\veca=t\vecv,\] where $\veca$ is any vector determined by two points on the line. 
 \end{df}
 \begin{df}[Vector Equations of Lines in 3D]
-	Let $\overrightarrow{P_0P}=\veca\Longrightarrow\veca=\langle x-x_0,\ y-y_0\, z-z_0\rangle$
+	Let $\overrightarrow{P_0P}=\veca\Longrightarrow\veca=\langle x-x_0,\ y-y_0,\ z-z_0\rangle$
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}
 	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -836,6 +843,10 @@ Relationships of two lines in 3D:
 		$\therefore$ The two lines intersect at $(4,-1,-5).$
 	\end{sol}
 \end{eg}
+\begin{thm}[Line Segment that Connects $\vecr_0$ and $\vecr_r$]
+\[\vecr(t)=(1-t)\vecr_0+t\vecr_1,\qquad1\leq t\leq1.\] The vector equation gives a line segment the joins the tip of $\vecr_0$ to the tip of $\vecr_1.$
+\end{thm}
+
 \begin{df}[Normal Vector]
 	A normal vector is the vector perpendicular to the plane	 and is often denoted as $\vecn$.
 \end{df}
@@ -1298,6 +1309,111 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{eg}
 
 \subsection{Directional Derivatives and Gradient}
+To formally study directional derivatives, we start from the ideas of it. We want to study the change of $z=f(x,y)$ in the direction of the unit vector $\vecu=\langle a,b\rangle=a\veci+\vecj$. ($\sqrt{a^2+b^2}=1$). We intersect surface $z=f(x,y)$ with plane $\Pi$ that passes through the point $P(x_0,y_0,z_0)$ vertically and in the direction of vector $\vecu=\langle a,b\rangle$.
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (51,236.64) .. controls (51,220.27) and (88.02,207) .. (133.68,207) .. controls (179.35,207) and (216.37,220.27) .. (216.37,236.64) .. controls (216.37,253.01) and (179.35,266.28) .. (133.68,266.28) .. controls (88.02,266.28) and (51,253.01) .. (51,236.64) -- cycle ;
+\draw    (51,236.64) .. controls (134.37,4.28) and (136.37,5.28) .. (216.37,236.64) ;
+\draw    (123.37,237.28) -- (179.41,248.87) ;
+\draw [shift={(181.37,249.28)}, rotate = 191.69] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (123.37,237.28) -- (123.37,67.28) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (181.37,249.28) -- (181.37,138.28) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (181.37,138.28) -- (124.37,138.28) ;
+\draw   (11.34,68.42) -- (299.46,128.77) -- (297.38,274.16) -- (9.26,213.81) -- cycle ;
+\draw (97,104.4) node [anchor=north west][inner sep=0.75pt]    {$\Delta z$};
+\draw (140,139.4) node [anchor=north west][inner sep=0.75pt]    {$h$};
+\draw (141,219.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+\draw (111,42.4) node [anchor=north west][inner sep=0.75pt]    {$P( x_{0} ,y_{0} ,z_{0})$};
+\draw (189,122.4) node [anchor=north west][inner sep=0.75pt]    {$Q( x ,y ,z)$};
+\draw (105,237.4) node [anchor=north west][inner sep=0.75pt]    {$P'$};
+\draw (183,230.4) node [anchor=north west][inner sep=0.75pt]    {$Q'$};
+\draw (301.46,132.17) node [anchor=north west][inner sep=0.75pt]    {$\text{Plane } \Pi $};
+\end{tikzpicture}
+\end{center}
+So, we have \[\frac{\Delta z}{h}=\frac{z-z_0}{h}=\frac{f(x_0+h,y_0+h)-f(x_0,y_0)}{h}\]
+\begin{df}[Directional Derivative]
+	The directional derivative of $f$ at $(x_0,y_0)$ in the direction of a vector $\vecu=\langle a,b\rangle$ is defined as \[D_{\vecu} f(x_0y_0)=\lim_{h\to0}\frac{f(x_0+ha,y_0+hb)-f(x_0,y_0)}{h}\] if the limit exists.
+\end{df}
+Now, let $g(h)=f(x_0+ha,y_0+hb)$, then we have \[D_{\vecu}f(x_0,y_0)=\lim_{h\to0}\frac{g(h)-g(0)}{h}=g'(0)\] To find $g'(h)$, we use the multivariable chain rule:\[g'(h)=\pdv{g}{x}\cdot\dv{x}{h}+\pdv{g}{y}\cdot\dv{y}{h}\quad\text{where }\begin{cases}x=x_0+ha\\y=y_0+hb\end{cases}.\] From $\begin{cases}x=x_0+ha\\y=y_0+hb\end{cases}$, we have $\displaystyle\pdv{x}{h}=a$ and $\displaystyle\pdv{y}{h}=b.$ \[\begin{aligned}\therefore g'(h)&=\pdv{g}{x}\cdot a+\pdv{g}{y}\cdot b\\&=a\cdot\pdv{f}{x}+b\cdot\pdv{f}{y}\qquad\Big[g(h)\text{ is in fact }f(x,y)\Big]\end{aligned}\] When $h\to0,$ \[g'(0)=a\cdot f_x(x_0,y_0)+b\cdot f_y(x_0,y_0)\]\[\begin{aligned}\therefore D_{\vecu}f(x_0,y_0)&=a\cdot f_x(a_0,y_0)+b\cdot f_y(x_0,y_0)\\&=\langle a,b\rangle\cdot\langle f_x(a_0,y_0),f_y(x_0,y_0)\rangle\end{aligned}\]
+\begin{thm}[Directional Derivative in Dot Product]
+	\[D_{\vecu}f(x_0,y_0)=\vecu\cdot\langle f_x(x_0,y_0), f_y(x_0,y_0)\rangle=\vecu\cdot\nabla f(x_0,y_0)\]
+\end{thm}
+\begin{df}[Gradient Vector]
+	A gradient vector of $f$ is a vector function defined as \[\nabla f(x,y)=\pdv{f}{x}\veci+\pdv{f}{y}\vecj.\] The notation ``$\nabla$'' is called nabla.
+	\begin{ext}
+		If $f$ is a function as $f(x_1,\cdots,x_n),$ then \[\nabla f=\langle f_{x_1},f_{x_2}, f_{x_3}\cdots,f_{x_n}\rangle.\]
+	\end{ext}
+\end{df}
+\begin{thm}[Properties of Gradient]
+	From the dot product definition of directional vector, we know that \[D_{\vecu}f=\nabla f\cdot\vecu.\] Then, if $\theta$ is the angle between $\nabla f$ and $\vecu$, we have \[D_{\vecu}f=\qty|\nabla f|\qty|\vecu|\cos\theta.\] Thus, \[\max D_{\vecu}f=\qty|\nabla f|\qty|\vecu|\text{ when }\theta=0\] (or, the vector $\vecu$ is in the direction of $\nabla f$.) Since $\vecu$ is a unit vector, $\qty|\vecu|=1.$ So when $\vecu$ is in the same direction of $\nabla f$, we have \[\max D_{\vecu}f=\qty|\nabla f|.\] On the other hand, if $\vecu$ and $\nabla f$ are in the opposite direction, we have $\theta=\pi$ and $\cos\theta=\cos(\pi)=-1$.\[\therefore\min D_{\vecu}f=\qty|\nabla f|\qty|\vecu|\cos\theta=-\qty|\nabla f|\]
+\end{thm}
+\begin{ext}
+	If $\vecu$ is a unit vector and $\vecu=\langle a,b\rangle$ and $f$ has continuous second partial derivatives, then \[D_{\vecu}^2f=f_{xx}a+2f_{xy}ab+f_{yy}b.\]	
+\end{ext}
+\begin{eg}
+	If $f(x,y)=xe^y,$ then
+	\begin{enumerate}
+		\item Find the rate of change of $f$ at the point $P(2,0)$ in the direction from $P$ to $Q\qty(\dfrac{1}{2},2).$
+		\begin{sol}
+			\[\pdv{f}{x}=e^y;\quad\pdv{f}{y}=xe^y;\quad\overrightarrow{PQ}=\left\langle\frac{1}{2}-2,2-0\right\rangle=\left\langle-\frac{3}{2},2\right\rangle;\quad\qty|\overrightarrow{PQ}|=\sqrt{\frac{9}{4}+4}=\frac{5}{2}\]\[\therefore\vecu=\left\langle-\frac{3}{2}\cdot\frac{2}{5},2\cdot\frac{2}{5}\right\rangle=\left\langle-\frac{3}{5},\frac{4}{5}\right\rangle;\quad\nabla f=\left\langle e^y,xe^y\right\rangle.\]Therefore, \[D_{\vecu}f=\nabla f\cdot\vecu=\left\langle e^y,xe^y\right\rangle\cdot\left\langle-\frac{3}{5},\frac{4}{5}\right\rangle=-\frac{3}{5}e^y+\frac{4}{5}xe^y.\] At point $P(2,0),$ \[D_{\vecu}f(2,0)=-\frac{3}{5}e^0+\frac{4}{5}\cdot2\cdot e^0=-\frac{3}{5}+\frac{8}{5}=1.\]
+		\end{sol}
+		\item In what direction does $f$ have the maximum rate of change? What is this maximum rate of change?
+		\begin{sol}
+			\[\nabla f(2,0)=\langle e^0,2e^0\rangle=\langle1,2\rangle\] Hence, in direction $\nabla f=\langle1,2\rangle,$ $f$ has the maximum rate of change. The maximum rate of change is $\qty|\nabla f(2,0)|=\sqrt{5}.$
+		\end{sol}
+	\end{enumerate}
+\end{eg}
+\begin{thm}[Gradient and Tangent Plane]
+	The equation of the tangent plane for the surface $z=f(x,y)$ at the point $P(x_0,y_0,z_0) =$ is given by: \[\nabla f\cdot\langle x-x_0,y-y_0,z-z_0\rangle=0\] or (for implicit functions) \[\pdv{f}{x} (x-x_0)+\pdv{f}{y} (y-y_0)+\pdv{f}{z} (z-z_0)=0.\]	The normal line of the plane is given by \[\frac{x-x_0}{f_x(x_0,y_0,z_0)}=\frac{y-y_0}{f_y(x_0,y_0,z_0)}=\frac{z-z_0}{f_z(x_0,y_0,z_0)}.\]
+\end{thm}
+\begin{rmk}[Gradient and Multivariable Chain Rule]
+	If $F(x,y,z)=k$ and $x,y,z$ are dependent of $t$, then we differentiate both sides with respect to $t$ to get:\[\begin{aligned}\pdv{F}{x}\cdot\dv{x}{t}+\pdv{F}{y}\cdot\dv{y}{t}+\pdv{F}{z}\cdot\dv{z}{t}&=0\\\left\langle\pdv{F}{x},\pdv{F}{y},\pdv{F}{z}\right\rangle\left\langle\dv{x}{t},\dv{y}{t},\dv{z}{t}\right\rangle&=0\\\nabla F\cdot\left\langle\dv{x}{t},\dv{y}{t},\dv{z}{t}\right\rangle&=0\end{aligned}\]	
+\end{rmk}
+\begin{thm}[Graphical Interpretation of Gradient Vector]
+	In general, the gradient vector at $P$, $\nabla F(x_0,y_0,z_0)$ is perpendicular to the tangent vector $\vecr'(t_0)$ to any curve $C$ that passes through the point $P$ on the surface $S$. Similar properties hold on level curves. 
+\end{thm}
+
+\subsection{Maximum and Minimum Values}
+\begin{df}[Local Maximum and Local Minimum]
+	A function $f(x,y)$ has a \textbf{local maximum} at point $(a,b)$ if $\forall(x,y)$ near point $(a,b)$, we have $f(x,y)\leq f(a,b)$. The function $f(x,y)$ has a \textbf{local minimum} at point $(a,b)$ if $\forall (x,y)$ near point $(x,y)$, we have $f(x,y)\geq f(a,b)$.
+	\begin{rmk} ``near point $(a,b)$'' refers to a disk centered at $(a,b).$ \end{rmk}
+\end{df}
+\begin{df}[Absolute Maximum and Absolute Minimum]
+	If the equalities $f(x,y)\leq f(a,b)$ and $f(x,y)\geq f(a,b)$ holds for any $(x,y)$ in the domain of $f(x,y),$ then we call them \textbf{absolute maximum} or \textbf{absolute minimum}.	
+\end{df}
+\begin{thm}\label{thm3.7.1}
+	If $f$ has local maximum or minimum at $(a,b),$ and the first order partial derivatives of $f$ exist at $(a,b),$ then $f_x(a,b)$ and $f_y(a,b)$ are equal to $0$. In other words, \[\nabla f(a,b)=0.\]	
+\end{thm}
+\begin{cor}
+	As a result of Theorem \ref{thm3.7.1}, the equation of the tangent plane at $(a,b)$ is \[\begin{aligned}z-\overbrace{f(a,b)}^{z_0}&=\overbrace{f_x(a,b)}^{0}(x-a)+\overbrace{f_y(a,b)}^{0}(y-b)\\z-z_0&=0.\end{aligned}\] In other words, the tangent plane is horizontal. 
+\end{cor}
+\begin{df}[Critical Points]
+	A point $(a,b)$ is called the \textbf{critical point} if $f_x(a,b)=0$ and $f_y(a,b)=0$ or if one of the partial derivatives does not exist. 
+	\begin{rmk} At a critical point, we may have maximum or minimum or neither (saddle point). \end{rmk}	
+\end{df}
+\begin{df}[Determinant]
+	The determinant ($\Delta$ or $D$) is defined as \[\begin{aligned}D&=\det\begin{bmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{bmatrix}\\&=f_{xx}f_{yy}-f_{xy}f_{yx}\\&=f_{xx}f_{yy}-(f_{xy})^2.\end{aligned}\] 	
+\end{df}
+\begin{thm}[Second Derivative Test]
+	Let $(a,b)$ be a critical point and second partial derivatives of $f$ (i.e., $f_{xx}$, $f_{xy}$, $f_{yx}$, $f_{yy}$) are continuous on a disk centered at $(a,b).$ Then \begin{enumerate}
+		\item If $D>0$ and $f_{xx}(a,b)>0,$ then $f(a,b)$ is a local minimum.
+		\item If $D>0$ and $f_{xx}(a,b)<0,$ then $f(a,b)$ is a local maximum. 
+		\item If $D<0,$ then $f(a,b)$ is not a local maximum or local minimum, and it is called a \textbf{saddle point}.
+	\end{enumerate}	
+	\begin{rmk} At saddle points, the tangent plane will intersect with the surface of $f$. \end{rmk}
+\end{thm}
+\begin{eg}
+	For function $f(x,y)=4+x^3+y^3-3xy.$ Check it $f(x,y)$ has local maximum, local minimum, and saddle points.
+	\begin{sol}
+		\[\pdv{f}{x}=3x^3-3y;\qquad\pdv{f}{y}=3y^2-3x\]
+	Solve $\begin{cases}f_x=0\\f_y=0\end{cases}\Rightarrow\begin{cases}3x^2-3y=0\qquad\text{\ding{172}}\\3y^2-3x=0\qquad\text{\ding{173}}\end{cases}.$\par From \ding{172}: $y=x^2$.\par Substitute $y=x^2$ to \ding{173}: \[\begin{aligned}3\qty(x^2)^2-3x&=0\\x^4-x&=0\\x(x^3-1)&=0\Longrightarrow x=0\text{ or }x=1\end{aligned}\]\[\therefore y=0^2=0\qquad\text{or}\qquad y=1^2=1\]\[\therefore\begin{cases}x=0\\y=0\end{cases}\text{ or }\begin{cases}x=1\\y=1\end{cases}\]\par i.e., Critical points are at $(0,0)$ and $(1,1).$\par Find $D$: \[D=\det\begin{bmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{bmatrix}=\begin{bmatrix}6x&-3\\-3&6y\end{bmatrix}=36xy-9.\]\par Apply the second derivative test: \begin{enumerate}
+		\item $D(0,0)=-9<0\Longrightarrow(0,0)$ is a saddle point.
+		\item $D(1,1)=36-9=27>0$ and $\displaystyle\pdv[2]{f}{x}(1,1)=6(1)>0\Longrightarrow(1,1)$ is a local minimum. \end{enumerate}
+	\end{sol}
+\end{eg}
+
+
 
 
 

@@ -4,10 +4,13 @@
 \usepackage{amssymb}
 \usepackage{ntheorem}
 \usepackage{amsmath}
+\usepackage{mathrsfs}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{geometry}
 \usepackage{framed}
+\usepackage{physics}
+\usepackage{tikz}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -22,21 +25,33 @@
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
-\newcounter{nprf}[subsection]
-\setcounter{nprf}{0}
+
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{nota}{Notation}[section]
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newtheorem{ax}{Axiom}[section]
 \newtheorem{prop}{Proposition}[subsection]
 \newtheorem{lem}{Lemma}[subsection]
-\newtheorem{cor}{corollary}[subsection]
+\newtheorem{cor}{Corollary}[subsection]
+\newtheorem{clm}{Claim}[subsection]
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof} (\stepcounter{nprf}\thenprf). }\par}{\par\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
 
 \title{Emory University\\\textbf{MATH 250 - Foundations of Mathematics Learning Notes}}
 \author{Jiuru Lyu}
@@ -48,7 +63,9 @@
 \def\Q{{\mathbb{Q}}}
 \def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
-\def\P{{\mathcal{P}}}
+\def\Zp{{\Z^{+}}}
+\def\pwer{{\mathcal{P}}}
+\def\part{{\mathscr{P}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
 \def\RE{{\mathrm{Re}}}
@@ -549,7 +566,7 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 \noindent\texttt{If $x\in\Z$, then $x$ and $x^2$ have the same parity.}
 \begin{rmk} Sometimes, it is helpful to do a case analysis!\end{rmk}
 \begin{prf}
-	Let $x\in\Z$\par $\boxed{\text{Case }1}$ Suppose $x$ is even.\par Then, by definition, $x=2k\fs k\in\Z.$\par So, $x^2=(2k)^2=4k^2=2(2k^2)$.\par Since $(2k^2)\in\Z$, by definition, $x^2$ is even. \par $\boxed{\text{Case }2}$ Suppose $x$ is odd.\par Then, by definition, $x=2l+1\fs l\in\Z.$\par So, $x^2=(2l+1)^2=4l^2+4l+1=2(2l^2+2l)+1$\par Since $(2l^2+2l)\in\Z$, by definition, $x^2$ is odd.
+	Let $x\in\Z$\par $\boxed{\text{Case }1}$ Suppose $x$ is even.\par\hspace{5mm}Then, by definition, $x=2k\fs k\in\Z.$\par\hspace{5mm}So, $x^2=(2k)^2=4k^2=2(2k^2)$.\par\hspace{5mm}Since $(2k^2)\in\Z$, by definition, $x^2$ is even. \par $\boxed{\text{Case }2}$ Suppose $x$ is odd.\par\hspace{5mm}Then, by definition, $x=2l+1\fs l\in\Z.$\par\hspace{5mm}So, $x^2=(2l+1)^2=4l^2+4l+1=2(2l^2+2l)+1$\par\hspace{5mm}Since $(2l^2+2l)\in\Z$, by definition, $x^2$ is odd.
 \end{prf}
 \end{framed}
 
@@ -560,10 +577,10 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	Let $n\in\Z$. Suppose $3\nmid n$.\par
 	$\boxed{\text{Case }1}$ Then $n=3k+1\fs k\in\Z.$\[\begin{aligned}
 		n^2-1&=(3k+1)^2-1\\&=9k^2+6k+1-1\\&=9k^2+6k\\&=3(3k^2+2k)
-	\end{aligned}\]\par Since $(3k^2+2k)\in\Z$, by definition, $3\mid n^2-1.$\par 
+	\end{aligned}\]\par\hspace{5mm} Since $(3k^2+2k)\in\Z$, by definition, $3\mid n^2-1.$\par 
 	$\boxed{\text{Case }2}$ Then $n=3l+2\fs l\in\Z.$\[\begin{aligned}
 		n^2-1&=(3l+2)^2-1\\&=9l^2+18l+4-1\\&=9l^2+18l+3\\&=3(3l^2+6l+1)
-	\end{aligned}\]\par Since $(3l^2+6l+1)\in\Z$, by definition, $3\mid n^2-1.$
+	\end{aligned}\]\par\hspace{5mm} Since $(3l^2+6l+1)\in\Z$, by definition, $3\mid n^2-1.$
 \end{prf}
 \end{framed}
 Sometimes, we can form new implications from old ones. Let $P$ and $Q$ to be statement, and consider the implication $P\Rightarrow Q.$
@@ -616,14 +633,14 @@ Contrapositive: If $n$ is odd, then $n^2$ is odd.
 \begin{framed}
 \noindent\texttt{Prove that every even number is of the form $4k$ or $4k+2$ for some $k\in\Z.$}
 \begin{prf}
-	We will prove the contrapositive: If $x$ is of the form $4k+1$ or $4k+3$, then $x$ is odd. \par Suppose $x\in\Z$.\par $\boxed{\text{Case }1}$ Suppose $x=4k+1\fs k\in\Z$. \par Then $x=4k+1=2(2k)+1$.\par Since $2k\in\Z$, by definition, $x$ is odd. \par $\boxed{\text{Case }2}$ Suppose $x=4k+3\fs k\in\Z.$\par Then $x=4k+3=2(2k+1)+1$\par Since $2k+1\in\Z$, by definition, $x$ is odd. 
+	We will prove the contrapositive: If $x$ is of the form $4k+1$ or $4k+3$, then $x$ is odd. \par Suppose $x\in\Z$.\par $\boxed{\text{Case }1}$ Suppose $x=4k+1\fs k\in\Z$. \par\hspace{5mm}Then $x=4k+1=2(2k)+1$.\par\hspace{5mm}Since $2k\in\Z$, by definition, $x$ is odd. \par $\boxed{\text{Case }2}$ Suppose $x=4k+3\fs k\in\Z.$\par\hspace{5mm}Then $x=4k+3=2(2k+1)+1$\par\hspace{5mm}Since $2k+1\in\Z$, by definition, $x$ is odd. 
 \end{prf}
 \end{framed}
 \begin{framed}
 \noindent\texttt{Prove that every odd number is of the form $4k+1$ or $4k+3$ for some $k\in\Z$.}
 \begin{rmk}	This implication is the converse of  as the contrapositive of the previous one. Here, the implication and the converse of it is both true.\end{rmk}
 \begin{prf}
-	We will prove the contrapositive: If $x$ is of the form $4k$ or $4k+2$, then $x$ is even.\par Suppose $x\in\Z.$ \par $\boxed{\text{Case }1}$ Suppose $x=4k\fs k\in\Z$. \par Then $x=4k=2(2k)$.\par Since $2k\in\Z$, by definition, $x$ is even. \par $\boxed{\text{Case }2}$ Suppose $x=4k+2\fs k\in\Z.$\par Then $x=4k+=2=2(2k+1)$\par Since $2k+1\in\Z$, by definition, $x$ is even. 
+	We will prove the contrapositive: If $x$ is of the form $4k$ or $4k+2$, then $x$ is even.\par Suppose $x\in\Z.$ \par $\boxed{\text{Case }1}$ Suppose $x=4k\fs k\in\Z$. \par\hspace{5mm}Then $x=4k=2(2k)$.\par\hspace{5mm}Since $2k\in\Z$, by definition, $x$ is even. \par $\boxed{\text{Case }2}$ Suppose $x=4k+2\fs k\in\Z.$\par\hspace{5mm}Then $x=4k+=2=2(2k+1)$\par\hspace{5mm}Since $2k+1\in\Z$, by definition, $x$ is even. 
 \end{prf}
 \end{framed}
 \begin{thm}[Prove by Contradiction]
@@ -684,7 +701,7 @@ Another way to prove is by contrapositive.
 \begin{framed}
 \noindent\texttt{Prove that for $x,y\in\R$, $(x+y)^2=x^2+y^2$ if and only if $x=0$ or $y=0$.}
 \begin{prf}
-	($\Rightarrow$): We will show that $(x+y)^2=x^2+y^2\implies x=0$ or $y=0$.\par Suppose $x,y\in\Z\st(x+y)^2=x^2+y^2$. So we have \[x^2+y^2+2xy=x^2+y^2\]\par That is, $2xy=0$ or $xy=0$. So $x=0$ or $y=0$\par ($\Leftarrow$): We will show that $x=0$ or $y=0$ $\implies(x+y)^2=x^2+y^2$. \par Notice that the equation retains symmetry. \par Suppose $x,y\in\R$. Assume $x=0$ or $y=0$.\par Without loss of generality (WLOG), we may assume that $x=0$.\par Then, \[\begin{aligned}(x+y)^2=(0+y)^2&=y^2\\x^2+y^2=0^2+y^2&=y^2\end{aligned}\]\par So, $(x+y)^2=x^2+y^2.$
+	($\Rightarrow$): We will show that $(x+y)^2=x^2+y^2\implies x=0$ or $y=0$.\par\hspace{5mm}Suppose $x,y\in\Z\st(x+y)^2=x^2+y^2$. So we have \[x^2+y^2+2xy=x^2+y^2\]\par\hspace{5mm}That is, $2xy=0$ or $xy=0$. So $x=0$ or $y=0$ $\qquad\square$\par ($\Leftarrow$): We will show that $x=0$ or $y=0$ $\implies(x+y)^2=x^2+y^2$. \par\hspace{5mm}Notice that the equation retains symmetry. \par\hspace{5mm}Suppose $x,y\in\R$. Assume $x=0$ or $y=0$.\par\hspace{5mm}Without loss of generality (WLOG), we may assume that $x=0$.\par\hspace{5mm}Then, \[\begin{aligned}(x+y)^2=(0+y)^2&=y^2\\x^2+y^2=0^2+y^2&=y^2\end{aligned}\]\par\hspace{5mm}So, $(x+y)^2=x^2+y^2.$
 \end{prf}
 \end{framed}
 
@@ -794,14 +811,14 @@ Another way to prove is by contrapositive.
 \begin{framed}
 \noindent\texttt{If $A$, $B$, and $C$ are sets, prove $(A\cap B)-C=(A-C)\cap(B-C)$}
 \begin{prf}
-	($\subseteq$): $(A\cap B)-C\subseteq(A-C)\cap(B-C)$\par Suppose $x\in(A\cap B)-C$ ($\WTS$: $x\in(A-C)\cap(B-C)$)\par By definition of intersection, $x\in A$ and $x\in B$\par By definition of difference, $x\notin C.$\par Since $x\in A$ and $x\notin C$, $x\in A-C$. Similarly, since $x\in B$ and $x\notin C$, $x\in B-C$.\par By definition of intersection, $x\in(A-C)\cap(B-C)$\par
-	($\supseteq$): $(A-C)\cap(B-C)\subseteq(A\cap B)-C$\par Let $x\in(A-C)\cap(B-C)$.\par By definition of intersection, $x\in A-C$ and $x\in B-C$.\par By definition of difference, $x\in A$, $x\notin C$ and $x\in B$, $x\notin C$.\par Since $x\in A$ and $x\in B$, $x\in(A\cap B)$\par Further since $x\notin C$, by definition of difference, $x\in(A\cap B)-C.$
+	($\subseteq$): $(A\cap B)-C\subseteq(A-C)\cap(B-C)$\par\hspace{5mm}Suppose $x\in(A\cap B)-C$ ($\WTS$: $x\in(A-C)\cap(B-C)$)\par\hspace{5mm}By definition of intersection, $x\in A$ and $x\in B$\par\hspace{5mm}By definition of difference, $x\notin C.$\par\hspace{5mm}Since $x\in A$ and $x\notin C$, $x\in A-C$. Similarly, since $x\in B$ and $x\notin C$, $x\in B-C$.\par\hspace{5mm}By definition of intersection, $x\in(A-C)\cap(B-C)$ $\qquad\square$\par
+	($\supseteq$): $(A-C)\cap(B-C)\subseteq(A\cap B)-C$\par\hspace{5mm}Let $x\in(A-C)\cap(B-C)$.\par\hspace{5mm}By definition of intersection, $x\in A-C$ and $x\in B-C$.\par\hspace{5mm}By definition of difference, $x\in A$, $x\notin C$ and $x\in B$, $x\notin C$.\par\hspace{5mm}Since $x\in A$ and $x\in B$, $x\in(A\cap B)$\par\hspace{5mm}Further since $x\notin C$, by definition of difference, $x\in(A\cap B)-C.$
 \end{prf}
 \end{framed}
 \begin{framed}
 \noindent\texttt{If $A$ and $B$ are sets, prove that $A\subseteq B$ if and only if $\overline{B}\subseteq\overline{A}$.}
 \begin{prf}
-	($\Rightarrow$): $A\subseteq B\implies\overline{B}\subseteq\overline{A}.$\par Suppose $A\subseteq B.$ ($\WTS$: $\overline{B}\subseteq\overline{A})$\par Suppose $x\in\overline{B}.$ ($\WTS$: $x\in\overline{A}$)\par Since $x\in\overline{B}$, then $x\notin B$. Note that since $A\subseteq B$, by definition, if $x\in A$, then $x\in B.$\par By contrapositive, $x\notin B\implies x\notin A$\par Since $x\notin B$, by assumption, $x\notin A$. That is $x\in\overline{A}.$\par ($\Leftarrow$): $\overline{B}\subseteq\overline{A}\implies A\subseteq B.$\par Suppose $\overline{B}\subseteq\overline{A}$ ($\WTS$: $A\subseteq B$)\par Suppose $x\in A$ ($\WTS$: $x\in B$)\par Since $x\in A,$ then $x\notin\overline{A}.$ Since$\overline{B}\subseteq\overline{A}$, by contrapositive, \[x\notin\overline{A}\implies x\in\overline{B}.\]\par Since $x\notin\overline{A},$ by assumption, $x\notin\overline{B}$. That is, $x\in B$.
+	($\Rightarrow$): $A\subseteq B\implies\overline{B}\subseteq\overline{A}.$\par\hspace{5mm}Suppose $A\subseteq B.$ $\qquad$[WTS: $\overline{B}\subseteq\overline{A}$]\par\hspace{5mm}Suppose $x\in\overline{B}.$ $\qquad$[WTS: $x\in\overline{A}$]\par\hspace{5mm}Since $x\in\overline{B}$, then $x\notin B$. Note that since $A\subseteq B$, by definition, if $x\in A$, then $x\in B.$\par\hspace{5mm}By contrapositive, $x\notin B\implies x\notin A$\par\hspace{5mm}Since $x\notin B$, by assumption, $x\notin A$. That is $x\in\overline{A}.$$\qquad\square$\par ($\Leftarrow$): $\overline{B}\subseteq\overline{A}\implies A\subseteq B.$\par\hspace{5mm}Suppose $\overline{B}\subseteq\overline{A}$ $\qquad$[WTS: $A\subseteq B$]\par\hspace{5mm}Suppose $x\in A$ [WTS: $x\in B$]\par\hspace{5mm}Since $x\in A,$ then $x\notin\overline{A}.$ Since$\overline{B}\subseteq\overline{A}$, by contrapositive, \[x\notin\overline{A}\implies x\in\overline{B}.\]\par\hspace{5mm}Since $x\notin\overline{A},$ by assumption, $x\notin\overline{B}$. That is, $x\in B$.
 \end{prf}	
 \end{framed}
 
@@ -809,20 +826,20 @@ Another way to prove is by contrapositive.
 \begin{framed}
 \noindent\texttt{Prove that $A\subseteq B$ if and only if $A-B=\emptyset$.}
 \begin{prf}
-	($\Rightarrow$): WTS: $A\subseteq B\implies A-B=\emptyset$.\par Let $A$, $B$ be sets. Suppose $A\subseteq B.$\par Assume for the sake of contradiction that $A-B\neq\emptyset$. Then $x\in A-B$.\par By definition of set difference, $x\in A$ and $x\notin B$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $A\subseteq B$, and thus \end{center}\[A\subseteq B\implies A-B=\emptyset.\]\par
-	($\Leftarrow$): WTS: $A-B=\emptyset\implies A\subseteq B.$\par $\boxed{\text{Method }1}$ We will prove the contrapositive: $A\nsubseteq B\implies A-B\neq\emptyset$.\par Suppose $A\nsubseteq B$. Then $\exists x\in A \st x\notin B$.\par By definition of set difference, $x\in A-B,$ so $A-B\neq\emptyset$ as desired.\par $\boxed{\text{Method }2}$ Direct proof.\par Suppose $A-B=\emptyset$.\par By definition of set difference, $\forall x\in A, x\in B.$\par By definition of subsets, $A\subseteq B.$
+	($\Rightarrow$): WTS: $A\subseteq B\implies A-B=\emptyset$.\par\hspace{5mm}Let $A$, $B$ be sets. Suppose $A\subseteq B.$\par\hspace{5mm}Assume for the sake of contradiction that $A-B\neq\emptyset$. Then $x\in A-B$.\par\hspace{5mm}By definition of set difference, $x\in A$ and $x\notin B$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $A\subseteq B$, and thus \end{center}\[A\subseteq B\implies A-B=\emptyset.\qquad\square\]\par
+	($\Leftarrow$): WTS: $A-B=\emptyset\implies A\subseteq B.$\par\hspace{5mm}$\boxed{\text{Method }1}$ We will prove the contrapositive: $A\nsubseteq B\implies A-B\neq\emptyset$.\par\hspace{5mm}Suppose $A\nsubseteq B$. Then $\exists x\in A \st x\notin B$.\par\hspace{5mm}By definition of set difference, $x\in A-B,$ so $A-B\neq\emptyset$ as desired.\par\hspace{5mm}$\boxed{\text{Method }2}$ Direct proof.\par\hspace{5mm}Suppose $A-B=\emptyset$.\par\hspace{5mm}By definition of set difference, $\forall x\in A, x\in B.$\par\hspace{5mm}By definition of subsets, $A\subseteq B.$
 \end{prf}	
 \end{framed}
 \begin{df}[Power set]
-	The \textbf{power set} of $A$, denoted $\P(A)$, is the set of all subset of $A$. Therefore, $|\P(A)|=2^n$ when $|A|=n.$
+	The \textbf{power set} of $A$, denoted $\pwer(A)$, is the set of all subset of $A$. Therefore, $|\pwer(A)|=2^n$ when $|A|=n.$
 \end{df}
 \begin{thm}
-	\[x\in\P(A)\iff x\subseteq A\]	
+	\[x\in\pwer(A)\iff x\subseteq A\]	
 \end{thm}
 \begin{framed}
-\noindent\texttt{Let $A, B$ be sets. Prove that $\P(A)\cup\P(B)\subseteq\P(A\cup B)$}
+\noindent\texttt{Let $A, B$ be sets. Prove that $\pwer(A)\cup\pwer(B)\subseteq\pwer(A\cup B)$}
 \begin{prf}
-	Let $A$, $B$ be sets.\par Suppose $X\in\P(A)\cup\P(B)$ $\big[$Notation: Capital $X$ because $X$ is a set!$\big]$\par Then, by definition of union, $X\in\P(A)$ or $X\in\P(B).$\par WLOG, suppose $X\in\P(A).$ By definition of the power set, $X\subseteq A$.\par Since $A\subseteq A\cup B$, if $X\subseteq A$, then $X\subseteq A\cup B$.\par By definition of the power set, $X\in\P(A\cup B).$\par Hence, $\P(A)\cup\P(B)\subseteq\P(A\cup B).$
+	Let $A$, $B$ be sets.\par Suppose $X\in\pwer(A)\cup\pwer(B)$ $\big[$Notation: Capital $X$ because $X$ is a set!$\big]$\par Then, by definition of union, $X\in\pwer(A)$ or $X\in\pwer(B).$\par WLOG, suppose $X\in\pwer(A).$ By definition of the power set, $X\subseteq A$.\par Since $A\subseteq A\cup B$, if $X\subseteq A$, then $X\subseteq A\cup B$.\par By definition of the power set, $X\in\pwer(A\cup B).$\par Hence, $\pwer(A)\cup\pwer(B)\subseteq\pwer(A\cup B).$
 \end{prf}
 \end{framed}
 \begin{df}[Cartesian Product]
@@ -844,13 +861,192 @@ Another way to prove is by contrapositive.
 \begin{eg}
 	Most common example: the Euclidean space: $\R^n$.	
 \end{eg}
+
+\subsection{Collection of Sets}
 \begin{df}[Indexed Sets]
 	\[\bigcup_{i=1}^nA_i=A_1\cup A_2\cup A_3\cup\cdots\cup A_n=\{x\mid x\in A_i \fs i\}\] and \[\bigcap_{i=1}^nA_i=A_1\cap A_2\cap A_3\cap\cdots\cap A_n=\{x\mid x\in A_i\ \forall i\}\] This notation also works when we don't have specified stopping point: $\displaystyle\bigcup_{i=1}A_i=\{x\mid x\in A_i\fs i\}$ and $\displaystyle \bigcap_{i=1}A_i=\{x\mid x\in A_i\ \forall i\}$
 \end{df}
+\begin{eg}
+	Given the indexed sets, compute the unions and intersections:
+	\begin{enumerate}
+		\item $A_i=[0,i)$ for $i=1,\cdots,n$
+		\begin{enumerate}
+			\item $\displaystyle\bigcup_{i=1}^n A_i=[0,n)$
+			\begin{prf}
+			Claim: $\displaystyle\bigcup_{i=1}^n A_i=[0,1).$\par($\subseteq$) Let $\displaystyle x\in\bigcup_{i=1}^n A_i.$ So, $\exists k\in\qty{1, 2,\cdots,n}\st x\in A_k$.\par\hspace{5mm}By definition of $A_k$, $x\in[0,k).$\par\hspace{5mm}That is, $0\geq x<k.$\par\hspace{5mm}Since $k\leq n,$ this inequality gives us that $0\leq x<k\leq n.$\par\hspace{5mm}So, $x\in[0,n)$ as desired. $\qquad\square$\par($\supseteq$) Let $x\in[0,n).$\par\hspace{5mm}Since $x\in[0,n),$ note that $[0,n)=A_n$.\par\hspace{5mm}So $x\in A_n$.\par\hspace{5mm}By definition of union, $x\in\displaystyle\bigcup_{i=1}^n A_i$
+			\begin{rmk} To show $\displaystyle x\in\bigcup_{i=1}^n A_i$, find a specific $i$ that works. \end{rmk}	
+			\end{prf}
+			\item $\displaystyle\bigcap_{i=1}^n A_i=[0,1)$
+			\begin{prf}
+				Claim: $\displaystyle\bigcap_{i=1}^n A_i=[0,1).$\par($\subseteq$) Let $x\in\displaystyle\bigcap_{i=1}^n A_i.$\par\hspace{5mm}So, $x\in A_i\ \forall i\in\qty{1,2,\cdots,n}$.\par\hspace{5mm}Specifically, $x\in A_1=[0,1).\qquad\square$\par($\supseteq$) Let $x\in[0,1)$ $\quad$[WTS: $x\in A\ \forall i\in\qty{1,2,c\dots,n}$]\par\hspace{5mm}Let $k\in\qty{1,2,\cdots,n}.$ We will show $x\in A_k.$\par\hspace{5mm}We know that $k\geq1$ and $0\leq x<1,$ so we have $0\leq x<1\leq k.$\par\hspace{5mm}That is, $x\in[0,k).$\par\hspace{5mm}So, $x\in A_k$\par\hspace{5mm}Since $k\in\qty{1,2,\cdots,n}$ was \textbf{\textit{arbitrary}}, we have shown that $x\in A_k\ \forall k\in\qty{1,2,\cdots,n}.$\par\hspace{5mm}So, $x\in\displaystyle\bigcap_{i=1}^n A_i.$
+			\end{prf}
+		\end{enumerate}
+		\begin{rmk} If $i\in\Z$, we have
+		\begin{enumerate}
+			\item $\displaystyle\bigcup_{i=1}^\infty A_i=[0,\infty)$
+			\item $\displaystyle\bigcap_{i=1}^\infty A_i=[0,1)$
+		\end{enumerate}\end{rmk}
+		\item $A_i=[i-1,i]$ for $i=1,\cdots,n$
+		\begin{enumerate}
+			\item $\displaystyle\bigcup_{i=1}^n A_i=[0,n]$
+			\item $\displaystyle\bigcap_{i=1}^n A_i=\begin{cases}[0,1]&\quad\text{if }n=1\\\qty{1}&\quad\text{if }n=2\\\emptyset&\quad\text{if }n>2\end{cases}$
+		\end{enumerate}
+		\begin{rmk}
+			If $i\in\qty{1,2,\cdots}=\N,$ then we have
+			\begin{enumerate}
+			\item $\displaystyle\bigcup_{i=1}^\infty A_i=[0,\infty)$
+			\item $\displaystyle\bigcap_{i=1}^n A_i=\emptyset$
+			\end{enumerate}
+		\end{rmk}
+	\end{enumerate}
+\end{eg}
+\begin{framed}
+\noindent\texttt{Prove or disprove: If $A$, $B$, and $C$ are sets, and $A\times C=B\times C,$ then $A=B.$}
+\begin{prf}
+	If $C=\emptyset,$ then $A\times C=\emptyset=B\times C$\par But $A$ and $B$ could be dramatically different.
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove or disprove: If $A$, $B$, and $C$ are sets, with $C\neq\emptyset$, and $A\times C=B\times C,$ then $A=B.$}
+\begin{prf}
+	Suppose $A$, $B$, and $C$ are sets.\par Suppose $\exists a,c\in\Z\st(a,c)=A\times C$\par By definition of Cartesian product, $a\in A$ and $c\in C.$\par Suppose $\exists b,c\in\Z\st (b,c)\in B\times C$\par Similarly, $b\in B.$\par Suppose $A\times C=B\times C.$ Then $A\times C\subseteq B\times C$ and $B\times C\subseteq A\times C$\par($\subseteq$) WTS: $A\subseteq B$.\par\hspace{5mm}If $A\times B\subseteq B\times C,$ we have $(a,c)\in B\times C$\par\hspace{5mm}Then, $a\in B.$\par\hspace{5mm}Since $a\in A,$ we know $A\subseteq B.$\par($\supseteq$) WTS: $B\subseteq A$\par\hspace{5mm}Similarly, since $B\times C\subseteq A\times C,$ we have $(b,c)\in A\times C.$\par\hspace{5mm}Then, $b\in A.$\par\hspace{5mm}Since $b\in B$, we see $B\subseteq A.$\par\hspace{5mm}By definition of set equality, $A=B.$
+\end{prf}
+\end{framed}
+
+\begin{df}[Partition]
+	Let $A$ be sets. A \textbf{partition} of $A$ is a subset of the power set of A, $\part\subseteq\pwer(A)$, satisfying the following three properties:
+	\begin{enumerate}
+		\item If $X\in\part,$ then $X\neq\emptyset$ $\longrightarrow$ non-empty subsets of $A$
+		\item $\displaystyle\bigcup_{X\in\part}X=A$
+		\item If $X,Y\in\part$ and $X\neq Y,$ then $X\cap Y=\emptyset$ $\longrightarrow$ mutually disjoint.
+	\end{enumerate}
+\end{df}
+\begin{eg}
+	Let $A=\Z$ and consider the collection of subsets: \[\part=\qty{\qty{\cdots,-4,-2,0,2,4,\cdots},\qty{\cdots,-3,-1,1,3,5,\cdots}}\]	
+	\begin{rmk} Divisibility partisions $\Z$: Pick $n\in\N,\ n>1.$ For every $m\in\Z$: \[m=kn+r,\] where $r$ is the remainder, and $r=\qty{0,1,2,3,\cdots,n-1}$ \end{rmk}
+\end{eg}
+\begin{thm}[The Pigeonhole Principle - Idea]
+	You have $m$ pigeons and $n$ pigeonholes (boxes for the pigeons). If $m>n$, then there will be at least one pigeonhole with more than pigeon. If $m<n,$ then you will have at least one empty pigeonhole. 
+\end{thm}
+\begin{thm}[The Pigeonhole Principle]
+	Let $A_1,A_2,\cdots,A_n$ be a collection of finite mutually disjoint sets. Let $\displaystyle A=\bigcup_{i=1}^n A_i.$ if $|A|=k$ and $k>n$, then $|A_i|\geq2\fs i.$	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Given any $11$ integers, there is a pair of numbers whose difference is divisible by $10$.}
+\begin{prf}
+	Let $\qty{a_1,a_2,\cdots,1_n}$ be $11$ integers.\par Then, $a_i=10k_i+r_i$ for $i\in\qty{1,\cdots,11}$, for $r_i=\qty{0,1,2,\cdots,9}$, and for $k_i\in\Z.$\par Then, there are $10$ possibilities for $r_i$, but there are $11$ integers.\par So, by the Pigeonhole Principle, at least $2$ integers in our list must leave the same remainder on division by $10$.\par Say: \[a_l=10k_l+r\qquad\text{and}\qquad a_m=10k_m+r\qquad\text{where}r\in\qty{0,1,2,\cdots,9}\]\par Then, \[\begin{aligned}a_l-a_m&=10k_l+r-(10k_m+r)\\&=10k_l-10k_m=10(k_l-k_m)\end{aligned}\]\par Since $k_l-k_m\in\Z,$ we say that $10\mid(a_l-a_m).$
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Given $5$ points in a unit square, there are two points within $\dfrac{\sqrt{2}}{2}$ of each other.}
+\begin{rmk}Think carefully about the partition that gives the result!\end{rmk}
+\begin{prf}
+	Split the square horizontally and vertically by picking the midpoints of each side.\begin{center}\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]\draw   (210.37,100.37) -- (310.37,100.37) -- (310.37,200.37) -- (210.37,200.37) -- cycle ;\draw    (210.37,150.3) -- (310.37,150.3) ;\draw    (260.37,100.3) -- (260.37,200.3) ;\draw    (310.37,100.37) -- (260.37,150.37) ;\draw (312.37,103.77) node [anchor=north west][inner sep=0.75pt]    {$\frac{1}{2}$};\draw (280.37,202.77) node [anchor=north west][inner sep=0.75pt]    {$\frac{1}{2}$};\draw (262.37,103.7) node [anchor=north west][inner sep=0.75pt]  {$\frac{\sqrt{2}}{2}$};\end{tikzpicture}\end{center}\par This divides our square into $4$ bins.\par Since there are $4$ bins and $5$ points, by the Pigeonhole Principle, at least $2$ must be in the same bin.\par Further note that in each bin, the largest distance between two points is $\dfrac{\sqrt{2}}{2}.$\par Hence, there are $2$ points with $\dfrac{\sqrt{2}}{2}$ of each other. 
+\end{prf}	
+\end{framed}
+
+\newpage
+\section{The Integers}
+\subsection{Axioms and Basic Properties}
+\begin{df}[Binary Operations]
+	\textbf{Binary operations} of integers combine two integers to get another integer.	
+\end{df}
+
+\begin{ax}[Integers]
+	The \textbf{integers}, which we denoted by $\Z$, is a set, together with a nonempty subset $\mathbb{P}(\Zp/\N)\subset \Z$ (which we call the \textbf{positive} integers), and two binary operations addition and multiplication, denoted by $+$ and $\cdot$, satisfying the following properties: 
+	\begin{itemize}
+		\item (\textbf{Commutativity}) For all integers $a,b$, we have \[a+b=b+a\qquad\text{and}\qquad a\cdot b=b\cdot a.\]
+		\item (\textbf{Associativity}) For all integers $a,b,c$, we have \[a+(b+c)=(a+b)+c\qquad\text{and}\qquad a\cdot(b\cdot c)=(a\cdot b)\cdot c.\]
+		\item (\textbf{Distributivity}) For all integers $a,b,c$, we have \[(a+b)\cdot c=a\cdot c+b\cdot b.\]
+		\item (\textbf{Identity}) There exists integers $0$ (\textbf{additive identity}) and $1$ (\textbf{multiplicative identity}), such that for all integers $a$, we have \[a+0=a\qquad\text{and}\qquad a\cdot1=a.\]
+		\item (\textbf{Additive inverses}) For any integer $a$, there exists an integer $-a$ such that \[a+(-a)=0.\]
+		\item (\textbf{Closure for $\Zp$}) If $a,b$ are positive integers, then $a+b$ and $a\cdot b$ are positive integers.
+		\item (\textbf{Trichotomy}) For every integer $a$, exactly one of the following three possibilities hold: either $a$ is a positive integer, or $a=0$, or $-a$ is a positive integer. 
+		\item (\textbf{Well-ordering}) Every nonempty subset of the positive integers has a smallest element. 
+	\end{itemize}
+	\begin{rmk} We do not talk about the multiplicative inverse because for almost all integers, there does not exist an integer multiplicative inverse. Most of the multiplicative inverse belongs to $\Q$, and only $1$ and $-1$ are two integers that have integer multiplicative inverses. \end{rmk}
+\end{ax}
+\begin{framed}
+\begin{clm}\label{clm3.1.1}
+	Let $a,b,c\in\Z.$ If $a+b=a+c,$ then $b=c$.
+\end{clm}
+\begin{prf}
+	Since $a\in\Z,$ $\exists (-a)\in\Z\st a+(-a)=0$ by \textit{additive inverse}.\par Adding $(-a)$ to the left side: \[\begin{aligned}(-a)+(a+b)&=((-a)+a)+b\qquad\big[\textit{associativity}\big]\\&=0+b\qquad\big[\textit{additive inverse}\big]\\&=b\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par Similarly, we can show $(-a)+(a+c)=c$\par So, we show that $b=c.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{clm}\label{clm3.1.2}
+	Let $a\in\Z.$ Then, $a\cdot0=0\cdot a=0$.
+\end{clm}
+\begin{prf}
+	Note by \textit{commutativity}, $a\cdot0=0\cdot a$. So, it's enough to show $a\cdot0=0.$\par Notice that \[\begin{aligned}a\cdot0+a\cdot0&=a(0+0)\qquad\big[\textit{distributivity}\big]\\&=a\cdot0\qquad\big[\textit{additive identity}\big]\\&=a\cdot0+0\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par So, $a\cdot0+a\cdot0=a\cdot0+0.$ By Claim \ref{clm3.1.1}, we see that $a\cdot0=0.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{clm}
+	Let	$a,b\in\Z.$ Then $(-a)b=a(-b)=-ab$.
+\end{clm}
+\begin{rmk}
+	The three expressions are different: $(-a)b$ means the additive inverse of $a$ and multiplying that by $b$; and $-ab$ is the additive inverse of the product of $a$ and $b$.	
+\end{rmk}
+\begin{prf}	
+	In this proof, we will show that $(-a)b=-ab,$ and the other side will be left as an exercise.\par WTS: $(-a)b$ is the additive inverse of $ab$. That is, WTS: $(-a)b+ab=0.$\par Notice that \[\begin{aligned}(-a)b+ab&=((-a)+a)b\qquad\big[\textit{distributivity}\big]\\&=0\cdot b\qquad\big[\textit{additive inverse}\big]\\&=0\qquad\big[\text{From Claim \ref{clm3.1.2}}\big]\end{aligned}\] So, $(-a)b$ is the additive inverse of $ab$. That is, \[(-a)b=-ab.\]
+\end{prf}
+\end{framed}
+\begin{clm}\label{clm3.1.4}
+	If $a,b\in\Z,$ then $(-a)(-b)=ab.$	
+	\begin{rmk} We leave the proof of this claim as an exercise. \end{rmk}
+\end{clm}
+\begin{framed}
+\noindent\texttt{Let $x\in\Z$ and $x\neq0.$ Then $x^2=x\cdot x\in\Zp.$} \label{Problem1}
+\begin{prf}
+	Suppose $x\in\Z$ and $x\neq0$. Since $x\neq0,$ by \textit{trichotomy}, $x\in\Zp$ or $-x\in\Zp$\par$\boxed{\text{Case }1}$ Suppose $x\in\Zp.$ Then, $x^2=x\cdot x\in\Zp$ by \textit{closure for $\Zp$}.\par$\boxed{\text{Case }2}$ Suppose $-x\in\Zp.$ Then, $(-x)(-x)\in\Zp$ by \textit{closure for $\Zp$}.\par\hspace{5mm}But $(-x)(-x)=x\cdot x=x^2$ by Claim \ref{clm3.1.4}. So, $x^2\in\Zp.$
+\end{prf}	
+\end{framed}
+\begin{nota}
+	\[a-b=a+(-b)\]\[ab=(a)\cdot(b)\]
+\end{nota}
+\begin{df}\label{df3.1.2}
+	Let $x,y\in\Z$. We say $x<y$ if $y-x\in\Zp.$
+	\begin{rmk} We can use the axioms of closure and trichotomy to establish some well-known facts about inequalities. \end{rmk}
+\end{df}
+\begin{framed}
+\begin{clm}
+	Let $a,b,c\in\Z.$ Then, exactly one of the following holds: $a=b$, $a<b$, or $b<a$.
+\end{clm}
+	\begin{prf}
+		Let $a,b\in\Z$\par As before, by \textit{additive inverse}, $\exists(-b)\in\Z\st b+(-b)=0.$ Then $a-b\in\Z.$\par By \textit{trichotomy}, there are 3 cases to consider:\par$\boxed{\text{Case }1}$ $a-b=0,$ so then adding $b$ on both sides, we get $a=b.$\par $\boxed{\text{Case }2}$ $a-b\in\Zp$, then by Definition \ref{df3.1.2}, $a>b$.\par $\boxed{\text{Case }3}$ $-(a-b)\in\Zp.$ But \[\begin{aligned}-(a-b)&=-a-(-b)\qquad\big[\textit{distributivity}\big]\\&=-a+b\\&=b-a.\end{aligned}\]\par\hspace{5mm}So, by Definition \ref{df3.1.2}, $b>a.$
+	\end{prf}
+\end{framed}
+\begin{clm}
+	Let $a\in\Z.$ If $a>0$, then $-a<0$, and if $a<0$, then $-a>0.$	
+\end{clm}
+\begin{clm}
+	Let $a,b\in\Z.$ If $a>0$ and $b>0$, then $ab>0.$
+\end{clm}
+\begin{clm}
+	Let $a,b,c\in\Z.$ If $a<b$ and $b<c$, then $a<c$.
+\end{clm}
+\begin{clm}
+	Let $a,b,c\in\Z.$ If $a<b$, then $a+c<b+c.$
+\end{clm}
+
+\begin{thm}[Well-Ordering Principle]\label{thm3.1.1}
+	Every non-empty subset of the positive integers has a smallest element. 	(If $X\subseteq\Zp$ and $X\neq\emptyset$, then $\exists x_0\in X\st\forall a\in X$ with $a\neq x_0$, we have $a-x_0\in\Zp.$)
+\end{thm}
+\begin{framed}
+\begin{thm}
+	There is no integer $x$ such that $0<x<1.$	
+\end{thm}
+\begin{prf}
+	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\empty.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm3.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df3.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
+\end{prf}
+\end{framed}
 
 
 
 
+\subsection{Induction}
 
 
 
