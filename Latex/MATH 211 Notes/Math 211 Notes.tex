@@ -277,7 +277,7 @@ The hyperplane of $y=2$ is given as below:
 \end{df}
 For spaces in the higher dimension, we understand them via the Cartesian product. 
 \begin{df}[Cartesian Product]
-	\[\R\times\R\times\cdots\times\R=\{(x_1,\cdots,x_n)|x_i\in\R\forall i=1,\cdots,n\}\] is the set of all $n$-tuples of real numbers and is denoted by $\R^n$.
+	\[\R\times\R\times\cdots\times\R=\{(x_1,\cdots,x_n)\mid x_i\in\R\forall i=1,\cdots,n\}\] is the set of all $n$-tuples of real numbers and is denoted by $\R^n$.
 \end{df}
 \begin{eg}
 		$(3,4,5)\in\R^3$ is 3 dimensional. $(3,4,5,6)\in\R^4$ is 4 dimensional.	
@@ -477,7 +477,7 @@ We can link the coordinate system and vectors together:
 	\draw (127,40.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
 	\end{tikzpicture}
 	\end{center}
-	\item \begin{df} If $A(x_1,y_1,z_1)$ as the tail of vector $\vecv$ and $B(x_1,y_1,z_1)$ as the tip of vector $\vecv$, then \[\overrightarrow{AB}=\langle x_2-x_1,\ y_2-y_1,\ z_2-z_1\rangle\]\[|\overrightarrow{AB}|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}\]\end{df}
+	\item \begin{df} If $A(x_1,y_1,z_1)$ as the tail of vector $\vecv$ and $B(x_2,y_2,z_2)$ as the tip of vector $\vecv$, then \[\overrightarrow{AB}=\langle x_2-x_1,\ y_2-y_1,\ z_2-z_1\rangle\]\[|\overrightarrow{AB}|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}\]\end{df}
 	\item \begin{thm}If $\vecv=\langle a,b,c\rangle$ and $\vecu=\langle a',b',c'\rangle$, then \[\vecu+\vecv=\langle a'+a,\ b'+b,\ c'+c\rangle\]\[\vecu-\vecv=\langle a'-a,\ b'-b,\ c'-c\rangle\]\[\alpha\vecu=\langle\alpha a',\ \alpha b',\ \alpha c'\rangle,\text{ where }\alpha\text{ is a scalar.}\]\end{thm}
 \end{enumerate}
 
@@ -664,7 +664,7 @@ Properties of the dot product:
 			&=|\vecu|^2|\vecv|^2(1-\cos^2\theta)\\
 			&=|\vecu|^2|\vecv|^2\sin^2\theta
 		\end{aligned}\]
-		\[\therefore |\vecu\times\vecv|=|\vecu||\vecv|\sin\theta.\]
+		\[\therefore |\vecu\times\vecv|=|\vecu||\vecv||\sin\theta|.\]
 	\end{prf}
 \end{thm}
 \begin{df}[Parallel]
@@ -905,7 +905,7 @@ Relationships of two lines in 3D:
 \begin{eg}
 	Find an equation of the plane crossing through the points $P(1,3,2)$, $Q(3,-1,6)$, and $R(5,2,0)$.
 	\begin{sol}
-		Find the normal vector using the following equation: \[			\vecn=\overrightarrow{PQ}\times\overrightarrow{PR}\]
+		Find the normal vector using the following equation: \[\vecn=\overrightarrow{PQ}\times\overrightarrow{PR}\]
 		\[\begin{aligned}
 			\overrightarrow{PQ}&=\langle3-1,-1-3,6-2\rangle=\langle2,-4,4\rangle\\
 			\overrightarrow{PR}&=\langle5-1,2-3,0-2\rangle=\langle4,-1,-2\rangle
@@ -923,7 +923,7 @@ Relationships of two lines in 3D:
 \begin{thm}[Distance from a Point to a Plane]
 	Distance of the point $P(x_1,y_1,z_1)$ from the plane $ax+by+cz+d=0$: 
 	\begin{equation}\label{d1}
-		D=\frac{|ax_a+by_1+cz_1+d|}{\sqrt{a^2+b^2+c^2}} 	
+		D=\frac{|ax_1+by_1+cz_1+d|}{\sqrt{a^2+b^2+c^2}} 	
 	\end{equation}
 	OR
 	\begin{equation}\label{d2}
@@ -934,8 +934,8 @@ Relationships of two lines in 3D:
 \begin{eg}
 	Find the distance between the parallel planes: \[\Pi_1:\ 10x+2y-2z=5\quad\text{and}\quad\Pi_2:\ 5x+y-z=1.\]
 	\begin{sol}
-		Assume point $P(x_1,y_!,z_1)$ is on plane $\Pi_1$: \[\begin{aligned}10x_1+2y_1-2z_1&=5\\\therefore\ 5x_1+y_1-z_1&=\frac{5}{2}\end{aligned}\]	
-		Applying formula \ref{d1}: $\vecn=\langle a,b,c\rangle=\langle5,1,-1rlangle,\ d=-1$: 
+		Assume point $P(x_1,y_1,z_1)$ is on plane $\Pi_1$: \[\begin{aligned}10x_1+2y_1-2z_1&=5\\\therefore\ 5x_1+y_1-z_1&=\frac{5}{2}\end{aligned}\]	
+		Applying formula \ref{d1}: $\vecn=\langle a,b,c\rangle=\langle5,1,-1\rangle,\ d=-1$: 
 		\[\therefore\ D=\frac{|5x_1+y_1-z_1+d|}{\sqrt{a^2+b^2+c^2}}=\frac{|\frac{5}{2}-1|}{\sqrt{26+1+1}}=\frac{3/2}{\sqrt{27}}=\frac{3}{2\sqrt{27}}\left(=\frac{\sqrt{3}}{6}\right).\]
 	\end{sol}
 \end{eg}
@@ -1049,15 +1049,15 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 	If $\vecr(t)=f(t)\veci+g(t)\vecj+h(t)\veck$, then\[\vecr'(t)=f'(t)\veci+g'(t)\vecj+h'(t)\veck.\]	
 \end{ext}
 \begin{rmk}[Higher Order Derivatives]
-	Higher order derivatives $\dfrac{\d^{(n)}\vecr}{dt^{(n)}}$ can be defined similarly. 	
+	Higher order derivatives $\dfrac{\d^{(n)}\vecr}{\d t^{(n)}}$ can be defined similarly. 	
 \end{rmk}
 \begin{thm}[Graphic Interpretation of Derivative]
 	When $h\to0$, the vector \[\dfrac{\vecr(t+h)-\vecr(t)}{h}\] becomes $\vecr(t)$ and therefore, $\vecr'(t)$ approaches to a vector that lies on the tangent line. $\vecr'(t)$ is called the \textbf{tangent vector}, and \[\vec{T}=\dfrac{\vecr'(t)}{|\vecr'(t)|}\] is called the \textbf{unit tangent vector}.
 \end{thm}
 \begin{eg}
-	Find parametric equations of the tangent line to the vector function $\vecr(t)=\langle2\cos{t},\ \sin{t},\ t\rangle$ at point $(0,1,\dfrac{\pi}{2}).$
+	Find parametric equations of the tangent line to the vector function $\vecr(t)=\langle2\cos{t},\ \sin{t},\ t\rangle$ at point $\qty(0,1,\dfrac{\pi}{2}).$
 	\begin{sol}
-		When $t=\frac{\pi}{2}$, $2\cos{\frac{\pi}{2}}=0,\ \sin{\frac{\pi}{2}}=1$.\par $\therefore(0,1,\frac{\pi}{2})$ is on the space curve of $\vecr(t)$.\par Find \[\begin{aligned}\vecr'(t)&=\langle(2\cos{t})',\ (\sin{t})',\ t'\rangle\\&=\langle-2\sin{t},\ \cos{t}, 1\rangle\end{aligned}\]	\par When $t=\frac{\pi}{2}$, \[\vecr'\left(\frac{\pi}{2}\right)=\langle-2\sin{\left(\frac{\pi}{2}\right)},\ \cos{\left(\frac{\pi}{2}\right)}, 1\rangle=\langle-2,0,1\rangle\]\par $\therefore \vecd$ of tangent line $=\langle-2,0,1\rangle$\par \[\therefore\text{Line: }\langle0,1,\frac{\pi}{2}\rangle+\langle-2,0,1\rangle t=\langle-2t,1,\frac{\pi}{2}+t\rangle\]
+		When $t=\dfrac{\pi}{2}$, $2\cos{\dfrac{\pi}{2}}=0,\ \sin{\dfrac{\pi}{2}}=1$.\par $\therefore\qty(0,1,\dfrac{\pi}{2})$ is on the space curve of $\vecr(t)$.\par Find \[\begin{aligned}\vecr'(t)&=\langle(2\cos{t})',\ (\sin{t})',\ t'\rangle\\&=\langle-2\sin{t},\ \cos{t}, 1\rangle\end{aligned}\]	\par When $t=\dfrac{\pi}{2}$, \[\vecr'\left(\frac{\pi}{2}\right)=\left\langle-2\sin{\left(\frac{\pi}{2}\right)},\ \cos{\left(\frac{\pi}{2}\right)}, 1\right\rangle=\langle-2,0,1\rangle\]\par $\therefore \vecd$ of tangent line $=\langle-2,0,1\rangle$\par \[\therefore\text{Line: }\left\langle0,1,\frac{\pi}{2}\right\rangle+\langle-2,0,1\rangle t=\left\langle-2t,1,\frac{\pi}{2}+t\right\rangle\]
 	\end{sol}	
 \end{eg}
 \begin{eg}
@@ -1412,6 +1412,91 @@ Now, let $g(h)=f(x_0+ha,y_0+hb)$, then we have \[D_{\vecu}f(x_0,y_0)=\lim_{h\to0
 		\item $D(1,1)=36-9=27>0$ and $\displaystyle\pdv[2]{f}{x}(1,1)=6(1)>0\Longrightarrow(1,1)$ is a local minimum. \end{enumerate}
 	\end{sol}
 \end{eg}
+\begin{thm}[Extreme Value Theorem, EVT]
+	We are expanding the Extreme Value Theorem from a single variable version to a multivariable	version: 
+	\begin{enumerate}
+		\item Single Variable Version: any continuous function on a closed interval $I$ has a maximum or minimum value in that interval $I$.
+		\item Multivariable Version: For a multivariable function $f(x_1,\cdots,x_n)$ on a \textbf{closed and bounded} region $D$ in $\R^n$. $f$ has both maximum and minimum values in that region.
+	\end{enumerate}
+	\begin{df}[Bounded Region]
+		$D$ is bounded if there exists some ball \[x_1^2+x_2^2+\cdots+x_n^2\leq R^2\]	that contains $D$. 
+	\end{df}
+	\begin{df}[Closed Region]
+		Closed region $D$ is a region that includes the boundaries. 	
+	\end{df}
+\end{thm}
+\begin{eg}[Bounded and Closed Region]
+The following are examples of closed and bounded regions. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (27,91.28) -- (127,91.28)(77.37,41) -- (77.37,141) (120,86.28) -- (127,91.28) -- (120,96.28) (72.37,48) -- (77.37,41) -- (82.37,48)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.13 ] (52.37,91.28) .. controls (52.37,77.47) and (63.56,66.28) .. (77.37,66.28) .. controls (91.18,66.28) and (102.37,77.47) .. (102.37,91.28) .. controls (102.37,105.09) and (91.18,116.28) .. (77.37,116.28) .. controls (63.56,116.28) and (52.37,105.09) .. (52.37,91.28) -- cycle ;
+	\draw  (161,91.28) -- (261,91.28)(211.37,41) -- (211.37,141) (254,86.28) -- (261,91.28) -- (254,96.28) (206.37,48) -- (211.37,41) -- (216.37,48)  ;
+	\draw  (291,89.28) -- (391,89.28)(341.37,39) -- (341.37,139) (384,84.28) -- (391,89.28) -- (384,94.28) (336.37,46) -- (341.37,39) -- (346.37,46)  ;
+	\draw  (427,90.28) -- (527,90.28)(477.37,40) -- (477.37,140) (520,85.28) -- (527,90.28) -- (520,95.28) (472.37,47) -- (477.37,40) -- (482.37,47)  ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}] (452.37,90.28) .. controls (452.37,76.47) and (463.56,65.28) .. (477.37,65.28) .. controls (491.18,65.28) and (502.37,76.47) .. (502.37,90.28) .. controls (502.37,104.09) and (491.18,115.28) .. (477.37,115.28) .. controls (463.56,115.28) and (452.37,104.09) .. (452.37,90.28) -- cycle ;
+	\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.13 ][dash pattern={on 4.5pt off 4.5pt}] (176.37,91.28) .. controls (176.37,80.23) and (192.04,71.28) .. (211.37,71.28) .. controls (230.7,71.28) and (246.37,80.23) .. (246.37,91.28) .. controls (246.37,102.32) and (230.7,111.28) .. (211.37,111.28) .. controls (192.04,111.28) and (176.37,102.32) .. (176.37,91.28) -- cycle ;
+	\draw    (311.46,43.78) -- (311.09,135.5) ;
+	\draw    (371.28,43.78) -- (370.91,135.5) ;
+	\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.13 ] (311.46,43.78) -- (371.28,43.78) -- (371.28,134.78) -- (311.46,134.78) -- cycle ;
+	\draw    (457.37,109.28) -- (441.37,127.28) ;
+	\draw    (473.37,120.28) -- (470.37,140.28) ;
+	\draw    (485.37,122.28) -- (492.37,137.28) ;
+	\draw    (503.37,114.28) -- (520.37,127.28) ;
+	\draw    (440.37,56.28) -- (450.37,71.28) ;
+	\draw    (522.37,61.28) -- (506.37,73.28) ;
+	\draw    (448.37,101.28) -- (431.37,109.28) ;
+	\draw    (464.37,116.28) -- (455.37,136.28) ;
+	\draw    (510.37,51.28) -- (497.37,66.28) ;
+	\draw    (446.37,77.28) -- (429.37,73.28) ;
+	\draw    (458.37,65.28) -- (455.37,50.28) ;
+	\draw    (469.37,62.28) -- (466.37,47.28) ;
+	\draw    (496.37,42.28) -- (487.37,62.28) ;
+	\draw    (525.37,77.28) -- (510.37,82.28) ;
+	\draw    (495.37,121.28) -- (506.37,132.28) ;
+	\draw    (511.37,107.28) -- (526.37,115.28) ;
+	\draw (126,94.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (60,29.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (7,145) node [anchor=north west][inner sep=0.75pt]   [align=left] {Closed and Bounded};
+	\draw (260,94.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (194,29.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (390,92.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (324,27.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (526,93.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (460,28.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (131,15) node [anchor=north west][inner sep=0.75pt]   [align=left] {Bounded but not Closed};
+	\draw (260,144) node [anchor=north west][inner sep=0.75pt]   [align=left] {Closed but not Bounded};
+	\draw (383,14) node [anchor=north west][inner sep=0.75pt]   [align=left] {not Closed and not Bounded};
+	\end{tikzpicture}
+\end{center}
+\end{eg}
+\begin{eg}
+	Find the extreme values of the function $f(x,y)=x^2+2y^2-x^2y$ on the following region: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (21,61.29) -- (121,61.29)(70.37,9) -- (70.37,109) (114,56.29) -- (121,61.29) -- (114,66.29) (65.37,16) -- (70.37,9) -- (75.37,16)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.1 ] (35.37,61.29) .. controls (35.39,44.79) and (50.97,31.37) .. (70.24,31.29) .. controls (89.57,31.21) and (105.3,44.57) .. (105.37,61.14) .. controls (105.37,61.19) and (105.37,61.24) .. (105.37,61.29) -- cycle ;
+	\draw    (100.37,45.29) .. controls (106.1,39.56) and (111.83,41.12) .. (124.53,42.15) ;
+	\draw [shift={(126.37,42.29)}, rotate = 184.09] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (78.37,61.29) .. controls (84.1,70.84) and (81.62,73.09) .. (83.13,85.47) ;
+	\draw [shift={(83.37,87.29)}, rotate = 261.87] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (12,64.4) node [anchor=north west][inner sep=0.75pt]    {$( -4,0)$};
+	\draw (86,65.4) node [anchor=north west][inner sep=0.75pt]    {$( 4,0)$};
+	\draw (78,14.4) node [anchor=north west][inner sep=0.75pt]    {$( 0,4)$};
+	\draw (50,6.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (122,44.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (128,32) node [anchor=north west][inner sep=0.75pt]   [align=left] {Boundary 1};
+	\draw (75,88) node [anchor=north west][inner sep=0.75pt]   [align=left] {Boundary 2};
+	\end{tikzpicture}
+	\end{center}
+	\begin{sol}
+		We can write the region $D$ as the following set: \[D=\qty{(x,y)\mid x^2+y^2\leq6,\ y\geq0}.\]\par$\boxed{\text{Step }1}$ Find the critical points of the function that are inside the boundary (interior to the boundary). \par\hspace{5mm} \[f(x,y)=x^2+2y^2-x^2y\ \Rightarrow\ \nabla f(x,y)=\left\langle\pdv{f}{x},\pdv{f}{y}\right\rangle=\langle2x-2xy, 4y-x^2\rangle.\]\par\hspace{5mm} Set $\nabla f(x,y)=0:\ \begin{cases} 2x-2xy&=0\quad\text{\ding{172}}\\4y-x^2&=0\quad\text{\ding{173}}.\end{cases}$\par\hspace{5mm} From \ding{173}: $y=\dfrac{x^2}{4}.$ Substitute this result into \ding{172}: \[\begin{aligned}2x-2x\cdot\frac{x^2}{4}&=0\\2x-\frac{1}{2}x^3&=0\ \Rightarrow\ x\qty(2-\frac{1}{2}x^2)=0\end{aligned}\]\[\therefore \begin{cases}x&=0\\y&=0\end{cases}\quad\text{or}\quad\begin{cases}x^2&=4\\y&=1\end{cases}\]\[\ \Rightarrow\ \begin{cases}x&=0\\y&=0\end{cases}\quad\text{or}\quad\begin{cases}x&=2\\y&=1\end{cases}\quad\text{or}\quad\begin{cases}x&=-2\\y&=1\end{cases}\]\par\hspace{5mm} All the points $(0,0),\ (2,1),$ and $(-2,1)$ are inside the boundary.\par$\boxed{\text{Step }2}$ Check the boundaries for maximum and minimum. \par\hspace{5mm}\textbf{Check Boundary 1}: $x^2+y^2=16,\quad0\leq y\leq4.$ \[\begin{aligned}f(x,y)=x^2+2y^2-x^2y&=16+y^2-(16-y^2)y\\&=16+y^2-16y+y^3\\f(y)&=y^3+y^2-16y+16\ \rightarrow\text{ one variable function}\end{aligned}\] \[f'(y)=3y^2+2y-16=0\qquad y=-\dfrac{8}{3},\quad y=2.\]\par\hspace{10mm} Since $0\leq y\leq4$, $y=2.$\par\hspace{10mm} When $y=2$, $x=\pm\sqrt{16-4}=\pm2\sqrt{3}.$ \[f(y)=2^3+2^2-16(2)+16=8+4-32+16=-4\]\par\hspace{10mm} When $y=4$, $x=0.$\[f(x,y)=16+16-64+64=32\]\par\hspace{10mm} When $y=0,$ $x=\pm4.$ \[f(x,y)=16\ \rightarrow\ \text{(not a extreme value)}\]\par\hspace{10mm} Hence, we have $-4\leq f(x,y)\leq32$ on Boundary 1. \par\hspace{5mm}\textbf{Check boundary 2}: $-4\leq x\leq 4,\quad y=0.$ \[f(x,y)=x^2+2y^2-x^2y=x^2\]\par\hspace{10mm} Since $0\leq x^2\leq 16,\quad0\leq f(x,y)\leq16.$\par$\boxed{\text{Step }3}$ List all the points and values: \begin{center}\begin{tabular}{c|c}Point&Value\\\hline$(0,0)$&$f(0,0)=0$\\$(2,1)$&$f(2,1)=2$\\$(-2,1)$&$f(-2,1)=2$\\$(2\sqrt{3},2)$&$f(2\sqrt{3},2)=-4$\\$(-2\sqrt{3},2)$&$f(-2\sqrt{3},2)=-4$\\$(0,4)$&$f(0,4)=32$\\\end{tabular}\end{center}\par\hspace{10mm} Hence, minimum occurs at $(2\sqrt{3}, 2)$ and $(-2\sqrt{3},2)$, and the function value is $-4$ at minimum. The maximum occurs at $(0,4)$, and the function value is $32$ at maximum. 
+	\end{sol}
+\end{eg}
+
+\subsection{Lagrange Multiplier}
 
 
 

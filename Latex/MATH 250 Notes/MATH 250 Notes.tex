@@ -1,16 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{ntheorem}
-\usepackage{amsmath}
-\usepackage{mathrsfs}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage{geometry}
-\usepackage{framed}
-\usepackage{physics}
-\usepackage{tikz}
+\usepackage{mathtools, amssymb, ntheorem, amsmath, mathrsfs, hyperref, fancyhdr, geometry, framed, physics, pifont, tikz}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -64,7 +54,7 @@
 \def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
 \def\Zp{{\Z^{+}}}
-\def\pwer{{\mathcal{P}}}
+\def\pow{{\mathcal{P}}}
 \def\part{{\mathscr{P}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
@@ -831,15 +821,15 @@ Another way to prove is by contrapositive.
 \end{prf}	
 \end{framed}
 \begin{df}[Power set]
-	The \textbf{power set} of $A$, denoted $\pwer(A)$, is the set of all subset of $A$. Therefore, $|\pwer(A)|=2^n$ when $|A|=n.$
+	The \textbf{power set} of $A$, denoted $\pow(A)$, is the set of all subset of $A$. Therefore, $|\pow(A)|=2^n$ when $|A|=n.$
 \end{df}
 \begin{thm}
-	\[x\in\pwer(A)\iff x\subseteq A\]	
+	\[x\in\pow(A)\iff x\subseteq A\]	
 \end{thm}
 \begin{framed}
-\noindent\texttt{Let $A, B$ be sets. Prove that $\pwer(A)\cup\pwer(B)\subseteq\pwer(A\cup B)$}
+\noindent\texttt{Let $A, B$ be sets. Prove that $\pow(A)\cup\pow(B)\subseteq\pow(A\cup B)$}
 \begin{prf}
-	Let $A$, $B$ be sets.\par Suppose $X\in\pwer(A)\cup\pwer(B)$ $\big[$Notation: Capital $X$ because $X$ is a set!$\big]$\par Then, by definition of union, $X\in\pwer(A)$ or $X\in\pwer(B).$\par WLOG, suppose $X\in\pwer(A).$ By definition of the power set, $X\subseteq A$.\par Since $A\subseteq A\cup B$, if $X\subseteq A$, then $X\subseteq A\cup B$.\par By definition of the power set, $X\in\pwer(A\cup B).$\par Hence, $\pwer(A)\cup\pwer(B)\subseteq\pwer(A\cup B).$
+	Let $A$, $B$ be sets.\par Suppose $X\in\pow(A)\cup\pow(B)$ $\big[$Notation: Capital $X$ because $X$ is a set!$\big]$\par Then, by definition of union, $X\in\pow(A)$ or $X\in\pow(B).$\par WLOG, suppose $X\in\pow(A).$ By definition of the power set, $X\subseteq A$.\par Since $A\subseteq A\cup B$, if $X\subseteq A$, then $X\subseteq A\cup B$.\par By definition of the power set, $X\in\pow(A\cup B).$\par Hence, $\pow(A)\cup\pow(B)\subseteq\pow(A\cup B).$
 \end{prf}
 \end{framed}
 \begin{df}[Cartesian Product]
@@ -914,7 +904,7 @@ Another way to prove is by contrapositive.
 \end{framed}
 
 \begin{df}[Partition]
-	Let $A$ be sets. A \textbf{partition} of $A$ is a subset of the power set of A, $\part\subseteq\pwer(A)$, satisfying the following three properties:
+	Let $A$ be sets. A \textbf{partition} of $A$ is a subset of the power set of A, $\part\subseteq\pow(A)$, satisfying the following three properties:
 	\begin{enumerate}
 		\item If $X\in\part,$ then $X\neq\emptyset$ $\longrightarrow$ non-empty subsets of $A$
 		\item $\displaystyle\bigcup_{X\in\part}X=A$
@@ -1035,7 +1025,7 @@ Another way to prove is by contrapositive.
 	Every non-empty subset of the positive integers has a smallest element. 	(If $X\subseteq\Zp$ and $X\neq\emptyset$, then $\exists x_0\in X\st\forall a\in X$ with $a\neq x_0$, we have $a-x_0\in\Zp.$)
 \end{thm}
 \begin{framed}
-\begin{thm}
+\begin{thm}\label{thm3.1.2}
 	There is no integer $x$ such that $0<x<1.$	
 \end{thm}
 \begin{prf}
@@ -1043,10 +1033,99 @@ Another way to prove is by contrapositive.
 \end{prf}
 \end{framed}
 
-
-
-
 \subsection{Induction}
+\begin{cor}[Introduction to Mathematical Induction]
+	The most powerful consequence of the well-ordering	principle (Theorem \ref{thm3.1.1}) is the technique of mathematical induction. The central idea of mathematical induction is that \begin{center}\textit{To prove a statement that depends on an integer $n$, denoted $P(n)$, it is enough to prove it about a smaller integer $m$, $P(m)$, and then show that since $m<n,$ $P(m)\implies P(n)$.}\end{center}
+\end{cor}
+\begin{thm}[First Principle of Mathematical Induction]\label{induction}
+	Let $P(n)$ be a statement about the positive integer $n.$ Suppose that 
+	\begin{enumerate}
+		\item $P(1)$ is true; and 
+		\item\label{condition2} $\forall k\in\Z\st k\geq2,\ P(k-1)\implies P(k)$.
+	\end{enumerate}	Then, $P(n)$ is true for all $n\in\Zp.$
+	\begin{rmk} Equivalently, we can write the Condition \ref{condition2} as $\forall k\geq1,\ P(k)\implies P(k+1).$ \end{rmk}
+\end{thm}
+\begin{framed}
+\noindent\textit{The following is a prove of Theorem \ref{induction}}\par\noindent
+\texttt{If $P(1)$ is true, and $\forall k\geq2,\ P(k-1)\Rightarrow P(k),$ then $P(n)$ is true $\forall n\in\N.$}
+\begin{prf}
+	Let $P(n)$ be a statement about positive integers. \par Suppose $P(1)$ is true and $\forall k\geq2,\ P(k-1)\implies P(k).$\par Assume for the sake of contradiction that $\exists a\in\Zp\st P(a)$ is false. \par Let $F=\qty{x\in\Zp\mid P(x)\text{ is false}}$. Note that $F\subseteq\Zp.$ Further by assumption, $a\in F,$ and so $F\neq\emptyset.$\par So, by WOP (Well-Ordering Principle, Theorem \ref{thm3.1.1}), $\exists f_0\in F$ that is the smallest element of $F$. $\qquad$\big[WTS: $F=\emptyset$\big]\par Note that since $P(1)$ is true, then $1\notin F.$ Consider numbers $f_0-1\in\Z.$\par Since $1$ is the smallest positive integer (a corollary of Theorem \ref{thm3.1.2}), and $f_0\in\Zp,$ we have $f_0>1$. So, $f_0-1\in\Zp.$\par Since $f_0$ is the smallest element of $F$ and $f_0-1\in\Zp.$ Then $P(f_0-1)$ is true. (Because $f_0-1<f$ cannot be in the set of $F$, by our assumption).\par By assumption, $P(f_0)$ is true because $F(f_0-1)\implies P(f_0).$\par\begin{center}$\divideontimes$ But $f_0\in F$ so $P(f_0)$ is false. \end{center}\par So, it must be that $\forall n\in\Zp,\ P(n)$ is true. 
+\end{prf}
+\begin{rmk} This proof strategy is also called proof by \textbf{the smallest counterexample. }\end{rmk}
+\end{framed}
+\begin{framed}
+\noindent\texttt{The sum of the first $n$ natural numbers is $\dfrac{n(n+1)}{2}.$}
+\begin{prf}
+	Let $P(n)$ be the statement \[1+2+3+\cdots+n=\frac{n(n+1)}{2}.\]\par $\boxed{\text{Base Case}}$ Consider $P(1): 1=\dfrac{1(1+1)}{2}$.\par\hspace{5mm} The right side is $\dfrac{1(2)}{2}=1$. So, the statement is clearly true.\par $\boxed{\text{Inductive Steps}}$ Assume that for some $k\geq1,\ P(k)$ is true. That is, \[1+2+3+\cdots+k=\dfrac{k(k+1)}{2}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, we WTS: \[1+2+3+\cdots+k+(k+1)=\dfrac{(k+1)(k+1+1)}{2}=\dfrac{(k+1)(k+2)}{2}\]\par\hspace{5mm} Adding $(k+1)$ to both sides of equation \ding{172}: \[\begin{aligned} (1+2+3+\cdots+k)+(k+1)&=\dfrac{k(k+1)}{2}+(k+1)\\&=(k+1)\qty(\dfrac{k}{2}+1)\\&=(k+1)\qty(\dfrac{k}{2}+\dfrac{2}{2})\\&=(k+1)\dfrac{(k+2)}{2}\\&=\dfrac{(k+1)(k+2)}{2}\end{aligned}\]\par\hspace{5mm} So, $(k+1)$ is true. \par We've shown that $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1).$\par So, by Principle of Mathematical Induction (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
+\end{prf}
+\end{framed}
+\begin{rmk}[The Role of the Base Case]
+	Mathematical induction only works if you can ``get the ball rolling.'' However, our first step in mathematical induction \textbf{need not to be} $n=1.$
+\end{rmk}
+\begin{df}[Factorial]
+	We define factorial of a positive integer $n$ as \[n!=1\cdot2\cdot3\cdot\cdots\cdot n\] Notably, we define the factorial of $0$ as 1. That is, \[0!=1.\]
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that if $n\in\Z$ and $n>4$, then $n!>2^n.$}
+\begin{prf}
+	Let $P(n)$ be the statement that $n!>2^n.$\par$\boxed{\text{Base Case}}$ WTS: $P(4)$ is true. \[4!=(1)(2)(3)(4)=24,\qquad 2^4=16.\]\par\hspace{5mm} Since $24>16,\ P(4)$ is true.\par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq4,\ P(k)$ is true. That is, $k!>2^k\qquad\text{\ding{172}}$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $(k+1)!>2^{k+1}.$\par\hspace{5mm} Multiplying both sides of \ding{172} by $(k+1)$: $(k!)(k+1)>2^k(k+1).$\par\hspace{5mm} So, we have $(k+1)!>2^k(k+1)>2^k(2)=2^{k+1}$ since $k\geq4.$\par\hspace{5mm} That is, $(k+1)!>2^{k+1}$.\par Since $P(4)$ is true and $\forall k\geq4,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\geq4.$
+\end{prf}
+\end{framed}
+\begin{rmk}[Generalizing Theorem]
+	Often the role of induction is to generalize theorems from cases with few elements to an arbitrary but finite number of elements. 
+\begin{eg}
+	Let $n\in\Zp$. The following theorems can be proven using the Mathematical Induction Principle (Theorem \ref{induction}).: 
+	\begin{enumerate}
+		\item Suppose $a_1,a_2,\cdots,a_n$ are all even integers. Then $\displaystyle\sum_{i=1}^na_i$ is even.
+		\item Suppose $A$ and $B_1,B_2,\cdots,B_n$ are all sets. Then \[A\cap\qty(\bigcup_{i=1}^nB_i)=\bigcup_{i=1}^n(A\cap B_i)\]
+		\item \begin{thm} Let $A$ be a finite set with $n$ elements. Then, $\pow(A)$ has $2^n$ elements. \end{thm}
+	\end{enumerate}
+\end{eg}
+\end{rmk}
+\begin{df}{Fibonacci Numbers}\[F_1=1\qquad F_2=1\qquad F_n=F_{n-1}+F_{n-2}\texttt{ for }n\geq3\]
+	\begin{eg}
+		The \textit{Fibonacci numbers} are described as follows: \[1,1,2,3,5,8,13,21,34,55,\cdots\]	
+	\end{eg}
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that the Fibonacci sequence satisfies: \[F_1+F_3+F_5+\cdots+F_{2n-1}=F_{2n}\] for all $n$.}
+\begin{prf}
+	Let $P(n)$ be the statement that $F_1+F_3+\cdots+F_{2n-1}=F_{2n}$\par$\boxed{\text{Base Case}}$ $P(1):\ F_1=1,\ F_{2(1)}=F_2=1,$ So, $P(1)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq1,\ P(k)$ is true. That is, \[F_1+F_3+\cdots+F_{2k-1}=F_{2k}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k+2}.$\par\hspace{5mm} Add $F_{2k+1}$ to both sides of equation \ding{172}: \[F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k}+F_{2k+1}=F_{2k+2}\]\par\hspace{5mm} So, $P(k+1)$ is true.\par Since $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that if $n\in\Z$ and $n\geq0,$ then $6\mid7^n-1.$}
+\begin{prf}
+	Let $P(n)$ be the statement ``$6\mid7^n-1$.''\par$\boxed{\text{Base Case}}$ WTS: $P(0)$ is true. That is, $6\mid7^0-1.$\par\hspace{5mm} Since $7^0-1=1-1=0$ and $6\mid0,$ then $6\mid7^0-1.$\par\hspace{5mm} That is, $P(0)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose for some $k\geq0$, $P(k)$ is true. That is, $6\mid7^k-1. $\par\hspace{5mm} In other words, $\exists l\in\Z\st7^k-1=6l\qquad\text{or}\qquad7^k=6l+1.$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $6\mid7^{k+1}-1$\par\hspace{5mm} Note that \[\begin{aligned}7^{k+1}-1=7^k\cdot7-1&=7(6l+1)-1\\&=42l+7-1\\&=42l+6\\&=6(7l+1).\end{aligned}\]\par\hspace{5mm} Since $7l+1\in\Z,$ by definition of divides, $6\mid7^{k+1}-1.$\par\hspace{5mm} Hence, $P(k)\implies P(k+1).$\par Since we've proven $P(0)$ is true and for $k\geq0$ $P(k)\implies P(k+1),$ by Principle of Mathematical Induction (Theorem \ref{induction}), for all $n\in\Z$ and $n\geq0$, $P(n)$ is true. 
+\end{prf}
+\end{framed}
+\begin{thm}[Second Principle of Mathematical Induction]\label{stronginduction}
+	Let $P(n)$ be a statement about the positive integer $n$. Suppose that \begin{enumerate}
+		\item $P(1)$ is true.
+		\item $\forall k\in\Z$ such that $k\geq2,$ if $P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true.
+	\end{enumerate}	
+	Then, $P(n)$ is true for all $n\in\Zp.$
+\end{thm}
+\begin{rmk} 
+	The phrasing ``$P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true'' can also be phrased as ``$\forall k\geq1$, $P(i)$ is true $\forall i\quad1\leq i\leq k.$ Then, $P(k+1)$ is true.
+\end{rmk}
+\begin{rmk}
+	The meaning of this phrasing, ``$P(i)$ is true for all $1\leq i\leq k-1$'' is that $P(1)$ is true, $P(2)$ is true, $P(3)$ is true, $\cdots,$ $P(k-2)$ is true, and $P(k-1)$ is true.
+\end{rmk}
+\begin{rmk}
+	The Second Principle of Mathematical Induction (Theorem \ref{stronginduction}) is logically equivalent to the First Principle of Mathematical Induction (Theorem \ref{induction}). However, in some cases, we have to use Theorem \ref{stronginduction} in our proofs.\end{rmk}
+\begin{rmk}
+	When using the Second Principle of Mathematical Induction, think about base cases! For example, if we need to show for $k-1\geq0\ (k\geq1)$ $P(k+1)$	is true, then our base cases are $P(0)$ and $P(1).$
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Given $n\in\N$, define a recursive function $f$ as follows: \[f(0)=1\qquad f(1)=3\qquad f(n)=2f(n-1)-f(n-2)\quad\forall n\geq2.\] Prove that for all $n\geq0$, $f(n)=2n+1$.}
+\begin{prf}
+	Let $P(n)$ be the statement ``$f(n)=2n+1.$''\par$\boxed{\text{Base Cases}}$ 	WTS: $P(0)$ and $P(1)$ are true.\par\hspace{5mm} $P(0)$ is true: \big[WTS: $f(0)=2(0)+1$\big]\par\hspace{10mm}Note that $2(0)+1=0+1=1$ and $f(0)=1$ by definition. That is, $P(0)$ is true.\par\hspace{5mm} $P(1)$ is true: \big[WTS:$f(1)=2(1)+1$\big]\par\hspace{10mm} Since $f(1)=3$ by definition and $2(1)+1=3$, $P(1)$ is true. \par$\boxed{\text{Inductive Steps}}$ Let $k\geq\mathbf{1}$ be $\st\forall i\quad 0\leq i\leq k,\ P(i)$ is true. -- \textit{inductive hypothesis} \par\hspace{5mm} WTS: $P(k+1)$ is true. \par\hspace{5mm} Since $k\geq1$, $k+1\geq2$. So, by definition, \[\begin{aligned}f(k+1)&=2f(k+1-1)-f(k+1-2)\\&=2f(k)-f(k-1)\end{aligned}\]\par\hspace{5mm} Since $k-1\geq0,$ by inductive hypothesis, $P(k)$ and $P(k-1)$ are true.\par\hspace{5mm} So, $f(k-1)=2(k-1)+1$ and $f(k)=2k+1$.\par\hspace{5mm} Substituting, we have \[\begin{aligned}f(k+1)&=2(2k+1)-\qty[2(k-1)+1]\\&=4k+2-2k+2-1\\&=2k+3\\&=2k+2+1\\&=2(k+1)+1.\end{aligned}\]\par Hence, by Mathematical Induction (Theorem \ref{stronginduction}), $P(n)$ is true $\forall n\geq0.$
+	\end{prf}
+\end{framed}
+
+
+
 
 
 
