@@ -29,8 +29,11 @@
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
+\newenvironment*{counter}{\par{\textit{Counterexample. }}}{\hfill{$\square$}\par}
+\newenvironment*{ans}{\par{\textit{Answer. }}}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\par\indent\textbf{\textit{Proof} (\stepcounter{nprf}\thenprf). }\par}{\par\hfill $\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof} (\stepcounter{nprf}\thenprf). }\par }{\par\hfill $\blacksquare$\par}
+\newenvironment*{dis}{\par\indent\textbf{\textit{Disproof} (\stepcounter{nprf}\thenprf). }\par}{\par\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \linespread{1.25}
@@ -104,9 +107,9 @@ Throughout this personal note, I use different formats to differentiate differen
     This is  an \textbf{example}. 
 \end{eg}
 
-\begin{sol}
+\begin{ans}
     This is the \textit{answer} part of an \textbf{example}. 
-\end{sol}
+\end{ans}
 \begin{rmk}
 	This is a \textbf{remark} of a definition, theorem, example, or proof. 
 \end{rmk}
@@ -166,7 +169,7 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 		\end{itemize}	
 	\end{eg}
 \end{rmk}
-\begin{df}[Quantifiers]
+\begin{nota}[Quantifiers]
 	We use the symbol $\forall$ for ``for all'' or ``for any'' and the symbol $\exists$ for ``there exists.'' $\forall$ and $\exists$ are called \textbf{quantifiers}. $\forall$ is the \textbf{universal quantifier} and $\exists$ is the \textbf{existential quantifier}.	 
 	\begin{eg}
 		\begin{enumerate}
@@ -189,32 +192,32 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 		In $\forall\varepsilon\exists\delta$, $\delta$ depends on $\varepsilon$, but $\delta$ is independent in $\exists\delta\forall\varepsilon$, meaning the same $\delta$ works for all $\varepsilon$.
 		\begin{eg} 
 			Compare $\forall n\in\Z,\ \exists m\in\Z\st m=n^2$ to  $\exists n\in\Z\st\forall m\in\Z,\ m=n^2.$
-			\begin{sol}
+			\begin{ans}
 				\begin{enumerate}
 					\item $\forall n\in\Z,\ \exists m\in\Z\st m=n^2$: True. The square of an integer is an integer. 
 					\item $\exists n\in\Z\st\forall m\in\Z,\ m=n^2.$: False: $n^2$ is just one integer and cannot be represented by all $m\in\Z$.
 				\end{enumerate}
-			\end{sol}
+			\end{ans}
 		\end{eg}
 	\end{rmk}
-\end{df}
+\end{nota}
 \begin{df}[Negations]
 	If $P$ is a statement, the \textbf{negation} of $P$, written as $\neg P$ (read as ``not $P$'' or ``negation of $P$'') is the statement ``$P$ is false.''	
 	\[\begin{cases}P\text{ is true}\\\neg P\text{ is false}\end{cases}\qquad\begin{cases}P\text{ is false}\\\neg P\text{ is true}\end{cases}\]
 \end{df}
 \begin{eg}
 	Write the negation of $P$: ``All apples are fruits'' and check the truth value of both $P$ and $\neg P$.
-	\begin{sol}
+	\begin{ans}
 		$\neg P$: Not all apples are fruits / Some apples are not fruits / There exists an apple that is not a fruit.
 		
 		$P$ is true and $\neg P$ is false. 
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	Write the negation of $P$: ``Everyday this week was hot.''
-	\begin{sol}
+	\begin{ans}
 		$\neg P$: Somedays this week were not hot. / Not all days this week were hot. / There was a day this week that was not hot. 
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	$P$ all primes are odd.
@@ -281,14 +284,14 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 \end{df}
 \begin{eg}
 	Write the truth table for the statement form: $P\vee\neg Q$.
-	\begin{sol}\begin{center}\begin{tabular}{c|c|c|c}
+	\begin{ans}\begin{center}\begin{tabular}{c|c|c|c}
 		$P$&$Q$&$\neg Q$&$P\vee\neg Q$\\
 		\hline
 		T&T&F&T\\
 		T&F&T&T\\
 		F&T&F&F\\
 		F&F&T&T
-	\end{tabular}\end{center}\end{sol}
+	\end{tabular}\end{center}\end{ans}
 \end{eg}
 \begin{df}[Logically Equivalent]
 	Suppose $P$ and $Q$ are statements. We say $P$ and $Q$ are \textbf{logically equivalent}, denoted as $P\equiv Q$, if they are either both true or both false.
@@ -299,32 +302,32 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	Proving the following using truth tables.
 	\begin{enumerate}
 		\item $\neg(\neg P)\equiv P.$
-		\begin{sol}\begin{center}\begin{tabular}{c|c|c}
+		\begin{ans}\begin{center}\begin{tabular}{c|c|c}
 		$P$&$\neg P$&$\neg(\neg P)$\\
 		\hline
 		T&F&T\\
 		F&T&F
-		\end{tabular}\end{center}\end{sol}
+		\end{tabular}\end{center}\end{ans}
 		\item $P\vee Q\equiv Q\vee P.$
-		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c}
+		\begin{ans}\begin{center}\begin{tabular}{c|c|c|c}
 			$P$&$Q$&$P\vee Q$&$Q\vee P$\\
 			\hline
 			T&T&T&T\\
 			T&F&T&T\\
 			F&T&T&T\\
 			F&F&F&F
-		\end{tabular}\end{center}\end{sol}
+		\end{tabular}\end{center}\end{ans}
 		\item $\neg(P\vee Q)\equiv(\neg P)\wedge(\neg Q).$
-		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
+		\begin{ans}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
 			$P$&$Q$&$\neg P$&$\neg Q$&$P\vee Q$&$\neg(P\vee Q)$&$(\neg P)\wedge(\neg Q)$\\
 			\hline
 			T&T&F&F&T&F&F\\
 			T&F&F&T&T&F&F\\
 			F&T&T&F&T&F&F\\
 			F&F&T&T&F&T&T
-		\end{tabular}\end{center}\end{sol}
+		\end{tabular}\end{center}\end{ans}
 		\item $P\vee(Q\vee R)\equiv(P\vee Q)\vee R.$
-		\begin{sol}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
+		\begin{ans}\begin{center}\begin{tabular}{c|c|c|c|c|c|c}
 			$P$&$Q$&$R$&$Q\vee R$&$P\vee(Q\vee R)$&$P\vee Q$&$(P\vee Q)\vee R$\\
 			\hline
 			T&T&T&T&T&T&T\\
@@ -335,7 +338,7 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 			F&T&F&T&T&T&T\\
 			F&F&T&T&T&T&T\\
 			F&F&F&F&F&F&F
-		\end{tabular}\end{center}\end{sol}
+		\end{tabular}\end{center}\end{ans}
 	\end{enumerate}	
 \end{eg}
 \begin{thm}[Negating Compound Statements]
@@ -356,10 +359,10 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 	
 	$\neg(P\vee Q)$: $9$ is not prime ($\neg P$) AND $9$ is odd ($\neg Q$)	
 \end{eg}
-\begin{df}[Distributivity]
+\begin{thm}[Distributivity]
 	\[P\wedge (Q\vee R)\equiv(P\wedge Q)\vee(P\wedge R)\]
 	\[P\vee (Q\wedge R)\equiv(P\vee Q)\wedge(P\vee R)\]
-\end{df}
+\end{thm}
 \begin{rmk}
 	Truth tables can balloon in size. Indeed, if you have $P_1,\cdots,P_n$ statements involved in your statement form, your truth table will contain $2^n$ rows. 
 	
@@ -458,15 +461,15 @@ I hope you will find my notes helpful when developing mathematical thinking skil
 \end{thm}
 \begin{eg}
 	Negate the following: \[\forall\varepsilon\ \exists\delta>0,\ |x-y|<\varepsilon\implies|x^2-y^2|<\delta.\]
-	\begin{sol}
+	\begin{ans}
 		\[\exists\varepsilon\st\forall\delta>0,\ |x-y|<\varepsilon\text{ and }|x^2-y^2|\geq\delta.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	Write in symbols and negate the statement $P$: ``For any positive $\varepsilon$ there exists a positive $M$ such that $|f(x)-b|<\varepsilon$ whenever $x>M.$''	
-	\begin{sol}
+	\begin{ans}
 		\[P:\ \forall\varepsilon>0,\ \exists M>0\st x>M\implies|f(x)-b|<\varepsilon.\]\[\neg P:\ \exists\varepsilon>0\st\forall M>0,\ x>M\text{ and }|f(x)-b|\geq\varepsilon.\]	
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Axiom]
 	An \textbf{axiom} is a statement which is regarded as being established, accepted, or self-evidently true.
@@ -719,13 +722,13 @@ Another way to prove is by contrapositive.
 	The \textbf{cardinality} of a set $A$ is the number of elements in $A$ and is denoted $|A|.$
 \end{df}
 \begin{rmk} When listing the elements of a set, each element is listed only once (for example, $\{1,1\}$ is not a set) and the order of the elements doesn't matter ($\{1,2\}=\{2,1\}$). \end{rmk}
-\begin{df}[Set Builder Notation]
+\begin{nota}[Set Builder Notation]
 	We can use the set builder notation to describe a general property of the elements.
 	\begin{eg}
 		$\{2n\mid n\in\N\}$ is ``the set of elements of the form $2n$ such that $n$ is a natural number.''	
 	\end{eg}
 	\begin{rmk} We use $2\Z$ to represent $\{2k\mid k\in\Z\}.$ Similarly, we have $5\Z, 10\Z,...$\end{rmk}
-\end{df}
+\end{nota}
 \begin{df}[Subset]
 	We say a set $A$ is a \textbf{subset} of a set $B$, denoted $A\subseteq B$, if every element of $A$ is an element of $B$ (If $a\in A$, then $a\in B$). We write $A\nsubseteq B$ if $A$ is not a subset of $B$ ($\neg(A\subseteq B)=a\in A\text{ and }a\notin B.$)
 	\begin{itemize}
@@ -935,6 +938,262 @@ Another way to prove is by contrapositive.
 \end{prf}	
 \end{framed}
 
+
+\newpage
+\section{Functions}
+
+
+\newpage
+\section{Binary Operations and Relations}
+\subsection{Binary Operations}
+\subsection{Equivalence Relations}
+\begin{df}[Relation]
+	A \textbf{relation} $R$	 on a set $A$ is a subset of $A\times A=\qty{\qty(a,b)\mid a,b\in A.}$ 
+\begin{nota}
+	If two elements $a,b\in A$ are related, we write $(a,b)\in R$ or $aRb.$ If $a$ and $b$ are not related, we write $(a,b)\notin A$ or $a\not Rb.$
+\end{nota}
+\end{df}
+\begin{ext} More generally, if $A$ and $B$ are sets, then a relation $R$ from $A$ to $B$ is a subset of $A\times B.$\end{ext}
+
+\begin{eg}
+Describe the following relations by listing the elements of the relation
+\begin{enumerate}
+	\item Let $A=\qty{1,2,3,4,5}$ and $R_<$ is the relation ``strictly less than.''
+	\begin{ans}
+		$aRb$ if $a<b.$ \[R_<=\qty{(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)}.\]	
+	\end{ans}
+	\item Let $A=\qty{1,2,3,4,5}$ and $R_\mid$ is the relation ``divides.''
+	\begin{ans}
+		\[R_\mid=\qty{(1,1),(1,2),(1,3),(1,4),(1,5),(2,2),(2,4),(3,3),(4,4),(5,5)}.\]	
+	\end{ans}
+	\item Let $A=\R$ and $R=\qty{(x,y)\in\R\times\R\mid x=y}$.
+	\begin{ans}
+		This relation describes the line of $y=x$ in a Cartesian plane.	
+	\end{ans}
+	\begin{rmk}
+		Any subset of $A\times A$ is a relation. A relation does not have to have a actual meaning such as ``strictly less than'' or ``divides.''	
+	\end{rmk}
+\end{enumerate}	
+\end{eg}
+\begin{df}[Reflexive, Symmetric, Antisymmetric, Transitive]
+	A relation $R$ on a set $A$ is \begin{itemize}
+ 	\item \textbf{\underline{Reflexive}} if $(a,a)\in R\quad\forall a\in A.$
+ 	\begin{prf}
+ 		Suppose $a\in A.$ We'll show that $(a,a)\in R.$
+ 	\end{prf}
+ 	\begin{dis}
+ 		$\exists a\in A\st(a,a)\notin R.$
+ 	\end{dis}
+ 	\item \textbf{\underline{Symmetric}} if $\forall a,b\in A,$ if $(a,b)\in R$,then $(b,a)\in R.$
+ 	\begin{prf}
+ 		Suppose $a,b\in A.$ Suppose $(a,b)\in R.$\par We'll show that $(b,a)\in R.$
+ 	\end{prf}
+ 	\begin{dis}
+ 		$\exists a,b\in A\st(a,b)\in R$ and $(b,a)\notin R.$
+ 	\end{dis}
+ 	\item \textbf{\underline{Antisymmetric}} if $\forall a,b\in A,$ if $(a,b)\in R$ and $(b,a)\in R,$ then $a=b.$
+ 	\begin{prf}
+ 		Suppose $a,b\in A.$ Suppose $(a,b)$ and $(b,a)\in R.$\par We'll show that $a=b.$
+ 	\end{prf}
+ 	\begin{dis}
+ 		$\exists a,b\in A\st (a,b)$ and $(b,a)\in R$ and $a\neq b.$
+ 	\end{dis}
+ 	\item \textbf{\underline{Transitive}} if $\forall a,b,c\in A,$ if $(a,b)\in R$ and $(b,c)\in R,$ then $(a,c)\in R.$
+ 	\begin{prf}
+ 		Suppose $a,b,c\in A.$ Suppose $(a,b)$ and $(b,c)\in R$\par  We'll show that $(a,c)\in R.$
+ 	\end{prf}
+\end{itemize}\end{df}
+\begin{eg}
+Show if the following relations are reflexive, symmetric, antisymmetric, or transitive.
+\begin{enumerate}
+	\item Suppose $A\subseteq\Z$ or $\N$. Consider $R_<$. 
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: False.
+		\begin{counter}
+			$(1,1)\notin R_<.$	
+		\end{counter}
+		\item \textbf{\underline{Symmetric}}: False.
+		\begin{counter}
+			$(1,2)\in R_<,$ but $(2,1)\notin R_<.$
+		\end{counter}
+		\item \textbf{\underline{Antisymmetric}}: True.
+		\begin{prf} Impossible for $(a,b)$ and $(b,a)\in R.$ So the assumption part of the implication is wrong, which means the implication overall is true. \end{prf}
+		\item \textbf{\underline{Transitive}}: True
+		\begin{prf}
+			Suppose $a,b,c\in A\st a<b,\ b<a$\par Then, $a<c.$ That is, $(a,c)\in R.$
+		\end{prf}
+	\end{itemize}
+	\item Suppose $A\subseteq\Z$ or $\N$. Consider $R_|$.
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: True
+		\begin{prf}
+			Recall that $a\mid b$ if $b=ak\fs k\in\Z.$\par So, when $k=1,$ $b=a.$ That is, $a\mid a\forall a\in Z.$\par That is, $(a,a)\in R.$
+		\end{prf}
+		\item \textbf{\underline{Symmetric}}: False.
+		\begin{counter}
+			$(1,2)\in R_|,$ but $(2,1)\notin R_|.$	
+		\end{counter}
+		\item \textbf{\underline{Antisymmetric}}: True if $A=\N$; False if $A=\Z.$
+		\begin{prf}
+			Suppose $a,b\in A\st a\mid b$ and $b\mid a$.\par Then, $b=ak$ and $a=bl\fs k,l\in\Z.$\par So, $a=(ak)l=akl.$ \[\begin{aligned}a-akl&=0\\a(1-kl)&=0\\a=0\qquad\text{ or }&\qquad kl=1\\&k=l=1\quad\text{ or }\quad k=l=-1.\end{aligned}\] That is, $a=0$ or $a=b$ or $a=-b.$ So the relation is antisymmetric if $A=\N$ because then only the option $a=b$ makes sense. If $A=\Z,$ all three options are possible. 
+		\end{prf}
+		\item \textbf{\underline{Transitive}}: True.
+		\begin{prf}
+			$a\mid b\implies b=ak\qquad b\mid c\implies c=bl$\par $\implies c=(ak)l=a(kl)\implies a\mid c.$
+		\end{prf}
+	\end{itemize}
+	\item Consider the relation $R=\qty{(x,y)\in R^2\mid x^2+y^2=1}.$
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: False.
+		\begin{counter}
+			$(0,0)\notin R$ because $0^2+0^2\neq1.$
+		\end{counter}
+		\item \textbf{\underline{Symmetric}}: True
+		\begin{prf}
+			Let $x,y\in\R\st xRy.$ Then, $x^2+y^2=1.$\par Then, $y^2+x^2=1$. That is, $yRx.$
+		\end{prf}
+		\item \textbf{\underline{Antisymmetric}}: False.
+		\begin{counter}
+			Consider $\qty(\dfrac{1}{2},\dfrac{\sqrt{3}}{2})$ and $\qty(\dfrac{\sqrt{3}}{2}, \dfrac{1}{2})\in R,$ but $\dfrac{\sqrt{3}}{2}\neq\dfrac{1}{2}$\par Or, consider $\qty(0,1)$ and $(1,0)\in R,$ but $0\neq1.$
+		\end{counter}
+		\item \textbf{\underline{Transitive}}: False.
+		\begin{counter}
+			$(0,1)\in R$ and $(1,0)\in R,$ but $(0,0)\notin R.$
+		\end{counter}
+	\end{itemize}
+	\item Consider the relation $R_\leq=\qty{(x,y)\in\R^2\mid x\leq y}$.
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: True. 
+		\item \textbf{\underline{Symmetric}}: False.
+		\begin{counter}
+			$(1,2)\in R,$ but $(2,1)\notin R.$	
+		\end{counter}
+		\item \textbf{\underline{Antisymmetric}}: True.
+		\begin{prf}
+			If $a\leq b$ and $b\leq a,$ then $a=b.$
+		\end{prf}
+		\item \textbf{\underline{Transitive}}: True.
+		\begin{prf}
+			If $a\leq b$ and $b\leq c,$ then $a\leq c.$	
+		\end{prf}
+	\end{itemize}
+	\item Let $S$ be the set of all finite subsets of $\Z.$ Consider the relation $R$ on $S$ by $ARB$ if $\qty|A|=\qty|B|.$
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: True.
+		\begin{prf} $\qty|A|=\qty|A|.$\end{prf}
+		\item \textbf{\underline{Symmetric}}: True.
+		\begin{prf} If $\qty|A|=\qty|B|,$ then $\qty|B|=\qty|A|.$\end{prf}.
+		\item \textbf{\underline{Antisymmetric}}: False.
+		\begin{counter}
+			If $A=\qty{1,2}$ and $B=\qty{2,3},$ then $\qty|A|=\qty|B|,$ but $A\neq B.$	
+		\end{counter}
+		\item \textbf{\underline{Transitive}}: True.
+		\begin{prf}
+			If $\qty|A|=\qty|B|$ and $\qty|B|=\qty|C|,$ then $\qty|A|=\qty|C|.$ 	
+		\end{prf}
+	\end{itemize}
+\end{enumerate}
+\end{eg}
+\begin{df}[Equivalence Relation]
+	A relation $R$ on a set $A$ is an \textbf{equivalence relation} on $A$ if it is \underline{reflexive, symmetric, and transitive}. 
+\begin{nota}
+	When $R$ is an equivalence relation, it is common to write $a\sim b$ (read as ``$a$ is equivalent to $b$'') instead of $aRb.$
+\end{nota}
+\begin{rmk} Equivalence relations are a way to generalize the idea of ``equality.'' \end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that $R_=$ on the set $\R$ is an equivalence relation.}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: $a=a\quad\forall a\in\R$
+		\item \textbf{\underline{Symmetric}}: $a=b\implies b=a\quad\forall a,b\in\R.$
+		\item \textbf{\underline{Transitive}}: $a=b,\ b=c\implies a=c\quad\forall a,b,c\in\R.$
+	\end{itemize}
+\end{prf}
+\end{framed}
+\begin{rmk}	We can use graphs and arrows to represent a relation. 
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: Every vertex needs a self loop.
+		\item \textbf{\underline{Symmetric}}: Every edge that is not a loop should look like $\Longleftrightarrow$
+		\item \textbf{\underline{Transitive}}: We should have something like vector addition for every three vertexes. 
+	\end{itemize}
+	\begin{eg}
+		The relation $R=\qty{(1,1),(2,2),(2,4),(3,2),(3,3),(4,3),(4,4)}$ on the set $A=\qty{1,2,3,4)}$ as the follwoing graph: 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (136.36,20.46) .. controls (136.36,18.35) and (138.07,16.63) .. (140.18,16.63) .. controls (142.29,16.63) and (144,18.35) .. (144,20.46) .. controls (144,22.57) and (142.29,24.28) .. (140.18,24.28) .. controls (138.07,24.28) and (136.36,22.57) .. (136.36,20.46) -- cycle ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (136.36,80.46) .. controls (136.36,78.35) and (138.07,76.63) .. (140.18,76.63) .. controls (142.29,76.63) and (144,78.35) .. (144,80.46) .. controls (144,82.57) and (142.29,84.28) .. (140.18,84.28) .. controls (138.07,84.28) and (136.36,82.57) .. (136.36,80.46) -- cycle ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (196.36,20.46) .. controls (196.36,18.35) and (198.07,16.63) .. (200.18,16.63) .. controls (202.29,16.63) and (204,18.35) .. (204,20.46) .. controls (204,22.57) and (202.29,24.28) .. (200.18,24.28) .. controls (198.07,24.28) and (196.36,22.57) .. (196.36,20.46) -- cycle ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (196.36,80.46) .. controls (196.36,78.35) and (198.07,76.63) .. (200.18,76.63) .. controls (202.29,76.63) and (204,78.35) .. (204,80.46) .. controls (204,82.57) and (202.29,84.28) .. (200.18,84.28) .. controls (198.07,84.28) and (196.36,82.57) .. (196.36,80.46) -- cycle ;
+		\draw    (140.18,20.46) .. controls (148.87,1.57) and (117.96,-5.51) .. (139.17,22.95) ;
+		\draw [shift={(140.18,24.28)}, rotate = 232.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (200.18,20.46) .. controls (226.6,25.21) and (237.67,1.02) .. (201.85,15.93) ;
+		\draw [shift={(200.18,16.63)}, rotate = 336.62] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (140.18,80.46) .. controls (135.11,107.72) and (115.63,97.87) .. (138.71,77.87) ;
+		\draw [shift={(140.18,76.63)}, rotate = 140.6] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (200.18,80.46) .. controls (222.66,83.24) and (211.36,115.3) .. (197.01,82.02) ;
+		\draw [shift={(196.36,80.46)}, rotate = 67.76] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (200.18,20.46) -- (200.18,78.46) ;
+		\draw [shift={(200.18,80.46)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (200.18,80.46) -- (142.18,80.46) ;
+		\draw [shift={(140.18,80.46)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (140.18,80.46) -- (198.76,21.87) ;
+		\draw [shift={(200.18,20.46)}, rotate = 135] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (121,13.03) node [anchor=north west][inner sep=0.75pt]    {$1$};
+		\draw (206,23.86) node [anchor=north west][inner sep=0.75pt]    {$2$};
+		\draw (120,68.4) node [anchor=north west][inner sep=0.75pt]    {$3$};
+		\draw (205,63.4) node [anchor=north west][inner sep=0.75pt]    {$4$};
+		\end{tikzpicture}
+		\end{center}
+		From the graph we know that $R$ is reflexive, but $R$ is not symmetric or transitive. 
+	\end{eg}
+\end{rmk}
+\begin{df}[Congruence Modulo]\label{df4.2.1}
+	Given a natural number $n\neq1,$ we defined a relation $R$ on $\Z$, called \textbf{congruence mod} $n$, by $aRb$ if $a-b=nk$ for some $k\in\Z.$ That is, $aRb$ if $n\mid(a-b).$ 
+	\begin{nota}
+		We write $a\equiv b\mod n$ if $a$ is congruent to $b$ modulo $n$.	
+	\end{nota}
+	\begin{rmk} Two integers $a$ and $b$ are congruent modulo $n$ if they give the same remainder upon division by $n$. \end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{Let $n\in\N$. Prove that the relation \[\equiv\mod n\] on the set $\Z$ is an equivalence relation. }
+\begin{prf}
+	Let $n\in\N$.
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: Let $a\in\Z.$ $\qquad$\big[WTS: $a\equiv a\mod n$\big]\par\hspace{5mm} We can see that $n\mid(a-a)=0.$ So, $a\equiv a\mod n.\qquad\square$
+		\item \textbf{\underline{Symmetric}}: Let $a,b\in\Z\st a\equiv b\mod n.$ $\qquad$\big[WTS: $b\equiv a\mod n$\big]\par\hspace{5mm} By definition \ref{df4.2.1}, $n\mid(a-b)$ or $a-b=nk\fs k\in\Z.$\par\hspace{5mm} Multiplying by $(-1),$ we get that \[\begin{aligned}-(a-b)&=-nk\\b-a&=n(-k).\end{aligned}\]\par\hspace{5mm} Since $(-k)\in\Z,$ then $n\mid(b-a).$ That is, $b\equiv a\mod n.$\par\hspace{5mm} Hence, $R$ is symmetric. $\qquad\square$
+		\item \textbf{\underline{Transitive}}: Let $a,b,c\in\Z\st a\equiv b\mod n$ and $b\equiv c\mod n.$\par\hspace{5mm} WTS: $a\equiv c\mod n$.\par\hspace{5mm} Since $n\mid(a-b)$ and $n\mid(b-c)$, then $a-b=nk$ and $b-c=nl\fs k,l\in\Z.$\par\hspace{5mm} Adding the two equations, we get \[\begin{aligned}(a-\not b)+(\not b-c)&=nk+nl\\a-c&=nk+nl=n(k+l)\end{aligned}\]\par\hspace{5mm} Since $(k+l)\in\Z$, $n\mid(a-c).$ So, $a\equiv c\mod n.$\par\hspace{5mm} Hence, $R$ is transitive. 
+	\end{itemize}
+\end{prf}
+\end{framed}
+\begin{df}[Equivalence Class]\label{df4.2.5}
+	Let $R$ be an equivalence relation on a set $A$. Given $a\in A$, the \textbf{equivalence class containing $a$} is the subset \[\qty{a\in A\mid x\sim a}\] Note that $\qty{a\in A\mid x\sim a}=\qty{x\in A\mid a\sim x}$ because $x$ is symmetric.
+\begin{nota} We denote the equivalence class containing $a$ by $[a]$. \end{nota}
+\begin{rmk} Elements of the same equivalence class are said to be \textit{equivalent}. \end{rmk}
+\end{df}
+\begin{framed}
+\begin{prop}\label{prop4.2.1} Let $R$ be an equivalence relation on a set $A$. Suppose $a,b\in A$. Then, $[a]=[b]$ if and only if $aRb.$ \end{prop}
+\begin{prf}
+	Let $R$ be an equivalence relation on a set $A$. Suppose $a,b\in A.$\par ($\Rightarrow$): Suppose $[a]=[b].\qquad$\big[WTS: $aRb$\big]\par\hspace{5mm} Recall $[a]=\qty{x\in A\mid x\sim a}$ and $[b]=\qty{x\in A\mid x\sim b}$.\par\hspace{5mm} Note that since $R$ is \textbf{reflexive}, $aRa$. So, by definition, $a\in[a]$.\par\hspace{5mm} Since $[a]=[b],$ we have $a\in[b].$\par\hspace{5mm} By definition \ref{df4.2.5}, $aRb$ as desired. \par ($\Leftarrow$): Suppose $aRb.\qquad$\big[WTS: $[a]=[b],\ [a]\subseteq[b]$ and $[b]\subseteq[a]$\big]\par\hspace{5mm} ($\subseteq$): Suppose $x\in[a]\qquad$\big[WTS: $x\in[b]$\big]\par\hspace{10mm} Since $x\in[a]$, by definition, $xRa.$\par\hspace{10mm} Since $xRa$ and $aRb$, by \textbf{transitivity} of $R$, $xRb.$\par\hspace{10mm} So, $x\in[b].$ Hence, $[a]\subseteq[b].$\par\hspace{5mm} ($\supseteq$): Suppose $x\in[b]\qquad$ \big[$x\in[a]$\big]\par\hspace{10mm} Since $x\in[b]$, by definition, $xRb.$\par\hspace{10mm} Since $aRb$, by \textbf{symmetry}, $bRa.$\par\hspace{10mm} Since $xRb$ and $bRa,$ by \textbf{transitivity}, $xRa.$\par\hspace{10mm} So, $x\in[a].$ That is, $[b]\subseteq[a].$\par\hspace{5mm} So, $[a]=[b].$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{prop} Let $R$ be an equivalence relation on a set $A$. Then the set \[\qty{[a]\mid a\in A}\] of equivalence classes of $R$ forms a partition of $A$. \end{prop}
+\begin{prf}
+	
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{prop} Let $\part$ be a partition of a nonempty set $A$. Define a relation $R$ on $A$ by $aRb$ if $a$ and $b$ are in the same element of the partition. Then $R$ is an equivalence relation on $A$. \end{prop}
+\begin{prf}
+	
+\end{prf}
+\end{framed}
+
+
+
+
 \newpage
 \section{The Integers}
 \subsection{Axioms and Basic Properties}
@@ -957,7 +1216,7 @@ Another way to prove is by contrapositive.
 	\begin{rmk} We do not talk about the multiplicative inverse because for almost all integers, there does not exist an integer multiplicative inverse. Most of the multiplicative inverse belongs to $\Q$, and only $1$ and $-1$ are two integers that have integer multiplicative inverses. \end{rmk}
 \end{ax}
 \begin{framed}
-\begin{clm}\label{clm3.1.1}
+\begin{clm}\label{clm5.1.1}
 	Let $a,b,c\in\Z.$ If $a+b=a+c,$ then $b=c$.
 \end{clm}
 \begin{prf}
@@ -965,11 +1224,11 @@ Another way to prove is by contrapositive.
 \end{prf}
 \end{framed}
 \begin{framed}
-\begin{clm}\label{clm3.1.2}
+\begin{clm}\label{clm5.1.2}
 	Let $a\in\Z.$ Then, $a\cdot0=0\cdot a=0$.
 \end{clm}
 \begin{prf}
-	Note by \textit{commutativity}, $a\cdot0=0\cdot a$. So, it's enough to show $a\cdot0=0.$\par Notice that \[\begin{aligned}a\cdot0+a\cdot0&=a(0+0)\qquad\big[\textit{distributivity}\big]\\&=a\cdot0\qquad\big[\textit{additive identity}\big]\\&=a\cdot0+0\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par So, $a\cdot0+a\cdot0=a\cdot0+0.$ By Claim \ref{clm3.1.1}, we see that $a\cdot0=0.$
+	Note by \textit{commutativity}, $a\cdot0=0\cdot a$. So, it's enough to show $a\cdot0=0.$\par Notice that \[\begin{aligned}a\cdot0+a\cdot0&=a(0+0)\qquad\big[\textit{distributivity}\big]\\&=a\cdot0\qquad\big[\textit{additive identity}\big]\\&=a\cdot0+0\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par So, $a\cdot0+a\cdot0=a\cdot0+0.$ By Claim \ref{clm5.1.1}, we see that $a\cdot0=0.$
 \end{prf}
 \end{framed}
 \begin{framed}
@@ -980,23 +1239,23 @@ Another way to prove is by contrapositive.
 	The three expressions are different: $(-a)b$ means the additive inverse of $a$ and multiplying that by $b$; and $-ab$ is the additive inverse of the product of $a$ and $b$.	
 \end{rmk}
 \begin{prf}	
-	In this proof, we will show that $(-a)b=-ab,$ and the other side will be left as an exercise.\par WTS: $(-a)b$ is the additive inverse of $ab$. That is, WTS: $(-a)b+ab=0.$\par Notice that \[\begin{aligned}(-a)b+ab&=((-a)+a)b\qquad\big[\textit{distributivity}\big]\\&=0\cdot b\qquad\big[\textit{additive inverse}\big]\\&=0\qquad\big[\text{From Claim \ref{clm3.1.2}}\big]\end{aligned}\] So, $(-a)b$ is the additive inverse of $ab$. That is, \[(-a)b=-ab.\]
+	In this proof, we will show that $(-a)b=-ab,$ and the other side will be left as an exercise.\par WTS: $(-a)b$ is the additive inverse of $ab$. That is, WTS: $(-a)b+ab=0.$\par Notice that \[\begin{aligned}(-a)b+ab&=((-a)+a)b\qquad\big[\textit{distributivity}\big]\\&=0\cdot b\qquad\big[\textit{additive inverse}\big]\\&=0\qquad\big[\text{From Claim \ref{clm5.1.2}}\big]\end{aligned}\] So, $(-a)b$ is the additive inverse of $ab$. That is, \[(-a)b=-ab.\]
 \end{prf}
 \end{framed}
-\begin{clm}\label{clm3.1.4}
+\begin{clm}\label{clm5.1.4}
 	If $a,b\in\Z,$ then $(-a)(-b)=ab.$	
 	\begin{rmk} We leave the proof of this claim as an exercise. \end{rmk}
 \end{clm}
 \begin{framed}
 \noindent\texttt{Let $x\in\Z$ and $x\neq0.$ Then $x^2=x\cdot x\in\Zp.$} \label{Problem1}
 \begin{prf}
-	Suppose $x\in\Z$ and $x\neq0$. Since $x\neq0,$ by \textit{trichotomy}, $x\in\Zp$ or $-x\in\Zp$\par$\boxed{\text{Case }1}$ Suppose $x\in\Zp.$ Then, $x^2=x\cdot x\in\Zp$ by \textit{closure for $\Zp$}.\par$\boxed{\text{Case }2}$ Suppose $-x\in\Zp.$ Then, $(-x)(-x)\in\Zp$ by \textit{closure for $\Zp$}.\par\hspace{5mm}But $(-x)(-x)=x\cdot x=x^2$ by Claim \ref{clm3.1.4}. So, $x^2\in\Zp.$
+	Suppose $x\in\Z$ and $x\neq0$. Since $x\neq0,$ by \textit{trichotomy}, $x\in\Zp$ or $-x\in\Zp$\par$\boxed{\text{Case }1}$ Suppose $x\in\Zp.$ Then, $x^2=x\cdot x\in\Zp$ by \textit{closure for $\Zp$}.\par$\boxed{\text{Case }2}$ Suppose $-x\in\Zp.$ Then, $(-x)(-x)\in\Zp$ by \textit{closure for $\Zp$}.\par\hspace{5mm}But $(-x)(-x)=x\cdot x=x^2$ by Claim \ref{clm5.1.4}. So, $x^2\in\Zp.$
 \end{prf}	
 \end{framed}
 \begin{nota}
 	\[a-b=a+(-b)\]\[ab=(a)\cdot(b)\]
 \end{nota}
-\begin{df}\label{df3.1.2}
+\begin{df}\label{df5.1.2}
 	Let $x,y\in\Z$. We say $x<y$ if $y-x\in\Zp.$
 	\begin{rmk} We can use the axioms of closure and trichotomy to establish some well-known facts about inequalities. \end{rmk}
 \end{df}
@@ -1005,7 +1264,7 @@ Another way to prove is by contrapositive.
 	Let $a,b,c\in\Z.$ Then, exactly one of the following holds: $a=b$, $a<b$, or $b<a$.
 \end{clm}
 	\begin{prf}
-		Let $a,b\in\Z$\par As before, by \textit{additive inverse}, $\exists(-b)\in\Z\st b+(-b)=0.$ Then $a-b\in\Z.$\par By \textit{trichotomy}, there are 3 cases to consider:\par$\boxed{\text{Case }1}$ $a-b=0,$ so then adding $b$ on both sides, we get $a=b.$\par $\boxed{\text{Case }2}$ $a-b\in\Zp$, then by Definition \ref{df3.1.2}, $a>b$.\par $\boxed{\text{Case }3}$ $-(a-b)\in\Zp.$ But \[\begin{aligned}-(a-b)&=-a-(-b)\qquad\big[\textit{distributivity}\big]\\&=-a+b\\&=b-a.\end{aligned}\]\par\hspace{5mm}So, by Definition \ref{df3.1.2}, $b>a.$
+		Let $a,b\in\Z$\par As before, by \textit{additive inverse}, $\exists(-b)\in\Z\st b+(-b)=0.$ Then $a-b\in\Z.$\par By \textit{trichotomy}, there are 3 cases to consider:\par$\boxed{\text{Case }1}$ $a-b=0,$ so then adding $b$ on both sides, we get $a=b.$\par $\boxed{\text{Case }2}$ $a-b\in\Zp$, then by Definition \ref{df5.1.2}, $a>b$.\par $\boxed{\text{Case }3}$ $-(a-b)\in\Zp.$ But \[\begin{aligned}-(a-b)&=-a-(-b)\qquad\big[\textit{distributivity}\big]\\&=-a+b\\&=b-a.\end{aligned}\]\par\hspace{5mm}So, by Definition \ref{df5.1.2}, $b>a.$
 	\end{prf}
 \end{framed}
 \begin{clm}
@@ -1021,21 +1280,21 @@ Another way to prove is by contrapositive.
 	Let $a,b,c\in\Z.$ If $a<b$, then $a+c<b+c.$
 \end{clm}
 
-\begin{thm}[Well-Ordering Principle]\label{thm3.1.1}
+\begin{thm}[Well-Ordering Principle]\label{thm5.1.1}
 	Every non-empty subset of the positive integers has a smallest element. 	(If $X\subseteq\Zp$ and $X\neq\emptyset$, then $\exists x_0\in X\st\forall a\in X$ with $a\neq x_0$, we have $a-x_0\in\Zp.$)
 \end{thm}
 \begin{framed}
-\begin{thm}\label{thm3.1.2}
+\begin{thm}\label{thm5.1.2}
 	There is no integer $x$ such that $0<x<1.$	
 \end{thm}
 \begin{prf}
-	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\empty.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm3.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df3.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
+	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\empty.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm5.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df5.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
 \end{prf}
 \end{framed}
 
 \subsection{Induction}
 \begin{cor}[Introduction to Mathematical Induction]
-	The most powerful consequence of the well-ordering	principle (Theorem \ref{thm3.1.1}) is the technique of mathematical induction. The central idea of mathematical induction is that \begin{center}\textit{To prove a statement that depends on an integer $n$, denoted $P(n)$, it is enough to prove it about a smaller integer $m$, $P(m)$, and then show that since $m<n,$ $P(m)\implies P(n)$.}\end{center}
+	The most powerful consequence of the well-ordering	principle (Theorem \ref{thm5.1.1}) is the technique of mathematical induction. The central idea of mathematical induction is that \begin{center}\textit{To prove a statement that depends on an integer $n$, denoted $P(n)$, it is enough to prove it about a smaller integer $m$, $P(m)$, and then show that since $m<n,$ $P(m)\implies P(n)$.}\end{center}
 \end{cor}
 \begin{thm}[First Principle of Mathematical Induction]\label{induction}
 	Let $P(n)$ be a statement about the positive integer $n.$ Suppose that 
@@ -1049,7 +1308,7 @@ Another way to prove is by contrapositive.
 \noindent\textit{The following is a prove of Theorem \ref{induction}}\par\noindent
 \texttt{If $P(1)$ is true, and $\forall k\geq2,\ P(k-1)\Rightarrow P(k),$ then $P(n)$ is true $\forall n\in\N.$}
 \begin{prf}
-	Let $P(n)$ be a statement about positive integers. \par Suppose $P(1)$ is true and $\forall k\geq2,\ P(k-1)\implies P(k).$\par Assume for the sake of contradiction that $\exists a\in\Zp\st P(a)$ is false. \par Let $F=\qty{x\in\Zp\mid P(x)\text{ is false}}$. Note that $F\subseteq\Zp.$ Further by assumption, $a\in F,$ and so $F\neq\emptyset.$\par So, by WOP (Well-Ordering Principle, Theorem \ref{thm3.1.1}), $\exists f_0\in F$ that is the smallest element of $F$. $\qquad$\big[WTS: $F=\emptyset$\big]\par Note that since $P(1)$ is true, then $1\notin F.$ Consider numbers $f_0-1\in\Z.$\par Since $1$ is the smallest positive integer (a corollary of Theorem \ref{thm3.1.2}), and $f_0\in\Zp,$ we have $f_0>1$. So, $f_0-1\in\Zp.$\par Since $f_0$ is the smallest element of $F$ and $f_0-1\in\Zp.$ Then $P(f_0-1)$ is true. (Because $f_0-1<f$ cannot be in the set of $F$, by our assumption).\par By assumption, $P(f_0)$ is true because $F(f_0-1)\implies P(f_0).$\par\begin{center}$\divideontimes$ But $f_0\in F$ so $P(f_0)$ is false. \end{center}\par So, it must be that $\forall n\in\Zp,\ P(n)$ is true. 
+	Let $P(n)$ be a statement about positive integers. \par Suppose $P(1)$ is true and $\forall k\geq2,\ P(k-1)\implies P(k).$\par Assume for the sake of contradiction that $\exists a\in\Zp\st P(a)$ is false. \par Let $F=\qty{x\in\Zp\mid P(x)\text{ is false}}$. Note that $F\subseteq\Zp.$ Further by assumption, $a\in F,$ and so $F\neq\emptyset.$\par So, by WOP (Well-Ordering Principle, Theorem \ref{thm5.1.1}), $\exists f_0\in F$ that is the smallest element of $F$. $\qquad$\big[WTS: $F=\emptyset$\big]\par Note that since $P(1)$ is true, then $1\notin F.$ Consider numbers $f_0-1\in\Z.$\par Since $1$ is the smallest positive integer (a corollary of Theorem \ref{thm5.1.2}), and $f_0\in\Zp,$ we have $f_0>1$. So, $f_0-1\in\Zp.$\par Since $f_0$ is the smallest element of $F$ and $f_0-1\in\Zp.$ Then $P(f_0-1)$ is true. (Because $f_0-1<f$ cannot be in the set of $F$, by our assumption).\par By assumption, $P(f_0)$ is true because $F(f_0-1)\implies P(f_0).$\par\begin{center}$\divideontimes$ But $f_0\in F$ so $P(f_0)$ is false. \end{center}\par So, it must be that $\forall n\in\Zp,\ P(n)$ is true. 
 \end{prf}
 \begin{rmk} This proof strategy is also called proof by \textbf{the smallest counterexample. }\end{rmk}
 \end{framed}
@@ -1123,7 +1382,6 @@ Another way to prove is by contrapositive.
 	Let $P(n)$ be the statement ``$f(n)=2n+1.$''\par$\boxed{\text{Base Cases}}$ 	WTS: $P(0)$ and $P(1)$ are true.\par\hspace{5mm} $P(0)$ is true: \big[WTS: $f(0)=2(0)+1$\big]\par\hspace{10mm}Note that $2(0)+1=0+1=1$ and $f(0)=1$ by definition. That is, $P(0)$ is true.\par\hspace{5mm} $P(1)$ is true: \big[WTS:$f(1)=2(1)+1$\big]\par\hspace{10mm} Since $f(1)=3$ by definition and $2(1)+1=3$, $P(1)$ is true. \par$\boxed{\text{Inductive Steps}}$ Let $k\geq\mathbf{1}$ be $\st\forall i\quad 0\leq i\leq k,\ P(i)$ is true. -- \textit{inductive hypothesis} \par\hspace{5mm} WTS: $P(k+1)$ is true. \par\hspace{5mm} Since $k\geq1$, $k+1\geq2$. So, by definition, \[\begin{aligned}f(k+1)&=2f(k+1-1)-f(k+1-2)\\&=2f(k)-f(k-1)\end{aligned}\]\par\hspace{5mm} Since $k-1\geq0,$ by inductive hypothesis, $P(k)$ and $P(k-1)$ are true.\par\hspace{5mm} So, $f(k-1)=2(k-1)+1$ and $f(k)=2k+1$.\par\hspace{5mm} Substituting, we have \[\begin{aligned}f(k+1)&=2(2k+1)-\qty[2(k-1)+1]\\&=4k+2-2k+2-1\\&=2k+3\\&=2k+2+1\\&=2(k+1)+1.\end{aligned}\]\par Hence, by Mathematical Induction (Theorem \ref{stronginduction}), $P(n)$ is true $\forall n\geq0.$
 	\end{prf}
 \end{framed}
-
 
 
 

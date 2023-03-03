@@ -36,7 +36,7 @@
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
 \newtheorem{cor}{Corollary}[section]
-\newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}\par}{\par\hfill{$\square$}\par}
+\newenvironment*{ans}{\par\indent{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
@@ -68,9 +68,9 @@
 \def\cis{\mathrm{cis}}
 \def\Proj{\mathrm{Proj}}
 \def\qed{\rightline{$\blacksquare$}}
-\def\ddx{\frac{\d}{\d x}}
-\def\dydx{\frac{\d y}{\d x}}
-\def\ddt{\frac{\d}{\d t}}
+\def\ddx{\displaystyle\frac{\d}{\d x}}
+\def\dydx{\displaystyle\frac{\d y}{\d x}}
+\def\ddt{\displaystyle\frac{\d}{\d t}}
 \def\dx{\d x}
 \def\del{\partial}
 \def\pdx{\del x}
@@ -83,6 +83,8 @@
 \def\pdfdydx{\displaystyle\frac{\del^2 f}{\del y\del x}}
 \def\pddx{\displaystyle\frac{\del }{\del x}}
 \def\pddy{\displaystyle\frac{\del }{\del y}}
+\def\iintR{\displaystyle\iint_R}
+\def\iintD{\displaystyle\iint_D}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -123,9 +125,9 @@ Throughout this personal note, I use different formats to differentiate differen
     This is  an \textbf{example}. 
 \end{eg}
 
-\begin{sol}
+\begin{ans}
     This is the \textit{answer} part of an \textbf{example}. 
-\end{sol}
+\end{ans}
 \begin{rmk}
 	This is a \textbf{remark} of a definition, theorem, example, or proof. 
 \end{rmk}
@@ -310,7 +312,7 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 \end{thm}
 \begin{eg}
 	What is the region in $\R^3$ represented by the inequalities \[1\leq x^2+y^2+z^2\leq4\quad\text{and}\quad z\leq0? \]	
-	\begin{sol}
+	\begin{ans}
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 	\draw  (125.83,75.79) -- (219.83,75.79)(133.83,58) -- (133.83,155.06) (212.83,70.79) -- (219.83,75.79) -- (212.83,80.79) (128.83,65) -- (133.83,58) -- (138.83,65)  ;
@@ -328,7 +330,7 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 	\end{tikzpicture}
 	\end{center}
 	The region is the difference between the half spheres (the lower half of the sphere) centered at $(0,0,0)$ with a radius of $1$ and $2$.
-	\end{sol}
+	\end{ans}
 \end{eg}
 
 \subsection{Vectors}
@@ -509,7 +511,7 @@ We can link the coordinate system and vectors together:
 	\draw (204,143.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{w}$};
 	\end{tikzpicture}
 	\end{center}
-	\begin{sol}
+	\begin{ans}
 	Decompose the vectors: 
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}} 
@@ -550,7 +552,7 @@ We can link the coordinate system and vectors together:
 		\vecw&=\sqrt{2}\veci
 	\end{aligned}\]
 	\[\therefore \vecw=\langle\sqrt{2},0\rangle\Longrightarrow|\vecw|=\sqrt{2}.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 
 \subsection{Dot Product}
@@ -562,12 +564,12 @@ We can link the coordinate system and vectors together:
 	\begin{rmk} The dot product of two vectors returns a scalar. \end{rmk}
 	\begin{eg}
 		Let $\vecu=\veci+2\vecj-3\veck$ and $\vecv=2\vecj-\veck$. Find $\vecu\cdot\vecv$.
-		\begin{sol}
+		\begin{ans}
 			\[\begin{aligned}
 			\vecu\cdot\vecv&=\langle1,2,-3\rangle\cdot\langle0,2,-1\rangle\\
 				&=(1)(0)+(2)(2)+(-3)(-1)=7.
 			\end{aligned}\]	
-		\end{sol}
+		\end{ans}
 	\end{eg}
 \end{df}
 Properties of the dot product: 
@@ -626,12 +628,12 @@ Properties of the dot product:
 \end{df}
 \begin{eg}
 	Find the scalar projection and vector projection of vector $\vecu=\langle1,1,2\rangle$ onto $\vecv=\langle-2,3,1\rangle$.
-	\begin{sol}
+	\begin{ans}
 		\[\Proj_{\vecv}\vecu=\frac{\vecu\cdot\vecv}{|\vecv|^2}\cdot\vecv\ ;\quad |\Proj_{\vecv}\vecu|=\frac{\vecu\cdot\vecv}{|\vecv|}\]
 		We need $|\vecv|=\sqrt{4+9+1}=\sqrt{14}$ and $\vecu\cdot\vecv=(1)(-2)+(1)(3)+(2)(1)=3$
 		\[\therefore |\Proj_{\vecv}\vecu|=\frac{3}{\sqrt{14}}\]
 		\[\Proj_{\vecv}\vecu=\frac{3}{14}\cdot\vecv=\frac{3}{14}\cdot\langle-2,3,1\rangle=\left\langle-\frac{3}{7},\frac{9}{14},\frac{3}{14}\right\rangle.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 
 \subsection{Cross Product}
@@ -812,11 +814,11 @@ Properties of cross product ($\veca$, $\vecb$, and $\vecc$ are vectors, and $c$ 
 \end{rmk}
 \begin{eg}
 	Find the parametric and symmetric equations of the line $L$ passing through the points $(-8,1,4)\quad$ and $\quad (3,-2,4).$
-	\begin{sol}
+	\begin{ans}
 		Let's set $P_0$ to be $(-8,1,4)$ and $P_1$ to be $(3,-2,4).$ So we can find the directional vector \[\vecv=\overrightarrow{P_0P_1}=\langle3-(-8),\ -2-1,\ 4-4\rangle=\langle11,-3,0\rangle.\]
 		$\therefore$ The parametric equation of $L$: \[\begin{cases}x=-8+11t\\y=1-3t\\z=4+(0)t\end{cases}, \]
 		and the symmetric equation of $L$ is \[\frac{x+8}{11}=\frac{y-1}{-3},\quad z=4.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 Relationships of two lines in 3D: 
 \begin{enumerate}
@@ -826,7 +828,7 @@ Relationships of two lines in 3D:
 \end{enumerate}
 \begin{eg}
 	Let \[L_1: \frac{x-2}{1}=\frac{y-3}{-2}=\frac{z-1}{-3}\quad\text{and}\quad L_2: \frac{x-3}{1}=\frac{y+4}{3}=\frac{z-2}{-7}.\] Find the relationship between $L_1$ and $L_2$.
-	\begin{sol}
+	\begin{ans}
 		\[\vecv_1=\langle1,-2,-3\rangle;\quad\vecv_2=\langle1,3,-7\rangle\]	 Because $\vecv_1$ and $\vecv_2$ are not parallel to each other, $L_1$ and $L_2$ are not parallel to each other. \\
 		$\therefore$ $L_1$ and $L_2$ can only be intersecting or skewed. \\ 
 		To further discuss the relationship between $L_1$ and $L_2$, form parametric equations: 
@@ -841,7 +843,7 @@ Relationships of two lines in 3D:
 		Substitute $s=1$ and $t=2$ to \ding{174}: \[\text{LHS}=2(3)-7(1)=6-7=-1=\text{RHS}.\]
 		Hence, $\begin{cases}t=2\\s=1\end{cases}$ satisfy all three equations. Substitute $t=2$ to $L_1$: \[x=2+2=4,\quad y=3-2(2)=-1,\quad z=1-3(2)=-5.\]
 		$\therefore$ The two lines intersect at $(4,-1,-5).$
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Line Segment that Connects $\vecr_0$ and $\vecr_r$]
 \[\vecr(t)=(1-t)\vecr_0+t\vecr_1,\qquad1\leq t\leq1.\] The vector equation gives a line segment the joins the tip of $\vecr_0$ to the tip of $\vecr_1.$
@@ -904,7 +906,7 @@ Relationships of two lines in 3D:
 \end{rmk}
 \begin{eg}
 	Find an equation of the plane crossing through the points $P(1,3,2)$, $Q(3,-1,6)$, and $R(5,2,0)$.
-	\begin{sol}
+	\begin{ans}
 		Find the normal vector using the following equation: \[\vecn=\overrightarrow{PQ}\times\overrightarrow{PR}\]
 		\[\begin{aligned}
 			\overrightarrow{PQ}&=\langle3-1,-1-3,6-2\rangle=\langle2,-4,4\rangle\\
@@ -914,7 +916,7 @@ Relationships of two lines in 3D:
 		\[\therefore \vecn=\langle12,20,14\rangle,\qquad P(1,3,2)\]
 		\[\therefore d=-\langle12,20,14\rangle\cdot\langle1,3,2\rangle=-(12+60+28)=-100.\]
 		\[\therefore \text{Linear Equation of } \Pi:\  12x+20y+14z-100=0\quad\Longrightarrow\quad6x+10y+7z-50=0.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Relationship Between Two Planes]
 	If $\vecn_1$ is a normal vector of plane $\Pi_1$, and $\vecn_2$ is a normal vector of plane $\Pi_2$	, then the angle between the two planes is given by \[\theta=\cos^{-1}\left(\frac{\vecn_1\cdot\vecn_2}{|\vecn_1||\vecn_2|}\right).\]
@@ -933,11 +935,11 @@ Relationships of two lines in 3D:
 \end{thm}
 \begin{eg}
 	Find the distance between the parallel planes: \[\Pi_1:\ 10x+2y-2z=5\quad\text{and}\quad\Pi_2:\ 5x+y-z=1.\]
-	\begin{sol}
+	\begin{ans}
 		Assume point $P(x_1,y_1,z_1)$ is on plane $\Pi_1$: \[\begin{aligned}10x_1+2y_1-2z_1&=5\\\therefore\ 5x_1+y_1-z_1&=\frac{5}{2}\end{aligned}\]	
 		Applying formula \ref{d1}: $\vecn=\langle a,b,c\rangle=\langle5,1,-1\rangle,\ d=-1$: 
 		\[\therefore\ D=\frac{|5x_1+y_1-z_1+d|}{\sqrt{a^2+b^2+c^2}}=\frac{|\frac{5}{2}-1|}{\sqrt{26+1+1}}=\frac{3/2}{\sqrt{27}}=\frac{3}{2\sqrt{27}}\left(=\frac{\sqrt{3}}{6}\right).\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{ext}
 	Find the distance between two parallel planes: \[\Pi_1:\ ax+by+cz+d=0\quad\text{and}\quad\Pi_2:\ ax+by+cz+d'=0.\]	
@@ -981,22 +983,22 @@ Relationships of two lines in 3D:
 \begin{eg}
 	\begin{enumerate}
 		\item Find the domain of \[\vecr(t)=\Big\langle\ln(t+1),\ \frac{t}{\sqrt{9-t^2}},\ 2^t\Big\rangle\]
-		\begin{sol}
+		\begin{ans}
 			\begin{itemize}
 				\item Domain of $\ln(t+1)$: $D_1L t+1>0,\ t>-1$
 				\item Domain of $\dfrac{t}{\sqrt{9-t^2}}:\ D_2:\ 9-t^2>0,\ -3<t<3$
 				\item Domain of $2^t:\ D_3:\ \R$\\
 				Find the intersection of domains of component functions: \[D_1\cap D_2\cap D_3:\ -1<t<3\ (t\in(-1,3))\]
 			\end{itemize}	
-		\end{sol}
+		\end{ans}
 		\item Find $\displaystyle\lim_{t\to0}\vecr(t).$
-		\begin{sol}
+		\begin{ans}
 			\[\begin{aligned}
 			\lim_{t\to0}\vecr(t)&=\Big\langle\lim_{t\to0}\ln(t+1),\ \lim_{t\to0}\frac{t}{\sqrt{9-t^2}},\ \lim_{t\to0}2^t\Big\rangle\\
 			&=\big\langle\ln(1),\ \frac{0}{\sqrt{9}},\ 2^0\big\rangle\\
 			&=\langle0,0,1\rangle=\veck
 			\end{aligned}\]
-		\end{sol}
+		\end{ans}
 	\end{enumerate}	
 \end{eg}
 \begin{eg}
@@ -1056,19 +1058,19 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \end{thm}
 \begin{eg}
 	Find parametric equations of the tangent line to the vector function $\vecr(t)=\langle2\cos{t},\ \sin{t},\ t\rangle$ at point $\qty(0,1,\dfrac{\pi}{2}).$
-	\begin{sol}
+	\begin{ans}
 		When $t=\dfrac{\pi}{2}$, $2\cos{\dfrac{\pi}{2}}=0,\ \sin{\dfrac{\pi}{2}}=1$.\par $\therefore\qty(0,1,\dfrac{\pi}{2})$ is on the space curve of $\vecr(t)$.\par Find \[\begin{aligned}\vecr'(t)&=\langle(2\cos{t})',\ (\sin{t})',\ t'\rangle\\&=\langle-2\sin{t},\ \cos{t}, 1\rangle\end{aligned}\]	\par When $t=\dfrac{\pi}{2}$, \[\vecr'\left(\frac{\pi}{2}\right)=\left\langle-2\sin{\left(\frac{\pi}{2}\right)},\ \cos{\left(\frac{\pi}{2}\right)}, 1\right\rangle=\langle-2,0,1\rangle\]\par $\therefore \vecd$ of tangent line $=\langle-2,0,1\rangle$\par \[\therefore\text{Line: }\left\langle0,1,\frac{\pi}{2}\right\rangle+\langle-2,0,1\rangle t=\left\langle-2t,1,\frac{\pi}{2}+t\right\rangle\]
-	\end{sol}	
+	\end{ans}	
 \end{eg}
 \begin{eg}
 	If $\vecr(t)=(t^3+2t)\veci-3e^{-2t}\vecj+2\sin{5t}\veck$. Find $\dfrac{\d\vecr}{\d t},\ \left|\dfrac{\d\vecr}{\d t}\right|,\ \dfrac{\d^2\vecr}{\d t^2},\ \left|\dfrac{\d^2\vecr}{\d t^2}\right|.$	
-	\begin{sol}
+	\begin{ans}
 		\[\dfrac{\d\vecr}{\d t}=\langle3t^2+2,\ 6e^{-2t},\ 10\cos{5t}\rangle\]
 		\[\dfrac{\d^2\vecr}{\d t^2}=\langle6t,\ -12e^{-2t},\ -50\sin{5t}\rangle\]	
 		When $t=0$: 
 		\[\vecr'(0)=\langle2,\ 6,\ 10\rangle;\qquad\vecr''(0)=\langle0,\ -12,\ 0\rangle\]
 		\[\therefore|\vecr'(0)|=\sqrt{4+36+100}=\sqrt{140}(=2\sqrt{70});\quad|\vecr''(0)|=\sqrt{144}=12.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Properties of Differentiation]
 	\[\ddt[\vecr_1(t)+\vecr_2(t)]=\ddt[\vecr_1(t)]+\ddt[\vecr_2(t)]\]
@@ -1079,14 +1081,14 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \end{thm}
 \begin{eg}
 	Show that if a curve lies on a sphere with center at the origin, then $\vecr'(t)$ is perpendicular to $\vecr(t)$ for any $t$. 
-	\begin{sol}
+	\begin{ans}
 		Let $\vecr(t)$ lies on a sphere, with center at the origin, and radius $R=c$: \[\therefore\vecr(t)=\langle x(t), y(t), z(t)\rangle\quad\text{ and }\quad x^2(t)+y^2(t)+z^2(t)=c^2\]
 		\[x^2(t)+y^2(t)+z^2(t)=|\vecr(t)|^2=\vecr(t)\cdot\vecr(t)\]
 		\[\therefore\vecr(t)\cdot\vecr(t)=c^2\]\par
 		Take derivative of the both sides of the euqation \[\ddt[\vecr(t)\cdot\vecr(t)]=\ddt(c^2)\]
 		\[\therefore\vecr'(t)\cdot\vecr(t)+\vecr(t)\cdot\vecr'(t)=0\implies2\vecr'(t)\cdot\vecr(t)=0\]
 		\[\therefore\vecr'(t)\cdot\vecr(t)=0\implies\vecr'(t)\perp\vecr(t).\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Definite Integral of a Vector Function]
 	The definite integral of a continuous vector function $\vecr(t)$ can be defined as \[\int_a^b\vecr(t)\d t=\int_a^bf(t)\d t\veci+\int_a^bg(t)\d t\vecj+\int_a^bh(t)\d t\veck, \] if $\vecr(t)=\Big\langle f(t), g(t), h(t)\Big\rangle.$
@@ -1124,7 +1126,7 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \end{thm}
 \begin{eg}
 	Find a vector function $\vecr(t)$ that represents the curve of intersection of two surfaces\[z=\sqrt{x^2+y^2}\qquad\text{and}\qquad z=3+y.\]
-	\begin{sol}
+	\begin{ans}
 		Solve the system of equation $\begin{cases}x=\sqrt{x^2+y^2}\\z=3+y\end{cases}.$\par
 		Hence, \[\begin{aligned}
 			\sqrt{x^2+y^2}&=3+y\\
@@ -1134,15 +1136,15 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 			\therefore z=&3+y=\frac{x^2+0}{6}
  		\end{aligned}\]\par 
  		Let $x=t$: \[\vecr(t)=\langle x,t,z\rangle=\Big\langle t,\ \frac{t^2-9}{6},\ \frac{t^2+9}{6}\Big\rangle\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	Do the same for surfaces\[z=3x^2+y^2\qquad\text{and}\qquad y=5x^2\]
-	\begin{sol}
+	\begin{ans}
 		Solve the system of equations $\begin{cases}z=3x^2+y^2\\y=5x^2\end{cases}.$\par
 		\[\therefore 5x^2=3x^2+y^2\ \Longrightarrow\ z=3x^2+(5x^2)^2=3x^2+25x^4\]\par 
 		Let $x=t$: \[\vecr(t)=\langle x,t,z\rangle=\Big\langle t,\ 5t^2,\ 3t^2+25t^4\Big\rangle\]	
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Level Curves]
 	The level curve of a two variable function $z=f(x,y)$ is a curve $f(x,y)=k$ (in the $xy$-plane). That means all values of $x$ and $y$ that have the same value $z=k.$
@@ -1160,15 +1162,15 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \end{df}
 \begin{eg}
 	Consider function $f(x,y)=\dfrac{xy}{x^2+y^2}$, and identify if it is has a limit at $(0,0)$ or not. 
-	\begin{sol}
+	\begin{ans}
 		In the direction of $x$-axis ($y=0$), we have $f(x,y)=\dfrac{x\cdot0}{x^2+0^2}=0$ and $\displaystyle\lim_{(x,y)\to(0,0)}f(,y)=0$ along the $x$-axis.\par In the direction of $y$-axis ($x=0$), we have $f(x,y)=0.$, and $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=0$ along the $y$-axis.\par If $y=x$, $f(x,y)=f(x,x)=\dfrac{x^2}{x^2+x^2}=\dfrac{1}{2}$, and $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=\dfrac{1}{2}$ along the line $y=x.$
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^2+y^2}.$
-	\begin{sol}
+	\begin{ans}
 		By looking at the graph of the function, we think it has a limit at $(0,0)$. This is not enough, and later we will be able to say that limit exists by converting it to polar coordinate.\par Let $y=mx$: \[f(x,y)=f(x,mx)=\frac{x^2\cdot mx}{x^2+(mx)^2}=\frac{x^3m}{x^2(1+m^2)}=\frac{m}{1+m^2}x\]\[\therefore\lim_{(x,y)\to(0,0)}f(x,y)=0\text{ along the line of }y=mx.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	\[\lim_{(x,y)\to(0,0)}\frac{xy^2}{x^2+y^2}=0\]	
@@ -1180,11 +1182,11 @@ Limits, continuity, derivative, and integrals of vector functions follow rules s
 \end{df}
 \begin{eg}
 	Find $\displaystyle\lim_{(x,y)\to(1,2)}(x^2y^3-x^3y^2+3x+2y).$
-	\begin{sol}
+	\begin{ans}
 		As $x^2y^3-x^3y^2+3x+2y$ is a polynomial and continuous everywhere, so 
 		\[\lim_{(x,y)\to(1,2)}(x^2y^3-x^3y^2+3x+2y)=(1)^2(2)^3-(1)^3(2)^2
 		+3(1)+2(2)=1.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	$f(x,y)=\dfrac{x^2y}{x^2+y^2}$ is not continuous at $(0,0)$, but \[g(x,y)=\begin{cases}\dfrac{x^2y}{x^2+y^2}\qquad &(x,y)\neq(0,0)\\0\qquad &(x,y)=(0,0)\end{cases}\text{ is continuous at }(0,0).\]
@@ -1197,13 +1199,13 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{df}
 \begin{eg}
 	Let $f(x,y)=x^3+x^2y^3-2y$ and find $f_x(2,1)$ and $f_y(2,1)$
-	\begin{sol}
+	\begin{ans}
 		Find $f_x(x,y)$: keep $y$ constant.\par $f_x(x,y)=3x^2+2xy^3$\par \[\therefore f_x(2,1)=3(2)^2+2(2)(1)^3=16\]\par Find $f_y(x,y)$: keep $x$ constant.\par $f_y(x,y)=3x^2y^2-2$\par\[\therefore f_y(2,1)=3(2)^2(1)^2-2=10\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	Let $f(x,y)=4-x^2-2y^2$. Find $f_x(1,1)$ and interpret the values. 
-	\begin{sol}
+	\begin{ans}
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}
 	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1219,7 +1221,7 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 	\end{tikzpicture}
 	\end{center}
 		$f(1,1)=4-1-2=1\implies A(1,1,1)$ lies on $f(x,y).$\par $\displaystyle\pdfdx=-2x\implies\pdfdx(1,1)=-2$\par Let's consider $y=1$:\par The plane $y=1$ will intersect with $f(x,y)$ at a line $\vecr(t)$.\par Solve $\vecr(t):\ \begin{cases}z=4-x^2-2y^2\\y=1\end{cases}$\par \[\Rightarrow z=4-x^2-2=2-x^2\]\par \[\therefore \vecr(t)=\langle t,1,2-t^2\rangle,\ \vecr'(t)=\langle 1,0,-2t\rangle\]\par At point $A(1,1,1)$, $t=1$.\par $\qquad\therefore\vecr'(1)=\langle1,0,-2\rangle,$ which is a directional vector of the tangent line. \par $\therefore$ Tangent line: \[L:\ x=1+t,\ y=1,\ z=1-2t\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Higher Order Partial Derivative]
 	\[\pdfdxdx=\pddx\left(\pdfdx\right)\]
@@ -1242,11 +1244,11 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{thm}
 \begin{eg}
 	Find the tangent plane of $f(x,y)=2x^2+y^2$ at $(1,1,3).$
-	\begin{sol}
+	\begin{ans}
 		\[\pdfdx=4x\qquad\pdfdy=2y\]
 		\[\therefore \pdfdx(1,1)=4\qquad\pdfdy(1,1)=2\]
 		$\therefore$ Tangent plane at $(1,1,3)$:\[\Pi: z-3=4(x-1)+2(y-3).\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Linearization and Linear Approximation]
 	Similar to single variable calculus, we can approximate the value of a function at a point using the tangent line: \[L(x,y)=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)\]	is the \textbf{linearization} of $f(x,y)$ at point $(a,b)$: \[f(x,y)\approx L(x,y)\] is called the \textbf{linear approximation} or the \textbf{tangent plane approximation} of $f$ at $(a,b).$
@@ -1259,9 +1261,9 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{thm}
 \begin{eg}
 	Show that function $\displaystyle f(x,y)=\frac{\sqrt{x}}{y}$ is differentiable at $(16,5)$ and use it to approximate $\displaystyle\frac{\sqrt{16.02}}{4.96}.$
-	\begin{sol}
+	\begin{ans}
 		\[f(16,5)=\frac{\sqrt{16}}{5}=\frac{4}{5};\quad\pdfdx=\frac{1}{2y\sqrt{x}};\quad\pdfdy=-\frac{\sqrt{x}}{y^2}.\]\[\therefore\pdfdx\eval{}_{(16,5)}=\frac{1}{2(5)\sqrt{16}}=\frac{1}{40};\quad\pdfdy\eval{}_{(16,5)}=-\frac{\sqrt{16}}{25}=-\frac{4}{25}.\]	As $\pdfdx$ and $\pdfdy$ exists and is continuous at $(x,y)=(16,5)$, $f(x,y)$ is differentiable at $(16,5).$\par Then, the approximation is \[f(x,y)\approx f(a,b)+\pdfdx(a,b)(x-a)+\pdfdy(a,b)(y-b)\] At $a=16$ and $b=5$: \[\begin{aligned}\frac{\sqrt{x}}{y}&\approx\frac{4}{5}+\frac{1}{40}(x-16)+\qty(-\frac{4}{25})(y-5)\\&=\frac{4}{5}+\frac{1}{40}x-\frac{2}{5}-\frac{4}{25}y+\frac{4}{5}\\&=\frac{1}{40}-\frac{4}{25}y+\frac{6}{5}.\end{aligned}\] Therefore, $\displaystyle\frac{\sqrt{16.02}}{4.96}\approx\frac{1}{40}(16.02)-\frac{4}{25}(4.96)+\frac{6}{5}\approx0.807.$
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{df}[Differentials]
 	\[\Delta z=\Delta f=f(a+\Delta x, b+\Delta y)-f(a,b)\]\[\d z=f_x(a,b)\dx+f_y(a,b)\d y\]	
@@ -1276,15 +1278,15 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{thm}
 \begin{eg}
 	Let $U=x^4y+y^2z^3$ and $x=rse^t$, $y=rs^2e^{-t}$, and $z=r^2s\sin(t)$. Find thee value of $\displaystyle\pdv{U}{s}$ when $r=2,\ s=1,\ t=0.$
-	\begin{sol}
+	\begin{ans}
 		From the multivariable china rule, we know \[\pdv{U}{s}=\pdv{U}{x}\pdv{x}{s}+\pdv{U}{y}\pdv{y}{s}+\pdv{U}{z}\pdv{z}{s}\]	\[\pdv{U}{x}=4x^3y;\quad\pdv{U}{x}=x^4+2yz^3;\quad\pdv{U}{x}=3y^2z^2;\]\[\pdv{x}{s}=re^t;\quad\pdv{y}{s}=2rse^{-t};\quad\pdv{x}{s}=r^2\sin{t}.\] \[\therefore\pdv{U}{s}=(4x^3y)(re^t)+(x^4+2yz^3)(2rse^{-t})+(3y^2z^2)(r^2\sin{t})\] When $r=2,\ s=1,\ t=0,$ we have \[x=2,\ y=2,\ z=0.\] \[\therefore\pdv{U}{s}\eval{}_{(r,s,t)=(2,1,0)}=(4(2)^3(2))(2)+(2^4)(2\cdot2)+0=128+64=192.\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{eg}
 	If $z=f(x,y)$ has continuous second order partial derivatives and $x=r^2+s^2\quad$ and $\quad y=2rs$. Find$\displaystyle\pdv{z}{r}$ and $\displaystyle\pdv[2]{z}{r}$.
-	\begin{sol}
+	\begin{ans}
 		\[\pdv{z}{r}=\pdv{z}{x}\pdv{x}{r}+\pdv{z}{y}\pdv{y}{r}\] Since \[\pdv{}{r}=2r;\qquad\pdv{y}{r}=2s\]\[\therefore\pdv{z}{r}=2r\pdv{z}{x}+2s\pdv{z}{y}.\]\[\begin{aligned}\pdv[2]{z}{r}=\pdv{}{r}\qty(\pdv{z}{r})&=\pdv{}{r}\qty(2r\pdv{z}{x}+2s\pdv{z}{y})\\&=2\pdv{}{r}\qty(r\pdv{z}{x})+2\pdv{}{r}\qty(s\pdv{z}{y})\\&=2\qty[\pdv{}{r}\qty(r)\cdot\pdv{z}{x}+r\pdv{}{r}\qty(\pdv{z}{x})]+2\qty[\pdv{}{r}\qty(s)\cdot\pdv{z}{y}+s\pdv{}{r}\qty(\pdv{z}{y})]\end{aligned}\] Notice that $\displaystyle\pdv{z}{x}$ and $\displaystyle\pdv{z}{y}$ are functions dependent on $x$ and $y$, so to find their partial derivatives with respect to $r$, we need to apply multivariable chain rule again: \[\begin{aligned}\pdv{}{r}\qty(\pdv{z}{x})&=\pdv{}{x}\qty(\pdv{z}{x})\cdot\pdv{x}{r}+\pdv{}{y}\qty(\pdv{z}{x})\cdot\pdv{y}{r}=\pdv[2]{z}{x}\pdv{x}{r}+\pdv{z}{y}{x}\pdv{y}{r}\\\pdv{}{r}\qty(\pdv{z}{y})&=\pdv{}{x}\qty(\pdv{z}{y})\cdot\pdv{x}{r}+\pdv{}{y}\qty(\pdv{z}{y})\cdot\pdv{y}{r}=\pdv{z}{x}{y}\pdv{x}{r}+\pdv[2]{z}{y}\pdv{y}{r}\end{aligned}\]\[\therefore\pdv[2]{z}{r}=2\pdv{z}{x}+2r\qty(\pdv[2]{z}{x}\pdv{x}{r}+\pdv{z}{y}{x}\pdv{y}{r})+2s\qty(\pdv{z}{x}{y}\pdv{x}{r}+\pdv[2]{z}{y}\pdv{y}{r})\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Implicit Differentiation]
 	If we have two-variable function like $F(x,y)=0$, where $y$ depends on $x$, we use the multivariable chain rule to differential the both sides of $F(x,y)$:
@@ -1292,20 +1294,20 @@ In two-variable functions, we will have partial derivatives $f_x$ (derivative wi
 \end{thm}
 \begin{eg}
 	Find $y'$ if $x^3+y^3=6xy$
-	\begin{sol}
+	\begin{ans}
 		$\boxed{\text{Method} 1}$ Applying the formula:\[\begin{aligned}F_x&=3x^2-6y\\F_y&=3y^2-6x\\\therefore\dydx&=-\frac{F_x}{F_y}=-\frac{3x^2-6y}{3y^2-6x}\end{aligned}\]\par 
 		$\boxed{\text{Medthod} 2}$ Find derivatives of the both sides: \[\begin{aligned}x^3+y^3-6xy&=0\\3x^2+3y^2\dydx-6y-6x\dydx&=0\\(3y^2-6x)\dydx&=6y-3x^2\\\dydx&=\frac{6y-3x^2}{3y^2-6x}\end{aligned}\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Multivariable Implicit Differentiation]
 	If $z=f(x,y)$, consider a function \[F(x,y,z)=F\qty(x,y,f(x,y))\] Then, by the multivariable chain rule, we differentiate both sides of $F(x,y,f(x,y))=0$: \[\pdv{F}{x}\underbrace{\frac{\dx}{\dx}}_1+\pdv{F}{z}\pdv{z}{x}=0\implies\pdv{z}{x}=-\frac{\del F/\del x}{\del F/\del z}\] Similarly, we have \[\pdv{F}{y}\underbrace{\frac{\d y}{\d y}}_1+\pdv{F}{z}\pdv{z}{y}=0\implies\pdv{z}{y}=-\frac{\del F/\del y}{\del F/\del z}\]
 \end{thm}
 \begin{eg}
 	Find $\displaystyle\pdv{z}{x}$ and $\displaystyle\pdv{z}{y}$ if $x^3+y^3+z^3+6xyz=1.$
-	\begin{sol}
+	\begin{ans}
 		In order to find $\displaystyle\pdv{z}{x}$,  differentiate both sides with respect to $x$: \[\begin{aligned}3x^2+3z^2\pdv{z}{x}+6yz+6xy\pdv{z}{x}&=0\\(3z^2+6xy)\pdv{z}{x}&=-(3x^2+6yz)\\\pdv{z}{x}&=-\frac{3x^2+6yz}{3z^2+6xy}\qty(=-\frac{x^2+2yz}{z^2+2xy})\end{aligned}\]\par
 		In order to find $\displaystyle\pdv{z}{y}$,  differentiate both sides with respect to $y$: \[\begin{aligned}3y^2+3z^2\pdv{z}{y}+6xz+6xy\pdv{z}{y}&=0\\(3z^2+6xy)\pdv{z}{y}&=-(3y^2+6xz)\\\pdv{z}{y}&=-\frac{3y^2+6xz}{3z^2+6xy}\qty(=-\frac{y^2+2xz}{z^2+2xy})\end{aligned}\]
-	\end{sol}
+	\end{ans}
 \end{eg}
 
 \subsection{Directional Derivatives and Gradient}
@@ -1355,13 +1357,13 @@ Now, let $g(h)=f(x_0+ha,y_0+hb)$, then we have \[D_{\vecu}f(x_0,y_0)=\lim_{h\to0
 	If $f(x,y)=xe^y,$ then
 	\begin{enumerate}
 		\item Find the rate of change of $f$ at the point $P(2,0)$ in the direction from $P$ to $Q\qty(\dfrac{1}{2},2).$
-		\begin{sol}
+		\begin{ans}
 			\[\pdv{f}{x}=e^y;\quad\pdv{f}{y}=xe^y;\quad\overrightarrow{PQ}=\left\langle\frac{1}{2}-2,2-0\right\rangle=\left\langle-\frac{3}{2},2\right\rangle;\quad\qty|\overrightarrow{PQ}|=\sqrt{\frac{9}{4}+4}=\frac{5}{2}\]\[\therefore\vecu=\left\langle-\frac{3}{2}\cdot\frac{2}{5},2\cdot\frac{2}{5}\right\rangle=\left\langle-\frac{3}{5},\frac{4}{5}\right\rangle;\quad\nabla f=\left\langle e^y,xe^y\right\rangle.\]Therefore, \[D_{\vecu}f=\nabla f\cdot\vecu=\left\langle e^y,xe^y\right\rangle\cdot\left\langle-\frac{3}{5},\frac{4}{5}\right\rangle=-\frac{3}{5}e^y+\frac{4}{5}xe^y.\] At point $P(2,0),$ \[D_{\vecu}f(2,0)=-\frac{3}{5}e^0+\frac{4}{5}\cdot2\cdot e^0=-\frac{3}{5}+\frac{8}{5}=1.\]
-		\end{sol}
+		\end{ans}
 		\item In what direction does $f$ have the maximum rate of change? What is this maximum rate of change?
-		\begin{sol}
+		\begin{ans}
 			\[\nabla f(2,0)=\langle e^0,2e^0\rangle=\langle1,2\rangle\] Hence, in direction $\nabla f=\langle1,2\rangle,$ $f$ has the maximum rate of change. The maximum rate of change is $\qty|\nabla f(2,0)|=\sqrt{5}.$
-		\end{sol}
+		\end{ans}
 	\end{enumerate}
 \end{eg}
 \begin{thm}[Gradient and Tangent Plane]
@@ -1405,12 +1407,12 @@ Now, let $g(h)=f(x_0+ha,y_0+hb)$, then we have \[D_{\vecu}f(x_0,y_0)=\lim_{h\to0
 \end{thm}
 \begin{eg}
 	For function $f(x,y)=4+x^3+y^3-3xy.$ Check it $f(x,y)$ has local maximum, local minimum, and saddle points.
-	\begin{sol}
+	\begin{ans}
 		\[\pdv{f}{x}=3x^3-3y;\qquad\pdv{f}{y}=3y^2-3x\]
 	Solve $\begin{cases}f_x=0\\f_y=0\end{cases}\Rightarrow\begin{cases}3x^2-3y=0\qquad\text{\ding{172}}\\3y^2-3x=0\qquad\text{\ding{173}}\end{cases}.$\par From \ding{172}: $y=x^2$.\par Substitute $y=x^2$ to \ding{173}: \[\begin{aligned}3\qty(x^2)^2-3x&=0\\x^4-x&=0\\x(x^3-1)&=0\Longrightarrow x=0\text{ or }x=1\end{aligned}\]\[\therefore y=0^2=0\qquad\text{or}\qquad y=1^2=1\]\[\therefore\begin{cases}x=0\\y=0\end{cases}\text{ or }\begin{cases}x=1\\y=1\end{cases}\]\par i.e., Critical points are at $(0,0)$ and $(1,1).$\par Find $D$: \[D=\det\begin{bmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{bmatrix}=\begin{bmatrix}6x&-3\\-3&6y\end{bmatrix}=36xy-9.\]\par Apply the second derivative test: \begin{enumerate}
 		\item $D(0,0)=-9<0\Longrightarrow(0,0)$ is a saddle point.
 		\item $D(1,1)=36-9=27>0$ and $\displaystyle\pdv[2]{f}{x}(1,1)=6(1)>0\Longrightarrow(1,1)$ is a local minimum. \end{enumerate}
-	\end{sol}
+	\end{ans}
 \end{eg}
 \begin{thm}[Extreme Value Theorem, EVT]
 	We are expanding the Extreme Value Theorem from a single variable version to a multivariable	version: 
@@ -1491,14 +1493,156 @@ The following are examples of closed and bounded regions.
 	\draw (75,88) node [anchor=north west][inner sep=0.75pt]   [align=left] {Boundary 2};
 	\end{tikzpicture}
 	\end{center}
-	\begin{sol}
+	\begin{ans}
 		We can write the region $D$ as the following set: \[D=\qty{(x,y)\mid x^2+y^2\leq6,\ y\geq0}.\]\par$\boxed{\text{Step }1}$ Find the critical points of the function that are inside the boundary (interior to the boundary). \par\hspace{5mm} \[f(x,y)=x^2+2y^2-x^2y\ \Rightarrow\ \nabla f(x,y)=\left\langle\pdv{f}{x},\pdv{f}{y}\right\rangle=\langle2x-2xy, 4y-x^2\rangle.\]\par\hspace{5mm} Set $\nabla f(x,y)=0:\ \begin{cases} 2x-2xy&=0\quad\text{\ding{172}}\\4y-x^2&=0\quad\text{\ding{173}}.\end{cases}$\par\hspace{5mm} From \ding{173}: $y=\dfrac{x^2}{4}.$ Substitute this result into \ding{172}: \[\begin{aligned}2x-2x\cdot\frac{x^2}{4}&=0\\2x-\frac{1}{2}x^3&=0\ \Rightarrow\ x\qty(2-\frac{1}{2}x^2)=0\end{aligned}\]\[\therefore \begin{cases}x&=0\\y&=0\end{cases}\quad\text{or}\quad\begin{cases}x^2&=4\\y&=1\end{cases}\]\[\ \Rightarrow\ \begin{cases}x&=0\\y&=0\end{cases}\quad\text{or}\quad\begin{cases}x&=2\\y&=1\end{cases}\quad\text{or}\quad\begin{cases}x&=-2\\y&=1\end{cases}\]\par\hspace{5mm} All the points $(0,0),\ (2,1),$ and $(-2,1)$ are inside the boundary.\par$\boxed{\text{Step }2}$ Check the boundaries for maximum and minimum. \par\hspace{5mm}\textbf{Check Boundary 1}: $x^2+y^2=16,\quad0\leq y\leq4.$ \[\begin{aligned}f(x,y)=x^2+2y^2-x^2y&=16+y^2-(16-y^2)y\\&=16+y^2-16y+y^3\\f(y)&=y^3+y^2-16y+16\ \rightarrow\text{ one variable function}\end{aligned}\] \[f'(y)=3y^2+2y-16=0\qquad y=-\dfrac{8}{3},\quad y=2.\]\par\hspace{10mm} Since $0\leq y\leq4$, $y=2.$\par\hspace{10mm} When $y=2$, $x=\pm\sqrt{16-4}=\pm2\sqrt{3}.$ \[f(y)=2^3+2^2-16(2)+16=8+4-32+16=-4\]\par\hspace{10mm} When $y=4$, $x=0.$\[f(x,y)=16+16-64+64=32\]\par\hspace{10mm} When $y=0,$ $x=\pm4.$ \[f(x,y)=16\ \rightarrow\ \text{(not a extreme value)}\]\par\hspace{10mm} Hence, we have $-4\leq f(x,y)\leq32$ on Boundary 1. \par\hspace{5mm}\textbf{Check boundary 2}: $-4\leq x\leq 4,\quad y=0.$ \[f(x,y)=x^2+2y^2-x^2y=x^2\]\par\hspace{10mm} Since $0\leq x^2\leq 16,\quad0\leq f(x,y)\leq16.$\par$\boxed{\text{Step }3}$ List all the points and values: \begin{center}\begin{tabular}{c|c}Point&Value\\\hline$(0,0)$&$f(0,0)=0$\\$(2,1)$&$f(2,1)=2$\\$(-2,1)$&$f(-2,1)=2$\\$(2\sqrt{3},2)$&$f(2\sqrt{3},2)=-4$\\$(-2\sqrt{3},2)$&$f(-2\sqrt{3},2)=-4$\\$(0,4)$&$f(0,4)=32$\\\end{tabular}\end{center}\par\hspace{10mm} Hence, minimum occurs at $(2\sqrt{3}, 2)$ and $(-2\sqrt{3},2)$, and the function value is $-4$ at minimum. The maximum occurs at $(0,4)$, and the function value is $32$ at maximum. 
-	\end{sol}
+	\end{ans}
 \end{eg}
 
 \subsection{Lagrange Multiplier}
+\begin{df}[Optimization]
+	Find minimum or maximum values of a function subject to constrains.
+	\begin{rmk} The constrains can be an equality or an inequality. \end{rmk}
+	\begin{df}[Objective Function]
+		The function $f$ we are working with is called the \textbf{objective function} or \textbf{cost function}.
+	\end{df}	
+	\begin{df}[Linear and Non-Linear Optimization]
+		If the objective function is linear, the process is called \textbf{linear programming} or \textbf{linear optimization}. If the objective function is not linear, the process if called \textbf{non-linear optimization}.
+	\end{df}
+\end{df}
+\begin{thm}[Lagrange Multiplier]
+	The minimum or maximum value of $f(x_1,\cdots, x_n)$ subject to the condition $g(x_1,\cdots,x_n)=k,$ where $f$ and $g$ are differentiable, occur when the gradient vectors, $\nabla f$ and $\nabla g$, are parallel. That is, \[\nabla f(x_1,\cdots, x_n)=\lambda\nabla g(x_1,\cdots,x_n)\]	for some $\lambda.$
+\end{thm}
+\begin{ext}[Lagrange Multiplier with Multiple Constrains]
+	If we have two constrains $g(x_1,\cdots,x_n)=k$ and $h(x_1,\cdots,x_n)=m,$ then the minimum or maximum value of $f(x_1,\cdots,x_n)$ occurs at \[\nabla f(x_1,\cdots,x_n)=\lambda\nabla g(x_1,\cdots, x_n)+\mu\nabla h(x_1,\cdots,x_n)\] for some $\lambda$ and $\mu.$
+\end{ext}
+\begin{eg}
+Maximize $f(x,y)=xy$ on the curve $x^2+y^2=4.$
+\begin{ans}
+	In this example, $f(x,y)=xy,$ $g(x,y)=x^2+y^2,$ and $k=4.$ Then, \[\nabla f(x,y)=\langle y, x\rangle\qquad \nabla g(x,y)=\langle 2x, 2y\rangle.\]\par Attempt to solve $\nabla f(x,y)=\lambda\nabla g(x,y): $\[\langle y,x\rangle=\lambda\langle 2x,2y\rangle.\]\par So, we have $\begin{cases}y=2\lambda x\qquad\text{\ding{172}}\\x=2\lambda y\qquad\text{\ding{173}}\end{cases}$\par Substitute \ding{172} into \ding{173} we have $x=2\lambda(2\lambda x),$ or $x=4\lambda^2x.$\par Divide $x$ on both sides of the equation, we have $4\lambda^2=1$ or $\lambda^2=\dfrac{1}{4}.$ Hence, $\lambda=\pm\dfrac{1}{2}.$\par $\boxed{\lambda=\dfrac{1}{2}}$: $y=2\qty(\dfrac{1}{2})=x$\par\hspace{5mm} Substitute $y=x$ into $x^2+y^2=4$: $2x^2=4,$ or $x^2=2.$ So $x=\pm\sqrt{2}.$\par\hspace{5mm} Hence, critical points when $\lambda=\dfrac{1}{2}:$ $\qty(\sqrt{2},\sqrt{2})$ or $\qty(-\sqrt{2},-\sqrt{2})$.\par\hspace{5mm} The values of function are $f\qty(\sqrt{2},\sqrt{2})=\sqrt{2}\cdot\sqrt{2}=2$ and $f\qty(-\sqrt{2},-\sqrt{2})=\qty(-\sqrt{2})(-\sqrt{2}).$\par $\boxed{\lambda=-\dfrac{1}{2}}$: $y=2\qty(-\dfrac{1}{2})x=-x.$\par\hspace{5mm} Substitute $y=-x$ int $x^2+y^2=4:$ $2x^2=4$ and $x=\pm\sqrt{2}.$\par\hspace{5mm} Hence, critical points are $\qty(\sqrt{2},-\sqrt{2})$ and $\qty(-\sqrt{2},\sqrt{2}).$\par\hspace{5mm} The respective values of the function are $f\qty(\sqrt{2},-\sqrt{2})=-2$ and $f\qty(-\sqrt{2},\sqrt{2})=-2.$\par Hence, the maximum occurs at $\qty(\sqrt{2},\sqrt{2})$ and $\qty(-\sqrt{2},-\sqrt{2}),$ with the maximum value of $2$. and the minimum occurs at $\qty(\sqrt{2},-\sqrt{2})$ and $\qty(-\sqrt{2},\sqrt{2}),$ with the minimum value of $-2.$
+\end{ans}	
+\end{eg}
+\begin{ext}[Lagrange Multiplier with an Inequality Constrain]
+	If we are having an inequality constrain, we need to check if any critical points of $\nabla f=0$ satisfies the inequality, if so, the critical points from $\nabla f=0$ will be the maximum or minimum point for this optimization. If we do not have any critical points of $\nabla f=0,$ critical points calculated from the Lagrange Multiplier will be the maximum or minimum point for the optimization. 
+\end{ext}
 
+\newpage
+\section{Multiple Integrals}
+\subsection{Double Integral Over Rectangles}
+\begin{df}[Double Integral]
+	Suppose $f(x,y)$ is a two-variable function, then the double integral of it over rectangles is defined by \[\iintR f(x,y)\ \d A=\lim_{m,n\to\infty}\sum_{j=1}^m\sum_{i=1}^n f(x_{ij}^*, y_{ij}^*)\Delta A\] if the limit exists. 	
+\end{df}
+\begin{thm}
+	If $f(x,y)\geq0,$ then the volume $V$ of the solid that lies above the rectangle $R$ and below the surface $z=f(x,y)$ is \[V=\iintR f(x,y)\ \d A\]
+\end{thm}
+\begin{eg}
+	Approximate the volume of $f(x,y)=x^2y$ when $R=\qty[0,2]\times\qty[0,1].$ Use midpoint approximation and $m=n=2.$	
+	\begin{ans}
+		We can compute the following $(x,y)$ points that are used for the approximation: \[(x_{11},y_{11})=\qty(\frac{1}{2}, \frac{1}{4})\quad(x_{12},y_{12})=\qty(\frac{1}{2}, \frac{3}{4})\quad(x_{21},y_{21})=\qty(\frac{3}{2}, \frac{1}{4})\quad(x_{22},y_{22})=\qty(\frac{3}{2}, \frac{3}{4})\] We can also compute the value of $\Delta A:$ \[\Delta A=\Delta x\cdot\Delta y=1\times\dfrac{1}{2}=\dfrac{1}{2}.\] Hence, we can approximate the volume: \[\begin{aligned}V&\approx\Delta A\qty\bigg[f(x_{11},y_{11})+f(x_{12},y_{12})+f(x_{21},y_{21})+f(x_{22},y_{22})]\\&=\dfrac{1}{2}\qty\Bigg[f\qty(\frac{1}{2}, \frac{1}{4})+f\qty(\frac{1}{2}, \frac{3}{4})+f\qty(\frac{3}{2}, \frac{1}{4})+f\qty(\frac{3}{2}, \frac{3}{4})]\\&=\dfrac{1}{2}\qty\Bigg[\qty(\dfrac{1}{2})^2\cdot\qty(\dfrac{1}{4})+\qty(\dfrac{1}{2})^2\cdot\qty(\dfrac{3}{4})+\qty(\dfrac{3}{2})^2\cdot\qty(\dfrac{1}{4})+\qty(\dfrac{3}{2})^2\cdot\qty(\dfrac{3}{4})]\\&=\dfrac{1}{2}\qty(\dfrac{1}{4}+\dfrac{9}{4})\\&=\dfrac{10}{8}=\dfrac{5}{4}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{thm}[Calculating Double Integrals]
+	In order to compute the double integral on $R=\qty[a,b]\times\qty[c,d]$: \[\iintR f(x,y)\ \d A\]
+	\begin{enumerate}
+		\item First, we hold $x$ fixed and find the integral \[A(x)=\int_c^df(x,y)\ \d y\] The result is an expression on $x$ is called the integration with respect to $y$.
+		\item Then, we find the integral \[\begin{aligned}V=\int_a^bA(x)\ \dx&=\int_a^b\qty[\int_c^df(x,y)\ \d y]\dx\\&\int_a^b\int_c^df(x,y)\ \d y\dx\end{aligned}\]
+	\end{enumerate}
+\end{thm}
+\begin{thm}[Fubini's Theorem]
+	Suppose $f$ is a continuous function of $x$ and $y$ on the rectangle $R=\qty{(a,y)\mid a\leq x\leq b, c\leq y\leq d}.$ Then, \[\iintR f(x,y)\ \d A=\int_a^b\int_c^df(x,y)\ \d y\dx=\int_c^d\int_a^bf(x,y)\ \dx\d y.\]
+\end{thm}
+\begin{eg} Evaluate $\displaystyle\int_0^3\int_1^2x^2y\ \d y\dx.$
+\begin{ans}
+	\[\begin{aligned}\int_0^3\int_1^2x^2y\ \d y\dx&=\int_0^3\qty[\dfrac{1}{2}x^2y^2]_1^2\ \dx\\&=\int_0^3\qty(\dfrac{1}{2}(4)x^2-\dfrac{1}{2}x^2)\ \dx\\&=\int_0^3\dfrac{3}{2}x^2\ \dx\\&=\qty[\dfrac{1}{3}\cdot\dfrac{3}{2}x^3]_0^3=\dfrac{1}{2}(27)=\dfrac{27}{2}\end{aligned}\]
+\end{ans}	
+\end{eg}
+\begin{eg}
+	Evaluate the double integral \[\iintR y\sin(xy)\ \d A,\qquad\text{where }R=\qty[1,2]\times\qty[0,\pi].\]
+	\begin{ans}
+		From the Fubini's Theorem, \[\iintR y\sin(xy)\ \d A=\int_1^2\int_0^\pi y\sin(xy)\ \d y\dx=\int_0^\pi\int_1^2 y\sin(xy)\ \dx\d y\] Let $u=xy,$ then $\displaystyle \frac{\d u}{\dx}=y,$ which is $\d u=y\dx.$ \[\begin{aligned}\therefore\int_0^\pi\int_1^2y\sin{xy}\ \dx\d y&=\int_0^\pi\int_y^{2y}\sin(u)\ \d u\d y\\&=\int_0^\pi\qty[-\cos(u)]^{2y}_y\ \d y\\&=-\int_0^\pi\cos(2y)-\sin(y)\ \d y\\&=-\qty[\frac{1}{2}\sin(2y)-\sin(y)]_0^\pi\\&=-\qty(\dfrac{1}{2}\qty\Big(\sin(2\pi)-\sin(0))-\qty\Big(\sin(\pi)-\sin(0)))\\&=0\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{thm}
+	For a double integral $f(x,y)=g(x)\cdot h(x)$ on the rectangle $R=\qty[a,b]\times\qty[c,d],$ \[\iint_R g(x)\cdot h(x)\ \d A=\int_a^b g(x)\ \dx\cdot\int_c^d h(x)\ \d y\]
+\end{thm}
+\begin{eg}
+	Evaluate the double integral \[\iintR\sin(x)\cos(y)\ \d A,\qquad\text{where }R=\qty[0,\dfrac{\pi}{2}]\times\qty[0,\dfrac{\pi}{2}]\]	
+	\begin{ans}
+		By the Fubini's Theorem, \[\begin{aligned}\iintR\sin(x)\cos(y)\ \d A&=\int_0^{\pi/2}\sin(x)\ \dx\cdot\int_0^{\pi/2}\cos(y)\ \d y\\&=\qty\Big[-\cos{x}]_0^{\pi/2}\cdot\qty\Big[\sin(y)]_0^{\pi/2}\\&=\qty[-\cos\qty(\dfrac{\pi}{2})+\cos(0))]\cdot\qty[\sin\qty(\dfrac{\pi}{2})-\sin(0)]\\&=(1)(1)=1\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{df}[Average Value]
+	In two-variable functions, then the average value of $f$ on the rectangle $R=\qty[a,b]\times[c,d]$, $f_\text{ave}$ is given by \[f_\text{ave}=\dfrac{\iintR f(x,y)\ \d A}{A(R)}\qquad\text{or}\qquad\iintR f(x,y)\ \d A=A(R)\cdot f_\text{ave}.\]	
+\end{df}
 
+\subsection{Double Integral Over General Region}
+\begin{df}[Double Integral Over a General Region]
+	Furthering the definition of double integral over a rectangle, we use the notation $\iintD f(x,y)\ \d A$ to represent a double integral of $f(x,y)$ over a general region $D$.	
+\end{df}
+\begin{thm}[Two Fundamental Types of Region $D$]
+	Here, we discuss two fundamental types of region $D$, which includes one variable to be dependent on the other. 
+	\begin{enumerate}
+		\item $D=\qty{(x,y)\mid a<x<b,\ g(x)\leq y\leq f(x)}$\begin{center}
+			\tikzset{every picture/.style={line width=0.75pt}}      
+			\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+			\draw  (50,159.84) -- (150,159.84)(60,70) -- (60,170) (143,154.84) -- (150,159.84) -- (143,164.84) (55,77) -- (60,70) -- (65,77)  ;
+			\draw    (71,101) .. controls (111,71) and (101,129.84) .. (141,99.84) ;
+			\draw    (71,140) .. controls (96,150.84) and (99,130.84) .. (141,138.84) ;
+			\draw  [dash pattern={on 4.5pt off 4.5pt}]  (71,101) -- (70,159.84) ;
+			\draw  [dash pattern={on 4.5pt off 4.5pt}]  (141,99.84) -- (140.01,158.67) ;
+			\draw (65,158.24) node [anchor=north west][inner sep=0.75pt]    {$a$};
+			\draw (133,160.24) node [anchor=north west][inner sep=0.75pt]    {$b$};
+			\draw (152,161.24) node [anchor=north west][inner sep=0.75pt]    {$x$};
+			\draw (43,68.24) node [anchor=north west][inner sep=0.75pt]    {$y$};
+			\draw (95,114.24) node [anchor=north west][inner sep=0.75pt]    {$D$};
+			\draw (147,95.24) node [anchor=north west][inner sep=0.75pt]    {$y=f( x)$};
+			\draw (142.51,132.66) node [anchor=north west][inner sep=0.75pt]    {$y=g( x)$};
+			\end{tikzpicture}
+			\end{center}
+ 			\[\iintD f(x,y)\ \d A=\int_{g(x)}^{f(x)}\int_a^bf(x,y)\ \dx\d y\]
+		\item $D=\qty{(x,y)\mid f(y)\leq x\leq g(y),\ c<y<d}$
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (50,159.84) -- (150,159.84)(60,70) -- (60,170) (143,154.84) -- (150,159.84) -- (143,164.84) (55,77) -- (60,70) -- (65,77)  ;
+		\draw    (71,150) .. controls (111,120) and (41,130.84) .. (81,100.84) ;
+		\draw    (120,150) .. controls (129,120.84) and (94,133.84) .. (130,100.84) ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (60,99.84) -- (130,99.84) ;
+		\draw  [dash pattern={on 4.5pt off 4.5pt}]  (120,150) -- (60,150) ;
+		\draw (50,140.24) node [anchor=north west][inner sep=0.75pt]    {$c$};
+		\draw (49,91.24) node [anchor=north west][inner sep=0.75pt]    {$d$};
+		\draw (152,161.24) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (43,68.24) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (92,117.24) node [anchor=north west][inner sep=0.75pt]    {$D$};
+		\draw (67,78.24) node [anchor=north west][inner sep=0.75pt]    {$x=f( y)$};
+		\draw (123.51,134.66) node [anchor=north west][inner sep=0.75pt]    {$x=g( y)$};
+		\end{tikzpicture}
+		\end{center}
+ 		\[\iintD f(x,y)\ \d A=\int_{f(y)}^{g(y)}\int_c^d f(x,y)\ \d y\dx\]
+	\end{enumerate}	
+\end{thm}
+\begin{eg}
+	Find $\iintD x+2y\ \d A,$ where $D$ is the region bounded by $y=2x^2$ and $y=x^2+1.$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,200.65) -- (233,200.65)(140,70) -- (140,216.65) (226,195.65) -- (233,200.65) -- (226,205.65) (135,77) -- (140,70) -- (145,77)  ;
+	\draw    (219,87.65) .. controls (140,238.65) and (140,238.65) .. (60,86.65) ;
+	\draw    (229,110.65) .. controls (140,200.65) and (140,199.65) .. (50,109.65) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (183,199.65) -- (183,152.65) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (97,199.65) -- (97,152.65) ;
+	\draw (231,199.24) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (127,63.24) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (120,178.24) node [anchor=north west][inner sep=0.75pt]    {$D$};
+	\draw (223,73.24) node [anchor=north west][inner sep=0.75pt]    {$y=2x^{2}$};
+	\draw (230.51,104.66) node [anchor=north west][inner sep=0.75pt]    {$y=x^{2} +1$};
+	\draw (163,202.4) node [anchor=north west][inner sep=0.75pt]    {$x=1$};
+	\draw (71,202.4) node [anchor=north west][inner sep=0.75pt]    {$x=-1$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		\[\begin{aligned}\iintD f(x,y)\ \d A&=\int_{-1}^1\int_{2x^2}^{x^2+1}x+2y\ \d y\dx=\int_{-1}^1\qty\Big[xy+y^2]_{2x^2}^{x^2+1}\ \dx\\&=\int_{-1}^1 x\qty(x^2+1)+\qty(x^2+1)^2-x\qty(2x^2)-\qty(2x^2)^2\ \dx\end{aligned}\] \[\begin{aligned}\therefore\iintD x+2y\ \d A&=\int_{-1}^1 x\qty(x^2+1)+\qty(x^2+1)^2-x\qty(2x^2)-\qty(2x^2)^2\ \dx\\&=\int_{-1}^1 -3x^4-x^3+2x^2+x+1\ \dx\\&=\qty[-\dfrac{3}{5}x^5-\dfrac{1}{4}x^4+\dfrac{2}{3}x^3+\dfrac{1}{2}x^2+x]_{-1}^1\\&=-\dfrac{3}{5}-\dfrac{1}{4}+\dfrac{2}{3}+\dfrac{1}{2}+1-\qty(\dfrac{3}{5}-\dfrac{1}{4}-\dfrac{2}{3}+\dfrac{1}{2}-1)\\&=-\dfrac{6}{5}+\dfrac{4}{3}+2\\&=\dfrac{32}{15}\end{aligned}\]	
+	\end{ans}
+\end{eg}
 
 
 
