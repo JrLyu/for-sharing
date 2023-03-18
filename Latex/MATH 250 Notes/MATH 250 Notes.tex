@@ -52,35 +52,14 @@
 
 \def\Z{{\mathbb{Z}}}
 \def\R{{\mathbb{R}}}
-\def\C{{\mathbb{C}}}
 \def\Q{{\mathbb{Q}}}
 \def\N{{\mathbb{N}}}
-\def\E{{\mathbb{E}}}
 \def\Zp{{\Z^{+}}}
 \def\pow{{\mathcal{P}}}
 \def\part{{\mathscr{P}}}
-\def\d{{\mathrm{d}}}
-\def\i{{\mathrm{i}}}
-\def\RE{{\mathrm{Re}}}
-\def\IM{{\mathrm{Im}}}
-\def\Arg{{\mathrm{Arg}}}
-\def\cis{\mathrm{cis}}
-\def\Proj{\mathrm{Proj}}
+\def\f{f^{-1}}
 \def\emptyset{\varnothing}
 \def\qed{\rightline{$\blacksquare$}}
-\def\ddx{\frac{\d}{\d x}}
-\def\dydx{\frac{\d y}{\d x}}
-\def\dx{\d x}
-\def\vecx{\vec{x}}
-\def\vecy{\vec{y}}
-\def\vecv{\vec{v}}
-\def\vecw{\vec{w}}
-\def\vecu{\vec{u}}
-\def\veca{\vec{a}}
-\def\vecb{\vec{b}}
-\def\vece{\vec{e}}
-\def\DNE{\mathrm{D.N.E.}}
-\def\LI{\mathrm{L.I.}}
 \def\st{\emph{ s.t. }}
 \def\fs{\emph{ f.s. }}
 \def\Iff{\emph{ iff }}
@@ -906,7 +885,7 @@ Another way to prove is by contrapositive.
 \end{prf}
 \end{framed}
 
-\begin{df}[Partition]
+\begin{df}[Partition]\label{df2.3.2}
 	Let $A$ be sets. A \textbf{partition} of $A$ is a subset of the power set of A, $\part\subseteq\pow(A)$, satisfying the following three properties:
 	\begin{enumerate}
 		\item If $X\in\part,$ then $X\neq\emptyset$ $\longrightarrow$ non-empty subsets of $A$
@@ -941,6 +920,124 @@ Another way to prove is by contrapositive.
 
 \newpage
 \section{Functions}
+\subsection{Definition and Basic Properties}
+\begin{df}[Function, Domain, Codomain]
+	Let $A$ and $B$ be non-empty set. A \textbf{function}, $f$, from $A$ to $B$ is a rule that assigns to each element $a\in A$ one, and only one, element of $B$, $b$.
+	\begin{itemize}
+		\item We call $A$ the \textbf{domain} of $f$.
+		\item We call $B$ the \textbf{codomain} of $f$.
+	\end{itemize}
+\end{df}
+\begin{nota}
+	We denote a function $f$ from $A$ to $B$ as $f: A\to B,$ and the elements by $b=f(a)$ if $b$ was assigned to $a$. 	
+\end{nota}
+\begin{rmk}
+	The codomain is part of the data that makes a function. Indeed, to specify a function, we need three pieces of information: (1) the domain, (2) the codomain, and (3) the rule between them. 
+\end{rmk}
+\begin{df}[Image of a Function]
+	Let $f:A\to B$ be a function. The \textbf{image} of $f$, denoted $\Im{f},$ is the set of elements in the codomain which are obtained by applying the rule $f$ to an element of the domain. That is, 
+	\begin{itemize}
+		\item $\Im(f)=\qty{y\in B\mid\exists a\in A\st b=f(a)}$
+		\item More generally, if $X\subseteq A,$ then, the \textbf{image of $X$ under }$f$, denoted $f(X)$, is given by \[f(X)=\qty{y\in B\mid\exists x\in Z\st b=f(x)}.\]
+	\end{itemize}	
+\end{df}
+\begin{framed}
+\begin{clm}Let $f:\R\to\R$ be given by $f(x)=x^2+3.$ Then $\Im(f)=[3,\infty).$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $x\in\R.$ Then $x^2\geq0.$\par\hspace{5mm} So, $x^2+3\geq0+3.$\par\hspace{5mm} So, $\Im(f)\subseteq[3,\infty).\qquad\square$ \par 
+	($\supseteq$): We will show that $(-3,\infty)\subseteq\Im(f)$\par\hspace{5mm} Let $x\in[3,\infty).\qquad$\big[WTS: $x\in\Im(f).$ That is, $\exists a\in\R\st f(a)=x.$\big]\par\hspace{5mm} Choose $a=\sqrt{x-3}.$ Since $x\geq3,\ x-3\geq0.$ So, $a\in\R.$\par\hspace{5mm} We will show that $f(a)=x$: \[f(a)=a^2+3=\qty(\sqrt{x-3})^2+3=x-3+3=x\]\par\hspace{5mm} So, $x\in\Im(f).$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $f:\Z\to\Z$ be defined by \[f(n)=\begin{cases}n+1,\qquad n\text{ is even}\\n-3,\qquad n\text{ is odd}\end{cases}\] Compute $f(X)$ where $X=\qty{n\in\Z\mid n=4t+2\fs t\in\Z}.$}
+\begin{clm}$f(X)=\qty{m\in\Z\mid m=4k+3\fs k\in\Z}=B.$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $y\in f(X)$. Then, $\exists n\in X\st f(n)=y.$\par\hspace{5mm} By definition of $X$, $n=4t+2\fs t\in\Z.$\par\hspace{5mm} So, $f(n)=y=n+1$ since $n$ is even.\par\hspace{5mm} That is, $f(n)=y=4t+2+1=4t+3.$\par\hspace{5mm} So, $y\in B$\par 
+	($\supseteq$): Let $m\in B.$ Then, $m=4k+3\fs k\in\Z.\qquad$\big[WTS: $m\in f(X)$\big]\par\hspace{5mm} Note that since $k\in\Z,$ $4k+2\in X.$ Choose $n=4k+2.$\par\hspace{5mm} Then, $n\in X.$ Further, $f(n)=n+1=4k+2+1=4k+3=m.$\par\hspace{5mm} So, $m\in f(X).$
+\end{prf}
+\end{framed}
+\begin{thm}[Intermediate Value Theorem]\label{thm3.1.1}
+	Let $f$ be a function whose domain and codomain are subsets of $R.$ Let $a<b$ and suppose $f$ is continuous on $[a,b].$ If $y$ is any number in-between $f(a)$ and $f(b),$ then there exists a number $c$ in $[a,b]$ such that $f(c)=y.$
+\end{thm}
+\begin{framed}
+\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3+x+1.$ Let $X=[-2,2].$ Then, $f(X)=[-9,11].$}
+\begin{prf}
+	($\subseteq$): First observe that $f'(x)=3x^2+1>0.$\par\hspace{5mm} Since $f'>0,$ $f$ is increasing. So, $f$ is in particular increasing on $[-2,2].$\par\hspace{5mm} Note that $f(-2)=(-2)^3+(-2)+1=-8-2+1=-9.$\par\hspace{5mm} Also, $f(2)=2^3+2+1=11.$\par\hspace{5mm} Since $f$ is increasing, $\forall x\in[-2,2], -9\leq f(x)\leq11.$\par\hspace{5mm} So, $f(X)\subseteq[-9,11].\qquad\square$ \par
+	($\supseteq$):Let $m\in[-9,11].$\par\hspace{5mm} Since $f$ is continuous on $[-2,2]$ and $f(-2)=9$ and $f(2)=11.$\par\hspace{5mm} By the intermediate value theorem (Theorem \ref{thm3.1.1}), $\exists c\in[-2,2]\st f(c)=m.$\par\hspace{5mm} That is, $m\in f(X).$
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3-4x+1.$ Let $X=[-2,2].$ Find $f(X).$}
+\begin{prf}
+	\begin{enumerate}
+		\item[\ding{172}] Find $f'(x)=3x^2-4.$ So, $f$ is not always increasing or decreasing.
+		\item[\ding{173}] Find critical points: $f'(x)=0,\ 3x^2-4=0,\ 3x^2=4,\ x^2=\dfrac{4}{3},\ x=\pm\dfrac{2}{\sqrt{2}}.$
+		\item[\ding{174}] Plug in critical points into $f''(x):\ f''(x)=6x.$
+		\begin{itemize}
+			\item $f''\qty(\dfrac{2}{\sqrt{3}})=6\qty(\dfrac{2}{\sqrt{3}})>0\longrightarrow$ minimum
+			\item $f''\qty(-\dfrac{2}{\sqrt{3}})=6\qty(-\dfrac{2}{\sqrt{3}})<0\longrightarrow$ maximum
+		\end{itemize}
+	\end{enumerate}
+	\begin{itemize}
+		\item Largest output is at $-\dfrac{2}{\sqrt{3}}$ or at $2$.\par $f(2)=2^3-4(2)+2=1$\par $f\qty(-\dfrac{2}{\sqrt{3}})=\qty(-\dfrac{2}{\sqrt{3}})^3-4\qty(-\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(\dfrac{2}{3})+1>1$
+		\item Smallest output is at $-2$ or $\dfrac{2}{\sqrt{3}}.$\par $f(-2)=(-2)^3-4(-2)+2=1$\par $f\qty(\dfrac{2}{\sqrt{3}})=\qty(\dfrac{2}{\sqrt{3}})^3-4\qty(\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(-\dfrac{2}{3})+1<1$
+	\end{itemize}
+	Therefore, $f([-2,2])=\qty[1-\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}}), 1+\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}})]$
+\end{prf}	
+\end{framed}
+\begin{thm}
+	Let $f:A\to B$ be a function, and let $X$ and $Y$ be subsets of $A$. Then: 
+	\begin{enumerate}
+		\item\label{thm3.1.2a} $f(X\cup Y)=f(X)\cup f(Y)$
+		\item\label{thm3.1.2b} $f(X\cap Y)\subseteq f(X)\cap f(Y)$
+	\end{enumerate}	
+\end{thm}
+\begin{framed}
+\noindent\texttt{We will prove Theorem 3.2.1(\ref{thm3.1.2a}) in this section. Theorem 3.2.1(\ref{thm3.1.2b}) is left as an exercise. }
+\begin{prf}
+	($\subseteq$): Let $b\in f(X\cup Y).$\par\hspace{5mm} Then, $\exists a\in X\cup Y\st f(a)=b.$\par\hspace{5mm} Since $a\in X$ and $f(a)=b,$ by definition of image, $b\in f(X).$\par\hspace{5mm} Then, $b\in f(X)\cup f(Y).\qquad\square$\par 
+	($\supseteq$): Suppose $b\in f(X)\cup f(Y).$\par\hspace{5mm} Then, $b\in f(X)$ or $b\in f(Y).$\par\hspace{5mm} WLOG, suppose $b\in f(X).$\par\hspace{5mm} Then, $\exists a\in X\st f(a)=b.$\par\hspace{5mm} Since $a\in X,$ $a\in X\cup Y.$ So, $b=f(a)\in f(X\cup Y).$
+\end{prf}
+\end{framed}
+\begin{rmk}
+	Give a function $f:A\to B$ and subsets $X,Y\subseteq A,$ it is not true, in general, that $f(X\cap Y)=f(X)\cap f(Y).$ 
+\end{rmk}
+\begin{df}[Inverse Image, or Pre-Image]
+	Let $f:A\to B$ be a function, and let $W\subseteq B.$ The \textbf{inverse image} of $W$ with respect to $f$ denoted $f^{-1}(W),$ is the set of elements in the domain which are sent, by applying the rule $f$, to an element of $W$ in $B$. That is, \[f^{-1}(W)=\qty{a\in A\mid f(a)\in W}.\]
+	\begin{rmk}
+	\begin{enumerate}
+		\item $f(X)\subseteq B$ but $f^{-1}(W)\subseteq A.$
+		\item To show $y\in f(X),$ \textbf{find} an $a\in X\st f(a)=y.$
+		\item To show $y\in f^{-1}(W),$ \textbf{show} $f(y)\in W.$
+		\item $y\in f^{-1}(W)\iff f(y)\in W.$
+		\item If $f(X)=f(Y)$, we cannot determine if $X=Y.$
+		\item $f^{-1}(B)=A,$ but $f(A)\neq B.$
+		\item If $f^{-1}(X)=f^{-1}(Y),$ we cannot determine if $X=Y.$
+	\end{enumerate}
+	\end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{Suppose $f:\R\to\R$ is defined by $f(x)=3x+1.$}
+\begin{clm}$\f(W_2)=(1,\infty),$ where $W_2=(4,\infty)$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $x\in f^{-1}(W_2).$\par\hspace{5mm} Then, $f(x)\in W_2=(4,\infty)$\par\hspace{5mm} So, $f(x)=3x+1>4.$ So, $x>1.$\par\hspace{5mm} That is, $x\in(1,\infty).\qquad\square$\par 
+	($\supseteq$): Let $x\in(1,\infty).\qquad$\big[WTS: $x\in f^{-1}(W_2).$\big]\par\hspace{5mm} Since $x>1,$ so $3x>3$ and $3x+1>4.$\par\hspace{5mm} That is, $f(x)>4.$\par\hspace{5mm} So, $f(x)\in W_2,$ or $x\in f^{-1}(W_2).$
+\end{prf}
+\begin{clm}$f^{-1}(W_4)=X,$ where $W_4=\Z$ and $X=\qty{\dfrac{k-1}{3}\mid k\in\Z}.$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $x\in f^{-1}(W_4).$\par\hspace{5mm} So, $f(x)\in W_4.$ That is, $f(x)\in\Z.$\par\hspace{5mm} Hence, $3x+1=k\fs k\in\Z.$\par\hspace{5mm} Therefore, $x=\dfrac{k-1}{3}.$ So, $x\in X.\qquad\square$\par 
+	($\supseteq$): Let $x\in X.$\par\hspace{5mm} Then, $x=\dfrac{k-1}{3}\fs k\in\Z.\qquad$\big[WTS: $x\in f^{-1}(W_4)$. WTS: $f(x)\in W_4$\big]\par\hspace{5mm} $f(x)=f\qty(\dfrac{k-1}{3})=3\qty(\dfrac{k-1}{3})+1=k-1+1=k.$\par\hspace{5mm} Since $k\in\Z,$ $f(x)\in\Z=W_4.$\par\hspace{5mm} So, $x\in f^{-1}(W_4).$
+\end{prf}
+\end{framed}
+\begin{thm}
+	Let $f:A\to B$ be a function, and let $W$ and $Z$ be subsets of $B$. Then: 
+	\begin{enumerate}
+		\item $\f(W\cup Z)=\f(W)\cup \f(Z)$
+		\item $\f(W\cap Z)=\f(W)\cap \f(Z)$
+	\end{enumerate}	
+\end{thm}
+
+
 
 
 \newpage
@@ -1181,16 +1278,15 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 \begin{framed}
 \begin{prop} Let $R$ be an equivalence relation on a set $A$. Then the set \[\qty{[a]\mid a\in A}\] of equivalence classes of $R$ forms a partition of $A$. \end{prop}
 \begin{prf}
-	
+	By Definition \ref{df2.3.2}, we know that a partition of set $A$ is a collection of non-empty subsets of $A$, union of all of which is $A$, and mutually disjoint.\par
+	By definition, if $a\in A$, $\qty{[a]\mid a\in A}=\qty{x\in A\mid xRa}.$\par So, $\qty{[a]\mid a\in A}\subseteq A.$ Since $R$ is reflexive, $aRa,$ so $a\in[a].$\par So, this collection is indeed a collection of non-empty subsets of $A.\qquad\square$\par WTS: $\displaystyle\bigcup_{a\in A}\qty{[a]\mid a\in A}=A.$\par\hspace{5mm} 
+	($\subseteq$): Let $x\in\displaystyle\bigcup_{a\in A}\qty{[a]\mid a\in A}.$\par\hspace{10mm} By definition of union, $x\in\qty{[a]\mid a\in A}\fs a\in A.$\par\hspace{10mm} But $\qty{[a]\mid a\in A}\subseteq A.$ So, $x\in A.$\par\hspace{5mm}
+	($\supseteq$): Let $a\in A$. So, $aRa$ and $a\in[a].$\par\hspace{10mm} So, $a\in\qty{[a]\mid a\in A}.$ Then, $a\in\displaystyle\bigcup_{a\in A}\qty{[a]\mid a\in A}.\qquad\square$\par
+	WTS: if $[a]\neq[b],$ then $[a]\cap[b]=\emptyset.$\par\hspace{5mm} We will prove by contrapositive: if $[a]\cap[b]\neq\emptyset,$ then $[a]=[b].$\par\hspace{5mm} Suppose $[a]\cap[b]\neq\emptyset.$ Let $x\in[a]\cap[b].$\par\hspace{5mm}  So, $x\in[a]$ and $x\in[b].$ That means, $xRa$ and $xRb.$\par\hspace{5mm} If $xRa,$ since $R$ is symmetric, $aRx$.\par\hspace{5mm} Since $R$ is transitive, since $aRx$ and $xRb,$ we know $aRb.$\par\hspace{5mm} By Proposition \ref{prop4.2.1}, $[a]=[b].$
 \end{prf}
 \end{framed}
-\begin{framed}
-\begin{prop} Let $\part$ be a partition of a nonempty set $A$. Define a relation $R$ on $A$ by $aRb$ if $a$ and $b$ are in the same element of the partition. Then $R$ is an equivalence relation on $A$. \end{prop}
-\begin{prf}
-	
-\end{prf}
-\end{framed}
-
+\begin{prop}\label{prop4.2.3} Let $\part$ be a partition of a nonempty set $A$. Define a relation $R$ on $A$ by $aRb$ if $a$ and $b$ are in the same element of the partition. Then $R$ is an equivalence relation on $A$. \end{prop}
+\begin{prf} The proof of Proposition \ref{prop4.2.3} is given in the textbook. \end{prf}
 
 
 
@@ -1206,7 +1302,7 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 	\begin{itemize}
 		\item (\textbf{Commutativity}) For all integers $a,b$, we have \[a+b=b+a\qquad\text{and}\qquad a\cdot b=b\cdot a.\]
 		\item (\textbf{Associativity}) For all integers $a,b,c$, we have \[a+(b+c)=(a+b)+c\qquad\text{and}\qquad a\cdot(b\cdot c)=(a\cdot b)\cdot c.\]
-		\item (\textbf{Distributivity}) For all integers $a,b,c$, we have \[(a+b)\cdot c=a\cdot c+b\cdot b.\]
+		\item (\textbf{Distributivity}) For all integers $a,b,c$, we have \[(a+b)\cdot c=a\cdot c+b\cdot c.\]
 		\item (\textbf{Identity}) There exists integers $0$ (\textbf{additive identity}) and $1$ (\textbf{multiplicative identity}), such that for all integers $a$, we have \[a+0=a\qquad\text{and}\qquad a\cdot1=a.\]
 		\item (\textbf{Additive inverses}) For any integer $a$, there exists an integer $-a$ such that \[a+(-a)=0.\]
 		\item (\textbf{Closure for $\Zp$}) If $a,b$ are positive integers, then $a+b$ and $a\cdot b$ are positive integers.
@@ -1288,7 +1384,7 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 	There is no integer $x$ such that $0<x<1.$	
 \end{thm}
 \begin{prf}
-	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\empty.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm5.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df5.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
+	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\emptyset.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm5.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df5.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
 \end{prf}
 \end{framed}
 

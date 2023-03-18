@@ -6,7 +6,7 @@
 \usepackage{ntheorem}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{amsmath}
-\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
@@ -55,6 +55,7 @@
 	linkcolor = blue
 }
 
+\def\dsst{\displaystyle}
 \def\Z{{\mathbb{Z}}}
 \def\R{{\mathbb{R}}}
 \def\C{{\mathbb{C}}}
@@ -68,23 +69,25 @@
 \def\cis{\mathrm{cis}}
 \def\Proj{\mathrm{Proj}}
 \def\qed{\rightline{$\blacksquare$}}
-\def\ddx{\displaystyle\frac{\d}{\d x}}
-\def\dydx{\displaystyle\frac{\d y}{\d x}}
-\def\ddt{\displaystyle\frac{\d}{\d t}}
+\def\ddx{\dsst\frac{\d}{\d x}}
+\def\dydx{\dsst\frac{\d y}{\d x}}
+\def\ddt{\dsst\frac{\d}{\d t}}
 \def\dx{\d x}
 \def\del{\partial}
 \def\pdx{\del x}
 \def\pdx{\del y}
-\def\pdfdx{\displaystyle\frac{\del f}{\del x}}
-\def\pdfdy{\displaystyle\frac{\del f}{\del y}}
-\def\pdfdxdx{\displaystyle\frac{\del^2 f}{\del x\del x}}
-\def\pdfdydy{\displaystyle\frac{\del^2 f}{\del y\del y}}
-\def\pdfdxdy{\displaystyle\frac{\del^2 f}{\del x\del y}}
-\def\pdfdydx{\displaystyle\frac{\del^2 f}{\del y\del x}}
-\def\pddx{\displaystyle\frac{\del }{\del x}}
-\def\pddy{\displaystyle\frac{\del }{\del y}}
-\def\iintR{\displaystyle\iint_R}
-\def\iintD{\displaystyle\iint_D}
+\def\pdfdx{\dsst\frac{\del f}{\del x}}
+\def\pdfdy{\dsst\frac{\del f}{\del y}}
+\def\pdfdxdx{\dsst\frac{\del^2 f}{\del x\del x}}
+\def\pdfdydy{\dsst\frac{\del^2 f}{\del y\del y}}
+\def\pdfdxdy{\dsst\frac{\del^2 f}{\del x\del y}}
+\def\pdfdydx{\dsst\frac{\del^2 f}{\del y\del x}}
+\def\pddx{\dsst\frac{\del }{\del x}}
+\def\pddy{\dsst\frac{\del }{\del y}}
+\def\iintR{\dsst\iint_R}
+\def\iintD{\dsst\iint_D}
+\def\iiintB{\dsst\iiint_B}
+\def\iiintE{\dsst\iiint_E}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -1641,6 +1644,158 @@ Maximize $f(x,y)=xy$ on the curve $x^2+y^2=4.$
 	\end{center}
 	\begin{ans}
 		\[\begin{aligned}\iintD f(x,y)\ \d A&=\int_{-1}^1\int_{2x^2}^{x^2+1}x+2y\ \d y\dx=\int_{-1}^1\qty\Big[xy+y^2]_{2x^2}^{x^2+1}\ \dx\\&=\int_{-1}^1 x\qty(x^2+1)+\qty(x^2+1)^2-x\qty(2x^2)-\qty(2x^2)^2\ \dx\end{aligned}\] \[\begin{aligned}\therefore\iintD x+2y\ \d A&=\int_{-1}^1 x\qty(x^2+1)+\qty(x^2+1)^2-x\qty(2x^2)-\qty(2x^2)^2\ \dx\\&=\int_{-1}^1 -3x^4-x^3+2x^2+x+1\ \dx\\&=\qty[-\dfrac{3}{5}x^5-\dfrac{1}{4}x^4+\dfrac{2}{3}x^3+\dfrac{1}{2}x^2+x]_{-1}^1\\&=-\dfrac{3}{5}-\dfrac{1}{4}+\dfrac{2}{3}+\dfrac{1}{2}+1-\qty(\dfrac{3}{5}-\dfrac{1}{4}-\dfrac{2}{3}+\dfrac{1}{2}-1)\\&=-\dfrac{6}{5}+\dfrac{4}{3}+2\\&=\dfrac{32}{15}\end{aligned}\]	
+	\end{ans}
+\end{eg}
+\begin{thm}
+\[\iintD 1\ \d A=A(D)=\text{Area of }D.\]	
+\end{thm}
+\begin{eg}
+	Sketch the region $D$ in the $xy$-plane bounded by $y^2=2x$ and $y=x.$ Find the area of $D$.
+	\begin{ans}
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (50.06,164.74) -- (190.97,164.74)(63.91,58.52) -- (63.91,230.74) (183.97,159.74) -- (190.97,164.74) -- (183.97,169.74) (58.91,65.52) -- (63.91,58.52) -- (68.91,65.52)  ;
+		\draw   (191.91,65.68) .. controls (21.32,132.07) and (21.32,198.45) .. (191.91,264.84) ;
+		\draw    (36.34,192.89) -- (170.91,58.32) ;
+		\draw    (100,124) .. controls (90.01,127.71) and (60.51,144.4) .. (108.44,145.71) ;
+		\draw [shift={(109.91,145.74)}, rotate = 181.15] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (18,147.4) node [anchor=north west][inner sep=0.75pt]    {$( 0,0)$};
+		\draw (143,89.4) node [anchor=north west][inner sep=0.75pt]    {$( 2,2)$};
+		\draw (189,170.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (47,51.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (133,220.4) node [anchor=north west][inner sep=0.75pt]    {$y^{2} =2x$};
+		\draw (122,51.4) node [anchor=north west][inner sep=0.75pt]    {$y=x$};
+		\draw (115.63,138.01) node [anchor=north west][inner sep=0.75pt]    {$D$};
+		\end{tikzpicture}	
+		\end{center}
+	\[\begin{aligned}\text{Area of }D=\iintD1\ \d A&=\iintD1\ \d y\dx\\&=\int_0^2\int_x^{\sqrt{2x}}1\ \d y\dx\\&=\int_0^2(\sqrt{2x}-x)\ \dx\\&=\qty[\sqrt{2}\dfrac{2}{3}x^{\frac{3}{2}}-\dfrac{1}{2}x^2]^2_0\\&=\qty(\dfrac{2\sqrt{2}}{3}\qty(\sqrt{2})^3-\dfrac{1}{2}(4)-0)\\&=\dfrac{8}{3}-2=\dfrac{2}{3} \end{aligned}\]
+	\end{ans}	
+\end{eg}
+\begin{eg}
+	Given $\displaystyle\int_0^3\int_1^{\sqrt{4-y}} x+y\ \dx\d y.$
+	\begin{enumerate}
+		\item[(a)] Sketch the region.
+		\begin{ans}
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (50,163.31) -- (247.01,163.31)(146.36,69.84) -- (146.36,228.96) (240.01,158.31) -- (247.01,163.31) -- (240.01,168.31) (141.36,76.84) -- (146.36,69.84) -- (151.36,76.84)  ;
+		\draw   (215.49,209.46) .. controls (169.52,58.82) and (123.55,58.82) .. (77.58,209.46) ;
+		\draw    (166.06,69.43) -- (166.06,231.74) ;
+		\draw    (227.14,106.03) -- (63.62,106.03) ;
+		\draw (226.69,196.14) node [anchor=north west][inner sep=0.75pt]    {$x=\sqrt{4-y}$};
+		\draw (167.44,89.33) node [anchor=north west][inner sep=0.75pt]    {$( 1,3)$};
+		\draw (200.99,142.62) node [anchor=north west][inner sep=0.75pt]    {$( 2,0)$};
+		\draw (253.09,162.22) node [anchor=north west][inner sep=0.75pt]    {$x( y=0)$};
+		\draw (127.89,63.06) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (235.12,96.61) node [anchor=north west][inner sep=0.75pt]    {$y=3$};
+		\draw (172.91,214.23) node [anchor=north west][inner sep=0.75pt]    {$x=1$};
+		\draw (171,138.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+		\end{tikzpicture}	
+		\end{center}
+		\end{ans}
+		\item[(b)] Interchange the order.
+		\begin{ans}
+		\[\int_0^3\int_1^{\sqrt{4-y}} x+y\ \dx \d y=\int_1^2\int_0^{4-x^2}x+d\ \d y\dx\] \end{ans}
+		\item[(c)] Evaluate the integral. 
+		\begin{ans}\[\begin{aligned}\int_1^2\int_0^{4-x^2} x+y\ \d y\dx&=\int_1^2\qty[xy+\dfrac{1}{2}y^2]_0^{4-x^2}\ \dx\\&=\int_1^2\qty[x(4-x^2)+\dfrac{1}{2}\qty(4-x^2)^2]\ \dx\\&=\int_1^2\qty(4x-x^3+\dfrac{1}{2}\qty(16+x^4-8x^2))\ \dx\\&=\int_1^2\dfrac{1}{2}x^4-x^3-4x^2+4x+8\ \dx\\&=\qty[\dfrac{1}{2}\cdot\dfrac{1}{5}x^5-\dfrac{1}{4}x^4-4\cdot\dfrac{1}{3}x^3+4\cdot\dfrac{1}{2}x^2+8x]_1^2\\&=\dfrac{1}{10}\qty(2^5-1)-\dfrac{1}{4}\qty(2^4-1)-\dfrac{4}{3}\qty(2^3-1)+2\qty(2^2-1)+8(2-1)\\&=\dfrac{31}{10}-\dfrac{15}{4}-\dfrac{28}{3}+6+8\\&=\dfrac{241}{60}\end{aligned}\]\end{ans}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}Properties of Double Integral:
+\begin{enumerate}
+	\item \[\iintD\qty\Big[f(x,y)+g(x,y)]\ \d A=\iintD f(x,y)\ \d A+\iintD g(x,y)\ \d A\]
+	\item \[\iintD cf(x,y)\ \d A=c\iintD f(x,y)\ \d A\]
+	\item If $D=D_1+D_2,$ then \[\iintD f(x,y)\ \d A=\iint_{D_1}f(x,y)\ \d A+\iint_{D_2}f(x,y)\ \d A\]
+	\item If $f(x,y)\geq g(x,y),$ then \[\iintD f(x,y)\ \d A\geq \iintD g(x,y)\ \d A\]
+	\item If $m\leq f(x,y)\leq M$ and $A(D)$ is the area of the region $D$, then \[m\cdot A(D)\leq\iintD f(x,y)\ \d A\leq M\cdot A(D).\]
+\end{enumerate}	
+\end{thm}
+\begin{eg}
+	Estimate the integral $\displaystyle\iintD e^{\sin{x}\cos{y}}\ \d A,$ where $D$ is a disk centered at origin with a radius of $2$.
+	\begin{ans}
+		Since $-1\leq\sin{x}\leq1\quad$and$\quad-1\leq\cos{y}\leq1,$ we have \[-1\leq\sin{x}\cos{y}\leq1.\]\par Therefore, \[e^{-1}\leq e^{\sin{x}\cos{y}}\leq e^{1}.\]\ \[\iintD e^{1}\ \d A\leq\iintD e^{\sin{x}\cos{y}}\ \d A\leq\iintD e^1\ \d A.\]\par Recall that \[\iintD 1\ \d A=\text{Area of the disk}=2^2\pi=4\pi.\] \[\iint_D e^{-1}\ \d A=e^{-1}\iintD 1\ \d A=\dfrac{4\pi}{4}\qquad\text{and}\qquad\iintD e^{1}\ \d A=4e\pi.\] \[\dfrac{4\pi}{e}\leq\iintD e^{\sin{x}\cos{y}}\ \d A\leq 4e\pi.\]
+	\end{ans}
+\end{eg}
+
+\subsection{Changing Variables in Double Integrals}
+\begin{thm}[Transformation of Double Integral]
+	\[\iintR F(x,y)\ \dx\d y=\iint_{R'} F\qty\Big(f(u,v), g(u,v))\qty|\dfrac{\del(x,y)}{\del(u,v)}|\ \d u\d v,\] where $x=f(u,v)$ and $y=g(u,v).$ $R'$ is the region in $uv$-plane which $R$ is mapped under the trandofrmation $T=\begin{cases}x=f(u,v)\\y=g(u,v)\end{cases}.$	
+\end{thm}
+\begin{df}[Jacobian]
+	The Jacobian of transformation 	$T=\begin{cases}x=f(u,v)\\y=g(u,v)\end{cases}$ is \[\dfrac{\del(x,y)}{\del(u,v)}=\qty|\begin{array}{cc}\dfrac{\del x}{\del u}&\dfrac{\del y}{\del u}\\\\\dfrac{\del x}{\del v}&\dfrac{\del y}{\del v}\end{array}|=\dfrac{\del x}{\del u}\cdot\dfrac{\del y}{\del v}-\dfrac{\del y}{\del u}\cdot\dfrac{\del x}{\del v}.\]
+\end{df}
+\begin{eg}
+	If $\quad u=x^2-y^2\quad$ and $\quad v=2xy.\quad$ Find $\dsst\dfrac{\del(x,y)}{\del(u,v)}$ in terms of $u$ and $v$. 
+	\begin{ans}
+		\[\dfrac{\del(x,y)}{\del(u,v)}=\dfrac{1}{\dfrac{\del(u,v)}{\del(x,y)}}=\dfrac{1}{\qty|\begin{array}{cc}u_x&v_x\\u_y&v_y\end{array}|}=\dfrac{1}{\qty|\begin{array}{cc}2x&2y\\-2y&2x\end{array}|}=\dfrac{1}{4x^2+4y^2}\] \[u=x^2-y^2,\qquad v=2xy\]\par Note that: \[\begin{aligned}\qty(x^2-y^2)^2&=\qty(x^2+y^2)^2-(2xy)^2\\u^2&=\qty(x^2+y^2)^2-v^2\\\qty(x^2+y^2)^2 &=u^2+v^2\\x^2+y^2&=\pm\sqrt{u^2+v^2}\end{aligned}\]\par Therefore, \[\dfrac{\del(x,y)}{\del(u,v)}=\dfrac{1}{\pm4\sqrt{u^2+v^2}}\]
+	\end{ans}
+\end{eg}
+\begin{thm}[Absolute Value of Jacobian]
+	In fact, the absolute value of Jacobian $\dsst\dfrac{\del(x,y)}{\del(u,v)}$ is the ratio between corresponding area elements in the $xy$-plane and the $uv$-plane. \[\d A=\dx\d y=\qty|\dfrac{\del(x,y)}{\del(u,v)}|\ \d u\d v\]	
+\end{thm}
+\begin{eg}
+	Find the area of the finite plane region bounded by the four parabolas: \[y=x^2,\qquad y=2x^2,\qquad x=y^2,\qquad x=3y^2\]	
+	\begin{ans}
+	\begin{center}	
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (50,210.83) -- (247.01,210.83)(61.91,69.84) -- (61.91,228.96) (240.01,205.83) -- (247.01,210.83) -- (240.01,215.83) (56.91,76.84) -- (61.91,69.84) -- (66.91,76.84)  ;
+		\draw    (61.91,210.83) .. controls (72.91,161.83) and (113.91,115.83) .. (209.91,92.83) ;
+		\draw    (61.91,210.83) .. controls (72.91,192.83) and (93.91,161.83) .. (209.91,148.83) ;
+		\draw    (61.91,210.83) .. controls (104.91,194.83) and (115.91,167.83) .. (125.91,95.83) ;
+		\draw    (61.91,210.83) .. controls (114.91,202.83) and (135.91,156.83) .. (149.91,80.83) ;
+		\draw    (126.91,143.83) .. controls (123.96,137.92) and (125.85,117.46) .. (160.32,130.23) ;
+		\draw [shift={(161.91,130.83)}, rotate = 201.25] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (242.09,214.22) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (42.89,64.06) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (166,125.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+		\draw (73,83.4) node [anchor=north west][inner sep=0.75pt]    {$y=2x^{2}$};
+		\draw (152,66.4) node [anchor=north west][inner sep=0.75pt]    {$y=x^{2}$};
+		\draw (205,95.4) node [anchor=north west][inner sep=0.75pt]    {$x=y^{2}$};
+		\draw (211.91,152.23) node [anchor=north west][inner sep=0.75pt]    {$x=3y^{2}$};
+		\end{tikzpicture}
+	\end{center}\par 
+	From $\begin{cases}y=x^2\\y=2x^2\end{cases},$ we know $\begin{cases}\frac{y}{x^2}=1\\\frac{y}{x^2}=2\end{cases}.$ Let $u=\dfrac{y}{x^2}: \begin{cases}u=1\\u=2\end{cases}.$ \par Similarly, let $v=\dfrac{x}{y^2},$ then $\begin{cases}v=1\\v=3\end{cases}.$\par So, the region $D$ is transformed to a rectangle in the $uv$-plane. \par Let $u=\dfrac{y}{x^2}$ and $v=\dfrac{x}{y^2},$ where $1\leq u\leq 2$ and $1\leq v\leq 3.$ \[\iintD\ \d A=\iintR\qty|\dfrac{\del(x,y)}{\del(u,v)}|\ \d u\d v\] \[\dfrac{\del(x,y)}{\del(u,v)}=\dfrac{1}{\dfrac{\del(u,v)}{\del(x,y)}}=\dfrac{1}{\qty|\begin{array}{cc}\dfrac{\del u}{\del x}&\dfrac{\del v}{\del x}\\\\\dfrac{\del u}{\del y}&\dfrac{\del v}{\del y}\end{array}|}=\dfrac{1}{\qty|\begin{array}{cc}-\dfrac{2y}{x^3}&\dfrac{1}{x^2}\\\\\dfrac{1}{y^2}&-\dfrac{2x}{y^3}\end{array}|}=\dfrac{1}{\dfrac{4}{x^2y^2}-\dfrac{1}{x^2y^2}}=\dfrac{x^2y^2}{3}.\]\par Note that $uv=\dfrac{y}{x^2}\cdot\dfrac{x}{y^2}=\dfrac{1}{xy},$ so $u^2v^2=\dfrac{1}{x^2y^2}.$ Hence, $\dfrac{\del(x,y)}{\del(u,v)}=\dfrac{1}{3u^2v^2}.$\par Therefore, \[\begin{aligned}\iintD\ \d A=\int_1^3\int_1^2\dfrac{1}{3u^2v^2}\ \d u\d v&=\dfrac{1}{3}\int_1^3\int_1^2\dfrac{1}{u^2v^2}\ \d u\d v\\&=\dfrac{1}{3}\int_1^3\qty[-\dfrac{1}{uv^2}]_1^2\ \d v\\&=\dfrac{1}{3}\int_1^3\qty(-\dfrac{1}{2v^2})\ \d v\\&=-\dfrac{1}{6}\int_1^3\dfrac{1}{v^2}\ \d v=-\dfrac{1}{6}\qty[-\dfrac{1}{v}]_1^3=-\dfrac{1}{6}\qty(-1+\dfrac{1}{3})=\dfrac{1}{9}\end{aligned}\]
+	\end{ans}
+\end{eg}
+\subsection{Double Integral in Polar Coordinates}
+\begin{thm}[Double Integral in Polar Coordinates]
+	In polar coordinates, $x^2+y^2=r,\quad x=r\cos\theta,\quad y=r\sin\theta.$ Therefore, 	\[\iintR F(x,y)\ \d A=\iintR F(x,y)\ \dx\d y=\iint_{R'}F\qty\Big(r\cos\theta,r\sin\theta)\qty|\dfrac{\del(x,y)}{\del(r,\theta)}|\ \d r\d\theta.\] Since \[\dsst\dfrac{\del(x,y)}{\del(r,\theta)}=\qty|\begin{array}{cc}x_r&y_r\\x_\theta&y_\theta\end{array}|=\qty|\begin{array}{cc}\cos\theta&\sin\theta\\-r\sin\theta&r\cos\theta\end{array}|=r\cos^2\theta+r\sin^2\theta=r(\cos^2\theta+\sin^2\theta)=r,\] we have \[\iintR F(x,y)\ \dx\d y=\iint_{R'}F\qty\Big(r\cos\theta,r\sin\theta)r\ \d r\d\theta.\]
+\end{thm}
+\begin{eg}
+	Evaluate $\dsst\iintD\dfrac{y^2}{x^2}\ \d A,$ where $D$ is the region limited to \[0\leq a\leq x^2+y^2\leq b\qquad y=0,\qquad x=y,\qquad x,y>0.\]
+	\begin{ans}
+		\[\begin{aligned}I=\iintD\dfrac{y^2}{x^2}\ \d A&=\int_0^{\pi/4}\int_a^b\tan^2\theta\cdot r\ \d r\d\theta\\&=\int_0^{\pi/4}\qty[\tan^2\theta\dfrac{r^2}{2}]_a^b\ \d\theta\\&=\int_0^{\pi/4}\tan^2\theta\dfrac{b^2-a^2}{2}\ \d\theta\\&=\dfrac{b^2-a^2}{2}\qty\Big[\tan\theta-\theta]_0^{\pi/4}\\&=\dfrac{b^2-a^2}{2}\qty(1-\dfrac{\pi}{4}).\end{aligned}\]
+		\begin{rmk}
+			To evaluate $\dsst\int\tan^2\theta\ \d\theta=\int\dfrac{\sin^2\theta}{\cos^2\theta}\ \d\theta,$ we apply $\sin^2\theta=1-\cos^2\theta:$ \[\int\dfrac{\sin^2\theta}{\cos^2\theta}\ \d\theta=\int\dfrac{1-\cos^2\theta}{\cos^2\theta}\ \d\theta=\int\dfrac{1}{\cos^2\theta}\d\theta-\int\ \d\theta=\tan\theta-\theta+C.\]
+		\end{rmk}
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Show $\dsst I=\int_{-\infty}^{\infty}e^{-x^2}\ \dx=\sqrt{\pi}.$
+	\begin{ans}
+		We try to find $\dsst I^2=\qty(\int_{-\infty}^\infty e^{-x^2}\ \dx)^2=\int_{-\infty}^\infty e^{-x^2}\ \dx\cdot\int_{-\infty}^\infty e^{-x^2}\ \dx$
+		Further, we have \[I^2=\int_{-\infty}^\infty e^{-x^2}\ \dx\cdot\int_{-\infty}^\infty e^{-y^2}\ \d y=\int_{-\infty}^\infty \int_{-\infty}^\infty e^{-x^2}\cdot e^{-y^2}\ \dx\d y=\int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2+y^2)}\ \dx\d y\]\par 
+		Then, we change it to the polar coordinate: \[\begin{aligned}I^2=\int_0^{2\pi}\int_0^\infty e^{-r^2}r\ \d r\d\theta&=2\pi\int_0^\infty e^{-r^2}r\ \d r\\&=2\pi\qty[-\dfrac{1}{2}e^{-r^2}]_0^\infty\\&=-\pi\qty(\lim_{t\to\infty}\dfrac{1}{e^{t^2}}-e^0)\\&=\pi(0-1)=\pi.\end{aligned}\]
+	\end{ans}
+\end{eg}
+
+\subsection{Triple Integrals}
+\begin{df}[Triple Integral]
+	Find a bounded function $f(x,y,z)$ defined on a rectangular box, $B:\begin{cases}x_1\leq x\leq x_2\\y_1\leq y\leq y_2\\ z_1\leq z\leq z_2\end{cases},$ then, the triple integral on that box in defined as 	\[\iiintB f(x,y,z)\ \d V=\int_{z_1}^{z_2}\int_{y_1}^{y_2}\int_{x_1}^{x_2}f(x,y,z)\ \dx\d y\d z.\]
+\end{df}
+\begin{thm}
+	\[\iiintB\ \d V=V(B)=\text{Volume of the box }B\] In more general cases, \[\iiintE\ \d V=V(E)=\text{Volume of a more general bounded region }E, \]where $E$ is a general bounded region. 
+\end{thm}
+\begin{thm}[Volume of a Sphere]
+	\[V(\text{Sphere})\iiint_E\ \d V=\dfrac{4}{3}\pi a^3,\text{ where }E\text{ is bounded by } x^2+y^2+z^2\leq a\]	
+\end{thm}
+
+\begin{eg}
+	Evaluate $\dsst\iiintE2+x-\sin{z}\ \d V,$ where $E$ is bounded by $x^2+y^2+z^2\leq a$
+	\begin{ans}
+		$x$ and $\sin{z}$ are	odd functions, so integrals of them are $0$ on a symmetric region.\par Note that $E$, by definition, is sphere centered at origion, with a radius of $a$, which is a symmetric region, so we have \[\iiintE x\ \d V=\iiintE\sin{z}\ \d V=0.\]\par Plugging into the integral, we will have\[\dsst\iiintE2+x-\sin{z}\ \d V=\iiintE2\ \d V+\iiintE x\ \d V+\iiintE\sin{z}\ \d V=\iiintE2\ \d V=\dfrac{8}{3}\pi a^3.\]
 	\end{ans}
 \end{eg}
 

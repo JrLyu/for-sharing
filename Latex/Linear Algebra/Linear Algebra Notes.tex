@@ -8,27 +8,16 @@
 \usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
-\usepackage[most]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{float} 
-\usepackage{subfigure} 
 \usepackage{arydshln}
-\usepackage{multicol}
 \usepackage{url}
 \usepackage{setspace}
 \usepackage[T1]{fontenc}
-\usepackage{mathptmx}
 \usepackage{framed}
-\usepackage{xcolor}
-\usepackage{listings}
-\usepackage{chemfig}
-\usepackage{tikz}
 \usepackage{pifont}
-
-
+\usepackage{physics}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -41,44 +30,25 @@
 %\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\definecolor{blue}{rgb}{0,0.45,1.14}
-\definecolor{red}{rgb}{0.77,0.12,0.23}
-\definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{green}{rgb}{0,0.42,0.24}
-\definecolor{orange}{rgb}{2.07,0.69,0.32}
+\linespread{1.25}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newenvironment*{sol}{\indent\textbf{Solution. }}{\hfill{$\square$}\par}
+\newenvironment*{sol}{\indent\textit{Solution. }}{\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
-\newtheorem{cor}{Corollary}[subsection]
-\newtheorem{lem}{Lemma}[subsection]
-\newtheorem{prop}{Proposition}[subsection]
-\newtheorem{conj}{Conjecture}[subsection]
-
-\lstset{language=Python}
-\lstset{
-	numbers=left,
-	numberstyle=\tiny,
-	keywordstyle=\color{green},
-	commentstyle=\color{lightgray},
-	frame=shadownbox,
-	rulesepcolor=\color{lightblack},
-	escapeinside='',
-	xleftmargin=2em,aboveskip=1em,
-	framexleftmargin=2em
-	}
-
-\linespread{1.25}
-
-\title{\textbf{This is a title}}
-\author{Jiuru Lyu}
-\date{\today}
 
 \def\Z{{\mathbb{Z}}}
 \def\R{{\mathbb{R}}}
@@ -123,9 +93,7 @@
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
 
-
-
-\title{Johns Hopkins University\\\textbf{AS.110.201 Linear Algebra Notes}\\Learning Notes}
+\title{Johns Hopkins University\\\textbf{AS.110.201 Linear Algebra}\\Learning Notes}
 \author{Jiuru Lyu}
 \date{\today}
 
@@ -148,18 +116,6 @@ Throughout this personal note, I use different formats to differentiate differen
 \begin{thm}[Theorem Name]
     This is a \textbf{theorem}.	
 \end{thm}
-\begin{cor}
-    This is a \textbf{corollary}.	
-\end{cor}
-\begin{lem}
-    This is a \textbf{lemma}.	
-\end{lem}
-\begin{prop}
-    This is a \textbf{proposition}.	
-\end{prop}
-\begin{conj}
-    This is a \textbf{conjecture}.	
-\end{conj}
 \begin{eg}
     This is  an \textbf{example}. 
 \end{eg}
@@ -445,7 +401,7 @@ $$\textcolor{red}{c}\times\begin{bmatrix}x\\y\\z\\ \end{bmatrix}=\begin{bmatrix}
 
 \begin{eg}
 The vector $\vec{v}=\begin{bmatrix}1\\2\end{bmatrix}$ is shown on a $xy$-plane as the following: 
-\begin{figure}[H] 
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.25\textwidth]{vector1.png}
 \end{figure}
