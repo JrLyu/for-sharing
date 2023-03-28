@@ -1032,10 +1032,49 @@ Another way to prove is by contrapositive.
 \begin{thm}
 	Let $f:A\to B$ be a function, and let $W$ and $Z$ be subsets of $B$. Then: 
 	\begin{enumerate}
-		\item $\f(W\cup Z)=\f(W)\cup \f(Z)$
-		\item $\f(W\cap Z)=\f(W)\cap \f(Z)$
+		\item\label{thm3.1.3(1)} $\f(W\cup Z)=\f(W)\cup \f(Z)$
+		\item\label{thm3.1.3(2)} $\f(W\cap Z)=\f(W)\cap \f(Z)$
 	\end{enumerate}	
 \end{thm}
+\begin{framed}
+\noindent\texttt{We will prove Theorem 3.1.3(\ref{thm3.1.3(1)}) in this section. Theorem 3.1.3(\ref{thm3.1.3(2)}) is left as an exercise.}
+\begin{prf}
+	($\subseteq$): Let $y\in\f(W\cup Z).$ Then, $f(y)\in W\cup Z.$\par\hspace{5mm} By definition of union, $f(y)\in W$ or $f(y)\in Z.$\par\hspace{5mm} WLOG, suppose $f(y)\in W.$ Then, $y\in\f(W).$\par\hspace{5mm} But $\f(W)\subseteq\f(W)\cup\f(Z).$\par\hspace{5mm} So, $y\in\f(W)\cup\f(Z).\qquad\square$\par 
+	($\supseteq$): Let $y\in\f(W)\cup\f(Z).$ By definition of union, $y\in\f(W)$ or $y\in\f(Z).$\par\hspace{5mm} WLOG, suppose $y\in\f(W).$ Then, $f(y)\in W.$\par\hspace{5mm} But, $W\subseteq W\cup Z.$ So, $f(y)\in W\cup Z.$\par\hspace{5mm} So, $y\in\f(W\cup Z).$
+\end{prf}
+\end{framed}
+\begin{df}[Epsilon-Delta Definition of Continuity]\label{df3.1.4}
+	Let $A$ and $B$ be open intervals of $\R$, and let $f:A\to B$ be a function. Let $a\in A.$ We say $f$ is \textbf{continuous at} $a$ if the following statement is true: \[\forall\varepsilon>0,\ \exists\delta>0\st|x-a|<\delta\implies|f(x)-f(a)|<\varepsilon.\]
+	\begin{rmk} The following statement can be also rephrased as ``If $x\in(a-\delta,a+\delta),$ then $f(x)\in(f(a)-\varepsilon,f(a)+\varepsilon).$''\end{rmk}
+	\begin{enumerate}
+		\item $|x-a|<\delta$ means the inputs are at most $\delta$ away from $a$.
+		\item $|f(x)-f(a)|<\varepsilon$ means the outputs are at most $\varepsilon$ away from $f(a)$.	
+	\end{enumerate}
+	\begin{rmk}
+		The idea of writing a proof: given $\varepsilon>0,$ FIND $\delta>0$ that works.	
+	\end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=2x+1$ is continuous at $x=3$. }
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{2}>0.$\par Suppose $x\in\R\st |x-3|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(3)|&=|2x+1-7|\\&=|2x-6|\\&=|2(x-3)|\\&=2|x-3|<2\cdot\delta=2\cdot\dfrac{\varepsilon}{2}=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-3|<\delta\implies|f(x)-f(3)|<\varepsilon.\]
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=3+5x$ is continuous at $x=4$. }
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{5}>0.$\par Suppose $x\in\R\st|x-4|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(4)|&=|3+5x-23|\\&=|5x-20|\\&=|5(x-4)|\\&=5|x-4|<5\cdot\delta=5\cdot\dfrac{\varepsilon}{5}=\varepsilon\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-4|<\delta\implies|f(x)-f(4)|<\varepsilon.\]
+\end{prf}
+\begin{rmk} In this example, $\delta$ ONLY depends on $\varepsilon$! So, the same $\delta$ will work when showing $f(x)$ is continuous at $x=1.$\end{rmk}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=0$.}
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\sqrt{\varepsilon}.$\par Note that since $\varepsilon>0,$ $\delta>0.$\par Suppose $x\in\R\st|x-0|<\delta.$ That is, $|x|<\delta.$\par Then, \[\begin{aligned}
+		|f(x)-f(0)|=|x^2-0|=|x^2|&=|x|\cdot|x|\\&<\delta\cdot\delta=\qty(\sqrt{\varepsilon})\cdot\qty(\sqrt{\varepsilon})=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta=\sqrt{\varepsilon}>0\st|x-0|<\delta\implies|f(x)-f(0)|<\varepsilon.\]	
+\end{prf}
+
+\end{framed}
 
 
 

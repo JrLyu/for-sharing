@@ -36,7 +36,7 @@
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
 \newtheorem{cor}{Corollary}[section]
-\newenvironment*{ans}{\par\indent{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
@@ -73,6 +73,10 @@
 \def\dydx{\dsst\frac{\d y}{\d x}}
 \def\ddt{\dsst\frac{\d}{\d t}}
 \def\dx{\d x}
+\def\dy{\d y}
+\def\dz{\d z}
+\def\dV{\d V}
+\def\dA{\d A}
 \def\del{\partial}
 \def\pdx{\del x}
 \def\pdx{\del y}
@@ -1783,22 +1787,229 @@ Maximize $f(x,y)=xy$ on the curve $x^2+y^2=4.$
 
 \subsection{Triple Integrals}
 \begin{df}[Triple Integral]
-	Find a bounded function $f(x,y,z)$ defined on a rectangular box, $B:\begin{cases}x_1\leq x\leq x_2\\y_1\leq y\leq y_2\\ z_1\leq z\leq z_2\end{cases},$ then, the triple integral on that box in defined as 	\[\iiintB f(x,y,z)\ \d V=\int_{z_1}^{z_2}\int_{y_1}^{y_2}\int_{x_1}^{x_2}f(x,y,z)\ \dx\d y\d z.\]
+	Find a bounded function $f(x,y,z)$ defined on a rectangular box, $B:\begin{cases}x_1\leq x\leq x_2\\y_1\leq y\leq y_2\\ z_1\leq z\leq z_2\end{cases},$ then, the triple integral on that box in defined as \[\iiintB f(x,y,z)\ \d V=\lim_{n,m,l\to\infty}\sum_{k=1}^n\sum_{j=1}^m\sum_{i=1}^l f(x_{ijk}^*,y_{ijk}^*,z_{ijk}^*)\underbrace{\Delta x\Delta y\Delta z}_{\Delta V}\] if the limit exists. 
 \end{df}
+\begin{thm}[Fubini's Theorem for Triple Integral]
+If $f(x,yz)$ is continuous over a box $B$, where $B$ is defined by $B=\qty{(x,y,z)\mid x_1\leq x\leq x_2, y_1\leq y\leq y_2, z_1\leq z\leq z_2},$ then 	
+	\[\iiintB f(x,y,z)\ \d V=\int_{z_1}^{z_2}\int_{y_1}^{y_2}\int_{x_1}^{x_2}f(x,y,z)\ \dx\d y\d z.\]
+\end{thm}
 \begin{thm}
 	\[\iiintB\ \d V=V(B)=\text{Volume of the box }B\] In more general cases, \[\iiintE\ \d V=V(E)=\text{Volume of a more general bounded region }E, \]where $E$ is a general bounded region. 
 \end{thm}
 \begin{thm}[Volume of a Sphere]
 	\[V(\text{Sphere})\iiint_E\ \d V=\dfrac{4}{3}\pi a^3,\text{ where }E\text{ is bounded by } x^2+y^2+z^2\leq a\]	
 \end{thm}
-
 \begin{eg}
 	Evaluate $\dsst\iiintE2+x-\sin{z}\ \d V,$ where $E$ is bounded by $x^2+y^2+z^2\leq a$
 	\begin{ans}
 		$x$ and $\sin{z}$ are	odd functions, so integrals of them are $0$ on a symmetric region.\par Note that $E$, by definition, is sphere centered at origion, with a radius of $a$, which is a symmetric region, so we have \[\iiintE x\ \d V=\iiintE\sin{z}\ \d V=0.\]\par Plugging into the integral, we will have\[\dsst\iiintE2+x-\sin{z}\ \d V=\iiintE2\ \d V+\iiintE x\ \d V+\iiintE\sin{z}\ \d V=\iiintE2\ \d V=\dfrac{8}{3}\pi a^3.\]
 	\end{ans}
 \end{eg}
+\begin{eg}
+	Evaluate $\iiintB xyz^2\ \d V,$	where $B=\qty{(x,y,z)\mid 0\leq x\leq1, -1\leq y\leq2, 0\leq z\leq 3}.$
+	\begin{ans}
+		\[\begin{aligned}\iiintB xyz^2\ \d V&=\int_0^3\int_{-1}^2\int_0^1xyz^2\ \dx\d y\d z\\&=\int_0^3\int_{-1}^2\qty[\dfrac{1}{2}x^2yz^2]_0^1\ \d y\d z\\&=\int_0^3\int_{-1}^2\dfrac{1}{2}yz^2\ \d y\d z\\&=\int_0^3\qty[\dfrac{1}{4}y^2z^2]_{-1}^2\ \d z\\&=\int_0^3\dfrac{1}{4}(4)z^2-\dfrac{1}{4}z^2\ \d z\\&=\qty[\dfrac{1}{3}z^3-\dfrac{1}{12}z^3]_0^3\\&=\dfrac{1}{3}(27)-\dfrac{1}{12}(27)=9-\dfrac{9}{4}=\dfrac{27}{4}\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{thm}[Triple Integral Over a General Region]
+	If we can write $z=u(x,y)$ as function of $x$ and $y$, then we can change the triple integral into double integral. The following diagram shows this case. 
+	\[\begin{aligned}\iiintE f(x,y,z)\ \d V&=\iintD\qty[\int_{u_1(x,y)}^{u_2(x,y)}f(x,y,z)\ \d z]\ \d A\\&=\int_a^b\int_{g_1}^{g_2}\int_{u_1}^{u_2} f(x,y,z)\ \d z\dx\d y,\quad g(y)=x\\\text{OR}\quad&=\int_c^d\int_{h_1}^{h_2}\int_{u_1}^{u_2} f(x,y,z)\ \d z\d y\dx,\quad h(x)=y\end{aligned}\]
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (112,140.35) -- (301.1,140.35)(130.91,37) -- (130.91,151.83) (294.1,135.35) -- (301.1,140.35) -- (294.1,145.35) (125.91,44) -- (130.91,37) -- (135.91,44)  ;
+	\draw    (130.91,140.35) -- (64.54,203.46) ;
+	\draw [shift={(63.1,204.83)}, rotate = 316.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (226.87,91.71) .. controls (176.92,95.07) and (122.77,90.52) .. (105.9,81.54) .. controls (89.04,72.56) and (115.86,62.56) .. (165.8,59.2) .. controls (215.75,55.85) and (269.91,60.4) .. (286.77,69.38) .. controls (295.64,74.11) and (283.1,77.62) .. (249.14,79.9) .. controls (260.6,86.01) and (253.18,89.94) .. (226.87,91.71) -- cycle ;
+	\draw   (226.87,196.71) .. controls (226.87,196.71) and (226.87,196.71) .. (226.87,196.71) .. controls (176.92,200.07) and (122.77,195.52) .. (105.9,186.54) .. controls (89.04,177.56) and (115.86,167.56) .. (165.8,164.2) .. controls (215.75,160.85) and (269.91,165.4) .. (286.77,174.38) .. controls (295.64,179.11) and (283.1,182.62) .. (249.14,184.9) .. controls (260.6,191.01) and (253.18,194.94) .. (226.87,196.71) -- cycle ;
+	\draw    (101.1,76.83) -- (101.1,180.83) ;
+	\draw    (289.77,72.38) -- (289.77,176.38) ;
+	\draw    (249.14,80.9) -- (249.14,184.9) ;
+	\draw    (267,126) .. controls (305.7,140.69) and (330.69,123.03) .. (366.02,96.64) ;
+	\draw [shift={(367.1,95.83)}, rotate = 143.23] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (171.1,212.83) -- (171.1,37.83) ;
+	\draw [shift={(171.1,35.83)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (304,144.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (137,32.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (49,205.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (325,76.4) node [anchor=north west][inner sep=0.75pt]    {$\text{General Region} \ E$};
+	\draw (181,172.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+	\draw (266,42.4) node [anchor=north west][inner sep=0.75pt]    {$z=u_{2}( x,y)$};
+	\draw (274,183.4) node [anchor=north west][inner sep=0.75pt]    {$z=u_{1}( x,y)$};
+	\end{tikzpicture}
+	\end{center}
+\end{thm}
+\begin{eg}
+	Evaluate $\iiintE z\ \d V,$ where $E$ is the solid tetrahedron bounded by the following planes: \[x=0;\qquad y=0;\qquad z=0;\qquad x+y+z=1.\]
+	\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (111,140.35) -- (300.1,140.35)(129.91,37) -- (129.91,151.83) (293.1,135.35) -- (300.1,140.35) -- (293.1,145.35) (124.91,44) -- (129.91,37) -- (134.91,44)  ;
+		\draw    (130.91,140.35) -- (64.54,203.46) ;
+		\draw [shift={(63.1,204.83)}, rotate = 316.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (90.1,179.83) -- (200.1,140.83) ;
+		\draw    (130.1,70.83) -- (200.1,140.83) ;
+		\draw    (130.1,70.83) -- (90.1,179.83) ;
+		\draw (304,144.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (137,32.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+		\draw (49,205.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (92.1,183.23) node [anchor=north west][inner sep=0.75pt]    {$( 1,0,0)$};
+		\draw (202.1,144.23) node [anchor=north west][inner sep=0.75pt]    {$( 0,1,0)$};
+		\draw (131.1,55.23) node [anchor=north west][inner sep=0.75pt]    {$( 0,0,1)$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		\[\begin{aligned}\iiintE z\ \d V&=\iintD\qty[\int_0^{1-x-y}z\ \d z]\d A\\&=\int_0^1\int_0^{1-x}\int_0^{1-x-y}z\ \d z\d y\dx\\&=\int_0^1\int_0^{1-x}\qty[d\frac{1}{2}z^2]_0^{1-x-y}\ \d y\dx\\&=\int_0^1\int_0^{1-x}\dfrac{1}{2}(1-x-y)^2\ \d y\dx\\&=\dfrac{1}{2}\int_0^1\int_0^{1-x}1+x^2+y^2-2x-2y+2xy\ \d y\dx\\&=\dfrac{1}{2}\int_0^1\qty[y+x^2y+\dfrac{1}{3}y^3-2xy-\dfrac{2}{2}y^2+\dfrac{2}{2}xy^2]_0^{1-x}\ \dx\\&=\dfrac{1}{2}\int_0^1(1-x)+x^2(1-x)+\dfrac{1}{3}(1-x)^3-2x(1-x)-(1-x)^2+x(1-x)^2\ \dx\\&=\dfrac{1}{2}\int_0^1\qty(1-x+x^2-x^3+\dfrac{1}{3}(1-x)^3-2x+2x^2-1+2x-x^2+x-2x^2+x^3)\ \dx\\&=\dfrac{1}{2}\int_0^1\dfrac{1}{3}(1-x^3+3x^2-3x)\ \dx\\&=\dfrac{1}{6}\qty[x-\dfrac{1}{4}x^4+\dfrac{3}{3}x^3-\dfrac{3}{2}x^2]_0^1=\dfrac{1}{6}\qty(1-\dfrac{1}{4}+1-\dfrac{3}{2})=\dfrac{1}{6}\qty(\dfrac{1}{4})=\dfrac{1}{24}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{ext}
+	Similarly, we can have other types of triple integrals over the general region: 
+	\[\iiintE f(x,y,z)\ \d V=\iintD\qty[\int_{u_1(y,z)}^{u_1(y,z)} f(x,y,z)\ \dx]\ \d A\]	\[\iiintE f(x,y,z)\ \d V=\iintD\qty[\int_{u_1(x,z)}^{u_1(x,z)} f(x,y,z)\ \d y]\ \d A\]	
+\end{ext}
+\begin{eg}
+	Evaluate $\iiintE\sqrt{x^2+z^2}\ \d V,$ where $E$ is the region bounded by $y=x^2+z^2$ and $y=4.$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (111,112.25) -- (300.1,112.25)(200.64,37) -- (200.64,184.56) (293.1,107.25) -- (300.1,112.25) -- (293.1,117.25) (195.64,44) -- (200.64,37) -- (205.64,44)  ;
+	\draw    (200.64,112.25) -- (131.11,176.21) ;
+	\draw [shift={(129.64,177.56)}, rotate = 317.39] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (200.64,111.25) .. controls (209.64,88.56) and (230.64,71.56) .. (278.64,70.56) ;
+	\draw    (200.64,112.25) .. controls (211.64,130.56) and (229.64,141.56) .. (278.64,148.56) ;
+	\draw   (278.64,70.56) .. controls (285.27,70.56) and (290.64,88.02) .. (290.64,109.56) .. controls (290.63,131.1) and (285.26,148.56) .. (278.63,148.56) .. controls (272,148.56) and (266.63,131.1) .. (266.63,109.56) .. controls (266.63,88.02) and (272.01,70.56) .. (278.64,70.56) -- cycle ;
+	\draw   (253.03,23.95) -- (303.34,72.63) -- (304.24,195.17) -- (253.93,146.49) -- cycle ;
+	\draw    (231.64,139.56) .. controls (247.4,169.11) and (199.13,157.91) .. (218.7,191.02) ;
+	\draw [shift={(219.64,192.56)}, rotate = 237.85] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (215.64,91.56) .. controls (192.99,83.68) and (213.99,69.01) .. (181.18,81.95) ;
+	\draw [shift={(179.64,82.56)}, rotate = 338.2] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (301,115.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (209,31.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (120,154.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (84,66.4) node [anchor=north west][inner sep=0.75pt]    {$z=\sqrt{y-x^{2}}$};
+	\draw (172,192.4) node [anchor=north west][inner sep=0.75pt]    {$z=-\sqrt{y-x^{2}}$};
+	\draw (305.34,76.03) node [anchor=north west][inner sep=0.75pt]    {$y=4$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (111,112.25) -- (300.1,112.25)(200.64,37) -- (200.64,184.56) (293.1,107.25) -- (300.1,112.25) -- (293.1,117.25) (195.64,44) -- (200.64,37) -- (205.64,44)  ;
+		\draw   (153.14,112.25) .. controls (153.14,86.02) and (174.41,64.75) .. (200.64,64.75) .. controls (226.87,64.75) and (248.14,86.02) .. (248.14,112.25) .. controls (248.14,138.48) and (226.87,159.75) .. (200.64,159.75) .. controls (174.41,159.75) and (153.14,138.48) .. (153.14,112.25) -- cycle ;
+		\draw    (219,101) .. controls (240.42,62.95) and (239.66,117.45) .. (278.45,89.44) ;
+		\draw [shift={(279.64,88.56)}, rotate = 143.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw (301,115.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (209,31.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+		\draw (278,69.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+		\draw (225,46.4) node [anchor=north west][inner sep=0.75pt]    {$x^{2} +z^{2} =4$};
+		\end{tikzpicture}
+		\end{center}
+		\[\begin{aligned}\iiintE\sqrt{x^2+z^2}\ \d V&=\iintD\qty[\int_{x^2+z^2}^4\sqrt{x^2+z^2}\ \d y]\d A\\&=\iintD\qty[(4-x^2-z^2)\sqrt{x^2+z^2}]\ \d A\end{aligned}\]\par Now, change to polar coordinate: $r^2=x^2+z^2,\quad 0\leq r\leq2,\quad0\leq\theta\leq2\pi.$ So, \[\begin{aligned}\iiintE\sqrt{x^2+z^2}\ \d V=\iint_{D'}(4-r^2)\sqrt{r^2}\cdot r\ \d r\d\theta&=\int_0^{2\pi}\int_0^2 4r^2-r^4\ \d r\d\theta\\&=2\pi\qty[\dfrac{4}{3}r^3-\dfrac{1}{5}r^5]_0^2\\&=2\pi\qty(\dfrac{4}{3}(8)-\dfrac{32}{5})=\dfrac{128}{15}\pi\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Given $\dsst\int_0^1\int_{\sqrt{x}}^1\int_0^{1-y} f(x,y,z)\ \d z\d y\dx.$ Rewrite the triple integral using other five orders. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (159,160) -- (259,160)(169,70) -- (169,170) (252,155) -- (259,160) -- (252,165) (164,77) -- (169,70) -- (174,77)  ;
+	\draw    (169,160) -- (121.78,207.22) ;
+	\draw [shift={(120.37,208.63)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (169.37,109.74) -- (219.37,159.74) ;
+	\draw    (219.37,159.74) -- (185.37,193.74) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (185.37,193.74) -- (135.37,193.74) ;
+	\draw    (169,160) .. controls (188.37,163.74) and (188.37,178.74) .. (185.37,193.74) ;
+	\draw    (169.37,109.74) .. controls (186.37,134.74) and (202.37,162.74) .. (185.37,193.74) ;
+	\draw    (182.37,155.74) .. controls (153.8,131.12) and (168.9,165.68) .. (142.6,141.87) ;
+	\draw [shift={(141.37,140.74)}, rotate = 42.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (203.37,155.74) .. controls (194.59,145.99) and (194.37,140.05) .. (214.76,126.78) ;
+	\draw [shift={(216.37,125.74)}, rotate = 147.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (103,190.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (263,162.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (149,63.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (155,103.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\draw (213,163.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\draw (123,174.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\draw (187.37,197.14) node [anchor=north west][inner sep=0.75pt]    {$( 1,1,0)$};
+	\draw (90,116.4) node [anchor=north west][inner sep=0.75pt]    {$y=\sqrt{x}$};
+	\draw (220,111.4) node [anchor=north west][inner sep=0.75pt]    {$z=1-y$};
+	\end{tikzpicture}	
+	\end{center}	
+	\begin{ans}
+		\begin{enumerate}
+			\item[\ding{172}] Change to $\d z\dx\d y$: \[\iiintE f(x,y,z)\ \d V=\int_0^1\int_0^{y^2}\int_0^{1-y}f(x,y,z)\ \d z\dx\d y\] 
+			\item[\ding{173}] Change to $\dx\d y\d z$: \[\begin{aligned}\iiintE f(x,y,z)\ \d V&=\iintD\qty[\int_0^{y^2}f(x,y,z)\ \dx]\d A\\&=\int_0^1\int_0^{1-y}\int_0^{y^2}f(x,y,z)\ \dx\d z\d y\end{aligned}\]
+			\item[\ding{174}] Change to $\dx\d y\d z$: From $z=1-y,$ we have $y=1-z$. So, \[\iiintE f(x,y,z)\ \d V=\int_0^1\int_0^{1-z}\int_0^{y^2}f(x,y,z)\ \dx\d y\d z\]
+			\item[\ding{175}] Change to $\d y\d z\dx$: \[\begin{aligned}\iiintE f(x,y,z)\ \d V&=\iintD\qty[\int_{\sqrt{x}}^{1-z}f(x,y,z)\ \d y]\d A\\&=\int_0^1\int_0^{1-\sqrt{x}}\int_{\sqrt{x}}^{1-z}f(x,y,z)\ \d y\d z\dx\end{aligned}\]
+			\item[\ding{176}] Change to $\d y\dx\d z$: Since $z=1-\sqrt{x},$ we have $\sqrt{x}=1-z,$ or $x=(1-z)^2$: \[\iiintE f(x,y,z)\ \d V=\int_0^1\int_0^{(1-z)^2}\int_{\sqrt{x}}^{1-z}f(x,y,z)\ \d y\dx\d z\]
+		\end{enumerate}
+	\end{ans}
+\end{eg}
+\begin{rmk}One application of triple integral is to find volume of a region. \end{rmk}
+\begin{eg}
+Find the volume of the region bounded by the following planes: \[x+2y+z=2,\qquad x=2y,\qquad x=0,\qquad z=0.\]
+\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (159,160) -- (259,160)(169,70) -- (169,170) (252,155) -- (259,160) -- (252,165) (164,77) -- (169,70) -- (174,77)  ;
+	\draw    (169,160) -- (121.78,207.22) ;
+	\draw [shift={(120.37,208.63)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (168.37,100.74) -- (137.37,190.74) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (198.37,161.74) -- (137.37,190.74) ;
+	\draw    (198.37,161.74) -- (168.37,100.74) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (169,160) -- (149.37,210.74) ;
+	\draw    (151.37,201.74) .. controls (109.79,212.63) and (197.58,233.32) .. (149.86,234.71) ;
+	\draw [shift={(148.37,234.74)}, rotate = 358.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (168.37,100.74) -- (160.37,179.74) ;
+	\draw    (187.37,144.74) .. controls (170.88,122.43) and (177.91,117.06) .. (198.43,112.19) ;
+	\draw [shift={(200.37,111.74)}, rotate = 167.2] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (198.37,161.74) -- (160.37,179.74) ;
+	\draw    (191.37,164.74) .. controls (232.86,168.6) and (244.56,173.39) .. (253.41,189) ;
+	\draw [shift={(254.37,190.74)}, rotate = 242.1] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (103,190.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (263,162.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (149,63.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (156,92.4) node [anchor=north west][inner sep=0.75pt]    {$2$};
+	\draw (122,179.4) node [anchor=north west][inner sep=0.75pt]    {$2$};
+	\draw (196,142.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\draw (96,225.4) node [anchor=north west][inner sep=0.75pt]    {$x=2y$};
+	\draw (162.37,176.14) node [anchor=north west][inner sep=0.75pt]    {$\left( 1,\dfrac{1}{2} ,0\right)$};
+	\draw (204,104.4) node [anchor=north west][inner sep=0.75pt]    {$x+2y+z=2$};
+	\draw (233,195.4) node [anchor=north west][inner sep=0.75pt]    {$x+2y=2$};
+	\end{tikzpicture}	
+\end{center}
+\begin{ans}
+	From $x+2y+x=2,$ we know that $z=2-x-2y.$ So we have \[\begin{aligned}V=\iiintE1\ \d V&=\iintD\qty[\int_0^{2-x-2y}1\ \dz]\dA\\&=\int_0^1\int_{x/2}^{(2-x)/2}\int_0^{2-x-2y}1\ \dz\dy\dx\\&=\int_0^1\int_{x/2}^{(2-x)/2}(2-x-2y)\ \dy\dx\\&=\int_0^1\qty\Big[(2-x)y-y^2]_{x/2}^{(2-x)/2}\ \dx\\&=\int_0^1\qty((2-x)(1-x)-\dfrac{1}{4}x^2-1+x+\dfrac{1}{4}x^2)\ \dx\\&=\int_0^1(x^2-2x+1)\ \dx\\&=\qty[\dfrac{1}{3}x^3-x^2+x]_0^1=\dfrac{1}{3}-1+1=\dfrac{1}{3}\end{aligned}\]
+\end{ans}
+\end{eg}
 
+\subsection{Multiple Integral -- Practice}
+\begin{eg}
+	If $D$ is the triangle with vertices $(-2,0),\ (0,4),$ and $(8,0),$ calculate $\iintD xy^2\ \d A.$	
+	\begin{ans}
+	\begin{itemize}
+		\item Using the order $\dy\dx$, we have \[\int_{-2}^0\int_{0}^{2x+4}xy^2\ \dy\dx+\int_0^8\int_0^{-x/2+4}xy^2\ \dy\dx\] It is not easy to calculate the integral as two parts.
+		\item Using the order $\dx\dy$, we have \[\begin{aligned}\int_0^4\int_{-2+y/2}^{8-2y}xy^2\ \dx\dy&=\int_0^4\qty[\dfrac{1}{2}x^2y^2]_{-2+y/2}^{8-2y}\ \dy\\&=\int_0^430y^2-15y^3+\dfrac{15}{8}y^4\ \dy\\&=\qty[30y^2-15y^3+\dfrac{15}{8}y^4]_0^4\\&=640-960+384=64.\end{aligned}\]
+	\end{itemize}	
+	\end{ans}
+\end{eg}
+\begin{eg}
+	If $D$ is the region bounded by $y=x^2$ and $y=8-x^2,$ calculate $\iintD x^3\ \dA$.
+	\begin{ans}
+		$D$ is a symmetric region about $x=0$ and function $f(x,y)=x^3$ is an odd function with respect to $x$. Therefore, \[\iintD x^3\ \dA=0.\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Calculate the area of the region bounded by two parabolas $y=x^2$ and $x=y^2.$
+	\begin{ans}
+		\[\begin{aligned}A(D)=\iintD1\ \dA&=\int_0^1\int_{x^2}^{\sqrt{x}}1\ \dy\dx\\&=\int_0^1\sqrt{x}-x^2\ \dx\\&=\qty[\dfrac{2}{3}x^{3/2}-\dfrac{1}{3}x]_0^1\\&=\dfrac{2}{3}-\dfrac{1}{3}=\dfrac{1}{3}\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Let $D$ be the unit disk: $x^2+y^2\leq1.$ Calculate $\iintD(2-x)(3+y)\ \dA.$
+	\begin{ans}
+		$D$ is a symmetric region in $x$ and $y$. So, \[\begin{aligned}\iintD(2-x)(3+y)\ \dA &=\iintD6-3x+2y-xy\ \dA\\&=\iintD6\ \dA-\underbrace{\iintD 3x\ \dA}_{=0\ (\text{symmetric in }x)}+\underbrace{\iintD-xy+2y\ \dA}_{=0\ (\text{symmetric in }y)}\\&=6\times A(D)=6\pi.\end{aligned}\]
+	\end{ans}	
+\end{eg}
 
 
 
