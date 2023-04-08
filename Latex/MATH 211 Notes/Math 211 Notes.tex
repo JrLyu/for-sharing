@@ -77,6 +77,8 @@
 \def\dz{\d z}
 \def\dV{\d V}
 \def\dA{\d A}
+\def\ds{\d s}
+\def\dt{\d t}
 \def\del{\partial}
 \def\pdx{\del x}
 \def\pdx{\del y}
@@ -92,6 +94,7 @@
 \def\iintD{\dsst\iint_D}
 \def\iiintB{\dsst\iiint_B}
 \def\iiintE{\dsst\iiint_E}
+\def\intC{\dsst\int_C}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -107,9 +110,14 @@
 \def\veci{\hat{\boldsymbol{\textbf{i}}}}
 \def\vecj{\hat{\boldsymbol{\textbf{j}}}}
 \def\veck{\hat{\boldsymbol{\textbf{k}}}}
+\def\F{\vec{\boldsymbol{\textbf{F}}}}
+\def\T{\hat{\boldsymbol{\textbf{T}}}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
 \def\st{\mathrm{ s.t. }}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varnothing}
 
 \begin{document}
 \maketitle
@@ -1982,6 +1990,160 @@ Find the volume of the region bounded by the following planes: \[x+2y+z=2,\qquad
 \end{ans}
 \end{eg}
 
+\subsection{Changing Variables in Triple Integrals}
+\begin{thm}[Change of Variables in Triple Integrals]
+	Consider the transformation $T=\begin{cases}x=f(u,v,w)\\y=g(u,v,w)\\z=h(u,v,w)\end{cases}.$ We have $\dV=\dx\dy\dz=\qty|\dfrac{\del(x,y,z)}{\del(u,v,w)}|\d u\d v\d w,$ where \[\dfrac{\del(x,y,z)}{\del(u,v,w)}=\qty|\begin{array}{ccc}\dfrac{\del x}{\del u}&\dfrac{\del y}{\del u}&\dfrac{\del z}{\del u}\\\\\dfrac{\del x}{\del v}&\dfrac{\del y}{\del v}&\dfrac{\del z}{\del v}\\\\\dfrac{\del x}{\del w}&\dfrac{\del y}{\del w}&\dfrac{\del z}{\del w}\end{array}|.\] Then, we have \[\iiintE f(x,y,z)\dx\dy\dz=\iiint_{E'}g(u,v,w)\qty|\dfrac{\del(x,y,z)}{\del(u,v,w)}|\d u\d v\d w.\]
+\end{thm}
+\begin{rmk}
+	The determinant of triangular and diagonal matrices is the product of the elements on the main diagonal. Suppose matrix $\mathbf{A}$ and $\mathbf{B}$ are defined as follows: \[\mathbf{A}=\begin{bmatrix}a&d&e\\0&b&f\\0&0&c\end{bmatrix}\qquad\mathbf{B}=\begin{bmatrix}a&0&0\\0&b&0\\0&0&c\end{bmatrix}.\] Then $\det(\mathbf{A})=\det(\mathbf{B})=abc.$
+\end{rmk}
+\begin{eg}
+Find the volume of ellipsoid is given by $E: \dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}\leq1$
+\begin{ans}
+	Consider the transformation: $x=au,\quad y=bv,\quad z=cw.$\par Then, \[\begin{aligned} E': \dfrac{(au)^2}{a^2}+\dfrac{(bv)^2}{b^2}+\dfrac{(cw)^2}{c^2}&\leq1\\u^2+v^2+w^2&\leq1\end{aligned}\] \[\qty|\dfrac{\del(x,y,z)}{\del(u,v,w)}|=\qty|\begin{array}{ccc}a&0&0\\0&a&0\\0&0&c\end{array}|=abc.\]\par So, \[\iiintE1\  \dV=\iiint_{E'}abc\ \dV=abc\times V(\text{ball with radius}=1)=abc\qty(\dfrac{4}{3}\pi).\]
+\end{ans}
+\end{eg}
+\begin{rmk} In 3D, there are two alternatives to Cartesian coordinate system: Cylindrical coordinate system and spherical coordinate system. \end{rmk}
+\begin{df}[Cylindrical Coordinate System]
+	Uses polar coordinate in the $xy$-plane while retaining the Cartesian $z$ coordinate for measuring vertical distance. 
+	\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw  (125,149) -- (225,149)(135,59) -- (135,159) (218,144) -- (225,149) -- (218,154) (130,66) -- (135,59) -- (140,66)  ;
+		\draw    (135,149) -- (91.47,194.82) ;
+		\draw [shift={(90.1,196.27)}, rotate = 313.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (135,149) -- (170.1,181.27) ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (168.12,181.27) .. controls (168.12,180.18) and (169,179.3) .. (170.1,179.3) .. controls (171.19,179.3) and (172.07,180.18) .. (172.07,181.27) .. controls (172.07,182.36) and (171.19,183.25) .. (170.1,183.25) .. controls (169,183.25) and (168.12,182.36) .. (168.12,181.27) -- cycle ;
+		\draw    (170.1,181.27) -- (170.1,110.27) ;
+		\draw    (135,78) -- (170.1,110.27) ;
+		\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (168.12,110.27) .. controls (168.12,109.18) and (169,108.3) .. (170.1,108.3) .. controls (171.19,108.3) and (172.07,109.18) .. (172.07,110.27) .. controls (172.07,111.36) and (171.19,112.25) .. (170.1,112.25) .. controls (169,112.25) and (168.12,111.36) .. (168.12,110.27) -- cycle ;
+		\draw (76,179.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+		\draw (225,146.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+		\draw (118,46.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+		\draw (128,155.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+		\draw (146,165.4) node [anchor=north west][inner sep=0.75pt]    {$r$};
+		\draw (170.12,184.67) node [anchor=north west][inner sep=0.75pt]    {$( r\cos \theta ,\ r\sin \theta ,\ 0)$};
+		\draw (178.12,101.67) node [anchor=north west][inner sep=0.75pt]    {$P( r\cos \theta ,\ r\sin \theta ,\ z)$};
+		\draw (120,74.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+		\end{tikzpicture}
+	\end{center}
+	In Cylindrical Coordinate system, $x=r\cos\theta,$ $y=r\sin\theta,$ and $z=z.$ So, \[\qty|\dfrac{\del(x,y,z)}{\del(r,\theta,z}|=\qty|\begin{array}{ccc}\cos\theta&\sin\theta&0\\-r\sin\theta&r\cos\theta&0\\0&0&0\end{array}|=r.\] So, \[\dV=r\d r\d\theta\d z.\]
+\end{df}
+\begin{thm}[Change Triple Integrals to Cylindrical Coordinate System]
+	\[\iiintE f(x,y,z)\ \dV=\int_{z=u_1(x,y)}^{z=u_2(x,y)}\int_{\theta=\alpha}^{\theta=\beta}\int_{r=h_1(\theta)}^{r=h_2(\theta)}f(r\cos\theta,r\sin\theta,z)r\d r\d\theta\d z.\]
+\end{thm}
+\begin{eg}
+Evaluate $I=\iiintE x^2+y^2\ \dV$ over the first octant region bounded by the cylinders $x^2+y^2=1$ and $x^2+y^2=4$ and planes $z=0,\ z=1,\ x=0,$ and $y=x.$
+\begin{ans}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (125,149) -- (225,149)(135,59) -- (135,159) (218,144) -- (225,149) -- (218,154) (130,66) -- (135,59) -- (140,66)  ;
+\draw    (135,149) -- (91.47,194.82) ;
+\draw [shift={(90.1,196.27)}, rotate = 313.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (105.1,180.27) .. controls (151.19,179.55) and (152.1,179.27) .. (180.1,149.27) ;
+\draw    (105.1,109.27) -- (105.1,180.27) ;
+\draw    (180.1,78.27) -- (180.1,149.27) ;
+\draw    (105.1,109.27) .. controls (151.19,108.55) and (152.1,108.27) .. (180.1,78.27) ;
+\draw    (105.1,109.27) -- (135.1,78.27) ;
+\draw    (135.1,78.27) -- (180.1,78.27) ;
+\draw    (119.1,165.27) .. controls (142.1,166.27) and (142.1,166.27) .. (160.1,149.27) ;
+\draw    (119.1,103.27) -- (119.1,165.77) ;
+\draw    (160.1,86.77) -- (160.1,149.27) ;
+\draw    (119.1,103.27) .. controls (142.1,104.27) and (142.1,104.27) .. (160.1,87.27) ;
+\draw    (135.1,86.77) -- (160.1,86.77) ;
+\draw    (135.1,86.77) -- (119.1,103.27) ;
+\draw   (135,149) -- (134.77,68.36) -- (198.97,108.1) -- (199.19,188.74) -- cycle ;
+\draw (76,179.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\draw (225,146.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+\draw (118,46.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+\draw (204,175.4) node [anchor=north west][inner sep=0.75pt]    {$y=x$};
+\end{tikzpicture}
+\end{center}
+	Change to Cylindrical Coordinate System: $r^2=x^2+y^2.$, where $1\leq r\leq2,\ \dfrac{\pi}{4}\leq\theta\leq\dfrac{\pi}{2},\ 0\leq z\leq1.$ Then, \[\begin{aligned}I=&\int_0^1\int_{\pi/4}^{\pi/2}\int_1^2 r^2\cdot r\ \d r\d\theta\d z\\&=(1-0)\qty(\dfrac{\pi}{2}-\dfrac{\pi}{4})\qty(\dfrac{2^4}{4}-\dfrac{1^4}{4})=\dfrac{15}{16}\pi\end{aligned}\]
+\end{ans}
+\end{eg}
+\begin{eg}
+Evaluate $\dsst\int_{-2}^2\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}\int_{\sqrt{x^2+y^2}}^2(x^2+y^2)\ \dz\dy\dx.$
+\begin{ans}
+	Change to Cylindrical Coordinate system: $r^2=x^2+y^2.$ So, $r\leq z\leq 2.$\par Since $-\sqrt{4-x^2}\leq y\leq\sqrt{4-x^2},$ so $0\leq y^2\leq4-x^2$\par That is, $0\leq y^2+x^2\leq4,$ or $0\leq r^2\leq4.$\par So, $0\leq r\leq 2.$\[\begin{aligned}\int_{-2}^{2}\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}\int_{\sqrt{x^2+y^2}}^2(x^2+y^2)\ \dz\dy\dx&=\int_0^{\pi}\int_0^2\int_r^2 r^2\cdot r\ \dz\d r\d\theta\\&=(2\pi)\int_0^2r^3(2-r)\ \d r\\&=(2\pi)\int_0^2 2r^3-r^4\ \d r\\&=(2\pi)\qty[\dfrac{1}{2}r^4-\dfrac{1}{5}r^5]_0^2\\&=(2\pi)\qty(8-\dfrac{32}{5})=\dfrac{16}{5}\pi\end{aligned}\]
+\end{ans}
+\end{eg}
+\begin{df}[Spherical Coordinate System]
+Here we define $\rho$ is the distance from the origin to $P$, $\phi$ is the angle between the line $OP$ and the positive $z$-axis ($0\leq\phi\leq\pi$), and $\theta$ is the angle between $OP'$ (the projection of $OP$ onto the $xy$-plane) and the positive $x$-axis ($0\leq\theta\leq2\pi$). So a point $P(\rho,\theta,\phi)$ is represented in the following graph.  
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125,147.4) -- (225,147.4)(135,43) -- (135,159) (218,142.4) -- (225,147.4) -- (218,152.4) (130,50) -- (135,43) -- (140,50)  ;
+	\draw    (135,147.4) -- (91.47,193.22) ;
+	\draw [shift={(90.1,194.67)}, rotate = 313.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (135,147.4) -- (180.1,91.27) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (176.64,91.27) .. controls (176.64,89.37) and (178.19,87.82) .. (180.1,87.82) .. controls (182,87.82) and (183.55,89.37) .. (183.55,91.27) .. controls (183.55,93.18) and (182,94.73) .. (180.1,94.73) .. controls (178.19,94.73) and (176.64,93.18) .. (176.64,91.27) -- cycle ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (180.1,91.27) -- (180.1,177.67) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (176.64,177.67) .. controls (176.64,175.77) and (178.19,174.22) .. (180.1,174.22) .. controls (182,174.22) and (183.55,175.77) .. (183.55,177.67) .. controls (183.55,179.58) and (182,181.13) .. (180.1,181.13) .. controls (178.19,181.13) and (176.64,179.58) .. (176.64,177.67) -- cycle ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (135,61) -- (180.1,91.27) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (135,147.4) -- (180.1,177.67) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (106.1,177.67) -- (180.1,177.67) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (209.77,148) -- (180.1,177.67) ;
+	\draw (76,179.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (225,146.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (118,33.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (137,110.4) node [anchor=north west][inner sep=0.75pt]    {$\varphi $};
+	\draw (159,113.4) node [anchor=north west][inner sep=0.75pt]    {$\rho $};
+	\draw (129,157.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+	\draw (190,78.4) node [anchor=north west][inner sep=0.75pt]    {$P( \rho ,\theta ,\varphi )$};
+	\end{tikzpicture}	
+	\end{center}
+	Using trigonometric identities, we know $z=\rho\cos(\phi)$ and $OP'=\rho\sin(\phi).$ Then, $x=\rho\sin(\phi)cos(\theta)$ and $y=\rho\sin(\phi)\sin(\theta).$ Also, applying the formula, we know $\dfrac{\del(x,y,z)}{\del(\rho,\theta,\phi)}=\rho^2\sin(\phi).$ Therefore, \[\iiintE f(x,y,z)\ \dV=\int_c^d\int_\alpha^\beta\int_a^b f\qty\Big(\rho\sin(\phi)\cos(\theta),\ \rho\sin(\phi)\sin(\theta),\ \rho\cos(\phi))\rho^2\sin(\phi)\d\rho\d\theta\d\phi,\] where $a\leq\rho\leq b,\ \alpha\leq\theta\leq\beta,\ c\leq\phi\leq d.$
+\end{df}
+\begin{eg}
+Evaluate $\iiintE e^{{(x^2+y^2+z^2)}^{3/2}}\ \dV,$ where $E=\qty{(x,y,z)\mid x^2+y^2+z^2\leq1}.$	
+\begin{ans}
+	Change to spherical coordinate: $\rho^2=x^2+y^2+z^2.$ \[\begin{aligned}\iiintE e^{{(x^2+y^2+z^2)}^{3/2}}\ \dV&=\iiint_{E'}e^{(\rho^2)^{3/2}}\rho^2\sin(\phi)\ \d\rho\d\theta\d\phi\\&=\iiint_{E'}e^{\rho^3}\rho^2\sin(\phi)\ \d\rho\d\theta\d\phi\\&=\int_0^\pi\int_0^{2\pi}\int_0^1\rho^2e^{\rho^3}\sin(\phi)\ \d\rho\d\theta\d\phi\\&=\int_0^\pi\sin(\phi)\ \d\phi\int_0^{2\pi}\ \d\theta\int_0^1\rho^2e^{\rho^3}\ \d\rho.\end{aligned}\]\par Let $u=\rho^3,$ then $\d u=3\rho^2\d\rho.$ So, $\dsst\int\rho^2e^{\rho^3}\ \d\rho=\dfrac{1}{3}\int e^u\ \d u=\dfrac{1}{3}e^u=\dfrac{1}{3}e^{\rho^3}.$\par So, \[\begin{aligned}\iiintE e^{{(x^2+y^2+z^2)}^{3/2}}\ \dV&=\qty\Big[-\cos(\phi)]_0^\pi(2\pi)\qty[\dfrac{1}{3}e^{\rho^3}]_0^1\\&=(1+1)(2\pi)\qty(\dfrac{1}{3}e-\dfrac{1}{3})\\&=\dfrac{4}{3}\pi(e-1).\end{aligned}\]
+\end{ans}
+\end{eg}
+
+\subsection{Applications of Multiple Integrals}
+\begin{thm}[Surface Area]	
+The key idea is to use the tangent plane at any point like $P_{ij}(x_i,y_j,z_k)$ to approximate the surface near the point $P_{ij}.$\par Divide region $D$ into small rectangles, $R_{ij}.$ So, \[\Delta A=A(R_{ij})=\Delta x\Delta y\] Let $(x_i, y_j)$ be a point on $R_{ij}$, and its corresponding point on the surface is given by \[P_{ij}(x_i, y_j, f(x_i,y_j))\] The tangent plane to the surface $S$ at point $P_{ij}$ is an approximation of the surface around $P_{ij}$. Therefore, $\Delta S_{ij}\approx\Delta T_{ij}.$ So, \[A(S)\approx\sum_{i=1}^n\sum_{j=1}^m\Delta T_{ij}\] and \[A(S)=\lim_{n,m\to\infty}\sum_{i=1}^n\sum_{j=1}^m\Delta T_{ij}\] To find $\Delta T_{ij},$ we use cross product: $A(\Delta T_{ij})=\qty|\veca\times\vecb|.$ 
+	\begin{itemize}
+		\item Slope of $\veca=f_x(x_i,y_j)=\dfrac{\Delta z}{\Delta x}$ \[\implies\Delta z=\Delta xf_x(x_i,y_j),\quad\veca=\Delta x\veci+\Delta xf_x(x_i,y_j)\veck.\]
+		\item Slope of $\vecb=f_y(x_i,y_j)=\dfrac{\Delta z}{\Delta y}$ \[\implies\Delta z=\Delta yf_y(x_i,y_j),\quad\vecb=\Delta y\vecj+\Delta yf_y(x_i,y_j)\veck.\]
+	\end{itemize}\par 
+	So, \[\begin{aligned}\veca\times\vecb=\qty|\begin{array}{ccc}\veci&\vecj&\veck\\\Delta x&0&\Delta xf_x(x_i,y_j)\\0&\Delta y&\Delta yf_y(x_i,y_j)\end{array}|&=(-f_x(x_i,y_j)\veci-f_y(x_i,y_j)\vecj+\veck)\Delta x\Delta y\\&=(-f_x(x_i,y_j)\veci-f_y(x_i,y_j)\vecj+\veck)\Delta A\end{aligned}\]\par So, \[\begin{aligned}A(\Delta T_{ij})&=\qty|\veca\times\vecb|\\&=\sqrt{f_x^2(x_i,y_j)+f_y^2(x_i,y_j)+1}\ \Delta A\end{aligned}\]\par Therefore, \[\begin{aligned}S&=\lim_{n,m\to\infty}\sum_{i=1}^n\sum_{j=1}^m\Delta T_{ij}\\&=\lim_{n,m\to\infty}\sum_{i=1}^n\sum_{j=1}^m\sqrt{f_x^2(x_i,y_j)+f_y^2(x_i,y_j)+1}\ \Delta A\\&=\boxed{\iintD\sqrt{f_x^2(x,y)+f_y^2(x,y)+1}\ \dA}\\&=\boxed{\iintD\sqrt{\qty(\pdv{f}{x})^2+\qty(\pdv{f}{y})^2+1}\ \dA}\end{aligned}\]
+\end{thm}
+\begin{eg}
+	Find the surface area of the paraboloid $z=x^2+y^2$ that lies under $z=9.$
+	\begin{ans}
+		\[\begin{aligned}S&=\iintD\sqrt{1+(2x)^2+(2y)^2}\ \dA\\&=\iintD\sqrt{1+4x^2+4y^2}\ \dA\end{aligned}\]\par Change to polar coordinate: $0\leq r\leq3$ and $0\leq\theta\leq2\pi$: \[\begin{aligned}S&=\int_0^{2\pi}\int_0^3\sqrt{1+4r^2}r\d r\d\theta\\&=2\pi\int_0^3r\cdot\sqrt{1+4r^2}\ \d r\end{aligned}\]\par Let $u=1+4r^2,$ so $\d u=8r\ \d r$. So, \[\begin{aligned}\int r\sqrt{1+4r^2}\ \d r&=\dfrac{1}{8}\int\sqrt{u}\ \d u\\&=\dfrac{1}{8}\cdot\dfrac{2}{3}u^{3/2}+C=\dfrac{1}{12}u^{3/2}\end{aligned}\]\par Therefore, \[\begin{aligned}S&=2\pi\int_0^3r\cdot\sqrt{1+4r^2}\ \d r\\&=2\pi\qty[\dfrac{1}{12}\qty(1+4r^2)^{3/2}]_0^3\\&=\dfrac{\pi}{6}(37\sqrt{37}-1).\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Find the area of the part of the plane $z=ax+by+c$ that projects onto a region in the $xy$-plane with an area of $A$.
+	\begin{ans}
+		\[\text{Area}=\iintD\sqrt{a^2+b^2+1}\ \dA=\sqrt{a^2+b^2+1}\iintD\ \dA\]\par Since $\iintD\ \dA=A$ is given, \[\text{Area}=\sqrt{a^2+b^2+1}(A)=A\sqrt{a^2+b^2+1}.\]
+	\end{ans}	
+\end{eg}
+\begin{df}[Mass from Density Function]
+	Let $D$ be a lamina (a thin plate) made of materials whose density varies across $D$. Let $\rho(x,y)$ be the density of $D$ at point $(x,y),$ we define \[m(D)=\iintD\rho(x,y)\ \dA\] as the total mass of $D$ with density function $\rho.$
+\end{df}
+\begin{rmk} If we change $\rho(x,y)$ to be probability functions, $m(D)$ can be regarded as the cumulative probability.\end{rmk}
+\begin{df}[Center of Mass]
+	The center of mass is denoted by the point $(\bar{x},\bar{y})$ on $D$ such that if we place a support at that point, the lamina $D$ will have a perfect balance. 	
+\end{df}
+\begin{df}[Moment]
+	We define the moment of the lamina $D$ over the $y$-axis as \[\iintD x\rho(x,y)\ \dA\] and the moment of the lamina $D$ over the $x$-axis as \[\iintD y\rho(x,y)\ \dA.\]
+\end{df}
+\begin{thm}[Calculate Center of Mass]
+	We use moment of the lamina to calculate the center of mass: \[\bar{x}=\dfrac{\iintD x\rho(x,y)\ \dA}{m(D)};\qquad\bar{y}=\dfrac{\iintD y\rho(x,y)\ \dA}{m(D)}.\]
+\end{thm}
+\begin{eg}
+	The geometric model of a material body is a plane region $R$ bounded by $y=x^2$ and $y=\sqrt{2-x^2}$	 on the interval $[0,1].$ The density function is $\rho(x,y)=xy.$ Find the center of mass of $R$.
+	\begin{ans}
+		We know \[m(D)=\iintD xy\ \dA=\int_0^1\int_{x^2}^{\sqrt{2-x^2}}xy\ \dy\dx=\dfrac{7}{24}.\]\par Applying the formula to calculate the center of mass, we get \[\bar{x}=\dfrac{\iintD x\rho(x,y)\ \dA}{m(D)}=\dfrac{\ \ \dfrac{17}{105}\ \ }{\ \ \dfrac{7}{24}\ \ }\] and \[\bar{y}=\dfrac{\iintD y\rho(x,y)\ \dA}{m(D)}=\dfrac{\ \ \dfrac{13}{120}+\dfrac{4\sqrt{2}}{15}\ \ }{\ \ \dfrac{7}{24}\ \ }.\]
+	\end{ans}
+\end{eg}
+
 \subsection{Multiple Integral -- Practice}
 \begin{eg}
 	If $D$ is the triangle with vertices $(-2,0),\ (0,4),$ and $(8,0),$ calculate $\iintD xy^2\ \d A.$	
@@ -2010,10 +2172,195 @@ Find the volume of the region bounded by the following planes: \[x+2y+z=2,\qquad
 		$D$ is a symmetric region in $x$ and $y$. So, \[\begin{aligned}\iintD(2-x)(3+y)\ \dA &=\iintD6-3x+2y-xy\ \dA\\&=\iintD6\ \dA-\underbrace{\iintD 3x\ \dA}_{=0\ (\text{symmetric in }x)}+\underbrace{\iintD-xy+2y\ \dA}_{=0\ (\text{symmetric in }y)}\\&=6\times A(D)=6\pi.\end{aligned}\]
 	\end{ans}	
 \end{eg}
+\begin{eg}
+	Find $\iiintE x\ \dV$, where $E$ is the tetrahedron bounded by the plane \[x=1,\quad y=1,\quad z=1,\quad x+y+z=2.\]
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (125,147.4) -- (225,147.4)(135,43) -- (135,159) (218,142.4) -- (225,147.4) -- (218,152.4) (130,50) -- (135,43) -- (140,50)  ;
+	\draw    (135,147.4) -- (91.47,193.22) ;
+	\draw [shift={(90.1,194.67)}, rotate = 313.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (117,125.07) -- (133.8,108.27) -- (178.1,108.27) -- (178.1,147.47) -- (161.3,164.27) -- (117,164.27) -- cycle ; \draw   (178.1,108.27) -- (161.3,125.07) -- (117,125.07) ; \draw   (161.3,125.07) -- (161.3,164.27) ;
+	\draw   (133.7,62.29) -- (217.59,147.62) -- (101.73,182.36) -- cycle ;
+	\draw    (117,125.07) -- (161.3,164.27) ;
+	\draw    (161.3,164.27) -- (178.1,108.27) ;
+	\draw    (117,125.07) -- (178.1,108.27) ;
+	\draw (76,179.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (118,33.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (229,151.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (40,108.4) node [anchor=north west][inner sep=0.75pt]    {$x+z=2$};
+	\draw (185,87.4) node [anchor=north west][inner sep=0.75pt]    {$y+z=2$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		\[\begin{aligned}\iiintE x\ \dV&=\iintD\qty[\int_{2-x-y}^1 x\ \dz]\dA\\&=\int_0^1\int_{1-x}^1\int_{2-x-y}^1x\ \dz\dy\dx\\&=\int_0^1\int_{1-x}^1x(1-2+x+y)\ \dy\dx\\&=\int_0^1\int_{1-x}^1x^2+xy-x\ \dy\dx\\&=\int_0^1x^3+x^2-\dfrac{1}{2}x^3-x^2\ \dx\\&=\int_0^1\dfrac{1}{2}x^3\ \dx=\qty[\dfrac{1}{2}x^3]_0^1=\dfrac{1}{8}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Plot the cylindrical coordinate of $\qty(4,\dfrac{\pi}{3},-3)$ and find its rectangular coordinates.	
+	\begin{ans}
+		\[r=4,\quad \theta=\dfrac{\pi}{3},\quad z=-3.\]
+		\[x=r\cos\theta=3\cdot\cos\qty(\dfrac{\pi}{3})=4\cdot\dfrac{1}{2}=2\]
+		\[y=r\sin\theta=3\cdot\sin\qty(\dfrac{\pi}{3})=4\cdot\dfrac{\sqrt{3}}{2}=2\sqrt{3}.\]
+		\[\text{Rectangular coordinate: }(2,2\sqrt{3},-3).\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Find the volume enclosed by the cone $z=\sqrt{x^2+y^2}$ and $x^2+y^2+z^2=2.$
+	\begin{ans}
+		Change to cylindrical coordinate: $x^2+y^2=r^2$ and $z=z:$ \[0\leq r\leq\sqrt{2},\quad 0\leq\theta\leq2\pi,\quad 0\leq z\leq1.\]\par So, \[\iiintE\ \dV=\int_0^{2\pi}\int_0^{\sqrt{2}}\int_0^1\ \dz\d r\d\theta=2\pi(\sqrt{2})(1)=2\sqrt{2}\pi.\]
+	\end{ans}
+\end{eg}
 
+\newpage
+\section{Vector Calculus}
+\subsection{Vector Fields}
+\begin{df}[Vector Field]
+	Let $D$ be a region (or a set) in $\R^n$. A vector field on $\R^n$ is a function $\F$ that assigns to each point $(x_1,\cdots,x_n)$ a $n$-dimensional vector $\F(x_1,\cdots,x_n).$	
+\end{df}
+\begin{eg}
+	\[\F(x,y)=P(x,y)\veci+Q(x,y)\vecj,\] where $P$ and $Q$ are scalar functions. Sometimes, $P$ and $Q$ are called scalar fields. \[\F(x,y,z)=P(x,y,z)\veci+Q(x,y,z)\vecj+R(x,y,z)\veck,\] where $P$, $Q$, and $R$ are scalar functions or scalar fields.
+\end{eg}
+\begin{rmk}
+	In fact, vector fields can model velocity, magnetic force, fluid motion, and gradient.	
+\end{rmk}
+\begin{df}[Gradient Fields]
+	let $f$ be a scalar function of two (or three) variables on $\R^2$ (or $\R^3$). Its gradient is a vector field on $\R^2$ (or $\R^3$) given by \[\nabla f(x,y)=\pdv{f}{x}(x,y)\veci+\pdv{f}{y}\vecj\] or \[\nabla f(x,y,z)=\pdv{f}{x}(x,y,z)\veci+\pdv{f}{y}(x,y,z)\vecj+\pdv{f}{z}(x,y,z)\veck.\]	
+\end{df}
+\begin{eg}
+	Find the gradient vector field of $f(x,y)=x^2y-y^3.$
+	\begin{ans}
+		\[\nabla f(x,y)=\pdv{f}{x}\veci+\pdv{f}{y}\vecj=2xy\veci+(x^2-3y^2)\vecj\]
+	\end{ans}	
+\end{eg}
+\begin{rmk}
+Properties of Gradient Fields
+	\begin{itemize}
+		\item Gradient vectors are perpendicular to the level curves
+		\item Gradient vectors point in the direction of maximum change in value of the function at a given point.
+		\item The magnitudes of gradient vectors are a measure of local intensity change at a given point.
+	\end{itemize}
+\end{rmk}
 
-
-
+\subsection{Line Integrals}
+In this section, we define line integral similar to a single integral, but instead of interval, we integrate over a curve.
+\begin{df}[Line Integral]
+	Let $f$ be defined on a differentiable curve $C$, where \[C=\begin{cases}x(t)\\y(t)\end{cases},\quad a\leq t\leq b.\] We choose $(x_i^*, y_i^*)$ on sub-arc correspond to $t_i^*$. We calculate \[\sum_{i=1}^nf(x_i^*,y_i*)\Delta S_i.\] When $n\to\infty,$ we define the line integral of $f$ along curve $C$ as \[\intC f(x,y)\ \ds=\lim_{n\to\infty}\sum_{i=1}^n f(x_i^*, y_i^*)\Delta S_i\] if the limit exists. 
+\end{df}
+\begin{thm}[Length of a Curve]\label{thm5.2.1}
+	The length of a curve $C$ defined by $\begin{cases}x(t)\\y(t)\end{cases}$ is given by \[L=\int_a^b\sqrt{\qty(\dv{x}{t})^2+\qty(\dv{y}{t})^2}\ \dt\]
+\end{thm}
+\begin{thm}[Calculating Line Integrals]
+	Applying Theorem \ref{thm5.2.1}, we have \[\intC f(x,y)\ \ds=\int_a^bf(x,y)\sqrt{\qty(\dv{x}{t})^2+\qty(\dv{y}{t})^2}\ \dt\]
+\end{thm}
+\begin{eg}
+	Evaluate $\intC2+x^2y\ \ds$ over the upper half of the unit circle $x^2+y^2=1.$
+	\begin{ans}
+		We know $C:\begin{cases}x(t)=\cos{t}\\y(t)=\sin{t}\end{cases},\quad 0\leq t\leq\pi.$ So, $x'(t)=-\sin{t}$ and $y'(t)=\cos{t}.$ \[\begin{aligned}\intC2+x^2y\ \ds&=\int_0^\pi(2+x^2y)\sqrt{(-\sin{t})^2+(\cos{t})^2}\ \dt\\&=\int_0^\pi(2+\cos^2t\sin^t)\ \dt\\&=\qty\Big[2t]_0^\pi-\dfrac{1}{3}\qty\Big[\cos^3t]_0^\pi=2\pi-\dfrac{1}{2}(-2)=2\pi+\dfrac{2}{3}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{thm}[Price-weise Smooth Line Integrals]
+	If $C$ is a piece-wise smooth curve defined by $C_1+C_2+\cdots+C_n.$ Then, the line integral over $C$ is \[\intC f(x,y)\ \dx=\int_{C_1}f(x,y)\ \ds+\int_{C_2}f(x,y)\ \ds+\cdots+\int_{C_n}f(x,y)\ \ds\]	
+\end{thm}
+\begin{thm}[Vector Representation of a Line Segment]
+	The vector representation of a line segment starts at $\vecr_0$ and ends at $\vecr_1$ is given by \[\vecr(t)=(1-t)\vecr_0+t\vecr_1\qquad0\leq t\leq1.\]	
+\end{thm}
+\begin{df}[Line Integrals with Respect to $x$ and $y$]
+	\[\intC f(x,y)\ \dx=\lim_{n\to\infty}\sum_{i=1}^nf(x_i^*, y_i^*)\Delta x_i=\int_a^bf(x(t), y(t))x'(t)\ \dt\]
+	\[\intC f(x,y)\ \dy=\lim_{n\to\infty}\sum_{i=1}^nf(x_i^*, y_i^*)\Delta y_i=\int_a^bf(x(t), y(t))y'(t)\ \dt\]	
+\end{df}
+\begin{thm}
+	\[\intC P(x,y)\ \dx+\intC Q(x,y)\ \dy=\intC P(x,y)\dx+Q(x,y)\dy\]	
+\end{thm}
+\begin{eg}
+	Evaluate $\intC y^2\dx+x\dy,$ where $C$ is 
+	\begin{enumerate}
+		\item A line segment from $(-5,-3)$ to $(0,2)$
+		\begin{ans}
+			The equation of the line is $y+3=x+5.$\par Set $y+3=x+5=t.$ We get $y(t)=t-3$ and $x(t)=t-5.$\par So, $\dy=\dt$ and $\dx=\dt.$\par From $(-5,-3)$ to $(0,2):\ 0\leq t\leq5.$ \[\begin{aligned}\intC y^2\dx+x\dy&=\int_0^5(t-3)^2\dx+(t-5)\dy\\&=\int_0^5(t-3)^2\dt+(t-5)\dt\\&=\int_0^5(t^2+9-6t+t-5)\ \dt\\&=\int_0^5 t^2-5t+4\ \dt\\&=\qty[\dfrac{1}{3}t^3-\dfrac{5}{2}t^2+4t]_0^5=-\dfrac{5}{6}\end{aligned}\]
+		\end{ans}
+		\item The parabola of $x=4-y^2$ from $(-5,-3)$ to $(0,2)$
+		\begin{ans}
+			Let $y=t,$ so $x(t)=4-t^2.$\par So, $\dy=\dt$ and $\dx=-2t\dt.$\par Since $-3\leq y\leq2,$ we know $-3\leq t\leq2.$ So, \[\begin{aligned}\intC y^2\dx+x\dy&=\int_{-3}^2t^2(-2t)\dt+(4-t^2)\dt\\&=\int_{-3}^2-2t^3+4t-t^2\dt\\&=\qty[-\dfrac{1}{2}t^4-\dfrac{1}{3}t^3+4t]_{-3}^2=\dfrac{245}{6}.\end{aligned}\]
+		\end{ans}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}
+	The line integral depends on the path in general. Line integral depends on the orientation of the path.
+	\[\int_{-C} f(x,y)\ \ds=-\intC f(x,y)\ \ds.\]	
+\end{thm}
+\begin{df}[Vector Representation of Line Integrals]
+	Let $\vecr(t)=\langle x(t), y(t)\rangle=x(t)\veci+y(t)\vecj.$ Then, $\vecr'(t)=x'(t)\veci+y'(t)\vecj.$ So, \[\intC f(x,y)\ \ds=\int_a^b f(\vecr(t))\qty|\vecr'(t)|\ \dt\]	
+\end{df}
+\begin{df}[Line Integrals in Spaces]
+	\[\begin{aligned}\intC f(x,y,z)\ \ds&=\int_a^b f(x,y,z)\sqrt{\qty(\dv{x}{t})^2+\qty(\dv{y}{t})^2+\qty(\dv{z}{t})^2}\ \dt\\&=\int_a^b f(\vecr(t))\qty|\vecr'(t)|\ \dt,\end{aligned}\] where $\vecr(t)=\langle x(t),y(t), z(t)\rangle.$
+\end{df}
+\begin{thm}
+	Specially, if $f(x,y,z)=1,$ we have \[L=\text{length of the curve }C=\intC\ \ds=\int_a^b\qty|\vecr'(t)|\ \dt.\]	
+\end{thm}
+\begin{eg}
+	Evaluate $\intC y\sin{z}\ \ds,$ where $C=\begin{cases}x=\cos{t}\\y=\sin{t}\\z=t\end{cases}, 0\leq t\leq2\pi$ (the circular helix).
+	\begin{ans}
+		\[x(t)=\cos{t},\quad y(t)=\sin{t},\quad z(t)=t,\quad 0\leq t\leq2\pi\] \[x'(t)=-\sin{t},\quad y'(t)=\cos{t},\quad z'(t)=1.\]\par So, \[\qty|\vecr'(t)|=\sqrt{\sin^2t+\cos^2t+1}=\sqrt{1+1}=\sqrt{2}.\]\[\begin{aligned}\intC y\sin{z}\ \ds&\int_0^{2\pi}\sin{t}\cdot\sin{t}(\sqrt{2})\ \dt\\&=\sqrt{2}\int_0^2\pi\sin^2t\ \dt\\&=\sqrt{2}\int_0^2\pi\dfrac{1}{2}(1-\cos{2t})\ \dt\\&=\dfrac{\sqrt{2}}{2}\qty\Big[t-\dfrac{1}{2}\sin{2t}]_0^{2\pi}\\&=\dfrac{2}{2}(2\pi)=\sqrt{2}\pi.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+\begin{enumerate}
+	\item Find the vector representation of the line segment starting at $(2,0,0)$ and ending at $(3,4,5).$
+	\begin{ans}
+		\[\begin{aligned}\vecr(t)&=(1-t)\langle2,0,0\rangle+t\langle3,4,5\rangle,\qquad0\leq t\leq1\\&=\langle2-2t+3t,4t,5t\rangle\\&=\langle2+t,4t,5,\rangle,\qquad0\leq t\leq1.\end{aligned}\]
+	\end{ans}
+	\item Evaluating $\intC y\dx+z\dy+x\dz,$ where $C$ is the line segment from the previous question.
+	\begin{ans}
+		\[x(t)=2+t,\ \dx=\dt,\quad y(t)=4t,\ \dy=4\dt,\quad z(t)=5t,\ \dz=5\dt.\] \[\begin{aligned}\intC y\dx+z\dy+x\dz&=\int_0^14t\dt+5t(4)\dt+(2+t)(5)\dt\\&=\int_0^129t+10\ \dt\\&=\qty[\dfrac{29}{2}t^2+10t]_0^1\\&=\dfrac{29}{2}+10=\dfrac{49}{2}.\end{aligned}\]
+	\end{ans}
+\end{enumerate}	
+\end{eg}
+\begin{df}[Line Integrals of Vector Fields]
+	Let $\F=P\veci+Q\vecj+R\veck$ be a continuous force field on $\R^3$. We want to compute the work done by this force in moving a particle along a smooth curve $C$. 
+	\begin{center}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (87,178.85) -- (228.1,178.85)(101.11,67) -- (101.11,191.27) (221.1,173.85) -- (228.1,178.85) -- (221.1,183.85) (96.11,74) -- (101.11,67) -- (106.11,74)  ;
+	\draw    (101.11,178.85) -- (42.59,230.94) ;
+	\draw [shift={(41.1,232.27)}, rotate = 318.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (129.1,225.27) .. controls (-30.9,184.27) and (52.1,54.27) .. (73.1,111.27) .. controls (94.1,168.27) and (189.1,36.27) .. (170.1,203.27) ;
+	\draw [shift={(38.18,163.44)}, rotate = 64.28] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw [shift={(161.49,120.53)}, rotate = 214.61] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125.14,225.27) .. controls (125.14,223.09) and (126.91,221.32) .. (129.1,221.32) .. controls (131.28,221.32) and (133.05,223.09) .. (133.05,225.27) .. controls (133.05,227.46) and (131.28,229.23) .. (129.1,229.23) .. controls (126.91,229.23) and (125.14,227.46) .. (125.14,225.27) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (166.14,203.27) .. controls (166.14,201.09) and (167.91,199.32) .. (170.1,199.32) .. controls (172.28,199.32) and (174.05,201.09) .. (174.05,203.27) .. controls (174.05,205.46) and (172.28,207.23) .. (170.1,207.23) .. controls (167.91,207.23) and (166.14,205.46) .. (166.14,203.27) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (30.14,127.27) .. controls (30.14,125.09) and (31.91,123.32) .. (34.1,123.32) .. controls (36.28,123.32) and (38.05,125.09) .. (38.05,127.27) .. controls (38.05,129.46) and (36.28,131.23) .. (34.1,131.23) .. controls (31.91,131.23) and (30.14,129.46) .. (30.14,127.27) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (53.14,97.27) .. controls (53.14,95.09) and (54.91,93.32) .. (57.1,93.32) .. controls (59.28,93.32) and (61.05,95.09) .. (61.05,97.27) .. controls (61.05,99.46) and (59.28,101.23) .. (57.1,101.23) .. controls (54.91,101.23) and (53.14,99.46) .. (53.14,97.27) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (34.14,112.27) .. controls (34.14,110.09) and (35.91,108.32) .. (38.1,108.32) .. controls (40.28,108.32) and (42.05,110.09) .. (42.05,112.27) .. controls (42.05,114.46) and (40.28,116.23) .. (38.1,116.23) .. controls (35.91,116.23) and (34.14,114.46) .. (34.14,112.27) -- cycle ;
+	\draw    (38.1,112.27) -- (62.92,77.89) ;
+	\draw [shift={(64.1,76.27)}, rotate = 125.84] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (28,217.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (227,182.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (81,61.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+	\draw (169,118.4) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\draw (131.1,228.67) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+	\draw (172.1,206.67) node [anchor=north west][inner sep=0.75pt]    {$P_{n}$};
+	\draw (36.1,130.67) node [anchor=north west][inner sep=0.75pt]    {$P_{i-1}$};
+	\draw (50.14,105.67) node [anchor=north west][inner sep=0.75pt]    {$P_{i}$};
+	\draw (14.1,89.67) node [anchor=north west][inner sep=0.75pt]    {$P_{i}^{*}$};
+	\draw (44,56.4) node [anchor=north west][inner sep=0.75pt]    {$\hat{\mathbf{T}}$};
+	\draw (4,115.4) node [anchor=north west][inner sep=0.75pt]    {$\Delta S$};
+	\end{tikzpicture}	
+	\end{center}
+	So, we divide $C$ into $n$ sub-arc with length $\Delta S$. Particles moves along curve $C$ from $P_{i-1}$ to $P_i$ in the direction of the unit tangent vector $\T(t_i^*)$ at $P_i^*.$ The work done by the force $\F$ in moving from $P_{i-1}$ to $P_i$ is \[W\approx\F\cdot\vec{\mathbf{D}}=\F(x_i^*,y_i^*, z_i^*)\cdot\T(t_i^*)\Delta S.\] So, \[\begin{aligned}W&=\lim_{n\to\infty}\sum_{i=1}^n\qty[\F(x_i^*,y_i^*,z_i^*)\cdot\T(t_i^*)]\Delta S\\&=\intC\F(x,y,z)\cdot\T(x,y,z)\ds\\&=\intC\F\cdot\T\ \ds\end{aligned}\] where $\T$ is the unit tangent vector at the point $(x,y,z).$\par 
+	\noindent Since $\ds=\qty|\vecr'(t)|\dt$ and $\T(t)=\dfrac{\vecr'(t)}{\qty|\vecr'(t)|},$ we have \[\begin{aligned}W&=\int_a^b\qty(\F(\vecr(t))\cdot\dfrac{\vecr'(t)}{\qty|\vecr'(t)|})\cdot|\vecr'(t)|\ \dt\\&=\int_a^b\F(\vecr(t))\cdot\vecr'(t)\ \dt\end{aligned}\]
+	\begin{framed}
+	\noindent Therefore, for a continuous vector field $\F$ defined on a smooth curve $C$ given by a vector function $\vecr(t),\ a\leq t\leq b,$ the line integral on $\F$ along $C$ is \[\intC\F\cdot\d\vecr=\int_a^b\F(\vecr(t))\cdot\vecr'(t)\ \dt=\intC\F\cdot\T\ \ds.\] 
+	\end{framed}
+\end{df}
+\begin{thm}
+	If $\F=P\veci+Q\vecj+R\veck$ is a vector field and $\vecr=x(t)\veci+y(t)\vecj+z(t)\veck,$ then \[\begin{aligned}\intC\F\cdot\d\vecr&=\int_a^b\F(\vecr(t))\cdot\vecr'(t)\ \dt\\&=\int_a^b\langle P(x,y,z),\ Q(x,y,z),\ R(x,y,z)\rangle\cdot\langle\dv{x}{t},\ \dv{y}{t},\ \dv{z}{t}\rangle\ \dt\\&=\int_a^b\qty(P(x,y,z)\dv{x}{t}+Q(x,y,z)\dv{y}{t}+R(x,y,z)\dv{z}{t})\ \dt\\&=\boxed{\int_a^bP\dx+Q\dy+R\dz}\end{aligned}\]	
+\end{thm}
+\begin{eg}
+	Evaluate $\intC\F\d\vecr,$ where $\quad\F=xy\veci+yz\vecj+zx\veck\quad$ and $\quad C=\begin{cases}x=t\\y=t^2\\z=t^3\end{cases},$ where $0\leq t\leq1.$
+	\begin{ans}
+		\[x(t)=t,\ \dx=\dt;\quad y(t)=t^2,\ \dy=2t\dt;\quad z(t)=t^3,\ dz=3t^2\dt\]\par So, \[\begin{aligned}\intC\F\cdot\d\vecr&=\int_a^bP\dx+Q\dy+R\dz\\&=\int_0^1xy\dt+yz(2t)\dt+zx(3t^2)\dt\\&=\int_0^1t^3+5t^6\ \dt\\&=\qty[\dfrac{1}{4}t^4+\dfrac{5}{7}t^7]_0^1=\dfrac{1}{4}+\dfrac{5}{7}=\dfrac{27}{28}.\end{aligned}\]
+	\end{ans}
+\end{eg}
 
 
 

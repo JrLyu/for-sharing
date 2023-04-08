@@ -58,7 +58,10 @@
 \def\pow{{\mathcal{P}}}
 \def\part{{\mathscr{P}}}
 \def\f{f^{-1}}
+\def\of{\circ}
+\def\F{\mathbf{F}}
 \def\emptyset{\varnothing}
+\def\epsilon{\varepsilon}
 \def\qed{\rightline{$\blacksquare$}}
 \def\st{\emph{ s.t. }}
 \def\fs{\emph{ f.s. }}
@@ -677,9 +680,9 @@ Another way to prove is by contrapositive.
 \end{prf}
 \end{framed}
 
+
 \newpage
 \section{Sets}
-
 \subsection{Sets and Subsets}
 \begin{df}[Set, Element]
 	A \textbf{set} is a collection of objects, called \textbf{elements}. A set is typically denoted by a capital letter and a set's elements are listed in $\{\}$.
@@ -1073,10 +1076,202 @@ Another way to prove is by contrapositive.
 	Let $\varepsilon>0$ be given. Choose $\delta=\sqrt{\varepsilon}.$\par Note that since $\varepsilon>0,$ $\delta>0.$\par Suppose $x\in\R\st|x-0|<\delta.$ That is, $|x|<\delta.$\par Then, \[\begin{aligned}
 		|f(x)-f(0)|=|x^2-0|=|x^2|&=|x|\cdot|x|\\&<\delta\cdot\delta=\qty(\sqrt{\varepsilon})\cdot\qty(\sqrt{\varepsilon})=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta=\sqrt{\varepsilon}>0\st|x-0|<\delta\implies|f(x)-f(0)|<\varepsilon.\]	
 \end{prf}
-
+\begin{clm}
+	The same choice	of $\delta$ will not work when proving $f(x)=x^2$ is continuous at $x=1$ as well.
+\end{clm}
+\begin{center}
+WTS: $\exists\epsilon\st$ for $\delta=\sqrt{\epsilon},\ \exists x\in\R\st|x-1|<\delta$ and $|f(x)-f(1)|\geq\epsilon|.$
+\end{center}
+\begin{prf}
+	Consider what happens when $\epsilon=1.$ Then, $\delta=\sqrt{\epsilon}=\sqrt{1}=1.$\par Want: $|f(x)-f(1)|<\epsilon=1.$ That is, $|f(x)-1|<1.$\par So, $-1<f(x)-1<1$, or $0<f(x)<2.$\par When $\delta=1,$ we have $|x-1|<\delta=1.$\par That is, $-1<x-1<1$, or $0<x<2$.\par Note that $\forall x\in(\sqrt{2},2),$ $f(x)>2.$\par So, it is not true that $|f(x)-1|<\epsilon.$
+\end{prf}
+\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=1$.}
+\begin{center}
+WTS: $\forall\epsilon>0,\exists\delta>0\st |x-1|<\delta\implies|f(x)-f(1)|<\epsilon.$	
+\end{center}
+\begin{prf}
+	Let $\epsilon>0$ be given. Choose $\delta=\min\qty{1,\dfrac{\epsilon}{3}}\ \qty(\delta\text{ is the smaller of }1\text{ and }\dfrac{\epsilon}{3})$.\par Note that $\delta\leq1$ and $\delta\leq\dfrac{\epsilon}{3}.$\par Suppose $x\in\R\st|x-1|<\delta.$\par Since $|x-1|<\delta\leq1.$ So, $-1<x-1<1,$ or $0<x<2.$\par So, $1<x+1<3.$ That is, $|x+1|<3.$\par Then, \[\begin{aligned}|f(x)-f(1)|=|x^2-1|&=|(x-1)(x+1)|\\&=|x-1||x+1|\\&<3|x-1|\\&<3\cdot\delta\\&=3\cdot\min\qty{1,\dfrac{\epsilon}{3}}\\&\leq3\cdot\dfrac{\epsilon}{3}=\epsilon\end{aligned}\]\par Since $\epsilon$ was arbitrary, we've proven that \[\forall\epsilon>0,\exists\delta=\min\qty{1,\dfrac{\epsilon}{3}}\st|x-1|<\delta\implies|f(x)-f(1)|<\epsilon.\]
+\end{prf}
+\begin{rmk}
+	For quadratic functions, $\delta$ changes with $\epsilon$ and choice of $a$.	
+\end{rmk}
+\end{framed}
+\begin{df}[Discontinuity]
+	The definition of discontinuity is, essentially, the negation of the definition of continuity (Definition \ref{df3.1.4}): \[\exists\epsilon>0\st\forall\delta>0,\ \exists x\st|x-a|<\delta\text{ but }|f(x)-f(a)|\geq\epsilon.\]	
+\end{df}
+\begin{framed}
+\noindent\texttt{Consider the Heavy-side Function \[H(x)=\begin{cases}0,\quad x<0\\1,\quad x\geq0\end{cases}.\] Show that $H$ is discontinuous at $x=0.$}
+\begin{prf}
+	Choose $\epsilon=\dfrac{1}{2}.$\par Then, we need $|H(x)-H(0)|<\dfrac{1}{2}.$\par That is, we want $|H(x)-1|<\dfrac{1}{2},$ or $-\dfrac{1}{2}<H(x)-1<\dfrac{1}{2}.$\par So, we want $\dfrac{1}{2}<H(x)<\dfrac{3}{2}.$\par Notice that $\forall x\in(-\delta,0),\ H(x)=0$.\par So, $H(x)\notin\qty(\dfrac{1}{2},\dfrac{3}{2}).$
+\end{prf}
 \end{framed}
 
+\subsection{Surjective and Injective Functions}
+\begin{df}[Surjective, Injective, and Bijective Functions]
+	A function $f: A\to B$ is 
+	\begin{itemize}
+		\item \textbf{injective} or \textbf{one-to-one} if $\forall x,y\in A,$ $f(x)=f(y)$ implies $x=y.$
+		\item \textbf{surjective} or \textbf{onto} if $\forall b\in B,$ $\exists a\in A\st f(a)=b$
+		\item \textbf{bijective} if $f$ is both injective and surjective. 
+	\end{itemize}	
+\end{df}
+\begin{rmk}
+	If $f$ is a surjective function, then \[\text{Codomain of }f=\Im(f).\]	
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by $f(n)=3n+2$ is injective and/or surjective.}
+\begin{clm} $f$ is injective but nor surjective. \end{clm}
+\begin{prf}
+\begin{itemize}
+	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m).$\par Since $f(n)=f(m),$ we have $3n+2=3m+2.$\par Then, $3n=3m,$ or $n=m.$\par Since $f(n)=f(m)\implies n=m,$ we have $f$ is injective. 
+	\item \textbf{\underline{Surjective}}: Choose $n=4\in\Z.$\par Suppose for the sake of contradiction, $\exists a\in\Z\st f(a)=4.$\par Then, $3a+2=4.$ So, $3a=2,$ or $a=\dfrac{2}{3}.$\par \begin{center}$\divideontimes$ This contradicts with the fact that $a\in\Z.$\end{center}\par So, $f$ is not surjective. 
+\end{itemize}	
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by \[f(n)=\begin{cases}n-1,\quad&n\text{ odd}\\n+3,\quad&n\text{ even}\end{cases}\] is injective and/or surjective.}
+\begin{clm} $f$ is both injective and surjective. \end{clm}
+\begin{prf}
+\begin{itemize}
+	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m)$.\par $\boxed{\text{Case }1}$ $n$ and $m$ both even.\par\hspace{5mm} So, $n+3=m+3.$ So, $n=m.$\par $\boxed{\text{Case }2}$ $n$ and $m$ both odd.\par\hspace{5mm} So, $n-1=m-1.$ So, $n=m.$\par $\boxed{\text{Case }3}$ $n$ is odd and $m$ is even. \par\hspace{5mm} If $n$ is odd, $f(n)=n-1$ is even.\par\hspace{5mm} If $m$ is even, $f(m)=m+3,$ which is odd. \par\hspace{5mm} So, $f(n)\neq f(m).$ That is, this case is impossible.\par Since $f(n)=f(m)\implies n=m.$ So, $f$ is injective. 
+	\item \textbf{\underline{Surjective}}: WTS: $\forall b\in\Z, \exists a\in\Z\st f(a)=b.$\par Let $b\in\Z.$\par $\boxed{\text{Case }1}$ $b$ is odd.\par\hspace{5mm} Since $b$ is odd, we know that $a=b-3\in\Z$ and $a$ is even.\par\hspace{5mm} Then, $f(a)=a+3=(b-3)+a=b.$\par\hspace{5mm} So, for $a=b-3,\ f(a)=b.$\par $\boxed{\text{Case }2}$ $b$ is even.\par\hspace{5mm} Since $b$ is even, we know that $a=b+1\in\Z$ and $a$ is odd.\par\hspace{5mm} Then, $f(a)=a-1=(b+1)-1=b.$\par\hspace{5mm} So, for $a=b+1,$ we have $f(a)=b.$
+\end{itemize}	
+\end{prf}
+\end{framed}
+\begin{df}[Identity Function]
+	The identity function on a set $A$ is the function \[i_A: A\to A\] defined to be $i_A(x)=x$ for all $x\in A.$ Note that for any set $A$, the identity function $i_A$ is bijective. 
+\end{df}
+\begin{rmk}[The Importance of Domain/Codomain]
+	Suppose $f:A\to B$ is a function. The notions of injective and surjective are \textit{very} sensitive to the domain $A$ and codomain $B$. Even if two functions are given by the same ``formula'' $f$, the domain for one might be too big (\textit{and thus ``over-hit'' certain elements}) or the codomain might be too big (\textit{and thus ``under-hit'' certain elements}).	
+\end{rmk}
+\begin{df}[Tuple Equality]
+	\[(a,b)=(c,d)\iff a=c\text{ and }b=d.\]
+\end{df}
+\begin{framed}
+\noindent\texttt{Consider $f:\Z\times\Z\to\Z$ defined by $f(n,m)=nm.$ Is it injective? Is it surjective?}
+\begin{clm} It is not injective.\end{clm}
+\begin{prf}
+	Note that $f(1,4)=1\times4=4$ and $f(2,2)=2\times2=4.$\par However, $(1,4)\neq(2,2).$ So $f$ is not injective. 
+\end{prf}
+\begin{clm} It is surjective.\end{clm}	
+\begin{prf}
+	Let $k\in\Z\qquad[\text{WTS: }\exists(a,b)\in\Z\times\Z\st f(a,b)=k]$\par Note that $(1,k)\in\Z\times\Z.$ Also, $f(1,k)=(1)(k)=k.$\par Since $\exists(1,k)\in\Z\times\Z\st f(1,k)=k,$ $f$ is surjective. 
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that the function $f:\R-\qty{2}\to\R-\qty{3}$ defined by \[f(x)=\dfrac{3x}{x-2}\] is bijective.}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Injective}}: Let $x,y\in\R-\qty{2}\st f(x)=f(y)\qquad[\text{WTS: }x=y]$\par Since $f(x)=f(y),$ we have \[\begin{aligned}\dfrac{3x}{x-2}&=\dfrac{3y}{y-2}\\3x(y-2)&=3y(x-2)\\3xy-6x&=3xy-6y\\-6x&=-6y\\x&=y\end{aligned}\]\par So, $f$ is injective. 
+		\item \textbf{\underline{Surjective}}: Let $y\in\R-\qty{3}\qquad[\text{WTS: }\exists x\in\R-\qty{2}\st f(x)=y]$\par Let's set $x=\dfrac{2y}{y-3}.$\par  Note that since $y\neq3,\ x\in\R.$\par Also, if $x=2,$ then $\dfrac{2y}{y-3}=2.$ So, $2y=2y-6$ or $0=-6.$ This is impossible. \par So, $\dfrac{2y}{y-3}\in\R-\qty{2}.$ Now, \[f(x)=f\qty(\dfrac{2y}{y-3})=\dfrac{\ \ 3\qty(\dfrac{2y}{y-3})\ \ }{\ \ \qty(\dfrac{2y}{y-3})-2\ \ }=\dfrac{6y}{2y-2(y-3)}=y.\]\par So, $f$ is surjective. 
+	\end{itemize}\par 
+	Since $f$ is both injective and surjective, $f$ is bijective. 
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that the function $g:\pow(\Z)\to\pow(\R)$ given by $g(A)=A\cup\qty{\pi}$ is injective but not surjective.}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Injective}}: Suppose $X,Y\in\pow(\Z)\st g(X)=g(Y)\qquad[\text{WTS: }X=Y]$\par Note that $g(X)=g(Y)$ means $X\cup\qty{\pi}=Y\cup\qty{\pi}.$\par Suppose $x\in X.$ Since $x\in X,$ we have $x\in X\cup\qty{\pi}$\par So, by assumption, $x\in Y\cup\qty{\pi}.$\par So, by definition of union, $x\in Y,$ or $x\in\qty{\pi}.$\par Note that $x\notin\qty{\pi}$ because $x\in\Z$ and $x\neq\pi.$\par So, then $x\in Y.$ So, $X\subseteq Y$\par Similarly, $Y\subseteq X.$ So, $X=Y.$\par So, $g$ is injective. 
+		\item \textbf{\underline{Not Surjective}}: Note that $\Z\subseteq\R.$ So, $\Z\in\pow(\R).$\par Further, $\forall X\in\pow(\Z),\ g(X)=X\cup\qty{\pi}.$\par So, $\pi\in g(X).$ So, since $\pi\in\Z.$\par We've shown that $\forall X\in\pow(\Z),$ $g(X)\neq\Z.$\par So, $g$ is not surjective.
+	\end{itemize}
+\end{prf}
+\end{framed}
 
+\subsection{Composition and Invertibility}
+\begin{df}[Composition of Functions]
+	Let $f:A\to B$ and $g:B\to C$ be functions, The \textbf{composition} of $f$ with $g$, denoted $g\of f$ is the function $g\of f:A\to C$ defined by $(g\of f)(x)=g(f(x))$ for all $x\in A.$	
+\end{df}
+\begin{nota}
+	Sometimes, we can also use the notation $gf$ to denote the composition $g\of f.$	
+\end{nota}
+\begin{rmk}
+	The order of function composition matters, but parenthesis do not matter.	
+\end{rmk}
+\begin{df}[Function Equality]
+	Two functions $f$ and $g$ are equals, $f=g$, if $\forall x\in\text{Domain of }f=\text{Domain of }g,$ $f(x)=g(x).$
+\end{df}
+\begin{framed}
+\noindent\texttt{Let $f:A\to B,$ $g:B\to C,$ and $h:C\to D$ be functions. Show that function composition is \textit{associative}. That is, show that $(hg)f=h(gf).$}
+\begin{prf}
+	Note that both $(hg)f$ and $h(gf)$ are functions from $A\to D$.\par Suppose $a\in A\qquad\qty\Big[\text{WTS: }\qty\big[(hg)f](a)=\qty\big[h(gf)](a)]$\par Consider \[\qty\big[(hg)f](a)=(hg)(f(a))=h\qty\big(g(f(a)))\] \[\qty\big[h(gf)](a)=h\qty((gf)(a))=h\qty\big(g(f(a)))\]\par So, we see that $\forall a\in A,$ $\qty\big[(hg)f](a)=\qty\big[h(gf)](a).$\par So, $(hg)f=h(gf).$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{lem}\label{lem3.3.1}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are injective, then $g\of f$ is injective. 
+\end{lem}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ be injective.\par Suppose $x,y\in A\st (g\of f)(x)=(g\of f)(y),$ so $g(f(x))=g(f(y)).$\par Since $g$ is injective, $f(x)=f(y).$\par Since $f$ is injective, $x=y.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{lem}\label{lem3.3.2}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are surjective, then $g\of f$ is surjective. 
+\end{lem}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ are surjective.\par Let $c\in C\qquad[\text{WTS: }\exists a\in A\st(g\of f)(a)=c]$\par Since $g$ is surjective, $\exists b\in B\st g(b)=c.$\par Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par So, $g(f(a))=g(b)=c.$ So, $(g\of f)(a)=c.$\par So, we found $a\in A\st(g\of f)(a)=C.$\par So, $g\of f$ is surjective.
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{prop}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are bijective, so is $g\of f.$
+\end{prop}
+	\begin{rmk}
+		$f\of g$ is not always defined because we don't know if $C\subseteq A.$
+	\end{rmk}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Suppose $f$ and $g$ are bijective.\par Since $f$ and $g$ are injective, by Lemma \ref{lem3.3.1}, $g\of f$ is injective.\par Since $f$ and $g$ are surjective, by Lemma \ref{lem3.3.2}, $g\of f$ is surjective.\par So, by definition of bijectivity, $g\of f$ is bijective. 
+\end{prf}
+\end{framed}
+\begin{df}[Set of Functions]
+	Let $A$ and $B$ be non-empty sets. The \textbf{set of all functions from} $A$ to $B$ is denoted $\F(A,B).$ In the special case that $A=B,$ we denote the set of functions as $\F(A),$ instead of $\F(A,A).$
+\end{df}
+\begin{df}[Formal Definition of Composition of Functions]
+	Let $A,$ $B,$ and $C$ be non-empty sets. Then composition of functions defines a function \[\F(B,C)\times\F(A,B)\to\F(A,C)\] given by $(g,f)\mapsto g\of f.$
+	\begin{rmk}
+		Note that $g\in\F(B,C)$ and $f\in\F(A,B).$
+	\end{rmk}	
+\end{df}
+\begin{thm}
+	If $A$ and $B$ are finite and non-empty, \[\qty|\F(A,B)|=\qty|B|^{\qty|A|}.\]	
+\end{thm}
+\begin{df}[Invertible Functions]
+	Let $f:A\to B$ be a function. We say $f$ is \textbf{invertible} if there exists a function $g:B\to A$ such that both of the following are true: \begin{itemize}
+		\item $g\of f=i_A$ \item $f\of g=i_B$
+	\end{itemize}
+\end{df}
+\begin{nota}
+	We denote the inverse of $f$ as $\f$. So, we have $\f\of f=i_A$ and $f\of\f=i_B,$ where $i_A$ and $i_B$ are identity functions on $B$ and $A$. 	
+	\begin{rmk}\[\f\neq\dfrac{1}{f}\] \end{rmk}
+\end{nota}
+\begin{framed}
+\noindent\texttt{Let $f:\R\backslash\qty{1}\to\R\backslash\qty{-1}$ be given by $f(x)=\dfrac{x}{1-x}.$ Using the function $g:\R\backslash\qty{-1}\to\R\backslash\qty{1},$ given by $g(x)=\dfrac{x}{1+x},$ show that $f$ is invertible}
+Need to check: $g\of f=i_A$ and $f\of g=i_B.$
+\begin{prf}
+	Let $x\in A.$\par \[(g\of f)(x)=g(f(x))=\dfrac{f(x)}{1+f(x)}=\dfrac{\ \ \dfrac{x}{1-x}\ \ }{\ \ 1+\dfrac{x}{1-x}\ \ }=\dfrac{x}{1-x+x}=\dfrac{x}{1}=x.\]\par So, $\forall x\in A,\ (g\of f)(x)=x.$ So, $g\of f=i_A.$\par Similarly, we can show $(f\of g)(x)=x\quad\forall x\in B.$
+\end{prf}
+\end{framed}
+\begin{rmk}[How would we find $g$ if it is not given?]
+	Use scratch work to compute the formula of $g(x)$, then check the domain and codomain, and show $f\of g=i_B$ and $g\of f=i_A.$
+\end{rmk}
+\begin{thm}\label{thm3.3.2}
+	Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.
+\end{thm}
+\begin{rmk}
+	Let $f:A\to B$ be a function.\begin{itemize}
+		\item $f$ is \textbf{bijective} means $f$ preserves and captures the information between $A$ and $B$.
+		\item $F$ is \textbf{invertible} means the action of $f$ from $A$ to $B$ can be undone by using a function from $B$ to $A$.
+	\end{itemize}\par 
+	Theorem \ref{thm3.3.2} is saying that the notions of \textbf{bijectivity} and \textbf{invertibility} are logically \textbf{equivalent}. So, a function $f$ is either both bijective and invertible or it is neither. 
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Prove Theorem \ref{thm3.3.2}: Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.}
+\begin{prf}
+	($\Rightarrow$)
+	($\Leftarrow$)
+\end{prf}
+\end{framed}
 
 
 \newpage
@@ -1328,14 +1523,12 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 \begin{prf} The proof of Proposition \ref{prop4.2.3} is given in the textbook. \end{prf}
 
 
-
 \newpage
 \section{The Integers}
 \subsection{Axioms and Basic Properties}
 \begin{df}[Binary Operations]
 	\textbf{Binary operations} of integers combine two integers to get another integer.	
 \end{df}
-
 \begin{ax}[Integers]
 	The \textbf{integers}, which we denoted by $\Z$, is a set, together with a nonempty subset $\mathbb{P}(\Zp/\N)\subset \Z$ (which we call the \textbf{positive} integers), and two binary operations addition and multiplication, denoted by $+$ and $\cdot$, satisfying the following properties: 
 	\begin{itemize}
