@@ -36,6 +36,7 @@
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
 \newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
 \newenvironment*{ans}{\par\indent\textbf{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
@@ -95,6 +96,7 @@
 \def\iiintB{\dsst\iiint_B}
 \def\iiintE{\dsst\iiint_E}
 \def\intC{\dsst\int_C}
+\def\ointC{\dsst\oint_C}
 \def\vecx{\vec{x}}
 \def\vecy{\vec{y}}
 \def\vecv{\vec{v}}
@@ -2361,6 +2363,137 @@ In this section, we define line integral similar to a single integral, but inste
 		\[x(t)=t,\ \dx=\dt;\quad y(t)=t^2,\ \dy=2t\dt;\quad z(t)=t^3,\ dz=3t^2\dt\]\par So, \[\begin{aligned}\intC\F\cdot\d\vecr&=\int_a^bP\dx+Q\dy+R\dz\\&=\int_0^1xy\dt+yz(2t)\dt+zx(3t^2)\dt\\&=\int_0^1t^3+5t^6\ \dt\\&=\qty[\dfrac{1}{4}t^4+\dfrac{5}{7}t^7]_0^1=\dfrac{1}{4}+\dfrac{5}{7}=\dfrac{27}{28}.\end{aligned}\]
 	\end{ans}
 \end{eg}
+
+\subsection{The Fundamental Theorem of Line Integral}
+\begin{thm}[The Fundamental Theorem of Line Integral]
+\[\intC\nabla f\cdot\d\vecr=f(\vecr(b))-f(\vecr(a)),\]
+where $C$ is a smooth curve with vector function $\vecr(t),$ with $a\leq t\leq b$ and $f$ is a differentiable function of two or three variables whose gradient vector, $\nabla f,$ is continuous on $C$
+\begin{prf}
+	Let $I$ be the line integral defined by \[I=\intC\nabla f\cdot\d\vecr.\]\par Then, \[\begin{aligned}I&=\int_a^b\langle f_x(\vecr(t)),f_y(\vecr(t)),f_z(\vecr(t))\rangle \cdot\langle x'(t),y'(t),z'(t)\rangle\dt\\&=\int_a^b\qty(f_x(\vecr(t))x'(t)+f_y(\vecr(t))y'(t)+f_z(\vecr(t))z'(t))\dt\\&=\int_a^b\qty(\pdv{f}{x}\cdot\dv{x}{t}+\pdv{f}{y}\cdot\dv{y}{t}+\pdv{f}{z}\dv{z}{t})\dt\\&=\int_a^b\dv{t} (\F(\vecr(t))\dt=f(\vecr(b))-f(\vecr(a)).\end{aligned}\]
+\end{prf}
+\end{thm}
+\begin{rmk}[Independence of Path]
+	Let $C_1$ and $C_2$ be two paths that have the same initial and terminal points.
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (87,178.85) -- (228.1,178.85)(101.11,67) -- (101.11,191.27) (221.1,173.85) -- (228.1,178.85) -- (221.1,183.85) (96.11,74) -- (101.11,67) -- (106.11,74)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (116.73,150.37) .. controls (116.73,148.36) and (118.36,146.73) .. (120.37,146.73) .. controls (122.37,146.73) and (124,148.36) .. (124,150.37) .. controls (124,152.37) and (122.37,154) .. (120.37,154) .. controls (118.36,154) and (116.73,152.37) .. (116.73,150.37) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (188.73,100.37) .. controls (188.73,98.36) and (190.36,96.73) .. (192.37,96.73) .. controls (194.37,96.73) and (196,98.36) .. (196,100.37) .. controls (196,102.37) and (194.37,104) .. (192.37,104) .. controls (190.36,104) and (188.73,102.37) .. (188.73,100.37) -- cycle ;
+	\draw    (120.37,150.37) .. controls (187.73,162.27) and (142.73,131.27) .. (192.37,100.37) ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (116.73,150.37) .. controls (146.73,120.27) and (111.73,92.27) .. (188.73,100.37) ;
+	\draw (227,182.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (81,61.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (167,140.4) node [anchor=north west][inner sep=0.75pt]    {$C_{1}$};
+	\draw (122.37,153.77) node [anchor=north west][inner sep=0.75pt]    {$A$};
+	\draw (194.37,103.77) node [anchor=north west][inner sep=0.75pt]    {$B$};
+	\draw (126,80.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$C_{2}$};
+	\end{tikzpicture}	
+	\end{center}\par 
+	We know that, in general, \[\int_{C_1}\F\cdot\d\vecr\neq\int_{C_2}\F\cdot\d\vecr\]\par But we can show \[\int_{C_1}\nabla f\cdot\d\vecr=\int_{C_2}\nabla f\cdot\d\vecr\]\par The key difference here is that we may not be able to find a function $f$ whose gradient $\nabla f=\F,$ the vector field. 
+\end{rmk}
+\begin{df}[Conservative Vector Function]
+	We say that vector function $\F$ is conservative if there exists a function $f(x,y,z)$ such that $\nabla f=\F.$
+\end{df}
+\begin{thm}[Testing Conservative]
+	A vector field $\F=P\veci+Q\vecj+R\veck$ is conservative and $P$, $Q$, $R$ have continuous first order partial derivatives if \[\pdv{P}{y}=\pdv{Q}{x},\qquad\pdv{P}{z}=\pdv{R}{x},\qquad\pdv{Q}{z}=\pdv{R}{y}.\]	
+\end{thm}
+\begin{thm}[Independence of Path]
+	The line integral of a conservative vector field depends only on initial and terminal points and is independent of path.	
+\end{thm}
+\begin{df}[Independence of Path]
+	Let $\F$ be a continuous vector field with domain $D$. We say that $\intC\F\cdot\d\vecr$ is independent of path if \[\int_{C_1}\F\cdot\d\vecr=\int_{C_2}\F\cdot\d\vecr\] for any two paths $C_1$ and $C_2$ in $D$ that have the same initial and terminal points. 	
+\end{df}
+\begin{lem}\label{lem5.1}
+	Let $\intC\F\cdot\d\vecr$ be independent of path where $C$ is a closed path, then $\intC\F\cdot\d\vecr=0.$
+\end{lem}
+\begin{prf}
+	Divide $C$ into two paths, $C_1$ and $C_2.$\par Then, \[\begin{aligned}\intC\F\cdot\d\vecr&=\int_{C_1}\F\cdot\d\vecr+\int_{C_2}\F\cdot\d\vecr\\&=\int_{C_1}\F\cdot\d\vecr-\int_{-C_2}\F\cdot\d\vecr.\end{aligned}\]\par Since $\F$ is independent of path, we have \[\int_{C_1}\F\cdot\d\vecr=\int_{-C_2}\F\cdot\d\vecr.\]\par So, $\intC\F\cdot\d\vecr=0.$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (116.73,150.37) .. controls (116.73,148.36) and (118.36,146.73) .. (120.37,146.73) .. controls (122.37,146.73) and (124,148.36) .. (124,150.37) .. controls (124,152.37) and (122.37,154) .. (120.37,154) .. controls (118.36,154) and (116.73,152.37) .. (116.73,150.37) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (188.73,100.37) .. controls (188.73,98.36) and (190.36,96.73) .. (192.37,96.73) .. controls (194.37,96.73) and (196,98.36) .. (196,100.37) .. controls (196,102.37) and (194.37,104) .. (192.37,104) .. controls (190.36,104) and (188.73,102.37) .. (188.73,100.37) -- cycle ;
+	\draw    (120.37,150.37) .. controls (187.73,162.27) and (142.73,131.27) .. (192.37,100.37) ;
+	\draw [shift={(165.31,133.65)}, rotate = 106.12] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (116.73,150.37) .. controls (146.73,120.27) and (111.73,92.27) .. (188.73,100.37) ;
+	\draw [shift={(135.11,111.05)}, rotate = 304.34] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw (167,140.4) node [anchor=north west][inner sep=0.75pt]    {$C_{1}$};
+	\draw (103.37,154.77) node [anchor=north west][inner sep=0.75pt]    {$A$};
+	\draw (194.37,103.77) node [anchor=north west][inner sep=0.75pt]    {$B$};
+	\draw (126,80.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$C_{2}$};
+	\end{tikzpicture}	
+	\end{center}
+\end{prf}
+\begin{lem}\label{lem5.2}
+	If $\intC\F\cdot\d\vecr=0$ for every closed path in $D$, then $\intC\F\cdot\d\vecr$ is independent of path in $D$.
+\end{lem}
+\begin{prf}
+	We have $\intC\F\cdot\d\vecr=0$ for any closed $C$ in $D$. \[\begin{aligned}0=\intC\F\cdot\d\vecr&=\int_{C_1}\F\cdot\d\vecr+\int_{C_2}\F\cdot\d\vecr\\&=\int_{C_1}\F\cdot\d\vecr-\int_{-C_2}\F\cdot\d\vecr\end{aligned}\]\par So, $\dsst\int_{C_1}\F\cdot\d\vecr=\int_{-C_2}\F\cdot\d\vecr.$\par Therefore, $\F$ is independent of path. 
+\end{prf}
+\begin{thm}
+	From Lemma \ref{lem5.1} and Lemma \ref{lem5.2}, we have $\intC\F\cdot\d\vecr$ is independent of path in $D$ if and only if $\intC\F\cdot\d\vecr=0$ for every closed $C$ in $D$. 
+\end{thm}
+
+\subsection{Green's Theorem}
+Green's theorem gives the relationship between a line integral around a simple closed curve $C$ and a double integral over the plane $D$ bounded by $C$. 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (50,170.27) -- (234.73,170.27)(69.73,62) -- (69.73,204.27) (227.73,165.27) -- (234.73,170.27) -- (227.73,175.27) (64.73,69) -- (69.73,62) -- (74.73,69)  ;
+\draw [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.22 ]   (90.73,164.27) .. controls (81.73,147.27) and (97.73,47.27) .. (127.73,73.27) .. controls (157.73,99.27) and (134.73,137.27) .. (181.73,122.27) .. controls (228.73,107.27) and (206.73,244.27) .. (175.73,209.27) .. controls (144.73,174.27) and (109.73,193.27) .. (90.73,164.27) -- cycle ;
+\draw [shift={(92.11,112.92)}, rotate = 282.87] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+\draw [shift={(145.49,103.77)}, rotate = 73.69] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+\draw [shift={(208.81,163.15)}, rotate = 93.63] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+\draw [shift={(140.22,187.3)}, rotate = 194.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+\draw (237,169.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\draw (52,57.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+\draw (160,87.4) node [anchor=north west][inner sep=0.75pt]    {$C$};
+\draw (134,138.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+\end{tikzpicture}
+\end{center}
+\begin{thm}[Green's Theorem]
+	Let $C$ be positively oriented piecewise-smooth simple closed curve in the plane, and let $D$ be the region bounded by $C$. If $P$ and $Q$ have continuous partial derivatives on an open region that contains $D$, then \[\ointC P\dx+Q\dy=\iintD\qty(\pdv{Q}{x}-\pdv{P}{y})\ \dA.\]	
+	\begin{rmk}
+		``Positively oriented'' means the direction is counter-clockwise.
+	\end{rmk}
+\end{thm}
+\begin{eg}
+	Evaluate $I=\ointC x^4\dx+xy\dy,$ where $C$ is the following oriented triangle: 	
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-0.75,xscale=0.75]
+	\draw  (50,170.27) -- (192,170.27)(65.17,62) -- (65.17,204.27) (185,165.27) -- (192,170.27) -- (185,175.27) (60.17,69) -- (65.17,62) -- (70.17,69)  ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.27 ] (65.17,89.01) -- (151.73,170.27) -- (65.17,170.27) -- cycle ;
+	\draw    (65.17,89.01) -- (151.73,170.27) ;
+	\draw [shift={(103.35,124.85)}, rotate = 43.19] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (151.73,170.27) -- (65.17,170.27) ;
+	\draw [shift={(115.45,170.27)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (65.17,170.27) -- (65.17,89.01) ;
+	\draw [shift={(65.17,136.64)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw (192.35,169.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (48,53.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (82.35,134.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+	\draw (113,111.4) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\draw (146,172.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\draw (53,84.4) node [anchor=north west][inner sep=0.75pt]    {$1$};
+	\end{tikzpicture}	
+	\end{center}
+	\begin{ans}
+		By Green's Theorem, we have \[I=\ointC x^4\dx+xy\dy=\iintD\qty(\pdv{Q}{x}-\pdv{P}{y})\ \dA.\]\par Since $P=x^4$ and $Q=xy,$ we know $\dsst\pdv{Q}{x}=y$ and $\dsst\pdv{P}{y}=0.$ Therefore, \[\begin{aligned}
+			I=\iintD(y-0)\ \dA=\int_0^1\int_0^{1-x}y\dy\dx=\int_0^1\qty[\dfrac{1}{2}y^2]_0^{1-x}\ \dx&=\dfrac{1}{2}\qty[\dfrac{1}{3}(1-x)^3]_0^1\\&=\dfrac{1}{6}\qty((1-1)^3-(0-1)^3)=\dfrac{1}{6}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Evaluate $\ointC\qty(3y-e^{\sin{x}})\dx+\qty(7+\sqrt{y^4+1})\dy$ over $C$ as $x^2+y^2=9.$
+	\begin{ans}
+		By Green's Theorem, \[\begin{aligned}\ointC\qty(3y-e^{\sin{x}})\dx+\qty(7+\sqrt{y^4+1})\dy&=\iintD\qty(\pdv{Q}{x}-\pdv{P}{y})\ \dA\\&=\iintD(7-3)\ \dA\\&=4\iintD\ \dA\\&=4A(D)=4(9\pi)=36\pi.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{rmk}[A Special Case]
+	We can see that if $\dsst\pdv{Q}{x}-\pdv{P}{y}=1,$ we have \[\ointC P\dx+Q\dy=\iintD\qty(\pdv{Q}{x}-\pdv{P}{y})\ \dA=\iintD\ \dA=A(D).\]\par Also, \[A(D)=\ointC x\ \dy=-\ointC y\ \dx=\dfrac{1}{2}\ointC x\dy-y\dx.\]	
+\end{rmk}
+
 
 
 

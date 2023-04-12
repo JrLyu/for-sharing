@@ -1268,8 +1268,33 @@ Need to check: $g\of f=i_A$ and $f\of g=i_B.$
 \begin{framed}
 \noindent\texttt{Prove Theorem \ref{thm3.3.2}: Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.}
 \begin{prf}
-	($\Rightarrow$)
-	($\Leftarrow$)
+	($\Rightarrow$): Suppose $f$ is invertible $\qquad[\text{WTS: }f\text{ is bijective.}]$\par\hspace{5mm} That is, $\exists\f\in\F(B,A)\st f\of\f=i_B$ and $\f\of f=i_A.$\par\begin{itemize}
+		\item \underline{\textbf{$f$ is injective}}: Suppose $x,y\in A\st f(x)=f(y).$\par Apply $\f$ to both sides, we get \[\begin{aligned}\f(f(x))&=\f(f(y))\\(\f\of f)(x)&=(\f\of f)(y)\\(i_A)(x)&=(i_A)(y)\\x&=y.\end{aligned}\]
+		\item \underline{\textbf{$f$ is surjective}}: Let $b\in B\qquad[\text{WTS: }\exists a\in A\st f(a)=b.]$\par Choose $a=\f(b)\in A.$\par Taking $f$ on both sides, we get \[\begin{aligned}f(a)&=f(\f(b))\\&=(f\of\f)(b)\\&=(i_B)(b)\\&=b\end{aligned}\]\par So, $\exists a\in A\st f(a)=b.$ So, $f$ is surjective.$\qquad\square$
+	\end{itemize}\par 
+	($\Leftarrow$): Suppose $f\in\F(A,B)$ is bijective. $\qquad[\text{WTS: }f\text{ is invertible}.]$\par\hspace{5mm} Let $b\in B.$ Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par\hspace{5mm} Suppose $\exists c\in A\st f(c)=b.$\par\hspace{5mm} Since $f$ is injective, and $f(a)=f(c)=b,$ we have $a=c.$\par\hspace{5mm} So, $\exists$ \underline{unique} $a\in A\st f(a)=b.$\par\hspace{5mm} Let's define $\f(b)=a.$ Then, $\f\in\F(B,A).\qquad[\text{WTS: }\f\text{ is the inverse of }f.]$\par\begin{itemize}
+		\item \underline{\textbf{$\f\of f=i_A$}}: Let $a\in A.$ Suppose $f(a)=b,$ then $\f(b)=a.$\[(\f\of f)(a)=\f(f(a))=\f(b)=a.\]\par So, $\f\of f=i_A.$
+		\item \underline{\textbf{$f\of\f=i_B$}}: Let $b\in B.$ Suppose $\f(b)=a,$ then $f(a)=b.$\[(f\of\f)(b)=f(\f(b))=f(a)=b.\]\par So, $f\of\f=i_B.$
+	\end{itemize}\par Therefore, $\f$ is the inverse of $f$, or $f$ is invertible. 
+\end{prf}
+\end{framed}
+\begin{thm}
+It turns out that a function can have at most one inverse function. Thus, we denote \textit{the} inverse function of $f$ by $\f.$	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Prove that a function can have at most one inverse function.}
+\begin{prf}
+	Suppose $f\in\F(A,B)$\par Suppose $g,h\in\F(B,A)\st f\of g=i_B, f\of h=i_B, g\of f=i_A,$ and $h\of f=i_A.$\par Since $g\of f=i_A,$ compose by $h$ on both sides, we get \[(g\of f)\of h=i_A\of h=h\]\par and \[(g\of f)\of h=g\of(f\of h)=g\of i_B=g\]\par So, we see that $g=h.$
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Consider the function $f:\R\to\R$ given by $f(x)=x^3+x-2.$ Prove that $f$ is invertible.}
+\begin{prf}
+	We cannot compute the inverse function of $f$, but we will show that $f$ is bijective.
+	\begin{itemize}
+		\item \underline{\textbf{$f$ is injective}}: Note that $f'(x)=3x^2+1>0.$ So, $f$ is increasing on $\R.$\par Thus, if $f(x)=f(y),$ then $x=y.\qquad\square$
+		\item \underline{\textbf{$f$ is surjective}}: First note that $\displaystyle\lim_{x\to\infty}f(x)=\lim_{x\to\infty}\qty(x^3+x-2)=\infty.$\par Also, $\displaystyle\lim_{x\to-\infty}f(x)=\lim_{x\to-\infty}\qty(x^3+x-2)=-\infty.$\par Let $y\in\R\qquad[\text{WTS: }\exists x\in\R\st f(x)=y.]$\par Since $\displaystyle\lim_{x\to\infty}f(x)=\infty,$ eventually for large positive $x$, $f(x)>y.$\par So, $\exists b\in\R\st f(b)>y. $\par Since $\displaystyle\lim_{x\to-\infty}f(x)=-\infty,$ eventually for large negative $x$, $f(x)<y.$\par So, $\exists a\in\R\st f(a)<y.$\par Since $f$ is continuous on $[a,b]$ and $f(a)<y<f(b),\ \exists x\in(a,b)\in\R\st f(x)=y.$ \par By the intermediate value theorem, $f$ is surjective. 
+	\end{itemize}
 \end{prf}
 \end{framed}
 
