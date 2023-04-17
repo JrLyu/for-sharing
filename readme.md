@@ -8,6 +8,7 @@
       1. Python Crash Course - Completed
       2. HackerRank Notes - In Progress
       3. Email Auto Sender - Completed
+      4. QTM 151 Learning Notes - Completed
    2. Manim - In Progress
    3. Function Drawing - Completed
 4. Latex
@@ -20,3 +21,5 @@
 6. R
    1. Data Visualization (ggplot2) - Completed
    2. Introduction to tidyverse - Completed
+7. Java
+   1. CS 170 Learning Notes - Completed
