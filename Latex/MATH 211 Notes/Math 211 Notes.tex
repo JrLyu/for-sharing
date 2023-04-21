@@ -64,10 +64,6 @@
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
-\def\RE{{\mathrm{Re}}}
-\def\IM{{\mathrm{Im}}}
-\def\Arg{{\mathrm{Arg}}}
-\def\cis{\mathrm{cis}}
 \def\Proj{\mathrm{Proj}}
 \def\qed{\rightline{$\blacksquare$}}
 \def\ddx{\dsst\frac{\d}{\d x}}
@@ -97,29 +93,31 @@
 \def\iiintE{\dsst\iiint_E}
 \def\intC{\dsst\int_C}
 \def\ointC{\dsst\oint_C}
-\def\vecx{\vec{x}}
-\def\vecy{\vec{y}}
-\def\vecv{\vec{v}}
-\def\vecw{\vec{w}}
-\def\vecu{\vec{u}}
-\def\veca{\vec{a}}
-\def\vecb{\vec{b}}
-\def\vecc{\vec{c}}
-\def\vecd{\vec{d}}
-\def\vecr{\vec{\boldsymbol{\textbf{r}}}}
-\def\vecn{\vec{n}}
-\def\vece{\boldsymbol{\textbf{e}}}
-\def\veci{\hat{\boldsymbol{\textbf{i}}}}
-\def\vecj{\hat{\boldsymbol{\textbf{j}}}}
-\def\veck{\hat{\boldsymbol{\textbf{k}}}}
-\def\F{\vec{\boldsymbol{\textbf{F}}}}
-\def\T{\hat{\boldsymbol{\textbf{T}}}}
+\def\vecx{\va{x}}
+\def\vecy{\va{y}}
+\def\vecv{\va{v}}
+\def\vecw{\va{w}}
+\def\vecu{\va{u}}
+\def\veca{\va{a}}
+\def\vecb{\va{b}}
+\def\vecc{\va{c}}
+\def\vecd{\va{d}}
+\def\vecr{\va{{\textbf{r}}}}
+\def\vecn{\va{n}}
+\def\vece{\vu{\boldsymbol{\textbf{e}}}}
+\def\veci{\vu{\boldsymbol{\textbf{i}}}}
+\def\vecj{\vu{\boldsymbol{\textbf{j}}}}
+\def\veck{\vu{\boldsymbol{\textbf{k}}}}
+\def\F{\va{\boldsymbol{\textbf{F}}}}
+\def\T{\vu{\boldsymbol{\textbf{T}}}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
 \def\st{\mathrm{ s.t. }}
 \def\phi{\varphi}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
+\def\Div{\text{div }}
+\def\Curl{\text{curl }}
 
 \begin{document}
 \maketitle
@@ -129,7 +127,7 @@
 \section*{Preface}
 These is my personal notes for Emory University MATH 211 Advanced Calculus (Multivariable Calculus) course. 
 
-After mastering Calculus I (which covers contents concerning limits, differentiation, and basic integration) and Calculus II (which includes integration techniques and series), this course focuses on multivariable calculus, including vectors, multivariable functions, partial derivatives, optimization, multiple integrations, vector and scalar fields, Green’s and Stokes’ theorems, and the divergence theorem. The book used for this course is \textit{Multivariable Calculus, 8th Edition} by James Stewart. 
+After mastering Calculus I (which covers contents concerning limits, differentiation, and basic integration) and Calculus II (which includes integration techniques and series), this course focuses on multivariable calculus, including vectors, multivariable functions, partial derivatives, optimization, multiple integrations, vector and scalar fields, Green’s and Stokes’ theorems, and the divergence theorem. The book used for this course is \textit{Multivariable Calculus, 8th Edition} by James Stewart. Due to the lack of time, we were not able to finish all the topics intended to cover, especially topics in the Vector Calculus part. It is recommended to go through those chapters of the textbook independently whenever needed. 
 
 Throughout this personal note, I use different formats to differentiate different contents, including definitions, theorems, proofs, examples, extensions, and remarks. To be more specific: 
 \begin{df}[Terminology]
@@ -2365,7 +2363,7 @@ In this section, we define line integral similar to a single integral, but inste
 \end{eg}
 
 \subsection{The Fundamental Theorem of Line Integral}
-\begin{thm}[The Fundamental Theorem of Line Integral]
+\begin{thm}[The Fundamental Theorem of Line Integral]\label{thm5.3.1}
 \[\intC\nabla f\cdot\d\vecr=f(\vecr(b))-f(\vecr(a)),\]
 where $C$ is a smooth curve with vector function $\vecr(t),$ with $a\leq t\leq b$ and $f$ is a differentiable function of two or three variables whose gradient vector, $\nabla f,$ is continuous on $C$
 \begin{prf}
@@ -2431,12 +2429,41 @@ where $C$ is a smooth curve with vector function $\vecr(t),$ with $a\leq t\leq b
 \begin{prf}
 	We have $\intC\F\cdot\d\vecr=0$ for any closed $C$ in $D$. \[\begin{aligned}0=\intC\F\cdot\d\vecr&=\int_{C_1}\F\cdot\d\vecr+\int_{C_2}\F\cdot\d\vecr\\&=\int_{C_1}\F\cdot\d\vecr-\int_{-C_2}\F\cdot\d\vecr\end{aligned}\]\par So, $\dsst\int_{C_1}\F\cdot\d\vecr=\int_{-C_2}\F\cdot\d\vecr.$\par Therefore, $\F$ is independent of path. 
 \end{prf}
-\begin{thm}
+\begin{thm}\label{thm5.3.4}
 	From Lemma \ref{lem5.1} and Lemma \ref{lem5.2}, we have $\intC\F\cdot\d\vecr$ is independent of path in $D$ if and only if $\intC\F\cdot\d\vecr=0$ for every closed $C$ in $D$. 
 \end{thm}
+\begin{thm}[Test for Conservation]\label{thm5.3.5}
+	If the vector field $\F=P\veci+Q\vecj+R\veck$ is conservative and $P$, $Q$, $R$ have continuous first order partial derivatives, then the following is true: \[\pdv{P}{y}=\pdv{Q}{x};\qquad\pdv{P}{z}=\pdv{R}{x};\qquad\pdv{Q}{Z}=\pdv{R}{y}\]
+	\begin{prf}
+	Since $\F$ is conservative, there exists a function $f$ such taht \[\F=\nabla f=f_x\veci+f_y\vecj+f_z\veck.\]\par So, \[P\veci+Q\vecj+R\veck=f_x\veci+f_y\vecj+f_z\veck.\]\par That is, \[\begin{cases}P=f_x\\Q=f_y\\R=f_z\end{cases}\implies\begin{cases}\dsst\pdv{P}{y}=f_{yx}=f_{xy}=\pdv{f_y}{x}=\pdv{Q}{x}\\\\\dsst\pdv{P}{Z}=f_{zx}=f_{xz}=\pdv{f_z}{x}=\pdv{R}{x}\\\\\dsst\pdv{Q}{z}=f_{zy}=f_{yz}=\pdv{f_z}{y}=\pdv{R}{y}\end{cases}\]
+	\end{prf}
+\end{thm}
+\begin{eg} Consider the vector field \[\F=Ax\sin(\pi y)\veci+\qty(x^2\cos(\pi y)+Bye^{-z})\vecj+y^2e^{-z}\veck.\]
+\begin{enumerate}
+	\item For what values of $A$ and $B$ is the vector field $\F$ conservative? 
+	\begin{ans}
+		We know: $P=Ax\sin(\pi y),\quad Q=\qty(x^2\cos(\pi y)+Bye^{-z}),\quad R=y^2e^{-z}.$\par Then, by Theorem \ref{thm5.3.5}, we should have \[\pdv{P}{y}=\pdv{Q}{x};\qquad\pdv{P}{z}=\pdv{R}{x};\qquad\pdv{Q}{Z}=\pdv{R}{y}.\]\par From $\dsst\pdv{P}{y}=\pdv{Q}{x},$ we know $Ax\pi\sin(\pi y)=2x\cos(\pi y),$ so $A=\dfrac{2}{\pi}.$ \par From $\dsst\pdv{P}{z}=\pdv{R}{x},$ we know $0=0.$\par From $\dsst\pdv{Q}{Z}=\pdv{R}{y},$ we know $-Bye^{-z}=2ye^{-z},$ and thus $B=-2$. Therefore, \[\boxed{\F=\dfrac{2x}{\pi}\sin(\pi y)\veci+\qty(x^2\cos(\pi y)-2ye^{-z})\vecj+y^2e^{-z}\veck}\]\par Now, since $\F$ is conservative, we can find an $f$ such that $\nabla f=\F.$\par So, we have $\dsst\pdv{f}{x}=\dfrac{2x}{\pi}\sin(\pi y).$\[f=\int \dfrac{2x}{\pi}\sin(\pi y)\ \dx+g(y,z)=\dfrac{x^2}{\pi}\sin(\pi y)+g(y,z).\]\par Hence, $\dsst\pdv{f}{y}=x^2\cos(\pi y)+\pdv{g}{y}=x^2\cos(\pi y)-2ye^{-z}.$\[\begin{aligned}\pdv{g}{y}&=-2ye^{-z}\\g(y,z)&=\int-2ue^{-z}\ \dy+h(z)\\g(y,z)&=-y^2e^{-z}+h(z).\end{aligned}\]\par So, \[f=\dfrac{x^2}{\pi}\sin(\pi y)-y^2e^{-z}+h(z)\]\par So, $\dsst\pdv{f}{z}=-\qty(-y^2e^{-z})+\dv{h}{z}=y^2e^{-z}.$ Then, we would have $\dsst\dv{h}{z}=0,$ and thus $h(z)=0$.\par Therefore, \[\boxed{f=\dfrac{x^2}{\pi}\sin(\pi y)-y^2e^{-z}}\]
+	\end{ans}
+	\item Using your answer in the previous question to evaluate $\intC\F\cdot\d\vecr,$ where $C$ is 
+	\begin{enumerate}
+		\item The curve $\vecr=\cos(t)+\veci+\sin(2t)\vecj+\sin^2(t)\veck.$
+		\begin{ans}
+			Since we have $\vecr(0)=\langle1,0,0\rangle=\veci$ and $\vecr(2\pi)=\langle1,0,0\rangle=\veci,$ we know that $\vecr(t)$ is a closed curve. Therefore, by Theorem \ref{thm5.3.4}, since $\F$ is conservative, we have \[\intC\F\cdot\d\vecr=0.\]
+		\end{ans}
+		\item Curve of intersection of the paraboloid $z=x^2+4y^2$ and the plane $z=3x-2y$ from $(0,0,0)$ to $\qty(1,\dfrac{1}{2},2)$
+		\begin{ans}
+			By Theorem \ref{thm5.3.1}, the Fundamental Theorem of Line Integral, we know \[\intC\F\cdot\d\vecr=f(\vecr(b))-f(\vecr(a)).\]\par So, \[\begin{aligned}\intC\F\cdot\d\vecr&=\qty[\dfrac{x^2}{\pi}\sin(\pi y)-y^2e^{-z}]_{(0,0,0)}^{(1,^1/_2,2)}\\&=\dfrac{1}{\pi}-\dfrac{1}{4e^2}.\end{aligned}\]
+		\end{ans}
+	\end{enumerate}
+\end{enumerate}	
+\end{eg}
+
 
 \subsection{Green's Theorem}
 Green's theorem gives the relationship between a line integral around a simple closed curve $C$ and a double integral over the plane $D$ bounded by $C$. 
+\begin{df}[Simply Connected Regions]
+Simply connected regions are regions that every simple closed curves in $D$ enclosed only points that are in $D$.
+\end{df}
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}}
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -2493,8 +2520,135 @@ Green's theorem gives the relationship between a line integral around a simple c
 \begin{rmk}[A Special Case]
 	We can see that if $\dsst\pdv{Q}{x}-\pdv{P}{y}=1,$ we have \[\ointC P\dx+Q\dy=\iintD\qty(\pdv{Q}{x}-\pdv{P}{y})\ \dA=\iintD\ \dA=A(D).\]\par Also, \[A(D)=\ointC x\ \dy=-\ointC y\ \dx=\dfrac{1}{2}\ointC x\dy-y\dx.\]	
 \end{rmk}
+\begin{thm}[Extension of Green's Theorem 1]
+	We can extend Green's Theorem to finite union of simply connected regions:
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.65pt,y=0.65pt,yscale=-1,xscale=1]
+	\draw    (122.37,190.27) -- (206.37,201.27) ;
+	\draw [shift={(170.32,196.55)}, rotate = 187.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (122.37,190.27) .. controls (162.37,160.27) and (210.37,132.27) .. (275.37,133.27) .. controls (340.37,134.27) and (202.37,173.27) .. (206.37,201.27) .. controls (210.37,229.27) and (282.37,242.27) .. (257.37,261.27) .. controls (232.37,280.27) and (97.37,215.27) .. (122.37,190.27) -- cycle ;
+	\draw [shift={(187.99,150.79)}, rotate = 337.38] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [shift={(260.6,158.77)}, rotate = 152.64] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [shift={(231.33,227.85)}, rotate = 31.07] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [shift={(182.44,247.66)}, rotate = 204.77] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (122.37,190.27) -- (172.37,197.27) ;
+	\draw [shift={(140.44,192.8)}, rotate = 7.97] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (244,114.4) node [anchor=north west][inner sep=0.75pt]    {$C_{1}$};
+	\draw (173,256.4) node [anchor=north west][inner sep=0.75pt]    {$C_{2}$};
+	\draw (154,174.4) node [anchor=north west][inner sep=0.75pt]    {$C_{3}$};
+	\draw (200,156.4) node [anchor=north west][inner sep=0.75pt]    {$D_{1}$};
+	\draw (189,224.4) node [anchor=north west][inner sep=0.75pt]    {$D_{2}$};
+	\end{tikzpicture}	
+	\end{center}
+ \[\intC P\dx+Q\dy=\iintD\pdv{Q}{x}-\pdv{P}{y}\ \dA.\]
+	\begin{prf}
+		Let $I=\intC P\dx+Q\dy.$ Then, \[\begin{aligned}I&=\int_{C_1\cup C_3}P\dx+Q\dy+\int_{C_2\cup(-C_3)}P\dx+Q\dy\\&=\iint_{D_1}\pdv{Q}{x}-\pdv{P}{y}\ \dA+\iint_{D_2}\pdv{Q}{x}-\pdv{P}{y}\ \dA\\&=\iintD\pdv{Q}{x}-\pdv{P}{y}\ \dA.\end{aligned}\]
+	\end{prf}
+\end{thm}
+\begin{thm}[Extension of Green's Theorem 2]
+	Green's Theorem can be applied to regions with holes (regions that are not simply connected): \[\intC P\dx+Q\dy=\iintD\pdv{Q}{x}-\pdv{P}{y}\ \dA.\]
+\end{thm}
+\begin{eg}
+	Evaluate $\ointC y^2\dx+3xy\dy$ along $C$ as the following: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,198.27) -- (211.37,198.27)(131.37,113.22) -- (131.37,209.22) (204.37,193.27) -- (211.37,198.27) -- (204.37,203.27) (126.37,120.22) -- (131.37,113.22) -- (136.37,120.22)  ;
+	\draw   (96.37,198.27) .. controls (96.37,181.7) and (112.04,168.27) .. (131.37,168.27) .. controls (150.7,168.27) and (166.37,181.7) .. (166.37,198.27) .. controls (166.37,198.27) and (166.37,198.27) .. (166.37,198.27) -- cycle ;
+	\draw   (74.87,198.27) .. controls (74.87,198.27) and (74.87,198.27) .. (74.87,198.27) .. controls (74.87,171.53) and (100.16,149.84) .. (131.37,149.84) .. controls (162.57,149.84) and (187.87,171.53) .. (187.87,198.27) -- cycle ;
+	\draw (124,151.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+	\draw (163,137.4) node [anchor=north west][inner sep=0.75pt]    {$x^{2} +y^{2} =4$};
+	\draw (46,201.4) node [anchor=north west][inner sep=0.75pt]    {$x^{2} +y^{2} =1$};
+	\draw (212,200.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (111,110.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		Use the extension of the Green's Theorem: \[I=\ointC y^2\dx+3xy\dy=\iintD(3y-2y)\ \dA=\iintD y\ \dA.\]\par Change to polar coordinates: $1\leq r\leq2,\quad 0\leq\theta\leq\pi,\quad y=r\sin\theta.$\[\begin{aligned}I=\int_0^\pi\int_1^2r\sin\theta\cdot r\ \d r\d\theta&=\int_0^\pi\sin\theta\ \d\theta\int_1^2r^2\ \d r\\&=\qty\Big[-\cos\theta]_0^\pi\qty[\dfrac{1}{3}r^3]_1^2\\&=(-(-1)-(-1))\qty(\dfrac{8}{3}-\dfrac{1}{3})\\&=2\qty(\dfrac{7}{3})=\dfrac{14}{3}.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Evaluate $\ointC \qty(x^2-xy)\dx+\qty(xy-x^2)\dy,$ where $C$ is given by the following triangle.
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (45,161) -- (203.37,161)(60.84,71) -- (60.84,171) (196.37,156) -- (203.37,161) -- (196.37,166) (55.84,78) -- (60.84,71) -- (65.84,78)  ;
+	\draw    (60.84,161) -- (120.37,100.27) ;
+	\draw [shift={(94.8,126.35)}, rotate = 134.43] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (120.37,100.27) -- (179.37,161.27) ;
+	\draw [shift={(154.04,135.09)}, rotate = 225.95] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (60.84,161) -- (179.37,161.27) ;
+	\draw [shift={(113.1,161.12)}, rotate = 0.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.31 ] (119.87,100.27) -- (179.37,161.27) -- (60.84,161.27) -- cycle ;
+	\draw (204,162.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (41,65.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (22,162.4) node [anchor=north west][inner sep=0.75pt]    {$( 0,0)$};
+	\draw (156,165.4) node [anchor=north west][inner sep=0.75pt]    {$( 2,0)$};
+	\draw (114,81.4) node [anchor=north west][inner sep=0.75pt]    {$( 1,1)$};
+	\draw (112,129.4) node [anchor=north west][inner sep=0.75pt]    {$D$};
+	\end{tikzpicture}
+	\end{center}
+	\begin{ans}
+		This question is left as an exercise so the steps are omitted, but the answer should be \[I=-\dfrac{4}{3}.\]
+	\end{ans}
+\end{eg}
+
+\subsection{Curl and Divergence}
+\begin{df}[Divergence and Curl]
+	For a vector field $\F=P\veci+Q\vecj+R\veck,$ we define divergence and curl as \[\begin{aligned}\Div\F= \div\F&=\left\langle\pdv{}{x},\pdv{}{y},\pdv{}{z}\right\rangle \cdot\left\langle P,Q,R\right\rangle\\&=\pdv{P}{x}+\pdv{Q}{y}+\pdv{R}{z}\end{aligned}\]\[\begin{aligned}\Curl\F=\curl\F&=\qty|\begin{array}{ccc}\veci&\vecj&\veck\\\dsst\pdv{}{x}&\dsst\pdv{}{y}&\dsst\pdv{}{z}\\P&Q&R\end{array}|\\&=\qty(\pdv{R}{y}-\pdv{Q}{Z})\veci-\qty(\pdv{R}{x}-\pdv{P}{z})\vecj+\qty(\pdv{Q}{x}-\pdv{P}{y})\veck\\&=\qty(\pdv{R}{y}-\pdv{Q}{Z})\veci+\qty(\pdv{P}{z}-\pdv{R}{x})\vecj+\qty(\pdv{Q}{x}-\pdv{P}{y})\veck\end{aligned}\]
+\end{df}
+\begin{eg}
+	Find the divergence and curl of the vector field \[\F=xy\veci+\qty(y^2-z^2)\vecj+yz\veck\]
+	\begin{ans}	
+		\[\begin{aligned}\Div\F=\div\F&=\left\langle\pdv{}{x},\pdv{}{y},\pdv{}{z}\right\rangle\cdot\left\langle xy,\qty(y^2-z^2),yz\right\rangle\\&=\pdv{}{x}\qty(xy)+\pdv{}{y}\qty(y^2-z^2)+\pdv{}{z}\qty(yz)\\&=y+2y+y=4y.\end{aligned}\]
+		\[\begin{aligned}\Curl\F=\curl\F&=\qty|\begin{array}{ccc}\veci&\vecj&\veck\\\dsst\pdv{x}&\dsst\pdv{y}&\dsst\pdv{z}\\xy&y^2-z^2&yz\end{array}|\\&=\qty(\pdv{y}(yz)-\pdv{z}\qty(y^2-z^2))\veci+(0-0)\vecj+\qty(\pdv{x}\qty(y^2-z^2)-\pdv{y}(xy))\veck\\&=(z+2z)\veci-0+(0-x)\veck\\&=3z\veci-x\veck.\end{aligned}\]
+	\end{ans}
+\end{eg}
+\begin{thm}[Properties of Curl, Divergence, and Gradient]
+	Let $f$ be a scalar field and $\F$ be a vector field. Suppose $f$ and $\F$ are all smooth and have all partial derivatives continuous, then 
+	\begin{enumerate}
+		\item $\div(\curl\F)=0$ or in words, $\Div(\Curl\F)=0$
+		\begin{prf}
+			\[\begin{aligned}\div(\curl\F)&=\left\langle\pdv{x},\pdv{y},\pdv{z}\right\rangle\cdot\left\langle\pdv{R}{y}-\pdv{Q}{z},\pdv{P}{z}-\pdv{R}{x},\pdv{Q}{x}-\pdv{P}{y}\right\rangle\\&=\pdv{x}\qty(\pdv{R}{y}-\pdv{Q}{z})+\pdv{y}\qty(\pdv{P}{z}-\pdv{R}{x})+\pdv{z}\qty(\pdv{Q}{x}-\pdv{P}{y})\\&=\pdv{R}{x}{y}-\pdv{Q}{x}{z}+\pdv{P}{y}{z}-\pdv{R}{y}{x}+\pdv{Q}{z}{x}-\pdv{P}{z}{y}\\&=0\end{aligned}\]
+		\end{prf}
+		\item $\curl(\nabla f)=0$ or in words, $\curl(\text{gradient }f)=0$
+		\begin{prf}
+			\[\begin{aligned}\curl(\nabla f)&=\qty|\begin{array}{ccc}\veci&\vecj&\veck\\\\\dsst\pdv{x}&\dsst\pdv{y}&\dsst\pdv{x}\\\\\dsst\pdv{f}{x}&\dsst\pdv{f}{y}&\dsst\pdv{f}{z}\end{array}|\\\\&=\qty(\pdv{f}{y}{z}-\pdv{f}{z}{y})\veci-\qty(\pdv{f}{x}{z}-\pdv{f}{z}{x})\vecj+\qty(\pdv{f}{x}{y}-\pdv{f}{y}{x})\veck\\&=0\end{aligned}\]
+		\end{prf}
+	\end{enumerate}
+\end{thm}
+\begin{rmk}
+	If $\F$ is conservative, then $\F=\nabla f$ and \[\Curl\F=\Curl(\nabla f)=0.\]	
+\end{rmk}
+\begin{thm}\label{thm5.5.2}
+	If $\F$ is a vector field on $\R^3$ and its component functions, $P$, $Q$, and $R$, have continuous partial derivatives and $\Curl\F=0,$ then $\F$ is conservative.	
+\end{thm}
+\begin{eg}
+	Show that \[\F(x,y,z)=y^2z^3\veci+2xyz^3\vecj+3xy^2z^2\veck\] is a conservative field and find a function $f$ such that $\F=\nabla f.$	
+	\begin{ans}
+		Note that \[\Curl\F=\qty|\begin{array}{ccc}\veci&\vecj&\veck\\\dsst\pdv{x}&\dsst\pdv{y}&\dsst\pdv{z}\\y^2z^3&2xyz^3&3xy^2z^2\end{array}|=0\]\par Also, $y^2z^3,$ $2xyz^3$, and $3xy^2z^2$ are in $\R^3$ and have continuous partial derivatives.\par Therefore, by Theorem \ref{thm5.5.2}, $\F$ is conservative.\par Now, we can find the $f$ such that $\nabla f=\F.$\par So, \[\pdv{f}{x}\veci+\pdv{f}{y}\vecj+\pdv{f}{z}\veck=y^2z^3\veci+2xyz^3\vecj+3xy^2z^2\veck\]\par That is, \[\qquad\pdv{f}{x}=y^2z^3;\qquad\pdv{f}{y}=2xyz^3;\qquad\pdv{f}{z}=3xy^2z^2.\]\par From $\dsst\pdv{f}{x}=y^2z^3,$ we have $f=xy^2z^3+g(y,z)$\par So, \[\pdv{f}{y}=2xyz^3+\pdv{g}{y}=2xyz^3.\]\par We have $\dsst\pdv{g}{y}=0,$ which means $g(y,z)=h(z).$\par So, \[\pdv{f}{z}=3xy^2z^2+\dv{h}{z}=3xy^2z^2\]\par Similarly, $\dsst\dv{h}{z}=0,$ so $h(z)$ is a constant function.\par Hence, \[\boxed{f=xy^2z^3+C}\]
+	\end{ans}
+\end{eg}
+\begin{df}[Laplace Operator/Laplacian]
+	The Laplace operator (or laplacian) is denoted as $\nabla\cdot\nabla$ or $\laplacian$ and is defined by \[\laplacian=\left\langle\pdv[2]{x},\pdv[2]{y},\pdv[2]{z}\right\rangle\]
+\end{df}
+\begin{thm}[More Properties]
+	Let $f$ and $g$ be scalar fields and $\F$ and $\va{G}$ be vector fields. Define \[\begin{aligned}(f\F)(x,y,z)&=f(x,y,z)\F(x,y,z)\\ (\F\cdot\va{G})(x,y,z)&=\F(x,y,z)\cdot\va{G}(x,y,z)\\(\F\times\va{G})&=\F(x,y,z)\times\va{G}(x,y,z)\end{aligned}\]Suppose $f$, $g$, $\F$ and $\va{G}$ are all smooth and have all partial derivatives continuous, then 
+	\begin{enumerate}
+		\item $\div(\F+\va{G})=\div\F+\div\va{G}$
+		\item $\curl(\F+\va{G})=\curl\F+\curl\va{G}$
+		\item $\div(f\F)=f\div\F+\F\cdot\nabla f$
+		\item $\curl(f\F)=f\curl\F+(\nabla f)\times\F$
+		\item $\div(\F\times\va{G})=\va{G}\cdot\curl\F-\F\cdot\curl\va{G}$
+		\item $\div(\nabla f\times\nabla g)=0$
+		\item $\boxed{\curl(\curl\F)=\nabla(\div\F)-\laplacian\F}$
+	\end{enumerate} 
+\end{thm}
+\begin{thm}[Stoke's Theorem]
+	Let $S$ be an oriented piecewise-smooth surface that is bounded by a simple, closed, piecewise-smooth boundary curve $C$ with positive orientation. Let $\F$ be a vector field whose components have continuous partial derivatives on an open region in $\R^3$ that contains $S$, then \[\intC\F\cdot\d\vecr=\iint_{S}\curl\F\cdot\d\va{S}\]
+\end{thm}
 
 
-
-
+\label{LastPage}
 \end{document}

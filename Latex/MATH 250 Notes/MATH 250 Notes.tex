@@ -21,9 +21,9 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newtheorem{prop}{Proposition}[subsection]
-\newtheorem{lem}{Lemma}[subsection]
-\newtheorem{cor}{Corollary}[subsection]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{cor}{Corollary}[section]
 \newtheorem{clm}{Claim}[subsection]
 
 \newcounter{nprf}[subsection]
@@ -55,6 +55,7 @@
 \def\Q{{\mathbb{Q}}}
 \def\N{{\mathbb{N}}}
 \def\Zp{{\Z^{+}}}
+\def\E{{\mathbb{E}}}
 \def\pow{{\mathcal{P}}}
 \def\part{{\mathscr{P}}}
 \def\f{f^{-1}}
@@ -920,388 +921,197 @@ Another way to prove is by contrapositive.
 \end{prf}	
 \end{framed}
 
-
 \newpage
-\section{Functions}
-\subsection{Definition and Basic Properties}
-\begin{df}[Function, Domain, Codomain]
-	Let $A$ and $B$ be non-empty set. A \textbf{function}, $f$, from $A$ to $B$ is a rule that assigns to each element $a\in A$ one, and only one, element of $B$, $b$.
+\section{The Integers}
+\subsection{Axioms and Basic Properties}
+\begin{df}[Binary Operations]
+	\textbf{Binary operations} of integers combine two integers to get another integer.	
+\end{df}
+\begin{ax}[Integers]
+	The \textbf{integers}, which we denoted by $\Z$, is a set, together with a nonempty subset $\mathbb{P}(\Zp/\N)\subset \Z$ (which we call the \textbf{positive} integers), and two binary operations addition and multiplication, denoted by $+$ and $\cdot$, satisfying the following properties: 
 	\begin{itemize}
-		\item We call $A$ the \textbf{domain} of $f$.
-		\item We call $B$ the \textbf{codomain} of $f$.
+		\item (\textbf{Commutativity}) For all integers $a,b$, we have \[a+b=b+a\qquad\text{and}\qquad a\cdot b=b\cdot a.\]
+		\item (\textbf{Associativity}) For all integers $a,b,c$, we have \[a+(b+c)=(a+b)+c\qquad\text{and}\qquad a\cdot(b\cdot c)=(a\cdot b)\cdot c.\]
+		\item (\textbf{Distributivity}) For all integers $a,b,c$, we have \[(a+b)\cdot c=a\cdot c+b\cdot c.\]
+		\item (\textbf{Identity}) There exists integers $0$ (\textbf{additive identity}) and $1$ (\textbf{multiplicative identity}), such that for all integers $a$, we have \[a+0=a\qquad\text{and}\qquad a\cdot1=a.\]
+		\item (\textbf{Additive inverses}) For any integer $a$, there exists an integer $-a$ such that \[a+(-a)=0.\]
+		\item (\textbf{Closure for $\Zp$}) If $a,b$ are positive integers, then $a+b$ and $a\cdot b$ are positive integers.
+		\item (\textbf{Trichotomy}) For every integer $a$, exactly one of the following three possibilities hold: either $a$ is a positive integer, or $a=0$, or $-a$ is a positive integer. 
+		\item (\textbf{Well-ordering}) Every nonempty subset of the positive integers has a smallest element. 
 	\end{itemize}
-\end{df}
-\begin{nota}
-	We denote a function $f$ from $A$ to $B$ as $f: A\to B,$ and the elements by $b=f(a)$ if $b$ was assigned to $a$. 	
-\end{nota}
-\begin{rmk}
-	The codomain is part of the data that makes a function. Indeed, to specify a function, we need three pieces of information: (1) the domain, (2) the codomain, and (3) the rule between them. 
-\end{rmk}
-\begin{df}[Image of a Function]
-	Let $f:A\to B$ be a function. The \textbf{image} of $f$, denoted $\Im{f},$ is the set of elements in the codomain which are obtained by applying the rule $f$ to an element of the domain. That is, 
-	\begin{itemize}
-		\item $\Im(f)=\qty{y\in B\mid\exists a\in A\st b=f(a)}$
-		\item More generally, if $X\subseteq A,$ then, the \textbf{image of $X$ under }$f$, denoted $f(X)$, is given by \[f(X)=\qty{y\in B\mid\exists x\in Z\st b=f(x)}.\]
-	\end{itemize}	
-\end{df}
+	\begin{rmk} We do not talk about the multiplicative inverse because for almost all integers, there does not exist an integer multiplicative inverse. Most of the multiplicative inverse belongs to $\Q$, and only $1$ and $-1$ are two integers that have integer multiplicative inverses. \end{rmk}
+\end{ax}
 \begin{framed}
-\begin{clm}Let $f:\R\to\R$ be given by $f(x)=x^2+3.$ Then $\Im(f)=[3,\infty).$\end{clm}
-\begin{prf}
-	($\subseteq$): Let $x\in\R.$ Then $x^2\geq0.$\par\hspace{5mm} So, $x^2+3\geq0+3.$\par\hspace{5mm} So, $\Im(f)\subseteq[3,\infty).\qquad\square$ \par 
-	($\supseteq$): We will show that $(-3,\infty)\subseteq\Im(f)$\par\hspace{5mm} Let $x\in[3,\infty).\qquad$\big[WTS: $x\in\Im(f).$ That is, $\exists a\in\R\st f(a)=x.$\big]\par\hspace{5mm} Choose $a=\sqrt{x-3}.$ Since $x\geq3,\ x-3\geq0.$ So, $a\in\R.$\par\hspace{5mm} We will show that $f(a)=x$: \[f(a)=a^2+3=\qty(\sqrt{x-3})^2+3=x-3+3=x\]\par\hspace{5mm} So, $x\in\Im(f).$
-\end{prf}
-\end{framed}
-\begin{framed}
-\noindent\texttt{Let $f:\Z\to\Z$ be defined by \[f(n)=\begin{cases}n+1,\qquad n\text{ is even}\\n-3,\qquad n\text{ is odd}\end{cases}\] Compute $f(X)$ where $X=\qty{n\in\Z\mid n=4t+2\fs t\in\Z}.$}
-\begin{clm}$f(X)=\qty{m\in\Z\mid m=4k+3\fs k\in\Z}=B.$\end{clm}
-\begin{prf}
-	($\subseteq$): Let $y\in f(X)$. Then, $\exists n\in X\st f(n)=y.$\par\hspace{5mm} By definition of $X$, $n=4t+2\fs t\in\Z.$\par\hspace{5mm} So, $f(n)=y=n+1$ since $n$ is even.\par\hspace{5mm} That is, $f(n)=y=4t+2+1=4t+3.$\par\hspace{5mm} So, $y\in B$\par 
-	($\supseteq$): Let $m\in B.$ Then, $m=4k+3\fs k\in\Z.\qquad$\big[WTS: $m\in f(X)$\big]\par\hspace{5mm} Note that since $k\in\Z,$ $4k+2\in X.$ Choose $n=4k+2.$\par\hspace{5mm} Then, $n\in X.$ Further, $f(n)=n+1=4k+2+1=4k+3=m.$\par\hspace{5mm} So, $m\in f(X).$
-\end{prf}
-\end{framed}
-\begin{thm}[Intermediate Value Theorem]\label{thm3.1.1}
-	Let $f$ be a function whose domain and codomain are subsets of $R.$ Let $a<b$ and suppose $f$ is continuous on $[a,b].$ If $y$ is any number in-between $f(a)$ and $f(b),$ then there exists a number $c$ in $[a,b]$ such that $f(c)=y.$
-\end{thm}
-\begin{framed}
-\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3+x+1.$ Let $X=[-2,2].$ Then, $f(X)=[-9,11].$}
-\begin{prf}
-	($\subseteq$): First observe that $f'(x)=3x^2+1>0.$\par\hspace{5mm} Since $f'>0,$ $f$ is increasing. So, $f$ is in particular increasing on $[-2,2].$\par\hspace{5mm} Note that $f(-2)=(-2)^3+(-2)+1=-8-2+1=-9.$\par\hspace{5mm} Also, $f(2)=2^3+2+1=11.$\par\hspace{5mm} Since $f$ is increasing, $\forall x\in[-2,2], -9\leq f(x)\leq11.$\par\hspace{5mm} So, $f(X)\subseteq[-9,11].\qquad\square$ \par
-	($\supseteq$):Let $m\in[-9,11].$\par\hspace{5mm} Since $f$ is continuous on $[-2,2]$ and $f(-2)=9$ and $f(2)=11.$\par\hspace{5mm} By the intermediate value theorem (Theorem \ref{thm3.1.1}), $\exists c\in[-2,2]\st f(c)=m.$\par\hspace{5mm} That is, $m\in f(X).$
-\end{prf}	
-\end{framed}
-\begin{framed}
-\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3-4x+1.$ Let $X=[-2,2].$ Find $f(X).$}
-\begin{prf}
-	\begin{enumerate}
-		\item[\ding{172}] Find $f'(x)=3x^2-4.$ So, $f$ is not always increasing or decreasing.
-		\item[\ding{173}] Find critical points: $f'(x)=0,\ 3x^2-4=0,\ 3x^2=4,\ x^2=\dfrac{4}{3},\ x=\pm\dfrac{2}{\sqrt{2}}.$
-		\item[\ding{174}] Plug in critical points into $f''(x):\ f''(x)=6x.$
-		\begin{itemize}
-			\item $f''\qty(\dfrac{2}{\sqrt{3}})=6\qty(\dfrac{2}{\sqrt{3}})>0\longrightarrow$ minimum
-			\item $f''\qty(-\dfrac{2}{\sqrt{3}})=6\qty(-\dfrac{2}{\sqrt{3}})<0\longrightarrow$ maximum
-		\end{itemize}
-	\end{enumerate}
-	\begin{itemize}
-		\item Largest output is at $-\dfrac{2}{\sqrt{3}}$ or at $2$.\par $f(2)=2^3-4(2)+2=1$\par $f\qty(-\dfrac{2}{\sqrt{3}})=\qty(-\dfrac{2}{\sqrt{3}})^3-4\qty(-\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(\dfrac{2}{3})+1>1$
-		\item Smallest output is at $-2$ or $\dfrac{2}{\sqrt{3}}.$\par $f(-2)=(-2)^3-4(-2)+2=1$\par $f\qty(\dfrac{2}{\sqrt{3}})=\qty(\dfrac{2}{\sqrt{3}})^3-4\qty(\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(-\dfrac{2}{3})+1<1$
-	\end{itemize}
-	Therefore, $f([-2,2])=\qty[1-\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}}), 1+\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}})]$
-\end{prf}	
-\end{framed}
-\begin{thm}
-	Let $f:A\to B$ be a function, and let $X$ and $Y$ be subsets of $A$. Then: 
-	\begin{enumerate}
-		\item\label{thm3.1.2a} $f(X\cup Y)=f(X)\cup f(Y)$
-		\item\label{thm3.1.2b} $f(X\cap Y)\subseteq f(X)\cap f(Y)$
-	\end{enumerate}	
-\end{thm}
-\begin{framed}
-\noindent\texttt{We will prove Theorem 3.2.1(\ref{thm3.1.2a}) in this section. Theorem 3.2.1(\ref{thm3.1.2b}) is left as an exercise. }
-\begin{prf}
-	($\subseteq$): Let $b\in f(X\cup Y).$\par\hspace{5mm} Then, $\exists a\in X\cup Y\st f(a)=b.$\par\hspace{5mm} Since $a\in X$ and $f(a)=b,$ by definition of image, $b\in f(X).$\par\hspace{5mm} Then, $b\in f(X)\cup f(Y).\qquad\square$\par 
-	($\supseteq$): Suppose $b\in f(X)\cup f(Y).$\par\hspace{5mm} Then, $b\in f(X)$ or $b\in f(Y).$\par\hspace{5mm} WLOG, suppose $b\in f(X).$\par\hspace{5mm} Then, $\exists a\in X\st f(a)=b.$\par\hspace{5mm} Since $a\in X,$ $a\in X\cup Y.$ So, $b=f(a)\in f(X\cup Y).$
-\end{prf}
-\end{framed}
-\begin{rmk}
-	Give a function $f:A\to B$ and subsets $X,Y\subseteq A,$ it is not true, in general, that $f(X\cap Y)=f(X)\cap f(Y).$ 
-\end{rmk}
-\begin{df}[Inverse Image, or Pre-Image]
-	Let $f:A\to B$ be a function, and let $W\subseteq B.$ The \textbf{inverse image} of $W$ with respect to $f$ denoted $f^{-1}(W),$ is the set of elements in the domain which are sent, by applying the rule $f$, to an element of $W$ in $B$. That is, \[f^{-1}(W)=\qty{a\in A\mid f(a)\in W}.\]
-	\begin{rmk}
-	\begin{enumerate}
-		\item $f(X)\subseteq B$ but $f^{-1}(W)\subseteq A.$
-		\item To show $y\in f(X),$ \textbf{find} an $a\in X\st f(a)=y.$
-		\item To show $y\in f^{-1}(W),$ \textbf{show} $f(y)\in W.$
-		\item $y\in f^{-1}(W)\iff f(y)\in W.$
-		\item If $f(X)=f(Y)$, we cannot determine if $X=Y.$
-		\item $f^{-1}(B)=A,$ but $f(A)\neq B.$
-		\item If $f^{-1}(X)=f^{-1}(Y),$ we cannot determine if $X=Y.$
-	\end{enumerate}
-	\end{rmk}
-\end{df}
-\begin{framed}
-\noindent\texttt{Suppose $f:\R\to\R$ is defined by $f(x)=3x+1.$}
-\begin{clm}$\f(W_2)=(1,\infty),$ where $W_2=(4,\infty)$\end{clm}
-\begin{prf}
-	($\subseteq$): Let $x\in f^{-1}(W_2).$\par\hspace{5mm} Then, $f(x)\in W_2=(4,\infty)$\par\hspace{5mm} So, $f(x)=3x+1>4.$ So, $x>1.$\par\hspace{5mm} That is, $x\in(1,\infty).\qquad\square$\par 
-	($\supseteq$): Let $x\in(1,\infty).\qquad$\big[WTS: $x\in f^{-1}(W_2).$\big]\par\hspace{5mm} Since $x>1,$ so $3x>3$ and $3x+1>4.$\par\hspace{5mm} That is, $f(x)>4.$\par\hspace{5mm} So, $f(x)\in W_2,$ or $x\in f^{-1}(W_2).$
-\end{prf}
-\begin{clm}$f^{-1}(W_4)=X,$ where $W_4=\Z$ and $X=\qty{\dfrac{k-1}{3}\mid k\in\Z}.$\end{clm}
-\begin{prf}
-	($\subseteq$): Let $x\in f^{-1}(W_4).$\par\hspace{5mm} So, $f(x)\in W_4.$ That is, $f(x)\in\Z.$\par\hspace{5mm} Hence, $3x+1=k\fs k\in\Z.$\par\hspace{5mm} Therefore, $x=\dfrac{k-1}{3}.$ So, $x\in X.\qquad\square$\par 
-	($\supseteq$): Let $x\in X.$\par\hspace{5mm} Then, $x=\dfrac{k-1}{3}\fs k\in\Z.\qquad$\big[WTS: $x\in f^{-1}(W_4)$. WTS: $f(x)\in W_4$\big]\par\hspace{5mm} $f(x)=f\qty(\dfrac{k-1}{3})=3\qty(\dfrac{k-1}{3})+1=k-1+1=k.$\par\hspace{5mm} Since $k\in\Z,$ $f(x)\in\Z=W_4.$\par\hspace{5mm} So, $x\in f^{-1}(W_4).$
-\end{prf}
-\end{framed}
-\begin{thm}
-	Let $f:A\to B$ be a function, and let $W$ and $Z$ be subsets of $B$. Then: 
-	\begin{enumerate}
-		\item\label{thm3.1.3(1)} $\f(W\cup Z)=\f(W)\cup \f(Z)$
-		\item\label{thm3.1.3(2)} $\f(W\cap Z)=\f(W)\cap \f(Z)$
-	\end{enumerate}	
-\end{thm}
-\begin{framed}
-\noindent\texttt{We will prove Theorem 3.1.3(\ref{thm3.1.3(1)}) in this section. Theorem 3.1.3(\ref{thm3.1.3(2)}) is left as an exercise.}
-\begin{prf}
-	($\subseteq$): Let $y\in\f(W\cup Z).$ Then, $f(y)\in W\cup Z.$\par\hspace{5mm} By definition of union, $f(y)\in W$ or $f(y)\in Z.$\par\hspace{5mm} WLOG, suppose $f(y)\in W.$ Then, $y\in\f(W).$\par\hspace{5mm} But $\f(W)\subseteq\f(W)\cup\f(Z).$\par\hspace{5mm} So, $y\in\f(W)\cup\f(Z).\qquad\square$\par 
-	($\supseteq$): Let $y\in\f(W)\cup\f(Z).$ By definition of union, $y\in\f(W)$ or $y\in\f(Z).$\par\hspace{5mm} WLOG, suppose $y\in\f(W).$ Then, $f(y)\in W.$\par\hspace{5mm} But, $W\subseteq W\cup Z.$ So, $f(y)\in W\cup Z.$\par\hspace{5mm} So, $y\in\f(W\cup Z).$
-\end{prf}
-\end{framed}
-\begin{df}[Epsilon-Delta Definition of Continuity]\label{df3.1.4}
-	Let $A$ and $B$ be open intervals of $\R$, and let $f:A\to B$ be a function. Let $a\in A.$ We say $f$ is \textbf{continuous at} $a$ if the following statement is true: \[\forall\varepsilon>0,\ \exists\delta>0\st|x-a|<\delta\implies|f(x)-f(a)|<\varepsilon.\]
-	\begin{rmk} The following statement can be also rephrased as ``If $x\in(a-\delta,a+\delta),$ then $f(x)\in(f(a)-\varepsilon,f(a)+\varepsilon).$''\end{rmk}
-	\begin{enumerate}
-		\item $|x-a|<\delta$ means the inputs are at most $\delta$ away from $a$.
-		\item $|f(x)-f(a)|<\varepsilon$ means the outputs are at most $\varepsilon$ away from $f(a)$.	
-	\end{enumerate}
-	\begin{rmk}
-		The idea of writing a proof: given $\varepsilon>0,$ FIND $\delta>0$ that works.	
-	\end{rmk}
-\end{df}
-\begin{framed}
-\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=2x+1$ is continuous at $x=3$. }
-\begin{prf}
-	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{2}>0.$\par Suppose $x\in\R\st |x-3|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(3)|&=|2x+1-7|\\&=|2x-6|\\&=|2(x-3)|\\&=2|x-3|<2\cdot\delta=2\cdot\dfrac{\varepsilon}{2}=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-3|<\delta\implies|f(x)-f(3)|<\varepsilon.\]
-\end{prf}
-\end{framed}
-\begin{framed}
-\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=3+5x$ is continuous at $x=4$. }
-\begin{prf}
-	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{5}>0.$\par Suppose $x\in\R\st|x-4|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(4)|&=|3+5x-23|\\&=|5x-20|\\&=|5(x-4)|\\&=5|x-4|<5\cdot\delta=5\cdot\dfrac{\varepsilon}{5}=\varepsilon\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-4|<\delta\implies|f(x)-f(4)|<\varepsilon.\]
-\end{prf}
-\begin{rmk} In this example, $\delta$ ONLY depends on $\varepsilon$! So, the same $\delta$ will work when showing $f(x)$ is continuous at $x=1.$\end{rmk}
-\end{framed}
-\begin{framed}
-\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=0$.}
-\begin{prf}
-	Let $\varepsilon>0$ be given. Choose $\delta=\sqrt{\varepsilon}.$\par Note that since $\varepsilon>0,$ $\delta>0.$\par Suppose $x\in\R\st|x-0|<\delta.$ That is, $|x|<\delta.$\par Then, \[\begin{aligned}
-		|f(x)-f(0)|=|x^2-0|=|x^2|&=|x|\cdot|x|\\&<\delta\cdot\delta=\qty(\sqrt{\varepsilon})\cdot\qty(\sqrt{\varepsilon})=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta=\sqrt{\varepsilon}>0\st|x-0|<\delta\implies|f(x)-f(0)|<\varepsilon.\]	
-\end{prf}
-\begin{clm}
-	The same choice	of $\delta$ will not work when proving $f(x)=x^2$ is continuous at $x=1$ as well.
+\begin{clm}\label{clm5.1.1}
+	Let $a,b,c\in\Z.$ If $a+b=a+c,$ then $b=c$.
 \end{clm}
-\begin{center}
-WTS: $\exists\epsilon\st$ for $\delta=\sqrt{\epsilon},\ \exists x\in\R\st|x-1|<\delta$ and $|f(x)-f(1)|\geq\epsilon|.$
-\end{center}
 \begin{prf}
-	Consider what happens when $\epsilon=1.$ Then, $\delta=\sqrt{\epsilon}=\sqrt{1}=1.$\par Want: $|f(x)-f(1)|<\epsilon=1.$ That is, $|f(x)-1|<1.$\par So, $-1<f(x)-1<1$, or $0<f(x)<2.$\par When $\delta=1,$ we have $|x-1|<\delta=1.$\par That is, $-1<x-1<1$, or $0<x<2$.\par Note that $\forall x\in(\sqrt{2},2),$ $f(x)>2.$\par So, it is not true that $|f(x)-1|<\epsilon.$
+	Since $a\in\Z,$ $\exists (-a)\in\Z\st a+(-a)=0$ by \textit{additive inverse}.\par Adding $(-a)$ to the left side: \[\begin{aligned}(-a)+(a+b)&=((-a)+a)+b\qquad\big[\textit{associativity}\big]\\&=0+b\qquad\big[\textit{additive inverse}\big]\\&=b\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par Similarly, we can show $(-a)+(a+c)=c$\par So, we show that $b=c.$
 \end{prf}
-\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=1$.}
-\begin{center}
-WTS: $\forall\epsilon>0,\exists\delta>0\st |x-1|<\delta\implies|f(x)-f(1)|<\epsilon.$	
-\end{center}
-\begin{prf}
-	Let $\epsilon>0$ be given. Choose $\delta=\min\qty{1,\dfrac{\epsilon}{3}}\ \qty(\delta\text{ is the smaller of }1\text{ and }\dfrac{\epsilon}{3})$.\par Note that $\delta\leq1$ and $\delta\leq\dfrac{\epsilon}{3}.$\par Suppose $x\in\R\st|x-1|<\delta.$\par Since $|x-1|<\delta\leq1.$ So, $-1<x-1<1,$ or $0<x<2.$\par So, $1<x+1<3.$ That is, $|x+1|<3.$\par Then, \[\begin{aligned}|f(x)-f(1)|=|x^2-1|&=|(x-1)(x+1)|\\&=|x-1||x+1|\\&<3|x-1|\\&<3\cdot\delta\\&=3\cdot\min\qty{1,\dfrac{\epsilon}{3}}\\&\leq3\cdot\dfrac{\epsilon}{3}=\epsilon\end{aligned}\]\par Since $\epsilon$ was arbitrary, we've proven that \[\forall\epsilon>0,\exists\delta=\min\qty{1,\dfrac{\epsilon}{3}}\st|x-1|<\delta\implies|f(x)-f(1)|<\epsilon.\]
-\end{prf}
-\begin{rmk}
-	For quadratic functions, $\delta$ changes with $\epsilon$ and choice of $a$.	
-\end{rmk}
 \end{framed}
-\begin{df}[Discontinuity]
-	The definition of discontinuity is, essentially, the negation of the definition of continuity (Definition \ref{df3.1.4}): \[\exists\epsilon>0\st\forall\delta>0,\ \exists x\st|x-a|<\delta\text{ but }|f(x)-f(a)|\geq\epsilon.\]	
+\begin{framed}
+\begin{clm}\label{clm5.1.2}
+	Let $a\in\Z.$ Then, $a\cdot0=0\cdot a=0$.
+\end{clm}
+\begin{prf}
+	Note by \textit{commutativity}, $a\cdot0=0\cdot a$. So, it's enough to show $a\cdot0=0.$\par Notice that \[\begin{aligned}a\cdot0+a\cdot0&=a(0+0)\qquad\big[\textit{distributivity}\big]\\&=a\cdot0\qquad\big[\textit{additive identity}\big]\\&=a\cdot0+0\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par So, $a\cdot0+a\cdot0=a\cdot0+0.$ By Claim \ref{clm5.1.1}, we see that $a\cdot0=0.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{clm}
+	Let	$a,b\in\Z.$ Then $(-a)b=a(-b)=-ab$.
+\end{clm}
+\begin{rmk}
+	The three expressions are different: $(-a)b$ means the additive inverse of $a$ and multiplying that by $b$; and $-ab$ is the additive inverse of the product of $a$ and $b$.	
+\end{rmk}
+\begin{prf}	
+	In this proof, we will show that $(-a)b=-ab,$ and the other side will be left as an exercise.\par WTS: $(-a)b$ is the additive inverse of $ab$. That is, WTS: $(-a)b+ab=0.$\par Notice that \[\begin{aligned}(-a)b+ab&=((-a)+a)b\qquad\big[\textit{distributivity}\big]\\&=0\cdot b\qquad\big[\textit{additive inverse}\big]\\&=0\qquad\big[\text{From Claim \ref{clm5.1.2}}\big]\end{aligned}\] So, $(-a)b$ is the additive inverse of $ab$. That is, \[(-a)b=-ab.\]
+\end{prf}
+\end{framed}
+\begin{clm}\label{clm5.1.4}
+	If $a,b\in\Z,$ then $(-a)(-b)=ab.$	
+	\begin{rmk} We leave the proof of this claim as an exercise. \end{rmk}
+\end{clm}
+\begin{framed}
+\noindent\texttt{Let $x\in\Z$ and $x\neq0.$ Then $x^2=x\cdot x\in\Zp.$} \label{Problem1}
+\begin{prf}
+	Suppose $x\in\Z$ and $x\neq0$. Since $x\neq0,$ by \textit{trichotomy}, $x\in\Zp$ or $-x\in\Zp$\par$\boxed{\text{Case }1}$ Suppose $x\in\Zp.$ Then, $x^2=x\cdot x\in\Zp$ by \textit{closure for $\Zp$}.\par$\boxed{\text{Case }2}$ Suppose $-x\in\Zp.$ Then, $(-x)(-x)\in\Zp$ by \textit{closure for $\Zp$}.\par\hspace{5mm}But $(-x)(-x)=x\cdot x=x^2$ by Claim \ref{clm5.1.4}. So, $x^2\in\Zp.$
+\end{prf}	
+\end{framed}
+\begin{nota}
+	\[a-b=a+(-b)\]\[ab=(a)\cdot(b)\]
+\end{nota}
+\begin{df}\label{df5.1.2}
+	Let $x,y\in\Z$. We say $x<y$ if $y-x\in\Zp.$
+	\begin{rmk} We can use the axioms of closure and trichotomy to establish some well-known facts about inequalities. \end{rmk}
 \end{df}
 \begin{framed}
-\noindent\texttt{Consider the Heavy-side Function \[H(x)=\begin{cases}0,\quad x<0\\1,\quad x\geq0\end{cases}.\] Show that $H$ is discontinuous at $x=0.$}
+\begin{clm}
+	Let $a,b,c\in\Z.$ Then, exactly one of the following holds: $a=b$, $a<b$, or $b<a$.
+\end{clm}
+	\begin{prf}
+		Let $a,b\in\Z$\par As before, by \textit{additive inverse}, $\exists(-b)\in\Z\st b+(-b)=0.$ Then $a-b\in\Z.$\par By \textit{trichotomy}, there are 3 cases to consider:\par$\boxed{\text{Case }1}$ $a-b=0,$ so then adding $b$ on both sides, we get $a=b.$\par $\boxed{\text{Case }2}$ $a-b\in\Zp$, then by Definition \ref{df5.1.2}, $a>b$.\par $\boxed{\text{Case }3}$ $-(a-b)\in\Zp.$ But \[\begin{aligned}-(a-b)&=-a-(-b)\qquad\big[\textit{distributivity}\big]\\&=-a+b\\&=b-a.\end{aligned}\]\par\hspace{5mm}So, by Definition \ref{df5.1.2}, $b>a.$
+	\end{prf}
+\end{framed}
+\begin{clm}
+	Let $a\in\Z.$ If $a>0$, then $-a<0$, and if $a<0$, then $-a>0.$	
+\end{clm}
+\begin{clm}
+	Let $a,b\in\Z.$ If $a>0$ and $b>0$, then $ab>0.$
+\end{clm}
+\begin{clm}
+	Let $a,b,c\in\Z.$ If $a<b$ and $b<c$, then $a<c$.
+\end{clm}
+\begin{clm}
+	Let $a,b,c\in\Z.$ If $a<b$, then $a+c<b+c.$
+\end{clm}
+
+\begin{thm}[Well-Ordering Principle]\label{thm5.1.1}
+	Every non-empty subset of the positive integers has a smallest element. 	(If $X\subseteq\Zp$ and $X\neq\emptyset$, then $\exists x_0\in X\st\forall a\in X$ with $a\neq x_0$, we have $a-x_0\in\Zp.$)
+\end{thm}
+\begin{framed}
+\begin{thm}\label{thm5.1.2}
+	There is no integer $x$ such that $0<x<1.$	
+\end{thm}
 \begin{prf}
-	Choose $\epsilon=\dfrac{1}{2}.$\par Then, we need $|H(x)-H(0)|<\dfrac{1}{2}.$\par That is, we want $|H(x)-1|<\dfrac{1}{2},$ or $-\dfrac{1}{2}<H(x)-1<\dfrac{1}{2}.$\par So, we want $\dfrac{1}{2}<H(x)<\dfrac{3}{2}.$\par Notice that $\forall x\in(-\delta,0),\ H(x)=0$.\par So, $H(x)\notin\qty(\dfrac{1}{2},\dfrac{3}{2}).$
+	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\emptyset.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm5.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df5.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
 \end{prf}
 \end{framed}
 
-\subsection{Surjective and Injective Functions}
-\begin{df}[Surjective, Injective, and Bijective Functions]
-	A function $f: A\to B$ is 
-	\begin{itemize}
-		\item \textbf{injective} or \textbf{one-to-one} if $\forall x,y\in A,$ $f(x)=f(y)$ implies $x=y.$
-		\item \textbf{surjective} or \textbf{onto} if $\forall b\in B,$ $\exists a\in A\st f(a)=b$
-		\item \textbf{bijective} if $f$ is both injective and surjective. 
-	\end{itemize}	
-\end{df}
-\begin{rmk}
-	If $f$ is a surjective function, then \[\text{Codomain of }f=\Im(f).\]	
-\end{rmk}
-\begin{framed}
-\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by $f(n)=3n+2$ is injective and/or surjective.}
-\begin{clm} $f$ is injective but nor surjective. \end{clm}
-\begin{prf}
-\begin{itemize}
-	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m).$\par Since $f(n)=f(m),$ we have $3n+2=3m+2.$\par Then, $3n=3m,$ or $n=m.$\par Since $f(n)=f(m)\implies n=m,$ we have $f$ is injective. 
-	\item \textbf{\underline{Surjective}}: Choose $n=4\in\Z.$\par Suppose for the sake of contradiction, $\exists a\in\Z\st f(a)=4.$\par Then, $3a+2=4.$ So, $3a=2,$ or $a=\dfrac{2}{3}.$\par \begin{center}$\divideontimes$ This contradicts with the fact that $a\in\Z.$\end{center}\par So, $f$ is not surjective. 
-\end{itemize}	
-\end{prf}
-\end{framed}
-\begin{framed}
-\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by \[f(n)=\begin{cases}n-1,\quad&n\text{ odd}\\n+3,\quad&n\text{ even}\end{cases}\] is injective and/or surjective.}
-\begin{clm} $f$ is both injective and surjective. \end{clm}
-\begin{prf}
-\begin{itemize}
-	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m)$.\par $\boxed{\text{Case }1}$ $n$ and $m$ both even.\par\hspace{5mm} So, $n+3=m+3.$ So, $n=m.$\par $\boxed{\text{Case }2}$ $n$ and $m$ both odd.\par\hspace{5mm} So, $n-1=m-1.$ So, $n=m.$\par $\boxed{\text{Case }3}$ $n$ is odd and $m$ is even. \par\hspace{5mm} If $n$ is odd, $f(n)=n-1$ is even.\par\hspace{5mm} If $m$ is even, $f(m)=m+3,$ which is odd. \par\hspace{5mm} So, $f(n)\neq f(m).$ That is, this case is impossible.\par Since $f(n)=f(m)\implies n=m.$ So, $f$ is injective. 
-	\item \textbf{\underline{Surjective}}: WTS: $\forall b\in\Z, \exists a\in\Z\st f(a)=b.$\par Let $b\in\Z.$\par $\boxed{\text{Case }1}$ $b$ is odd.\par\hspace{5mm} Since $b$ is odd, we know that $a=b-3\in\Z$ and $a$ is even.\par\hspace{5mm} Then, $f(a)=a+3=(b-3)+a=b.$\par\hspace{5mm} So, for $a=b-3,\ f(a)=b.$\par $\boxed{\text{Case }2}$ $b$ is even.\par\hspace{5mm} Since $b$ is even, we know that $a=b+1\in\Z$ and $a$ is odd.\par\hspace{5mm} Then, $f(a)=a-1=(b+1)-1=b.$\par\hspace{5mm} So, for $a=b+1,$ we have $f(a)=b.$
-\end{itemize}	
-\end{prf}
-\end{framed}
-\begin{df}[Identity Function]
-	The identity function on a set $A$ is the function \[i_A: A\to A\] defined to be $i_A(x)=x$ for all $x\in A.$ Note that for any set $A$, the identity function $i_A$ is bijective. 
-\end{df}
-\begin{rmk}[The Importance of Domain/Codomain]
-	Suppose $f:A\to B$ is a function. The notions of injective and surjective are \textit{very} sensitive to the domain $A$ and codomain $B$. Even if two functions are given by the same ``formula'' $f$, the domain for one might be too big (\textit{and thus ``over-hit'' certain elements}) or the codomain might be too big (\textit{and thus ``under-hit'' certain elements}).	
-\end{rmk}
-\begin{df}[Tuple Equality]
-	\[(a,b)=(c,d)\iff a=c\text{ and }b=d.\]
-\end{df}
-\begin{framed}
-\noindent\texttt{Consider $f:\Z\times\Z\to\Z$ defined by $f(n,m)=nm.$ Is it injective? Is it surjective?}
-\begin{clm} It is not injective.\end{clm}
-\begin{prf}
-	Note that $f(1,4)=1\times4=4$ and $f(2,2)=2\times2=4.$\par However, $(1,4)\neq(2,2).$ So $f$ is not injective. 
-\end{prf}
-\begin{clm} It is surjective.\end{clm}	
-\begin{prf}
-	Let $k\in\Z\qquad[\text{WTS: }\exists(a,b)\in\Z\times\Z\st f(a,b)=k]$\par Note that $(1,k)\in\Z\times\Z.$ Also, $f(1,k)=(1)(k)=k.$\par Since $\exists(1,k)\in\Z\times\Z\st f(1,k)=k,$ $f$ is surjective. 
-\end{prf}
-\end{framed}
-\begin{framed}
-\noindent\texttt{Prove that the function $f:\R-\qty{2}\to\R-\qty{3}$ defined by \[f(x)=\dfrac{3x}{x-2}\] is bijective.}
-\begin{prf}
-	\begin{itemize}
-		\item \textbf{\underline{Injective}}: Let $x,y\in\R-\qty{2}\st f(x)=f(y)\qquad[\text{WTS: }x=y]$\par Since $f(x)=f(y),$ we have \[\begin{aligned}\dfrac{3x}{x-2}&=\dfrac{3y}{y-2}\\3x(y-2)&=3y(x-2)\\3xy-6x&=3xy-6y\\-6x&=-6y\\x&=y\end{aligned}\]\par So, $f$ is injective. 
-		\item \textbf{\underline{Surjective}}: Let $y\in\R-\qty{3}\qquad[\text{WTS: }\exists x\in\R-\qty{2}\st f(x)=y]$\par Let's set $x=\dfrac{2y}{y-3}.$\par  Note that since $y\neq3,\ x\in\R.$\par Also, if $x=2,$ then $\dfrac{2y}{y-3}=2.$ So, $2y=2y-6$ or $0=-6.$ This is impossible. \par So, $\dfrac{2y}{y-3}\in\R-\qty{2}.$ Now, \[f(x)=f\qty(\dfrac{2y}{y-3})=\dfrac{\ \ 3\qty(\dfrac{2y}{y-3})\ \ }{\ \ \qty(\dfrac{2y}{y-3})-2\ \ }=\dfrac{6y}{2y-2(y-3)}=y.\]\par So, $f$ is surjective. 
-	\end{itemize}\par 
-	Since $f$ is both injective and surjective, $f$ is bijective. 
-\end{prf}	
-\end{framed}
-\begin{framed}
-\noindent\texttt{Prove that the function $g:\pow(\Z)\to\pow(\R)$ given by $g(A)=A\cup\qty{\pi}$ is injective but not surjective.}
-\begin{prf}
-	\begin{itemize}
-		\item \textbf{\underline{Injective}}: Suppose $X,Y\in\pow(\Z)\st g(X)=g(Y)\qquad[\text{WTS: }X=Y]$\par Note that $g(X)=g(Y)$ means $X\cup\qty{\pi}=Y\cup\qty{\pi}.$\par Suppose $x\in X.$ Since $x\in X,$ we have $x\in X\cup\qty{\pi}$\par So, by assumption, $x\in Y\cup\qty{\pi}.$\par So, by definition of union, $x\in Y,$ or $x\in\qty{\pi}.$\par Note that $x\notin\qty{\pi}$ because $x\in\Z$ and $x\neq\pi.$\par So, then $x\in Y.$ So, $X\subseteq Y$\par Similarly, $Y\subseteq X.$ So, $X=Y.$\par So, $g$ is injective. 
-		\item \textbf{\underline{Not Surjective}}: Note that $\Z\subseteq\R.$ So, $\Z\in\pow(\R).$\par Further, $\forall X\in\pow(\Z),\ g(X)=X\cup\qty{\pi}.$\par So, $\pi\in g(X).$ So, since $\pi\in\Z.$\par We've shown that $\forall X\in\pow(\Z),$ $g(X)\neq\Z.$\par So, $g$ is not surjective.
-	\end{itemize}
-\end{prf}
-\end{framed}
-
-\subsection{Composition and Invertibility}
-\begin{df}[Composition of Functions]
-	Let $f:A\to B$ and $g:B\to C$ be functions, The \textbf{composition} of $f$ with $g$, denoted $g\of f$ is the function $g\of f:A\to C$ defined by $(g\of f)(x)=g(f(x))$ for all $x\in A.$	
-\end{df}
-\begin{nota}
-	Sometimes, we can also use the notation $gf$ to denote the composition $g\of f.$	
-\end{nota}
-\begin{rmk}
-	The order of function composition matters, but parenthesis do not matter.	
-\end{rmk}
-\begin{df}[Function Equality]
-	Two functions $f$ and $g$ are equals, $f=g$, if $\forall x\in\text{Domain of }f=\text{Domain of }g,$ $f(x)=g(x).$
-\end{df}
-\begin{framed}
-\noindent\texttt{Let $f:A\to B,$ $g:B\to C,$ and $h:C\to D$ be functions. Show that function composition is \textit{associative}. That is, show that $(hg)f=h(gf).$}
-\begin{prf}
-	Note that both $(hg)f$ and $h(gf)$ are functions from $A\to D$.\par Suppose $a\in A\qquad\qty\Big[\text{WTS: }\qty\big[(hg)f](a)=\qty\big[h(gf)](a)]$\par Consider \[\qty\big[(hg)f](a)=(hg)(f(a))=h\qty\big(g(f(a)))\] \[\qty\big[h(gf)](a)=h\qty((gf)(a))=h\qty\big(g(f(a)))\]\par So, we see that $\forall a\in A,$ $\qty\big[(hg)f](a)=\qty\big[h(gf)](a).$\par So, $(hg)f=h(gf).$
-\end{prf}
-\end{framed}
-\begin{framed}
-\begin{lem}\label{lem3.3.1}
-	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are injective, then $g\of f$ is injective. 
-\end{lem}
-\begin{prf}
-	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ be injective.\par Suppose $x,y\in A\st (g\of f)(x)=(g\of f)(y),$ so $g(f(x))=g(f(y)).$\par Since $g$ is injective, $f(x)=f(y).$\par Since $f$ is injective, $x=y.$
-\end{prf}
-\end{framed}
-\begin{framed}
-\begin{lem}\label{lem3.3.2}
-	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are surjective, then $g\of f$ is surjective. 
-\end{lem}
-\begin{prf}
-	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ are surjective.\par Let $c\in C\qquad[\text{WTS: }\exists a\in A\st(g\of f)(a)=c]$\par Since $g$ is surjective, $\exists b\in B\st g(b)=c.$\par Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par So, $g(f(a))=g(b)=c.$ So, $(g\of f)(a)=c.$\par So, we found $a\in A\st(g\of f)(a)=C.$\par So, $g\of f$ is surjective.
-\end{prf}
-\end{framed}
-\begin{framed}
-\begin{prop}
-	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are bijective, so is $g\of f.$
-\end{prop}
-	\begin{rmk}
-		$f\of g$ is not always defined because we don't know if $C\subseteq A.$
-	\end{rmk}
-\begin{prf}
-	Let $f:A\to B$ and $g:B\to C$ be functions.\par Suppose $f$ and $g$ are bijective.\par Since $f$ and $g$ are injective, by Lemma \ref{lem3.3.1}, $g\of f$ is injective.\par Since $f$ and $g$ are surjective, by Lemma \ref{lem3.3.2}, $g\of f$ is surjective.\par So, by definition of bijectivity, $g\of f$ is bijective. 
-\end{prf}
-\end{framed}
-\begin{df}[Set of Functions]
-	Let $A$ and $B$ be non-empty sets. The \textbf{set of all functions from} $A$ to $B$ is denoted $\F(A,B).$ In the special case that $A=B,$ we denote the set of functions as $\F(A),$ instead of $\F(A,A).$
-\end{df}
-\begin{df}[Formal Definition of Composition of Functions]
-	Let $A,$ $B,$ and $C$ be non-empty sets. Then composition of functions defines a function \[\F(B,C)\times\F(A,B)\to\F(A,C)\] given by $(g,f)\mapsto g\of f.$
-	\begin{rmk}
-		Note that $g\in\F(B,C)$ and $f\in\F(A,B).$
-	\end{rmk}	
-\end{df}
-\begin{thm}
-	If $A$ and $B$ are finite and non-empty, \[\qty|\F(A,B)|=\qty|B|^{\qty|A|}.\]	
-\end{thm}
-\begin{df}[Invertible Functions]
-	Let $f:A\to B$ be a function. We say $f$ is \textbf{invertible} if there exists a function $g:B\to A$ such that both of the following are true: \begin{itemize}
-		\item $g\of f=i_A$ \item $f\of g=i_B$
-	\end{itemize}
-\end{df}
-\begin{nota}
-	We denote the inverse of $f$ as $\f$. So, we have $\f\of f=i_A$ and $f\of\f=i_B,$ where $i_A$ and $i_B$ are identity functions on $B$ and $A$. 	
-	\begin{rmk}\[\f\neq\dfrac{1}{f}\] \end{rmk}
-\end{nota}
-\begin{framed}
-\noindent\texttt{Let $f:\R\backslash\qty{1}\to\R\backslash\qty{-1}$ be given by $f(x)=\dfrac{x}{1-x}.$ Using the function $g:\R\backslash\qty{-1}\to\R\backslash\qty{1},$ given by $g(x)=\dfrac{x}{1+x},$ show that $f$ is invertible}
-Need to check: $g\of f=i_A$ and $f\of g=i_B.$
-\begin{prf}
-	Let $x\in A.$\par \[(g\of f)(x)=g(f(x))=\dfrac{f(x)}{1+f(x)}=\dfrac{\ \ \dfrac{x}{1-x}\ \ }{\ \ 1+\dfrac{x}{1-x}\ \ }=\dfrac{x}{1-x+x}=\dfrac{x}{1}=x.\]\par So, $\forall x\in A,\ (g\of f)(x)=x.$ So, $g\of f=i_A.$\par Similarly, we can show $(f\of g)(x)=x\quad\forall x\in B.$
-\end{prf}
-\end{framed}
-\begin{rmk}[How would we find $g$ if it is not given?]
-	Use scratch work to compute the formula of $g(x)$, then check the domain and codomain, and show $f\of g=i_B$ and $g\of f=i_A.$
-\end{rmk}
-\begin{thm}\label{thm3.3.2}
-	Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.
-\end{thm}
-\begin{rmk}
-	Let $f:A\to B$ be a function.\begin{itemize}
-		\item $f$ is \textbf{bijective} means $f$ preserves and captures the information between $A$ and $B$.
-		\item $F$ is \textbf{invertible} means the action of $f$ from $A$ to $B$ can be undone by using a function from $B$ to $A$.
-	\end{itemize}\par 
-	Theorem \ref{thm3.3.2} is saying that the notions of \textbf{bijectivity} and \textbf{invertibility} are logically \textbf{equivalent}. So, a function $f$ is either both bijective and invertible or it is neither. 
-\end{rmk}
-\begin{framed}
-\noindent\texttt{Prove Theorem \ref{thm3.3.2}: Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.}
-\begin{prf}
-	($\Rightarrow$): Suppose $f$ is invertible $\qquad[\text{WTS: }f\text{ is bijective.}]$\par\hspace{5mm} That is, $\exists\f\in\F(B,A)\st f\of\f=i_B$ and $\f\of f=i_A.$\par\begin{itemize}
-		\item \underline{\textbf{$f$ is injective}}: Suppose $x,y\in A\st f(x)=f(y).$\par Apply $\f$ to both sides, we get \[\begin{aligned}\f(f(x))&=\f(f(y))\\(\f\of f)(x)&=(\f\of f)(y)\\(i_A)(x)&=(i_A)(y)\\x&=y.\end{aligned}\]
-		\item \underline{\textbf{$f$ is surjective}}: Let $b\in B\qquad[\text{WTS: }\exists a\in A\st f(a)=b.]$\par Choose $a=\f(b)\in A.$\par Taking $f$ on both sides, we get \[\begin{aligned}f(a)&=f(\f(b))\\&=(f\of\f)(b)\\&=(i_B)(b)\\&=b\end{aligned}\]\par So, $\exists a\in A\st f(a)=b.$ So, $f$ is surjective.$\qquad\square$
-	\end{itemize}\par 
-	($\Leftarrow$): Suppose $f\in\F(A,B)$ is bijective. $\qquad[\text{WTS: }f\text{ is invertible}.]$\par\hspace{5mm} Let $b\in B.$ Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par\hspace{5mm} Suppose $\exists c\in A\st f(c)=b.$\par\hspace{5mm} Since $f$ is injective, and $f(a)=f(c)=b,$ we have $a=c.$\par\hspace{5mm} So, $\exists$ \underline{unique} $a\in A\st f(a)=b.$\par\hspace{5mm} Let's define $\f(b)=a.$ Then, $\f\in\F(B,A).\qquad[\text{WTS: }\f\text{ is the inverse of }f.]$\par\begin{itemize}
-		\item \underline{\textbf{$\f\of f=i_A$}}: Let $a\in A.$ Suppose $f(a)=b,$ then $\f(b)=a.$\[(\f\of f)(a)=\f(f(a))=\f(b)=a.\]\par So, $\f\of f=i_A.$
-		\item \underline{\textbf{$f\of\f=i_B$}}: Let $b\in B.$ Suppose $\f(b)=a,$ then $f(a)=b.$\[(f\of\f)(b)=f(\f(b))=f(a)=b.\]\par So, $f\of\f=i_B.$
-	\end{itemize}\par Therefore, $\f$ is the inverse of $f$, or $f$ is invertible. 
-\end{prf}
-\end{framed}
-\begin{thm}
-It turns out that a function can have at most one inverse function. Thus, we denote \textit{the} inverse function of $f$ by $\f.$	
+\subsection{Induction}
+\begin{cor}[Introduction to Mathematical Induction]
+	The most powerful consequence of the well-ordering	principle (Theorem \ref{thm5.1.1}) is the technique of mathematical induction. The central idea of mathematical induction is that \begin{center}\textit{To prove a statement that depends on an integer $n$, denoted $P(n)$, it is enough to prove it about a smaller integer $m$, $P(m)$, and then show that since $m<n,$ $P(m)\implies P(n)$.}\end{center}
+\end{cor}
+\begin{thm}[First Principle of Mathematical Induction]\label{induction}
+	Let $P(n)$ be a statement about the positive integer $n.$ Suppose that 
+	\begin{enumerate}
+		\item $P(1)$ is true; and 
+		\item\label{condition2} $\forall k\in\Z\st k\geq2,\ P(k-1)\implies P(k)$.
+	\end{enumerate}	Then, $P(n)$ is true for all $n\in\Zp.$
+	\begin{rmk} Equivalently, we can write the Condition \ref{condition2} as $\forall k\geq1,\ P(k)\implies P(k+1).$ \end{rmk}
 \end{thm}
 \begin{framed}
-\noindent\texttt{Prove that a function can have at most one inverse function.}
+\noindent\textit{The following is a prove of Theorem \ref{induction}}\par\noindent
+\texttt{If $P(1)$ is true, and $\forall k\geq2,\ P(k-1)\Rightarrow P(k),$ then $P(n)$ is true $\forall n\in\N.$}
 \begin{prf}
-	Suppose $f\in\F(A,B)$\par Suppose $g,h\in\F(B,A)\st f\of g=i_B, f\of h=i_B, g\of f=i_A,$ and $h\of f=i_A.$\par Since $g\of f=i_A,$ compose by $h$ on both sides, we get \[(g\of f)\of h=i_A\of h=h\]\par and \[(g\of f)\of h=g\of(f\of h)=g\of i_B=g\]\par So, we see that $g=h.$
-\end{prf}	
+	Let $P(n)$ be a statement about positive integers. \par Suppose $P(1)$ is true and $\forall k\geq2,\ P(k-1)\implies P(k).$\par Assume for the sake of contradiction that $\exists a\in\Zp\st P(a)$ is false. \par Let $F=\qty{x\in\Zp\mid P(x)\text{ is false}}$. Note that $F\subseteq\Zp.$ Further by assumption, $a\in F,$ and so $F\neq\emptyset.$\par So, by WOP (Well-Ordering Principle, Theorem \ref{thm5.1.1}), $\exists f_0\in F$ that is the smallest element of $F$. $\qquad$\big[WTS: $F=\emptyset$\big]\par Note that since $P(1)$ is true, then $1\notin F.$ Consider numbers $f_0-1\in\Z.$\par Since $1$ is the smallest positive integer (a corollary of Theorem \ref{thm5.1.2}), and $f_0\in\Zp,$ we have $f_0>1$. So, $f_0-1\in\Zp.$\par Since $f_0$ is the smallest element of $F$ and $f_0-1\in\Zp.$ Then $P(f_0-1)$ is true. (Because $f_0-1<f$ cannot be in the set of $F$, by our assumption).\par By assumption, $P(f_0)$ is true because $F(f_0-1)\implies P(f_0).$\par\begin{center}$\divideontimes$ But $f_0\in F$ so $P(f_0)$ is false. \end{center}\par So, it must be that $\forall n\in\Zp,\ P(n)$ is true. 
+\end{prf}
+\begin{rmk} This proof strategy is also called proof by \textbf{the smallest counterexample. }\end{rmk}
 \end{framed}
 \begin{framed}
-\noindent\texttt{Consider the function $f:\R\to\R$ given by $f(x)=x^3+x-2.$ Prove that $f$ is invertible.}
+\noindent\texttt{The sum of the first $n$ natural numbers is $\dfrac{n(n+1)}{2}.$}
 \begin{prf}
-	We cannot compute the inverse function of $f$, but we will show that $f$ is bijective.
-	\begin{itemize}
-		\item \underline{\textbf{$f$ is injective}}: Note that $f'(x)=3x^2+1>0.$ So, $f$ is increasing on $\R.$\par Thus, if $f(x)=f(y),$ then $x=y.\qquad\square$
-		\item \underline{\textbf{$f$ is surjective}}: First note that $\displaystyle\lim_{x\to\infty}f(x)=\lim_{x\to\infty}\qty(x^3+x-2)=\infty.$\par Also, $\displaystyle\lim_{x\to-\infty}f(x)=\lim_{x\to-\infty}\qty(x^3+x-2)=-\infty.$\par Let $y\in\R\qquad[\text{WTS: }\exists x\in\R\st f(x)=y.]$\par Since $\displaystyle\lim_{x\to\infty}f(x)=\infty,$ eventually for large positive $x$, $f(x)>y.$\par So, $\exists b\in\R\st f(b)>y. $\par Since $\displaystyle\lim_{x\to-\infty}f(x)=-\infty,$ eventually for large negative $x$, $f(x)<y.$\par So, $\exists a\in\R\st f(a)<y.$\par Since $f$ is continuous on $[a,b]$ and $f(a)<y<f(b),\ \exists x\in(a,b)\in\R\st f(x)=y.$ \par By the intermediate value theorem, $f$ is surjective. 
-	\end{itemize}
+	Let $P(n)$ be the statement \[1+2+3+\cdots+n=\frac{n(n+1)}{2}.\]\par $\boxed{\text{Base Case}}$ Consider $P(1): 1=\dfrac{1(1+1)}{2}$.\par\hspace{5mm} The right side is $\dfrac{1(2)}{2}=1$. So, the statement is clearly true.\par $\boxed{\text{Inductive Steps}}$ Assume that for some $k\geq1,\ P(k)$ is true. That is, \[1+2+3+\cdots+k=\dfrac{k(k+1)}{2}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, we WTS: \[1+2+3+\cdots+k+(k+1)=\dfrac{(k+1)(k+1+1)}{2}=\dfrac{(k+1)(k+2)}{2}\]\par\hspace{5mm} Adding $(k+1)$ to both sides of equation \ding{172}: \[\begin{aligned} (1+2+3+\cdots+k)+(k+1)&=\dfrac{k(k+1)}{2}+(k+1)\\&=(k+1)\qty(\dfrac{k}{2}+1)\\&=(k+1)\qty(\dfrac{k}{2}+\dfrac{2}{2})\\&=(k+1)\dfrac{(k+2)}{2}\\&=\dfrac{(k+1)(k+2)}{2}\end{aligned}\]\par\hspace{5mm} So, $(k+1)$ is true. \par We've shown that $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1).$\par So, by Principle of Mathematical Induction (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
 \end{prf}
+\end{framed}
+\begin{rmk}[The Role of the Base Case]
+	Mathematical induction only works if you can ``get the ball rolling.'' However, our first step in mathematical induction \textbf{need not to be} $n=1.$
+\end{rmk}
+\begin{df}[Factorial]
+	We define factorial of a positive integer $n$ as \[n!=1\cdot2\cdot3\cdot\cdots\cdot n\] Notably, we define the factorial of $0$ as 1. That is, \[0!=1.\]
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that if $n\in\Z$ and $n>4$, then $n!>2^n.$}
+\begin{prf}
+	Let $P(n)$ be the statement that $n!>2^n.$\par$\boxed{\text{Base Case}}$ WTS: $P(4)$ is true. \[4!=(1)(2)(3)(4)=24,\qquad 2^4=16.\]\par\hspace{5mm} Since $24>16,\ P(4)$ is true.\par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq4,\ P(k)$ is true. That is, $k!>2^k\qquad\text{\ding{172}}$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $(k+1)!>2^{k+1}.$\par\hspace{5mm} Multiplying both sides of \ding{172} by $(k+1)$: $(k!)(k+1)>2^k(k+1).$\par\hspace{5mm} So, we have $(k+1)!>2^k(k+1)>2^k(2)=2^{k+1}$ since $k\geq4.$\par\hspace{5mm} That is, $(k+1)!>2^{k+1}$.\par Since $P(4)$ is true and $\forall k\geq4,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\geq4.$
+\end{prf}
+\end{framed}
+\begin{rmk}[Generalizing Theorem]
+	Often the role of induction is to generalize theorems from cases with few elements to an arbitrary but finite number of elements. 
+\begin{eg}
+	Let $n\in\Zp$. The following theorems can be proven using the Mathematical Induction Principle (Theorem \ref{induction}).: 
+	\begin{enumerate}
+		\item Suppose $a_1,a_2,\cdots,a_n$ are all even integers. Then $\displaystyle\sum_{i=1}^na_i$ is even.
+		\item Suppose $A$ and $B_1,B_2,\cdots,B_n$ are all sets. Then \[A\cap\qty(\bigcup_{i=1}^nB_i)=\bigcup_{i=1}^n(A\cap B_i)\]
+		\item \begin{thm} Let $A$ be a finite set with $n$ elements. Then, $\pow(A)$ has $2^n$ elements. \end{thm}
+	\end{enumerate}
+\end{eg}
+\end{rmk}
+\begin{df}{Fibonacci Numbers}\[F_1=1\qquad F_2=1\qquad F_n=F_{n-1}+F_{n-2}\texttt{ for }n\geq3\]
+	\begin{eg}
+		The \textit{Fibonacci numbers} are described as follows: \[1,1,2,3,5,8,13,21,34,55,\cdots\]	
+	\end{eg}
+\end{df}
+\begin{framed}
+\noindent\texttt{Prove that the Fibonacci sequence satisfies: \[F_1+F_3+F_5+\cdots+F_{2n-1}=F_{2n}\] for all $n$.}
+\begin{prf}
+	Let $P(n)$ be the statement that $F_1+F_3+\cdots+F_{2n-1}=F_{2n}$\par$\boxed{\text{Base Case}}$ $P(1):\ F_1=1,\ F_{2(1)}=F_2=1,$ So, $P(1)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq1,\ P(k)$ is true. That is, \[F_1+F_3+\cdots+F_{2k-1}=F_{2k}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k+2}.$\par\hspace{5mm} Add $F_{2k+1}$ to both sides of equation \ding{172}: \[F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k}+F_{2k+1}=F_{2k+2}\]\par\hspace{5mm} So, $P(k+1)$ is true.\par Since $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that if $n\in\Z$ and $n\geq0,$ then $6\mid7^n-1.$}
+\begin{prf}
+	Let $P(n)$ be the statement ``$6\mid7^n-1$.''\par$\boxed{\text{Base Case}}$ WTS: $P(0)$ is true. That is, $6\mid7^0-1.$\par\hspace{5mm} Since $7^0-1=1-1=0$ and $6\mid0,$ then $6\mid7^0-1.$\par\hspace{5mm} That is, $P(0)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose for some $k\geq0$, $P(k)$ is true. That is, $6\mid7^k-1. $\par\hspace{5mm} In other words, $\exists l\in\Z\st7^k-1=6l\qquad\text{or}\qquad7^k=6l+1.$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $6\mid7^{k+1}-1$\par\hspace{5mm} Note that \[\begin{aligned}7^{k+1}-1=7^k\cdot7-1&=7(6l+1)-1\\&=42l+7-1\\&=42l+6\\&=6(7l+1).\end{aligned}\]\par\hspace{5mm} Since $7l+1\in\Z,$ by definition of divides, $6\mid7^{k+1}-1.$\par\hspace{5mm} Hence, $P(k)\implies P(k+1).$\par Since we've proven $P(0)$ is true and for $k\geq0$ $P(k)\implies P(k+1),$ by Principle of Mathematical Induction (Theorem \ref{induction}), for all $n\in\Z$ and $n\geq0$, $P(n)$ is true. 
+\end{prf}
+\end{framed}
+\begin{thm}[Second Principle of Mathematical Induction]\label{stronginduction}
+	Let $P(n)$ be a statement about the positive integer $n$. Suppose that \begin{enumerate}
+		\item $P(1)$ is true.
+		\item $\forall k\in\Z$ such that $k\geq2,$ if $P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true.
+	\end{enumerate}	
+	Then, $P(n)$ is true for all $n\in\Zp.$
+\end{thm}
+\begin{rmk} 
+	The phrasing ``$P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true'' can also be phrased as ``$\forall k\geq1$, $P(i)$ is true $\forall i\quad1\leq i\leq k.$ Then, $P(k+1)$ is true.
+\end{rmk}
+\begin{rmk}
+	The meaning of this phrasing, ``$P(i)$ is true for all $1\leq i\leq k-1$'' is that $P(1)$ is true, $P(2)$ is true, $P(3)$ is true, $\cdots,$ $P(k-2)$ is true, and $P(k-1)$ is true.
+\end{rmk}
+\begin{rmk}
+	The Second Principle of Mathematical Induction (Theorem \ref{stronginduction}) is logically equivalent to the First Principle of Mathematical Induction (Theorem \ref{induction}). However, in some cases, we have to use Theorem \ref{stronginduction} in our proofs.\end{rmk}
+\begin{rmk}
+	When using the Second Principle of Mathematical Induction, think about base cases! For example, if we need to show for $k-1\geq0\ (k\geq1)$ $P(k+1)$	is true, then our base cases are $P(0)$ and $P(1).$
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Given $n\in\N$, define a recursive function $f$ as follows: \[f(0)=1\qquad f(1)=3\qquad f(n)=2f(n-1)-f(n-2)\quad\forall n\geq2.\] Prove that for all $n\geq0$, $f(n)=2n+1$.}
+\begin{prf}
+	Let $P(n)$ be the statement ``$f(n)=2n+1.$''\par$\boxed{\text{Base Cases}}$ 	WTS: $P(0)$ and $P(1)$ are true.\par\hspace{5mm} $P(0)$ is true: \big[WTS: $f(0)=2(0)+1$\big]\par\hspace{10mm}Note that $2(0)+1=0+1=1$ and $f(0)=1$ by definition. That is, $P(0)$ is true.\par\hspace{5mm} $P(1)$ is true: \big[WTS:$f(1)=2(1)+1$\big]\par\hspace{10mm} Since $f(1)=3$ by definition and $2(1)+1=3$, $P(1)$ is true. \par$\boxed{\text{Inductive Steps}}$ Let $k\geq\mathbf{1}$ be $\st\forall i\quad 0\leq i\leq k,\ P(i)$ is true. -- \textit{inductive hypothesis} \par\hspace{5mm} WTS: $P(k+1)$ is true. \par\hspace{5mm} Since $k\geq1$, $k+1\geq2$. So, by definition, \[\begin{aligned}f(k+1)&=2f(k+1-1)-f(k+1-2)\\&=2f(k)-f(k-1)\end{aligned}\]\par\hspace{5mm} Since $k-1\geq0,$ by inductive hypothesis, $P(k)$ and $P(k-1)$ are true.\par\hspace{5mm} So, $f(k-1)=2(k-1)+1$ and $f(k)=2k+1$.\par\hspace{5mm} Substituting, we have \[\begin{aligned}f(k+1)&=2(2k+1)-\qty[2(k-1)+1]\\&=4k+2-2k+2-1\\&=2k+3\\&=2k+2+1\\&=2(k+1)+1.\end{aligned}\]\par Hence, by Mathematical Induction (Theorem \ref{stronginduction}), $P(n)$ is true $\forall n\geq0.$
+	\end{prf}
 \end{framed}
 
 
 \newpage
-\section{Binary Operations and Relations}
-\subsection{Binary Operations}
+\section{Equivalence Relations}
 \subsection{Equivalence Relations}
 \begin{df}[Relation]
 	A \textbf{relation} $R$	 on a set $A$ is a subset of $A\times A=\qty{\qty(a,b)\mid a,b\in A.}$ 
@@ -1549,191 +1359,382 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 
 
 \newpage
-\section{The Integers}
-\subsection{Axioms and Basic Properties}
-\begin{df}[Binary Operations]
-	\textbf{Binary operations} of integers combine two integers to get another integer.	
-\end{df}
-\begin{ax}[Integers]
-	The \textbf{integers}, which we denoted by $\Z$, is a set, together with a nonempty subset $\mathbb{P}(\Zp/\N)\subset \Z$ (which we call the \textbf{positive} integers), and two binary operations addition and multiplication, denoted by $+$ and $\cdot$, satisfying the following properties: 
+\section{Functions}
+\subsection{Definition and Basic Properties}
+\begin{df}[Function, Domain, Codomain]
+	Let $A$ and $B$ be non-empty set. A \textbf{function}, $f$, from $A$ to $B$ is a rule that assigns to each element $a\in A$ one, and only one, element of $B$, $b$.
 	\begin{itemize}
-		\item (\textbf{Commutativity}) For all integers $a,b$, we have \[a+b=b+a\qquad\text{and}\qquad a\cdot b=b\cdot a.\]
-		\item (\textbf{Associativity}) For all integers $a,b,c$, we have \[a+(b+c)=(a+b)+c\qquad\text{and}\qquad a\cdot(b\cdot c)=(a\cdot b)\cdot c.\]
-		\item (\textbf{Distributivity}) For all integers $a,b,c$, we have \[(a+b)\cdot c=a\cdot c+b\cdot c.\]
-		\item (\textbf{Identity}) There exists integers $0$ (\textbf{additive identity}) and $1$ (\textbf{multiplicative identity}), such that for all integers $a$, we have \[a+0=a\qquad\text{and}\qquad a\cdot1=a.\]
-		\item (\textbf{Additive inverses}) For any integer $a$, there exists an integer $-a$ such that \[a+(-a)=0.\]
-		\item (\textbf{Closure for $\Zp$}) If $a,b$ are positive integers, then $a+b$ and $a\cdot b$ are positive integers.
-		\item (\textbf{Trichotomy}) For every integer $a$, exactly one of the following three possibilities hold: either $a$ is a positive integer, or $a=0$, or $-a$ is a positive integer. 
-		\item (\textbf{Well-ordering}) Every nonempty subset of the positive integers has a smallest element. 
+		\item We call $A$ the \textbf{domain} of $f$.
+		\item We call $B$ the \textbf{codomain} of $f$.
 	\end{itemize}
-	\begin{rmk} We do not talk about the multiplicative inverse because for almost all integers, there does not exist an integer multiplicative inverse. Most of the multiplicative inverse belongs to $\Q$, and only $1$ and $-1$ are two integers that have integer multiplicative inverses. \end{rmk}
-\end{ax}
-\begin{framed}
-\begin{clm}\label{clm5.1.1}
-	Let $a,b,c\in\Z.$ If $a+b=a+c,$ then $b=c$.
-\end{clm}
-\begin{prf}
-	Since $a\in\Z,$ $\exists (-a)\in\Z\st a+(-a)=0$ by \textit{additive inverse}.\par Adding $(-a)$ to the left side: \[\begin{aligned}(-a)+(a+b)&=((-a)+a)+b\qquad\big[\textit{associativity}\big]\\&=0+b\qquad\big[\textit{additive inverse}\big]\\&=b\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par Similarly, we can show $(-a)+(a+c)=c$\par So, we show that $b=c.$
-\end{prf}
-\end{framed}
-\begin{framed}
-\begin{clm}\label{clm5.1.2}
-	Let $a\in\Z.$ Then, $a\cdot0=0\cdot a=0$.
-\end{clm}
-\begin{prf}
-	Note by \textit{commutativity}, $a\cdot0=0\cdot a$. So, it's enough to show $a\cdot0=0.$\par Notice that \[\begin{aligned}a\cdot0+a\cdot0&=a(0+0)\qquad\big[\textit{distributivity}\big]\\&=a\cdot0\qquad\big[\textit{additive identity}\big]\\&=a\cdot0+0\qquad\big[\textit{additive identity}\big]\end{aligned}\]\par So, $a\cdot0+a\cdot0=a\cdot0+0.$ By Claim \ref{clm5.1.1}, we see that $a\cdot0=0.$
-\end{prf}
-\end{framed}
-\begin{framed}
-\begin{clm}
-	Let	$a,b\in\Z.$ Then $(-a)b=a(-b)=-ab$.
-\end{clm}
+\end{df}
+\begin{nota}
+	We denote a function $f$ from $A$ to $B$ as $f: A\to B,$ and the elements by $b=f(a)$ if $b$ was assigned to $a$. 	
+\end{nota}
 \begin{rmk}
-	The three expressions are different: $(-a)b$ means the additive inverse of $a$ and multiplying that by $b$; and $-ab$ is the additive inverse of the product of $a$ and $b$.	
+	The codomain is part of the data that makes a function. Indeed, to specify a function, we need three pieces of information: (1) the domain, (2) the codomain, and (3) the rule between them. 
 \end{rmk}
-\begin{prf}	
-	In this proof, we will show that $(-a)b=-ab,$ and the other side will be left as an exercise.\par WTS: $(-a)b$ is the additive inverse of $ab$. That is, WTS: $(-a)b+ab=0.$\par Notice that \[\begin{aligned}(-a)b+ab&=((-a)+a)b\qquad\big[\textit{distributivity}\big]\\&=0\cdot b\qquad\big[\textit{additive inverse}\big]\\&=0\qquad\big[\text{From Claim \ref{clm5.1.2}}\big]\end{aligned}\] So, $(-a)b$ is the additive inverse of $ab$. That is, \[(-a)b=-ab.\]
+\begin{df}[Image of a Function]
+	Let $f:A\to B$ be a function. The \textbf{image} of $f$, denoted $\Im{f},$ is the set of elements in the codomain which are obtained by applying the rule $f$ to an element of the domain. That is, 
+	\begin{itemize}
+		\item $\Im(f)=\qty{y\in B\mid\exists a\in A\st b=f(a)}$
+		\item More generally, if $X\subseteq A,$ then, the \textbf{image of $X$ under }$f$, denoted $f(X)$, is given by \[f(X)=\qty{y\in B\mid\exists x\in Z\st b=f(x)}.\]
+	\end{itemize}	
+\end{df}
+\begin{framed}
+\begin{clm}Let $f:\R\to\R$ be given by $f(x)=x^2+3.$ Then $\Im(f)=[3,\infty).$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $x\in\R.$ Then $x^2\geq0.$\par\hspace{5mm} So, $x^2+3\geq0+3.$\par\hspace{5mm} So, $\Im(f)\subseteq[3,\infty).\qquad\square$ \par 
+	($\supseteq$): We will show that $(-3,\infty)\subseteq\Im(f)$\par\hspace{5mm} Let $x\in[3,\infty).\qquad$\big[WTS: $x\in\Im(f).$ That is, $\exists a\in\R\st f(a)=x.$\big]\par\hspace{5mm} Choose $a=\sqrt{x-3}.$ Since $x\geq3,\ x-3\geq0.$ So, $a\in\R.$\par\hspace{5mm} We will show that $f(a)=x$: \[f(a)=a^2+3=\qty(\sqrt{x-3})^2+3=x-3+3=x\]\par\hspace{5mm} So, $x\in\Im(f).$
 \end{prf}
 \end{framed}
-\begin{clm}\label{clm5.1.4}
-	If $a,b\in\Z,$ then $(-a)(-b)=ab.$	
-	\begin{rmk} We leave the proof of this claim as an exercise. \end{rmk}
-\end{clm}
 \begin{framed}
-\noindent\texttt{Let $x\in\Z$ and $x\neq0.$ Then $x^2=x\cdot x\in\Zp.$} \label{Problem1}
+\noindent\texttt{Let $f:\Z\to\Z$ be defined by \[f(n)=\begin{cases}n+1,\qquad n\text{ is even}\\n-3,\qquad n\text{ is odd}\end{cases}\] Compute $f(X)$ where $X=\qty{n\in\Z\mid n=4t+2\fs t\in\Z}.$}
+\begin{clm}$f(X)=\qty{m\in\Z\mid m=4k+3\fs k\in\Z}=B.$\end{clm}
 \begin{prf}
-	Suppose $x\in\Z$ and $x\neq0$. Since $x\neq0,$ by \textit{trichotomy}, $x\in\Zp$ or $-x\in\Zp$\par$\boxed{\text{Case }1}$ Suppose $x\in\Zp.$ Then, $x^2=x\cdot x\in\Zp$ by \textit{closure for $\Zp$}.\par$\boxed{\text{Case }2}$ Suppose $-x\in\Zp.$ Then, $(-x)(-x)\in\Zp$ by \textit{closure for $\Zp$}.\par\hspace{5mm}But $(-x)(-x)=x\cdot x=x^2$ by Claim \ref{clm5.1.4}. So, $x^2\in\Zp.$
+	($\subseteq$): Let $y\in f(X)$. Then, $\exists n\in X\st f(n)=y.$\par\hspace{5mm} By definition of $X$, $n=4t+2\fs t\in\Z.$\par\hspace{5mm} So, $f(n)=y=n+1$ since $n$ is even.\par\hspace{5mm} That is, $f(n)=y=4t+2+1=4t+3.$\par\hspace{5mm} So, $y\in B$\par 
+	($\supseteq$): Let $m\in B.$ Then, $m=4k+3\fs k\in\Z.\qquad$\big[WTS: $m\in f(X)$\big]\par\hspace{5mm} Note that since $k\in\Z,$ $4k+2\in X.$ Choose $n=4k+2.$\par\hspace{5mm} Then, $n\in X.$ Further, $f(n)=n+1=4k+2+1=4k+3=m.$\par\hspace{5mm} So, $m\in f(X).$
+\end{prf}
+\end{framed}
+\begin{thm}[Intermediate Value Theorem]\label{thm3.1.1}
+	Let $f$ be a function whose domain and codomain are subsets of $R.$ Let $a<b$ and suppose $f$ is continuous on $[a,b].$ If $y$ is any number in-between $f(a)$ and $f(b),$ then there exists a number $c$ in $[a,b]$ such that $f(c)=y.$
+\end{thm}
+\begin{framed}
+\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3+x+1.$ Let $X=[-2,2].$ Then, $f(X)=[-9,11].$}
+\begin{prf}
+	($\subseteq$): First observe that $f'(x)=3x^2+1>0.$\par\hspace{5mm} Since $f'>0,$ $f$ is increasing. So, $f$ is in particular increasing on $[-2,2].$\par\hspace{5mm} Note that $f(-2)=(-2)^3+(-2)+1=-8-2+1=-9.$\par\hspace{5mm} Also, $f(2)=2^3+2+1=11.$\par\hspace{5mm} Since $f$ is increasing, $\forall x\in[-2,2], -9\leq f(x)\leq11.$\par\hspace{5mm} So, $f(X)\subseteq[-9,11].\qquad\square$ \par
+	($\supseteq$):Let $m\in[-9,11].$\par\hspace{5mm} Since $f$ is continuous on $[-2,2]$ and $f(-2)=9$ and $f(2)=11.$\par\hspace{5mm} By the intermediate value theorem (Theorem \ref{thm3.1.1}), $\exists c\in[-2,2]\st f(c)=m.$\par\hspace{5mm} That is, $m\in f(X).$
 \end{prf}	
 \end{framed}
-\begin{nota}
-	\[a-b=a+(-b)\]\[ab=(a)\cdot(b)\]
-\end{nota}
-\begin{df}\label{df5.1.2}
-	Let $x,y\in\Z$. We say $x<y$ if $y-x\in\Zp.$
-	\begin{rmk} We can use the axioms of closure and trichotomy to establish some well-known facts about inequalities. \end{rmk}
-\end{df}
 \begin{framed}
-\begin{clm}
-	Let $a,b,c\in\Z.$ Then, exactly one of the following holds: $a=b$, $a<b$, or $b<a$.
-\end{clm}
-	\begin{prf}
-		Let $a,b\in\Z$\par As before, by \textit{additive inverse}, $\exists(-b)\in\Z\st b+(-b)=0.$ Then $a-b\in\Z.$\par By \textit{trichotomy}, there are 3 cases to consider:\par$\boxed{\text{Case }1}$ $a-b=0,$ so then adding $b$ on both sides, we get $a=b.$\par $\boxed{\text{Case }2}$ $a-b\in\Zp$, then by Definition \ref{df5.1.2}, $a>b$.\par $\boxed{\text{Case }3}$ $-(a-b)\in\Zp.$ But \[\begin{aligned}-(a-b)&=-a-(-b)\qquad\big[\textit{distributivity}\big]\\&=-a+b\\&=b-a.\end{aligned}\]\par\hspace{5mm}So, by Definition \ref{df5.1.2}, $b>a.$
-	\end{prf}
-\end{framed}
-\begin{clm}
-	Let $a\in\Z.$ If $a>0$, then $-a<0$, and if $a<0$, then $-a>0.$	
-\end{clm}
-\begin{clm}
-	Let $a,b\in\Z.$ If $a>0$ and $b>0$, then $ab>0.$
-\end{clm}
-\begin{clm}
-	Let $a,b,c\in\Z.$ If $a<b$ and $b<c$, then $a<c$.
-\end{clm}
-\begin{clm}
-	Let $a,b,c\in\Z.$ If $a<b$, then $a+c<b+c.$
-\end{clm}
-
-\begin{thm}[Well-Ordering Principle]\label{thm5.1.1}
-	Every non-empty subset of the positive integers has a smallest element. 	(If $X\subseteq\Zp$ and $X\neq\emptyset$, then $\exists x_0\in X\st\forall a\in X$ with $a\neq x_0$, we have $a-x_0\in\Zp.$)
-\end{thm}
-\begin{framed}
-\begin{thm}\label{thm5.1.2}
-	There is no integer $x$ such that $0<x<1.$	
-\end{thm}
+\noindent\texttt{Let $f:\R\to\R$ be given by $f(x)=x^3-4x+1.$ Let $X=[-2,2].$ Find $f(X).$}
 \begin{prf}
-	Assume for the sake of contradiction that $\exists x\in\Z\st0<x<1.$\par Let $S=\qty{n\in\Z\mid0<n<1}.$\par By our assumption, $x\in S$, so $S\neq\emptyset.$\par Note that, by definition, $S\subseteq\Zp$.\par  By the Well-Ordering Principle (Theorem \ref{thm5.1.1}), $S$ has a smallest element, say $s_0$.\par We know that $0<s_0<1$. Then $1-s_0\in\Zp.$\par Since $s_0,1-s_0\in\Zp,$ there product $s_0(1-s_0)\in\Zp\qquad\big[\textit{closure for $\Zp$}\big]$\par That is, $s_0-s_0^2\in\Zp.$\par By Definition \ref{df5.1.2}, we have $s_0>S_0^2.$\par As $x_0\neq0, s_0^2\in\Zp\qquad\big[\text{Problem \ref{Problem1}}\big]$\par So, $0<s_0^2<s_0<1.$\par\begin{center}$\divideontimes$ This is a contradiction because $s_0$ is assumed to be the smallest element of $S$.\end{center}\par So, $\nexists x\in\Zp\st0<x<1,$ or there are no integers between $0$ and $1$.
-\end{prf}
-\end{framed}
-
-\subsection{Induction}
-\begin{cor}[Introduction to Mathematical Induction]
-	The most powerful consequence of the well-ordering	principle (Theorem \ref{thm5.1.1}) is the technique of mathematical induction. The central idea of mathematical induction is that \begin{center}\textit{To prove a statement that depends on an integer $n$, denoted $P(n)$, it is enough to prove it about a smaller integer $m$, $P(m)$, and then show that since $m<n,$ $P(m)\implies P(n)$.}\end{center}
-\end{cor}
-\begin{thm}[First Principle of Mathematical Induction]\label{induction}
-	Let $P(n)$ be a statement about the positive integer $n.$ Suppose that 
 	\begin{enumerate}
-		\item $P(1)$ is true; and 
-		\item\label{condition2} $\forall k\in\Z\st k\geq2,\ P(k-1)\implies P(k)$.
-	\end{enumerate}	Then, $P(n)$ is true for all $n\in\Zp.$
-	\begin{rmk} Equivalently, we can write the Condition \ref{condition2} as $\forall k\geq1,\ P(k)\implies P(k+1).$ \end{rmk}
-\end{thm}
-\begin{framed}
-\noindent\textit{The following is a prove of Theorem \ref{induction}}\par\noindent
-\texttt{If $P(1)$ is true, and $\forall k\geq2,\ P(k-1)\Rightarrow P(k),$ then $P(n)$ is true $\forall n\in\N.$}
-\begin{prf}
-	Let $P(n)$ be a statement about positive integers. \par Suppose $P(1)$ is true and $\forall k\geq2,\ P(k-1)\implies P(k).$\par Assume for the sake of contradiction that $\exists a\in\Zp\st P(a)$ is false. \par Let $F=\qty{x\in\Zp\mid P(x)\text{ is false}}$. Note that $F\subseteq\Zp.$ Further by assumption, $a\in F,$ and so $F\neq\emptyset.$\par So, by WOP (Well-Ordering Principle, Theorem \ref{thm5.1.1}), $\exists f_0\in F$ that is the smallest element of $F$. $\qquad$\big[WTS: $F=\emptyset$\big]\par Note that since $P(1)$ is true, then $1\notin F.$ Consider numbers $f_0-1\in\Z.$\par Since $1$ is the smallest positive integer (a corollary of Theorem \ref{thm5.1.2}), and $f_0\in\Zp,$ we have $f_0>1$. So, $f_0-1\in\Zp.$\par Since $f_0$ is the smallest element of $F$ and $f_0-1\in\Zp.$ Then $P(f_0-1)$ is true. (Because $f_0-1<f$ cannot be in the set of $F$, by our assumption).\par By assumption, $P(f_0)$ is true because $F(f_0-1)\implies P(f_0).$\par\begin{center}$\divideontimes$ But $f_0\in F$ so $P(f_0)$ is false. \end{center}\par So, it must be that $\forall n\in\Zp,\ P(n)$ is true. 
-\end{prf}
-\begin{rmk} This proof strategy is also called proof by \textbf{the smallest counterexample. }\end{rmk}
-\end{framed}
-\begin{framed}
-\noindent\texttt{The sum of the first $n$ natural numbers is $\dfrac{n(n+1)}{2}.$}
-\begin{prf}
-	Let $P(n)$ be the statement \[1+2+3+\cdots+n=\frac{n(n+1)}{2}.\]\par $\boxed{\text{Base Case}}$ Consider $P(1): 1=\dfrac{1(1+1)}{2}$.\par\hspace{5mm} The right side is $\dfrac{1(2)}{2}=1$. So, the statement is clearly true.\par $\boxed{\text{Inductive Steps}}$ Assume that for some $k\geq1,\ P(k)$ is true. That is, \[1+2+3+\cdots+k=\dfrac{k(k+1)}{2}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, we WTS: \[1+2+3+\cdots+k+(k+1)=\dfrac{(k+1)(k+1+1)}{2}=\dfrac{(k+1)(k+2)}{2}\]\par\hspace{5mm} Adding $(k+1)$ to both sides of equation \ding{172}: \[\begin{aligned} (1+2+3+\cdots+k)+(k+1)&=\dfrac{k(k+1)}{2}+(k+1)\\&=(k+1)\qty(\dfrac{k}{2}+1)\\&=(k+1)\qty(\dfrac{k}{2}+\dfrac{2}{2})\\&=(k+1)\dfrac{(k+2)}{2}\\&=\dfrac{(k+1)(k+2)}{2}\end{aligned}\]\par\hspace{5mm} So, $(k+1)$ is true. \par We've shown that $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1).$\par So, by Principle of Mathematical Induction (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
-\end{prf}
-\end{framed}
-\begin{rmk}[The Role of the Base Case]
-	Mathematical induction only works if you can ``get the ball rolling.'' However, our first step in mathematical induction \textbf{need not to be} $n=1.$
-\end{rmk}
-\begin{df}[Factorial]
-	We define factorial of a positive integer $n$ as \[n!=1\cdot2\cdot3\cdot\cdots\cdot n\] Notably, we define the factorial of $0$ as 1. That is, \[0!=1.\]
-\end{df}
-\begin{framed}
-\noindent\texttt{Prove that if $n\in\Z$ and $n>4$, then $n!>2^n.$}
-\begin{prf}
-	Let $P(n)$ be the statement that $n!>2^n.$\par$\boxed{\text{Base Case}}$ WTS: $P(4)$ is true. \[4!=(1)(2)(3)(4)=24,\qquad 2^4=16.\]\par\hspace{5mm} Since $24>16,\ P(4)$ is true.\par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq4,\ P(k)$ is true. That is, $k!>2^k\qquad\text{\ding{172}}$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $(k+1)!>2^{k+1}.$\par\hspace{5mm} Multiplying both sides of \ding{172} by $(k+1)$: $(k!)(k+1)>2^k(k+1).$\par\hspace{5mm} So, we have $(k+1)!>2^k(k+1)>2^k(2)=2^{k+1}$ since $k\geq4.$\par\hspace{5mm} That is, $(k+1)!>2^{k+1}$.\par Since $P(4)$ is true and $\forall k\geq4,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\geq4.$
-\end{prf}
-\end{framed}
-\begin{rmk}[Generalizing Theorem]
-	Often the role of induction is to generalize theorems from cases with few elements to an arbitrary but finite number of elements. 
-\begin{eg}
-	Let $n\in\Zp$. The following theorems can be proven using the Mathematical Induction Principle (Theorem \ref{induction}).: 
-	\begin{enumerate}
-		\item Suppose $a_1,a_2,\cdots,a_n$ are all even integers. Then $\displaystyle\sum_{i=1}^na_i$ is even.
-		\item Suppose $A$ and $B_1,B_2,\cdots,B_n$ are all sets. Then \[A\cap\qty(\bigcup_{i=1}^nB_i)=\bigcup_{i=1}^n(A\cap B_i)\]
-		\item \begin{thm} Let $A$ be a finite set with $n$ elements. Then, $\pow(A)$ has $2^n$ elements. \end{thm}
+		\item[\ding{172}] Find $f'(x)=3x^2-4.$ So, $f$ is not always increasing or decreasing.
+		\item[\ding{173}] Find critical points: $f'(x)=0,\ 3x^2-4=0,\ 3x^2=4,\ x^2=\dfrac{4}{3},\ x=\pm\dfrac{2}{\sqrt{2}}.$
+		\item[\ding{174}] Plug in critical points into $f''(x):\ f''(x)=6x.$
+		\begin{itemize}
+			\item $f''\qty(\dfrac{2}{\sqrt{3}})=6\qty(\dfrac{2}{\sqrt{3}})>0\longrightarrow$ minimum
+			\item $f''\qty(-\dfrac{2}{\sqrt{3}})=6\qty(-\dfrac{2}{\sqrt{3}})<0\longrightarrow$ maximum
+		\end{itemize}
 	\end{enumerate}
-\end{eg}
+	\begin{itemize}
+		\item Largest output is at $-\dfrac{2}{\sqrt{3}}$ or at $2$.\par $f(2)=2^3-4(2)+2=1$\par $f\qty(-\dfrac{2}{\sqrt{3}})=\qty(-\dfrac{2}{\sqrt{3}})^3-4\qty(-\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(\dfrac{2}{3})+1>1$
+		\item Smallest output is at $-2$ or $\dfrac{2}{\sqrt{3}}.$\par $f(-2)=(-2)^3-4(-2)+2=1$\par $f\qty(\dfrac{2}{\sqrt{3}})=\qty(\dfrac{2}{\sqrt{3}})^3-4\qty(\dfrac{2}{\sqrt{3}})+1=\dfrac{8}{\sqrt{3}}\qty(-\dfrac{2}{3})+1<1$
+	\end{itemize}
+	Therefore, $f([-2,2])=\qty[1-\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}}), 1+\dfrac{2}{3}\qty(\dfrac{8}{\sqrt{3}})]$
+\end{prf}	
+\end{framed}
+\begin{thm}
+	Let $f:A\to B$ be a function, and let $X$ and $Y$ be subsets of $A$. Then: 
+	\begin{enumerate}
+		\item\label{thm3.1.2a} $f(X\cup Y)=f(X)\cup f(Y)$
+		\item\label{thm3.1.2b} $f(X\cap Y)\subseteq f(X)\cap f(Y)$
+	\end{enumerate}	
+\end{thm}
+\begin{framed}
+\noindent\texttt{We will prove Theorem 3.2.1(\ref{thm3.1.2a}) in this section. Theorem 3.2.1(\ref{thm3.1.2b}) is left as an exercise. }
+\begin{prf}
+	($\subseteq$): Let $b\in f(X\cup Y).$\par\hspace{5mm} Then, $\exists a\in X\cup Y\st f(a)=b.$\par\hspace{5mm} Since $a\in X$ and $f(a)=b,$ by definition of image, $b\in f(X).$\par\hspace{5mm} Then, $b\in f(X)\cup f(Y).\qquad\square$\par 
+	($\supseteq$): Suppose $b\in f(X)\cup f(Y).$\par\hspace{5mm} Then, $b\in f(X)$ or $b\in f(Y).$\par\hspace{5mm} WLOG, suppose $b\in f(X).$\par\hspace{5mm} Then, $\exists a\in X\st f(a)=b.$\par\hspace{5mm} Since $a\in X,$ $a\in X\cup Y.$ So, $b=f(a)\in f(X\cup Y).$
+\end{prf}
+\end{framed}
+\begin{rmk}
+	Give a function $f:A\to B$ and subsets $X,Y\subseteq A,$ it is not true, in general, that $f(X\cap Y)=f(X)\cap f(Y).$ 
 \end{rmk}
-\begin{df}{Fibonacci Numbers}\[F_1=1\qquad F_2=1\qquad F_n=F_{n-1}+F_{n-2}\texttt{ for }n\geq3\]
-	\begin{eg}
-		The \textit{Fibonacci numbers} are described as follows: \[1,1,2,3,5,8,13,21,34,55,\cdots\]	
-	\end{eg}
+\begin{df}[Inverse Image, or Pre-Image]
+	Let $f:A\to B$ be a function, and let $W\subseteq B.$ The \textbf{inverse image} of $W$ with respect to $f$ denoted $f^{-1}(W),$ is the set of elements in the domain which are sent, by applying the rule $f$, to an element of $W$ in $B$. That is, \[f^{-1}(W)=\qty{a\in A\mid f(a)\in W}.\]
+	\begin{rmk}
+	\begin{enumerate}
+		\item $f(X)\subseteq B$ but $f^{-1}(W)\subseteq A.$
+		\item To show $y\in f(X),$ \textbf{find} an $a\in X\st f(a)=y.$
+		\item To show $y\in f^{-1}(W),$ \textbf{show} $f(y)\in W.$
+		\item $y\in f^{-1}(W)\iff f(y)\in W.$
+		\item If $f(X)=f(Y)$, we cannot determine if $X=Y.$
+		\item $f^{-1}(B)=A,$ but $f(A)\neq B.$
+		\item If $f^{-1}(X)=f^{-1}(Y),$ we cannot determine if $X=Y.$
+	\end{enumerate}
+	\end{rmk}
 \end{df}
 \begin{framed}
-\noindent\texttt{Prove that the Fibonacci sequence satisfies: \[F_1+F_3+F_5+\cdots+F_{2n-1}=F_{2n}\] for all $n$.}
+\noindent\texttt{Suppose $f:\R\to\R$ is defined by $f(x)=3x+1.$}
+\begin{clm}$\f(W_2)=(1,\infty),$ where $W_2=(4,\infty)$\end{clm}
 \begin{prf}
-	Let $P(n)$ be the statement that $F_1+F_3+\cdots+F_{2n-1}=F_{2n}$\par$\boxed{\text{Base Case}}$ $P(1):\ F_1=1,\ F_{2(1)}=F_2=1,$ So, $P(1)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose $\fs k\geq1,\ P(k)$ is true. That is, \[F_1+F_3+\cdots+F_{2k-1}=F_{2k}\qquad\text{\ding{172}}\]\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k+2}.$\par\hspace{5mm} Add $F_{2k+1}$ to both sides of equation \ding{172}: \[F_1+F_3+\cdots+F_{2k-1}+F_{2k+1}=F_{2k}+F_{2k+1}=F_{2k+2}\]\par\hspace{5mm} So, $P(k+1)$ is true.\par Since $P(1)$ is true and $\forall k\geq1,\ P(k)\implies P(k+1),$ by Mathematical Induction Principle (Theorem \ref{induction}), $P(n)$ is true $\forall n\in\Zp.$
+	($\subseteq$): Let $x\in f^{-1}(W_2).$\par\hspace{5mm} Then, $f(x)\in W_2=(4,\infty)$\par\hspace{5mm} So, $f(x)=3x+1>4.$ So, $x>1.$\par\hspace{5mm} That is, $x\in(1,\infty).\qquad\square$\par 
+	($\supseteq$): Let $x\in(1,\infty).\qquad$\big[WTS: $x\in f^{-1}(W_2).$\big]\par\hspace{5mm} Since $x>1,$ so $3x>3$ and $3x+1>4.$\par\hspace{5mm} That is, $f(x)>4.$\par\hspace{5mm} So, $f(x)\in W_2,$ or $x\in f^{-1}(W_2).$
+\end{prf}
+\begin{clm}$f^{-1}(W_4)=X,$ where $W_4=\Z$ and $X=\qty{\dfrac{k-1}{3}\mid k\in\Z}.$\end{clm}
+\begin{prf}
+	($\subseteq$): Let $x\in f^{-1}(W_4).$\par\hspace{5mm} So, $f(x)\in W_4.$ That is, $f(x)\in\Z.$\par\hspace{5mm} Hence, $3x+1=k\fs k\in\Z.$\par\hspace{5mm} Therefore, $x=\dfrac{k-1}{3}.$ So, $x\in X.\qquad\square$\par 
+	($\supseteq$): Let $x\in X.$\par\hspace{5mm} Then, $x=\dfrac{k-1}{3}\fs k\in\Z.\qquad$\big[WTS: $x\in f^{-1}(W_4)$. WTS: $f(x)\in W_4$\big]\par\hspace{5mm} $f(x)=f\qty(\dfrac{k-1}{3})=3\qty(\dfrac{k-1}{3})+1=k-1+1=k.$\par\hspace{5mm} Since $k\in\Z,$ $f(x)\in\Z=W_4.$\par\hspace{5mm} So, $x\in f^{-1}(W_4).$
 \end{prf}
 \end{framed}
-\begin{framed}
-\noindent\texttt{Prove that if $n\in\Z$ and $n\geq0,$ then $6\mid7^n-1.$}
-\begin{prf}
-	Let $P(n)$ be the statement ``$6\mid7^n-1$.''\par$\boxed{\text{Base Case}}$ WTS: $P(0)$ is true. That is, $6\mid7^0-1.$\par\hspace{5mm} Since $7^0-1=1-1=0$ and $6\mid0,$ then $6\mid7^0-1.$\par\hspace{5mm} That is, $P(0)$ is true. \par$\boxed{\text{Inductive Step}}$ Suppose for some $k\geq0$, $P(k)$ is true. That is, $6\mid7^k-1. $\par\hspace{5mm} In other words, $\exists l\in\Z\st7^k-1=6l\qquad\text{or}\qquad7^k=6l+1.$\par\hspace{5mm} WTS: $P(k+1)$ is true. That is, $6\mid7^{k+1}-1$\par\hspace{5mm} Note that \[\begin{aligned}7^{k+1}-1=7^k\cdot7-1&=7(6l+1)-1\\&=42l+7-1\\&=42l+6\\&=6(7l+1).\end{aligned}\]\par\hspace{5mm} Since $7l+1\in\Z,$ by definition of divides, $6\mid7^{k+1}-1.$\par\hspace{5mm} Hence, $P(k)\implies P(k+1).$\par Since we've proven $P(0)$ is true and for $k\geq0$ $P(k)\implies P(k+1),$ by Principle of Mathematical Induction (Theorem \ref{induction}), for all $n\in\Z$ and $n\geq0$, $P(n)$ is true. 
-\end{prf}
-\end{framed}
-\begin{thm}[Second Principle of Mathematical Induction]\label{stronginduction}
-	Let $P(n)$ be a statement about the positive integer $n$. Suppose that \begin{enumerate}
-		\item $P(1)$ is true.
-		\item $\forall k\in\Z$ such that $k\geq2,$ if $P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true.
+\begin{thm}
+	Let $f:A\to B$ be a function, and let $W$ and $Z$ be subsets of $B$. Then: 
+	\begin{enumerate}
+		\item\label{thm3.1.3(1)} $\f(W\cup Z)=\f(W)\cup \f(Z)$
+		\item\label{thm3.1.3(2)} $\f(W\cap Z)=\f(W)\cap \f(Z)$
 	\end{enumerate}	
-	Then, $P(n)$ is true for all $n\in\Zp.$
 \end{thm}
-\begin{rmk} 
-	The phrasing ``$P(i)$ is true for all $1\leq i\leq k-1$, then $P(k)$ is true'' can also be phrased as ``$\forall k\geq1$, $P(i)$ is true $\forall i\quad1\leq i\leq k.$ Then, $P(k+1)$ is true.
+\begin{framed}
+\noindent\texttt{We will prove Theorem 3.1.3(\ref{thm3.1.3(1)}) in this section. Theorem 3.1.3(\ref{thm3.1.3(2)}) is left as an exercise.}
+\begin{prf}
+	($\subseteq$): Let $y\in\f(W\cup Z).$ Then, $f(y)\in W\cup Z.$\par\hspace{5mm} By definition of union, $f(y)\in W$ or $f(y)\in Z.$\par\hspace{5mm} WLOG, suppose $f(y)\in W.$ Then, $y\in\f(W).$\par\hspace{5mm} But $\f(W)\subseteq\f(W)\cup\f(Z).$\par\hspace{5mm} So, $y\in\f(W)\cup\f(Z).\qquad\square$\par 
+	($\supseteq$): Let $y\in\f(W)\cup\f(Z).$ By definition of union, $y\in\f(W)$ or $y\in\f(Z).$\par\hspace{5mm} WLOG, suppose $y\in\f(W).$ Then, $f(y)\in W.$\par\hspace{5mm} But, $W\subseteq W\cup Z.$ So, $f(y)\in W\cup Z.$\par\hspace{5mm} So, $y\in\f(W\cup Z).$
+\end{prf}
+\end{framed}
+
+\subsection{Continuity of a Function}
+\begin{df}[Epsilon-Delta Definition of Continuity]\label{df3.1.4}
+	Let $A$ and $B$ be open intervals of $\R$, and let $f:A\to B$ be a function. Let $a\in A.$ We say $f$ is \textbf{continuous at} $a$ if the following statement is true: \[\forall\varepsilon>0,\ \exists\delta>0\st|x-a|<\delta\implies|f(x)-f(a)|<\varepsilon.\]
+	\begin{rmk} The following statement can be also rephrased as ``If $x\in(a-\delta,a+\delta),$ then $f(x)\in(f(a)-\varepsilon,f(a)+\varepsilon).$''\end{rmk}
+	\begin{enumerate}
+		\item $|x-a|<\delta$ means the inputs are at most $\delta$ away from $a$.
+		\item $|f(x)-f(a)|<\varepsilon$ means the outputs are at most $\varepsilon$ away from $f(a)$.	
+	\end{enumerate}
+	\begin{rmk}
+		The idea of writing a proof: given $\varepsilon>0,$ FIND $\delta>0$ that works.	
+	\end{rmk}
+\end{df}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=2x+1$ is continuous at $x=3$. }
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{2}>0.$\par Suppose $x\in\R\st |x-3|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(3)|&=|2x+1-7|\\&=|2x-6|\\&=|2(x-3)|\\&=2|x-3|<2\cdot\delta=2\cdot\dfrac{\varepsilon}{2}=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-3|<\delta\implies|f(x)-f(3)|<\varepsilon.\]
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=3+5x$ is continuous at $x=4$. }
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\dfrac{\varepsilon}{5}>0.$\par Suppose $x\in\R\st|x-4|<\delta.$\par Then, \[\begin{aligned}|f(x)-f(4)|&=|3+5x-23|\\&=|5x-20|\\&=|5(x-4)|\\&=5|x-4|<5\cdot\delta=5\cdot\dfrac{\varepsilon}{5}=\varepsilon\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta>0\st|x-4|<\delta\implies|f(x)-f(4)|<\varepsilon.\]
+\end{prf}
+\begin{rmk} In this example, $\delta$ ONLY depends on $\varepsilon$! So, the same $\delta$ will work when showing $f(x)$ is continuous at $x=1.$\end{rmk}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=0$.}
+\begin{prf}
+	Let $\varepsilon>0$ be given. Choose $\delta=\sqrt{\varepsilon}.$\par Note that since $\varepsilon>0,$ $\delta>0.$\par Suppose $x\in\R\st|x-0|<\delta.$ That is, $|x|<\delta.$\par Then, \[\begin{aligned}
+		|f(x)-f(0)|=|x^2-0|=|x^2|&=|x|\cdot|x|\\&<\delta\cdot\delta=\qty(\sqrt{\varepsilon})\cdot\qty(\sqrt{\varepsilon})=\varepsilon.\end{aligned}\]\par Since $\varepsilon>0$ was arbitrary, we've shown that \[\forall\varepsilon>0,\ \exists\delta=\sqrt{\varepsilon}>0\st|x-0|<\delta\implies|f(x)-f(0)|<\varepsilon.\]	
+\end{prf}
+\begin{clm}
+	The same choice	of $\delta$ will not work when proving $f(x)=x^2$ is continuous at $x=1$ as well.
+\end{clm}
+\begin{center}
+WTS: $\exists\epsilon\st$ for $\delta=\sqrt{\epsilon},\ \exists x\in\R\st|x-1|<\delta$ and $|f(x)-f(1)|\geq\epsilon|.$
+\end{center}
+\begin{prf}
+	Consider what happens when $\epsilon=1.$ Then, $\delta=\sqrt{\epsilon}=\sqrt{1}=1.$\par Want: $|f(x)-f(1)|<\epsilon=1.$ That is, $|f(x)-1|<1.$\par So, $-1<f(x)-1<1$, or $0<f(x)<2.$\par When $\delta=1,$ we have $|x-1|<\delta=1.$\par That is, $-1<x-1<1$, or $0<x<2$.\par Note that $\forall x\in(\sqrt{2},2),$ $f(x)>2.$\par So, it is not true that $|f(x)-1|<\epsilon.$
+\end{prf}
+\texttt{Use the formal definition of continuity (Definition \ref{df3.1.4}) to show that $f(x)=x^2$ is continuous at $x=1$.}
+\begin{center}
+WTS: $\forall\epsilon>0,\exists\delta>0\st |x-1|<\delta\implies|f(x)-f(1)|<\epsilon.$	
+\end{center}
+\begin{prf}
+	Let $\epsilon>0$ be given. Choose $\delta=\min\qty{1,\dfrac{\epsilon}{3}}\ \qty(\delta\text{ is the smaller of }1\text{ and }\dfrac{\epsilon}{3})$.\par Note that $\delta\leq1$ and $\delta\leq\dfrac{\epsilon}{3}.$\par Suppose $x\in\R\st|x-1|<\delta.$\par Since $|x-1|<\delta\leq1.$ So, $-1<x-1<1,$ or $0<x<2.$\par So, $1<x+1<3.$ That is, $|x+1|<3.$\par Then, \[\begin{aligned}|f(x)-f(1)|=|x^2-1|&=|(x-1)(x+1)|\\&=|x-1||x+1|\\&<3|x-1|\\&<3\cdot\delta\\&=3\cdot\min\qty{1,\dfrac{\epsilon}{3}}\\&\leq3\cdot\dfrac{\epsilon}{3}=\epsilon\end{aligned}\]\par Since $\epsilon$ was arbitrary, we've proven that \[\forall\epsilon>0,\exists\delta=\min\qty{1,\dfrac{\epsilon}{3}}\st|x-1|<\delta\implies|f(x)-f(1)|<\epsilon.\]
+\end{prf}
+\begin{rmk}
+	For quadratic functions, $\delta$ changes with $\epsilon$ and choice of $a$.	
 \end{rmk}
+\end{framed}
+\begin{df}[Discontinuity]
+	The definition of discontinuity is, essentially, the negation of the definition of continuity (Definition \ref{df3.1.4}): \[\exists\epsilon>0\st\forall\delta>0,\ \exists x\st|x-a|<\delta\text{ but }|f(x)-f(a)|\geq\epsilon.\]	
+\end{df}
+\begin{framed}
+\noindent\texttt{Consider the Heavy-side Function \[H(x)=\begin{cases}0,\quad x<0\\1,\quad x\geq0\end{cases}.\] Show that $H$ is discontinuous at $x=0.$}
+\begin{prf}
+	Choose $\epsilon=\dfrac{1}{2}.$\par Then, we need $|H(x)-H(0)|<\dfrac{1}{2}.$\par That is, we want $|H(x)-1|<\dfrac{1}{2},$ or $-\dfrac{1}{2}<H(x)-1<\dfrac{1}{2}.$\par So, we want $\dfrac{1}{2}<H(x)<\dfrac{3}{2}.$\par Notice that $\forall x\in(-\delta,0),\ H(x)=0$.\par So, $H(x)\notin\qty(\dfrac{1}{2},\dfrac{3}{2}).$
+\end{prf}
+\end{framed}
+
+\subsection{Injection, Surjection, and Bijection}
+\begin{df}[Surjective, Injective, and Bijective Functions]
+	A function $f: A\to B$ is 
+	\begin{itemize}
+		\item \textbf{injective} or \textbf{one-to-one} if $\forall x,y\in A,$ $f(x)=f(y)$ implies $x=y.$
+		\item \textbf{surjective} or \textbf{onto} if $\forall b\in B,$ $\exists a\in A\st f(a)=b$
+		\item \textbf{bijective} if $f$ is both injective and surjective. 
+	\end{itemize}	
+\end{df}
 \begin{rmk}
-	The meaning of this phrasing, ``$P(i)$ is true for all $1\leq i\leq k-1$'' is that $P(1)$ is true, $P(2)$ is true, $P(3)$ is true, $\cdots,$ $P(k-2)$ is true, and $P(k-1)$ is true.
-\end{rmk}
-\begin{rmk}
-	The Second Principle of Mathematical Induction (Theorem \ref{stronginduction}) is logically equivalent to the First Principle of Mathematical Induction (Theorem \ref{induction}). However, in some cases, we have to use Theorem \ref{stronginduction} in our proofs.\end{rmk}
-\begin{rmk}
-	When using the Second Principle of Mathematical Induction, think about base cases! For example, if we need to show for $k-1\geq0\ (k\geq1)$ $P(k+1)$	is true, then our base cases are $P(0)$ and $P(1).$
+	If $f$ is a surjective function, then \[\text{Codomain of }f=\Im(f).\]	
 \end{rmk}
 \begin{framed}
-\noindent\texttt{Given $n\in\N$, define a recursive function $f$ as follows: \[f(0)=1\qquad f(1)=3\qquad f(n)=2f(n-1)-f(n-2)\quad\forall n\geq2.\] Prove that for all $n\geq0$, $f(n)=2n+1$.}
+\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by $f(n)=3n+2$ is injective and/or surjective.}
+\begin{clm} $f$ is injective but nor surjective. \end{clm}
 \begin{prf}
-	Let $P(n)$ be the statement ``$f(n)=2n+1.$''\par$\boxed{\text{Base Cases}}$ 	WTS: $P(0)$ and $P(1)$ are true.\par\hspace{5mm} $P(0)$ is true: \big[WTS: $f(0)=2(0)+1$\big]\par\hspace{10mm}Note that $2(0)+1=0+1=1$ and $f(0)=1$ by definition. That is, $P(0)$ is true.\par\hspace{5mm} $P(1)$ is true: \big[WTS:$f(1)=2(1)+1$\big]\par\hspace{10mm} Since $f(1)=3$ by definition and $2(1)+1=3$, $P(1)$ is true. \par$\boxed{\text{Inductive Steps}}$ Let $k\geq\mathbf{1}$ be $\st\forall i\quad 0\leq i\leq k,\ P(i)$ is true. -- \textit{inductive hypothesis} \par\hspace{5mm} WTS: $P(k+1)$ is true. \par\hspace{5mm} Since $k\geq1$, $k+1\geq2$. So, by definition, \[\begin{aligned}f(k+1)&=2f(k+1-1)-f(k+1-2)\\&=2f(k)-f(k-1)\end{aligned}\]\par\hspace{5mm} Since $k-1\geq0,$ by inductive hypothesis, $P(k)$ and $P(k-1)$ are true.\par\hspace{5mm} So, $f(k-1)=2(k-1)+1$ and $f(k)=2k+1$.\par\hspace{5mm} Substituting, we have \[\begin{aligned}f(k+1)&=2(2k+1)-\qty[2(k-1)+1]\\&=4k+2-2k+2-1\\&=2k+3\\&=2k+2+1\\&=2(k+1)+1.\end{aligned}\]\par Hence, by Mathematical Induction (Theorem \ref{stronginduction}), $P(n)$ is true $\forall n\geq0.$
-	\end{prf}
+\begin{itemize}
+	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m).$\par Since $f(n)=f(m),$ we have $3n+2=3m+2.$\par Then, $3n=3m,$ or $n=m.$\par Since $f(n)=f(m)\implies n=m,$ we have $f$ is injective. 
+	\item \textbf{\underline{Surjective}}: Choose $n=4\in\Z.$\par Suppose for the sake of contradiction, $\exists a\in\Z\st f(a)=4.$\par Then, $3a+2=4.$ So, $3a=2,$ or $a=\dfrac{2}{3}.$\par \begin{center}$\divideontimes$ This contradicts with the fact that $a\in\Z.$\end{center}\par So, $f$ is not surjective. 
+\end{itemize}	
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Check if the function $f:\Z\to\Z$ defined by \[f(n)=\begin{cases}n-1,\quad&n\text{ odd}\\n+3,\quad&n\text{ even}\end{cases}\] is injective and/or surjective.}
+\begin{clm} $f$ is both injective and surjective. \end{clm}
+\begin{prf}
+\begin{itemize}
+	\item \textbf{\underline{Injective}}: Suppose $n,m\in\Z\st f(n)=f(m)$.\par $\boxed{\text{Case }1}$ $n$ and $m$ both even.\par\hspace{5mm} So, $n+3=m+3.$ So, $n=m.$\par $\boxed{\text{Case }2}$ $n$ and $m$ both odd.\par\hspace{5mm} So, $n-1=m-1.$ So, $n=m.$\par $\boxed{\text{Case }3}$ $n$ is odd and $m$ is even. \par\hspace{5mm} If $n$ is odd, $f(n)=n-1$ is even.\par\hspace{5mm} If $m$ is even, $f(m)=m+3,$ which is odd. \par\hspace{5mm} So, $f(n)\neq f(m).$ That is, this case is impossible.\par Since $f(n)=f(m)\implies n=m.$ So, $f$ is injective. 
+	\item \textbf{\underline{Surjective}}: WTS: $\forall b\in\Z, \exists a\in\Z\st f(a)=b.$\par Let $b\in\Z.$\par $\boxed{\text{Case }1}$ $b$ is odd.\par\hspace{5mm} Since $b$ is odd, we know that $a=b-3\in\Z$ and $a$ is even.\par\hspace{5mm} Then, $f(a)=a+3=(b-3)+a=b.$\par\hspace{5mm} So, for $a=b-3,\ f(a)=b.$\par $\boxed{\text{Case }2}$ $b$ is even.\par\hspace{5mm} Since $b$ is even, we know that $a=b+1\in\Z$ and $a$ is odd.\par\hspace{5mm} Then, $f(a)=a-1=(b+1)-1=b.$\par\hspace{5mm} So, for $a=b+1,$ we have $f(a)=b.$
+\end{itemize}	
+\end{prf}
+\end{framed}
+\begin{df}[Identity Function]
+	The identity function on a set $A$ is the function \[i_A: A\to A\] defined to be $i_A(x)=x$ for all $x\in A.$ Note that for any set $A$, the identity function $i_A$ is bijective. 
+\end{df}
+\begin{rmk}[The Importance of Domain/Codomain]
+	Suppose $f:A\to B$ is a function. The notions of injective and surjective are \textit{very} sensitive to the domain $A$ and codomain $B$. Even if two functions are given by the same ``formula'' $f$, the domain for one might be too big (\textit{and thus ``over-hit'' certain elements}) or the codomain might be too big (\textit{and thus ``under-hit'' certain elements}).	
+\end{rmk}
+\begin{df}[Tuple Equality]
+	\[(a,b)=(c,d)\iff a=c\text{ and }b=d.\]
+\end{df}
+\begin{framed}
+\noindent\texttt{Consider $f:\Z\times\Z\to\Z$ defined by $f(n,m)=nm.$ Is it injective? Is it surjective?}
+\begin{clm} It is not injective.\end{clm}
+\begin{prf}
+	Note that $f(1,4)=1\times4=4$ and $f(2,2)=2\times2=4.$\par However, $(1,4)\neq(2,2).$ So $f$ is not injective. 
+\end{prf}
+\begin{clm} It is surjective.\end{clm}	
+\begin{prf}
+	Let $k\in\Z\qquad[\text{WTS: }\exists(a,b)\in\Z\times\Z\st f(a,b)=k]$\par Note that $(1,k)\in\Z\times\Z.$ Also, $f(1,k)=(1)(k)=k.$\par Since $\exists(1,k)\in\Z\times\Z\st f(1,k)=k,$ $f$ is surjective. 
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that the function $f:\R-\qty{2}\to\R-\qty{3}$ defined by \[f(x)=\dfrac{3x}{x-2}\] is bijective.}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Injective}}: Let $x,y\in\R-\qty{2}\st f(x)=f(y)\qquad[\text{WTS: }x=y]$\par Since $f(x)=f(y),$ we have \[\begin{aligned}\dfrac{3x}{x-2}&=\dfrac{3y}{y-2}\\3x(y-2)&=3y(x-2)\\3xy-6x&=3xy-6y\\-6x&=-6y\\x&=y\end{aligned}\]\par So, $f$ is injective. 
+		\item \textbf{\underline{Surjective}}: Let $y\in\R-\qty{3}\qquad[\text{WTS: }\exists x\in\R-\qty{2}\st f(x)=y]$\par Let's set $x=\dfrac{2y}{y-3}.$\par  Note that since $y\neq3,\ x\in\R.$\par Also, if $x=2,$ then $\dfrac{2y}{y-3}=2.$ So, $2y=2y-6$ or $0=-6.$ This is impossible. \par So, $\dfrac{2y}{y-3}\in\R-\qty{2}.$ Now, \[f(x)=f\qty(\dfrac{2y}{y-3})=\dfrac{\ \ 3\qty(\dfrac{2y}{y-3})\ \ }{\ \ \qty(\dfrac{2y}{y-3})-2\ \ }=\dfrac{6y}{2y-2(y-3)}=y.\]\par So, $f$ is surjective. 
+	\end{itemize}\par 
+	Since $f$ is both injective and surjective, $f$ is bijective. 
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Prove that the function $g:\pow(\Z)\to\pow(\R)$ given by $g(A)=A\cup\qty{\pi}$ is injective but not surjective.}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Injective}}: Suppose $X,Y\in\pow(\Z)\st g(X)=g(Y)\qquad[\text{WTS: }X=Y]$\par Note that $g(X)=g(Y)$ means $X\cup\qty{\pi}=Y\cup\qty{\pi}.$\par Suppose $x\in X.$ Since $x\in X,$ we have $x\in X\cup\qty{\pi}$\par So, by assumption, $x\in Y\cup\qty{\pi}.$\par So, by definition of union, $x\in Y,$ or $x\in\qty{\pi}.$\par Note that $x\notin\qty{\pi}$ because $x\in\Z$ and $x\neq\pi.$\par So, then $x\in Y.$ So, $X\subseteq Y$\par Similarly, $Y\subseteq X.$ So, $X=Y.$\par So, $g$ is injective. 
+		\item \textbf{\underline{Not Surjective}}: Note that $\Z\subseteq\R.$ So, $\Z\in\pow(\R).$\par Further, $\forall X\in\pow(\Z),\ g(X)=X\cup\qty{\pi}.$\par So, $\pi\in g(X).$ So, since $\pi\in\Z.$\par We've shown that $\forall X\in\pow(\Z),$ $g(X)\neq\Z.$\par So, $g$ is not surjective.
+	\end{itemize}
+\end{prf}
+\end{framed}
+
+\subsection{Composition and Invertibility}
+\begin{df}[Composition of Functions]
+	Let $f:A\to B$ and $g:B\to C$ be functions, The \textbf{composition} of $f$ with $g$, denoted $g\of f$ is the function $g\of f:A\to C$ defined by $(g\of f)(x)=g(f(x))$ for all $x\in A.$	
+\end{df}
+\begin{nota}
+	Sometimes, we can also use the notation $gf$ to denote the composition $g\of f.$	
+\end{nota}
+\begin{rmk}
+	The order of function composition matters, but parenthesis do not matter.	
+\end{rmk}
+\begin{df}[Function Equality]
+	Two functions $f$ and $g$ are equals, $f=g$, if $\forall x\in\text{Domain of }f=\text{Domain of }g,$ $f(x)=g(x).$
+\end{df}
+\begin{framed}
+\noindent\texttt{Let $f:A\to B,$ $g:B\to C,$ and $h:C\to D$ be functions. Show that function composition is \textit{associative}. That is, show that $(hg)f=h(gf).$}
+\begin{prf}
+	Note that both $(hg)f$ and $h(gf)$ are functions from $A\to D$.\par Suppose $a\in A\qquad\qty\Big[\text{WTS: }\qty\big[(hg)f](a)=\qty\big[h(gf)](a)]$\par Consider \[\qty\big[(hg)f](a)=(hg)(f(a))=h\qty\big(g(f(a)))\] \[\qty\big[h(gf)](a)=h\qty((gf)(a))=h\qty\big(g(f(a)))\]\par So, we see that $\forall a\in A,$ $\qty\big[(hg)f](a)=\qty\big[h(gf)](a).$\par So, $(hg)f=h(gf).$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{lem}\label{lem3.3.1}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are injective, then $g\of f$ is injective. 
+\end{lem}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ be injective.\par Suppose $x,y\in A\st (g\of f)(x)=(g\of f)(y),$ so $g(f(x))=g(f(y)).$\par Since $g$ is injective, $f(x)=f(y).$\par Since $f$ is injective, $x=y.$
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{lem}\label{lem3.3.2}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are surjective, then $g\of f$ is surjective. 
+\end{lem}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Let $f$ and $g$ are surjective.\par Let $c\in C\qquad[\text{WTS: }\exists a\in A\st(g\of f)(a)=c]$\par Since $g$ is surjective, $\exists b\in B\st g(b)=c.$\par Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par So, $g(f(a))=g(b)=c.$ So, $(g\of f)(a)=c.$\par So, we found $a\in A\st(g\of f)(a)=C.$\par So, $g\of f$ is surjective.
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{prop}
+	Let $f:A\to B$ and $g: B\to C$ be functions. If $f$ and $g$ are bijective, so is $g\of f.$
+\end{prop}
+	\begin{rmk}
+		$f\of g$ is not always defined because we don't know if $C\subseteq A.$
+	\end{rmk}
+\begin{prf}
+	Let $f:A\to B$ and $g:B\to C$ be functions.\par Suppose $f$ and $g$ are bijective.\par Since $f$ and $g$ are injective, by Lemma \ref{lem3.3.1}, $g\of f$ is injective.\par Since $f$ and $g$ are surjective, by Lemma \ref{lem3.3.2}, $g\of f$ is surjective.\par So, by definition of bijectivity, $g\of f$ is bijective. 
+\end{prf}
+\end{framed}
+\begin{df}[Set of Functions]
+	Let $A$ and $B$ be non-empty sets. The \textbf{set of all functions from} $A$ to $B$ is denoted $\F(A,B).$ In the special case that $A=B,$ we denote the set of functions as $\F(A),$ instead of $\F(A,A).$
+\end{df}
+\begin{df}[Formal Definition of Composition of Functions]
+	Let $A,$ $B,$ and $C$ be non-empty sets. Then composition of functions defines a function \[\F(B,C)\times\F(A,B)\to\F(A,C)\] given by $(g,f)\mapsto g\of f.$
+	\begin{rmk}
+		Note that $g\in\F(B,C)$ and $f\in\F(A,B).$
+	\end{rmk}	
+\end{df}
+\begin{thm}
+	If $A$ and $B$ are finite and non-empty, \[\qty|\F(A,B)|=\qty|B|^{\qty|A|}.\]	
+\end{thm}
+\begin{df}[Invertible Functions]
+	Let $f:A\to B$ be a function. We say $f$ is \textbf{invertible} if there exists a function $g:B\to A$ such that both of the following are true: \begin{itemize}
+		\item $g\of f=i_A$ \item $f\of g=i_B$
+	\end{itemize}
+\end{df}
+\begin{nota}
+	We denote the inverse of $f$ as $\f$. So, we have $\f\of f=i_A$ and $f\of\f=i_B,$ where $i_A$ and $i_B$ are identity functions on $B$ and $A$. 	
+	\begin{rmk}\[\f\neq\dfrac{1}{f}\] \end{rmk}
+\end{nota}
+\begin{framed}
+\noindent\texttt{Let $f:\R\backslash\qty{1}\to\R\backslash\qty{-1}$ be given by $f(x)=\dfrac{x}{1-x}.$ Using the function $g:\R\backslash\qty{-1}\to\R\backslash\qty{1},$ given by $g(x)=\dfrac{x}{1+x},$ show that $f$ is invertible}
+Need to check: $g\of f=i_A$ and $f\of g=i_B.$
+\begin{prf}
+	Let $x\in A.$\par \[(g\of f)(x)=g(f(x))=\dfrac{f(x)}{1+f(x)}=\dfrac{\ \ \dfrac{x}{1-x}\ \ }{\ \ 1+\dfrac{x}{1-x}\ \ }=\dfrac{x}{1-x+x}=\dfrac{x}{1}=x.\]\par So, $\forall x\in A,\ (g\of f)(x)=x.$ So, $g\of f=i_A.$\par Similarly, we can show $(f\of g)(x)=x\quad\forall x\in B.$
+\end{prf}
+\end{framed}
+\begin{rmk}[How would we find $g$ if it is not given?]
+	Use scratch work to compute the formula of $g(x)$, then check the domain and codomain, and show $f\of g=i_B$ and $g\of f=i_A.$
+\end{rmk}
+\begin{thm}\label{thm3.3.2}
+	Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.
+\end{thm}
+\begin{rmk}
+	Let $f:A\to B$ be a function.\begin{itemize}
+		\item $f$ is \textbf{bijective} means $f$ preserves and captures the information between $A$ and $B$.
+		\item $F$ is \textbf{invertible} means the action of $f$ from $A$ to $B$ can be undone by using a function from $B$ to $A$.
+	\end{itemize}\par 
+	Theorem \ref{thm3.3.2} is saying that the notions of \textbf{bijectivity} and \textbf{invertibility} are logically \textbf{equivalent}. So, a function $f$ is either both bijective and invertible or it is neither. 
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Prove Theorem \ref{thm3.3.2}: Let $A$ and $B$ be non-empty sets, and let $f\in\F(A,B).$ Then, $f$ is invertible if and only if $f$ is bijective.}
+\begin{prf}
+	($\Rightarrow$): Suppose $f$ is invertible $\qquad[\text{WTS: }f\text{ is bijective.}]$\par\hspace{5mm} That is, $\exists\f\in\F(B,A)\st f\of\f=i_B$ and $\f\of f=i_A.$\par\begin{itemize}
+		\item \underline{\textbf{$f$ is injective}}: Suppose $x,y\in A\st f(x)=f(y).$\par Apply $\f$ to both sides, we get \[\begin{aligned}\f(f(x))&=\f(f(y))\\(\f\of f)(x)&=(\f\of f)(y)\\(i_A)(x)&=(i_A)(y)\\x&=y.\end{aligned}\]
+		\item \underline{\textbf{$f$ is surjective}}: Let $b\in B\qquad[\text{WTS: }\exists a\in A\st f(a)=b.]$\par Choose $a=\f(b)\in A.$\par Taking $f$ on both sides, we get \[\begin{aligned}f(a)&=f(\f(b))\\&=(f\of\f)(b)\\&=(i_B)(b)\\&=b\end{aligned}\]\par So, $\exists a\in A\st f(a)=b.$ So, $f$ is surjective.$\qquad\square$
+	\end{itemize}\par 
+	($\Leftarrow$): Suppose $f\in\F(A,B)$ is bijective. $\qquad[\text{WTS: }f\text{ is invertible}.]$\par\hspace{5mm} Let $b\in B.$ Since $f$ is surjective, $\exists a\in A\st f(a)=b.$\par\hspace{5mm} Suppose $\exists c\in A\st f(c)=b.$\par\hspace{5mm} Since $f$ is injective, and $f(a)=f(c)=b,$ we have $a=c.$\par\hspace{5mm} So, $\exists$ \underline{unique} $a\in A\st f(a)=b.$\par\hspace{5mm} Let's define $\f(b)=a.$ Then, $\f\in\F(B,A).\qquad[\text{WTS: }\f\text{ is the inverse of }f.]$\par\begin{itemize}
+		\item \underline{\textbf{$\f\of f=i_A$}}: Let $a\in A.$ Suppose $f(a)=b,$ then $\f(b)=a.$\[(\f\of f)(a)=\f(f(a))=\f(b)=a.\]\par So, $\f\of f=i_A.$
+		\item \underline{\textbf{$f\of\f=i_B$}}: Let $b\in B.$ Suppose $\f(b)=a,$ then $f(a)=b.$\[(f\of\f)(b)=f(\f(b))=f(a)=b.\]\par So, $f\of\f=i_B.$
+	\end{itemize}\par Therefore, $\f$ is the inverse of $f$, or $f$ is invertible. 
+\end{prf}
+\end{framed}
+\begin{thm}
+It turns out that a function can have at most one inverse function. Thus, we denote \textit{the} inverse function of $f$ by $\f.$	
+\end{thm}
+\begin{framed}
+\noindent\texttt{Prove that a function can have at most one inverse function.}
+\begin{prf}
+	Suppose $f\in\F(A,B)$\par Suppose $g,h\in\F(B,A)\st f\of g=i_B, f\of h=i_B, g\of f=i_A,$ and $h\of f=i_A.$\par Since $g\of f=i_A,$ compose by $h$ on both sides, we get \[(g\of f)\of h=i_A\of h=h\]\par and \[(g\of f)\of h=g\of(f\of h)=g\of i_B=g\]\par So, we see that $g=h.$
+\end{prf}	
+\end{framed}
+\begin{framed}
+\noindent\texttt{Consider the function $f:\R\to\R$ given by $f(x)=x^3+x-2.$ Prove that $f$ is invertible.}
+\begin{prf}
+	We cannot compute the inverse function of $f$, but we will show that $f$ is bijective.
+	\begin{itemize}
+		\item \underline{\textbf{$f$ is injective}}: Note that $f'(x)=3x^2+1>0.$ So, $f$ is increasing on $\R.$\par Thus, if $f(x)=f(y),$ then $x=y.\qquad\square$
+		\item \underline{\textbf{$f$ is surjective}}: First note that $\displaystyle\lim_{x\to\infty}f(x)=\lim_{x\to\infty}\qty(x^3+x-2)=\infty.$\par Also, $\displaystyle\lim_{x\to-\infty}f(x)=\lim_{x\to-\infty}\qty(x^3+x-2)=-\infty.$\par Let $y\in\R\qquad[\text{WTS: }\exists x\in\R\st f(x)=y.]$\par Since $\displaystyle\lim_{x\to\infty}f(x)=\infty,$ eventually for large positive $x$, $f(x)>y.$\par So, $\exists b\in\R\st f(b)>y. $\par Since $\displaystyle\lim_{x\to-\infty}f(x)=-\infty,$ eventually for large negative $x$, $f(x)<y.$\par So, $\exists a\in\R\st f(a)<y.$\par Since $f$ is continuous on $[a,b]$ and $f(a)<y<f(b),\ \exists x\in(a,b)\in\R\st f(x)=y.$ \par By the intermediate value theorem, $f$ is surjective. 
+	\end{itemize}
+\end{prf}
 \end{framed}
 
 
@@ -1742,6 +1743,353 @@ Show if the following relations are reflexive, symmetric, antisymmetric, or tran
 
 
 
+\section{Infinite Sets}
+\subsection{Countable Sets}
+\textbf{Key Idea} of this section: Use functions to compare sizes of infinite sets.
+\begin{thm}[Pigeonhole Principle in the Language of Functions]
+	Let $A$ and $B$ be finite sets and let $f:A\to B$ be any function.
+	\begin{enumerate}
+		\item If $\qty|A|>\qty|B|,$ then $f$ is not injective. (There are more pigeons than holes, i.e., $\exists p_1,p_2\in A\st f(p_1)=f(p_2)$ but $p_1\neq p_2.$)
+		\begin{rmk}$f$ is injective $\implies$ $\qty|A|\leq\qty|B|$\end{rmk}
+		\item If $\qty|A|<\qty|B|,$ then $f$ is not surjective.(There are more holes and pigeons, so there are at least one empty hole). 
+		\begin{rmk}$f$ is surjective $\implies$ $\qty|A|\geq\qty|B|$\end{rmk}
+	\end{enumerate}	
+\end{thm}
+\begin{cor}
+	Let $A$ and $B$ be finite sets, and $f:A\to B$ be a function. If $\qty|A|\neq\qty|B|,$ then $f$ is not a bijective.	That is, $f$ is bijective $\iff$ $\qty|A|=\qty|B|.$	
+	\begin{rmk} Whenever we have a bijection $f:A\to B$, we should consider both sets $A$ and $B$ to be of the same \textbf{size}. We can apply this to \textbf{infinite} sets $A$ and $B$ to compare their relative sizes: as long as we can find a bijection from $A$ to $B$, we say $A$ and $B$ have the same \textit{size}, even though $A$ and $B$ are infinite sets. \end{rmk}
+\end{cor}
+\begin{framed}
+\noindent\texttt{Prove that there exists a bijection between $\Z_{\geq0}$, the set of non-negative integers, and $\N$, the set of natural numbers.}
+\[\Z_{\geq0}=\qty{0,1,2,3,\cdots};\qquad\N=\qty{1,2,3,4,\cdots}\]
+\begin{prf}\label{prf6.1.1}
+	Let's define a function $f:\N\to\Z_{\geq0}$ as $f(n)=n-1.$\par\begin{itemize}
+		\item \textbf{\underline{Injective}}: Let $a,b\in\N\st f(a)=f(b).$\par So, $a-1=b-1.$ That is, $a=b.$
+		\item \textbf{\underline{Surjective}}: Let $k\in\Z_{\geq0}.$\par Choose $a=k+1.$ Note that since $k\geq0,\ k+1\geq1.$ So, $k+1\in\N.$\par Also, $f(a)=f(k+1)=(k+1)-1=k.$\par So, $f$ is surjective.
+	\end{itemize}
+\end{prf}
+\begin{rmk}The inverse function of $f$ is given by $g:\Z_{\geq0}\to\N$ as $g(k)=k+1.$\end{rmk}
+\end{framed}
+\begin{df}[Numerical Equivalence]
+	Let $A$ and $B$ be sets in some universal set $U$. We say $A$ and $B$ are \textbf{numerically equivalent}, denoted $A\approx B,$ if there exists a bijection $f:A\to B.$ We also say $A$ and $B$ have the \textbf{same cardinality} ($\qty|A|=\qty|B|$).
+	\begin{eg}In Proof \ref{prf6.1.1}, we have shown that $\N\approx\Z_{\geq0}.$\end{eg}
+\end{df}
+\begin{framed}
+\noindent\texttt{Let $\Z_{<0}$ be the set of negative integers. Prove that $\N\approx\Z_{<0}.$}	
+\[\Z_{<0}:\qty{\cdots,-3,-2,-1};\qquad\N=\qty{1,2,3,\cdots}\]
+\begin{prf}
+	Define $f:\N\to\Z_{<0}$ as $f(n)=-n.$\begin{itemize}
+		\item \textbf{\underline{Injective}}: Let $a,b\in\S\st f(a)=f(b).$ Then, $-a=-b,$ so $a=b.\qquad\square$
+		\item \textbf{\underline{Surjective}}: Let $k\in\Z_{<0}.$ Then, $k\leq-1,$ so $-k\geq1.$\par Set $a=-k\in\N.$\par Then, $f(a)=f(-k)=-(-k)=k.$ So, $f$ is surjective. 
+	\end{itemize}
+\end{prf}
+\begin{rmk} The inverse function of $f$ is given by $g:\Z_{<0}\to\N$ as $g(k)=-k.$	\end{rmk}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Let $\E=2\Z$ be the set of even integers. Prove that $\Z\approx\E.$}
+\[\Z=\qty{\cdots,-2,-1,0,1,2,\cdots};\qquad\E=\qty{\cdots,-2,0,2,\cdots}\]
+\begin{prf}\label{prf6.1.3}
+	Define $f:\Z\to\E$ as $f(n)=2n.$\begin{itemize}
+		\item \textbf{\underline{Injective}}: Let $a,b\in\Z\st f(a)=f(b).$ Then, $2a=2b,$ so $a=b.\qquad\square$
+		\item \textbf{\underline{Surjective}}: Let $k\in\E.$ Then, $\exists a\in\Z\st k=2a.$\par Note that $f(a)=2a=k.$ So, $f$ is surjective.
+	\end{itemize}	
+\end{prf}
+\begin{rmk} The inverse function of $f$ is defined as $g:\E\to\Z$ as $g(k)=\dfrac{k}{2}.$\end{rmk}
+\end{framed}
+\begin{rmk}
+There are as many integers as even numbers. They are infinite in the same way.	
+\end{rmk}
+\begin{framed}
+\noindent\texttt{Prove that $\Z_{\geq0}\approx\E.$}	
+\[\Z_{\geq0}=\qty{0,1,2,3,\cdots};\qquad\E=\qty{\cdots,-6,-4,-2,0,2,4,6,8,\cdots}\]
+\begin{prf}\label{prf6.1.4}
+	Define $f:\Z_{\geq0}\to\E$ as $f(n)=\begin{cases}n &\text{ if }n\text{ is even}\\-n-1&\text{ if }n\text{ is odd}.\end{cases}$\begin{itemize}
+		\item \textbf{\underline{Injective}}: Suppose $a,b\in\Z_{\geq0}\st f(a)=f(b).$\par $\boxed{\text{Case }1}$ Suppose $a,b$ are both even, then $a=b.$\par $\boxed{\text{Case }2}$ Suppose $a,b$ are both odd, then $-a-1=-b-a,$ so $a=b$.\par $\boxed{\text{Case 3}}$ Suppose $a$ is even and $b$ is odd. Then, $f(a)>0$ and $f(b)<0.$\par\hspace{5mm} So, it is impossible for $f(a)=f(b).$ So, this case is impossible.$\qquad\square$
+		\item \textbf{\underline{Surjective}}: Let $k\in\E.$\par $\boxed{\text{Case }1}$ If $k\geq0.$ Then, $f(k)=k$ by definition of $f$.\par $\boxed{\text{Case }2}$ If $k<0.$\par\hspace{5mm} Set $a=-k-1.$\par\hspace{5mm} Note that $k\leq-2$ (since $k$ is a negative even integer), so $-k\geq2$ and $-k-1\geq1.$\par\hspace{5mm} So, $a\in\Z_{\geq0}$ and $a$ is odd.\par\hspace{5mm} So, \[\begin{aligned}f(a)=-a-1&=-(-k-1)-1\\&=k+1-1\\&=k\end{aligned}\]\par\hspace{5mm} So, $f$ is surjective.
+	\end{itemize}
+\end{prf}
+\begin{rmk}The inverse of $f$ is given by $g:\E\to\Z_{\geq0}$ as $g(k)=\begin{cases}k&\text{ if }k\geq0\\-k-1&\text{ if }k<0.\end{cases}$\end{rmk}
+\end{framed}
+\begin{framed}
+\begin{lem}\label{lem6.1}
+	Numerical equivalence defines an \textit{equivalence relation} on the power set of $U$. 	
+\end{lem}
+\begin{prf}
+	\begin{itemize}
+		\item \textbf{\underline{Reflexive}}: Let $A\subseteq U$ or $A\in\pow(U)$\par Note that $i_A:A\to A$ is a bijection, so $A\approx A.\qquad\square.$
+		\item \textbf{\underline{Symmetric}}: Let $A,B\subseteq U.$\par Suppose $A\approx B.$ So, $\exists f:A\to B\st f$ is a bijection.\par We know that $f$ is invertible and $\f\in\F(B,A).$\par We shoed on a homework that $\f$ is a bijection. So, $B\approx A.\qquad\square$
+		\item \textbf{\underline{Transitive}}: Let $A,B,C\in U.$\par Suppose $A\approx B$ and $B\approx C.$\par So, $\exists f:A\to B$ and $g:B\to C\st f$ and $g$ are bijections. Then, $g\of f:A\to C.$\par Showed if $f$ and $g$ are bijection, then $g\of f$ is a bijection.\par So, $A\approx C.$
+	\end{itemize}
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Use Lemma \ref{lem6.1} to give a streamlined proof that $\N\approx\Z.$}	
+\begin{prf}
+	We've shown that $\N\approx\Z_{\geq0}$ (Proof \ref{prf6.1.1}) and $\Z_{\geq0}\approx\E$ (Proof \ref{prf6.1.4}).\par So, by transitivity, we have $\N\approx\E.$\par Since we also proved that $\E\approx\Z$ in Proof \ref{prf6.1.3}, again by transitivity, we have $\N\approx\Z.$	
+\end{prf}
+\begin{rmk} There are as many natural numbers as integers. \end{rmk}
+\end{framed}
+\begin{nota}
+	We write $\qty|\N|=\aleph_0$ (aleph naught). This is also called the first infinity or the smallest infinity.	
+\end{nota}
+\begin{df}[Countably Infinite]
+	A set $A$ is said to be \textbf{countably infinite} if $A\approx\N$ ($A$ has the same cardinality as $\N$). 
+\end{df}
+\begin{df}[Countable Sets]
+It is said to be \textbf{countable} if $A$ is countable infinite, or $A$ is finite. If $A$ is infinite, but $\qty|\N|\neq\qty|A|,$ we say $A$ is \textbf{uncountable}.
+\end{df}
+\begin{rmk}
+A set is countable infinite if and only if its elements can be arranged in a infinite list $\qty{a_1,a_2,a_3,\cdots}$ (i.e., we can count them).	
+\end{rmk}
+\begin{eg}
+	As we have proven above, $\Z_{\geq0},\ \Z_{<0},\ \E,\ \Z$ are all countable infinite. But $\R$ is uncountable. 	
+\end{eg}
+\begin{thm}
+	Let $A$ be a countably infinite set and let $B$ be an infinite subset of $A$. Then, $B$ is countably infinite. 	
+\end{thm}
+\begin{cor}
+	Every subset of $\Z$ is countably infinite. 	
+\end{cor}
+\begin{thm}
+	Let $A$	be an infinite set. Suppose there exists a surjection $f:\N\to A.$ Then, $A$ is countably infinite. That is, $\qty|\N|\geq\qty|A|.$
+\end{thm}
+\begin{framed}
+\begin{thm}
+	Let $A$ and $B$	be countably infinite sets. Then $A\cup B$ is countably infinite. 
+\end{thm}
+\begin{prf}
+	Since $A,B$ are countably infinite, $\exists f:\N\to A$ and $g:\N\to B$ that are bijective. \par [WTS: $\exists h:\N\to A\cup B$ that is bijective]\par Define $h$ as follows: \[h(1)=f(1),\quad h(2)=g(1),\quad h(3)=f(2),\quad h(4)=g(2),\cdots\]\par Note that $h$ may not be injective because it may be that $A\cap B\neq\emptyset.$\par But we can show $h$ is surjetive.\par Let $x\in A\cup B.$ Then by definition, $x\in A$ or $x\in B.$\par WLOG, suppose $x\in A.$ Since $f$ is surjective, $\exists k\in\N\st f(k)=a.$\par But then, $\exists m\in\N\st h(m)=f(k)=a.$ So $h$ is surjective.
+\end{prf}
+\begin{ext}
+	Let $A_1,A_2,\cdots,A_k$ be a finite collection of countably infinite sets. Then $A_1\cup A_2\cup\cdots\cup A_k$ is a countably infinite set. 
+\end{ext}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Show that $\Q$ is countably infinite.}
+\begin{prf}
+	We will show that $\Q^+$ (the set containing positive rational numbers) is countably infinite. We can list elements of $\Q^+$ like so: $\qty{\frac{p}{q}\mid p,q\in\N}$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (88,70) -- (101.64,70) ;
+	\draw [shift={(103.64,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (147,70) -- (160.64,70) ;
+	\draw [shift={(162.64,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (88,170) -- (101.64,170) ;
+	\draw [shift={(103.64,170)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (118,170) -- (131.64,170) ;
+	\draw [shift={(133.64,170)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (120,88) -- (120,102.27) ;
+	\draw [shift={(120,104.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (180,87) -- (180,101.27) ;
+	\draw [shift={(180,103.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (180,135) -- (180,149.27) ;
+	\draw [shift={(180,151.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (90,120) -- (103.64,120) ;
+	\draw [shift={(88,120)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (149,220) -- (162.64,220) ;
+	\draw [shift={(147,220)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (120,220) -- (133.64,220) ;
+	\draw [shift={(118,220)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (90,220) -- (103.64,220) ;
+	\draw [shift={(88,220)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (180,186) -- (180,200.27) ;
+	\draw [shift={(180,202.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (90,137) -- (90,151.27) ;
+	\draw [shift={(90,153.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (150,139) -- (150,153.27) ;
+	\draw [shift={(150,137)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (150,90) -- (150,104.27) ;
+	\draw [shift={(150,88)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (210,188) -- (210,202.27) ;
+	\draw [shift={(210,186)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (210,88) -- (210,102.27) ;
+	\draw [shift={(210,86)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (210,138) -- (210,152.27) ;
+	\draw [shift={(210,136)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (210,70) -- (223.64,70) ;
+	\draw [shift={(225.64,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (90,237) -- (90,251.27) ;
+	\draw [shift={(90,253.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (90.64,258.55) -- (194.64,258.55) ;
+	\draw [shift={(196.64,258.55)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (229.64,74.36) -- (229.64,257.36) ;
+	\draw [shift={(229.64,259.36)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (73,48.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{1}{1}$};
+	\draw (104,48.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{2}{1}$};
+	\draw (133,48.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{3}{1}$};
+	\draw (163,48.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{4}{1}$};
+	\draw (193,48.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{5}{1}$};
+	\draw (215,60.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (73,97.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{1}{2}$};
+	\draw (104,97.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{2}{2}$};
+	\draw (133,97.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{3}{2}$};
+	\draw (163,97.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{4}{2}$};
+	\draw (193,97.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{5}{2}$};
+	\draw (215,109.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (73,148.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{1}{3}$};
+	\draw (104,148.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{2}{3}$};
+	\draw (133,148.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{3}{3}$};
+	\draw (163,148.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{4}{3}$};
+	\draw (193,148.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{5}{3}$};
+	\draw (215,160.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (73,197.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{1}{4}$};
+	\draw (104,197.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{2}{4}$};
+	\draw (133,197.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{3}{4}$};
+	\draw (163,197.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{4}{4}$};
+	\draw (193,197.4) node [anchor=north west][inner sep=0.75pt]    {$\dfrac{5}{4}$};
+	\draw (215,209.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (74,249.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (104,249.22) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (134,249.22) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (164,249.22) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (194,249.22) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (271,61.4) node [anchor=north west][inner sep=0.75pt]    {$\text{That is, define } f:\mathbb{N}\rightarrow \mathbb{Q}^{+}\text{ as follows: }$};
+	\draw (285,97.4) node [anchor=north west][inner sep=0.75pt]    {$ \begin{array}{l} f( 1) =\dfrac{1}{1} ,\ f( 2) =\dfrac{2}{1} ,\ f( 3) =\dfrac{2}{2} ,\\\\f( 4) =\dfrac{1}{2} ,\ f( 5) =\dfrac{1}{3} ,\ f( 6) =\dfrac{2}{3} ,\ \cdots \end{array}$};
+	\end{tikzpicture}	
+	\end{center}\par 
+	Again, this function is not injective because each integer shows up in the outputs infinitely many times.\par However, $f$ is surjective. So, $\Q^{+}$ is countably infinite.\par Note that since $\exists$ bijection between $\Q^+$ and $\Q^-,$ we see that $Q^-$ is countably infinite.\par So, $\Q^+\cup\Q^-$ is countably infinite.\par Finally, $\Q=\Q^+\cup\Q^-\cup\qty{0}$ is countably infinite.
+\end{prf}
+\end{framed}
+\begin{framed}
+\begin{thm}\label{thm6.1.5}
+	If $A$ and $B$ are countably infinite, then so is $A\times B.$
+\end{thm}
+\begin{prf}
+	Since $A$ and $B$ are countably infinite, $\exists$ bijections $g:\N\to A$ and $h:\N\to B.$\par $\forall i\in\N,$ we call $g(i)=a_i\in A$ and $h(i)=b_i\in B.$\par Note that $A\times B=\qty{(a_i,b_j)\mid i,j\in\N)}.$ So we can list them like so: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (58,80) -- (58,98.91) ;
+	\draw [shift={(58,100.91)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (60,160) -- (60,178.91) ;
+	\draw [shift={(60,180.91)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (198,79) -- (198,97.91) ;
+	\draw [shift={(198,99.91)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (198,120) -- (198,138.91) ;
+	\draw [shift={(198,140.91)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (129,81) -- (129,99.91) ;
+	\draw [shift={(129,79)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (269,80) -- (269,98.91) ;
+	\draw [shift={(269,78)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (269,120) -- (269,138.91) ;
+	\draw [shift={(269,118)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (269,162) -- (269,180.91) ;
+	\draw [shift={(269,160)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (84,110) -- (101.64,110) ;
+	\draw [shift={(103.64,110)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (153,69) -- (170.64,69) ;
+	\draw [shift={(172.64,69)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (84,190) -- (101.64,190) ;
+	\draw [shift={(103.64,190)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (154,190) -- (171.64,190) ;
+	\draw [shift={(173.64,190)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (224,190) -- (241.64,190) ;
+	\draw [shift={(243.64,190)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (157,150) -- (174.64,150) ;
+	\draw [shift={(155,150)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw    (85,150) -- (102.64,150) ;
+	\draw [shift={(83,150)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (309,69) -- (309,212.55) ;
+	\draw [shift={(309,214.55)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (309,214.55) -- (47.64,214.55) ;
+	\draw [shift={(45.64,214.55)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (32,59.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,b_{1})$};
+	\draw (102,59.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,b_{2})$};
+	\draw (172,59.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,b_{2})$};
+	\draw (242,59.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,b_{2})$};
+	\draw (294,60.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (33,99.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{2} ,b_{1})$};
+	\draw (103,99.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{2} ,b_{2})$};
+	\draw (173,99.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{2} ,b_{2})$};
+	\draw (243,99.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{2} ,b_{2})$};
+	\draw (295,100.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (33,139.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{3} ,b_{1})$};
+	\draw (103,139.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{3} ,b_{2})$};
+	\draw (173,139.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{3} ,b_{2})$};
+	\draw (243,139.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{3} ,b_{2})$};
+	\draw (295,140.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (33,179.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{4} ,b_{1})$};
+	\draw (103,179.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{4} ,b_{2})$};
+	\draw (173,179.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{4} ,b_{2})$};
+	\draw (243,179.4) node [anchor=north west][inner sep=0.75pt]    {$( a_{4} ,b_{2})$};
+	\draw (295,180.4) node [anchor=north west][inner sep=0.75pt]    {$\cdots $};
+	\draw (50,209.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (122,208.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (192,208.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\draw (262,208.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+	\end{tikzpicture}
+	\end{center}\par 
+	That is, define $f:\mathbb{N}\to A\times B$ as follows: 
+	\[f(1)=(a_1,b_1),\quad f(2)=(a_2,b_1)\quad f(3)=(a_2,b_2),\quad f(4)=(a_1,b_2),\cdots\]\par Since $f$ is surjective, $A\times B$ is countably infinite.
+\end{prf}
+\begin{ext}
+	The cartesian product of any finite number of countably infinite sets is countably infinite. That is, $A_1\times A_2\times A_3\cdots\times A_k$ is countably infinite, where $A_1,A_2,A_3,c\dots,A_k$ are countably infinite. 
+\end{ext}
+\begin{prf}
+	The proof of this Extension is left as an exercise.\par  We can prove this using Theorem \ref{thm6.1.5} and mathematical induction.
+\end{prf}
+\end{framed}
+
+\subsection{Uncountable Sets}
+\begin{framed}
+\begin{thm}[Cantor's Diagonalization Arguments]\label{thm6.2.1}
+	There is no bijection from $\N\to\R.$
+	\begin{prf}
+		The very basic idea: Proceed by contradiction: Assume $\exists f:\N\to\R$ that is a bijection.\par Show that $\exists a\in\R\st\forall n\in\N,\ f(n)\neq a.$\par So that contradicts with the surjectivity of $f$.
+	\end{prf}
+\end{thm}
+\begin{rmk}
+$\qty|\N|\neq\qty|\R|.$ These are two different infinities. 	
+\end{rmk}
+\end{framed}
+\begin{eg}
+	Show that the following pairs of sets have the same cardinalities by finding a bijection between them. 
+	\begin{enumerate}
+		\item $A=(0,1)$ and $B=(0,2)$
+		\begin{ans}
+			Define $f:A\to B$ by $f(x)=2x.$	
+		\end{ans}
+		\item $A=(0,\infty)$ and $B=(0,1)$
+		\begin{ans}
+			Define $f:A\to B$ that is bijective as: \par $\boxed{\text{Method }1}\ f(x)=\dfrac{2}{\pi}\arctan(x).$\par $\boxed{\text{Method }2}\ f(x)=\dfrac{1}{3^x}.$\par $\boxed{\text{Method }3}$ Using similar triangles \begin{center}\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]\draw    (140,150) -- (274.64,150) ;\draw [shift={(276.64,150)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;\draw    (140,150) -- (140,91.27) ;\draw [shift={(140,89.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;\draw    (140,150) -- (80.64,150) ;\draw    (80.64,89.27) -- (80.64,150) ;\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (227.64,150.32) .. controls (227.64,148.84) and (228.84,147.64) .. (230.32,147.64) .. controls (231.8,147.64) and (233,148.84) .. (233,150.32) .. controls (233,151.8) and (231.8,153) .. (230.32,153) .. controls (228.84,153) and (227.64,151.8) .. (227.64,150.32) -- cycle ;\draw    (80.64,89.27) -- (230.32,150.32) ;\draw (133,153.4) node [anchor=north west][inner sep=0.75pt]    {$0$};\draw (66,115.4) node [anchor=north west][inner sep=0.75pt]    {$1$};\draw (70,154.4) node [anchor=north west][inner sep=0.75pt]    {$-1$};\draw (142,123.04) node [anchor=north west][inner sep=0.75pt]    {$f( x)$};\draw (174,153.04) node [anchor=north west][inner sep=0.75pt]    {$x$};\end{tikzpicture}\end{center}\[\dfrac{f(x)}{1}=\dfrac{x}{x+1}\implies f(x)=\dfrac{x}{x+1}\]
+		\end{ans}
+	\end{enumerate}	
+\end{eg}
+\begin{rmk}
+	To show $(a,b)\approx(c,d)$, define $f(x)$ as the straight line between $(a,b)$ and $(c,d).$	
+\end{rmk}
+\begin{df}[Comparing Cardinalities]
+	Let $A$ and $B$ be sets. We say 
+	\begin{enumerate}
+		\item $\qty|A|=\qty|B|$ if there exists a bijection from $A$ to $B$.
+		\item $\qty|A|\leq\qty|B|$ if there exists an injection from $A$ to $B$.
+		\item $\qty|A|<\qty|B|$ if there exists an injection, but no surjection from $A$ to $B$. 
+	\end{enumerate}
+\end{df}
+\begin{framed}
+\noindent\texttt{Show $\qty|\Q|=\qty|\N|<\qty|\R|$}
+\begin{prf}
+	We showed $\Q$ is countably infinite. So, $\Q\approx\N,$ or $\qty|\Q|=\qty|\N|.$\par (\textit{To show $\qty|\N|<\qty|\R|,$ we need to show that $\exists$ injection from $\N\to\R$ but now surjection.})\par Define $f:\N\to\R$ as $f(n)=n.$ Then, $f\in\F(\N,\R)$ and $f$ is clearly injective.\par But by Cantor's Argument, $\nexists$ surjection from $\N\to\R$ (Theorem \ref{thm6.2.1}), we have $\qty|\N|<\qty|\R|.$
+\end{prf}
+\begin{rmk}
+	Here we show that the infinity of $\R$ is bigger than that of $\N$.
+\end{rmk}	
+\end{framed}
+\begin{framed}
+\begin{thm}\label{thm6.2.2}
+	For any set $A$, $\qty|A|<\qty|\pow(A)|.$	
+\end{thm}
+\begin{prf}
+	$\boxed{\text{Case }1}$ If $A$ is finite, then $|A|=n$ and $|\pow(A)|=2^n.$\par\hspace{5mm} Since $n<2^n$ (\textit{can be proven using mathematical induction}), so $\qty|A|<\qty|\pow(A)|.$\par $\boxed{\text{Case }2}$ Suppose $A$ is infinite.\par\hspace{5mm}\textit{WTS: $\exists$ injection $f:A\to\pow(A)$ AND $\nexists$ surjection $f:A\to\pow(A).$}\begin{itemize}
+		\item \textbf{\underline{Injection exists}}: Let's define $f:A\to\pow(A)$ as $f(a)=\qty{a}.$\par Then, clearly if $a,b\in A\st f(a)=f(b),$ then $\qty{a}=\qty{b}$\par So, $a=b.\qquad\square$
+		\item \textbf{\underline{No surjection exists}}: \par Suppose for the sake of contradiction that $\exists f:A\to\pow(A)$ that is surjective.\par Note that $\forall a\in A,\ f(a)\in\pow(A).$\par That is, $\forall a\in A,\ f(a)\subseteq A.$\par So, $\forall a\in A,$ either $a\in f(a)$ or $a\notin f(a).$\par Define $B=\qty{a\in A\mid a\notin f(a)}\subseteq A.$ So, $B\in\pow(A).$\par Since $f$ is surjective and $B\in\pow(A),\ \exists a_0\in A\st f(a_0)=B.$\par$\boxed{\text{Case 1}}$ Suppose $a_0\in B.$ Then, by definition, $a_0\notin f(a_0)=B.$\begin{center}$\divideontimes$ This contradicts that $a_0\in B$\end{center}\par $\boxed{\text{Case }2}$ Suppose $a_0\notin B.$ Then, by definition, $a_0\in f(a_0)=B.$\begin{center}$\divideontimes$ This contradicts that $a_0\notin B.$\end{center}\par So, it must be that $\forall a\in A,\ f(a)\neq B.$\par So, $f$ cannot be surjective. 
+	\end{itemize}
+\end{prf}
+\end{framed}
+\begin{rmk}
+	From Theorem \ref{thm6.2.2}, we have the following inequality that contains infinitely many infinities: \[\underbrace{\qty|\N|}_{\text{countable}}<\overbrace{\qty|\pow(\N)|<\qty|\pow(\pow(\N))|<\qty|\pow(\pow(\pow(\N)))|<\cdots}^{\text{uncountable}}\]	
+\end{rmk}
 
 
 

@@ -15,7 +15,7 @@
    1. Templates: Box, Standard, Tcolorbox, Beamer - Completed
    2. Linear Algebra Learning Notes - In Progress
    3. MATH 112Z (Calculus II) Learning Notes - Completed
-   4. MATH 211 (Calculus III) Learning Notes - In Progress
+   4. MATH 211 (Calculus III) Learning Notes - Completed
    5. MATH 250 (Math Proofs) Learning Notes - In Progress
 5. Markdown Template - Completed
 6. R
