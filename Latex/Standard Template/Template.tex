@@ -1,23 +1,28 @@
 \documentclass[12pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{ntheorem}
 \usepackage[framemethod=TikZ]{mdframed}
-\usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
-\usepackage{cleveref}
-\usepackage{fancyhdr}
-\usepackage{geometry}
-\usepackage{arydshln}
-\usepackage{url}
-\usepackage{setspace}
-\usepackage{framed}
-\usepackage{pifont}
-\usepackage{physics}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = grey
+}
 
 \definecolor{blue}{rgb}{0,0.45,1.14}
 \definecolor{red}{rgb}{0.77,0.12,0.23}
@@ -26,22 +31,22 @@
 \definecolor{orange}{rgb}{2.07,0.69,0.32}
 
 \theorembodyfont{\upshape}
-\theoremseparator{:}
+\theoremseparator{.}
 \theoremstyle{definition}
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{conj}{Conjecture}[subsection]
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newtheorem*{sol}{\indent\bf Solution}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
 \newtheorem*{rmk}{\indent Remark}
-\newtheorem*{prf}{\indent Proof}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
-\newtheorem{cor}{Corollary}[subsection]
-\newtheorem{lem}{Lemma}[subsection]
-\newtheorem{prop}{Proposition}[subsection]
-\newtheorem{conj}{Conjecture}[subsection]
 
-\rhead{\thepage}
-\linespread{1.15}
+\linespread{1.5}
 
 \title{\textbf{This is a title}}
 \author{Jiuru Lyu}
@@ -60,6 +65,9 @@
 \def\cis{\mathrm{cis}}
 
 \begin{document}
+\maketitle
+
+\tableofcontents
 
 \section{This is the section name}
 \subsection{This is the subsection name}
@@ -75,9 +83,9 @@
 \begin{eg}
 	This is an example
 \end{eg}
-\begin{sol}
+\begin{ans}
 	
-\end{sol}
+\end{ans}
 
 
 \begin{rmk}
@@ -103,6 +111,10 @@
 \begin{conj}
 	This is a conjecture
 \end{conj}
+
+\begin{ax}
+	
+\end{ax}
 	
 \end{document}
 
