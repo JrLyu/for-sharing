@@ -6,18 +6,13 @@
 \usepackage{ntheorem}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage{cleveref}
 \usepackage{fancyhdr}
-\usepackage{lastpage}
 \usepackage{geometry}
-\usepackage{arydshln}
-\usepackage{url}
 \usepackage{setspace}
-\usepackage[T1]{fontenc}
 \usepackage{framed}
 \usepackage{pifont}
 \usepackage{physics}
+\usepackage{hyperref}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -301,7 +296,7 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 \end{eg}
 \begin{eg}
 	Which point(s) $(x,y,z)$ satisfies the equations \[x^2+y^2=1\quad\text{and}\quad x=3? \]	
-	\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+\begin{ans}
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 	\draw  (125.83,146.62) -- (219.83,146.62)(135.14,58) -- (135.14,155.06) (212.83,141.62) -- (219.83,146.62) -- (212.83,151.62) (130.14,65) -- (135.14,58) -- (140.14,65)  ;
@@ -318,6 +313,7 @@ For spaces in the higher dimension, we understand them via the Cartesian product
 	\end{tikzpicture}
 	\end{center}
 	Those points form a circle in the hyperplane of $z=3$ centered at the point $(0,0,3)$ with a radius of $1$.
+\end{ans}
 \end{eg}
 \begin{thm}[Distance Formula in Three Dimension]
 	For given points $P_1(x_1,y_1,z_1)$ and $P_2(x_2,y_2,z_2)$, the distance between them is denoted by $|P_1P_2|$ and is defined by \[|P_1P_2|=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}.\]	
