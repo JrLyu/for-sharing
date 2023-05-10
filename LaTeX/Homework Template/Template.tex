@@ -3,7 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, listings, xcolor}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+%%% Algorithm %%%
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -21,40 +23,15 @@
 	linkcolor = blue
 }
 
+%%% For coding homeworks%%%
+\usepackage{listings}
+\definecolor{blue}{rgb}{0,0.45,1.14}
+\definecolor{red}{rgb}{0.77,0.12,0.23}
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{orange}{rgb}{2.07,0.69,0.32}
+\definecolor{purple}{rgb}{0.58,0,0.82}
 \definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-
-\lstset{ %
-  backgroundcolor = \color{white}, % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle = \ttfamily\footnotesize, % the size of the fonts that are used for the code
-  keywordstyle = \bfseries,% 关键字风格
-  commentstyle = \ttfamily\itshape,  % 注释的风格，斜体
-  breakatwhitespace = false, % sets if automatic breaks should only happen at whitespace
-  breaklines = true, % sets automatic line breaking
-  captionpos = bl, % sets the caption-position to bottom
-  flexiblecolumns, % 别问为什么，加上这个
-  commentstyle = \color{mygreen}, % comment style
-  deletekeywords = {...},            % if you want to delete keywords from the given language
-  escapeinside = {\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars = true, % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame = single, % adds a frame around the code
-  keepspaces = true, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle = \color{blue}, % keyword style
-  %language=Python,    % the language of the code
-  morekeywords = {*,...},  % if you want to add more keywords to the set
-  numbers = left, % where to put the line-numbers; possible values are (none, left, right)
-  numbersep = 5pt, % how far the line-numbers are from the code
-  numberstyle = \tiny\ttfamily\color{mygray}, % the style that is used for the line-numbers
-  rulecolor = \color{black}, % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces = false,  % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces = false,  % underline spaces within strings only
-  showtabs = false, % show tabs within strings adding particular underscores
-  stepnumber = 1, % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle = \ttfamily\color{mymauve},% string literal style
-  tabsize = 4,  % sets default tabsize to 2 spaces
-  columns = fixed
-}
+\lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
@@ -120,25 +97,51 @@
 	
 \end{ans}
 
-
 \begin{lstlisting}[language = Matlab, title = {Answer.m}]
-	% Plot function f(x) = 2*x^3 - x - 2
-	ezplot('2*x^3-x-2', [0, 2])
-	hold on
-	plot([0, 2], [0, 0], 'r')
+% Plot function f(x) = 2*x^3 - x - 2
+ezplot('2*x^3-x-2', [0, 2])
+hold on
+plot([0, 2], [0, 0], 'r')
 \end{lstlisting}
 
 \begin{lstlisting}[language = Python]
-	for i in range(10):
-		print(f"This number is {i}.")
+def __self__(self):
+for i in range(10):
+	print(f"This number is {i}.")
 \end{lstlisting}
 
 \begin{lstlisting}[language = java]
-	public static void main(String[] args) {
-		System.out.println("Hello World!");
-	}
+public static void main(String[] args) {
+	System.out.println("Hello World!"); // comment
+}
 \end{lstlisting}
+
+\begin{algorithm}
+\caption{Bisection Algorithm}
+\SetKwData{In}{\rmfamily\textbf{in}}\SetKwData{To}{\rmfamily\textbf{to}}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Stop}{\rmfamily{\textbf{stop}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+\SetKwComment{Comment}{/* }{ */}
+\DontPrintSemicolon
+\KwIn{$a,b,M,\delta,\epsilon$\;$u\leftarrow f(a)$\;$b\leftarrow f(b)$\;$e\leftarrow b-a$}
+\KwOut{output}
+\BlankLine
+\Begin{
+	\If{$\text{sign}(u)=\text{sign}(v)$}{\Stop}
+	\For{k=1 \To M}{
+		$e\leftarrow e/2$\;
+		$c\leftarrow a+e$\;
+		$w\leftarrow f(c)$\;
+		\Return $k,c,w,e$\;
+		\If{$|e|<\delta$\Or$|w|<\epsilon$}{\Stop}
+		\eIf{$\text{sign}(u)\neq=\text{sign}(v)$}{
+			$b\leftarrow c$\;
+			$v\leftarrow w$\;
+		} {
+			$a\leftarrow c$\;
+			$u\leftarrow w$\;
+		}
+	}
+}
+\end{algorithm}
 
 \label{LastPage}
 \end{document}
-
