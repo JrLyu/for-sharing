@@ -1,24 +1,22 @@
-\documentclass[10pt,letter]{article}
+\documentclass[11pt,letter]{article}
 \usepackage{ntheorem}
 \usepackage{amssymb, amsmath, amsfonts, epsfig, graphicx, dsfont, bbm, url, color, setspace, multirow, pinlabel, pifont, framed, physics, mathtools, hyperref}
-%\usepackage[all]{xy}
 \usepackage{fancyhdr, geometry}
 
 % Page Setting
 \geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
 \pagestyle{fancy}
-\linespread{1.75}
+\linespread{1.5}
 
 % Head & Foot Setting
-\fancyhead[LO,LE]{} 
-\fancyhead[RO,RE]{}
+\fancyhead[L]{} 
+\fancyhead[R]{}
 \chead{\textbf{Practice Proofs}} 
 \cfoot{\textbf{Page \thepage\ of \pageref{LastPage}}}
-\fancyfoot[LO,LE]{} 
-\fancyfoot[RO,RE]{} 
+\fancyfoot[L]{} 
+\fancyfoot[R]{} 
 \renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0.5pt}
-\parindent 2.5em
 
 % Defining Environments
 \newcounter{nq}[section]
@@ -37,6 +35,9 @@
 \newenvironment*{p}{\par\noindent\textbf{\textit{Proof \stepcounter{np}\thenp. }}\par}{\par\hfill $\blacksquare$\par}
 \newenvironment*{dis}{\par\noindent\textbf{\textit{Disproof \stepcounter{np}\thenp. }}\par}{\par\hfill $\blacksquare$\par}
 \newenvironment*{q}[1]{\noindent\emph{\thesection.\stepcounter{nq}\thenq$\quad $ #1}\par\noindent\texttt}{}
+\newenvironment*{clm}{\par\noindent\textbf{Claim. }}{\par}
+\newenvironment*{counter}{\par\noindent\textbf{\textit{Counterexample\stepcounter{np}\thenp. }}\par}{\par\hfill $\square$\par}
+\newenvironment*{ans}{\par\noindent\textbf{\textit{Answer \stepcounter{np}\thenp. }}\par}{\par\hfill $\square$\par}
 
 
 % Defining Symbols
@@ -46,12 +47,17 @@
 \def\Q{{\mathbb{Q}}}
 \def\N{{\mathbb{N}}}
 \def\E{{\mathbb{E}}}
+\def\Zp{{\Z^+}}
 \def\emptyset{\varnothing}
+\def\epsilon{\varepsilon}
 \def\pwer{{\mathcal{P}}}
 \def\qed{\rightline{$\blacksquare$}}
 \def\st{\emph{ s.t. }}
 \def\fs{\emph{ f.s. }}
 \def\Iff{\emph{ iff }}
+\def\dsst{\displaystyle}
+\def\f{f^{-1}}
+\def\of{\circ}
 
 % Title Information
 \title{Foundations of Mathematics -- \textbf{Proof Practice}}
@@ -66,7 +72,7 @@
 	{Let $a,\ b,\ $and $c$ be integers, with $a$ and $b$ non-zero. If $(ab)\mid(ac)$, then $b\mid c.$}
 \end{q}\end{framed}
 \begin{p}
-	Let	$a,b,c\in\Z$ with $a\neq0$ and $b\neq0$.\par Suppose $(ab)\mid(ac)$. Then $\exists k\in\Z\st ac=(ab)k$.\par Divide both sides of the equation by $a$: \[c=bk.\] \par Since $k\in\Z$, by definition of divides, $b\mid c$.
+	Let	$a,b,c\in\Z$ with $a\neq0$ and $b\neq0$. Suppose $(ab)\mid(ac)$. Then $\exists k\in\Z\st ac=(ab)k$. Divide both sides of the equation by $a$: \[c=bk.\] Since $k\in\Z$, by definition of divides, $b\mid c$.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -74,7 +80,7 @@
 	{Prove that for all real numbers $a$ and $b$, if $a\in\Q$ and $ab\notin\Q$, then $n\notin Q$.}	
 \end{q}\end{framed}
 \begin{p}
-	Let $a,b\in\Q$.\par Assume for the sake of contradiction that if $a\in\Q$ and $ab\notin\Q$, we have $b\in\Q$.\par Then, $\exists p,q,m,n\in\Z\st a=\dfrac{m}{n}$ and $b=\dfrac{p}{q}$.\par Hence, \[ab=\frac{m}{n}\cdot\frac{p}{q}=\frac{mp}{nq}\]\par As $mp, nq\in\Z$, $ab\in\Q.$\begin{center}$\divideontimes$ This contradicts with the fact that $ab\notin\Q$.\end{center}\par So, $b$ must not be rational. 
+	Let $a,b\in\Q$. Assume for the sake of contradiction that if $a\in\Q$ and $ab\notin\Q$, we have $b\in\Q$. Then, $\exists p,q,m,n\in\Z\st a=\dfrac{m}{n}$ and $b=\dfrac{p}{q}$. Hence, \[ab=\frac{m}{n}\cdot\frac{p}{q}=\frac{mp}{nq}\] As $mp, nq\in\Z$, $ab\in\Q.$\begin{center}$\divideontimes$ This contradicts with the fact that $ab\notin\Q$.\end{center} So, $b$ must not be rational. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -82,7 +88,7 @@
 {Prove the square of an even integer is divisible by 4.}	
 \end{q}\end{framed}
 \begin{p}
-	Suppose $x\in\Z$ is even. Then $\exists k\in\Z\st x=2k.$\par Then, $x^2=(2k)^2=4k^2.$\par Since $k^2\in\Z$, we have $4\mid 4k^2$.
+	Suppose $x\in\Z$ is even. Then $\exists k\in\Z\st x=2k.$ Then, $x^2=(2k)^2=4k^2.$ Since $k^2\in\Z$, we have $4\mid 4k^2$.
 \end{p}
 
 \begin{thm}[Archimedean Principle]\label{AP}
@@ -94,7 +100,8 @@
 	{For every positive real number $\varepsilon$, there exists a positive integer $N$ such that $\dfrac{1}{n}<\varepsilon$ for all $n\geq N.$}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $\varepsilon\in\R$ and $\varepsilon>0.$\marginpar{}\par Since $\varepsilon\in\R$, we have $\dfrac{1}{n}\in\R.$\par Then, by Archimedean Principle, $\exists n\in\Z\st n>\dfrac{1}{\varepsilon}.$\par Hence, $n\varepsilon>1$ or $\varepsilon>\dfrac{1}{n}.$\par Suppose $N\in\Z\st N=\left\lceil\dfrac{1}{\varepsilon}\right\rceil$\par\textit{$\left\lceil\dfrac{1}{\varepsilon}\right\rceil$ means the integer greater to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\notin\Z$, and the integer equals to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\in\Z.$}\par Hence, $N\geq\dfrac{1}{\varepsilon}.$\par As $n>\dfrac{1}{\varepsilon},$ we have $n\geq N$
+	Suppose $\varepsilon\in\R$ and $\varepsilon>0.$ Since $\varepsilon\in\R$, we have $\dfrac{1}{n}\in\R.$ Then, by Archimedean Principle, $\exists n\in\Z\st n>\dfrac{1}{\varepsilon}.$ Hence, $n\varepsilon>1$ or $\varepsilon>\dfrac{1}{n}.$\par 
+	Suppose $N\in\Z\st N=\left\lceil\dfrac{1}{\varepsilon}\right\rceil$, \textit{where $\left\lceil\dfrac{1}{\varepsilon}\right\rceil$ means the integer greater to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\notin\Z$, and the integer equals to $\dfrac{1}{\varepsilon}$ if $\dfrac{1}{\varepsilon}\in\Z.$} Hence, $N\geq\dfrac{1}{\varepsilon}.$ As $n>\dfrac{1}{\varepsilon},$ we have $n\geq N$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -102,7 +109,9 @@
 	{Use the Archimedean Principle (Theorem \ref{AP}) to prove if $x$ is a real number, then there exists a positive integer $n$ such that $-n<x<n.$}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $x\in\R.$\par $\boxed{\text{Case }1}$ If $x>0$, then $-x<0$ (i.e., $-x<0<x$).\par\hspace{10mm} By the Archimedean Principle, $\exists n\in\Z\st n>x.$\par\hspace{10mm} Multiply $(-1)$ on both sides of the inequality: \[-n<-x\]\par\hspace{10mm} As $-x<0<x$, \[-n<-x<0<x<n,\]\par\hspace{10mm} which means $-n<x<n,$ and $n$ is positive.\par $\boxed{\text{Case }2}$ If $x<0,$ then $-x>0$ (i.e., $-x>0>x$)\par\hspace{10mm} Since $x\in\R$, we have $-x\in\R$.\par\hspace{10mm} By the Archimedean Principle, $\exists n\in\Z\st n>-x.$\par\hspace{10mm} Multiply $(-1)$ on both sides of the inequality: \[-n<x\]\par\hspace{10mm} As $x<0<-x,$ \[-n<x<0<-x<n,\]\par\hspace{10mm} which means $-n<x<n,$ and $n$ is positive.\par In all cases, we have proven that $x\in\R\implies\exists n\in\Z,\ n>0\st-n<x<n.$
+	Suppose $x\in\R.$\par 
+	$\boxed{\text{Case }1}$ If $x>0$, then $-x<0$ (i.e., $-x<0<x$). By the Archimedean Principle, $\exists n\in\Z\st n>x.$ Multiply $(-1)$ on both sides of the inequality: \[-n<-x\] As $-x<0<x$, \[-n<-x<0<x<n,\] which means $-n<x<n,$ and $n$ is positive.\par 
+	$\boxed{\text{Case }2}$ If $x<0,$ then $-x>0$ (i.e., $-x>0>x$) Since $x\in\R$, we have $-x\in\R$. By the Archimedean Principle, $\exists n\in\Z\st n>-x.$ Multiply $(-1)$ on both sides of the inequality: \[-n<x\] As $x<0<-x,$ \[-n<x<0<-x<n,\] which means $-n<x<n,$ and $n$ is positive. In all cases, we have proven that $x\in\R\implies\exists n\in\Z,\ n>0\st-n<x<n.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -110,7 +119,10 @@
 	{Prove that if $x$ is a positive real number, then there exists a positive integer $n$ such that $\dfrac{1}{n}<x<n$.}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $x\in\R,\ x>0$\par $\boxed{\text{Case }1}$ If $0<x\leq1,$ then $\dfrac{1}{x}\geq1.$\par\hspace{10mm} Hence, $x\leq1\leq\dfrac{1}{x}.$\par\hspace{10mm} As $x\in\R,$ $\dfrac{1}{x}\in\R$, then by the Archimedean Principle (Theorem \ref{AP}): \[\exists n\in\Z\st n>\dfrac{1}{x}.\]\par\hspace{10mm} Hence, $nx>1$ or $x>\dfrac{1}{n}.$\par\hspace{10mm}As $x\leq\dfrac{1}{x},$ $n>\dfrac{1}{x}$, and $x>\dfrac{1}{n}$, we have \[\frac{1}{n}<x<n.\]\par$\boxed{\text{Case }2}$ If $x>1$, then $0<\dfrac{1}{x}<1.$\par\hspace{10mm} Hence, $\dfrac{1}{x}<1<x.$\par\hspace{10mm} As $x\in\R$, by the Archimedean Principle: \[\exists n\in\Z\st n>x>0\]\par\hspace{10mm} Hence, $\dfrac{1}{n}<\dfrac{1}{x}$\par\hspace{10mm} As $\dfrac{1}{x}<x$, $\dfrac{1}{n}<\dfrac{1}{x},$ and $n>x,$ we have \[\dfrac{1}{n}<x<n\]\par In all cases, we proven that $x\in\R,\ x>0\implies\exists n\in\Z, n>0\st\dfrac{1}{n}<x<n.$
+	Suppose $x\in\R,\ x>0$\par 
+	$\boxed{\text{Case }1}$ If $0<x\leq1,$ then $\dfrac{1}{x}\geq1.$ Hence, $x\leq1\leq\dfrac{1}{x}.$ As $x\in\R,$ $\dfrac{1}{x}\in\R$, then by the Archimedean Principle (Theorem \ref{AP}): \[\exists n\in\Z\st n>\dfrac{1}{x}.\] Hence, $nx>1$ or $x>\dfrac{1}{n}.$ As $x\leq\dfrac{1}{x},$ $n>\dfrac{1}{x}$, and $x>\dfrac{1}{n}$, we have \[\frac{1}{n}<x<n.\]\par
+	$\boxed{\text{Case }2}$ If $x>1$, then $0<\dfrac{1}{x}<1.$ Hence, $\dfrac{1}{x}<1<x.$ As $x\in\R$, by the Archimedean Principle: \[\exists n\in\Z\st n>x>0\] Hence, $\dfrac{1}{n}<\dfrac{1}{x}$. As $\dfrac{1}{x}<x$, $\dfrac{1}{n}<\dfrac{1}{x},$ and $n>x,$ we have \[\dfrac{1}{n}<x<n\]\par 
+	In all cases, we proven that $x\in\R,\ x>0\implies\exists n\in\Z, n>0\st\dfrac{1}{n}<x<n.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -118,7 +130,7 @@
 	{There are no positive integer solutions to the equation $x^2-y^2=10$.}
 \end{q}\end{framed}
 \begin{p}
-	Assume for the sake of contradiction that there are positive integer solutions to the equation $x^2-y^2=10.$\par Suppose $\exists x,y\in\Z$ and $x>0,\ y>0\st x^2-y^2=10.$\par Then, we have $x^2=10+y^2.$\par Since $x>0,\ x^2>0,$ we have $10+y^2>0.$\par Then, $y^2>-10.$\par\begin{center}$\divideontimes$ This contradicts with the fact that $y^2\geq0$ if $y\in\Z.$\end{center}\par So, our assumption is wrong. There must be no positive integer solutions to the equation $x^2-y^2=10.$
+	Assume for the sake of contradiction that there are positive integer solutions to the equation $x^2-y^2=10.$ Suppose $\exists x,y\in\Z$ and $x>0,\ y>0\st x^2-y^2=10.$ Then, we have $x^2=10+y^2.$ Since $x>0,\ x^2>0,$ we have $10+y^2>0.$ Then, $y^2>-10.$\begin{center}$\divideontimes$ This contradicts with the fact that $y^2\geq0$ if $y\in\Z.$\end{center} So, our assumption is wrong. There must be no positive integer solutions to the equation $x^2-y^2=10.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -129,15 +141,15 @@
 	\end{rmk}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $a\in\Q$ and $b\in\Q'$\par Assume for the sake of contradiction that $a+b\in\Q$.\par Then, $\exists m,n,p,q\in\Z$ such that $a=\dfrac{m}{n}$ and $a+b=\dfrac{p}{q}.$\par Then, \[b=\frac{p}{q}-a=\frac{p}{q}-\frac{m}{n}=\frac{pn-mq}{qn}\in\Q\]\par Since $pn-mq\in\Q$ and $qn\in\Z$, we have $b=\dfrac{pn-mq}{qn}\in\Q$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $b\in\Q'$. \end{center}\par So, $a+b$ must be irrational. 
+	Suppose $a\in\Q$ and $b\in\Q'$ Assume for the sake of contradiction that $a+b\in\Q$. Then, $\exists m,n,p,q\in\Z$ such that $a=\dfrac{m}{n}$ and $a+b=\dfrac{p}{q}.$ Then, \[b=\frac{p}{q}-a=\frac{p}{q}-\frac{m}{n}=\frac{pn-mq}{qn}\in\Q\] Since $pn-mq\in\Q$ and $qn\in\Z$, we have $b=\dfrac{pn-mq}{qn}\in\Q$.\par\begin{center}$\divideontimes$ This contradicts with the fact that $b\in\Q'$. \end{center} So, $a+b$ must be irrational. 
 \end{p}
 
 \begin{framed}\begin{q}
-	{Handout Chapter 1.4-2 More Contradictions and Equivelance}
+	{Handout Chapter 1.4-2 More Contradictions and Equivalence}
 	{If $n\in\N$ and $2^n-1$ is prime, then $n$ is prime.}
 \end{q}\end{framed}
 \begin{p}
-	We will prove the contrapositive: if $n$ is not prime, then $2^n-1$ is not prime.\par Suppose $n$ is not prime. Then, $\exists a,b\in\Z$ with $1<a,b<n\st n=ab.$\par Then, $2^n-1=2^{ab}=\left(2^a\right)^b-1.$\par Notice that for $x^w-1$, by polynomial long division, have \[x^w-1=(x-1)\left(x^{w-1}+x^{w-2}+\cdots+1\right),\]\par Substitute $x=2^a$ and $w=b$, we have \[2^n-1=\left(2^a-1\right)\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right].\]\par Since $\left(2^a-1\right)\in\Z$ and $\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right]\in\Z,$ we see that $2^n-1$ is not prime. 
+	We will prove the contrapositive: if $n$ is not prime, then $2^n-1$ is not prime. Suppose $n$ is not prime. Then, $\exists a,b\in\Z$ with $1<a,b<n\st n=ab.$ Then, $2^n-1=2^{ab}=\left(2^a\right)^b-1.$ Notice that for $x^w-1$, by polynomial long division, have \[x^w-1=(x-1)\left(x^{w-1}+x^{w-2}+\cdots+1\right),\] Substitute $x=2^a$ and $w=b$, we have \[2^n-1=\left(2^a-1\right)\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right].\] Since $\left(2^a-1\right)\in\Z$ and $\left[\left(2^a\right)^{b-1}+\left(2^a\right)^{b-2}+\cdots+1\right]\in\Z,$ we see that $2^n-1$ is not prime. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -192,7 +204,7 @@
 	{There is no smallest integer.}
 \end{q}\end{framed}
 \begin{p}
-	Assume for the sake of contradiction that there exists a smallest integer $n$. Hence, $\forall x\in\Z,$ we have $x\geq n.$\par Notice that if $n>0,$ we have $0\in\Z$ and $0<n.$\par Hence, $n=0$ cannot be the smallest integer ($\divideontimes$)\par Therefore, $n$ most be smaller than $0$.\par Suppose $m=-n$.\par Since $n\in\Z$, $m=-n\in\Z\in\R$\par By the Archimedean Principle (Theorem \ref{AP}), $\exists k\in\Z\st k>m$.\par Hence, $k>-n.$\par Multiply $(-1)$ on both sides of the inequality: \[-k<n.\]\par As $k\in\Z$, $-k\in\Z$. Then $\exists -k\in\Z\st -k<n.$\par\begin{center}$\divideontimes$ This contradicts with our assumption that $n$ is the smallest integer. \end{center}\par Hence, our assumption must be wrong. There is no smallest integer. 
+	Assume for the sake of contradiction that there exists a smallest integer $n$. Hence, $\forall x\in\Z,$ we have $x\geq n.$ Notice that if $n>0,$ we have $0\in\Z$ and $0<n.$ Hence, $n=0$ cannot be the smallest integer ($\divideontimes$) Therefore, $n$ most be smaller than $0$. Suppose $m=-n$. Since $n\in\Z$, $m=-n\in\Z\in\R$ By the Archimedean Principle (Theorem \ref{AP}), $\exists k\in\Z\st k>m$. Hence, $k>-n.$ Multiply $(-1)$ on both sides of the inequality: \[-k<n.\] As $k\in\Z$, $-k\in\Z$. Then $\exists -k\in\Z\st -k<n.$\begin{center}$\divideontimes$ This contradicts with our assumption that $n$ is the smallest integer. \end{center} Hence, our assumption must be wrong. There is no smallest integer. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -200,7 +212,7 @@
 	{The number $\log_23$ is irrational.}
 \end{q}\end{framed}
 \begin{p}
-	Assume for the sake of contradiction that $\log_2{3}$ is irrational.\par By definition, $\exists p,qin\Z,$ with $q\neq0\st\log_2{3}=\dfrac{p}{q}.$\par Observe that $\log_2{3}\neq0$. Then $p\neq0$ as well.\par By definition of logarithm, \[\begin{aligned}2^{p/q}&=3\\\qty(2^p)^{1/q}&=3\end{aligned}\]\par Raise two sides of the equation to the power of $q$: \[2^p=3^q\]\par As $p\neq0$ and $q\neq0,$ $2^p$ and $3^q$ are not $1\ \forall p,q\in\Z.$\par Hence, $2^p$ is even $\forall p\in\Z$ and $3^q$ is odd $\forall q\in\Z.$\par\begin{center}$\divideontimes$ This contradicts with the fact that an even number cannot equal to an odd number. \end{center}\par Hence, our assumption is wront. The number $\log_23$, then, must be irrational.
+	Assume for the sake of contradiction that $\log_2{3}$ is irrational. By definition, $\exists p,qin\Z,$ with $q\neq0\st\log_2{3}=\dfrac{p}{q}.$ Observe that $\log_2{3}\neq0$. Then $p\neq0$ as well. By definition of logarithm, \[\begin{aligned}2^{p/q}&=3\\\qty(2^p)^{1/q}&=3\end{aligned}\] Raise two sides of the equation to the power of $q$: \[2^p=3^q\] As $p\neq0$ and $q\neq0,$ $2^p$ and $3^q$ are not $1\ \forall p,q\in\Z.$ Hence, $2^p$ is even $\forall p\in\Z$ and $3^q$ is odd $\forall q\in\Z.$\begin{center}$\divideontimes$ This contradicts with the fact that an even number cannot equal to an odd number. \end{center} Hence, our assumption is wront. The number $\log_23$, then, must be irrational.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -208,10 +220,10 @@
 	{There is a rational number $a$ and an irrational number $b$ such that $a^b$ is rational.}
 \end{q}\end{framed}
 \begin{p}
-	Observe that $1$ is a rational number and $\pi$ is an irrational number. \par Suppose $a=1$ and $b=\pi$, we have $a^b=a^\pi=1,$ which is irrational.	
+	Observe that $1$ is a rational number and $\pi$ is an irrational number.  Suppose $a=1$ and $b=\pi$, we have $a^b=a^\pi=1,$ which is irrational.	
 \end{p}
 \begin{p}
-	Recall that we have proven in the previous proof, we have proven that $\log_23$ is an irrational number.\par Recall the definition of logarithm and exponents, we have \[2^{\log_23}=3\]\par Hence, we find a pair of $a$ and $b$ that  satisfies the requirement. 
+	Recall that we have proven in the previous proof, we have proven that $\log_23$ is an irrational number. Recall the definition of logarithm and exponents, we have \[2^{\log_23}=3\] Hence, we find a pair of $a$ and $b$ that  satisfies the requirement. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -219,7 +231,10 @@
 	{For all integers $n$, the number $n+n^2+n^3+n^4$ is even.}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $n\in\Z$.\par$\boxed{\text{Case }1}$ If $n$ is even.\par\hspace{5mm}Suppose $n=2k\fs k\in\Z$.\par\hspace{5mm}Then,\[\begin{aligned}n+n^2+n^3+n^4&=(2k)+(2k)^2+(2k)^3+(2k)^4\\&=2k+4k^2+8k^3+16k^4\\&=2(k+2k^2+4k^3+8k^4)\end{aligned}\]\par\hspace{5mm}Since $(k+2k^2+4k^3+8k^4)\in\Z,$ we have $2(k+2k^2+4k^3+8k^4)$ is even.\par\hspace{5mm}Hence, $n+n^2+n^3+n^4$ is even when $n$ is even.\par$\boxed{\text{Case }2}$ If $n$ is odd.\par\hspace{5mm}Suppose $n=2k+1\fs k\in\Z.$\par\hspace{5mm}Then, \[\begin{aligned}n+n^2+n^3+n^4&=(2k+1)+(2k+1)^2+(2k+1)^3+(2k+1)^4\\&=2k+1+4k^2+4k+1+8k^3+12k^2+6k+1+16k^4+32k^3+24k^2+8k+1\\&=16k^4+40k^3+40k^2+20k+4\\&=2(8k^4+20k^3+20k^2+10k+2)\end{aligned}\]\par\hspace{5mm}Since $(8k^4+20k^3+20k^2+10k+2)\in\Z$, we have $2(8k^4+20k^3+20k^2+10k+2)$ is even.\par\hspace{5mm}Hence, $n+n^2+n^3+n^4$ is even when $n$ is odd.\par Since integers can either be even or odd, and we have proven $n+n^2+n^3+n^4$ is even in either case, $n+n^2+n^3+n^4$ is even for all integers. 
+	Suppose $n\in\Z$.\par
+	$\boxed{\text{Case }1}$ If $n$ is even.Suppose $n=2k\fs k\in\Z$. Then,\[\begin{aligned}n+n^2+n^3+n^4&=(2k)+(2k)^2+(2k)^3+(2k)^4\\&=2k+4k^2+8k^3+16k^4\\&=2(k+2k^2+4k^3+8k^4)\end{aligned}\] Since $(k+2k^2+4k^3+8k^4)\in\Z,$ we have $2(k+2k^2+4k^3+8k^4)$ is even. Hence, $n+n^2+n^3+n^4$ is even when $n$ is even.\par
+	$\boxed{\text{Case }2}$ If $n$ is odd. Suppose $n=2k+1\fs k\in\Z.$ Then, \[\begin{aligned}n+n^2+n^3+n^4&=(2k+1)+(2k+1)^2+(2k+1)^3+(2k+1)^4\\&=2k+1+4k^2+4k+1+8k^3+12k^2+6k+1+16k^4+32k^3+24k^2+8k+1\\&=16k^4+40k^3+40k^2+20k+4\\&=2(8k^4+20k^3+20k^2+10k+2)\end{aligned}\] Since $(8k^4+20k^3+20k^2+10k+2)\in\Z$, we have $2(8k^4+20k^3+20k^2+10k+2)$ is even. Hence, $n+n^2+n^3+n^4$ is even when $n$ is odd.\par 
+	Since integers can either be even or odd, and we have proven $n+n^2+n^3+n^4$ is even in either case, $n+n^2+n^3+n^4$ is even for all integers. 
 \end{p}
 
 \begin{df}[Perfect Square]
@@ -231,7 +246,8 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{If $n$ is a positive integer such that $n$ is in the form $4k+2$ or $4k+3$, then $n$ is not a perfect square.}
 \end{q}\end{framed}
 \begin{p}
-	We will prove the contrapositive of the statement: ``If $n$ is a perfect square, then $n$ is a positive integer of the form $4k$ or $4k+1\fs k\in\Z.$''\par Suppose $n$ to be a perfect square, then $\exists m\in\Z\st n=m^2.$\par $\boxed{\text{Case }1}$ Suppose $m$ is even, then $m=2t\fs t\in\Z.$\[n=m^2=(2t)^2=4t^2>0.\]\par \hspace*{10mm}Let $k=t^2$. Since $t^2\in\Z$, we have $k\in\Z.$\par\hspace*{10mm}Hence, $n$ is positive and is in the form of $4k$.\par $\boxed{\text{Case }2}$ Suppose $m$ is odd, then $m=2t+1\fs t\in\Z$.\[n=m^2=(2t+1)^2=4t^2+4t+1=4(t^2+t)+1>1\]\par\hspace*{10mm} Let $k=t^2+t$. Since $(t^2+t)\in\Z$, we have $k\in\Z.$\par\hspace*{10mm} Hence, $n$ is in the form of $4k+1$.\par Hence, we prove the contrapositive of the original statement to be true, which means our original statement is also true.	
+	We will prove the contrapositive of the statement: ``If $n$ is a perfect square, then $n$ is a positive integer of the form $4k$ or $4k+1\fs k\in\Z.$'' Suppose $n$ to be a perfect square, then $\exists m\in\Z\st n=m^2.$ $\boxed{\text{Case }1}$ Suppose $m$ is even, then $m=2t\fs t\in\Z.$\[n=m^2=(2t)^2=4t^2>0.\] Let $k=t^2$. Since $t^2\in\Z$, we have $k\in\Z.$Hence, $n$ is positive and is in the form of $4k$.\par 
+	$\boxed{\text{Case }2}$ Suppose $m$ is odd, then $m=2t+1\fs t\in\Z$.\[n=m^2=(2t+1)^2=4t^2+4t+1=4(t^2+t)+1>1\] Let $k=t^2+t$. Since $(t^2+t)\in\Z$, we have $k\in\Z.$ Hence, $n$ is in the form of $4k+1$. Hence, we prove the contrapositive of the original statement to be true, which means our original statement is also true.	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -239,7 +255,12 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For any integer $n$, $3\mid n$ if and only if $3\mid n^2$.}
 \end{q}\end{framed}
 \begin{p}
-	Suppose $n\in\Z$.\par($\Rightarrow$) Suppose $3\mid n$. Then, $\exists k\in\Z\st n=3k.$\par\hspace{5mm}Then, $n^2=(3k)^2=9k^2=3(3k^2).$\par\hspace{5mm}Since $3k^2\in\Z$, by definition, $3\mid n^2.$\par($\Leftarrow$) WTS: $3\mid n^2\implies3\mid n$\par\hspace{5mm}We will prove the contrapositive: If $3\nmid n$, then $3\nmid n^2$\par\hspace{5mm}Suppose $3\nmid n.$\par\hspace{5mm}$\boxed{\text{Case }1}$ Suppose $n=3m+1\fs m\in\Z$.\par\hspace{10mm}Then, $n^2=(3m+1)^2=9m^2+6m+1$\par\hspace{10mm}Since $9m^2+6m+1$ cannot be written in the form of $3k\fs k\in\Z,$ by definition, $3\nmid n^2.$\par\hspace{5mm}$\boxed{\text{Case }2}$ Suppose $n=3m+2\fs m\in\Z$\par\hspace{10mm}Then, $n^2=(3m+2)^2=9m^2+12m+4$\par\hspace{10mm}Since $9m^2+12m+4$ cannot be written in the form of $3k$ for some $k\in\Z$, by definition, $3\nmid n^2.$\par\hspace{5mm} Hence, we proved the contrapositive, and thus the original statement is true.\par Therefore, $n\mid n\iff 3\mid n^2.$
+	Suppose $n\in\Z$.\par
+	($\Rightarrow$) Suppose $3\mid n$. Then, $\exists k\in\Z\st n=3k.$ Then, $n^2=(3k)^2=9k^2=3(3k^2).$ Since $3k^2\in\Z$, by definition, $3\mid n^2.\qquad\square$\par
+	($\Leftarrow$) WTS: $3\mid n^2\implies3\mid n$. We will prove the contrapositive: If $3\nmid n$, then $3\nmid n^2$ Suppose $3\nmid n.$ \par\hspace{5mm}
+		$\boxed{\text{Case }1}$ Suppose $n=3m+1\fs m\in\Z$. Then, $n^2=(3m+1)^2=9m^2+6m+1$ Since $9m^2+6m+1$ cannot be written in the form of $3k\fs k\in\Z,$ by definition, $3\nmid n^2.$\par\hspace{5mm}
+		$\boxed{\text{Case }2}$ Suppose $n=3m+2\fs m\in\Z$Then, $n^2=(3m+2)^2=9m^2+12m+4$Since $9m^2+12m+4$ cannot be written in the form of $3k$ for some $k\in\Z$, by definition, $3\nmid n^2.$ Hence, we proved the contrapositive, and thus the original statement is true.\par 
+	Therefore, $n\mid n\iff 3\mid n^2.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -247,7 +268,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{There exists an integer $n$ such that $12\mid n^2$ but $12\nmid n$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Observe that if we take $n=6,$ we have $n^2=36$. Since $n^2=36=3\times12,$ we know $12\mid n^2.$ However, $12\nmid6$ since $6$ cannot be written as $12k$ for all $k\in\Z.$ Hence, there exists an integer $n=6\st12\mid n^2$ but $12\nmid n$.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -255,7 +276,10 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For every integer $a$, the numbers $a$ and $(a+1)(a-1)$ have opposite parity.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $a\in\Z.$\par
+	$\boxed{\text{Case }1}$ Suppose $a$ is even. Then $a=2k\fs k\in\Z.$ Then, \[(a+1)(a-1)=a^2-1=(2k)^2-1=4k^2-1=2(2k^2)-1.\] Since $2k^2\in\Z,$ we have $(a+1)(a-1)$ is odd. That is, $a$ and $(a+1)(a-1)$ have opposite parity.\par
+	$\boxed{\text{Case 2}}$ Suppose $a$ is odd. Then $a=2k+1\fs k\in\Z.$ Hence, \[(a+1)(a-1)=a^2-1=(2k+1)^2-1=4k^2+4k+1-1=2(2k^2+2k).\] Since $2k^2+2k\in\Z,$ we have $(a+1)(a-1)$ is even. As a result, $a$ and $(a+1)(a-1)$ have opposite parity.\par 
+	In both cases, we've shown that $a$ and $(a+1)(a-1)$ have opposite parity.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -263,7 +287,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Suppose $x\in\R$. If $x^2$ is irrational, then $x$ is irrational.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	We will prove the contrapositive: ``If $x$ is rational, then $x^2$ is rational.'' Suppose $x\in\Q,$ then $x=\dfrac{p}{q}\fs p,q\in\Z,$ assuming $p$ and $1$ have no common factors and $q\neq0$. Then, \[x^2=\qty(\dfrac{p}{q})^2=\dfrac{p^2}{q^2}.\] As $p,q\in\Z$, we have $p^2,q^2\in\Z.$ Hence, $x^2=\dfrac{p^2}{q^2}\in\Q.$ Therefore, if $x$ is rational, so is $x^2$.	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -271,7 +295,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For any integers $a$ and $b$, if $ab$ is even, then $a$ is even or $b$ is even.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	We will prove the contrapositive: ``If $a$ is odd and $b$ is odd, then $ab$ is odd.'' Suppose $a,b\in\Z$ and $a$ and $b$ are both odd. Then, $\exists k,l\in\Z\st a=2k+1\quad$ and $\quad b=2l+1.$ Then, \[ab=(2k+1)(2l+1)=4kl+2k+2l+1=2(2kl+k+l)+1.\] Since $2kl+k+l\in\Z,$ we have $ab$ is odd.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -279,7 +303,22 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For $n\in\N$, $n$, $n+2$, and $n+4$ are all prime if and only if $n=3$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\Rightarrow$) WTS: $n, n+2,$ and $n+4$ are all prime $\implies$ $n=3.$ We will prove the contrapositive: $n\neq3\implies n, n+2,$ or $n+4$ is not prime.\par 
+		$\boxed{\text{Case }1}$ Suppose $0<n<3.$ 
+			\begin{enumerate}
+				\item[\ding{172}] If $n=1,$ then $n=1$ is not a prime.
+				\item[\ding{173}] If $n=2,$ then $n=2$ is a prime number, but $n+2=2+2=4$ is not a prime.
+			\end{enumerate}
+			Hence, if $0<n<3,$ $n, n+2,$ or $n+4$ is not a prime.\par 
+		$\boxed{\text{Case 2}}$ Suppose $n>3.$
+		\begin{enumerate}
+				\item[\ding{172}] If $n=3k\fs k\in\Z,$ then $n$ is not a prime because $3\mid n$.
+				\item[\ding{173}] If $n=3k+1\fs k\in\Z,$ then $n+2=3k+1+2=3k+3=3(k+1).$ Since $k+1\in\Z,$ we have $3\mid n+2.$ Then, $n+2$ is not a prime.
+				\item[\ding{174}] If $n=3k+2\fs k\in\Z,$ then $n+4=3k+2+4=3k+6=3(k+2).$ Since $k+2\in\Z,$ we know that $3\mid n+4.$ Therefore, $n+4$ is not a prime.
+			\end{enumerate}
+			Hence, if $n>3,$ we also have $n, n+2,$ or $n+4$ is not a prime.\par 
+		In both cases, we have proven that if $n\neq3,$ then $n, n+2,$ or $n+4$ is not a prime. $\qquad\square$\par 
+	($\Leftarrow$) Note that when $n=3,$ we have $n+2=3+2=5$ and $n+4=3+4=7.$ Since $3, 5,$ and $7$ are all primes, we have shown that when $n=3$, $n$, $n+2$, and $n+4$ are all primes.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -287,7 +326,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove or disprove: Every real number is less than or equal to its square.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	We will prove the negation: ``Some real number is greater than its square.''	Observe that when $x=0.1,$ then $x^2=(0.1)^2=0.01.$ Since $0.01<0.1,$ we have $x=0.1\in\R$ is greater than its square. Since the negation is true, the original statement is then false.
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -295,7 +334,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove or disprove: The sum of two integers is never equal to their product.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	We will prove the negation: ``The sum of some integers is equal to their product.'' Suppose $p,q\in\Z,$ and their sum equals to their product. Then, $p+q=pq.$ Divide $p$ on both sides: $q=1+\dfrac{q}{p}.$ Observe that when $p=2,$ we have $q=1+\dfrac{q}{2}.$ So, $2q=1+q,$ or $q=2$. Hence, $p+q=2+2=4$ and $pq=2\times2=4.$ Therefore, we've found integers $p=2$ and $q=2$ such that $p+q=pq.$
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -303,7 +342,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove or disprove: There exists a non-zero integer whose cube equals its negative.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	We will prove the negation: ``For all non-zero integers, their cubes do not equal their negations.'' Assume for the sake of contradiction that there exists a non-zero integer whose cube equals its negative. Suppose $x\in\Z$ and $x\neq0\st x^3=-x.$ So we have $x^3+x=0,$ or $x(x^2+1)=0.$ Then, $x=0$ or $x^2+1=0.$ As $x\neq0,$ it must be that $x^2+1=0,$ or $x^2=-1.$\begin{center}$\divideontimes$ This contradicts with the fact that $\forall x\in\Z, x^2\geq0>-1.$\end{center} So, our assumption is incorrect. For all non-zero integers, their cubes do not equal their negatives.
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -311,7 +350,11 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove or disprove: Fall all $x\in\R$, $x\leq x^2$ or $0\leq x<1$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $x\in\R$.\par 
+	$\boxed{\text{Case }1}$ Suppose $0\leq x<1.$ Then, $x$ satisfies the requirement.\par 
+	$\boxed{\text{Case }2}$	Suppose $x<0,$ then $x^2>0.$ Therefore, $x<0<x^2.$\par 
+	$\boxed{\text{Case }3}$ Suppose $x\geq1.$ Multiply the inequality by $x$ on both sides, we have: $x\cdot x\geq x$ or $x^2\geq x.$ Hence, $x\leq x^2.$\par 
+	In all cases, we've proven that $\forall x\in\R, x\leq x^2$ or $0\leq x<1.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -319,7 +362,8 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $n$ be an integer. Prove that $n$ is even if and only if $n^3$ is even.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\Rightarrow$) WTS: $n$ is even $\implies n^3$ is even. Suppose $n$ is even. Then $n=2k\fs k\in\Z.$ Then, $n^3=(2k)^3=8k^3=2(4k^3).$ Since $4k^3\in\Z,n^3$ is even.\par  
+	($\Leftarrow$) WTS: $n^3$ is even $\implies n$ is even. We will prove the contrapositive: $n$ is odd $\implies n^3$ is odd. Suppose $n$ is odd. Then, $n=2k+1\fs k\in\Z.$  Then, \[n^3=(2k+1)^3=8k^3+12k^2+8k+1=2(4k^3+6k^2+4k)+1.\] Since $4k^3+6k^2+4k\in\Z,n^3$ is odd.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -327,7 +371,8 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $n$ be an integer. Prove that $n$ is odd if and only if $n^3$ is odd.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\Rightarrow$) WTS: $n$ is odd $\implies n^3$ is odd. This statement is previously proven.\par 
+	($\Leftarrow$) WTS: $n^3$ is odd $\implies n$ is odd. We will prove the contrapositive: $n$ is even $\implies n^3$ is even. The contrapositive is also previously proven.
 \end{p}
 
 \begin{framed}\begin{q}
@@ -335,10 +380,8 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove that $\sqrt[3]{2}$ is irrational.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Assume for the sake of contradiction that $\sqrt[3]{2}$	is rational. Suppose $\sqrt[3]{2}$ is rational. By definition, $\exists p,q\in\Z\st\sqrt[3]{2}=\dfrac{p}{q},$ assuming $p$ and $q$ have no common factors and $q\neq0.$ Raise the two sides of the equation to cube: \[2=\qty(\dfrac{p}{q})^3=\dfrac{p^3}{q^3}.\] Then, $p^3=2q^3.$ Since $q^3\in\Z,$ we know $p^3$ is even. Then, $p$ is also even (previously proven). Then, $p=2k\fs k\in\Z.$ Hence,\[\begin{aligned}2q^3=p^3=(2k)^3&=8k^3\\q^3=4k^3&=2(2k^3)\end{aligned}\] Since $2k^3\in\Z,$ we see $q^3$ is even. Then, $q$ is also even. \begin{center}$\divideontimes$ This contradicts with our assumption that $p$ and $q$ have no common factors as $p,q$ being even indicates they have $2$ as their common factor.\end{center} So, our assumption is wrong, and $\sqrt[3]{2}$ is irrational.
 \end{p}
-
-
 
 \newpage
 \section{Sets}
@@ -347,8 +390,9 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove that $\{12a+4b\mid a,b\in\Z\}=\{4c\mid c\in\Z\}$.}
 \end{q}\end{framed}
 \begin{p}
-	($\subseteq$) Suppose $x\in\qty{12a+4b\mid a,b\in\Z}$\par\hspace{5mm}Then, $x=12a+4b\fs a,b\in\Z.$\[x=12a+4b=4(3a+b)\]\par\hspace{5mm}As $3a+b\in\Z$, we have $x\in\qty{4c\mid c\in\Z}$\par\hspace{5mm}By definition, $\qty{12a+4b\mid a,b\in\Z}\subseteq\qty{4c\mid c\in\Z}$\par
-	($\supseteq$) Suppose $x\in\qty{4c\mid c\in\Z}$\par\hspace{5mm}Then, $x=4c\fs c\in\Z.$\par\hspace{5mm}Suppose $c=3a+b\fs a,b\in\Z.$\par\hspace{5mm}Then, $x=4c=4(3a+b)=12a+4b.$\par\hspace{5mm}By definition, $\qty{4c\mid c\in\Z}\subseteq\qty{12a+4b\mid a,b\in\Z}$\par Hence, we have proven $\{12a+4b\mid a,b\in\Z\}=\{4c\mid c\in\Z\}.$
+	($\subseteq$) Suppose $x\in\qty{12a+4b\mid a,b\in\Z}$. Then, $x=12a+4b\fs a,b\in\Z.$ So, $x=12a+4b=4(3a+b).$ As $3a+b\in\Z$, we have $x\in\qty{4c\mid c\in\Z}$. By definition, $\qty{12a+4b\mid a,b\in\Z}\subseteq\qty{4c\mid c\in\Z}$.\par
+	($\supseteq$) Suppose $x\in\qty{4c\mid c\in\Z}$. Then, $x=4c\fs c\in\Z.$ Suppose $c=3a+b\fs a,b\in\Z.$ Then, $x=4c=4(3a+b)=12a+4b.$ By definition, $\qty{4c\mid c\in\Z}\subseteq\qty{12a+4b\mid a,b\in\Z}$\par
+	Hence, we have proven $\{12a+4b\mid a,b\in\Z\}=\{4c\mid c\in\Z\}.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -356,7 +400,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{If $A=\{x\mid x=n^4-1,\ n\in\Z\}$ and $B=\{x\mid x=m^2-1,\ m\in\Z\}$, then $A\subseteq B$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $x\in A$. Then, $x=n^4-1\fs n\in\Z.$ Then, $x=n^4-1=(n^2)^2-1.$ Since $n^2\in\Z,$ we have $x\in B.$ Therefore, $A\subseteq B.$	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -364,7 +408,9 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{If $A$, $B$, and $C$ are sets, then $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in A\cap(B\cup C).$ WTS: $A\cap(B\cup C)\subseteq(A\cap B)\cup(A\cap C).$ By definition, $x\in A$ and $x\in(B\cup C)$. By definition, $x\in A$ and $x\in B$ or $x\in A$ and $x\in C.$ Therefore, $x\in(A\cap B)$ or $x\in(A\cap C).$ That is, $x\in(A\cap B)\cup(A\cap C).$ Hence, $A\cap(B\cup C)\subseteq(A\cap B)\cup(A\cap C).\qquad\square$\par 
+	($\supseteq$) Suppose $x\in(A\cap B)\cup(A\cap C).$ WTS: $(A\cap B)\cup(A\cap C)\subseteq A\cap(B\cup C).$ By definition, $x\in(A\cap B)$ or $x\in(A\cap C).$ WLOG, consider $x\in(A\cap B).$ Then, $x\in A$ and $x\in B.$ Similarly, we know $x\in A$ and $x\in C$ from $x\in(A\cap C).$ Therefore, $x\in A$ and $x\in B$ or $x\in C.$ That is, $x\in A$ and $x\in(B\cup C),$ or $x\in A\cap(B\cup C).$ Hence, $(A\cap B)\cup(A\cap C)\subseteq A\cap(B\cup C).$\par 
+	As $A\cap(B\cup C)\subseteq(A\cap B)\cup(A\cap C)$ and $(A\cap B)\cup(A\cap C)\subseteq A\cap(B\cup C),$ we have shown that $A\cap(B\cup C)=(A\cap B)\cup(A\cap C).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -372,47 +418,74 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For subsets $A$ and $B$ of a universal set $U$, $\overline{A\cup B}=\overline{A}\cap\overline{B}$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\overline{A\cup B}.$ By definition, $x\notin A\cup B$. That is, $x\notin A$ and $x\notin B.$ Or, $x\in\overline{A}$ and $x\in\overline{B}.$ That is, $x\in\overline{A}\cap\overline{B}.$ Therefore, $\overline{A\cup B}\subseteq\overline{A}\cap\overline{B}.$\par 
+	($\supseteq$) Suppose $x\in\overline{A}\cap\overline{B}.$ By definition, $x\notin A$ and $x\notin B$. That is, $x\in\overline{A\cup B}.$ Therefore, $\overline{A}\cap\overline{B}\subseteq\overline{A\cup B}.$\par 
+	Since $\overline{A\cup B}\subseteq\overline{A}\cap\overline{B}$ and $\overline{A}\cap\overline{B}\subseteq\overline{A\cup B},$ we have $\overline{A\cup B}=\overline{A}\cap\overline{B}.$
 \end{p}
 
 \begin{framed}\begin{q}
 	{Exam 1 Review 2-p}
-	{Suppose that $A$, $B$, and $C$ are subsets of a universal set $U$. Let $P$ and $Q$ be the following statements:}\par\hspace{5mm}\texttt{$P$: $A\subseteq B$ or $A\subseteq C$; and}\par\hspace{5mm}\texttt{$Q$: $A\subseteq B\cap C$.}\par\noindent\texttt{Write the statement $P\Rightarrow Q$, its converse and contrapositive. Prove the truth statements among these or give counterexamples.}
+	{Suppose that $A$, $B$, and $C$ are subsets of a universal set $U$. Let $P$ and $Q$ be the following statements:}\par\hspace{5mm}\texttt{$P$: $A\subseteq B$ or $A\subseteq C$; and}\par\hspace{5mm}\texttt{$Q$: $A\subseteq B\cap C$.}\par\noindent\texttt{Write the statement $P\implies Q$, its converse, and its contrapositive. Prove the true ones or give counterexamples.}
 \end{q}\end{framed}
+\begin{clm}
+	$P\implies Q:$ $A\subseteq B$ or $A\subseteq C\implies A\subseteq B\cap C.$
+\end{clm}
 \begin{p}
-	Prove.	
+	Suppose $x\in A.$\par 
+	$\boxed{\text{Case }1}$ Suppose $A\subseteq B.$ Then $x\in B.$ Since $B\cap C\subseteq B, x\in B\cap C.$ Therefore, $A\subseteq B\cap C.$\par 
+	$\boxed{\text{Case }2}$ Suppose $A\subseteq C.$ Then $x\in C.$ Since $B\cap C\subseteq C,x\in B\cap C.$ Therefore, $A\subseteq B\cap C.$\par 
+	In both cases, we proven $A\subseteq B$ or $A\subseteq C\implies A\subseteq B\cap C.$
+\end{p}
+\begin{clm}
+	Converse: $Q\implies P$: $A\subseteq B\cap C\implies A\subseteq B$ or $A\subseteq C.$
+\end{clm}
+\begin{p}
+	Suppose $A\subseteq B\cap C.$ Suppose $x\in A.$ Then $x\in B\cap C.$ By definition, $x\in B$ and $x\in C$. Hence, $A\subseteq B$ and $A\subseteq C.$ Since the ``or'' here is inclusive, $A\subseteq B$ and $A\subseteq C$ is a true case for $A\subseteq B$ or $A\subseteq C.$ Hence, $A\subseteq B\cap C\implies A\subseteq B$ or $A\subseteq C.$
+\end{p}
+\begin{clm}
+	Contrapositive: $\neg Q\implies\neg P$: $A\nsubseteq B\cap C\implies A\nsubseteq B$ and $A\nsubseteq C.$	
+\end{clm}
+\begin{p}
+	Since the original statement is true, its contrapositive is automatically true.
 \end{p}
 
 \begin{framed}\begin{q}
-	{Handout Chapter 2.2-Combining Sets}
+	{Handout Chapter 2.2 \# 10-a-i}
 	{Let $A=\{6a+4\mid x\in\Z\}$ and $B=\{18b-a\mid b\in\Z\}$. Prove or disprove: $A\subseteq B$.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	Suppose $x\in A$. Then $x=6a+3\fs a\in\Z.$ Notice that $6a+4=18\qty(\dfrac{1}{3}a+\dfrac{1}{3})-2.$ Since $\dfrac{1}{3}a+\dfrac{1}{3}=\dfrac{1}{3}(a+1)\in\Q,$ but $\dfrac{1}{3}(a+1)\notin\Z\forall a\in\Z,$ we have $6a+4\notin\qty{18b-2\mid b\in\Z}.$ By definition of subsets, $A\nsubseteq B.$
+	\begin{rmk}
+		We can also use proof by contradiction to disprove this statement.
+	\end{rmk}
 \end{dis}
 
 \begin{framed}\begin{q}
-	{Handout Chapter 2.2-Combining Sets}
+	{Handout Chapter 2.2 \# 10-a-ii}
 	{Let $A=\{6a+4\mid x\in\Z\}$ and $B=\{18b-a\mid b\in\Z\}$. Prove or disprove: $B\subseteq A$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $x\in B.$ Then, $x=18b-2\fs b\in\Z.$ Notice that $18b-2=6(3b-1)+4.$ Since $3b-1\in\Z,$ we have $x\in A.$ Hence, by definition of subsets, $B\subseteq A.$	
 \end{p}
 
 \begin{framed}\begin{q}
-	{Handout Chapter 2.2-Combining Sets}
+	{Handout Chapter 2.2 \# 10-b}
 	{If $A$ and $B$ are sets, then $\pwer(A)-\pwer(B)=\pwer(A-B)$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) WTS: $\pwer(A)-\pwer(B)\subseteq\pwer(A-B).$ Suppose $X\in\pwer(A)-\pwer(B).$ By definition of set difference, $X\in\pwer(A)$ and $X\notin\pwer(B).$ By definition of power sets, $X\subseteq A$ and $X\nsubseteq B.$ Hence, $X\subseteq(A-B)$, by definition of set difference. Therefore, $X\in\pwer(A-B),$ and thus $\pwer(A)-\pwer(B)\subseteq\pwer(A-B)$ as desired.\par 
+	($\supseteq$) WTS: $\pwer(A-B)\subseteq\pwer(A)-\pwer(B).$ Suppose $X\in\pwer(A-B).$ Then, $X\subseteq A-B.$ By definition of set difference, $X\subseteq A$ and $X\nsubseteq B.$ Then, $X\in\pwer(A)$ and $X\notin\pwer(B).$ By definition of set difference, $X\in\pwer(A)-\pwer(B).$ Hence, $\pwer(A-B)\subseteq\pwer(A)-\pwer(B).$
 \end{p}
 
 \begin{framed}\begin{q}
-	{Handout Chapter 2.2-Combining Sets}
+	{Handout Chapter 2.2 \# 10-c}
 	{If $A$, $B$, and $C$ are sets, and $A\cross B=B\cross C$, then $A=B$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $A,B,$ and $C$ are sets. Suppose $\exists a,b\in\Z\st(a,c)\in A\times C.$ By definition of Cartesian product, $a\in A$ and $c\in C.$ Suppose $\exists b,c\in\Z\st(b,c)\in B\times C.$ So, we know that $b\in B.$ Suppose $A\times C=B\times C.$ Then, $A\times C\subseteq B\times C$ and $A\times C\supseteq B\times C.$\par 
+	($\subseteq$) If $A\times C\subseteq B\times C,$ we have $(a,c)\in B\times C.$ Then, $a\in B.$ Since $a\in A,$ we know $A\subseteq B.$\par 
+	($\supseteq$) Similarly, since $A\times C\supseteq B\times C,$ we have $(b,c)\in A\times C.$ Then, $b\in A.$ Since $b\in B,$ we see that $B\subseteq A.$\par 
+	By definition of set equality, $A=B.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -420,10 +493,522 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $n\in\Z$ and let $A=n\Z$. Prove that if $x,y\in A,$ then $x+y\in Z$ and $xy\in A$.}
 \end{q}\end{framed}
 \begin{p}
+	Suppose $n\in\Z$ and $A=n\Z.$ Then, $A=\qty{nk\mid k\in\Z}.$ Suppose $x,y\in A.$ Then, $\exists k,l\st x=nk$ and $y=nl.$ Then, $x+y=nk+nl=n(k+l).$ Since $k+l\in\Z, x+y\in A.$ Similarly, $xy=(nk)(nl)=n(nkl).$ Since $nkl\in\Z,xy\in A.$
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.1 \# 10}
+	{Let $n$ and $m$ be integers. Let $A=n\Z$ and $B=m\Z.$ Prove that if $n$ is a multiplier of $m$, then $A\subseteq B.$}
+\end{q}\end{framed}
+\begin{p}
 	Prove.	
 \end{p}
 
+\begin{framed}\begin{q}
+	{Chapter 2.1 \# 12}
+	{Let $A=\qty{n\in\Z\mid n\text{ is a multiple of }4}$ and $B=\qty{n\in\Z\mid n^2\text{ is a multiple of }4}$. Prove that $A\subseteq B$ and $B\nsubseteq A$.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
 
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.1 \# 13}
+	{If $A=\qty{n\in\Z\mid n+3\text{ is odd}}$, then $A$ is equal to the set of all even integers.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.1 \# 15}
+	{Let $A=\qty{n\in\Z\mid n=4t+1\text{ for some }t\in\Z}$ and $B=\qty{n\in\Z\mid n=4t+9\text{ for some }t\in\Z}$. Prove that $A=B.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.1 \# 16}
+	{Let $A=\qty{n\in\Z\mid n=3t+1\text{ for some }t\in\Z}$ and $B=\qty{n\in\Z\mid n=3t+2\text{ for some }t\in\Z}$. Prove that $A$ and $B$ have no elements in common.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 8}
+	{Let $A_i=(-i,i)=\qty{x\in\R\mid-i<x<i}$. Prove that $\dsst\bigcup_{i=1}^\infty(-i.i)=\R$ and $\dsst\bigcap_{i=1}^\infty(-i,i)=(-1,1).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 10}
+	{Let $A_i=\qty{1,2,3,\cdots,i}$ for $i\in\Zp$. Compute $\dsst\bigcup_{i=1}^\infty A_i$ and $\dsst\bigcap_{i=1}^\infty A_i.$ Prove your answer.}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^\infty A_i=\Zp.$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	$\dsst\bigcap_{i=1}^\infty A_i=\qty{1}.$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 10}
+	{Let $A_i=[i,i+1)=\qty{x\in\R\mid i\leq x<i+1}$ for $i\in\Zp$. Compute $\dsst\bigcup_{i=1}^\infty A_i$ and $\dsst\bigcap_{i=1}^\infty A_i.$ Prove your answer.}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^\infty A_i=\qty{x\in\R\mid x\geq1}.$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	$\dsst\bigcap_{i=1}^\infty A_i=\emptyset.$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 12}
+	{Let $A_i=\left(\dfrac{1}{i},i\right]=\qty{x\in\R\mid \dfrac{1}{i}<x\leq i}$ for $i\geq2$. Compute $\dsst\bigcup_{i=1}^\infty A_i$ and $\dsst\bigcap_{i=1}^\infty A_i.$ Prove your answer.}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^\infty A_i=(0,\infty).$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	$\dsst\bigcap_{i=1}^\infty A_i=\left(\dfrac{1}{2},2\right].$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 13}
+	{Let $A_i=\qty[i,1+\dfrac{1}{i}]$ for $i\in\Zp$. Compute $\dsst\bigcup_{i=1}^\infty A_i$ and $\dsst\bigcap_{i=1}^\infty A_i.$ Prove your answer.}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^\infty A_i=[1,2].$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	$\dsst\bigcap_{i=1}^\infty A_i=\qty{1}.$
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 2.3 \# 14}
+	{Let $A_i=\qty(i,1+\dfrac{1}{i})$ for $i\in\Zp$. Compute $\dsst\bigcup_{i=1}^\infty A_i$ and $\dsst\bigcap_{i=1}^\infty A_i.$ Prove your answer.}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^\infty A_i=(1,2),$ and $\dsst\bigcap_{i=1}^\infty A_i=\emptyset.$
+\end{clm}
+\begin{p}
+	Similar proofs as done in the previous exercise.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 2}
+	{For sets $A,B,C,D$, prove that $(A\times B)\cap(C\times D)=(A\cap C)\times(B\cap D).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 3}
+	{Given the indexed sets, compute the unions and intersections. Give full and careful proofs of each: $A_i=[i-1,i]$ for $i=1,\cdots,n.$ Compute $\dsst\bigcup_{i=1}^nA_i$ and $\dsst\bigcap_{i=1}^nA_i.$}
+\end{q}\end{framed}
+\begin{clm}
+	$\dsst\bigcap_{i=1}^nA_i=\begin{cases}A_1,&n=1\\A_1\cap A_2=\qty{1},&n=2\\\emptyset,&n\geq3\end{cases}.$	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	$\dsst\bigcup_{i=1}^nA_i=[0,n].$	
+\end{clm}
+\begin{p}
+	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 4}
+	{Here's a mathematical statement: \begin{center}($s$): for all sets $A$ and $B$, $A\subseteq B$ implies that $\pwer(A)\subseteq\pwer(B).$\end{center} State the converse ($s_1$) of ($s$), the contrapositive $(s_2)$ of ($s$), the negation ($\neg s$) of ($s$). Which of the statements ($s$), ($s_1$), ($s_2$), ($\neg s$) are true? }
+\end{q}\end{framed}
+\begin{clm}
+	($s$) is true.	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	($s_1$) is true.	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	($s_2$) is true.	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	($\neg s$) is false.	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 5}
+	{For all sets $A$ and $B$, if $\pwer(A)=\pwer(B),$ then $A=B.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 7}
+	{Find $\dsst\bigcap_{n\in\N}=n\Z$}
+\end{q}\end{framed}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+
+\newpage
+\section{Integers and Induction}
+\begin{framed}\begin{q}
+	{Handout Chapter 5.1-5.2-Axioms of Integers}
+	{Let $a,b\in\Z.$ Then $(-a)(-b)=ab$.}
+\end{q}\end{framed}
+\begin{p}
+	Notice that $a\cdot0=0$. Multiply $(-1)$ on both sides: \[\begin{aligned}(-a\cdot0)&=-0=0\\(-a)\cdot0&=0\end{aligned}\] By additive identity, $b+(-b)=0,$ so we know that \[(-a)(b+(-b))=0.\] By distributivity, \[(-a)b+(-a)(-b)=0.\] Add the additive inverse of $-ab$ to both sides: \[\begin{aligned}-ab+(-(-ab))+(-a)(-b)&=0+(-(-ab))\\0+(-a)(-b)&=0+ab\\(-a)(-b)&=ab.\end{aligned}\]
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 5.1 \# 1-a}
+	{$-(-a)=a$ for all $a\in\Z$.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 5.1 \# 1-c}
+	{$a(b-c)=ab-ac$ for all $a,b,c\in\Z$.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 5.1 \# 2}
+	{Let $a,b\in\Z$. Prove that $-(a+b)=-a-b.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Chapter 5.1 \# 3}
+	{Let $a,b\in\Z$. Suppose that $a<b.$ Prove that $(-a)>(-b).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{thm}[Well Ordering Principle for $\N$.]
+	If $X\subseteq\N$ and $X\neq\emptyset,$ then $\exists x_0\in X\st\forall a\in X$ and $a\neq x_0,$ we have $a-x_0\in\Zp.$
+\end{thm}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 6-a}
+	{Every non-empty subset of the rational numbers $\Q$ contains a minimum element.}
+\end{q}\end{framed}
+\begin{counter}
+	Prove.
+\end{counter}
+\begin{counter}
+	Prove	
+\end{counter}
+\begin{p}
+	Prove.
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 8}
+	{Prove that for all $n\in\N,$ \[1\cdot2+2\cdot3+3\cdot4+\cdots+n\cdot(n+1)=\dfrac{n(n+1)(n+2)}{3}.\]}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{df}[Fibonacci Sequence]
+The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_2=1,\quad\text{and}\quad f_n=f_{n-1}+f_{n-2}\text{ for }n\geq3.\]	
+\end{df}
+
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 9}
+	{Prove that for all $n\in\N,$ \[f_{n+1}^2-f_{n+1}f_n-f_n^2=(-1)^n.\]}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 10}
+	{Let $f:\N\to\N$ be defined recursively by $f(1)=1$ and $f(n+1)=\sqrt{2+f(n)}$ for all $n\in\N.$ Prove that $f(n)<2$ for all $n\in\N.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 11}
+	{Prove that $1^3+2^3+3^3+\cdots+n^3=\dfrac{n^2(n+1)^2}{4}.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 18}
+	{Let $n\in\Z$ and let $S\subseteq\Z$ satisfy $\qty|S|>n.$ Then, at least two distinct members of $S$ are congruent $\mod n$.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\newpage
+\section{Equivalence Relations}
+\begin{framed}\begin{q}
+	{Exam 2 Review 6-b}
+	{Suppose that $R$ is an equivalence relation on $A$ and that $a,b\in A.$ Then, if $[a]\cap[b]\neq\emptyset,$ then $[a]=[b].$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 12-a}
+	{Determine whether each of the following relations on $\R$ is an equivalence relation. Justify your answer. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $x-y\in\Z$.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 12-b}
+	{Determine whether each of the following relations on $\R$ is an equivalence relation. Justify your answer. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $x+y\in\Z$.}
+\end{q}\end{framed}
+\begin{dis}
+	Prove.	
+\end{dis}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 13}
+	{Prove or disprove: $R$ is an equivalence relation on $\Z$. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $4\mid(x+y)$. }
+\end{q}\end{framed}
+\begin{dis}
+	Prove.	
+\end{dis}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 14}
+	{Prove or disprove: $R$ is an equivalence relation on $\Z$. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $4\mid(x+3y)$. }
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 15}
+	{Define a relation $R$ on $\R^2$ as follows: for all $(a_1,b_1),(a_2,b_2)\in\R^2,(a_1,b_1)R(a_2,b_2)$ if $(a_1,b_1)$ and $(a_2,b_2)$ are on the same line through the origin. Decide whether $R$ is an equivalence relation - either show why or why not. If it is, what are the elements of the equivalence class $[(1,2)]$?}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	
+\end{p}
+
+\newpage
+\section{Functions}
+\begin{framed}\begin{q}
+	{Exam 2 Review 17}
+	{Let $A=\qty{x,y,z}.$ Define functions $f:\pwer(A)$ by $f(a)=\qty{a}$ and $g:A\to\pwer(A)$ by $g(a)=A-\qty{a}.$ Find $\Im(f)$ and $\Im(g).$}
+\end{q}\end{framed}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{clm}
+	
+\end{clm}
+\begin{p}
+	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 2 Review 17}
+	{Let $f:\R\to\R$ be given by $f(x)=2x^3+3x^2-12x+1.$ Let $X=\qty[-1,2].$ Find $f(X).$}
+\end{q}\end{framed}
+\begin{ans}
+	Prove.	
+\end{ans}
+
+\begin{df}[$\epsilon-\delta$ Definition of Continuity]
+	Suppose $f:\R\to\R$ is defined by $f(x)$, then $f$ is continuous at $x=a$ when then following condition is satisfied: \[\forall\epsilon>0,\exists\delta\in\R\st\qty|x-a|<\delta\implies\qty|f(x)-f(a)|<\epsilon\]
+\end{df}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 2}
+	{Consider the function $f(x)=\begin{cases}0,&x<0\\1,&x\geq0\end{cases}.$ Rigorously prove that $f$ is discontinuous at $x=0.$ Your proof should involve $\epsilon$ and $\delta.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 3-a}
+	{Use the formal definition of continuity, prove that the function $f(x)=x^2+4x+3$ is continuous at $x=-2.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 3-b}
+	{Use the formal definition of continuity, prove that the function $f(x)=x^2+4x+3$ is continuous at $x=2.$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 6}
+	{Prove or disprove: Every injective map form $\R\to\R$ is bijective.}
+\end{q}\end{framed}
+\begin{dis}
+	Prove.	
+\end{dis}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 7}
+	{Show that the function $f:\R-\qty{0}\to\R$ defined by $f(x)=\dfrac{x+1}{x}$ is injective but not surjective. How could we change the codomain so that $f$ is surjective?}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+\begin{ans}
+	
+\end{ans}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 11-a}
+	{Let $f:A\to B$ for a function and $X\subseteq A$. Prove or disprove: $\f(f(X))=X.$}
+\end{q}\end{framed}
+\begin{dis}
+	Prove.	
+\end{dis}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 11-b}
+	{Let $f:A\to B$ for a function and $X\subseteq A$. Prove or disprove: $f(\f(f(X)))=f(X).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 12}
+	{Let $f:A\to B$ and $g:B\to C$, and assume that $f$ is surjective. Prove that $g\of f$ is injective if and only if $g$ and $f$ are both injective.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 13}
+	{Suppose that $f:A\to B$ is a function. Prove that $f$ is injective if and only if for all subsets $C,D$ of $A$, $f(C\cap D)=f(C)\cap f(D).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{thm}
+A function is a bijection if and only if it is invertible.	
+\end{thm}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 14}
+	{Let $A,B$ be sets, and let $F(A,B)$ denote the set of all functions from $A$ to $B$. Let $g:A\to A$ be a bijection. Define a new function $\Delta_g: F(A,B)\to F(A,B)$ as follows: $f\mapsto f\of g.$ Prove that $\Delta_g$ is a bijection.}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 15-a}
+	{Let $A,B$ be sets, and let $f:A\to B$ be a function. Let $I$ be an index, and let $\qty{C_i}_{i\in I}$ be a collection of subsets such that for all $i\in I,C_i\subseteq B.$ Prove that $\dsst\f\qty(\bigcap_{i\in I}C_i)=\bigcap_{i\in I}\f(C_i).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
+
+\begin{framed}\begin{q}
+	{Exam 3 Review 15-a}
+	{Let $A,B$ be sets, and let $f:A\to B$ be a function. Let $I$ be an index, and let $\qty{C_i}_{i\in I}$ be a collection of subsets such that for all $i\in I,C_i\subseteq B.$ Prove that $\dsst\f\qty(\bigcup_{i\in I}C_i)=\bigcup_{i\in I}\f(C_i).$}
+\end{q}\end{framed}
+\begin{p}
+	Prove.	
+\end{p}
 
 \label{LastPage}
 \end{document}
