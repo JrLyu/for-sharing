@@ -1,0 +1,206 @@
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+
+\geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = grey
+}
+
+\definecolor{blue}{rgb}{0,0.45,1.14}
+\definecolor{red}{rgb}{0.77,0.12,0.23}
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{orange}{rgb}{2.07,0.69,0.32}
+\definecolor{purple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+\newcounter{ndf}[subsection]
+\setcounter{ndf}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{ndf}\thendf\ (#1).}}{\par}
+
+\newcounter{neg}[subsection]
+\setcounter{neg}{0}
+\newenvironment*{eg}{\par\noindent\textbf{Example \thesubsection.\stepcounter{neg}\theneg}}{\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \thesubsection.\theneq}}\par}{\hfill{$\square$}\par}
+
+\newcounter{nthm}[subsection]
+\setcounter{nthm}{0}
+\newenvironment*{thm}[1]{\par\noindent\textbf{Theorem \thesubsection.\stepcounter{nthm}\thenthm\ (#1).}\par}{\par}
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\par\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+
+\newtheorem*{rmk}{Remark}
+\newtheorem*{ext}{Extension}
+
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{nota}{Notation}[section]
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{conj}{Conjecture}[subsection]
+
+\linespread{1.15}
+
+\title{\textbf{Linear Algebra Done Right}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\F{{\mathbb{F}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varemptyset}
+\def\st{\emph{ s.t. }}
+\def\fs{\emph{ f.s. }}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Vector Spaces}
+\subsection{$\R^n$ and $\C^n$}
+\begin{df}{Complex Number}
+	A \textit{complex number} is an ordered pair $(a,b),$ where $a,b\in\R,$ but we write it as $a+b\i.$
+\end{df}
+\begin{nota}
+	$\C\coloneqq\qty{a+b\i\mid a,b\in\R}$
+\end{nota}
+\begin{df}{Addition \& Multiplication}
+	\[(a+b\i)+(c+d\i)=(a+c)+(b+d)]\i\]
+	\[(a+b\i)(c+d\i)=(ac-bd)+(ad+bc)\i\]
+\end{df}
+\begin{thm}{Properties of Complex Arithmetic}
+	\begin{enumerate}
+		\item commutativity: $\alpha+\beta=\beta+\alpha;\quad \alpha\beta=\beta\alpha,\quad\forall\alpha,\beta\in\C.$
+		\item associativity: $(\alpha+\beta)+\lambda=\alpha+(\beta+\lambda);\quad(\alpha\beta)\lambda=\alpha(\beta\lambda),\quad\forall\alpha,\beta,\lambda\in\C.$
+		\item identities: $\lambda+0=\lambda;\quad\lambda\cdot1=\lambda,\forall\lambda\in\C.$
+		\item additive inverse: $\forall\alpha\in\C,\exists$ unique $\beta\in\C\st\alpha+\beta=0.$
+		\item multiplicative inverse: $\forall\alpha\in\C,\alpha\neq0,\exists$ unique $\beta\in\C\st\alpha\beta=1.$
+		\item distributivity: $\lambda(\alpha+\beta)=\lambda\alpha+\lambda\beta,\quad\forall\lambda,\alpha,\beta\in\C.$
+	\end{enumerate}
+\end{thm}
+\begin{df}{Subtraction}
+	If $-\alpha$ is the additive inverse of $\alpha,$ \textit{subtraction} on $\C$ is defined by \[\beta-\alpha=\beta+(-\alpha).\]	
+\end{df}
+\begin{df}{Division}
+	For $\alpha\neq0,$ let $\dfrac{1}{\alpha}$ denote the multiplicative inverse of $\alpha.$ Then, \textit{division} on $\C$ is defined by \[\dfrac{\beta}{\alpha}=\beta\cdot\qty(\dfrac{1}{\alpha})\]
+\end{df}
+\begin{nota}
+	$\F$ is either $\R$ or $\C.$	
+\end{nota}
+\begin{df}{List/Tuple}
+	Suppose $n$ is a non-negative integer. A list of length $n$ is an ordered collection of $n$ elements separated by commas and surrounded by parentheses: $(x_1,x_2,x_3,\cdots,x_n).$ Two lists are equal if and only if they have the same length and the same elements in the same order. 
+\end{df}
+\begin{rmk}
+	Lists must have a FINITE length.	
+\end{rmk}
+\begin{df}{$\F^n$ and Coordinate}
+	$\F^n$ is the set of all lists of length $n$ of elements of $\F$: \[\F^n\coloneqq\qty{(x_1,\cdots,x_n)\mid x_i\in\R\forall i=1,\cdots,n},\] where $x_i$ is the $i^\text{th}$ \textit{coordinate} of $(x_1,\cdots,x_n).$
+\end{df}
+\begin{eg}
+	$\R^2=\qty{(x,y)\mid x,y\in\R}$ and $\R^3=\qty{(x,y,z)\mid x,y,z\in\R}.$
+\end{eg}
+\begin{df}{Addition on $\F^n$}
+	\textit{Addition} on $\F^n$ is defined by adding corresponding coordinates: \[(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n).\]	
+\end{df}
+\begin{thm}{Commutativity of Addition on $\F^n$}
+	If $x,y\in\F^n,$ then $x+y=y+x.$
+	\begin{prf}
+		Suppose $x=(x_1,\cdots,x_n)$ and $y=(y_1,\cdots,y_n).$ Then \[\begin{aligned}x+y&=(x_1+y_1,\cdots,x_n+y_n)\\&=(y_1+x_1,\cdots,y_n+x_n)=y+x.\end{aligned}\]
+	\end{prf}
+\end{thm}
+\begin{df}{Zero}
+	Let $0$ denote the list of length $n$ whose coordinates are all $0$: $0\coloneqq(0,\cdots,0).$	
+\end{df}
+\begin{df}{Additive Inverse on $\F^n$}
+	For $x\in\F^n,$ the additive inverse of $x$, denoted $-x,$ is the vector $-x\in\F^n\st x+(-x)=0.$	
+\end{df}
+\begin{df}{Scalar Multiplication in $\F^n$}
+	The product of a number $\lambda\in\F$ and a vector $x\in\F^n$ is computed by multiplying each coordinate of the vector by $\lambda:$ \[\lambda x=\lambda(x_1,\cdots,x_n)=(\lambda x_1,\cdots,\lambda x_n),\] where $x=(x_1,\cdots,x_n)\in\F^n.$
+\end{df}
+\begin{thm}{Properties of Arithmetic Operations on $\F^n$}
+	\begin{enumerate}
+		\item $(x+y)+z=x+(y+z)\quad\forall x,y,z\in\F^n$
+		\item $(ab)x=a(bx)\quad\forall x\in\F^n$ and $\forall a,b\in\F.$
+		\item $1\cdot x=x\quad\forall x\in\F^n$ and $1\in\F.$
+		\item $\lambda(x+y)=\lambda x+\lambda y\quad\forall\lambda\in\R$ and $\forall x,y\in\F^n.$
+		\item $(a+b)x=ax+bx\quad\forall a,b\in\F$ and $\forall x\in\F^n.$
+	\end{enumerate}
+\end{thm}
+
+\subsection{Definition of Vector Space}
+\begin{df}{Addition on $V$}
+	An \textit{addition} on $V$ is a function $(u,v)\mapsto u+v$ for all $u,v\in V.$	
+\end{df}
+\begin{df}{Scalar Multiplication on $V$}
+	A \textit{scalar multiplication} on $V$ is a function $(\lambda,v)\mapsto \lambda v$ for all $\lambda\in\F$ and $v\in V.$	
+\end{df}
+\begin{df}{Vector Space}
+	A \textit{vector space} is a set $V$ along with an addition on $V$ and a scalar multiplication$\st$the following properties hold: 
+	\begin{enumerate}
+		\item commutativity: $u+v=v+u\quad\forall u,v\in V$
+		\item associativity: $(u+v)+w=u+(v+w)$ and $(ab)v=a(bv)\quad\forall u,v,w\in V$ and $\forall a,b\in\F.$
+		\item additive identity: $\exists0\in V\st v+0=v\quad\forall v\in V.$
+		\item additive inverse: $\exists w\in V\st v+w=0\quad\forall v\in V.$
+		\item multiplicative identity: $\exists1\in V\st1\cdot v=v\quad\forall v\in V.$
+		\item distributive properties: $a(u+v)=au+av$ and $(a+b)v=av+bv\quad\forall u,v\in V$ and $a,b\in\F.$
+	\end{enumerate}
+\end{df}
+\begin{df}{Vector}
+	Elements of a vector space are called \textit{vectors} or points.	
+\end{df}
+\begin{nota}
+	$V$ is a vector space over $\F.$	
+\end{nota}
+\begin{df}{Real and Complex Vector Space}
+	A vector space over $\R$ is called a \textit{real vector space}, and a vector space over $\C$ is called a \textit{complex vector space}.	
+\end{df}
+\begin{thm}{Properties of Vector Spaces}
+	\begin{enumerate}
+		\item A vector space has a unique additive identity.
+		\begin{prf}
+			
+		\end{prf}
+		\item A vector in a vector space has a unique additive inverse.
+		\begin{prf}
+			
+		\end{prf}
+	\end{enumerate}	
+\end{thm}
+
+
+
+\subsection{Subspace}
+
+\newpage
+\section{Finite-Dimensional Vector Spaces}
+\subsection{Span and Linear Independence}
+\subsection{Bases}
+\subsection{Dimension}
+
+\end{document}

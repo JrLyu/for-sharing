@@ -1,23 +1,9 @@
 \documentclass[12pt, a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{ntheorem}
 \usepackage[framemethod=TikZ]{mdframed}
-\usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
-\usepackage{cleveref}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{geometry}
-\usepackage{arydshln}
-\usepackage{url}
-\usepackage{setspace}
 \usepackage[T1]{fontenc}
-\usepackage{framed}
-\usepackage{pifont}
-\usepackage{physics}
+\usepackage{mathtools, amssymb, ntheorem, amsmath, cleveref, fancyhdr, lastpage, geometry, arydshln, url, setspace, framed, pifont, physics, framed}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -45,9 +31,14 @@
 \newtheorem{thm}{Theorem}[subsection]
 \newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}{Example}[subsection]
-\newenvironment*{sol}{\indent\textit{Solution. }}{\hfill{$\square$}\par}
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{clm}{\indent Claim}[section]
 \newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution. }}}{\hfill{$\square$}\par}
+
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}}{\hfill $\blacksquare$\par}
 \newtheorem*{ext}{\indent Extension}
 
 \def\Z{{\mathbb{Z}}}
@@ -55,7 +46,7 @@
 \def\C{{\mathbb{C}}}
 \def\Q{{\mathbb{Q}}}
 \def\E{{\mathbb{E}}}
-\def\T{{\textbf{\emph{T}}}}
+\def\T{{\vb{T}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
 \def\RE{{\mathrm{Re}}}
@@ -64,34 +55,42 @@
 \def\cis{\mathrm{cis}}
 \def\rref{\mathrm{rref}}
 \def\Span{\mathrm{Span}}
-\def\Ker{\mathrm{Ker}}
+%\def\ker{\mathrm{Ker}}
 \def\rank{\mathrm{rank}}
 \def\nullity{\mathrm{nullity}}
 \def\Proj{\mathrm{Proj}}
 \def\Ref{\mathrm{Ref}}
+\def\vol{\mathrm{vol}}
+\def\almu{\mathrm{almu}}
+\def\gemu{\mathrm{gemu}}
 \def\qed{\rightline{$\blacksquare$}}
 \def\ddx{\frac{\d}{\d x}}
 \def\dydx{\frac{\d y}{\d x}}
 \def\dx{\d x}
-\def\vecx{\vec{x}}
-\def\vecy{\vec{y}}
-\def\vecv{\vec{v}}
-\def\vecw{\vec{w}}
-\def\vecu{\vec{u}}
-\def\veca{\vec{a}}
-\def\vecb{\vec{b}}
-\def\vece{\vec{e}}
-\def\matrixA{\textbf{\emph{A}}}
-\def\matrixB{\textbf{\emph{B}}}
-\def\matrixD{\textbf{\emph{D}}}
-\def\matrixI{\textbf{\emph{I}}}
-\def\matrixM{\textbf{\emph{M}}}
-\def\matrixN{\textbf{\emph{N}}}
-\def\matrixS{\textbf{\emph{S}}}
-\def\matrixP{\textbf{\emph{P}}}
-\def\matrixU{\textbf{\emph{U}}}
+\def\vecx{\va{x}}
+\def\vecy{\va{y}}
+\def\vecv{\va{v}}
+\def\vecw{\va{w}}
+\def\vecu{\va{u}}
+\def\veca{\va{a}}
+\def\vecb{\va{b}}
+\def\vece{\va{e}}
+\def\vecr{\va{r}}
+\def\matrixA{\vb{A}}
+\def\matrixB{\vb{B}}
+\def\matrixC{\vb{C}}
+\def\matrixD{\vb{D}}
+\def\matrixI{\vb{I}}
+\def\matrixM{\vb{M}}
+\def\matrixN{\vb{N}}
+\def\matrixS{\vb{S}}
+\def\matrixP{\vb{P}}
+\def\matrixU{\vb{U}}
+\def\matrixV{\vb{V}}
+\def\matrixSig{\vb{\Sigma}}
 \def\DNE{\mathrm{D.N.E.}}
 \def\LI{\mathrm{L.I.}}
+\def\dsst{\displaystyle}
 
 \title{Johns Hopkins University\\\textbf{AS.110.201 Linear Algebra}\\Learning Notes}
 \author{Jiuru Lyu}
@@ -398,29 +397,40 @@ $$\begin{bmatrix}a\\b\\c\end{bmatrix}+\begin{bmatrix}x\\y\\z\end{bmatrix}=\begin
 \begin{thm}[Scalar multiplication]
 $$\textcolor{red}{c}\times\begin{bmatrix}x\\y\\z\\ \end{bmatrix}=\begin{bmatrix}\textcolor{red}{c}\times x\\\textcolor{red}{c}\times y\\\textcolor{red}{c}\times z\end{bmatrix}$$
 \end{thm}
+\begin{ext}The Parallelogram Law for Vector Addition.
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (54,201.27) -- (270.64,201.27)(90.64,53) -- (90.64,228.27) (263.64,196.27) -- (270.64,201.27) -- (263.64,206.27) (85.64,60) -- (90.64,53) -- (95.64,60)  ;
+\draw    (90.64,201.27) -- (140.56,123.95) ;
+\draw [shift={(141.64,122.27)}, rotate = 122.85] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (90.64,201.27) -- (178.69,181.71) ;
+\draw [shift={(180.64,181.27)}, rotate = 167.47] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (141.64,122.27) -- (229.69,102.71) ;
+\draw [shift={(231.64,102.27)}, rotate = 167.47] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (90.64,201.27) -- (230,103.42) ;
+\draw [shift={(231.64,102.27)}, rotate = 144.93] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (114,122.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+\draw (183.64,176.67) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+\draw (178.64,87.67) node [anchor=north west][inner sep=0.75pt]    {$\vec{u}$};
+\draw (199.64,130.67) node [anchor=north west][inner sep=0.75pt]    {$\vec{v} +\vec{u}$};
+\end{tikzpicture}	
+\end{center}\end{ext}
 
-\begin{eg}
-The vector $\vec{v}=\begin{bmatrix}1\\2\end{bmatrix}$ is shown on a $xy$-plane as the following: 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.25\textwidth]{vector1.png}
-\end{figure}
-\begin{enumerate}
-\item The vector addition of $\begin{bmatrix}1\\2\end{bmatrix}+\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}3\\5\end{bmatrix}$ will be: 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{vector addition.png} 
-\end{figure}
-\item The vector scalar multiplication of $3\begin{bmatrix}1\\2\end{bmatrix}$ will be: \begin{figure}[H] 
-\centering 
-\includegraphics[width=0.25\textwidth]{scalar multiplication.png} 
-\end{figure}
-\end{enumerate}
-\end{eg}
-
-\begin{ext}The Parallelogram Law for Vector Addition.\end{ext}
-
-\begin{ext}Vector Subtraction.\end{ext}
+\begin{ext}Vector Subtraction.
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (59.92,201.27) -- (241.56,201.27)(90.64,86.22) -- (90.64,222.22) (234.56,196.27) -- (241.56,201.27) -- (234.56,206.27) (85.64,93.22) -- (90.64,86.22) -- (95.64,93.22)  ;
+\draw    (90.64,201.27) -- (159.5,152.92) ;
+\draw [shift={(161.14,151.77)}, rotate = 144.93] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (90.64,201.27) -- (230,103.42) ;
+\draw [shift={(231.64,102.27)}, rotate = 144.93] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (126,147.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
+\draw (234.64,110.67) node [anchor=north west][inner sep=0.75pt]    {$c\vec{v}$};
+\end{tikzpicture}	
+\end{center}
+\end{ext}
 
 \begin{df}[Linear Combinations]
 Let $c_1,c_2,...,c_k$ be scalars, and let $v_1,v_2,...,v_k$ be vectors in $\R^2$. The vector in $\R^2$ $$c_1v_1+c_2v_2+...+c_kv_k$$ is called a \textbf{linear combination} of the vectors $v_1,v_2,...,v_k$ with \textbf{weights} or \textbf{coefficients} $c_1,c_2,...,c_k$.
@@ -537,10 +547,24 @@ $$\begin{bmatrix}|&|\\ \text{Rot}_{\theta}\vece_1& \text{Rot}_{\theta}\vece_2\\|
 \item General case: 
 $e_1=\begin{bmatrix}1\\0\end{bmatrix};e_2=\begin{bmatrix}0\\1\end{bmatrix}$. Thus, $$\text{Rot}_{\theta}\vece_1=\begin{bmatrix}\cos{\theta}\\\sin{\theta}\end{bmatrix};\text{Rot}_{\theta}\vece_2=\begin{bmatrix}0&-1\\1&0\end{bmatrix}\begin{bmatrix}\cos{\theta}\\\sin{\theta}\end{bmatrix}=\begin{bmatrix}-\sin{\theta}\\\cos{\theta}\end{bmatrix}.$$
 $$\Longrightarrow\begin{bmatrix}|&|\\ \text{Rot}_{\theta}\vece_1& \text{Rot}_{\theta}\vece_2\\|&|\end{bmatrix}=\begin{bmatrix}\cos{\theta}&-\sin{\theta}\\\sin{\theta}&\cos{\theta}\end{bmatrix}$$
-\begin{figure}[H] 
-\centering 
-\includegraphics[width=0.5\textwidth]{Rotation.png}
-\end{figure}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (59.92,175.27) -- (241.56,175.27)(141.64,86.22) -- (141.64,222.22) (234.56,170.27) -- (241.56,175.27) -- (234.56,180.27) (136.64,93.22) -- (141.64,86.22) -- (146.64,93.22)  ;
+\draw    (141.64,175.27) -- (196.64,175.27) ;
+\draw [shift={(198.64,175.27)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (141.64,175.27) -- (141.64,125.27) ;
+\draw [shift={(141.64,123.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (141.64,175.27) -- (183.74,139.88) ;
+\draw [shift={(185.27,138.6)}, rotate = 139.95] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (141.64,175.27) -- (109.47,137) ;
+\draw [shift={(108.18,135.47)}, rotate = 49.95] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (200.64,178.67) node [anchor=north west][inner sep=0.75pt]    {$e_{1}$};
+\draw (123.64,111.67) node [anchor=north west][inner sep=0.75pt]    {$e_{2}$};
+\draw (185.64,135.67) node [anchor=north west][inner sep=0.75pt]    {$\text{Rot\_} e_{1}$};
+\draw (60.64,131.67) node [anchor=north west][inner sep=0.75pt]    {$\text{Rot\_} e_{2}$};
+\end{tikzpicture}	
+\end{center}
 \end{enumerate}
 \end{sol}
 \end{eg}
@@ -639,10 +663,10 @@ Find an expression for $\sin{2\theta}$ and $\cos{2\theta}$ in terms of $\sin\the
 	Geometrically, $\matrixA\dot\matrixA$ is rotation by $2\theta$: \[\matrixA\cdot\matrixA=\begin{bmatrix}\cos2\theta &-\sin2\theta\\\sin2\theta &\cos2\theta\end{bmatrix}\]
 	Algebraically, we have \[\matrixA\cdot\matrixA=\begin{bmatrix}\cos\theta & -\sin\theta\\\sin\theta &\cos\theta\end{bmatrix}\begin{bmatrix}\cos\theta &-\sin\theta\\\sin\theta &\cos\theta\end{bmatrix}=\begin{bmatrix}\cos^2\theta-\sin^2\theta &-2\sin\theta\cos\theta\\2\sin\theta\cos\theta &\cos^2\theta-\sin^2\theta\end{bmatrix}\]
 	Since these are equal: 
-	\begin{tcolorbox}
+	\begin{framed}
 	\[\cos2\theta=\cos^2\theta-\sin^2\theta\]
 	\[\sin2\theta=2\sin\theta\cos\theta\]
-	\end{tcolorbox}
+	\end{framed}
 \end{sol}
 \begin{rmk}
 	Generalization: 
@@ -734,7 +758,7 @@ Algebraic properties of matrix multiplication:
 		\xrightarrow[]{\text{Row reduce}}&\left[\begin{array}{c:c}\text{rref}(\matrixA) &v_1\end{array}\right],\  \left[\begin{array}{c:c}\text{rref}(\matrixA)  &v_2\end{array}\right],\cdots,\ \left[\begin{array}{c:c}\text{rref}(\matrixA)  &v_n\end{array}\right]
 	\end{aligned}$$
 	$\therefore$ To find $\matrixA^{-1}$:
-	\begin{tcolorbox}\[\left[\begin{array}{c:c}\matrixA&\matrixI_n\end{array}\right]\xRightarrow{\text{Row reduce}}\left[\begin{array}{c:c}\matrixI&\matrixA^{-1}\end{array}\right]\]\end{tcolorbox}
+	\begin{framed}\[\left[\begin{array}{c:c}\matrixA&\matrixI_n\end{array}\right]\xRightarrow{\text{Row reduce}}\left[\begin{array}{c:c}\matrixI&\matrixA^{-1}\end{array}\right]\]\end{framed}
 \end{thm}
 \begin{eg}[Problems concerning inverting matrices]
 	Let $\matrixA=\begin{bmatrix}1&1&1\\1&2&3\\1&4&9\end{bmatrix}.$ Compute $\matrixA^{-1}$ and use it to find all solutions to $\matrixA\vecx=\begin{bmatrix}1\\-1\\1\end{bmatrix}$	.\\
@@ -795,31 +819,31 @@ As $\matrixA\vecx=\vecb$ encodes a system of linear equation, one key question o
 \end{thm}
 \begin{df}[Kernel of a Matrix]
 	The \textbf{kernel} of a linear transformation or a matrix is the solution set to $\matrixA\vecx=\vec{0}.$
-	\[\text{i.e., }\Ker(\matrixA)=\left\{\vecx\in\R^m;\  \matrixA\vecx=\vec{0}\right\}.\]
+	\[\text{i.e., }\ker(\matrixA)=\left\{\vecx\in\R^m;\  \matrixA\vecx=\vec{0}\right\}.\]
 \end{df}
 \begin{thm}
-	\[\Ker(\matrixA)=\Ker(\text{rref}(\matrixA)).\]	
+	\[\ker(\matrixA)=\ker(\text{rref}(\matrixA)).\]	
 \end{thm}
 
 \begin{thm}\label{thm3.3.4}
 	Procedure of computing the kernel of a matrix:
 	\begin{enumerate}
-		\item Row reduce $\matrixA$ to rref($\matrixA$), compute $\Ker(\text{rref}(\matrixA))$.
+		\item Row reduce $\matrixA$ to rref($\matrixA$), compute $\ker(\text{rref}(\matrixA))$.
 		\item Unpack the equations encoded by matrix equation rref($\matrixA)=0$, solve for pivot variables in terms of free variables.
 		\item Parameterize the solution set for $\rref(\matrixA)\vecx=0$ as $\left\{t_1\vecv_1+t_2\vecv_2+\cdots+t_d\vecv_d:\ t_i\in\R\right\}$ and $\vecv_i$ tracks the coefficient of the $i$-th free variable.
 	\end{enumerate}
 \end{thm}
 \begin{eg}
-	Let $\matrixA=\begin{bmatrix}1&2&3&4\\5&6&7&8\\9&10&11&12\end{bmatrix}.$  Compute $\Ker(\matrixA).$\\
+	Let $\matrixA=\begin{bmatrix}1&2&3&4\\5&6&7&8\\9&10&11&12\end{bmatrix}.$  Compute $\ker(\matrixA).$\\
 	\begin{sol}
-		$\Ker(\matrixA)$ is the solution set to $\matrixA\vecx=\vec{0}$: 
+		$\ker(\matrixA)$ is the solution set to $\matrixA\vecx=\vec{0}$: 
 		$$\begin{aligned}
 			\left[\begin{array}{c:c}\begin{matrix}1&2&3&4\\5&6&7&8\\9&10&11&12\end{matrix}&\begin{matrix}0\\0\\0\end{matrix}\end{array}\right]\xrightarrow[II-5I]{III-9I}\left[\begin{array}{c:c}\begin{matrix}1&2&3&4\\0&-4&-8&-12\\0&-8&-16&-24\end{matrix}&\begin{matrix}0\\0\\0\end{matrix}\end{array}\right]&\xrightarrow[]{II/-4}\left[\begin{array}{c:c}\begin{matrix}1&2&3&4\\0&1&2&3\\0&-8&-16&-24\end{matrix}&\begin{matrix}0\\0\\0\end{matrix}\end{array}\right]\\
 			&\xrightarrow[I-2II]{III+8II}\left[\begin{array}{c:c}\begin{matrix}1&0&-1&-2\\0&1&2&3\\0&0&0&0\end{matrix}&\begin{matrix}0\\0\\0\end{matrix}\end{array}\right]
 		\end{aligned}$$
 		\[\therefore\begin{cases}x_1-x_3-2x_4=0\\x_2+2x_3+3x_4=0\end{cases}\]
 		$$\therefore\text{ Solution set: }\begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix}=\begin{bmatrix}x_3+2x_4\\-2x_3-3x_4\\x_3\\x_4\end{bmatrix}.$$
-		Thus, $$\begin{aligned}\Ker(\matrixA)&=\left\{\begin{bmatrix}x_3+2x_4\\-2x_3-3x_4\\x_3\\x_4\end{bmatrix}:\ x_3,\ x_4\in\R\right\}=\left\{x_3\begin{bmatrix}1\\-2\\1\\0\end{bmatrix}+x_4\begin{bmatrix}2\\-3\\0\\1\end{bmatrix}\right\}\end{aligned}$$
+		Thus, $$\begin{aligned}\ker(\matrixA)&=\left\{\begin{bmatrix}x_3+2x_4\\-2x_3-3x_4\\x_3\\x_4\end{bmatrix}:\ x_3,\ x_4\in\R\right\}=\left\{x_3\begin{bmatrix}1\\-2\\1\\0\end{bmatrix}+x_4\begin{bmatrix}2\\-3\\0\\1\end{bmatrix}\right\}\end{aligned}$$
 	\end{sol}
 \end{eg}
 \begin{df}[Span]
@@ -839,7 +863,7 @@ As $\matrixA\vecx=\vecb$ encodes a system of linear equation, one key question o
 	Let $\matrixA$ be an $n\times m$ matrix, and let	 $\vecw_1,\cdots,\vecw_m$ be the columns of $\matrixA$: $\matrixA=\begin{bmatrix}|&&|\\\vecw_1&\cdots&\vecw_m\\|&&|\end{bmatrix}$. The image of $\matrixA$ is the span of $\vecw_1,\cdots,\vecw_m$: 
 	\[\IM(\matrixA)=\Span(\vecw_1,\cdots,\vecw_m)=\left\{t_1\vecw_1+\cdots+t+m\vecw_m;\ t_m\in\R\right\}\]
 	\begin{rmk}
-		\[\begin{aligned}\Ker(\matrixA)&\subseteq\R^m\quad\text{(domain)}\\\Span(\matrixA)&\subseteq\R^n\quad\text{(range)}\end{aligned}\]	
+		\[\begin{aligned}\ker(\matrixA)&\subseteq\R^m\quad\text{(domain)}\\\Span(\matrixA)&\subseteq\R^n\quad\text{(range)}\end{aligned}\]	
 	\end{rmk}
 	\begin{prf}
 		We know that the columns of a matrix form $\matrixA\vecx$, namely the $i$-th column of the matrix $\matrixA$ is $\matrixA\vec{e}_i$, where $\vece_i=\begin{bmatrix}0\\\vdots\\1\\\vdots\\0\end{bmatrix} \rightarrow \ \text{the }i\text{-th entry}$.
@@ -911,16 +935,16 @@ Spans of Sets of Vectors:
 		\end{prf}
 		\item A line through origin is a subspace.
 		\item A plane through the origin is a subspace.
-		\begin{tcolorbox}
+		\begin{framed}
 			In two and three dimensions, examples 1, 2, 4, and 5 are the only examples of subspaces.	
-		\end{tcolorbox}
-		For examples 6 and 7, consider an $n\times m$ matrix $\matrixA$, which maps a linear transformation from $\R^m$ to $\R^n$ (i.e., $\matrixA:\R^m\to\R^n$). Let $\Ker(\matrixA)$ and $\IM(\matrixA)$ be the kernel and image of $\matrixA$, respectively. 
-		\item $\Ker(\matrixA)$ is a subspace.\\
+		\end{framed}
+		For examples 6 and 7, consider an $n\times m$ matrix $\matrixA$, which maps a linear transformation from $\R^m$ to $\R^n$ (i.e., $\matrixA:\R^m\to\R^n$). Let $\ker(\matrixA)$ and $\IM(\matrixA)$ be the kernel and image of $\matrixA$, respectively. 
+		\item $\ker(\matrixA)$ is a subspace.\\
 		\begin{prf}
 			\begin{enumerate}
-				\item $\matrixA\vec{0}_n=\vec{0}_n$\[\Longrightarrow\vec{0}_n\text{ is in }\Ker(\matrixA).\]
-				\item $\matrixA\vecv=\vec{0}$, then $\matrixA(c\vecv)=c\matrixA\vecv=c\vec{0}=\vec{0}$\[\Longrightarrow\text{ If }\vecv\in\Ker(\matrixA)\text{, then }c\vecv\in\Ker(\matrixA).\]
-				\item If $\matrixA\vecv_1=\vec{0}$ and $\matrixA\vecv_2=\vec{0}$, then $\matrixA(\vecv_1+\vecv_2)=\matrixA\vecv_1+\matrixA\vecv_2=\vec{0}$\[\Longrightarrow\text{ If }\vecv_1,\vecv_2\in\Ker(\matrixA),\text{ then }\vecv_1+\vecv_2\in\Ker(\matrixA).\]
+				\item $\matrixA\vec{0}_n=\vec{0}_n$\[\Longrightarrow\vec{0}_n\text{ is in }\ker(\matrixA).\]
+				\item $\matrixA\vecv=\vec{0}$, then $\matrixA(c\vecv)=c\matrixA\vecv=c\vec{0}=\vec{0}$\[\Longrightarrow\text{ If }\vecv\in\ker(\matrixA)\text{, then }c\vecv\in\ker(\matrixA).\]
+				\item If $\matrixA\vecv_1=\vec{0}$ and $\matrixA\vecv_2=\vec{0}$, then $\matrixA(\vecv_1+\vecv_2)=\matrixA\vecv_1+\matrixA\vecv_2=\vec{0}$\[\Longrightarrow\text{ If }\vecv_1,\vecv_2\in\ker(\matrixA),\text{ then }\vecv_1+\vecv_2\in\ker(\matrixA).\]
 			\end{enumerate}	
 		\end{prf}
 		\item $\IM(\matrixA)$ is a subspace.\\
@@ -976,13 +1000,13 @@ Spans of Sets of Vectors:
 		\end{eg}\
 	\end{prf}
 \end{thm}
-\begin{thm}[Computing a basis for $\Ker(\matrixA)$]
+\begin{thm}[Computing a basis for $\ker(\matrixA)$]
 	Recall \textbf{Theorem \ref{thm3.3.4}} Procedure to find $\ker(\matrixA)$.
 	\begin{enumerate}
-		\item The spanning set produced by ``computing the kernel of \matrixA'' is a basis for $\Ker(\matrixA)$.
+		\item The spanning set produced by ``computing the kernel of $\matrixA$'' is a basis for $\ker(\matrixA)$.
 		\item Procedure:
 		\begin{enumerate}
-			\item Row reduce $\matrixA$ to $\rref(\matrixA)$, and then compute $\Ker(\rref(\matrixA))$.
+			\item Row reduce $\matrixA$ to $\rref(\matrixA)$, and then compute $\ker(\rref(\matrixA))$.
 			\item Unpack the equations encoded by matrix equation $\rref(\matrixA)=0$. Solve for pivot variables in terms of free variables.
 			\item Parametrize the solution set for $\rref(\matrixA)\vecx=0$ as $\{t_1\vecv_1+t_2\vecv_2+\cdots+t_d\vecv_d;\ t_i\in\R\}$ and $\vecv_i$ tracks the coefficient of the $i$-th free variable.
 		\end{enumerate}
@@ -1006,25 +1030,25 @@ Spans of Sets of Vectors:
 	Let $\matrixA$ be an $n\times m$ matrix (i.e., $\matrixA:\R^m\to\R^n$). The \textbf{rank} of $\matrixA$ is the dimension of the image of A. We denote it as $\rank(\matrixA)$. \[\rank(\matrixA)=\dim(\IM(\matrixA))\]
 \end{df}
 \begin{df}[Nullity of $\matrixA$]
-	Let $\matrixA$ be an $n\times m$ matrix (i.e., $\matrixA:\R^m\to\R^n$). The \textbf{nullity} of $\matrixA$ is the dimension of the kernel of A. We denote it as $\nullity(\matrixA)$. \[\nullity(\matrixA)=\dim(\Ker(\matrixA))\]
+	Let $\matrixA$ be an $n\times m$ matrix (i.e., $\matrixA:\R^m\to\R^n$). The \textbf{nullity} of $\matrixA$ is the dimension of the kernel of A. We denote it as $\nullity(\matrixA)$. \[\nullity(\matrixA)=\dim(\ker(\matrixA))\]
 \end{df}
 \begin{thm}[The Rank-Nullity Theorem]
 	Suppose $\matrixA$ to be an $n\times m$ matrix: \[\boxed{\rank(\matrixA)+\nullity(\matrixA)=\dim(\text{domain of }\matrixA)=m}.\]	
 	\begin{eg}
-		Let $\matrixA=\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}$. To find basis for $\IM(\matrixA)$ and $\Ker(\matrixA)$: \[\matrixA\xRightarrow[\text{Reduce}]{\text{Row}}\begin{bmatrix}\boxed{1}&0&-1\\0&\boxed{1}&2\\0&0&0\end{bmatrix}\]
+		Let $\matrixA=\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}$. To find basis for $\IM(\matrixA)$ and $\ker(\matrixA)$: \[\matrixA\xRightarrow[\text{Reduce}]{\text{Row}}\begin{bmatrix}\boxed{1}&0&-1\\0&\boxed{1}&2\\0&0&0\end{bmatrix}\]
 		\begin{enumerate}
 			\item To find a basis for $\IM(\matrixA)$, we take the columns of $\matrixA$ which contain a pivot upon row reduction: \[\IM(\matrixA)=\Span\left(\begin{bmatrix}1\\4\\7\end{bmatrix},\begin{bmatrix}2\\5\\8\end{bmatrix}\right).\]\[\therefore\dim(\IM(\matrixA))=2.\]
-			\item 	To find a basis for $\Ker(\matrixA)$, unpack the equation: \[\begin{cases}x_1-x_3=0\\x_2+2x_3=0\end{cases},\ \Longrightarrow\begin{cases}x_1=x_3\\x_2=-2x_3\end{cases}.\]
-			\[\therefore \Ker(\matrixA)=\left\{\begin{bmatrix}x_3\\-2x_3\\x_3\end{bmatrix};\ x_3\in\R\right\}=\Span\left(\begin{bmatrix}1\\-2\\1\end{bmatrix}\right).\]
-			\[\therefore\dim(\Ker(\matrixA))=1.\]
-			\item $\rank(\matrixA)=\dim(\IM(\matrixA))=2;\ \nullity(\matrixA)=\dim(\Ker(\matrixA))=1;\ \dim(\text{domain})=3$\[\therefore\rank(\matrixA)+\nullity(\matrixA)=3=\dim(\text{domain}).\]
+			\item 	To find a basis for $\ker(\matrixA)$, unpack the equation: \[\begin{cases}x_1-x_3=0\\x_2+2x_3=0\end{cases},\ \Longrightarrow\begin{cases}x_1=x_3\\x_2=-2x_3\end{cases}.\]
+			\[\therefore \ker(\matrixA)=\left\{\begin{bmatrix}x_3\\-2x_3\\x_3\end{bmatrix};\ x_3\in\R\right\}=\Span\left(\begin{bmatrix}1\\-2\\1\end{bmatrix}\right).\]
+			\[\therefore\dim(\ker(\matrixA))=1.\]
+			\item $\rank(\matrixA)=\dim(\IM(\matrixA))=2;\ \nullity(\matrixA)=\dim(\ker(\matrixA))=1;\ \dim(\text{domain})=3$\[\therefore\rank(\matrixA)+\nullity(\matrixA)=3=\dim(\text{domain}).\]
 		\end{enumerate}
 	\end{eg}
 	
 	\begin{prf}
 		\begin{enumerate}
 			\item $\rank(\matrixA)=\dim(\IM(\matrixA))=$ number of rectors in a basis of $\IM(\matrixA)=$ number of pivots in $\rref(\matrixA)$.
-			\item  $\nullity(\matrixA)=\dim(\Ker(\matrixA))=$number of rectors in a basis of $\Ker(\matrixA)=$ number of free variables $=$ number of non-pivot columns in $\rref(\matrixA)$.
+			\item  $\nullity(\matrixA)=\dim(\ker(\matrixA))=$number of rectors in a basis of $\ker(\matrixA)=$ number of free variables $=$ number of non-pivot columns in $\rref(\matrixA)$.
 			\item $\therefore\rank(\matrixA)+\nullity(\matrixA)=$ number of columns of $\rref(\matrixA)$ or, simply, $\matrixA=\dim(\text{domain of }\matrixA).$
 		\end{enumerate}
 	\end{prf}
@@ -1032,9 +1056,9 @@ Spans of Sets of Vectors:
 \begin{eg}[Geometric Perspective of Rank-Nullity Theorem]
 	Let $\matrixM=\begin{bmatrix}1&3\\2&6\end{bmatrix}$.\[\therefore\rref(\matrixM)=\begin{bmatrix}1&3\\0&0\end{bmatrix}.\]
 	\[\therefore\IM(\matrixM)=\Span\left(\begin{bmatrix}1\\2\end{bmatrix}\right) (\text{Line of slope }2\text{ through the origin})\Longrightarrow\dim(\IM(\matrixM))=1;\]
-	\[\Ker(\matrixM)=\Span\left(\begin{bmatrix}-3\\1\end{bmatrix}\right)(\text{Line of slope }-\frac{1}{3}\text{ through origin})\Longrightarrow\dim(\Ker(\matrixM))=1.\] 
+	\[\ker(\matrixM)=\Span\left(\begin{bmatrix}-3\\1\end{bmatrix}\right)(\text{Line of slope }-\frac{1}{3}\text{ through origin})\Longrightarrow\dim(\ker(\matrixM))=1.\] 
 	If we consider the domain of $\matrixM$ to be the inputs for the transformation, and range of $\matrixM$ ($\IM(\matrixM)$) to be the outputs of the linear transformation, then the rank-nullity theorem denotes that \[\dim(\text{Inputs})=\dim(\text{Outputs})+\text{Information Loss}.\]
-	The ``information loss'' is given by $\dim(\Ker(\matrixM)).$ In this specific example, $\dim(\text{inputs})=2$ and $\dim(\text{outputs})=1$, so the information loss of the linear transformation $\matrixM$ is $2-1=1.$
+	The ``information loss'' is given by $\dim(\ker(\matrixM)).$ In this specific example, $\dim(\text{inputs})=2$ and $\dim(\text{outputs})=1$, so the information loss of the linear transformation $\matrixM$ is $2-1=1.$
 	\begin{center}
 		\tikzset{every picture/.style={line width=0.75pt}}       
 		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1061,7 +1085,7 @@ Spans of Sets of Vectors:
 	Let $\matrixA$ be an $n\times m$ matrix: 
 	\begin{enumerate}
 		\item $\matrixA$ is invertible \emph{iff} $\matrixA\vecx=\vecb$ has a unique solution $\forall\vecb\in\R^n$.
-		\[\Longleftrightarrow\IM(\matrixA)=\R^n\quad\text{and}\quad\Ker(\matrixA)=\{\vec{0}\}.\]
+		\[\Longleftrightarrow\IM(\matrixA)=\R^n\quad\text{and}\quad\ker(\matrixA)=\{\vec{0}\}.\]
 		\[\Longleftrightarrow\rank(\matrixA)=n\quad\text{and}\quad\nullity(\matrixA)=0.\]
 		\item If $\matrixA$ is an $n\times m$ matrix, then the following are equivalent: 
 		\begin{enumerate}
@@ -1069,7 +1093,7 @@ Spans of Sets of Vectors:
 			\item $\rank(\matrixA)=n$
 			\item $\nullity(\matrixA)=0$
 			\item $\IM(\matrixA)=\R^n$
-			\item $\Ker(\matrixA)=\{\vec{0}\}$
+			\item $\ker(\matrixA)=\{\vec{0}\}$
 			\item $\rref(\matrixA)=\matrixI_n$
 			\item The columns of $\matrixA$ form a basis for $\R^n$
 			\item The columns of $\matrixA$ span $\R^n$
@@ -1220,7 +1244,7 @@ Spans of Sets of Vectors:
 \end{thm}
 
 \newpage
-\section{Approximate Solution of $\matrixA\vecx=\vecb$}
+\section{Approx. Solution of $\matrixA\vecx=\vecb$}
 \subsection{Lengths and Angles in $\R^n$}
 \begin{df}[Dot Product]
 	Let $\vecx=\begin{bmatrix}x_1\\\vdots\\x_n\end{bmatrix}$ and $\vecy=\begin{bmatrix}y_1\\\vdots\\y_n\end{bmatrix}\in\R^n$. The \textbf{dot product} of $\vecx$ and $\vecy$ is the following number: \[\vecx\cdot\vecy=\begin{bmatrix}x_1\\\vdots\\x_n\end{bmatrix}\cdot\begin{bmatrix}y_1\\\vdots\\y_n\end{bmatrix}=x_1y_1+x_2y_2+\cdots+x_ny_n=\begin{bmatrix}x_1&\cdots&x_n\end{bmatrix}\begin{bmatrix}y_1\\\vdots\\y_n\end{bmatrix}\]	
@@ -1319,7 +1343,7 @@ Spans of Sets of Vectors:
 	Suppose $\matrixA$ is an $1\times n$ matrix \emph{s.t.} $\matrixA=\begin{bmatrix}a_1&\cdots&a_n\end{bmatrix}.$ Then, $\matrixA^\T=\begin{bmatrix}a_1\\\vdots\\a_n\end{bmatrix}=\vecv$. Thus, 	$\matrixA\vecx=\vecv\cdot\vecx$.
 \end{thm}
 \begin{thm}
-	\[\vecv\perp\vecx\Longleftrightarrow\vecv\cdot\vecx=0\Longleftrightarrow\matrixA\vecx=0\Longrightarrow\vecx\in\Ker(\matrixA).\]	
+	\[\vecv\perp\vecx\Longleftrightarrow\vecv\cdot\vecx=0\Longleftrightarrow\matrixA\vecx=0\Longrightarrow\vecx\in\ker(\matrixA).\]	
 	\begin{itemize}
 		\item Let $\vecv\neq\vec{0}$. The set $\{\vecx\ |\ \vecx\perp\vecv\}$ is a subspace of dimension $m-1$.
 		\item Let $\matrixA: \R^m\to\R^n$ be a linear transformation. Then, the kernel of $\matrixA$ is the set of all vectors $\vecx\in\R^m$, which are perpendicular to the row of the matrix for $\matrixA$.
@@ -1347,8 +1371,8 @@ Spans of Sets of Vectors:
 			\draw (90,220.4) node [anchor=north west][inner sep=0.75pt]    {$\| \vec{v} \| $};
 			\draw (141,43.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{x}$};
 			\draw (179.01,236.5) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}$};
-			\draw (50,276.4) node [anchor=north west][inner sep=0.75pt]    {$\Ker(\matrixA)$};
-			\draw (169,273.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{x} +\Ker(\matrixA)$};
+			\draw (50,276.4) node [anchor=north west][inner sep=0.75pt]    {$\ker(\matrixA)$};
+			\draw (169,273.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{x} +\ker(\matrixA)$};
 			\draw (48,169.4) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
 			\draw (130,197.4) node [anchor=north west][inner sep=0.75pt]    {$c\vec{v}$};
 			\end{tikzpicture}
@@ -1383,7 +1407,7 @@ Spans of Sets of Vectors:
 	\end{prf}
 \end{thm}
 \begin{thm}
-	Let $V\subseteq\R^n$ be a subspace, $V^\perp$ is a subspace. Specifically, if $V=\Span(\vecv_1,\cdots,\vecv_k)$, then \[V^\perp=\Ker\left(\begin{bmatrix}-&\vecv_1&-\\-&\vecv_2&-\\&\vdots&\\-&\vecv_k&-\end{bmatrix}\right)\]
+	Let $V\subseteq\R^n$ be a subspace, $V^\perp$ is a subspace. Specifically, if $V=\Span(\vecv_1,\cdots,\vecv_k)$, then \[V^\perp=\ker\left(\begin{bmatrix}-&\vecv_1&-\\-&\vecv_2&-\\&\vdots&\\-&\vecv_k&-\end{bmatrix}\right)\]
 	\begin{prf}
 		\[\begin{bmatrix}-&\vecv_1&-\\-&\vecv_2&-\\&\vdots&\\-&\vecv_k&-\end{bmatrix}\begin{bmatrix}|\\\vecx\\|\end{bmatrix}=\begin{bmatrix}\vecx\cdot\vecv_1\\\vdots\\\vecx\cdot\vecv_k\end{bmatrix}=\begin{bmatrix}0\\\vdots\\0\end{bmatrix}\]	
 	\end{prf}
@@ -1444,7 +1468,7 @@ Spans of Sets of Vectors:
 		\draw (455,257.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbb{R}^{k}$};
 		\draw (104.01,185.45) node [anchor=north west][inner sep=0.75pt]    {$\vec{x}^{\perp }$};
 		\draw (296,238.4) node [anchor=north west][inner sep=0.75pt]    {$\matrixA^{\T}$};
-		\draw (261,195.4) node [anchor=north west][inner sep=0.75pt]    {$\Ker\left( \matrixA^{\T}\right) =V^{\perp }$};
+		\draw (261,195.4) node [anchor=north west][inner sep=0.75pt]    {$\ker\left( \matrixA^{\T}\right) =V^{\perp }$};
 		\end{tikzpicture}
 		\end{center}
 		\item Slove $\matrixA^\T\matrixA\vec{c}=\matrixA^\T\vecx$ for $\vec{c}$.
@@ -1472,17 +1496,17 @@ Spans of Sets of Vectors:
 	Equivalently, whose columns are rows of $\matrixA$.
 \end{df}
 \begin{thm}
-	\[\Ker(\matrixA^\T)=\IM(\matrixA)^\perp\]	
+	\[\ker(\matrixA^\T)=\IM(\matrixA)^\perp\]	
 \end{thm}
 \begin{rmk}
 	In general, if $\rank(\matrixA)$ is less than the dimension of range, small perturbations of any $\vecb\in\IM(\matrixA)$ lie outside the image of $\matrixA$. In such cases, rather than try to find $\vecx$ \emph{s.t.} $\matrixA\vecx=\vecb$, try to find $\vecx$ \emph{x.t.} $\matrixA\vecx$ is as close as to $\vecb$ as possible. 	
-	\begin{tcolorbox}
+	\begin{framed}
 		Problem: Find $\vecx$ \emph{s.t.} $\|\matrixA\vecx-\vecb\|$ is as small as possible (minimized).
 		\begin{itemize}
 			\item The solution agrees with solving $\matrixA\vecx=\vecb$ when there are solutions.
 			\item This question always has solutions.
 		\end{itemize}	
-	\end{tcolorbox}
+	\end{framed}
 	\begin{sol}
 		\begin{enumerate}
 			\item Find $\vecb*\in\IM(\matrixA)$ which are as close as to $\vecb$ as possible. \\
@@ -1678,32 +1702,757 @@ Spans of Sets of Vectors:
 \end{thm}
 
 
-\subsection{Gram-Schmidt Process and QR Factorization}
+\subsection{Gram-Schmidt Process, QR Factorization}
+\begin{rmk}[Orthogonal Coordinate System]In general, a vector cannot be represented by summation of its projects, but when we have orthogonal ones, we can.\end{rmk}
+\begin{thm}
+	Let $V=\Span\qty(\vecu_1,\cdots,\vecu_k)$ and $\vecx\in V,$ then there exists unique scalars $c_1,\cdots,c_k$ such that $\vecx=c_1\vecu_1+c_2\vecu_2+\cdots+c_k\vecu_k.$ The constants $c_1,\cdots,c_k$ equal: \[c_i=\vecx\cdot\vecu_i.\]
+	\begin{prf}
+		Since $\vecx\in V,$ $\vecx=c_1\vecu_!+\cdots+c_k\vecu_k$ for some constants.\[\begin{aligned}\therefore \vecu_i\cdot\vecx&=\vecu_i\cdot\qty(c_1\vecu_1+\cdots+c_k\vecu_k)\\&=c_1\qty(\vecu_i\cdot\vecu_1)+\cdots+c_k\qty(\vecu_i\cdot\vecu_k)\end{aligned}\]\par Since $\vecu_1,\cdots,\vecu_k$ are orthogonal, \[\vecu_i\cdot\vecu_j=\begin{cases}0,\qquad i\neq j\\1,\qquad i=j\end{cases}\]\[\therefore\vecu_i\cdot\vecx=c_i\qty(\vecu_i\cdot\vecu_i)=c_i.\]
+	\end{prf}
+\end{thm}
+\begin{thm}
+	Let $u_1,\cdots,\vecu_k$ be orthogonal vectors and $V=\Span\qty(u_1,\cdots,\vecu_k.)$ The projection of $\vecx\in\R^n$ to $V$ is given by \[\Proj_V\qty(\vecx)=\qty(\vecu_1\cdot\vecx)\vecu_1+\cdots+\qty(\vecu_k\cdot\vecx)\vecu_k\]\par In particular, projections into a line spanned by $\vecu$ is given by \[\Proj_L\qty(\vecx)=\qty(\vecu\cdot\vecx)\vecu.\]
+	\begin{prf}
+		Write $\vecx=\vecx^\parallel+\vecx^\perp$ such that $\vecx^\parallel\in V$ and $\vecx^\perp\in V^\perp,$ and $\vecx^\parallel=c_1\vecu_1+\cdots+c_k\vecu_k.$\par Note that $\vecu_i\cdot\vecx=\vecu_i\cdot\vecx^\parallel+\vecu_i\cdot\vecx^\perp.$\par Since $\vecu_i\in V,\ \vecx^\perp\in V^\perp,$ and $\vecu_i\cdot\vecx^\perp=0,$ \[\begin{aligned}\vecu_i\cdot\vecx&=\vecu_i\cdot\vecx^\parallel\\&=\vecu_i\qty(c_1\vecu_1+\cdots+c_k\vecu_k)\\&=c_1\qty(\vecu_i\cdot\vecu_1)+\cdots+c_k\qty(\vecu_i\cdot\vecu_k)\\&=c_i\qty(\vecu_i\cdot\vecu_i)\\&=c_i.\end{aligned}\]
+	\end{prf}	
+\end{thm}
+\begin{framed}
+\textbf{The Gram-Schmidt Process:}
+\begin{enumerate}
+	\item Input: $V\subseteq\R^n$ is a subspace with basis $\vecv_1,\cdots,\vecv_k.$
+	\item Output: $\vecu_1,\cdots,\vecu_k$ are orthogonal and span $V.$
+	\item Procedure: 
+	\begin{enumerate}
+		\item $\vecu_1=\dfrac{\vecv_1}{\|\vecv_1\|}$
+		\item $\vecv_k^\perp=\vecv_k-\vecv_k^\parallel$ relative to $V_{k-1}=\Span\qty(\vecv_1,\cdots,\vecv_{k-1})$
+		\item $\vecu_k^\perp=\dfrac{\vecv_k^\perp}{\|\vecv_k^\perp\|}$
+		\item Compute the last $\vecv_i^\perp$: \par $\begin{aligned}\vecv_i^\perp&=\vecv_i-\vecv_i^\parallel\\&=\vecv_i-\qty(\vecu_1\cdot\vecv_i)\vecu_1-\cdots-\qty(\vecu_{i-1}\cdot\vecv_i)\vecu_{i-1}\\&=\vecv_i-\sum_{j=1}^{i-1}\qty(\vecu_j\cdot\vecv_i)\vecu_j\end{aligned}$
+	\end{enumerate}
+\end{enumerate}
+\end{framed}
+\begin{eg}
+	Consider $V=\Span\qty(\begin{bmatrix}1\\1\\1\\1\end{bmatrix},\begin{bmatrix}1\\0\\0\\1\end{bmatrix}, \begin{bmatrix}0\\2\\1\\-1\end{bmatrix}).$ Apply the Gram-Schmidt process to these vectors to find a set of vectors that are orthogonal and span $V$. 
+	\begin{sol}
+	\begin{enumerate}
+		\item $\vecu_1=\dfrac{\vecv_1}{\|\vecv_1\|}$\par Since $\|\vecv_1\|=\sqrt{1^2+1^2+1^2+1^2}=2,\ \vecu_1=\begin{bmatrix}^1/_2\\^1/_2\\^1/_2\\^1/_2\end{bmatrix}$
+		\item Find $\vecv_2^\perp$ and $\vecu_2$ \[\begin{aligned}\vecv_2^\perp&=\vecv_2-\vecv_2^\parallel\\&=\vecv_2-\qty(\vecu_1\cdot\vecv_2)\vecu_1\\\vecu_1\cdot\vecv_2&\dfrac{1}{2}+\dfrac{1}{2}=1\\\therefore\vecv_2^\perp&=\begin{bmatrix}1\\0\\0\\1\end{bmatrix}-\begin{bmatrix}^1/_2\\^1/_2\\^1/_2\\^1/_2\end{bmatrix}=\begin{bmatrix}^1/_2\\-^1/_2\\-^1/_2\\^1/_2\end{bmatrix}\\\vecu_2&=\dfrac{\vecv_2^\perp}{\|\vecv_2^\perp\|}=\begin{bmatrix}^1/_2\\-^1/_2\\-^1/_2\\^1/_2\end{bmatrix}\end{aligned}\]
+		\item Find $\vecv_3^\perp$ and $\vecu_3^\perp$\[\begin{aligned}\vecv_3^\perp&=\vecv_3-\vecv_3^\parallel\\&=\vecv_3-\qty(\vecu_1\cdot\vecv_3)\vecu_1-\qty(\vecu_2\cdot\vecv_3)\vecu_2\\\begin{bmatrix}\vecu_1\cdot\vecv_3\\\vecu_2\cdot\vecv_3\end{bmatrix}&=\begin{bmatrix}\dfrac{1}{2}&\dfrac{1}{2}&\dfrac{1}{2}&\dfrac{1}{2}\\\\\dfrac{1}{2}&-\dfrac{1}{2}&-\dfrac{1}{2}&\dfrac{1}{2}\end{bmatrix}\begin{bmatrix}0\\2\\1\\-1\end{bmatrix}=\begin{bmatrix}1\\-2\end{bmatrix}\\\therefore\vecv_3^\perp&=\begin{bmatrix}0\\2\\1\\-1\end{bmatrix}-1\cdot\begin{bmatrix}^1/_2\\^1/_2\\^1/_2\\^1/_2\end{bmatrix}-\qty(-2)\cdot\begin{bmatrix}^1/_2\\-^1/_2\\-^1/_2\\^1/_2\end{bmatrix}\\&=\begin{bmatrix}0\\2\\1\\-1\end{bmatrix}-\begin{bmatrix}^1/_2\\^1/_2\\^1/_2\\^1/_2\end{bmatrix}-\begin{bmatrix}-1\\1\\1\\-1\end{bmatrix}=\begin{bmatrix}^1/_2\\^1/_2\\-^1/_2\\-^1/_2\end{bmatrix}\\\therefore\vecu_3&=\dfrac{\vecv_3^\perp}{\|\vecv_3^\perp\|}=\begin{bmatrix}^1/_2\\^1/_2\\-^1/_2\\-^1/_2\end{bmatrix}\end{aligned}\]
+	\end{enumerate}\par Therefore, $\begin{bmatrix}^1/_2\\^1/_2\\^1/_2\\^1/_2\end{bmatrix}, \begin{bmatrix}^1/_2\\-^1/_2\\-^1/_2\\^1/_2\end{bmatrix}, \begin{bmatrix}^1/_2\\^1/_2\\-^1/_2\\-^1/_2\end{bmatrix}$ are orthogonal and span $V$.
+	\end{sol}
+\end{eg}
+\begin{thm}[QR-Decomposition]
+	Let $\matrixA=\mqty[{|&&|\\\vecv_1&\cdots&\vecv_k\\|&&|}]$ be a matrix and assume $\matrixA$ has linearly independent columns. Then, \[\matrixA=\vb Q\vb R,\] where \[\vb Q=\mqty[{|&&|\\\vecu_1&\cdots&\vecu_k\\|&&|}]\] has orthogonal columns and \[\vb R=\mqty[{\vecu_1\cdot\vecv_1&\vecu_1\cdot\vecv_2&\cdots&\vecu_1\cdot\vecv_k\\0&0&\vdots\\\vdots&\ddots&\ddots&\vdots\\0&\cdots&0&\vecu_k\cdot\vecv_k}]\]	is upper triangular. In particular, if $\matrixA$ is a square, invertible matrix, $\vb A=\vb Q\vb R,$ where $\vb Q$ is orthogonal and $\vb R$ is upper triangular. 
+	\begin{prf}
+		Run G.S. process in $V=\Im(A)$ with basis $\vecv_1,\cdots,\vecv_k,$ and we get $\vecu_1,\cdots,\vecu_k$ that are orthogonal and span $V$. \[\vecv_i=\sum_{j=1}^i\qty(\vecv_i\cdot\vecu_j)\vecu_j.\]\[\therefore\mqty[{|&&|\\\vecu_1&\cdots&\vecu_k\\|&&|}]\mqty[{\vecu_1\cdot\vecv_1&\vecu_1\cdot\vecv_2&\cdots&\vecu_1\cdot\vecv_k\\0&\vecu_2\cdot\vecv_2&\cdots&\vdots\\\vdots&\vdots&\ddots&\vdots\\0&0&\cdots&\vecu_k\cdot\vecv_k}]=\mqty[{|&&|\\\vecv_1&\cdots&\vecv_k\\|&&|}].\]
+	\end{prf}
+\end{thm}
+\begin{framed}
+	\textbf{Find G.S. Process and QR factorization via row reduction.}
+	\begin{enumerate}
+		\item General Idea: \par Input: A matrix $\vb A$ with linearly independent columns\par Output: a factorization $\vb A=\vb Q\vb R,$ where $\vb Q$ has orthogonal columns and $\vb R$ is upper triangular.
+		\item General Procedure: 
+		\begin{enumerate}
+			\item Compute $\matrixA^\T\matrixA$ and form the augmented matrix $\mqty[{\matrixA^\T\matrixA&\vdots&\matrixA^\T}].$ 
+			\item Row reduce the left hand side until an upper triangular only by subtracting multiples of rows from rows below them. At the conclusion of this step, left hand side is upper triangular.
+			\item Divide each row by the square root of the leading diagonal entry.
+			\item The final output is $\mqty[\vb R&\vdots&\vb Q^\T].$
+		\end{enumerate}
+	\end{enumerate}	
+\end{framed}
+\begin{eg}
+	Find the QR factorization of $\matrixA=\mqty[{1&1&1\\0&1&2\\1&0&3}].$
+	\begin{sol}
+		\begin{enumerate}
+			\item Compute $\matrixA^\T\matrixA.$\[\matrixA^\T\matrixA=\mqty[{1&0&1\\1&1&0\\1&2&3}]\mqty[{1&1&1\\0&1&2\\1&1&3}]=\mqty[{2&1&4\\1&2&3\\4&3&14}].\]
+			\item Row reduce $\mqty[{\matrixA^\T\matrixA&\vdots&\matrixA^\T}].$ \[\left[\begin{array}{c:c}\mqty{2&1&4\\1&2&3\\4&3&14}&\mqty{1&0&1\\1&1&0\\1&2&3}\end{array}\right]\xrightarrow[\text{Reduction}]{\text{Row}}\left[\begin{array}{c:c}\mqty{\sqrt{2}&1/\sqrt{2}&4/\sqrt{2}\\0&\sqrt{3/2}&\sqrt{2/3}\\0&0&2/\sqrt{3}}&\mqty{1/\sqrt{2}&0&1/\sqrt{2}\\^1/_2\sqrt{2/3}&\sqrt{2/3}&-^1/_2\sqrt{2/3}\\-^1/_2\sqrt{3}/3&^1/_2\sqrt{3}/3&^1/_2\sqrt{3}/3}\end{array}\right]\]
+			\item So, \[\vb R=\mqty[{\sqrt{2}&1/\sqrt{2}&4/\sqrt{2}\\0&\sqrt{3/2}&\sqrt{2/3}\\0&0&2/\sqrt{3}}]\]\[\vb Q=\mqty[{1/\sqrt{2}&0&1/\sqrt{2}\\^1/_2\sqrt{2/3}&\sqrt{2/3}&-^1/_2\sqrt{2/3}\\-^1/_2\sqrt{3}/3&^1/_2\sqrt{3}/3&^1/_2\sqrt{3}/3}]\]
+		\end{enumerate}
+	\end{sol}
+\end{eg}
 
 
 \newpage
 \section{Determinant}
 \subsection{The Definition of the Determinant}
+\begin{rmk} Dot products encode lengths and angles of vectors. Determinant encodes volume and orientations of subspaces. \end{rmk}
+\begin{df}[Determinant]
+	Let $\matrixA=\mqty[{a&b\\c&d}]$ be a $2\times2$ matrix, the \textbf{determinant} of $\matrixA$ is the quantity \[\det(\matrixA)=ad-bc.\]	
+\end{df}
+\begin{thm}
+	The image of the unit square under $\matrixA$ is $\qty|\det(\matrixA)|.$	
+\end{thm}
+\begin{thm}
+	A matrix $\matrixA$ is invertible $\iff$ $\det(\matrixA)\neq0.$ 	
+\end{thm}
+\begin{prf}
+	$\matrixA$ is invertible $\implies\rank(\matrixA)=2,$	i.e., $\vecv_1$ and $\vecv_2$ (columns of $\matrixA$) are not co-linear. $\implies$ The area of the parallelogram spanned by $\vecv_1$ and $\vecv_2$ does not have an area of $0$.
+\end{prf}
+\begin{thm}
+	Let $\matrixA=\mqty[{a&b\\c&d}]$ be a $2\times2$ matrix. The sign of the determinant of $\matrixA$ satisfies \[\text{sign}(\det(\matrixA))=\begin{cases}0&\text{if }\vecv_1\text{ and }\vecv_2\text{ are colinear}\\+&\text{if }\vecv_2^\perp\text{ is a positive multiple of }\vecv_1^\text{rot}=\mqty[{-c\\a}]\\\\-&\text{if }\vecv_2^\perp\text{ is a negative multiple of }\vecv_1^\text{rot}=\mqty[{-c\\a}]\end{cases}.\]
+	\begin{prf}
+		Consider the projection of $\vecv_2$ into the line spanned by $\vecv_1^\text{rot}=\mqty[{-c\\a}].$ \[\begin{aligned}\vecv_2^\perp=\dfrac{\vecv_1^\text{rot}\cdot\vecv_2}{\vecv_1^\text{rot}\cdot\vecv_1^\text{rot}}\cdot\vecv_1^\text{rot}&=\dfrac{\mqty[{-c\\a}]\cdot\mqty[{b\\d}]}{\mqty[{-c\\a}]\cdot\mqty[{-c\\a}]}\cdot\mqty[{-c\\a}]\\&=\dfrac{\det(\matrixA)}{a^2+c^2}\cdot\vecv_1^\text{rot}\end{aligned}\] \[\therefore\det(\matrixA)>0\implies\vecv_2^\perp>0\]\[\quad\det(\matrixA)<0\implies\vecv_2^\perp<0.\]
+	\end{prf}
+\end{thm}
+\begin{rmk}
+	The sign of the determinant describes the orientation of $\vecv_1$ and $\vecv_2.$	
+\end{rmk}
+\begin{df}[Parallelogram]
+	A parallelogram is defined by the set $\qty{c_1\vecv_1+c_2\vecv_2\mid0\leq c_2\leq1}$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,270) -- (237.64,270) ;
+	\draw [shift={(239.64,270)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,270) -- (159.23,210.77) ;
+	\draw [shift={(160.64,209.36)}, rotate = 135] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (239.64,270) -- (300.28,209.36) ;
+	\draw    (160.64,209.36) -- (300.28,209.36) ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.32 ] (159.94,209.27) -- (299.64,209.27) -- (239.7,270) -- (100,270) -- cycle ;
+	\draw    (102.18,270) -- (167.82,270) ;
+	\draw [shift={(169.82,270)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (100,270) -- (128.91,241.09) ;
+	\draw [shift={(130.32,239.68)}, rotate = 135] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (143,184.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}_{1}$};
+	\draw (241.64,273.4) node [anchor=north west][inner sep=0.75pt]    {$\vec{v}_{2}$};
+	\draw (96,215.4) node [anchor=north west][inner sep=0.75pt]    {$c_{1}\vec{v}_{1}$};
+	\draw (171.82,273.4) node [anchor=north west][inner sep=0.75pt]    {$c_{2}\vec{v}_{2}$};
+	\end{tikzpicture}
+	\end{center}	
+\end{df}
+\begin{ext}[K-Parallelepiped] Let $\vecv_1,\cdots,\vecv_k\in\R^n.$ The \textbf{k-parallelepiped} spanned by $\vecv_1,\cdots,\vecv_k$ is the set \[\qty{c_1\vecv_1+c_2\vecv_2+\cdots+c_k\vecv_k\mid c_i\in\qty[0,1]}.\]\end{ext}
+\begin{ext}[Unit Cube/n-parallelepiped] The \textbf{unit cube} is $\R^n$ is the \textbf{n-parallelepiped} spanned by $\vece_1,\cdots\vecv_n$\[\qty{c_1\vece_1+\cdots+c_n\vece_n\mid c_i\in\qty[0,1]}.\]\end{ext}
+\begin{thm}
+	Let $\matrixA$ be a linear transformation, then $\matrixA$ maps parallelepipeds to parallelepipeds. The image of the unit cube under $\matrixA$ is the parallelepipeds spanned by the columns of $\matrixA.$	
+\end{thm}
+\begin{thm}[Volume]
+	The \textbf{volume} of a k-parallelepiped spanned by $\vecv_1,\cdots.\vecv_k$ is \[\vol\qty(\vecv_1,\cdots,\vecv_k)=\vol\qty(\vecv_1,\cdots,\vecv_{k-1})\|\vecv_k^\perp\|,\] where the $\vecv_k^\perp$ is the perpendicular part of $\vecv_k$ in the decomposition $\vecv_k=\vecv_k^\parallel+\vecv_k^\perp,$ where $\vecv_k^\parallel\in\Span\qty(\vecv_1,\cdots,\vecv_{k-1}),$ and $\vecv_k^\perp$ is perpendicular. 
+\end{thm}
+\begin{thm}
+	The volume of the k-parallelepiped spanned by $\vecv_1,\cdots,\vecv_k$ equals \[\vol\qty(\vecv_1,\cdots,\vecv_k)=\|\vecv_1\|\cdot\|\vecv_2^\perp\|\cdot\|\vecv_3^\perp\|\cdots\|\vecv_k^\perp\|,\]	where $\vecv_i^\perp$ is the perpendicular part of $\vecv_i$ with respect to $V=\Span\qty(\vecv_1,\cdots,\vecv_{i-1}).$
+\end{thm}
+\begin{eg}
+	Let $\vecv_1=\mqty[{7\\0\\0}],\vecv_2=\mqty[{1\\1\\1}],\vecv_3=\mqty[{2\\1\\1}]$. Find the volume of the k-parallelepiped spanned by $\vecv_1,\ \vecv_2,\ \vecv_3.$
+	\begin{sol}
+		\[\vol\qty(\vecv_1,\vecv_2,\vecv_3)=\|\vecv_1\|\cdot\|\vecv_2^\perp\|\cdot\|\vecv_3^\perp\|\]
+		\begin{enumerate}
+			\item Since $\|\vecv_1\|=7,$ \[\vecu_1=\dfrac{\vecv_1}{\|\vecv_1\|}=\dfrac{1}{7}\mqty[{7\\0\\0}]=\vece_1\]
+			\item \[\begin{aligned}\vecv_2^\perp&=\vecv_2-\vecv_2^\parallel\\&=\vecv_2-\qty(\vecv_2\cdot\vecu_1)\vecu_1\\&=\vecv_2-\qty(\vece_1\cdot\vecv_2)\vece_1\\&=\mqty[{1\\1\\1}]-\mqty[{1\\0\\0}]=\mqty[{0\\1\\1}]\\\|\vecv_2^\perp\|&=\sqrt{2}\\\vecu_2&=\dfrac{1}{\sqrt{2}}\mqty[0\\1\\1]\end{aligned}\]
+			\item \[\begin{aligned}\vecv_3^\perp&=\vecv_3-\vecv_3^\parallel\\&=\vecv_3-\qty(\vecv_3\cdot\vece_1)\vece_1-\qty(\vecv_3\cdot\vecu_2)\vecu_2\\&=\mqty[{2\\1\\1}]-\mqty[{2\\0\\0}]-\mqty[{0\\1\\1}]=\mqty[{0\\0\\0}]\\\|\vecv_3^\perp\|&=0\longrightarrow\vecv_3\in\Span\qty(\vecv_1,\vecv_2)\end{aligned}\]
+		\end{enumerate}
+		\[\therefore\vol\qty(\vecv_1,\vecv_2,\vecv_3)=0\]
+	\end{sol}
+\end{eg}
+\begin{thm}
+	Let $\matrixA$ be an $n\times n$ matrix, then $\matrixA$ is invertible $\iff$ the volume of the parallelepiped spanned by the columns of $\matrixA$ is not $0.$
+	\begin{prf}
+		\[\begin{aligned}\matrixA\text{ is invertible }&\iff\ \rank(\matrixA)=n\\&\Rightarrow\vecv_i\notin\Span(\vecv_1,\cdots\vecv_{i-1})\\&\Rightarrow\|\vecv_i^\perp\|\neq0\\&\Rightarrow\vol\qty(\vecv_1,\cdots,\vecv_k)\neq0,		
+		\end{aligned}\]\par $\vecv_1,\cdots,\vecv_k$ are columns of $\matrixA.$
+	\end{prf}
+\end{thm}
+\begin{df}[Formal Definition of Determinant]
+	There is a unique function from the set of $n\times n$ matrices to real numbers called the \textbf{determinant} and denoted as \[\det:\ \qty{n\times n\text{ matrices}}\to\R\] satisfying the following conditions: 
+	\begin{enumerate}
+		\item $\qty|\det(\matrixA)|=$volume of the parallelepiped spanned by the columns of $\matrixA.$
+		\item 
+		\begin{enumerate}
+			\item $\det(\matrixI)=1.$
+			\begin{eg}$\det\qty(\mqty[{1&0\\0&1}])=1\time1-0=1.$\end{eg}
+			\item The determinant is a linear function in each column of $\matrixA$: \[\det\qty(\mqty[{|&&|&|\\\vecv_1&\cdots&\vecv_{n-1}&\vecv_n+k\vecv_n'\\|&&|&|}])=\det\qty(\mqty[{|&&|\\\vecv_1&\cdots&\vecv_n\\|&&|}])+k\det\qty(\mqty[|&&|\\\vecv_1&\cdots&\vecv_n'\\|&&|])\]
+			\begin{eg}\[\det\qty(\mqty[{7&c\\3&d}])=7d-3c\text{ is a linear function}.\]\end{eg}
+		\end{enumerate}
+	\end{enumerate}
+\end{df}
 
 \subsection{Computing the Determinant}
 
+\begin{thm}[Computing the Determinant via Row Reduction] 
+	Elementary row operations change the determinant in prescribed ways. 
+	\begin{enumerate}
+		\item Switch rows of a matrix, the determinant changes the sign.
+		\begin{prf}
+			Wants to show: $\det\qty(\mqty[{&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_j&\cdots\\&|&&|&}])=-\det\qty(\mqty[{&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_i&\cdots\\&|&&|&}]).$\par Consider: $\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i+\vecv_j&\cdots&\vecv_i+\vecv_j&\cdots\\&|&&|&])=0$ because it has repeated columns: \[\begin{aligned}&\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i+\vecv_j&\cdots&\vecv_i+\vecv_j&\cdots\\&|&&|&])\\&=\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_i+\vecv_j&\cdots\\&|&&|&])+\det\qty(\mqty[&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_i+\vecv_j&\cdots\\&|&&|&])\\&=\underbrace{\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_i&\cdots\\&|&&|&])}_{0}+\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_j&\cdots\\&|&&|&])\\&+\det\qty(\mqty[&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_i&\cdots\\&|&&|&])+\overbrace{\det\qty(\mqty[&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_j&\cdots\\&|&&|&])}^{0}=0\end{aligned}\]\[\therefore\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_j&\cdots\\&|&&|&])+\det\qty(\mqty[&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_i&\cdots\\&|&&|&])=0\]\[\therefore\det\qty(\mqty[&|&&|&\\\cdots&\vecv_i&\cdots&\vecv_j&\cdots\\&|&&|&])=-\det\qty(\mqty[&|&&|&\\\cdots&\vecv_j&\cdots&\vecv_i&\cdots\\&|&&|&]).\]
+		\end{prf}
+		\item Adding a multiple of $j^\text{th}$ row to $i^\text{th}$ row with $i\neq j,$ the determinant stays constant. 
+		\begin{prf}
+			\[\det\qty(\mqty[{&|&\\\cdots&\vecv_i+k\vecv_j&\cdots\\&|&}])=\det\qty(\mqty[{&|&\\\cdots&\vecv_i&\cdots\\&|&}])+k\cdot\det\qty(\mqty[{&|&\\\cdots&\vecv_j&\cdots\\&|&}])\]\par Note that $\det\qty(\mqty[{&|&\\\cdots&\vecv_j&\cdots\\&|&}])=0$ because it has $\vecv_j$ at both the $i^\text{th}$ and $j^\text{th}$ column, and thus the columns are not linearly independent. \[\therefore\det\qty(\mqty[{&|&\\\cdots&\vecv_i+k\vecv_j&\cdots\\&|&}])=\det\qty(\mqty[{&|&\\\cdots&\vecv_i&\cdots\\&|&}])\]
+		\end{prf}
+		\item Scale a row by $k\neq0,$ the determinant scales by $k$.
+		\begin{prf}
+			Note that determinant is a linear function in each column of $\matrixA.$
+		\end{prf}
+	\end{enumerate}
+\end{thm}
+\begin{eg}
+	Compute the determinant of $\matrixA=\mqty[{2&1&1\\1&2&1\\1&1&2}]$
+	\begin{sol}
+		Row reduce $\matrixA,$ keeping track of how the determinant changes.\par  Note that $\det(\matrixI)=1.$	
+		\[\mqty[{2&1&1\\1&2&1\\1&1&2}]\xrightarrow[\text{Reduction}]{\text{Row}}\mqty[{1&0&0\\0&1&0\\0&0&1}]\]\par In this process of row reduction, we know $\dfrac{D}{4}=\det(\matrixI)=1,$ so $D=4.$
+	\end{sol}
+\end{eg}
+\begin{thm}
+	Let $\matrixA=\mqty[{a_{11}&*&\cdots&*\\0&a_{22}&&\vdots\\\vdots&&\ddots&\vdots\\0&\cdots&\cdots&a_{nn}}]$ be an upper triangular matrix. The determinant of $\matrixA$ is $a_{11}, a_{22},\cdots,a_{nn},$ the product of the diagonal entries. 
+\end{thm}
+\begin{prf}
+	$\boxed{\text{Case }1}$ All $a_{ii}\neq0.$\par Row reduce $\matrixA$ to compute $\det(\matrixA)$ by dividing each row by $a_{ii}$ to get the identity matrix $\matrixI.$\par So, $\dfrac{1}{a_{11}\cdots a_{nn}}D=\det(\matrixI)=1,$ amd we get $D=a_{11}\cdots a_{nn}$\par 
+	$\boxed{\text{Case }2}$ Some $a_{ii}=0.\Rightarrow$ Show $\det(\matrixA)=a_{11}\cdots a_{nn}=0\Rightarrow$ Show $\matrixA$ is not invertible.\par Look at the first $a_{ii}=0,$ we know the $i^\text{th}$ column in row reduction does not contain a pivot.\par $\Rightarrow\matrixA$ is not invertible. 
+ \end{prf}
+\begin{framed}
+\textbf{Computing the Determinant}
+\begin{enumerate}
+	\item Input: $n\times n$ matrix $\matrixA$
+	\item Output: $\det(\matrixA)$
+	\item Procedure: Row reduce $\matrixA,$ keeping track of the elementary row operations until an upper triangular matrix is obtained. 
+\end{enumerate}	
+	Let $a_{11},\cdots,a_{nn}$ be the diagonal entires of this matrix, $k_1,\cdots,k_m$ be the constants multiplied by in row reduction, and $s$ be the number of switches: \[\begin{aligned}(-1)^s(k_1\cdots k_m)\det(\matrixA)&=a_{11}\cdots a_{nn}\\\det(\matrixA)&=\dfrac{a_{11}\cdots a_{nn}}{(k_1\cdots k_m)}(-1)^s\end{aligned}\]
+\end{framed}
+\begin{thm}
+	\[\det(\matrixA)=\det(\matrixA^\T)\]	
+\end{thm}
+\begin{thm}[Computing Determinant via the Laplace Expansion] 
+	To find the formula for an $n\times n$ matrix determinant in terms of an $(n-1)\times(n-1)$ determinants: 
+	\[\left[\begin{tabular}{c|ccc}
+		1&*&$\cdots$&*\\
+		\hline
+		0&&&\\
+		$\vdots$&&$\matrixA_{n-1}$&\\
+		0&&&
+	\end{tabular}\right]=\det(\matrixA_{n-1})\]
+\end{thm}
+\begin{prf}
+	To row reduce the $n\times n$ matrix, we row reduce the $(n-1)\times(n-1)$ matrix.\par $\Rightarrow\det(\matrixA_{n-1})=\det(\matrixA_n).$	
+\end{prf}
+\begin{eg}
+	\[\begin{aligned}\det\qty(\mqty[{2&1&1\\1&2&1\\1&1&2}])&=2\mqty|{1&1&1\\0&2&1\\0&1&2}|+\mqty|0&1&1\\1&2&1\\0&1&2|+\mqty|0&1&1\\0&2&1\\1&1&2|\\&=2\mqty|2&1\\1&2|-\mqty|1&1\\1&2|+(-1)^2\mqty|1&1\\2&1|\\&=6-1-1=4.\end{aligned}\]	
+\end{eg}
+\begin{rmk}
+	Note that the vertical bars denote determinant.
+\end{rmk}
+\begin{df}[$ij$-Cofactor]
+	Let $\matrixA$ be an $n\times n$ matrix. The \textbf{$ij-$cofactor} of $\matrixA$ is the $(n-1)\times(n-1)$ obtained by deleting the $i^\text{th}$ row and $j^\text{th}$ column. We denote this matrix as $\matrixA_{ij}.$
+\end{df}
+\begin{thm}[Laplace Formula]
+	Consider the $i^\text{th}$ column of a matrix $\matrixA$ (wasp $i^\text{th}$ row), then, \[\det(\matrixA)=\sum_{j=1}^n(-1)^{i+j}\cdot a_{ij}\cdot\det(\matrixA_{ji})\]	
+\end{thm}
+
 \subsection{The Multiplicativity of the Determinant and Other Properties}
+\begin{thm}[Multiplicativity of the Determinant]
+	Let $\matrixA$ and $\matrixB$ be $n\times n$ matrices, \[\det(\matrixA\matrixB)=\det(\matrixA)\times\det(\matrixB).\]	
+\end{thm}
+\begin{cor}
+	\[\det(\matrixA^k)=\det(\matrixA)^k\]
+\end{cor}
+\begin{cor}
+	If $\matrixA$ is invertible, \[\det(\matrixA^{-1})=\det(\matrixA)^{-1}.\]
+	\begin{prf}
+		Note that $\matrixA\matrixA^{-1}=\matrixI.$\[\begin{aligned}\therefore\det(\matrixA\cdot\matrixA^{-1})&=\det(\matrixI)=1\\&=\det(\matrixA)\times\det(\matrixA^{-1})\\\therefore\det(\matrixA^{-1})&=\det(\matrixA)^{-1}\end{aligned}\]
+	\end{prf}
+\end{cor}
+\begin{cor}
+	If $\matrixA$ is invertible, $\det(\matrixA)=\neq0.$	
+\end{cor}
+\begin{thm}
+	If $\vb Q$ is an orthogonal transformation, then, $\det(\vb Q)=\pm1,$ or $\qty|\det(\vb Q)|=1.$	
+\end{thm}
+\begin{prf}
+	$\qty|\det(\vb Q)|$ is the volume of the unit cube under $\vb Q.$\par The unit cube has a shape of volume $1$, which means it reserves volumes.\par Also that since $\vb Q$ is orthogonal, meaning this transformation preserves lengths and angles.\par Wants to show that preserving lengths and angles means preserving volumes.\par \[\vol(\vecv_1,\cdots,\vecv_n)=\|\vecv_1\|\|\vecv_2^\perp\|\|\vecv_3^\perp\|\cdots\|\vecv_n^\perp\|,\ \vecv_i^\perp\in\Span(\vecv_1,\cdots,\vecv_{i-1})\]\par Since $\vb Q=\mqty[{|&&|\\\vecu_1&\cdots&\vecu_n\\|&&|}],$ \[\qty|\det(\vb Q)|=\vol(\vecu_1,\cdots,\vecu_n)=\|\vecu_1\|\|\vecu_2^\perp\|\cdots\|\vecu_n^\perp\|\]\par Since $\vb Q$ is orthogonal, $\vecu_1,\cdots,\vecu_n$ are perpendicular to each other and have lengths of $1$, \[\qty|\det(\vb Q)|=\|\vecu_1\|\|\vecu_2\|\cdots\|\vecu_n\|=1\time1\times\cdots\times1=1.\]
+\end{prf}
+\begin{lem}
+	When $\matrixA$ is invertible, $\det(\matrixA)=\det(\matrixA^\T)$
+\end{lem}
+\begin{prf}
+	Use QR decomposition, we know that \[\matrixA^\T=(\vb Q\vb R)^\T=\vb R^\T\vb Q^\T\] \[\begin{aligned}\det(\matrixA)&=\det(\vb Q)\cdot\det(\vb R)\\\det(\matrixA^\T)&=\det(\vb R^\T)\cdot\det(\vb Q^\T)\\&=\det(\vb Q^\T)\cdot\det(\vb R^\T).\end{aligned}\]\par Wants to show: $\det(\vb Q)=\det(\vb Q^\T)$ and $\det(\vb R)=\det(\vb R^\T).$
+	\begin{enumerate}
+		\item Since $\vb Q$ is orthogonal, $\det(\vb Q)=\pm 1$.\par Also note that since $\vb Q$ is orthogonal, $\vb Q^\T=\vb Q^{-1}$.\[\det(\vb Q^\T)=\det(\vb Q^{-1})=\det(\vb Q)^{-1}=\det(\vb Q).\]
+		\item Note that $\vb R$ is an upper triangular matrix, and thus its determinant is the product of the entries on diagonal: $\det(\vb R)=a_{11}\cdot a_{22}\cdots a_{nn}.$\par Also note that the transpose of $\vb R,$ $\vb R^\T$ is a lower triangular matrix, and thus we know that $\det(\vb R^\T)=a_{11}\cdot a_{22}\cdots a_{nn}.$\[\therefore \det(\vb R)=\det(\vb R^\T).\]
+	\end{enumerate}
+	\[\begin{aligned}\det(\matrixA)&=\det(\vb Q)\cdot\det(\vb R)\\&=\det(\vb Q^\T)\cdot\det(\vb R^\T)=\det(\matrixA^\T).\end{aligned}\]
+\end{prf}
+\begin{lem}
+	If $\matrixA$ is not invertible, then $\matrixA^\T$ is also not invertible. 
+\end{lem}
+\begin{prf}
+	$\matrixA$ is invertible exactly when $\rref(\matrixA)=\matrixI,$\par That is, $\rank(\matrixA)=n\implies\rank(\matrixA^\T)=n$ and thus, $\matrixA^\T$ is also invertible,\par If $\matrixA$ is not invertible, $\rank(\matrixA)<n.$\par Thus, $\rank(\matrixA^\T)=\rank(\matrixA)<n,$ indicating $\matrixA^\T$ is also not invertible. 
+\end{prf}
+\begin{lem}
+	For an $n\times n$ matrix $\matrixA,$ $\rank(\matrixA)=\rank(\matrixA^\T).$
+\end{lem}
+\begin{prf}
+	\[\begin{aligned}\dim(\Im(\matrixA)^\perp)&=n-\rank(\matrixA)\\\therefore\nullity(\matrixA^\T)=\dim(\ker(\matrixA^\T))&=n-\rank(\matrixA)\\\because\rank(\matrixA^\T)+\nullity(\matrixA^\T)&=n\\\therefore\rank(\matrixA^\T)+n-\rank(\matrixA)&=n\\\rank(\matrixA^\T)&=\rank(\matrixA)\end{aligned}\]
+\end{prf}
+\begin{prop}
+	When $\matrixA$ is not invertible, then $\det(\matrixA)=\det(\matrixA^\T).$
+\end{prop}
+\begin{thm}
+	\[\det(\matrixA)=\det(\matrixA^\T)\]	
+\end{thm}
+\begin{thm}[Cramer's Rule]
+	Let $\matrixA$ be an invertible $n\times n$ matrix and $\vecb\in\R^n.$ The unique solution to the system $\matrixA\vecx=\vecb$ is the following vector \[\vecx=\dfrac{1}{\det(\matrixA)}\mqty[{\det(\matrixA_{1,\vecb})\\\vdots\\\det(\matrixA_{n,\vecb})}],\] where $\matrixA_{i,\vecb}$ is the $n\times n$ matrix obtained from $\matrixA$ by replacing the $i^\text{th}$ column with $\vecb.$
+\end{thm}
+\begin{prf}
+	Since \[\mqty[|&&|\\\vecv_1&\cdots&\vecv_n\\|&&|]\mqty[x_1\\\vdots\\x_n]=x_1\vecv_1+\cdots+x_n\vecv_n=\vecb,\]\par so we have \[\det(\matrixA_{1,\vecb})=\mqty|{|&|&&|\\\vecb&\vecv_2&\cdots&\vecv_n\\|&|&&|}|=\mqty|{|&|&&|\\x_1\vecv_1+\cdots+x_n\vecv_n&\vecv_2&\cdots&\vecv_n\\|&|&&|}|.\]\par By the linearity of determinant, then \[\begin{aligned}\det(\matrixA_{1,\vecb})&=x_1\mqty|{|&|&&|\\\vecv_1&\vecv_2&\cdots&\vecv_n\\|&|&&|}|+x_2\mqty|{|&|&&|\\\vecv_2&\vecv_2&\cdots&\vecv_n\\|&|&&|}|+\cdots+x_n\mqty|{|&|&&|\\\vecv_n&\vecv_2&\cdots&\vecv_n\\|&|&&|}|\\&=x_1\mqty|{|&|&&|\\\vecv_1&\vecv_2&\cdots&\vecv_n\\|&|&&|}|=x_1\det(\matrixA).\end{aligned}\]\[\therefore x_1=\dfrac{\det(\matrixA_{1,\vecb})}{\det(\matrixA)}.\]\par Similarly, we can extend this proof to an arbitrary $x_i,$ \[\begin{aligned}\det(\matrixA_{i,\vecb})&=x_i\det(\matrixA)\\x_i&=\dfrac{\det(\matrixA_{i,\vecb})}{\det(\matrixA)}\end{aligned}\]
+\end{prf}
+\begin{eg}
+	Suppose $\matrixA=\mqty[1&2\\3&4],$ then $\det(\matrixA)=-2.$ Let $\vecb=\mqty[1\\1].$\par Therefore, $\matrixA_{1,\vecb}=\mqty[1&2\\1&4],$ and $\det(\matrixA_{1,\vecb})=2.$ $\matrixA_{2,\vecb}=\mqty[1&1\\3&1],$ so $\det(\matrixA_{2,\vecb})=-2.$\par Then, \[\vecx=\dfrac{1}{-2}\mqty[2\\-2]=\mqty[-1\\1].\]
+\end{eg}
+\begin{rmk}
+	For an arbitrary $2\times2$ matrix $\matrixA=\mqty[a&b\\c&d],\ a,b,c,d\in\R.$ Suppose $\vecb=\mqty[1\\0],$ then applying Cramer's Rule, we know \[\vecx=\dfrac{1}{ad-bc}\mqty[d\\-c].\]
+\end{rmk}
+\begin{thm}[Application of Cramer's Rule]
+	Cramer's Rule can give formulas for $\matrixA^{-1}$ in general: We saw $\matrixA\vecx_1=\vece_1$ and $\matrixA\vecx_2=\vece_2,$ then \[\matrixA^{-1}=\mqty[|&|\\\vecx_1&\vecx_2\\|&|].\]	To be more specific, for a $2\times2$ matrix $\matrixA=\mqty[a&b\\c&d],$ we have \[\matrixA^{-1}=\dfrac{1}{\det(\matrixA)}\mqty[d&-b\\-c&a].\]
+\end{thm}
+\begin{thm}
+	Give a matrix $\matrixA$ with integer entries and $\det(\matrixA)=\pm1,$ the matrix $\matrixA{-1}$ has integer entries. 
+\end{thm}
+
 
 \newpage
 \section{Eigenvalues and Eigenvectors}
 \subsection{Computing $\matrixA^k\vecx$}
+\begin{df}[Eigenvector and Eigenvalue]
+	Let $\matrixA$ be an $n\times n$ matrix, and \textbf{eigenvector} for $\matrixA$ is any non-zero vector $\vecx,$ such that $\matrixA\vecx=\lambda\vecx,$ for some $\lambda\in\R.$ The number $\lambda$ is called the \textbf{eigenvalue} for $\vecx.$ For an eigenvector $\vecx,$ $\matrixA^k\vecx=\lambda^k\vecx.$
+\end{df}
+\begin{df}[Eigenbasis]
+	Let $\matrixA$ be an $nt\times n$ matrix, an \textbf{eigenbasis} for $\matrixA$ is a basis for $\R^n$ consisting of eigenvectors for $\matrixA.$	
+\end{df}
+\begin{thm}
+	Let $\matrixA$ be an $n\times n$ matrix with an eigenbasis of $\vecv_1,\cdots\vecv_n.$ The eigenvalues for $\vecv_1,\cdots,\vecv_n$ are $\lambda_1,\cdots,\lambda_n,$ respectively. To compute $\matrixA^k\vecx,$ we could write $\vecx=c_1\vecv_1+\cdots+c_n\vecv_n,$ and then use linearity, we have \[\begin{aligned}\matrixA^k\vecx&=\matrixA\qty(c_1\vecv_1+\cdots+c_n\vecv_n)\\&=c_1\matrixA^k\vecv_1+\cdots+c_n\matrixA^{k}\vecv_n\\&=c_1\lambda_1^k\vecv_1+\cdots+c_n\lambda_n^k\vecv_n.\end{aligned}\]	
+\end{thm}
+\begin{thm}
+	Consider $f_{\matrixA}:\R\to\R$ defined by \[f_{\matrixA}(t)=\det(\matrixA-t\matrixI).\] The zeros of $f_{\matrixA}(t)$ are exactly the eigenvalues of $\matrixA.$ That is, $f_{\matrixA}(\lambda)=0.$
+\end{thm}
+\begin{df}[Characteristic Polynomial]
+	The \textbf{characteristic polynomial} of $\matrixA$ is the function \[f_{\matrixA}(t)=\det(\matrixA-t\matrixI).\]	
+\end{df}
+\begin{df}[Modified Definition of Eigenvectors]
+	Let $\matrixA$ be an $n\times n$ matrix, and $\lambda$ be an eigenvalue for $\matrixA,$ i.e., a root of the characteristic polynomial of $\matrixA$ defined by $f_{\matrixA}(t)=\det(\matrixA-t\matrixI).$ An \textbf{eigenvector} with eigenvalue $\lambda$ for $\matrixA$ is any non-zero solution to $\matrixA\vecx=\lambda\vecx.$ i.e., non solution to \[(\matrixA-\lambda\matrixI)\vecx=0.\]
+\end{df}
+\begin{thm}
+	The non-zero elements for $\ker(\matrixA-\lambda\matrixI)$ are exactly the eigenvectors with eigenvalue $\lambda.$	
+\end{thm}
+\begin{df}[$\lambda$-Eigenspace]
+	Let $\lambda$ be an eigenvalue for $\matrixA,$ the \textbf{$\lambda$-eigenspace} is \[E_{\matrixA,\lambda}=\ker(\matrixA-\lambda\matrixI).\]
+\end{df}
+\begin{eg}
+	Compute all eigenvectors for $\matrixA=\mqty[2&2\\1&3].$
+	\begin{sol}
+		\[f_{\matrixA}=(t-4)(t-1)\implies\lambda=1\quad\text{and}\quad4.\]
+		\[E_{\matrixA,4}=\ker(\matrixA-4\matrixI)=\ker\qty(\mqty[-2&2\\1&-1])=\ker\qty(\mqty[1&-1\\0&0])=\Span\qty(\mqty[1\\1])\]
+		\[E_{\matrixA,1}=\ker(\matrixA-\matrixI)=\ker\qty(\mqty[1&2\\1&2])=\ker\qty(\mqty[1&2\\0&0])=\Span\qty(\mqty[-2\\1])\]
+	\end{sol}
+\end{eg}
+\begin{framed}
+\textbf{Computing $\matrixA^{k}\vecx$}:
+\begin{enumerate}
+	\item Compute $f_{\matrixA}(t)=\det(\matrixA-t\matrixI)$
+	\item Find the roots of $f_{\matrixA}(t)$; those are eigenvalues.
+	\item Compute eigenspaces
+	\item Ask: Is there an eigenbasis?
+	\item Write $\vecx$ in form of $c_1\vecv_1+\cdots+c_n\vecv_n$
+	\item Find the formula
+\end{enumerate}	
+\end{framed}
+\begin{eg}
+	Let $\matrixA=\mqty[0&6\\1&-1].$ Find a formula for $\matrixA^k\mqty[1\\1]$ for all $k$.
+	\begin{sol}
+	Find eigenvectors $\vecv_1$ and $\vecv_2$ for $\matrixA$ and express $\mqty[1\\1]=c_1\vecv_1+c_2\vecv_2.$ Then, \[\matrixA^k\mqty[1\\1]=c_1\matrixA^k\vecv_1+c_2\matrixA^k\vecv_2=c_1\lambda_1^k\vecv_1+c_2\lambda_2^k\vecv_2.\]
+	\begin{enumerate}
+		\item Compute $f_{\matrixA}(t)$: \[f_{\matrixA}(t)=\det(\matrixA-t\matrixI)=\mqty|{-t&6\\1&-1-t}|=t(1+t)-6=t^2=t-6.\]
+		\item Find roots to the polynomial: \[f_{\matrixA}(t)=(t+3)(t-2)=0\implies\lambda_1=t_1=2\quad\lambda_2=t_2=-3.\]
+		\item Compute eigenspaces: \[E_{\matrixA,2}=\ker\qty(\matrixA-2\matrixI)=\ker\qty(\mqty[-2&6\\1&-3])=\ker\qty(\mqty[1&-3\\0&0])=\Span\qty(\mqty[3\\1]);\]\[E_{\matrixA,-3}=\ker\qty(\matrixA+3\matrixI)=\ker\qty(\mqty[3&6\\1&2])=\ker\qty(\mqty[1&2\\0&0])=\Span\qty(\mqty[-2\\1]).\]
+		\item Ask: IS there an eigenbasis for $\matrixA$? \par YES! \[\vecv_1=\mqty[3\\1];\qquad\vecv_2=\mqty[-2\\1];\qquad\lambda_1=2;\qquad\lambda_2=-3.\]
+		\item Solve $\mqty[3&-2\\1&1]\mqty[c_1\\c_2]=\mqty[1\\1]: $\[\matrixS=\mqty[3&-2\\1&1]\implies\matrixS^{-1}=\dfrac{1}{5}\mqty[1&2\\-1&3]\]\[\therefore\mqty[c_1\\c_2]=\dfrac{1}{5}\mqty[1&2\\-1&3]\mqty[1\\1]=\dfrac{1}{5}\mqty[3\\2]\implies\mqty[1\\1]=\dfrac{3}{5}\mqty[3\\1]+\dfrac{2}{5}\mqty[-2\\1]\]
+		\item Find the formula: \[\matrixA^k\mqty[1\\1]=\dfrac{3}{5}(2)^k\mqty[3\\1]+\dfrac{2}{5}\qty(-3)^k\mqty[-2\\1].\]
+	\end{enumerate}
+	\end{sol}
+\end{eg}
+\begin{rmk} The matrix $\matrixA=\mqty[0&-1\\1&0]$ has no eigenvectors.\end{rmk}
+\begin{prf}
+	$\boxed{\text{Algebraic}}$ \[f_{\matrixA}(t)=\mqty|{-t&-1\\1&-t}|=t^2+1>0\forall t\in\R.\]\par So, $f_{\matrixA}(t)$ has no zeros $\implies$ no eigenvalues $\implies$ no eigenvectors.\par $\boxed{\text{Geometric}}$ $\matrixA$ encodes rotation counterclockwise by $90^\circ.$\par  The condition $\matrixA\vecx=\lambda\vecx$ implies that $\matrixA\vecx$ and $\vecx$ have to be on the same line.\par  Yet, rotation by $90^\circ$ preserves no lines.
+\end{prf}
 
 \subsection{Diagonalization}
+\begin{df}[Diagonal Matrix]
+	Let $\matrixD=\mqty[a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{n1}&\cdots&a_{nn}],$ we say $\matrixD$ is a \textbf{diagonal matrix} if $a_{ij}=0$ for all $i\neq j.$	
+\end{df}
+\begin{thm}
+	$\matrixD$ is diagonal if and only if $\matrixD\vece_i=\lambda_i\vece_i,\quad\lambda_i\in\R.$ i.e., $e_1,\cdots,e_n$ are eigenvectors for $\matrixD.$ That is, eigenvalues are the diagonal entries: $\mqty[\lambda_1&\cdots&0\\\vdots&\ddots&\vdots\\0&\cdots&\lambda_n].$	
+\end{thm}
+\begin{thm}Properties of Diagonal Matrices
+\begin{itemize}
+	\item Computing $\matrixD^k$ \[\begin{aligned}\matrixD^k&=\mqty[|&|&&|\\\matrixD^k\vece_1&\matrixD^k\vece_2&\cdots&\matrixD^k\vece_n\\|&|&&|]=\mqty[|&|&&|\\\lambda_1^k\vece^1&\lambda_2^k\vece^2&\cdots&\lambda_n^k\vece^n\\|&|&&|]\\&=\mqty[\lambda_1^k&0&\cdots&0\\0&\lambda_2^k&&\vdots\\\vdots&&\ddots&0\\0&\cdots&0&\lambda_n^k]\end{aligned}\]
+	\item Computing $\matrixD^{-1}$ \[\matrixD^{-1}=\mqty[\lambda_1^{-1}&0&\cdots&0\\0&\lambda_2^{-1}&&\vdots\\\vdots&&\ddots&0\\0&\cdots&0&\lambda_n^{-1}]\]
+	\item Rank of $\matrixD$ \[\rank(\matrixD)=\text{number of non-zero diagonal entries.}\]
+	\item Nullity of $\matrixD$ \[\nullity(\matrixD)=\text{number of zeros along the diagonal}.\]
+	\item Determinant of $\matrixD$ \[\det(\matrixD)=\lambda_1\lambda_2\cdots\lambda_n\]
+\end{itemize}
+\end{thm}
+\begin{df}[Diagonalizable]
+	Let $\matrixA$ be an $n\times n$ matrix. $\matrixA$ is said to be \textbf{diagonalizable} if there is an eigenbasis for $\matrixA.$ i.e., there is a basis $\vecv_1,\cdots,\vecv_n$ of $\R^n$ such that $\vecv_1,\cdots,\vecv_n$ are eigenvectors of $\matrixA$.	
+\end{df}
+\begin{thm}
+	$\matrixA$ is diagonalizable if and only if \[\matrixA=\matrixS\matrixD\matrixS^{-1},\] where $\matrixD$ is diagonal with diagonal entries the eigenvalues of $\matrixA$ ($\lambda_1\cdots\lambda_n$), and $\matrixS$ is invertible with column vectors the eigenvectors of $\matrixA$ ($\vecv_1,\cdots,\vecv_n$). \textbf{Diagonalizing} a matrix means to find an invertible matrix $\matrixS$ and a diagonal matrix $\matrixD$ such that $\matrixA=\matrixS\matrixD\matrixS^{-1}.$
+\end{thm}
+\begin{eg}
+	Let $\matrixA=\mqty[1&1&1\\1&1&1\\1&1&1].$ Diagonalize $\matrixA.$
+	\begin{sol}
+		By definition, we know \[f_{\matrixA}(t)=\det\qty(\mqty[1-t&1&1\\1&1-t&1\\1&1&1-t])=3t^2-t^3\implies t_1=t_2=0,\quad t_3=3.\]\par Therefore, we know \[E_{\matrixA,0}=\ker(\matrixA)=\ker\qty(\mqty[1&1&1\\1&1&1\\1&1&1])=\Span\qty(\mqty[1\\-1\\0],\mqty[1\\0\\-1]);\] \[E_{\matrixA,3}=\ker(\matrixA-3\matrixI)=\ker\qty(\mqty[-2&1&1\\1&-2&1\\1&1&-2])=\Span\qty(\mqty[1\\1\\1])\]\par Note that since $\vecv_1=\mqty[1\\-1\\0],\vecv_2=\mqty[1\\0\\-1],\vecv_3=\mqty[1\\1\\1]$ span $\R^3,$ they are eigenbasis of $\matrixA.$ \[\begin{aligned}\therefore\matrixA=\matrixS\matrixD\matrixS^{-1}&=\mqty[1&1&1\\-1&0&1\\0&-1&1]\mqty[0&0&0\\0&0&0\\0&0&3]\mqty[1&1&1\\-1&0&1\\0&-1&1]^{-1}\\&=\mqty[1&1&1\\-1&0&1\\0&-1&1]\mqty[0&0&0\\0&0&0\\0&0&3]\mqty[1/3&-2/3&1/3\\1/3&1/3&-2/3\\1/3&1/3&1/3]^{-1}.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{cor}Linear Algebra Becomes Easy for Diagonalized Matrices
+	\begin{enumerate}
+		\item $\matrixA^{k}=\matrixS\matrixD^{k}\matrixS^{-1}$
+		\begin{prf}
+			\[\matrixA^{k}=\underbrace{\matrixS\matrixD\matrixS^{-1}\matrixS\matrixD\matrixS^{-1}\cdots\matrixS\matrixD\matrixS^{-1}}_{k\text{ times}}=\matrixS\matrixD^{k}\matrixS^{-1}\]
+		\end{prf}
+		\item $\matrixA^{-1}=\matrixS\matrixD^{-1}\matrixS^{-1}$
+		\begin{prf}
+			Since \[\matrixA(\matrixS\matrixD^{-1}\matrixS^{-1})=\matrixS\matrixD\matrixS^{-1}\matrixS\matrixD^{-1}\matrixS^{-1}=\matrixS\matrixD\matrixD^{-1}\matrixS^{-1}=\matrixS\matrixS^{-1}=\matrixI,\]\par so we know that $\matrixA^{-1}=\matrixS\matrixD^{-1}\matrixS^{-1}.$
+		\end{prf}
+		\item $\det(\matrixA)=\det(\matrixD)=\lambda_1\cdots\lambda_n$
+		\begin{prf}
+			\[\det(\matrixA)=\det(\matrixS\matrixD\matrixS^{-1})=\det(\matrixS)\det(\matrixD)\det(\matrixS^{-1})=\det(\matrixS)\det(\matrixD)\det(\matrixS)^{-1}=\det(\matrixD).\]
+		\end{prf}
+		\item $f_{\matrixA}(t)=\det(\matrixA-t\matrixI)=\det(\matrixD-t\matrixI)=f_{\matrixD}(t)=\dsst\prod_{i=1}^n\qty(\lambda_i-t)$
+		\begin{prf}
+			Let's fix $t\in\R.$ then \[\matrixS(\matrixD-t\matrixI)\matrixS^{-1}=\matrixS\matrixD\matrixS^{-1}-t\matrixS\matrixI\matrixS^{-1}=\matrixA-t\matrixI.\]
+		\end{prf}
+		\item $\rank(\matrixA)=\rank(\matrixD)=$ number of non-zero $\lambda_i.$
+		\item $\nullity(\matrixA)=\nullity(\matrixD)=$ number of zero $\lambda_i.$
+		\item If $f_{\matrixA}(t)$ is not a polynomial with all real roots, then $\matrixA$ is not diagonalizable. 
+	\end{enumerate}
+\end{cor}
 
 \subsection{Procedure of Finding an Eigenbasis}
+\begin{df}[Revisit Definition of Characteristic Polynomials]
+	For an $n\times n$ matrix $\matrixA$, its characteristic polynomial is a function $f_{\matrixA}:\R\to\R$ defined by $f_{\matrixA}(t)=\det(\matrixA-t\matrixI).$
+\end{df}
+\begin{thm}
+	$f_{\matrixA}(\lambda)=0$ if and only if $\lambda$ is an eigenvalue of $\matrixA.$
+\end{thm}
+\begin{thm}
+	$f_{\matrixA}(t)$ is a polynomial. i.e., $f_{\matrixA}(t)=a_dt^d+a{d-1}t^{d-1}+\cdots+a_0,$ where $a_d\neq0$ and $a_i\in\R.$ We say $d$ is the degree of $f_{\matrixA}(t).$
+\end{thm}
+\begin{rmk}
+	Determinant can be calculated without division: Laplace Expansion
+\end{rmk}
+\begin{prf}
+	Note that $\matrixA-t\matrixI$ is an $n\times n$ matrix with polynomial entries. \par By Laplace expansion, $\det(\matrixA-t\matrixI)$ is the sums and products of those polynomial entries, and thus it is a polynomial. 
+\end{prf}
+\begin{prop}
+	If $k\in\R$ and $\matrixB$ is an $n\times n$ matrix, then \[\det(k\matrixB)=k^n\det(\matrixB).\]	
+\end{prop}
+\begin{prf}
+	\[\det\qty(\mqty[-&k\vecr_1&-\\&\vdots&\\-&k\vecr_n&-])=k^n\cdot\det\qty(\mqty[-&\vecr_1&-\\&\vdots&\\-&\vecr_n&-])\]	
+\end{prf}
+\begin{thm}
+	If $\matrixA$ is an $n\times n$ matrix, then the degree of $f_{\matrixA}$ is $n$.
+\end{thm}
+\begin{prf}
+	Since $f_{\matrixA}(t)$ is a polynomial, $f_{\matrixA}(t)=a_dt^d+a{d-1}t^{d-1}+\cdots+a_0,$ where $a_d\neq0$ and $a_i\in\R.$\par \textit{If we can prove $f_{\matrixA}(t)$ and $\det(-t\matrixI)$ has the same growth rate, and since $\det(-t\matrixI)=(-t)^n\det(\matrixI)=(-t)^n,$ we can say $f_{\matrixA}(t)$ has a degree of $n$. Therefore, we want to show $\dsst\lim_{t\to\infty}\dfrac{f_{\matrixA}(t)}{t^n}$ is finite and non-zero.}	\[\lim_{t\to\infty}\dfrac{f_{\matrixA}(t)}{t^n}=\lim_{t\to\infty}\dfrac{\det(\matrixA-t\matrixI)}{t^n}=\lim_{t\to\infty}\det(\dfrac{\matrixA}{t}-\matrixI)=\lim_{t\to0}\det(t\matrixA-\matrixI)=\det(-\matrixI)=(-1)^n\]\par $\therefore a_d=(-1)^n,$ and $f_{\matrixA}(t)$ has a degree of $n$.
+\end{prf}
+\begin{rmk}
+	If $\lambda_1,\cdots\lambda_k$ are roots of $f_{\matrixA}(t),$ them \[f_{\matrixA}(t)=(t-\lambda_1)^{M_1}(t-\lambda_2)^{M_2}\cdots(t-\lambda_k)^{M_k}g(x),\] where $g(x)$ has no real roots. Then, \[n=M_1+M_2+\cdots+M_k+\text{degree}(g(x)).\] Counted with multiplicity (this power $M_k$), $\matrixA$ has \underline{at most} $n$ eigenvalues.
+\end{rmk}
+\begin{thm}
+	$\matrixA$ has exactly $n$ roots (counted with multiplicity) when $\matrixA$ is diagonalizable.	
+\end{thm}
+\begin{df}[Algebraic Multiplicity]
+	The \textbf{algebraic multiplicity} of a matrix $\matrixA$ is the multiplicity of an eigenvalue $\lambda$ in the characteristic polynomial of $\matrixA.$
+\end{df}
+\begin{thm}
+	If we write $f_{\matrixA}(t)$ as $f_{\matrixA}(t)=a_dt^d+a{d-1}t^{d-1}+\cdots+a_0,$ where $a_d\neq0$ and $a_i\in\R,$  then $a_0=\det(\matrixA)$
+\end{thm}
+\begin{prf}
+	\[f_{\matrixA}(0)=a_0=\det(\matrixA-0\cdot\matrixI)=\det(\matrixA).\]	
+\end{prf}
+\begin{eg}
+	Prove that matrix $\matrixB=\mqty[0&1\\0&0]$ is not diagonalizable. 	
+\end{eg}
+\begin{prf}
+	Note that $f_{\matrixB}(t)=\mqty|{-t&1\\0&-t}|=t^2\implies\lambda_1=0,\ \text{multiplicity}=2.$	\par $\boxed{\text{Method }1}$ Assume for the sake of contradiction that $\matrixB$ is diagonalizable.\par Therefore, $\matrixB=\matrixS\matrixD\matrixS^{-1},$ where $\matrixS=\mqty[|&|\\\vecv_1&\vecv_2\\|&|]$ and $\matrixD=\mqty[\lambda_1&0\\0&\lambda_2]$ for eigenvectors $\vecv_1$ and $\vecv_2$ with eigenvalues $\lambda_1$ and $\lambda_2,$ respectively. \par Then, \[\matrixD=\mqty[0&0\\0&0]=0\cdot\matrixI\]\[\matrixB=\matrixS\matrixD\matrixS^{-1}=\matrixS(0\cdot\matrixI)\matrixS^{-1}=0\cdot\matrixS\cdot\matrixI\cdot\matrixS^{-1}=0\cdot\matrixS\cdot\matrixS^{-1}=0\]\par$\divideontimes$ This is a contradiction that $\matrixB=\mqty[0&1\\0&0]=\neq0.$\par Therefore, $\matrixB$ cannot be diagonalizable.\par $\boxed{\text{Method }2}$ From Method 1, we know that \[E_{\matrixB,0}=\ker(\matrixB-0\cdot\matrixI)=\ker\qty(\mqty[0&1\\0&0])=\Span\qty(\mqty[1\\0])\]\par Since $\ker(\matrixB)$ is 1-dimensional, it doesn't contain a basis for $\R^2.$\par So, $\matrixB$ doesn't have an eigenbasis.
+\end{prf}
+\begin{thm}
+	A matrix $\matrixC=\mqty[\lambda&*&\cdots&\cdots\\0&\lambda&&\vdots\\\vdots&&\ddots&*\\\cdots&\cdots&0&\lambda]$ is diagonalizable if and only if $\matrixC$ is diagonal.
+\end{thm}
+\begin{prf}
+	Since $f_{\matrixC}(t)=\mqty|\lambda-t&*&\cdots&\cdots\\0&\lambda-t&&\vdots\\\vdots&&\ddots&*\\\cdots&\cdots&0&\lambda-t|=(\lambda-t)^n,$ we know $\matrixC$ has $\lambda$ as the only eigenvalue with algebraic multiplicity of $n.$ \[\therefore\matrixD=\mqty[\lambda&0&\cdots&\cdots\\0&\lambda&&\vdots\\\vdots&&\ddots&0\\\cdots&\cdots&0&\lambda]=\lambda\cdot\matrixI.\]\[\therefore\matrixC=\matrixS\matrixD\matrixS^{-1}=\matrixS(\lambda\matrixI)\matrixS^{-1}=\lambda\matrixS\matrixI\matrixS^{-1}=\lambda\matrixI.\]
+\end{prf}
+\begin{thm}
+	For matrix $\matrixC=\mqty[\lambda&*&\cdots&\cdots\\0&\lambda&&\vdots\\\vdots&&\ddots&*\\\cdots&\cdots&0&\lambda],$ $\lambda$ is the only eigenvalue. Also, $E_{\matrixC,\lambda}=\ker(\matrixC-\lambda\matrixI)$ contains a basis if and only if $\ker(\matrixC-\lambda\matrixI)$ is the entire space. i.e., $\matrixC-\lambda\matrixI=0,$ or $\matrixC=\lambda\matrixI.$
+\end{thm}
+\begin{thm}
+	Let $\matrixA$ be an $n\times n$ matrix, and $\vecv_1,\cdots,\vecv_k$ be eigenvectors of $\matrixA.$ The vectors $\vecv_1,\cdots,\vecv_k$ are linearly independent if for every eigenvalue $\lambda$ of $\matrixA,$ the set of these vectors with eigenvalue $\lambda.$ i.e., $\qty{\vecv_i\mid\matrixA\vecv_i=\lambda\vecv_i}$ is linearly independent. 
+\end{thm}
+\begin{framed}
+\textbf{Finding an eigenbasis/diagonalizing $\matrixA$ as an $n\times n$ matrix.}
+\begin{enumerate}
+	\item Find eigenvalues of $\matrixA$
+	\begin{enumerate}
+		\item Compute $f_{\matrixA}(t)$
+		\item Find the roots of $f_{\matrixA}(t)$ and the multiplicity $M_1,\cdots,M_k$
+		\begin{rmk}
+			If $M_1+M_2+\cdots+M_k\neq n,$ then STOP. $\matrixA$ is not diagonalizable.
+		\end{rmk}
+		\item Form matrix $\matrixD.$
+	\end{enumerate}
+	\item Find basis for eigenspaces: 
+	\begin{enumerate}
+		\item Form $\matrixS=\mqty[|&&|\\\vecv_1&\cdots&\vecv_n\\|&&|],$ where $\vecv_1,\cdots,\vecv_n$ are linearly independent. 
+		\item For each $\lambda_i,$ compute a basis for $\ker(\matrixA-\lambda_i\matrixI).$
+		\begin{rmk}
+			If 	$\dim(\ker(\matrixA-\lambda_i\matrixI))<M_i,$ then STOP. There is no enough eigenvectors and $\matrixA$ is not diagonalizable.
+		\end{rmk}
+	\end{enumerate}
+	\item By theorem, the concatenation of the lists of bases is an eigenbasis. 
+\end{enumerate}
+\end{framed}
+\begin{df}[Geometric Multiplicity]
+	Let $\lambda$ be an eigenvalue of $\matrixA.$. The \textbf{geometric multiplicity} of $\lambda$ is $\dim(\ker(\matrixA-\lambda\matrixI)),$ the number of linearly independent vector in an eigenspace.
+\end{df}
+\begin{thm}
+	For a matrix to be diagonalizable, \[\text{geometric multiplicity}=\text{algebraic multiplicity}.\]	
+\end{thm}
 
 \subsection{Multiplicity}
+\begin{df}[Multiplicity]
+	Let $\matrixA$ be an $n\times n$ matrix and $\lambda$ be an eigenvalue of $\matrixA:$
+	\begin{enumerate}
+		\item The \textbf{algebraic multiplicity} of $\lambda$ is the largest $k$ such that $f_{\matrixA}(t)=(t-\lambda)^kg(t),$ where $g(t)$ is a polynomial. We denote the algebraic multiplicity of $\lambda$ as $\almu(\lambda)=k.$ $\almu(\lambda)$ is the multiplicity of $\lambda$ as a root of $f_{\matrixA}(t).$
+		\item The \textbf{geometric multiplicity} of $\lambda$ is $\gemu(\lambda)=\dim(\ker(\matrixA-\lambda\matrixI)).$ $\gemu(\lambda)$ is the maximum number of linearly independent eigenvectors with eigenvalue $\lambda.$
+	\end{enumerate}	
+\end{df}
+\begin{thm}
+$\gemu(\lambda)\leq\almu(\lambda).$	
+\end{thm}
+\begin{rmk}
+	Note that in $\matrixA-\lambda\matrixI,$ every non-zero diagonal entry contributes a pivot to $\rref(\matrixA-\lambda\matrixI).$ Then, $\rank(\matrixA-\lambda\matrixI)\geq$ the number of diagonal entries that is not $\lambda.$\par  Therefore, $\nullity(\matrixA-\lambda\matrixI)\leq$ the number of diagonal entries that equals $\lambda.$\par Hence, $\gemu(\lambda)\leq\almu(\lambda).$
+\end{rmk}
+\begin{prf}
+	Assume $\vecv_1,\cdots,\vecv_g$ is a basis of $E_{\matrixA,\lambda}.$ Then, $\gemu(\lambda)=g.$\par Choose $\vecv_{g+1},\cdots,\vecv_n$ such that $\vecv_1,\cdots,\vecv_g,\vecv_{g+1},\cdots,\vecv_n$ is a basis for $\R^n.$ Then, \[\matrixS=\mqty[|&&|&&|\\\vecv_1&\cdots&\vecv_g&\cdots&\vecv_n\\|&&|&&|]\]\par \textit{$\matrixS$ is invertible since $\vecv_1,\cdots\vecv_n$ is a basis.}\par \begin{clm}$\matrixB=\matrixS^{-1}\matrixA\matrixS,$ where $\matrixB=\left[\begin{array}{c|c}\mqty{\lambda&&\\&\ddots&\\&&\lambda}&*\\\hline\underbrace{0}_{g-\text{columns}}&\matrixC\end{array}\right]$\end{clm}\[\begin{aligned}f_{\matrixB}(t)=\det(\matrixS\matrixA\matrixS^{-1}-t\matrixI)=\det(\matrixS\matrixA\matrixS^{-1}-t\matrixS^{-1}\matrixI\matrixS)&=\det(\matrixS^{-1}(\matrixA-t\matrixI)\matrixS)\\&=\det(\matrixA-t\matrixI)=f_{\matrixA}(t).\end{aligned}\]\par Since $f_{\matrixB}(t)=(\lambda-t)^gf_{\matrixC}(t)=f_{\matrixA}(t),$ we know that $\gemu\leq\almu.$
+\end{prf}
+\begin{thm}
+	For a matrix to be diagonalizable, it is necessary that $\almu(\lambda)=\gemu(\lambda)$ for all $\lambda.$
+\end{thm}
+\begin{thm}
+	Let $\matrixA$ be an $n\times n$ matrix. If $f_{\matrixA}(t)$ has $n$ distinct real roots, then $\matrixA$ is diagonalizable.
+\end{thm}
+\begin{prf}
+	Every eigenvalue has an eigenvector: $\det(\matrixA-\lambda\matrixI)=0\implies(\matrixA-\lambda\matrixI)$ is not invertible. \[\therefore\ker(\matrixA-\lambda\matrixI)=\neq0.\]\par Therefore, there are eigenvectors $\vecv_1,\cdots\vecv_n$ for eigenvalues $\lambda_1,\cdots,\lambda_n,$ respectively.\par Since eigenvectors with distinct eigenvalues are linearly independent, $\vecv_1,\cdots,\vecv_n$ is an eigenbasis. 
+\end{prf}
+
 
 \newpage
 \section{Singular Value Decomposition}
 \subsection{The Spectral Theorem}
+\begin{df}[Symmetry]
+	A matrix $\matrixA$ is called \textbf{symmetric} if $\matrixA=\matrixA^\T.$ A symmetric matrix is symmetric across the diagonal. That is, $a_{ij}=a_{ji}.$	
+\end{df}
+\begin{thm}[Spectral Theorem]
+	$\matrixA$ is symmetric if and only if $\matrixA$ has an orthogonal eigenbasis. Equivalently, $\matrixA=\matrixS\matrixD\matrixS^{-1},$ where $\matrixD$ is diagonal and $\matrixS$ is orthogonal (having orthogonal columns). That is, $\matrixA=\matrixS\matrixD\matrixS^\T$ because $\matrixS^{-1}=\matrixS^\T$ if $\matrixS$ is orthogonal. 	
+\end{thm}
+\begin{prf}
+	\textit{Given $\matrixA=\matrixS\matrixD\matrixS^\T,$ we want to show that $\matrixA=\matrixA^\T.$}\par Note that since $\matrixD$ is diagonal, we have $\matrixD=\matrixD^\T.$ Then
+	\[\matrixA^\T=(\matrixS\matrixD\matrixS^\T)^\T=(\matrixS^\T)^\T(\matrixD)^\T\matrixS^\T=\matrixS\matrixD^\R\matrixS^\T=\matrixS\matrixD\matrixS^\T=\matrixA.\]
+\end{prf}
+\begin{thm}
+	Orthogonal projection is symmetric. 	
+\end{thm}
+\begin{prf}
+	Let $V$ to be a subspace of $\R^n$. Define $\Proj_{\vecv}:\R^n\to\R^n$ as $\vecx\longmapsto\vecx^\parallel\in V,$ where $\vecx=\vecx^\parallel+\vecx^\perp$ and $\vecx^\perp\in V^\perp.$ Finding eigenspaces of $\Proj_{\vecv},$ we get \[E_{\Proj_{\vecv},1}=V,\qquad\text{and}\qquad E_{\Proj_{\vecv},0}=V^\perp.\]\par Since eigenspaces are perpendicular, $\Proj_{\vecv}$ is symmetric. 
+\end{prf}
+\begin{cor}
+	Let \[V=\Span\qty(\mqty[\vecv_1\\\vdots\\\vecv_n])=\Span(\vecv),\] then $\vecx\longmapsto V$ is $\dfrac{\vecx\cdot\vecv}{\vecv\cdot\vecv}\cdot\vecv.$ That is, $\dfrac{1}{\vecv\cdot\vecv}\mqty[\vecv\\\vdots\\vecv_n]\qty(\mqty[\vecv_1&\cdots&\vecv_n]\vecx).$ \[\therefore\Proj_{\vecv}\qty(\vecx)=\dfrac{1}{\vecv\cdot\vecv}\mqty[v_1v_1&v_1v_2&\cdots&\cdots\\v_1v_2&v_2v_2&&\vdots\\\cdots&&\ddots&\vdots\\\cdots&\cdots&\cdots&v_nv_n]\]
+\end{cor}
+\begin{thm}[Adjoint Property of Transpose]
+	If $\matrixA$ is an $n\times n$ matrix, $\vecv_1,\vecv_2\in\R^n.$ Then, $\qty(\matrixA\vecv_1)\cdot\vecv_2=\vecv_1\cdot\qty(\matrixA^\T\vecv_2).$ That is, bringing a matrix through a dot product, transpose it. Specially, if $\matrixA$ is symmetric, $\matrixA=\matrixA^\T,$ and $\qty(\matrixA\vecv_1)\cdot\vecv_2=\vecv_1\cdot\qty(\matrixA\vecv_2).$
+\end{thm}
+\begin{prf}
+	\[\qty(\matrixA\vecv_1)\cdot\vecv_2=\qty(\matrixA\vecv_1)\vecv_2=(\vecv_1)^\T\qty(\matrixA^\T\vecv_2)=\vecv_1\cdot\qty(\matrixA^\T\vecv_2).\]	
+\end{prf}
+\begin{thm}[Spectral Theorem -- Continued 1]
+	If $\vecv_1,\vecv_2$ are eigenvectors for $\matrixA$ with eigenvalues $\lambda_1\neq\lambda_2,$ then $\vecv_1\perp\vecv_2.$	
+\end{thm}
+\begin{prf}
+	Note that \[\lambda_1\vecv_1\cdot\vecv_2=\matrixA\vecv_1\cdot\vecv_2=\vecv_1\cdot\qty(\matrixA\vecv_2)=\lambda_2\vecv_1\cdot\vecv_2,\]\par  However, by our assumption we have $\lambda_1\neq\lambda_2.$ So it must be $\vecv_1\cdot\vecv_2=0.$\par That is, exactly, $\vecv_1\perp\vecv_2.$
+\end{prf}
+\begin{cor}
+	Distinct eigenspaces are perpendicular. 	
+\end{cor}
+\begin{thm}[Spectral Theorem -- Continued 2]
+	If $\matrixA$ is a symmetric matrix, then $\matrixA$ has an orthogonal eigenbasis.
+	\begin{prf}
+		\begin{clm}
+			$f_{\matrixA}(t)$ has all real roots. 
+		\end{clm}\par 
+		\textit{If $\lambda=x+\i y$ is a root of $f_{\matrixA}(t)$ , show $y=0$.}\par Let $\vecv+\i\vecw\in\C^n$ be an eigenvector for $\matrixA$ with eigenvalue $\lambda.$ Then, $\vecv-\i\vecw\in\C^n$ is also an eigenvector for $\matrixA$ with eigenvalue $\lambda^*=x-\i y.$ \[\therefore\begin{cases}\matrixA(\vecv-\i\vecw)=\lambda^*(\vecv-\i\vecw)\\\matrixA(\vecv+\i\vecw)=\lambda(\vecv+\i\vecw)\end{cases}\]\[\begin{aligned}\therefore(\vecv-\i\vecw)\cdot\matrixA(\vecv+\i\vecw)&=\lambda(\vecv-\i\vecw)\cdot(\vecv+\i\vecw)\\&=\lambda(\vecv\cdot\vecv+\vecw\cdot\vecw)\\&=\lambda(\underbrace{\|\vecv\|^2+\|\vecw\|^2}_{\text{greater than }0})\\\matrixA(\vecv-\i\vecw)\cdot(\vecv+\i\vecw)&=\lambda^*(\vecv-\i\vecw)\cdot(\vecv+\i\vecw)\\&=\lambda^*(\underbrace{\|\vecv\|^2+\|\vecw^2\|}_{\text{greater than }0})\\\therefore\lambda(\|\vecv\|^2+\|\vecw\|^2)&=\lambda^*(\|\vecv\|^2+\|\vecw\|^2)\end{aligned}\]\par Since $\|\vecv\|^2+\|\vecw\|^2>0,$ it must be $\lambda=\lambda^*.$ That is, $x+\i y=x-\i y.$ So, $y=0.$\par Thus, all the roots are real. 
+		\begin{clm} $\matrixA$ has an eigenbasis. That is, $\gemu(\lambda)=\almu(\lambda)\forall\lambda.$\end{clm}\par 
+		We can write $\matrixA=\matrixS_1\underbrace{\left[\begin{array}{c|c}*&\mqty{0&\cdots&0}\\\hline\mqty{0\\\vdots\\0}&\matrixA_{n-1}\end{array}\right]}_{\text{symmetric matrix}}\matrixS_1^{-1}$\par We can do the same thing over and over again, and eventually, we will get a diagonal matrix. So we know $\gemu(\lambda)=\almu(\lambda).$
+	\end{prf}
+\end{thm}
+\begin{cor}
+	We can always diagonalize $\matrixA.$
+\end{cor}
+\begin{framed}
+\textbf{Find orthogonal eigenbasis of a symmetric matrix $\matrixA$}
+\begin{enumerate}
+	\item Find an eigenbasis for $\matrixA.$
+	\item Run Gram-Schudt on eigenbasis. The result is orthogonal eigenbasis.
+\end{enumerate}	
+\end{framed}
 
-\subsection{Quadratic Forms and the Principal Axis Theorem}
+\subsection{Quadratic Form, Principal Axis Theorem}
+\begin{df}[Quadratic Form]
+	A \textbf{quadratic form} is a function $f:\R^n\to\R$ of the form \[f(x_1,\cdots,x_n)=\sum_{1\leq i,j\leq n}a_{ij}x_{i}x_{j}\]	for some constants $a_{ij}\in\R.$
+	\begin{eg}
+		$7x^2+3xy+4y^2$ and $7x^2+3xy+4xz+2y^2+3yz+7z^2$ are quadratic forms.
+	\end{eg}
+\end{df}
+\begin{df}[Diagonal form]
+	A quadratic form is called a \textbf{diagonal form} if \[f(x_1,\cdots,x_n)=\lambda_1x_1^2+\lambda_2x_2^2+\cdots+\lambda_nx_n^2,\]	where $\lambda_i\in\R.$
+	\begin{eg}
+		$x^2+y^2$, $x^2-y^2,$ and $-x^2-y^2$ are examples of quadratic forms in the diagonal form. But $xy$ or $x^2+7xy+3y^2$ are not examples of diagonal forms.
+	\end{eg}
+\end{df}
+\begin{df}[Degenerate]
+	A diagonal form is called \textbf{degenerate} if $\lambda_i=0$ for some $i.$ If $\lambda_i\neq0\forall i,$ then the diagonal form is called \textbf{non-degenerate}.	
+\end{df}
+\begin{thm}
+	Let $f$ be a non-degenerate diagonal form: 
+	\begin{enumerate}
+		\item If all $\lambda_i>0,$ then $f(\vecx)\geq0$ and $f(\vecx)=0$ if and only if $\vecx=0.$ That is, $\va 0$ is a global minimum, and $f$ is positive definite. 
+		\item If all $\lambda_i<0,$ then $f(\vecx)\leq0$ and $f(\vecx)=0$ if and only if $\vecx=0.$ That is, $\va 0$ is a global maximum, and $f$ is negative definite. 
+		\item If some $\lambda_i$ are positive and some are negative, there is no local maxima or minima, and we say $f$ is indefinite. 
+	\end{enumerate}	
+\end{thm}
+\begin{rmk}
+	\[\vecx^\T\vecx=\mqty[x_1&\cdots&x_n]\mqty[x_1\\\vdots\\x_n]=x_1^2+\cdots+x_n^2\]	
+\end{rmk}
+\begin{rmk}
+	Let $\matrixD=\mqty[\lambda_1&0&\cdots&0\\0&\ddots&&\vdots\\\vdots&&\ddots&\vdots\\0&\cdots&\cdots&\lambda_n],$ then we have \[\vecx^\T\matrixD\vecx=\mqty[x_1&\cdots&x_n]\mqty[\lambda_1x_1\\\vdots\\\lambda_nx_n]=\lambda_1x_1^2+\cdots+\lambda_nx_n^2.\]	
+\end{rmk}
+\begin{thm}
+	Let $\matrixA$ be an $n\times n$ matrix, then $f(\vecx)=\vecx^\T\matrixA\vecx$ is a quadratic form. In general, \[\mqty[x_1&\cdots&x_n]\mqty[a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{n1}&\cdots&a_{nn}]\mqty[x_1\\\vdots\\x_n]=\sum_{1\leq i, j\leq n}a_{ij}x_ix_j.\]	
+\end{thm}
+\begin{thm}
+	Let $f(x_1,\cdots,x_n)=\dsst\sum_{i\leq j}c_{ij}x_ix_j,$ then there is a unique symmetric matrix such that $f=\vecx^\T\matrixA\vecx,$ where the $ij-$th entry of $\matrixA=\begin{cases}c_{ii},\quad& i=j\\c_{ij}\quad& i\neq j\end{cases}$
+	\begin{eg}
+		$7x^2+11xy+y^2$ can be written as $\mqty[7&11/2\\11/2&1].$
+	\end{eg}	
+\end{thm}
+\begin{thm}[Principal Axes Theorem]
+	Let $f:\R^n\to\R$ be a quadratic form, then there exists an orthogonal matrix $\matrixS$ and a diagonal quadratic form $d:R^n\to\R$ such that \[f(\vecx)=d\circ\matrixS^\T\vecx=d\qty(\matrixS^\T\vecx).\] Any quadratic form looks diagonal in some coordinate $\lambda_1x_1^2$ system. 
+\end{thm}
+\begin{prf}
+	$f(\vecx)=\vecx^\T\matrixA\vecx,$ where $\matrixA$ is symmetric.\par Note that $\matrixA=\matrixS\matrixD\matrixS^{-1},$ where $\matrixS$ is orthogonal and $\matrixD$ is diagonal. \par So, $f(\vecx)=\vecx^\T\qty(\matrixS\matrixD\matrixS^{-1})\vecx=\qty(\matrixS^\T\vecx)^\T\matrixD\qty(\matrixS^\T\vecx).$\par Since $d(\vecx)=\vecx^\T\matrixD\vecx,$ we know $f(\vecx)=d\qty(\matrixS^\T)\vecx$.
+\end{prf}
+\begin{cor}
+	$f$ is positive definite if $\lambda_i>0$ and $f$ is negative definite if $\lambda_i<0.$
+\end{cor}
+
+\subsection{Singular Value Decomposition}
+\begin{df}[Sigular Value Decomposition]
+	The \textbf{singular value decomposition (SVD)} is a recipe to write a general matrix $\matrixA$ as a product of matrices which is easy to understand geometrically. 
+\end{df}
+\begin{thm}
+	Let $\matrixA$ to be an $n\times m$ matrix, then $\matrixA=\matrixU\matrixSig\matrixV^\T,$ where $\matrixV$ is an orthogonal matrix (so $\matrixV^\T=\matrixV^{-1}$), $\matrixSig$ is an $n\times m$ matrix, whose $ij-$elements are all zero, and whose $ii$-entries	satisfy $a_{11}\geq a_{22}\geq a_{33}\geq\cdots\geq0,$ and $\matrixU$ is an orthogonal matrix. 
+\end{thm}
+\begin{eg}
+	Suppose $\matrixA=\mqty[|&|\\\vecu_1&\vecu_2\\|&|]\mqty[\sigma_1&0\\0&\sigma_2]\mqty[-&\vecv_1&-\\-&\vecv_2&-]:$
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (57.73,119.84) -- (220.1,119.84)(141.14,35.56) -- (141.14,199.26) (213.1,114.84) -- (220.1,119.84) -- (213.1,124.84) (136.14,42.56) -- (141.14,35.56) -- (146.14,42.56)  ;
+	\draw    (140.69,120.28) -- (92.23,101.01) ;
+	\draw [shift={(90.37,100.27)}, rotate = 21.68] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (140.69,120.28) -- (159.64,72.13) ;
+	\draw [shift={(160.37,70.27)}, rotate = 111.47] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (136.82,111.31) -- (143.24,113.86) -- (140.69,120.28) -- (134.27,117.73) -- cycle ;
+	\draw    (219.74,241.72) -- (219.86,189.56) ;
+	\draw [shift={(219.86,187.56)}, rotate = 90.12] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (219.74,241.72) -- (271.49,241.64) ;
+	\draw [shift={(273.49,241.64)}, rotate = 179.91] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (226.67,234.82) -- (226.65,241.73) -- (219.74,241.72) -- (219.76,234.81) -- cycle ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.31 ] (87.85,119.84) .. controls (87.85,90.41) and (111.71,66.55) .. (141.14,66.55) .. controls (170.57,66.55) and (194.43,90.41) .. (194.43,119.84) .. controls (194.43,149.27) and (170.57,173.13) .. (141.14,173.13) .. controls (111.71,173.13) and (87.85,149.27) .. (87.85,119.84) -- cycle ;
+	\draw  (136.34,241.72) -- (298.71,241.72)(219.74,157.45) -- (219.74,321.15) (291.71,236.72) -- (298.71,241.72) -- (291.71,246.72) (214.74,164.45) -- (219.74,157.45) -- (224.74,164.45)  ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.31 ] (166.45,241.72) .. controls (166.45,212.29) and (190.31,188.43) .. (219.74,188.43) .. controls (249.18,188.43) and (273.04,212.29) .. (273.04,241.72) .. controls (273.04,271.15) and (249.18,295.01) .. (219.74,295.01) .. controls (190.31,295.01) and (166.45,271.15) .. (166.45,241.72) -- cycle ;
+	\draw    (410.74,241.39) -- (410.74,210.73) ;
+	\draw [shift={(410.74,208.73)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (410.74,241.39) -- (473.37,241.39) ;
+	\draw [shift={(475.37,241.39)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (417.67,234.49) -- (417.65,241.4) -- (410.74,241.39) -- (410.76,234.48) -- cycle ;
+	\draw  (327.34,241.39) -- (489.71,241.39)(410.74,157.12) -- (410.74,320.82) (482.71,236.39) -- (489.71,241.39) -- (482.71,246.39) (405.74,164.12) -- (410.74,157.12) -- (415.74,164.12)  ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.22 ] (347.24,241.39) .. controls (347.24,223.72) and (375.67,209.39) .. (410.74,209.39) .. controls (445.81,209.39) and (474.24,223.72) .. (474.24,241.39) .. controls (474.24,259.07) and (445.81,273.39) .. (410.74,273.39) .. controls (375.67,273.39) and (347.24,259.07) .. (347.24,241.39) -- cycle ;
+	\draw    (533.09,118.36) -- (520.29,146.22) ;
+	\draw [shift={(519.45,148.04)}, rotate = 294.68] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (533.09,118.36) -- (476.19,92.21) ;
+	\draw [shift={(474.37,91.37)}, rotate = 24.68] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw   (523.92,121.74) -- (526.82,115.46) -- (533.09,118.36) -- (530.2,124.63) -- cycle ;
+	\draw  (449.41,118.96) -- (611.78,118.96)(532.82,34.69) -- (532.82,198.39) (604.78,113.96) -- (611.78,118.96) -- (604.78,123.96) (527.82,41.69) -- (532.82,34.69) -- (537.82,41.69)  ;
+	\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.22 ] (590.52,145.48) .. controls (583.14,161.54) and (551.32,162.68) .. (519.45,148.04) .. controls (487.59,133.4) and (467.74,108.51) .. (475.12,92.45) .. controls (482.5,76.39) and (514.31,75.24) .. (546.18,89.89) .. controls (578.04,104.53) and (597.9,129.42) .. (590.52,145.48) -- cycle ;
+	\draw    (182.37,65.27) .. controls (231.12,14.53) and (409.57,-1.57) .. (488.19,64.27) ;
+	\draw [shift={(489.37,65.27)}, rotate = 220.66] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (90,181) .. controls (78.48,196.12) and (104.83,265.86) .. (150.96,274.04) ;
+	\draw [shift={(152.37,274.27)}, rotate = 188.47] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (274,289) .. controls (313.76,326.7) and (349.29,321.44) .. (372.93,290.43) ;
+	\draw [shift={(374,289)}, rotate = 126.21] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (477,289) .. controls (536.76,300.79) and (596.17,232.3) .. (581.83,184.36) ;
+	\draw [shift={(581.37,182.91)}, rotate = 71.57] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (161.37,73.67) node [anchor=north west][inner sep=0.75pt]    {$\overrightarrow{v_{1}}$};
+	\draw (68.37,82.67) node [anchor=north west][inner sep=0.75pt]    {$\overrightarrow{v_{2}}$};
+	\draw (262.37,244.67) node [anchor=north west][inner sep=0.75pt]    {$\overrightarrow{e_{1}}$};
+	\draw (223.37,176.67) node [anchor=north west][inner sep=0.75pt]    {$\overrightarrow{e_{2}}$};
+	\draw (453.37,244.34) node [anchor=north west][inner sep=0.75pt]    {$\sigma _{1}\overrightarrow{e_{1}}$};
+	\draw (414.37,176.34) node [anchor=north west][inner sep=0.75pt]    {$\sigma _{2}\overrightarrow{e_{2}}$};
+	\draw (386.37,62.34) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{A}\overrightarrow{v_{1}} =\sigma _{1}\overrightarrow{u_{1}}$};
+	\draw (492.37,150.34) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{A}\overrightarrow{v_{2}} =\sigma _{2}\overrightarrow{u_{2}}$};
+	\draw (317,24.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{A}$};
+	\draw (73,232.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{V}^{\mathbf{T}}$};
+	\draw (318,325.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{\Sigma }$};
+	\draw (571,261.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{U}$};
+	\draw (342,188) node [anchor=north west][inner sep=0.75pt]   [align=left] {ellipse};
+	\end{tikzpicture}
+	\end{center}
+	\begin{enumerate}
+		\item $\sigma\vecu_1$ is a longest vector on the ellipse (image of the unit circle under $\matrixA$).
+		\begin{enumerate}
+			\item $\sigma_1$ is its length
+			\item $\vecu_1$ is a unit vector pointing in direction.
+			\item $\vecv_1$ is a vector on unit circle such $\|\matrixA\vecv_1\|$ is maximized. 
+		\end{enumerate}
+		\item $\matrixA\vecv_2=\sigma_2\vecu_2$ is a shortest vector on the ellipse (image of unit circle under $\matrixA$).
+		\begin{enumerate}
+			\item $\sigma_2$ is its length
+			\item $\vecu_2$ is a vector on unit circle such that $\|\matrixA\vecv_2\|$ is minimized. 
+		\end{enumerate}
+	\end{enumerate}
+\end{eg}
+\begin{rmk}
+	SVD of $\matrixA$ encodes information about lengths change under $\matrixA.$ Let $\vecx\in\R^m$ and consider $\|\matrixA\vecx\|=\sqrt{\matrixA\vecx\cdot\matrixA\vecx},$ then \[\begin{aligned}\matrixA\vecx\cdot\matrixA\vecx=\vecx\cdot\matrixA^\T\matrixA\vecx&=\qty(\sum c_i\vecv_i)\cdot\qty(\matrixA^\T\matrixA)\qty(\sum c_i\vecv_i)=\qty(\sum_{i=1}^mc_ik\vecv_i)\cdot\qty(\sum_{j=1}^mc_j\lambda_j\vecv_j)\\&=\sum_{i,j}c_ic_j\qty(\vecv_i\cdot\vecv_j)\lambda_j=\sum c_i^2\lambda_i.\end{aligned}\]\par So, $\|\matrixA\vecx\|=\sqrt{\sum c_i^2\lambda_i}$ and $\|\vecx\|=\sqrt{\sum c_i^2}$. Therefore, $\boxed{\|\matrixA\vecv_i\|=\sqrt{\lambda_i}=\sigma_i}$\par Since $\matrixV$ is orthogonal, $\matrixV^\T\vecx=\mqty[c_1\\\vdots\\c_m].$ Since $\matrixSig=\mqty[\sqrt{\lambda_1}&&\\&\ddots&\\&&\sqrt{\lambda_m}],$ then \[\matrixSig\matrixV^\T\vecx=\mqty[\sqrt{\lambda_1}c_1\\\vdots\\\sqrt{\lambda_m}c_m].\]
+\end{rmk}
+\begin{df}[Singular Value]
+	Let $\matrixA$ be a matrix, the \textbf{singular value} of $\matrixA$ are the square roots of the positive eigenvalues of $\matrixA^\T\matrixA.$ i.e., $\lambda_1\geq\lambda_2\geq\cdots\geq\lambda_m$ are eigenvalues of $\matrixA^\T\matrixA,$ and $\sigma_i=\sqrt{\lambda_i}$ whenever $\lambda_i>0.$
+\end{df}
+\begin{rmk}
+	To find $\matrixU,$ we can consider the following: \[\vecu_i=\mqty[|&|&&|&|&&|\\\dfrac{\matrixA\vecv_1}{\sigma_1}&\dfrac{\matrixA\vecv_2}{\sigma_2}&\cdots&\dfrac{\matrixA\vecv_r}{\sigma_r}&\vecx_1&\cdots&\vecx_k],\]	where $\vecx_1,\cdots,\vecx_k$ are orthogonal and span orthogonal component to the space spanned by first $r$ columns.\par Also, note that $\dsst\dfrac{\matrixA\vecv_1}{\sigma_1},\dfrac{\matrixA\vecv_2}{\sigma_2},\cdots,\dfrac{\matrixA\vecv_r}{\sigma_r}$ are image of $\matrixA$ with \[\dfrac{\matrixA\vecv_i}{\sigma_i}\cdot\dfrac{\matrixA\vecv_j}{\sigma_j}=\dfrac{\vecv_i\cdot\matrixA^\T\matrixA\vecv_j}{\sigma_i\sigma_j}=\dfrac{\vecv_i\cdot\lambda_j\vecv_i}{\sigma_i\sigma_j}=0.\]
+\end{rmk}
+\begin{framed}
+\textbf{Procedure to find the SVD for an $n\times m$ matrix $\matrixA$.}
+\begin{enumerate}
+	\item Compute $\matrixA^\T\matrixA$ and find orthogonal eigenbasis $\vecv_1,\cdots,\vecv_m$ such that the eigenvalues satisfy $\lambda_1\geq\lambda_2\geq\cdots\geq\lambda_m$. \[\matrixV=\mqty[|&&|\\\vecv_1&\cdots&\vecv_m\\|&&|];\qquad\matrixSig=\mqty[\sqrt{\lambda_1}&\cdots&0\\\vdots&\ddots&\vdots\\0&\cdots&\sqrt{\lambda_m}].\]
+	\item Define \[\matrixU=\left[\begin{array}{cc}\mqty{\dfrac{\matrixA\vecv_1}{\sigma_1}&\dfrac{\matrixA\vecv_2}{\sigma_2}&\cdots&\dfrac{\matrixA\vecv_r}{\sigma_r}}&\mqty{\vecx_1&\cdots&\vecx_k}\end{array}\right],\] where $\vecx_1,\cdots,\vecx_k$ are choices of orthogonal basis of $\Im(\matrixA)^\perp.$
+	\item $\matrixA=\matrixU\matrixSig\matrixV^\T.$
+\end{enumerate}	
+\end{framed}
+\begin{eg}
+	Compute the SVD of $\matrixA=\mqty[0&1\\1&1\\1&0].$	
+\end{eg}
+\begin{sol}
+\begin{enumerate}
+	\item Compute $\matrixA^\T\matrixA,$ and find orthogonal eigenbasis: \[\matrixA^\T\matrixA=\mqty[0&1&1\\1&1&0]\mqty[0&1\\1&1\\1&0]=\mqty[2&1\\1&2]\implies f_{\matrixA}(t)=(2-t)^2-1=(t-1)(t-3).\]\par Therefore, $\lambda_1=3,\quad\sigma_1=\sqrt{3},\quad\lambda_2=1,\quad\sigma_2=\sqrt{1}=1.$ \[E_{\matrixA^\T\matrixA,3}=\Span\qty(\mqty[1\\1])\implies\vecv_1=\mqty[1/\sqrt{2}\\1/\sqrt{2}]\] \[E_{\matrixA^\T\matrixA,1}=\Span\qty(\mqty[1\\-1])\implies\vecv_2=\mqty[1/\sqrt{2}\\-1/\sqrt{2}]\] \[\therefore\matrixV^\T=\dfrac{1}{\sqrt{2}}\mqty[1&1\\1&-1];\qquad\matrixSig=\mqty[3&0\\0&1\\0&0].\]
+	\item Find $\matrixU=\mqty[\dfrac{\matrixA\vecv_1}{\sigma_1}&\dfrac{\matrixA\vecv_2}{\sigma_2}&\vecx_1]$\[\dfrac{\matrixA\vecv_1}{\sigma_1}=\dfrac{1}{\sqrt{3}}=\mqty[0&1\\1&1\\1&0]\mqty[1/\sqrt{2}&1/\sqrt{2}]=\dfrac{1}{6}\mqty[1\\2\\1]\]\[\dfrac{\matrixA\vecv_2}{\sigma_2}=\mqty[0&1\\1&1\\1&0]\mqty[1/\sqrt{2}&-1/\sqrt{2}]=\dfrac{1}{2}\mqty[-1\\0\\1]\] \[\ker(\matrixA^\T)=\ker\qty(\mqty[0&1&1\\1&1&0])=\Span\qty(\mqty[1\\-1\\1])\implies\vecx_1=\dfrac{1}{\sqrt{3}}\mqty[1\\-1\\1]\]\[\therefore\matrixU=\mqty[1/\sqrt{6}&-1/\sqrt{2}&1/\sqrt{3}\\2/\sqrt{6}&0&-1\sqrt{3}\\1/\sqrt{6}&1/\sqrt{2}&1/\sqrt{3}]\]
+	\item $\matrixA=\matrixU\matrixSig\matrixV^\T$\[\matrixA=\mqty[1/\sqrt{6}&-1/\sqrt{2}&1/\sqrt{3}\\2/\sqrt{6}&0&-1\sqrt{3}\\1/\sqrt{6}&1/\sqrt{2}&1/\sqrt{3}]\mqty[3&0\\0&1\\0&0]\mqty[1&1\\1&-1]\dfrac{1}{\sqrt{2}}\]
+\end{enumerate}	
+\end{sol}
 
 
 \end{document}

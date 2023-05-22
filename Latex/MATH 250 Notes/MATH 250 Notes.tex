@@ -2090,6 +2090,21 @@ $\qty|\N|\neq\qty|\R|.$ These are two different infinities.
 \begin{rmk}
 	From Theorem \ref{thm6.2.2}, we have the following inequality that contains infinitely many infinities: \[\underbrace{\qty|\N|}_{\text{countable}}<\overbrace{\qty|\pow(\N)|<\qty|\pow(\pow(\N))|<\qty|\pow(\pow(\pow(\N)))|<\cdots}^{\text{uncountable}}\]	
 \end{rmk}
+\begin{framed}
+\noindent\texttt{Show that there are infinitely many irrational numbers.}
+\begin{prf}
+	We know that $\sqrt{2}$ is irrational.\par Consider $f:\N\to\Q',$ $\Q'$ the set of irrational numbers, $\st f(n)=\sqrt{2}+n.$\par Suppose for the sake of contradiction that $\sqrt{2}+n=q,$ where $q\in\Q$.\par Then, $\sqrt{2}=q-n.$\par Since $q\in\Q$ and $n\in\N\subseteq\Q,$ so we know $q-n\in\Q.$\par\begin{center}$\divideontimes$ This contradicts with the fact that $\sqrt{2}\in\Q'.$\end{center}\par Note that $f$ is injective. Suppose $n,m\in\N\st f(n)=f(m).$\par Then, $\sqrt{2}+n=\sqrt{2}+m.$ So, $m=n.$\par So, $\qty|\N|\leq\qty|\Q'|.$ So, $\Q'$ is an infinite set.
+\end{prf}
+\end{framed}
+\begin{framed}
+\noindent\texttt{Show that the set of irrational numbers, $\Q'$, is uncountable.}	
+\begin{prf}
+	Recall that $\R=\Q\cup\Q'.$\par Suppose for the sake of contradiction, $\Q'$ is countable.\par Then, $\R$ is the union of two countable sets, so $\R$ is countable,\par\begin{center}$\divideontimes$ We know $\R$ is uncountable.\end{center}\par So, it must be that $\Q'$ is uncountable.
+\end{prf}
+\end{framed}
+\begin{rmk}
+\[\qty|\R|=\qty|\Q'|=\underbrace{\qty|(a,b)|}_{\text{open interval}}.\]	
+\end{rmk}
 
 
 

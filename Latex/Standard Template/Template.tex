@@ -4,6 +4,9 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
 \usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+%%% for coding %%%
+\usepackage{listings}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -27,8 +30,13 @@
 \definecolor{blue}{rgb}{0,0.45,1.14}
 \definecolor{red}{rgb}{0.77,0.12,0.23}
 \definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{green}{rgb}{0,0.42,0.24}
 \definecolor{orange}{rgb}{2.07,0.69,0.32}
+\definecolor{purple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+
+%%% for coding %%%
+\lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
 
 \theorembodyfont{\upshape}
 \theoremseparator{.}
@@ -59,10 +67,10 @@
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
-\def\RE{{\mathrm{Re}}}
-\def\IM{{\mathrm{Im}}}
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varemptyset}
 
 \begin{document}
 \maketitle
@@ -115,6 +123,50 @@
 \begin{ax}
 	
 \end{ax}
-	
-\end{document}
 
+\begin{lstlisting}[language = Matlab, title = {Answer.m}]
+% Plot function f(x) = 2*x^3 - x - 2
+ezplot('2*x^3-x-2', [0, 2])
+hold on
+plot([0, 2], [0, 0], 'r')
+\end{lstlisting}
+
+\begin{lstlisting}[language = Python]
+def __self__(self):
+for i in range(10):
+	print(f"This number is {i}.")
+\end{lstlisting}
+
+\begin{lstlisting}[language = java]
+public static void main(String[] args) {
+	System.out.println("Hello World!"); // comment
+}
+\end{lstlisting}
+
+\begin{algorithm}
+\caption{Bisection Algorithm}
+\SetKwData{In}{\rmfamily\textbf{in}}\SetKwData{To}{\rmfamily\textbf{to}}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Stop}{\rmfamily{\textbf{stop}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+\SetKwComment{Comment}{/* }{ */}
+\DontPrintSemicolon
+\KwIn{$a,b,M,\delta,\epsilon$\;$u\leftarrow f(a)$\;$b\leftarrow f(b)$\;$e\leftarrow b-a$}
+\KwOut{output}
+\BlankLine
+\Begin{
+	\If{$\text{sign}(u)=\text{sign}(v)$}{\Stop}
+	\For{k=1 \To M}{
+		$e\leftarrow e/2$\;
+		$c\leftarrow a+e$\;
+		$w\leftarrow f(c)$\;
+		\Return $k,c,w,e$\;
+		\If{$|e|<\delta$\Or$|w|<\epsilon$}{\Stop}
+		\eIf{$\text{sign}(u)\neq=\text{sign}(v)$}{
+			$b\leftarrow c$\;
+			$v\leftarrow w$\;
+		} {
+			$a\leftarrow c$\;
+			$u\leftarrow w$\;
+		}
+	}
+}
+\end{algorithm}
+\end{document}
