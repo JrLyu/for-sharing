@@ -21,32 +21,29 @@
 	bookmarks = true,
 	bookmarksnumbered = true,
 	pdfborder = 001,
-	linkcolor = grey
+	linkcolor = blue
 }
-
-\definecolor{blue}{rgb}{0,0.45,1.14}
-\definecolor{red}{rgb}{0.77,0.12,0.23}
-\definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{orange}{rgb}{2.07,0.69,0.32}
-\definecolor{purple}{rgb}{0.58,0,0.82}
-\definecolor{mygreen}{rgb}{0,0.6,0}
 
 \newcounter{ndf}[subsection]
 \setcounter{ndf}{0}
 \newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{ndf}\thendf\ (#1).}}{\par}
+\newcommand*{\dfref}[1]{Definition \ref{#1}.\thendf}
 
 \newcounter{neg}[subsection]
 \setcounter{neg}{0}
 \newenvironment*{eg}{\par\noindent\textbf{Example \thesubsection.\stepcounter{neg}\theneg}}{\par}
-\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \thesubsection.\theneq}}\par}{\hfill{$\square$}\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \thesubsection.\theneg}}\par}{\hfill{$\square$}\par}
+\newcommand*{\egref}[1]{Example \ref{#1}.\theneg}
 
 \newcounter{nthm}[subsection]
 \setcounter{nthm}{0}
-\newenvironment*{thm}[1]{\par\noindent\textbf{Theorem \thesubsection.\stepcounter{nthm}\thenthm\ (#1).}\par}{\par}
+\newenvironment*{thm}[1]{\begin{framed}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{nthm}\thenthm\ #1} \par}{\par\end{framed}}
+\newcommand*{\thmref}[1]{Theorem \ref{#1}.\thenthm}
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
-\newenvironment*{prf}{\par\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{prf}{\par\noindent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{dis}{\par\noindent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 
 \newtheorem*{rmk}{Remark}
 \newtheorem*{ext}{Extension}
@@ -76,6 +73,7 @@
 \def\emptyset{\varemptyset}
 \def\st{\emph{ s.t. }}
 \def\fs{\emph{ f.s. }}
+\def\LI{\mathrm{L.I.}}
 
 \begin{document}
 \maketitle
@@ -130,10 +128,10 @@
 \end{df}
 \begin{thm}{Commutativity of Addition on $\F^n$}
 	If $x,y\in\F^n,$ then $x+y=y+x.$
+\end{thm}
 	\begin{prf}
 		Suppose $x=(x_1,\cdots,x_n)$ and $y=(y_1,\cdots,y_n).$ Then \[\begin{aligned}x+y&=(x_1+y_1,\cdots,x_n+y_n)\\&=(y_1+x_1,\cdots,y_n+x_n)=y+x.\end{aligned}\]
 	\end{prf}
-\end{thm}
 \begin{df}{Zero}
 	Let $0$ denote the list of length $n$ whose coordinates are all $0$: $0\coloneqq(0,\cdots,0).$	
 \end{df}
@@ -180,22 +178,155 @@
 \begin{df}{Real and Complex Vector Space}
 	A vector space over $\R$ is called a \textit{real vector space}, and a vector space over $\C$ is called a \textit{complex vector space}.	
 \end{df}
-\begin{thm}{Properties of Vector Spaces}
+\begin{thm}{Unique Additive Identity of Vector Spaces}\label{thm1.2.1}
+	A vector space has a unique additive identity. 
+\end{thm}
+	\begin{prf}
+		Suppose $0$ and $0'$ are both additive identities for some vector space $V$. So, \[\begin{aligned}0'&=0'+0\qquad\textit{Since }0\textit{ is an additive identity}\\&=0+0'\qquad\textit{commutativity}\\&=0.\qquad\textit{Since }0'\textit{ is an additive identity}\end{aligned}\]\par Then, $0'=0.$	
+	\end{prf}
+\begin{thm}{Unique Additive Inverse of Vector Spaces}
+	A vector in a vector space has a unique additive inverse.
+\end{thm}
+	\begin{prf}
+		Let $V$ be a vector space. Suppose $w$ and $w'$ are additive inverses of $v$ for some $v\in V$. Note that \[\begin{aligned}w&=w+0\\&=w+(v+w')\\&=(w+v)+w\\&=0+w'=w'.\end{aligned}\]
+	\end{prf}
+\begin{nota}
+	Let $v,w\in V.$ Then, $-v$ denotes the additive inverse of $v$.
+\end{nota}
+\begin{df}{Subtraction}
+	$w-v$ is defined to be $w+(-v).$	
+\end{df}
+\begin{thm}{}
+	$0\cdot v=0\quad\forall v\in V.$
+\end{thm}
+	\begin{prf}
+		Since $v\in V,$ we know \[\begin{aligned}0\cdot v=(0+0)v&=0\cdot v+0\cdot v\\0\cdot v+(-0\cdot v)&=0\cdot+0\cdot+(-0\cdot v)\\0&=0\cdot v\end{aligned}\]	
+	\end{prf}
+\begin{thm}{}
+	$a\cdot0=0\quad\forall a\in\F.$
+\end{thm}
+	\begin{prf}
+		For $a\in\F,$ we have \[\begin{aligned}a\cdot0=a\cdot(0+0)&=a\cdot0+a\cdot0\\a\cdot0+(-a\cdot0)&=a\cdot0+a\cdot0+(-a\cdot0)\\0&=a\cdot0.\end{aligned}\]	
+	\end{prf}
+\begin{thm}{}
+	$(-1)v=-v\quad\forall v\in V.$	
+\end{thm}
+	\begin{prf}
+		For $v\in V,$ we have \[v+(-1)v=1\cdot v+(-1)\cdot v=(1+(-1))\cdot v=0\cdot v=0.\]\par Therefore, by definition, $(-1)v=-v.$	
+	\end{prf}
+\begin{nota} $\F^S$
 	\begin{enumerate}
-		\item A vector space has a unique additive identity.
-		\begin{prf}
-			
-		\end{prf}
-		\item A vector in a vector space has a unique additive inverse.
-		\begin{prf}
-			
-		\end{prf}
-	\end{enumerate}	
+		\item If $S$ is a set, then $\F^S$ denotes the set of functions from $S$ to $\F$.
+		\item For $f,g\in\F^S,$ the \underline{sum} $f+g\in\F^S$ is the function defined by $(f+g)(x)=f(x)+g(x)\quad\forall x\in S.$
+		\item For $\lambda\in\F$ and $f\in\F^S,$ the \underline{product} $\lambda f\in\F^S$ is the function defined by $(\lambda f)(x)=\lambda f(x)\quad\forall x\in S.$
+	\end{enumerate}
+\end{nota}
+\begin{thm}{}
+	$\F^S$ is a vector space.
 \end{thm}
 
 
-
 \subsection{Subspace}
+\begin{df}{Subspace}
+	A subset $U$ of $V$ is called a \textit{subspace} of $V$ if $U$ is also a vector space using the same addition and scalar multiplication as on $V$.
+\end{df}
+\begin{thm}{Conditions for a Subspace}
+	A subset $U$ of $V$ is a subspace of $V$ if and only if $U$ satisfies the following conditions: 
+	\begin{enumerate}
+		\item additive identity: $0\in U;$
+		\item closed under addition: $u,w\in U\implies u+w\in U;$
+		\item closed under scalar multiplication: $a\in \F$ and $u\in U\implies au\in U.$
+	\end{enumerate}
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$) Suppose $U$ is a subspace of $V$. By definition, $U$ is then a vector space, and so those conditions are automatically satisfied. $\qquad\square$\par 
+		($\Leftarrow$)	Suppose $U$ satisfies the three conditions. Since $U$ is a subset of $V$, $U$ automatically has \textit{associativity}, \textit{commutativity}, \textit{multiplicative identity}, and \textit{distributivity}. So, we want to check $U$ has additive inverse and additive identities. \par For additive identity, we know $0\in U,$ by assumption.\par For additive inverse, by condition \#3, we know $-u=(-1)u\in U.$\par Then, $U$ is a vector space. 
+	\end{prf}
+\begin{eg}
+	If $b\in\F$, then $\qty{(x_1,x_2,x_3,x_4)\in\F^4\mid x_3=5x_4+b}$ is a subspace of $\F^4$ if and only if $b=0$.	
+\end{eg}
+	\begin{prf}
+		\par($\Rightarrow$) Suppose $U=\qty{(x_1,x_2,x_3,x_4)\in\F^4\mid x_3=5x_4+b}$ is a subspace of $\F^4.$ Then, $0=(0,0,0,0)\in U.$ So, $0=5\cdot0+b,$ or $b=0.\qquad\square$\par 
+		($\Leftarrow$) Suppose $b=0.$ Then, $x_3=5x_4.$ So, $U=\qty{(x_1,x_2,5x_4,x_4)\in\F^4}$
+		\begin{enumerate}
+			\item[\ding{172}] $0=(0,0,0,0)\in U$
+			\item[\ding{173}] Note that \[(x_1,x_2,5x_4,x_4)+(y_1,y_2,5y_4,y_4)=(x_1+y_1,x_2+y_2,5(x_4+y_4),x_4+y_4)\in U\] So, addition is closed under $U$.
+			\item[\ding{174}] $\forall a\in\F,$ we have \[a(x_1,x_2,5x_4,x_4)=(ax_1, ax_2, 5(ax_4), ax_4)\in U\] Then, $U$ is a subspace of $\F^4.$
+		\end{enumerate}
+	\end{prf}
+\begin{eg}
+	The set of continuous real-valued functions on interval $[0,1]$ is a subspace of $\R^{[0,1]}.$
+	\begin{prf}
+		\begin{enumerate}
+			\item $0$ (zero mapping)$\in U$
+			\item Set $f$ and $g\in \mathcal{C}[0,1],$ the set of continuous functions on interval $[0,1].$ Then, $f+g\in\mathcal{C}[0,1].$
+			\item From Calculus, we know that $\forall a\in\F,\quad af\in\mathcal{C}[0,1].$
+		\end{enumerate}
+	\end{prf}	
+\end{eg}
+\begin{df}{Sum of Subspaces}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V$. The \textit{sum} of $U_1,\cdots,U_m,$ denoted as $U_1+\cdots+U_m,$ is the set of all possible sums of elements of $U_1,\cdots,U_m$: \[U_1+\cdots+U_m=\qty{u_1+\cdots+u_m\mid u_i\in U_i\quad\forall i=1,\cdots,m}.\]	
+\end{df}
+\begin{eg}
+	Suppose $U=\qty{(x,0,0)\in\F^3\mid x\in\F}$ and  $W=\qty{(0,y,0)\in\F^3\mid y\in\F},$ then \[U+W=\qty{(x,y,0)\in\F^3\mid x,y\in\F}.\]
+\end{eg}
+\begin{thm}{}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V.$ Then, $U_1+\cdots+U_m$ is the \textit{smallest subspace} of $V$ containing $U_1,\cdots,U_m.$	
+\end{thm}
+	\begin{prf}
+		Suppose $U_1,\cdots,U_m$ are subspaces of $U$. Let $U_1+\cdots+U_m=\qty{u_1+\cdots+u_m\mid u_j\in U_j, j=1,\cdots m}.$ Suppose $w_j\in U_j,$ then $w_1+\cdots+w_m\in U_1+\cdots+U_m.$
+		\begin{enumerate}
+			\item $U_1+\cdots+U_m$ is a subspace of $V$.
+			\begin{enumerate}
+				\item Note that \[(u_1+\cdots+u_m)+(w_1+\cdots+w_m)=(u_1+w_1)+\cdots+(u_m+w_m)\in U_1+\cdots+U_m,\] so $U_1+\cdots+U_m$ is closed under addition.
+				\item Similarly, $U_1+\cdots+U_m$ is closed under scalar multiplication.
+				\item Note that $U_j$ is a subspace, so $0\in U_j.$ Hence, $(0,\cdots,0)=0\in U_1+\cdots+U_m$
+			\end{enumerate}
+			Therefore, we've proven $U_1+\cdots+U_m$ is a subspace of $V.\qquad\square$
+			\item Now, we want to show this subspace is the smallest subspace containing $U_1,\cdots,U_m.$ That is, we want to show $\forall\ W\supseteq U_1\cup\cdots\cup U_m,$ we have $W\supseteq U_1+\cdots+U_m$.\par Note that $U_j\subseteq U_1+\cdots+U_m,$ so we have $(U_1\cup U_2\cup\cdots\cup U_m)\subseteq U_1+\cdots+U_m$. This means $U_1+\cdots+U_m$ must contain $U_1,\cdots,U_m.$ Let $W$ be some subspace containing $U_1,\cdots,U_m.$ Then, for $j=1,\cdots,m,$ we have $u_j\in U_j,$ which indicates $u_j\in W.$ Therefore, $u_1+\cdots+u_m\in V$ and thus $U_1+\cdots+U_m\subseteq W.$\par Since $W$ was arbitrary, we've shown $\forall\ W$ that contains $U_1,\cdots,U_m,$ $U_1+\cdots+U_m\subseteq W.$ Therefore, $U_1+\cdots+U_m$ is the smallest. 
+		\end{enumerate}
+	\end{prf}
+\begin{df}{Direct Sum}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V.$ $U_1+\cdots+U_m$ is called a \textit{direct sum} if each element of $U_1+\cdots+U_m$ can be written in only one way as a sum $u_1+\cdots+u_m,$ where $u_j\in U_j.$
+\end{df}
+\begin{nota}
+	If $U_1+\cdots+U_m$ is a direct sum, then we use $U_1\oplus\cdots\oplus U_m$ to denote it.	
+\end{nota}
+\begin{eg}
+	Let $U=\qty{(x,y,0)\in\F^3\mid x,y\in\F}$ and $W=\qty{(0,0,z)\in\F^3\mid z\in\F}.$ Then, $\F^3=U\oplus W.$
+	\begin{prf}
+		Note that $U+W=\qty{(x,y,z)\mid x,y,z\in\F}=\F^3.$ Suppose \ding{172}: $(x,y,z)=(x,y,0)+(0,0,z),$ for some $x,y,z\in\F$ and \ding{173}: $(x,y,z)=(x',y',0)+(0,0,z')$ for some $x',y',z'\in\F.$ Then, \ding{172}$-$\ding{173}: \[(0,0,0)=(x-x',y-y',0)+(0,0,z-z')=(x-x',y-y',z-z').\] Then, $x-x'=y-y'=z-z'=0,$ which indicates $x=x',\ y=y',\ z=z'.$ So, by definition $U+W$ is a direct sum, or $\F^3=U\oplus W.$
+	\end{prf}
+\end{eg}
+\begin{eg}
+	Suppose $U_j$ is the subspace of $\F^n\st$\[\begin{aligned}U_1&=\qty{x,0,0,\cdots,0\mid x\in\F}\\U_2&=\qty{0,x,0,\cdots,0\mid x\in\F}\\&\vdots\\U_n&=\qty{0,0,0,\cdots,x\mid x\in\F}\end{aligned}\] Then, $\F^n=U_1\oplus U_2\oplus\cdots\oplus U_n.$
+	\begin{prf}
+		
+	\end{prf}
+\end{eg}
+\begin{eg}\label{eg1.3.6}
+	Let \[\begin{aligned}U_1&=\qty{(x,y,0)\mid x,y\in\F}\\U_2&=\qty{(0,0,z)\mid z\in\F}\\U_3&=\qty{(0,y,y)\mid y\in\F}\end{aligned}\] Show that $U_1+U_2+U_3$ is not a direct sum.
+	\begin{prf}
+		
+	\end{prf}
+\end{eg}
+\begin{thm}{}
+	Suppose	$U_1,\cdots,U_m$ are subspaces of $V$. Then,$U_1+\cdots+U_m$ is a direct sum if and only if the only way to write $0$ as a sum $u_1+\cdots+u_m$ is by taking each $u_j=0.$
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$)
+		($\Leftarrow$)
+	\end{prf}
+\begin{thm}{}\label{thm1.3.4}
+	Suppose	$U$ amd $W$ are subspaces of $V$. Then,$U+W$ is a direct sum if and only if $U\cap W=\qty{0}$.
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$)
+		($\Leftarrow$)
+	\end{prf}
+\begin{rmk}
+	When extending \thmref{thm1.3.4} to 3 subspaces $U_1,U+2,U+3,$ we cannot conclude $U_1\oplus U_2\oplus U_3$ if we have $U_1\cap U_2=U_1\cap U_3=U_2\cap U_3=\qty{0}.$ See \egref{eg1.3.6} as a counter example.
+\end{rmk}
 
 \newpage
 \section{Finite-Dimensional Vector Spaces}

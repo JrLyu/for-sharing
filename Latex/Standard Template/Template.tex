@@ -24,37 +24,46 @@
 	bookmarks = true,
 	bookmarksnumbered = true,
 	pdfborder = 001,
-	linkcolor = grey
+	linkcolor = blue
 }
 
-\definecolor{blue}{rgb}{0,0.45,1.14}
-\definecolor{red}{rgb}{0.77,0.12,0.23}
 \definecolor{grey}{rgb}{0.49,0.38,0.29}
-\definecolor{orange}{rgb}{2.07,0.69,0.32}
-\definecolor{purple}{rgb}{0.58,0,0.82}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 
 
 %%% for coding %%%
 \lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
 
-\theorembodyfont{\upshape}
-\theoremseparator{.}
-\theoremstyle{definition}
+\newcounter{ndf}[subsection]
+\setcounter{ndf}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{ndf}\thendf\ (#1).}}{\par}
+\newcommand*{\dfref}[1]{Definition \ref{#1}.\thendf}
+
+\newcounter{neg}[subsection]
+\setcounter{neg}{0}
+\newenvironment*{eg}{\par\noindent\textbf{Example \thesubsection.\stepcounter{neg}\theneg}}{\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \thesubsection.\theneg}}\par}{\hfill{$\square$}\par}
+
+\newcounter{nthm}[subsection]
+\setcounter{nthm}{0}
+\newenvironment*{thm}[1]{\begin{framed}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{nthm}\thenthm\ #1.} \par}{\par\end{framed}}
+\newcommand*{\thmref}[1]{Theorem \ref{#1}.\thenthm}
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\par\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+
+\newtheorem*{rmk}{Remark}
+\newtheorem*{ext}{Extension}
+
 \newtheorem{cor}{Corollary}[section]
 \newtheorem{lem}{Lemma}[section]
 \newtheorem{ax}{Axiom}[section]
+\newtheorem{nota}{Notation}[section]
 \newtheorem{prop}{Proposition}[subsection]
 \newtheorem{conj}{Conjecture}[subsection]
-\newtheorem{thm}{Theorem}[subsection]
-\newtheorem{df}{Definition}[subsection]
-\newtheorem{eg}{Example}[subsection]
-\newenvironment*{ans}{\par\indent\textbf{\textit{Answer. }}\par}{\par\hfill{$\square$}\par}
-\newtheorem*{rmk}{\indent Remark}
-\newenvironment*{prf}{\par\indent\textbf{\textit{Proof. }}\par}{\par\hfill$\blacksquare$\par}
-\newtheorem*{ext}{\indent Extension}
 
-\linespread{1.5}
+\linespread{1.25}
 
 \title{\textbf{This is a title}}
 \author{Jiuru Lyu}
@@ -80,21 +89,20 @@
 \section{This is the section name}
 \subsection{This is the subsection name}
 
-\begin{thm}[Name of thm]
-	This is a theorem
+\begin{thm}{Name of thm}\label{thm}
+	This is a theorem. We can refer to the theorem by \thmref{thm}
 \end{thm}
 
-\begin{df}
-	This is a definition
+\begin{df}{Name for df}\label{df}
+	This is a definition. We can refer to the df by \dfref{df}
 \end{df}
 
 \begin{eg}
 	This is an example
 \end{eg}
 \begin{ans}
-	
+		
 \end{ans}
-
 
 \begin{rmk}
 	This is a remark

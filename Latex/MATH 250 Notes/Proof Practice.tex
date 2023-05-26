@@ -418,7 +418,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For subsets $A$ and $B$ of a universal set $U$, $\overline{A\cup B}=\overline{A}\cap\overline{B}$.}
 \end{q}\end{framed}
 \begin{p}
-	($\subseteq$) Suppose $x\in\overline{A\cup B}.$ By definition, $x\notin A\cup B$. That is, $x\notin A$ and $x\notin B.$ Or, $x\in\overline{A}$ and $x\in\overline{B}.$ That is, $x\in\overline{A}\cap\overline{B}.$ Therefore, $\overline{A\cup B}\subseteq\overline{A}\cap\overline{B}.$\par 
+	($\subseteq$) Suppose $x\in\overline{A\cup B}.$ By definition, $x\notin A\cup B$. That is, $x\notin A$ and $x\notin B.$ Or, $x\in\overline{A}$ and $x\in\overline{B}.$ That is, $x\in\overline{A}\cap\overline{B}.$ Therefore, $\overline{A\cup B}\subseteq\overline{A}\cap\overline{B}.\qquad\square$\par 
 	($\supseteq$) Suppose $x\in\overline{A}\cap\overline{B}.$ By definition, $x\notin A$ and $x\notin B$. That is, $x\in\overline{A\cup B}.$ Therefore, $\overline{A}\cap\overline{B}\subseteq\overline{A\cup B}.$\par 
 	Since $\overline{A\cup B}\subseteq\overline{A}\cap\overline{B}$ and $\overline{A}\cap\overline{B}\subseteq\overline{A\cup B},$ we have $\overline{A\cup B}=\overline{A}\cap\overline{B}.$
 \end{p}
@@ -473,7 +473,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{If $A$ and $B$ are sets, then $\pwer(A)-\pwer(B)=\pwer(A-B)$.}
 \end{q}\end{framed}
 \begin{p}
-	($\subseteq$) WTS: $\pwer(A)-\pwer(B)\subseteq\pwer(A-B).$ Suppose $X\in\pwer(A)-\pwer(B).$ By definition of set difference, $X\in\pwer(A)$ and $X\notin\pwer(B).$ By definition of power sets, $X\subseteq A$ and $X\nsubseteq B.$ Hence, $X\subseteq(A-B)$, by definition of set difference. Therefore, $X\in\pwer(A-B),$ and thus $\pwer(A)-\pwer(B)\subseteq\pwer(A-B)$ as desired.\par 
+	($\subseteq$) WTS: $\pwer(A)-\pwer(B)\subseteq\pwer(A-B).$ Suppose $X\in\pwer(A)-\pwer(B).$ By definition of set difference, $X\in\pwer(A)$ and $X\notin\pwer(B).$ By definition of power sets, $X\subseteq A$ and $X\nsubseteq B.$ Hence, $X\subseteq(A-B)$, by definition of set difference. Therefore, $X\in\pwer(A-B),$ and thus $\pwer(A)-\pwer(B)\subseteq\pwer(A-B)$ as desired.$\qquad\square$\par 
 	($\supseteq$) WTS: $\pwer(A-B)\subseteq\pwer(A)-\pwer(B).$ Suppose $X\in\pwer(A-B).$ Then, $X\subseteq A-B.$ By definition of set difference, $X\subseteq A$ and $X\nsubseteq B.$ Then, $X\in\pwer(A)$ and $X\notin\pwer(B).$ By definition of set difference, $X\in\pwer(A)-\pwer(B).$ Hence, $\pwer(A-B)\subseteq\pwer(A)-\pwer(B).$
 \end{p}
 
@@ -483,7 +483,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 \end{q}\end{framed}
 \begin{p}
 	Suppose $A,B,$ and $C$ are sets. Suppose $\exists a,b\in\Z\st(a,c)\in A\times C.$ By definition of Cartesian product, $a\in A$ and $c\in C.$ Suppose $\exists b,c\in\Z\st(b,c)\in B\times C.$ So, we know that $b\in B.$ Suppose $A\times C=B\times C.$ Then, $A\times C\subseteq B\times C$ and $A\times C\supseteq B\times C.$\par 
-	($\subseteq$) If $A\times C\subseteq B\times C,$ we have $(a,c)\in B\times C.$ Then, $a\in B.$ Since $a\in A,$ we know $A\subseteq B.$\par 
+	($\subseteq$) If $A\times C\subseteq B\times C,$ we have $(a,c)\in B\times C.$ Then, $a\in B.$ Since $a\in A,$ we know $A\subseteq B.\qquad\square$\par 
 	($\supseteq$) Similarly, since $A\times C\supseteq B\times C,$ we have $(b,c)\in A\times C.$ Then, $b\in A.$ Since $b\in B,$ we see that $B\subseteq A.$\par 
 	By definition of set equality, $A=B.$
 \end{p}
@@ -501,7 +501,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $n$ and $m$ be integers. Let $A=n\Z$ and $B=m\Z.$ Prove that if $n$ is a multiplier of $m$, then $A\subseteq B.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $n$ and $m$ be integers. Let $A=n\Z$ and $B=m\Z.$ Suppose $x\in A$. Then, by definition, $\exists k\in\Z\st x=nk.$ Since $n$ is a multiplier of $m$, $n=ml\fs l\in\Z.$ Then, $x=nk=(ml)k=m(lk).$ Since $lk\in\Z,$ $x=m(lk)$ is a multiplier of $m$. That is, $x\in m\Z.$ Hence, $A\subseteq B.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -509,11 +509,11 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $A=\qty{n\in\Z\mid n\text{ is a multiple of }4}$ and $B=\qty{n\in\Z\mid n^2\text{ is a multiple of }4}$. Prove that $A\subseteq B$ and $B\nsubseteq A$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	WTS: $A\subseteq B.$ Suppose $x\in A$. Then, $\exists k\in\Z\st x=4k.$ Consider $x^2=(4k)^2=16k^2=4(8k^2).$ Since $8k^2\in\Z,$ by definition of divides, $x^2$ is a multiple of $4$. Hence, by definition of set $B$, $x\in B.$ That is, $A\subseteq B.$	
 \end{p}
 
 \begin{p}
-	Prove.	
+	WTS: $B\nsubseteq A.$ Consider $x=2k\fs k\in\Z.$ Then, $x^2=(2k)^2=4k^2.$ Since $k^2\in\Z,$ $x^2$ is a multiple of $4$. Hence, $x\in B.$ However, $x=2k$ is not a multiple of $4$. That is, $x\notin A.$ Hence, we found an element of $B$ that is not an element of $A$. Then, by definition, $B\nsubseteq A.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -521,7 +521,10 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{If $A=\qty{n\in\Z\mid n+3\text{ is odd}}$, then $A$ is equal to the set of all even integers.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Suppose $B=\qty{n\in\Z\mid n\text{ is even}}.$ Then, $B$ is the set of all even numbers. \par 
+	($\subseteq$) Suppose $x\in A.$ Then, by definition, $x+3$ is odd. That is, $\exists k\in\Z\st x+3=2k+1.$ Then, $x=2k+1-3=2k-2=2(k-1).$ Since $k-1\in\Z,$ then $x$ is even. Therefore, $x\in B,$ and $A\subseteq B.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in B.$ Then, $x$ is even. So, $\exists k\in\Z\st x=2k.$ Consider $x+3=2k+3=2k+2=1=2(k+1)+1.$ Since $k+1\in\Z,$ then $x+3$ is odd. Hence, $x\in A,$ and $B\subseteq A.$\par 
+	Collectively, we've proven $A=B.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -529,7 +532,9 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $A=\qty{n\in\Z\mid n=4t+1\text{ for some }t\in\Z}$ and $B=\qty{n\in\Z\mid n=4t+9\text{ for some }t\in\Z}$. Prove that $A=B.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in A.$ Then, $x=4t+1\fs t\in\Z.$ Note that $x=4t+9-8=(4t-8)+9=4(t-2)+9.$ Since $t-2\in\Z,$ by definition, $x\in B.$ Then, $A\subseteq B.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in B.$ Then, $x=4t+9\fs t\in\Z.$ Note that $x=4t+9=4t+8+1=4(t+2)+1.$ Since $t+2\in\Z,$ by definition, $x\in A.$ Hence, $B\subseteq A.$\par 
+	Collectively, we've proven $A=B.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -537,18 +542,22 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $A=\qty{n\in\Z\mid n=3t+1\text{ for some }t\in\Z}$ and $B=\qty{n\in\Z\mid n=3t+2\text{ for some }t\in\Z}$. Prove that $A$ and $B$ have no elements in common.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Assume for the sake of contradiction that $A$ and $B$ have one element in common, and suppose that element is $x$. By our assumption, $x\in A.$ So, $x=3t+1\fs t\in\Z.$ Also, $x\in B,$ so $x=3s+2\fs s\in\Z.$ Then, we have $x=3t+1=3s+2.$ Solve for $t$, we have \[\begin{aligned}3t&=3s+2-1=3s+1\\t&=\dfrac{3s+1}{3}=s+\dfrac{1}{3}\end{aligned}\] Since $s\in\Z,\dfrac{1}{3}\notin\Z,$ we have $t=s+\dfrac{1}{3}\notin\Z.$ \begin{center}$\divideontimes$ This contradicts with the fact that $t\in\Z.$\end{center} So, our assumption is wrong, and $A$ and $B$ have no elements in common.
 \end{p}
 
 \begin{framed}\begin{q}
 	{Chapter 2.3 \# 8}
-	{Let $A_i=(-i,i)=\qty{x\in\R\mid-i<x<i}$. Prove that $\dsst\bigcup_{i=1}^\infty(-i.i)=\R$ and $\dsst\bigcap_{i=1}^\infty(-i,i)=(-1,1).$}
+	{Let $A_i=(-i,i)=\qty{x\in\R\mid-i<x<i}$. Prove that $\dsst\bigcup_{i=1}^\infty(-i,i)=\R$ and $\dsst\bigcap_{i=1}^\infty(-i,i)=(-1,1).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	WTS: $\dsst\bigcup_{i=1}^\infty(-i,i)=\R$\par 
+	($\subseteq$) Suppose for some $k\in\Z$ and $k\geq1,$ $x\in A_k.$ That is, $x\in(-k,k).$ Since $k\geq1,$ by definition of union, $A_k\subseteq\dsst\bigcup_{i=1}^\infty(-i,i).$ Hence, $x\in\dsst\bigcup_{i=1}^\infty(-i,i).$ Since $A_k\subseteq\R, x\in\R.$ Hence, $\dsst\bigcup_{i=1}^\infty(-i,i)\subseteq\R.\qquad\square.$\par 
+	($\supseteq$) Suppose $x\in\R.$ Consider the set $(-k,k)=A_k,$ where $k\in\Z$ and $k\geq x.$ Then, $x\in(-k,k).$ Since $k\in\Z,$ then $A_k\subseteq\dsst\bigcup_{i=1}^\infty(-i,i)$ by definition of union. Then, $x\in\dsst\bigcup_{i=1}^\infty(-i,i).$ That is, $\R\subseteq\dsst\bigcup_{i=1}^\infty(-i,i).$\par 
 \end{p}
 \begin{p}
-	Prove.	
+	WTS: $\dsst\bigcap_{i=1}^\infty(-i,i)=(-1,1).$\par 
+	($\subseteq$) Let $x\in\dsst\bigcap_{i=1}^\infty(-i,i).$ So, $x\in A_i\quad\forall i=\qty{1,2,3,\cdots}$. Specially, $x\in A_1=(-1,1).$ Hence, $\dsst\bigcap_{i=1}^\infty(-i,i)\subseteq(-1,1).\qquad\square$\par 
+	($\supseteq$) Let $x\in(-1,1).$ Let $k\in\qty{1,2,3,\cdots}.$ We will show $x\in A_k.$ Since $k\geq1,$ then $-k\leq-1.$ Form $x\in(-1,1),$ we know $-1<x<1.$ Then, $-k\leq-1<x<1\leq k.$ That is, $-k<x<k,$ or $x\in(-k,k)=A_k.$ Since $k$ is arbitrary, we've proven $x\in A_k\quad\forall k\geq1.$ So, $x\in\dsst\bigcap_{i=1}^\infty(-i,i).$ Hence, $(-1,1)\subseteq\dsst\bigcap_{i=1}^\infty(-i,i).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -559,13 +568,16 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	$\dsst\bigcup_{i=1}^\infty A_i=\Zp.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Let $x\in\dsst\bigcup_{i=1}^\infty A_i.$ Then $x\in A_k\fs k\in\Zp.$ That is, by definition, $x\in\qty{1,2,3,\cdots,k}.$ Since $k\in\Zp, \qty{1,2,3,\cdots,k}\subseteq\Zp,$ $x\in\Zp.\qquad\square$\par 
+	($\supseteq$)	 Let $x\in\Zp.$ Consider $A_{x+1}=\qty{1,2,3,\cdots,x+1}.$ Then, $x\in A_{x+1}.$ By definition of union, $A_{x+1}\subseteq\dsst\bigcup_{i=1}^\infty A_i.$ So, $x\in\dsst\bigcup_{i=1}^\infty A_i.$\par 
+	Hence, we've shown $\dsst\bigcup_{i=1}^\infty A_i=\Zp.$
 \end{p}
 \begin{clm}
 	$\dsst\bigcap_{i=1}^\infty A_i=\qty{1}.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcap_{i=1}^\infty A_i.$ By definition of union, $x\in A_k\quad\forall k\geq1.$ Specially, $x\in A_1=\qty{1}.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\qty{1}.$ Let $k\geq1.$ By definition, $A_k=\qty{1,2,3,\cdots.k}.$ Since $\qty{1}\subseteq\qty{1,2,3,\cdots,k}=A_k, x\in A_k.$ As $k$ was arbitrary, we've proven $x\in A_k\quad\forall k\geq1.$ So, $x\in\dsst\bigcap_{i=1}^\infty A_i.$ Hence, $\qty{1}\subseteq\dsst\bigcap_{i=1}^\infty A_i.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -576,13 +588,14 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	$\dsst\bigcup_{i=1}^\infty A_i=\qty{x\in\R\mid x\geq1}.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcup_{i=1}^\infty A_i.$ By definition of union, $x\in A_k\fs k\in\qty{1,2,\cdots}.$ By definition, $A_k=[k,k+1),$ so $k\leq x<k+1.$ Since $k\geq1,$ we have $1\leq k\leq x<k+1.$ That is, $x\in\qty{x\in\R\mid x\geq1}.$ Hence, $\dsst\bigcup_{i=1}^\infty A_i\subseteq\qty{x\in\R\mid x\geq1}.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\qty{x\in\R\mid x\geq1}.$ Then, $x\geq1.$ Consider $A_x=[x,x+1),$ we have $x\in[x,x+1).$ By definition of union, $A_x\subseteq\dsst\bigcup_{i=1}^\infty A_i.$ Hence, $x\in\dsst\bigcup_{i=1}^\infty A_i,$ or $\qty{x\in\R\mid x\geq1}\subseteq\dsst\bigcup_{i=1}^\infty A_i.$
 \end{p}
 \begin{clm}
 	$\dsst\bigcap_{i=1}^\infty A_i=\emptyset.$
 \end{clm}
 \begin{p}
-	Prove.	
+	Note that $n+1\in A_{n+1}$.	However, $n+1\notin A_n=[n,n+1).$ That is, for every $n\in\Zp,$ $n+1$ is not in every $A_i.$ So, by definition of set intersection, $\dsst\bigcap_{i=1}^\infty A_i=\emptyset.$
 \end{p}
 
 \begin{framed}\begin{q}
