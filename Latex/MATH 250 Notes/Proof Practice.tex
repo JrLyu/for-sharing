@@ -606,13 +606,15 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	$\dsst\bigcup_{i=1}^\infty A_i=(0,\infty).$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcup_{i=1}^\infty A_i.$ Then, $x\in A_k\fs k\geq2.$	By definition of $A_i$, $x\in A_k=\left(\dfrac{1}{k},k\right].$ Since $\left(\dfrac{1}{k},k\right]\subseteq(0,\infty),$ we know $x\in(0,\infty).\qquad\square$\par 
+	($\supseteq$) Suppose $x\in(0,\infty).$ Consider $\lceil x\rceil,$ the minimum integer greater than $x$. Suppose $k=\lceil x\rceil,$ then $A_k=\left(\dfrac{1}{k},k\right].$ Since $k\geq x,$ by definition of the ceiling function, $x\in A_k$. Since $A_k\subseteq\dsst\bigcup_{i=1}^\infty A_i,$ we know that $x\in\dsst\bigcup_{i=1}^\infty A_i.$
 \end{p}
 \begin{clm}
 	$\dsst\bigcap_{i=1}^\infty A_i=\left(\dfrac{1}{2},2\right].$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcap_{i=1}^\infty A_i.$ Then, $x\in A_k\quad\forall k\geq2.$ Specially, $x\in A_2=\left(\dfrac{1}{2},2\right].\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\left(\dfrac{1}{2},2\right].$ Consider $A_k=\left(\dfrac{1}{k},k\right]\fs k\geq2.$ Since $k\geq2,\dfrac{1}{2}\leq\dfrac{1}{2}.$ Then, $\left(\dfrac{1}{2},2\right]\subseteq\left(\dfrac{1}{k},k\right].$ Hence, $x\in A_k.$ Since $k$ is arbitrary, we have proven that $x\in A_k\quad\forall k\geq2.$ That is, $x\in\dsst\bigcap_{i=1}^\infty A_i.$	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -623,13 +625,15 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	$\dsst\bigcup_{i=1}^\infty A_i=[1,2].$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcup_{i=1}^\infty A_i.$ Then, $x\in A_k\fs k\in\Zp.$ Hence, $x\in A_k=\qty[1,1+\dfrac{1}{k}].$ That is, $1\leq x\leq1+\dfrac{1}{k}.$ Since $k\in\Zp,\dfrac{1}{k}\leq1.$ Then, $1+\dfrac{1}{k}\leq2.$ So, $1\leq x\leq1+\dfrac{1}{2}\leq2,$ or $x\in[1,2].\qquad\square$\par 
+	($\supseteq$) Suppose $x\in[1,2].$ Note that $A_1=[1,2],$ so $x\in A_1.$ Since $A_1\dsst\subseteq\bigcup_{i=1}^\infty A_i,$ by definition of set union, $x\in\dsst\bigcup_{i=1}^\infty A_i.$
 \end{p}
 \begin{clm}
 	$\dsst\bigcap_{i=1}^\infty A_i=\qty{1}.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $x\in\dsst\bigcap_{i=1}^\infty A_i.$ Then, $x\in A_k\quad\forall k\in\Zp.$ By definition of $A_k,$ $x\in A_k=\qty[1,1+\dfrac{1}{k}].$ Note $\dsst\lim_{k\to0}\qty(1+\dfrac{1}{k})=1+0=1.$ So, $A_k=[1,1]=\qty{1},$ when $k\to\infty.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\qty{1}.$ Consider $A_k=\qty[1,1+\dfrac{1}{k}]$ for some $k\in\Zp.$ Since $1\in\qty[1,1+\dfrac{1}{k}],$ we have $x\in\qty[1,1+\dfrac{1}{k}]=A_k.$ Since $k$ is arbitrary, $x\in A_k\quad\forall k\in\Zp.$ That is, $x\in\dsst\bigcap_{i=1}^\infty A_i.$	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -648,7 +652,9 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{For sets $A,B,C,D$, prove that $(A\times B)\cap(C\times D)=(A\cap C)\times(B\cap D).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $A,B,C,D$ be sets.\par 
+	($\subseteq$) Suppose $(x,y)\in(A\times B)\cap(C\times D).$ By definition of set intersection, $(x,y)\in A\times B$ and $(x,y)\in C\times D.$ Since $(x,y)\in A\times B,$ by definition of Cartesian product, $x\in A$ and $y\in B.$ Similarly, since $(x,y)\in C\times D,$ $x\in C$ and $y\in D.$ Since $x\in A$ and $x\in C,$ by definition of set intersection, $x\in A\cap C.$ Similarly, since $y\in B$ and $y\in D,$ $y\in B\cap D.$ Hence, $(x,y)\in(A\cap C)\times(B\cap D),$ by definition of Cartesian product. \par 
+	($\supseteq$) Suppose $(x,y)\in(A\cap C)\times(B\cap D).$ By definition of Cartesian product, $x\in A\cap C$ and $y\in B\cap D.$ Since $x\in A\cap C,$ by definition of set intersection, $x\in A$ and $x\in C.$ Similarly, since $y\in B\cap D,$ $y\in B$ and $y\in D.$ Note that $x\in A$ and $y\in B.$ Hence, $(x,y)\in A\times B.$ Further, since $x\in C$ and $y\in D,$ $(x,y)\in C\times D.$ Therefore, $(x,y)\in A\times B$ and $(x,y)\in C\times D.$ By definition of set intersection, $(x,y)\in(A\times B)\cap(C\times D).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -659,13 +665,18 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	$\dsst\bigcap_{i=1}^nA_i=\begin{cases}A_1,&n=1\\A_1\cap A_2=\qty{1},&n=2\\\emptyset,&n\geq3\end{cases}.$	
 \end{clm}
 \begin{p}
-	Prove.	
+	We will prove that if $n\geq3,\dsst\bigcap_{i=1}^nA_i=\emptyset$. Suppose $x\in A_k\fs k\in\qty{1,2,3,\cdots,n}.$  Then, by definition, $k-1\leq x\leq k.$ Consider $A_{k+2}=\qty[k+1,k+2].$ Since $k<k+1,\ x\notin[k+1,k+2].$ Hence, $\dsst\bigcap_{i=1}^nA_i=\emptyset.$ 
 \end{p}
+\begin{p}
+	Alternatively, we can use proof by contradiction. Suppose $n\geq3.$ Assume for the sake of contradiction that $\dsst\bigcap_{i=1}^nA_i\neq\emptyset.$ Then, $\exists\ x\in\dsst\bigcap_{i=1}^nA_i.$ So, $x\in A_i\quad\forall i\in\qty{1,2,3,\cdots.n}.$ Since $n\geq3,$ specifically, $x\in A_1=[0,1]$ and $x\in A_3=[2,3].$ $\divideontimes$ But this is a contradiction because $A_1\cap A_3=\emptyset.$ So, it must be that $\dsst\bigcap_{i=1}^nA_i=\emptyset.$	
+\end{p}
+
 \begin{clm}
 	$\dsst\bigcup_{i=1}^nA_i=[0,n].$	
 \end{clm}
 \begin{p}
-	
+	($\subseteq$) Suppose $x\in\dsst\bigcup_{i=1}^nA_i.$ Then, $x\in A_k\fs k\in\qty{1,2,\cdots,n}.$ Then, by definition of $A_i,$ $x\in[k-1,k],$ or $k-1\leq x\leq k.$ Since $1\leq k\leq n$ and $0\leq k-1\leq n-1,$ we have $0\leq k-1\leq x\leq k\leq n.$ So, $x\in[0,n].\qquad\square$\par 
+	($\supseteq$) Let $x\in[0,n].$\par $\boxed{\text{Case }1}$ $x=0.$ Note that $x\in[0,1]=A_1.$ Then, $x\in\dsst\bigcup_{i=1}^nA_i.$\par $\boxed{\text{Case }2}$ When $x>0,$ set $k=\lceil x\rceil.$ Then, $k\in\N$ and $1\leq k\leq n.$ Then, $k-1\leq x\leq k.$ That is, $x\in[k-1,k]=A_k.$ So, $x\in\dsst\bigcup_{i=1}^nA_i.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -676,44 +687,41 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	($s$) is true.	
 \end{clm}
 \begin{p}
-	Prove.	
+	Let $A$ and $B$ be sets. Suppose $A\subseteq B.$ Suppose $X\subseteq A.$ Since $A\subseteq B, X\subseteq B.$ Because $X\subseteq A,$ $X\in\pwer(A).$ Since $X\subseteq B, X\in\pwer(B).$ Therefore, $\pwer(A)\subseteq\pwer(B).$
 \end{p}
 \begin{clm}
-	($s_1$) is true.	
+	($s_1$): ``for all sets $A$ and $B$, $\pwer(A)\subseteq\pwer(B)$ implies $A\subseteq B$'' is true.	
 \end{clm}
 \begin{p}
-	Prove.	
+	Let $A$ and $B$ be sets. Suppose $\pwer(A)\subseteq\pwer(B).$ Suppose $X\in\pwer(A).$ Then, $X\subseteq A.$ By definition of subsets, $X\in\pwer(B).$ So, $X\subseteq B.$	Suppose $x\in X.$ Since $X\subseteq A,$ $x\in A.$ Similarly, since $X\subseteq B,$ $x\in B.$ Therefore, $A\subseteq B.$
 \end{p}
 \begin{clm}
-	($s_2$) is true.	
+	Since ($s$) is true, the contrapositive of it ($s_2$), ``for all sets $A$ and $B$, $\pwer(A)\nsubseteq\pwer(B)$ implies $A\nsubseteq B$,'' will be true for sure.	
 \end{clm}
-\begin{p}
-	Prove.	
-\end{p}
 \begin{clm}
-	($\neg s$) is false.	
+	Since ($s$) is true, the negation of it ($\neg s$) ``for all sets $A$ and $B$, $A\subseteq B$ and $\pwer(A)\nsubseteq\pwer(B)$,'' will be false.	
 \end{clm}
-\begin{p}
-	Prove.	
-\end{p}
 
 \begin{framed}\begin{q}
 	{Exam 2 Review 5}
 	{For all sets $A$ and $B$, if $\pwer(A)=\pwer(B),$ then $A=B.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	To prove set equality, we will prove $A\subseteq B$ and $B\subseteq A$. However, since $A$ and $B$ are symmetric, WLOG, proving $A\subseteq B$ is sufficient. Suppose $X\in\pwer(A).$ Then, $X\subseteq A$. Since $\pwer(A)=\pwer(B),$ $X\in\pwer(B).$ So, $X\subseteq B.$ Suppose $x\in X.$ Since $X\subseteq A,$ $x\in A.$ Similarly, since $X\subseteq B,\ x\in B.$ Therefore, for all $x\in A,\ x\in B.$ By definition of subset, $A\subseteq B.$
 \end{p}
 
 \begin{framed}\begin{q}
 	{Exam 2 Review 7}
-	{Find $\dsst\bigcap_{n\in\N}=n\Z$}
+	{Find $\dsst\bigcap_{n\in\N}=n\Z$.}
 \end{q}\end{framed}
 \begin{clm}
-	
+	$\dsst\bigcap_{n\in\N}=n\Z=\qty{0}.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) WTS: $0\in n\Z\quad\forall n\in\N.$ Let $n\in\N$. Consider $n\Z$. Note that $0=n(0).$ Since $0\in\Z,0\in n\Z.$ Since we picked an arbitrary $n\in\Z,$ we've shown that $0\in n\Z\quad\forall n\in\N.$ By definition of intersection, $0\in\dsst\bigcap_{n\in\N}=n\Z.$ So, $\qty{0}\subseteq\dsst\bigcap_{n\in\N}=n\Z.\qquad\square$\par 
+	($\supseteq$) Suppose for the sake of contradiction that an integer $\neq0$ belongs to the intersection. Then, $\exists x\neq0\st x\in n\Z\quad\forall n\in\N.$\par 
+	$\boxed{\text{Case }1}$ If $x>0,$ then $x\in\N.$ So, $2x\in\N.$ Therefore, by our assumption, $x\in 2x\Z.$ Then, $\exists k\in\Z\st x=2xk.$ So, we get $k=\dfrac{x}{2x}=\dfrac{1}{2}$ since $x=\neq0.$ $\divideontimes$ This contradicts with the fact that $k\in\Z.$ Therefore, our assumption is wrong. Hence, $\nexists x\neq0\st x\in n\Z\quad\forall n\in\N.$\par 
+	$\boxed{\text{Case }2}$ If $x<0,$ then $-x\in\N.$ So, $-2x\in\N.$ Therefore, by our assumption, $x\in-2x\Z.$ Then, $\exists k\in\Z\st x=-2xk.$ So, we get $k=\dfrac{x}{-2x}=-\dfrac{1}{2}$ since $x\neq0.$ However, $k=\dfrac{1}{2}\notin\Z.$ $\divideontimes$ This contradicts with the fact that $k\in\Z.$ Therefore, our assumption is wrong. $\nexists x\neq0\st x\in n\Z\quad\forall n\in\N.$
 \end{p}
 
 \newpage
@@ -723,7 +731,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $a,b\in\Z.$ Then $(-a)(-b)=ab$.}
 \end{q}\end{framed}
 \begin{p}
-	Notice that $a\cdot0=0$. Multiply $(-1)$ on both sides: \[\begin{aligned}(-a\cdot0)&=-0=0\\(-a)\cdot0&=0\end{aligned}\] By additive identity, $b+(-b)=0,$ so we know that \[(-a)(b+(-b))=0.\] By distributivity, \[(-a)b+(-a)(-b)=0.\] Add the additive inverse of $-ab$ to both sides: \[\begin{aligned}-ab+(-(-ab))+(-a)(-b)&=0+(-(-ab))\\0+(-a)(-b)&=0+ab\\(-a)(-b)&=ab.\end{aligned}\]
+	Notice that $a\cdot0=0$. Multiply $(-1)$ on both sides: \[\begin{aligned}(-a\cdot0)&=-0=0\\(-a)\cdot0&=0\end{aligned}\]\par By additive identity, $b+(-b)=0,$ so we know that \[(-a)(b+(-b))=0.\]\par By distributivity, \[(-a)b+(-a)(-b)=0.\]\par Add the additive inverse of $-ab$ to both sides: \[\begin{aligned}-ab+(-(-ab))+(-a)(-b)&=0+(-(-ab))\\0+(-a)(-b)&=0+ab\\(-a)(-b)&=ab.\end{aligned}\]
 \end{p}
 
 \begin{framed}\begin{q}
@@ -731,7 +739,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{$-(-a)=a$ for all $a\in\Z$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	By additive inverse, we know $a+(-a)=0.$ Multiply $(-1)$ on both sides: \[\begin{aligned}(-1)(a+(-a))&=0&\\(-1)a+(-1)(-a)&=0&\quad distributivity\end{aligned}\]\par Add $(a)$ on both sides, we get \[\begin{aligned}(-1)a+(-1)(-a)+a&=0+a&\\(-1)a+a+(-1)(-a)&=a&\quad additive\ identity,\ commutativity\\-a+a+(-1)(-a)&=a&\\0+(-1)(-a)&=a&\quad additive\ inverse\\(-1)(-a)&=a&\quad additive\ identity\\-(-a)&=a&\end{aligned}\]
 \end{p}
 
 \begin{framed}\begin{q}
@@ -739,7 +747,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{$a(b-c)=ab-ac$ for all $a,b,c\in\Z$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	By distributivity, \[\begin{aligned}(b+(-c))a&=ba+(-c)a\\&=ab+(-1)ac&\quad commutativity\\&=ab-ac\end{aligned}\]
 \end{p}
 
 \begin{framed}\begin{q}
@@ -747,7 +755,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $a,b\in\Z$. Prove that $-(a+b)=-a-b.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\[\begin{aligned}-(a+b)=(-1)(a+b)&=(-1)a+(-1)b&\quad distributivity\\&=-a-b.\end{aligned}\]	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -755,7 +763,7 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Let $a,b\in\Z$. Suppose that $a<b.$ Prove that $(-a)>(-b).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	By definition, we know that $a-b\in\Zp.$ Since $a-b=a+(-b)=(-b)+a=(-b)-(-a),$ we know $(-b)-(-a)\in\Zp.$ By definition, $(-b)<(-a).$ That is, $(-a)>(-b).$	
 \end{p}
 
 \begin{thm}[Well Ordering Principle for $\N$.]
@@ -767,13 +775,13 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Every non-empty subset of the rational numbers $\Q$ contains a minimum element.}
 \end{q}\end{framed}
 \begin{counter}
-	Prove.
+	Consider $(-\infty,0)\cap\Q$. There will not be a minimum rational number in it.
 \end{counter}
 \begin{counter}
-	Prove	
+	Consider $(0,1)\cap\Q.$ There will not be a minimum element in it.	
 \end{counter}
 \begin{p}
-	Prove.
+	Suppose $\exists\ s_0\st s_0$ is the minimum element of $(0,1)\cap\Q.$ Since $s_0\in\Q,\exists\ p,q\in\Z\st s_0=\dfrac{p}{q}.$ Consider $\dfrac{p}{q+1}.$ Since $1\in\Z,\ q+1\in\Z,$ then $\dfrac{p}{q+1}\in\Q.$ Since $s_0\in(0,1)$ and $s_0$ is the minimum element of $(0,1)\cap\Q,$ $0<s_0<1$ and there is no element between $0$ and $s_0.$ Then, $\dfrac{p}{q}>0.$ That means, $p\neq0.$ So, $\dfrac{p}{q+1}>0$ as well. However, since $q+1>q,\ \dfrac{p}{q+1}<\dfrac{p}{q}.$ That is, $\dfrac{p}{q+1}\in(0,s_0).$ $\divideontimes$ This contradicts with our assumption that there is no element in $(0,s_0).$ Hence, our assumption is incorrect. So, there is no minimum element of $(0,1)\cap\Q.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -781,20 +789,24 @@ A perfect square is an integer $n$ for which there exists an integer $m$ such th
 	{Prove that for all $n\in\N,$ \[1\cdot2+2\cdot3+3\cdot4+\cdots+n\cdot(n+1)=\dfrac{n(n+1)(n+2)}{3}.\]}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $P(n)$ be the statement that ``$1\cdot2+2\cdot3+3\cdot4+\cdots+n(n+1)=\dfrac{n(n+1)(n+2)}{3}$.''\par 
+	$\boxed{\text{Base Case}}$ Consider $P(1):\ 1\cdot2=\dfrac{1(1+1)(1+2)}{3}.$  Note that $1\cdot2=2$ and $\dfrac{1(1+1)(1+2)}{3}=\dfrac{1(2)(3)}{3}=2.$ Therefore, $1\cdot2=\dfrac{1(1+1)(1+2)}{3}.$ That is, $P(1)$ is correct.\par 
+	$\boxed{\text{Inductive Steps}}$ Suppose $P(k)$ is true for some $k\in\N.$ That is, \[1\cdot2+2\cdot3+3\cdot4\cdots+k(k+1)=\dfrac{k(k+1)(k+2)}{3}\qquad\text{\ding{172}}\] Add $(k+1)(k+2)$ on both sides of equation \ding{172}, we get \[\begin{aligned}1\cdot2+2\cdot3+3\cdot4\cdots+k(k+1)+(k+1)(k+2)&=\dfrac{k(k+1)(k+2)}{3}+(k+1)(k+2)\\&=\dfrac{k(k+1)(k+2)+3(k+1)(k+2)}{3}\\&=\dfrac{(k+1)(k+2)(k+3)}{3}.\end{aligned}\] Therefore, $P(k+1)$ is true given $P(k)$ is true.\par 
+	Since we've proven that $P(1)$ is true and $P(k)\implies P(k+1),$ by Principle of Mathematical Induction, $P(n)$ is true for all $n\in\N.$
 \end{p}
 
-\begin{df}[Fibonacci Sequence]
+\begin{df}[Fibonacci Sequence]\label{FibSeq}
 The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_2=1,\quad\text{and}\quad f_n=f_{n-1}+f_{n-2}\text{ for }n\geq3.\]	
 \end{df}
-
 
 \begin{framed}\begin{q}
 	{Exam 2 Review 9}
 	{Prove that for all $n\in\N,$ \[f_{n+1}^2-f_{n+1}f_n-f_n^2=(-1)^n.\]}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $P(n)$ be the statement that ``$f_{n+1}^2-f_{n+1}f_n-f_n^2=(-1)^n.$''\par 
+	$\boxed{\text{Base Case}}$ Consider $P(1): f_{1+1}^2-f_{1+1}f_1-f_1^2=(-1)^1.$ Since $f_1=1$ and $f_{1+1}=f_2=1,$ we know that $f_{1+1}^2-f_{1+1}f_1-f_1^2=1^2-(1)(1)-(1)^2=1-1-1=-1.$ Further since $(-1)^1=-1,$ so $f_{1+1}^2-f_{1+1}f_1-f_1^2=(-1)^1,$ and thus $P(1)$ is true.\par 
+	$\boxed{\text{Inductive Steps}}$ Suppose $P(k)$ is true for some $k\in\N.$ Then, $f_{k+1}^2-f_{k+1}f_k-f_k^2=(-1)^k.$ Consider $P(k+1):$ $f_{k+1+1}^2-f_{k+1+1}f_{k+1}-f_{k+1}^2=f_{k+2}^2-f_{k+2}f_{k+1}-f_{k+1}^2.$ By definition of Fibonacci Sequence (Definition \ref{FibSeq}), we know $f_{k+2}=f_k+f_{k+1}.$ So, \[\begin{aligned}f_{k+2}^2-f_{k+2}f_{k+1}-f_{k+1}^2&=(f_k+f_{k+1})^2-(f_k+f_k+1)(f_{k+1})-f_{k+1}^2\\&=f_k^2+f_{k+1}^2+2f_{k}f_{k+1}-f_kf_{k+1}-f_{k+1}^2-f_{k+1}^2\\&=f_k^2+f_{k}f_{k+1}-f_{k+1}^2\\&=-(f_{k+1}^2-f_{k+1}f_{k}-f_k^2)\\&=-(-1)^k\\&=(-1)^{k+1}.\end{aligned}\] Therefore, we get $P(k)\implies P(k+1).$\par Since we've proven $P(1)$ is true and $P(k)\implies P(k+1),$ by Principle of Mathematical Induction, $P(n)$ is true for all $n\in\N.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -802,7 +814,10 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $f:\N\to\N$ be defined recursively by $f(1)=1$ and $f(n+1)=\sqrt{2+f(n)}$ for all $n\in\N.$ Prove that $f(n)<2$ for all $n\in\N.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $P(n)$ be the statement that ``$f(n)<2,$ where $f$ is a function from $\N$ to $\N$ defined recursively by $f(1)=1$ and $f(n+1)=\sqrt{2+f(n)}$.''\par 
+	$\boxed{\text{Base Case}}$ Consider $P(1)$. Note that, by definition of $f$, $f(1)=1$ and $1<2$. So, $f(1)=1<2$ and $P(1)$ is true.\par 
+	$\boxed{\text{Inductive Steps}}$ Suppose $P(k)$ is true for some $k\geq1.$ That is, $f(k)<2.$ Consider $f(k+1)=\sqrt{2+f(k)}.$ Since $f(k)<2,$ we have $2+f(k)<2+2=4.$ Hence, $f(k+1)=\sqrt{2+f(k)}<\sqrt{4}=2.$ That is, $f(k+1)<2.$ So, $P(k)\implies P(k+1).$\par 
+	Since we've proven $P(1)$ is true and $P(k)\implies P(k+1),$ by mathematical induction, we know $P(n)$ is true for all $n\in\N.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -810,7 +825,10 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Prove that $1^3+2^3+3^3+\cdots+n^3=\dfrac{n^2(n+1)^2}{4}.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $P(n)$ be $1^3+2^3+3^3+\cdots+n^3=\dfrac{n^2(n+1)^2}{4}.$\par 
+	$\boxed{\text{Base Case}}$ Consider $P(1).$ Since $1^3=1$ and $\dfrac{1^2(1+1)^2}{4}=\dfrac{1^2(2)^2}{4}=\dfrac{4}{4}=1,$ so $1^3=\dfrac{1^2(1+1)^2}{4}.$ Hence, $P(1)$ is true.\par 
+	$\boxed{\text{Inductive Steps}}$ Suppose $P(k)$ is true for some $k\geq1.$ Then, \[1^3+2^3+3^3+\cdots+k^3=\dfrac{k^2(k+1)^2}{4}.\qquad\text{\ding{172}}\] Consider $P(k+1).$ Add $(k+1)^3$ to both sides of equation \ding{172}, we get \[\begin{aligned}1^3+2^3+3^3+\cdots+k^3+(k+1)^3&=\dfrac{k^2(k+1)^2}{4}+(k+1)^3\\&=\dfrac{k^2(k+1)^2+4(k+1)^3}{4}\\&=\dfrac{\qty[k^2+4(k+1)](k+1)^2}{4}\\&=\dfrac{(k+1)^2(k^2+4k+4)}{4}\\&=\dfrac{(k+1)^2(k+2)^2}{4}\\&=\dfrac{(k+1)^2\qty[(k+1)+1]^2}{4}\end{aligned}\] Hence, $P(k)\implies P(k+1).$\par 
+	Since we've proven $P(1)$ is true and $P(k)\implies P(k+1),$ by Principle of Mathematical Induction, $P(n)$ is true for all $n\in\N.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -818,7 +836,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $n\in\Z$ and let $S\subseteq\Z$ satisfy $\qty|S|>n.$ Then, at least two distinct members of $S$ are congruent $\mod n$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	WTS: $\exists\ a,b\in S\st a\equiv b\mod n,$ or $n\mid(a-b).$ $\forall s\in S,$ we can write $s=nk+r,$ where $k\in\Z$ and $r=\qty{0,1,2,\cdots,n}.$ There are exactly $n$ possibilities for $r$; however, since $\qty|s|>n,$ there are more than $n$ integers in $S$. So, by the Pigeonhole Principle, $\exists\ a,b\in S\st a=nk+r$ and $b=nl+r,$ where $k,l\in\Z$ and $r=\qty{0,1,2,\cdots,n}.$ So, $a-b=(nk+r)-(nl-r)=nk-nl=n(k-l).$ Since $k-l\in\Z,$ we know $n\mid(a-b).$ So, $a\equiv b\mod n.$
 \end{p}
 
 \newpage
@@ -828,7 +846,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Suppose that $R$ is an equivalence relation on $A$ and that $a,b\in A.$ Then, if $[a]\cap[b]\neq\emptyset,$ then $[a]=[b].$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Since $[a]\cap[b]\neq\emptyset$, $\exists x\in[a]\cap[b].$ By definition of set intersection, $x\in[a]$ and $x\in[b].$ Since $x\in[a],\ xRa.$ Also, since $x\in[b],$ then $xRb.$ Since $R$ is an equivalence relation, by symmetry, $aRx.$ Since $aRx$ and $xRb,$ by transitivity, $aRb.$ Then, $[a]=[b],$ by definition of equivalence class.	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -836,13 +854,18 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Determine whether each of the following relations on $\R$ is an equivalence relation. Justify your answer. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $x-y\in\Z$.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\begin{itemize}
+		\item \underline{\textbf{Reflexive}}: Suppose $a\in\R.$ Since $a-a=0\in\Z,$ we have $aRa.\qquad\square$
+		\item \underline{\textbf{Symmetric}}: Let $a,b\in\R.$ Suppose $aRb.$ Then, by definition, $a-b\in\Z.$ That is, $\exists k\in\Z\st a-b=k.$ Consider $(b-a)=-(a-b)=-k.$ Since $k\in\Z,\ -k\in\Z.$ So, $b-a\in\Z.$ That is, $bRa.\qquad\square$
+		\item \underline{\textbf{Transitive}}: Let $a,b,c\in\R.$ Suppose $aRb$ and $aRc.$ Then, by definition, $a-b\in\Z$ and $b-c\in\Z.$ That is, $\exists\ k,l\in\Z\st a-b=k$ and $b-c=l.$ Add the two equations, we get $(a-b)+(b-c)=k+l.$ Simplify, we will get $a-c=k+l.$ Since $k,l\in\Z,$ $k+l\in\Z.$ So, $a-c\in\Z,$ or $aRc.$
+	\end{itemize}
 \end{p}
 \begin{clm}
-	
+	$[a]=\qty{a-k\mid k\in\Z}.$
 \end{clm}
 \begin{p}
-	
+	($\subseteq$) Suppose $x\in[a].$ Then, by definition, $aRx.$ So, $a-x\in\Z.$ Suppose $a-x=m\fs m\in\Z.$ Then, $-x=m-a,$ or $x=a-m.$ Since $m\in\Z,\ x\in\qty{a-k\mid k\in\Z}.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\qty{a-k\mid k\in\Z}.$ Then, $x=a-m\fs m\in\Z.$ Consider $a-x=a-(a-m)=a-a+m=m.$ Since $m\in\Z,\ a-x\in\Z.$ That is, $aRx,$ or $x\in[a],$ by definition of equivalence class. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -850,7 +873,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Determine whether each of the following relations on $\R$ is an equivalence relation. Justify your answer. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $x+y\in\Z$.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	$R$ is not an equivalence relation because it is not reflexive. Suppose $a\in\R.$ Then, $a+a=2a\in\R,$ but it does not always hold that $2a\in\Z.$ Therefore, $a\not Ra,$ or $R$ is not reflexive. 
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -858,7 +881,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Prove or disprove: $R$ is an equivalence relation on $\Z$. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $4\mid(x+y)$. }
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	$R$ is not an equivalence relation because it is not reflexive. Suppose $a\in\Z.$ Consider $a+a=2a.$ Since $a\in\Z,$ $2a\in\Z,$ but $4\nmid 2a$ for all $a\in\Z.$ Therefore, $a\not Ra,$ and so $R$ is not reflexive.	
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -866,13 +889,19 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Prove or disprove: $R$ is an equivalence relation on $\Z$. If $R$ is an equivalence relation, describe its equivalence classes: $xRy$ if $4\mid(x+3y)$. }
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\begin{itemize}
+		\item \underline{\textbf{Reflexive}}: Suppose $a\in\Z.$ Consider $a+3a=4a.$ Since $a\in\Z,\ 4\mid4a.$ That is, $4\mid a+3a,$ or $aRa.\qquad\square$
+		\item \underline{\textbf{Symmetric}}: Suppose $a,b\in\Z.$ Then, $a+3b=4k\fs k\in\Z.$ So, $a=4k-3b.$ Consider \[\begin{aligned}b+3a=b+3(4k-3b)&=b+12k-9b\\&=12k-8b\\&=4(3k-2b).\end{aligned}\] Since $k,b\in\Z,\ 4k-2b\in\Z.$ So, $4\mid4(3k-2b),$ or $4\mid b+3a.$ Hence, $bRa. \qquad\square$
+		\item \underline{\textbf{Transitive}}: Let $a,b,c\in\Z.$ Suppose $aRb$ and $bRc.$ Then, $4\mid a+3b$ and $4\mid b+3c.$ Hence, $\exists\ k,l\in\Z\st a+3b=4k$ and $b+3c=4l.$ Hence, $a=4k-3b$ and $3c=4l-b.$ Consider \[a+3c=4k-3b+4l-b=4k+4l-4b=4(k+l-b).\] Since $k,b,l\in\Z,$ $k+l-b\in\Z.$ So, $4\mid4(k+l-b),$ or $4\mid a+3c.$ Therefore, $aRc.\qquad\square$
+	\end{itemize}
+	Since $R$ is symmetric, reflexive, and transitive, $R$ is an equivalence relation.
 \end{p}
 \begin{clm}
-	
+	$[i]=\qty{4k+i\mid k\in\Z}\quad\forall i\in\qty{0,1,2,3}.$
 \end{clm}
 \begin{p}
-	
+	($\subseteq$) Suppose $x\in[i].$ Then, $xRi.$ By definition of $R$, $4\mid x+3i.$ So, $x+3i=4k\fs k\in\Z.$ Then, \[x=4k-3i=4(k-i)-3i+4i=4(k-i)+i.\] Since $k\in\Z$ and $i\in\qty{0,1,2,3},$ we know $k-i\in\Z.$ Then, $x=4(k-i)+i\in\qty{4k+i\mid k\in\Z}.\qquad\square$\par 
+	($\supseteq$) Suppose $x\in\qty{4k+i\mid k\in\Z}.$ Then, $x=4k+i\fs k\in\Z.$ Consider \[x+3i=4k+i+3i=4k+4i=4(k+i).\] Since $k\in\Z$ and $i\in\qty{0,1,2,3},$ we know $k+i\in\Z.$ Then, $4\mid4(k+i),$ or $x\mid x+3i.$ That is, $xRi,$ or $x\in[i].$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -880,13 +909,18 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Define a relation $R$ on $\R^2$ as follows: for all $(a_1,b_1),(a_2,b_2)\in\R^2,(a_1,b_1)R(a_2,b_2)$ if $(a_1,b_1)$ and $(a_2,b_2)$ are on the same line through the origin. Decide whether $R$ is an equivalence relation - either show why or why not. If it is, what are the elements of the equivalence class $[(1,2)]$?}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\begin{itemize}
+		\item \underline{\textbf{Reflexive}}: Suppose $(a,b)\in\R^2.$ The line of $(a,b)$ and the origin is $y=\dfrac{b}{a}x.$ Apparantly, $(a,b)$ and $(a,b)$ is both on $y=\dfrac{b}{a}x.$ So, $(a,b)R(a,b).\qquad\square$
+		\item \underline{\textbf{Symmetric}}: Suppose $(a_1,b_1)$ and $(a_2,b_2)\in\R^2.$ Let $(a_1,b_1)R(a_2,b_2).$ The line between $(a_1,b_1)$ and the origin is $y=\dfrac{b_1}{a_1}x.$ Then, $(a_2,b_2)$ is on the same line: $b_2=\dfrac{b_1}{a_1}\cdot a_2.$ So, $\dfrac{b_2}{a_2}=\dfrac{b_1}{a_1}.$ That is, $\dfrac{b_2}{a_2}\cdot a_1=b_1,$ or $(a_1,b_1)$ is on the line $y=\dfrac{b_2}{a_2}x.$ Since $y=\dfrac{b_2}{a_2}x$ is the line between $(a_2,b_2)$ and $(0,0),$ we have $(a_2,b_2)R(a_1,b_1).\qquad\square$
+		\item \underline{\textbf{Transitive}}: Suppose $(a_1,b_1), (a_2,b_2),$ and $(a_3,b_3)\in\R^2.$ Suppose $(a_1,b_1)R(a_2,b_2)$ and $(a_2,b_2)R(a_3,b_3).$ Then, $\dfrac{b_1}{a_1}=\dfrac{b_2}{a_2}$ and $\dfrac{b_2}{a_2}=\dfrac{b_3}{a_3}.$ So, $\dfrac{b_1}{a_1}=\dfrac{b_2}{a_2}=\dfrac{b_3}{a_3}.$ Then, $(a_1,b_1)R(a_3,b_3).$
+	\end{itemize}	
 \end{p}
 \begin{clm}
-	
+	$[(1,2)]=\qty{(x,y)\mid y=2x}.$
 \end{clm}
 \begin{p}
-	
+	($\subseteq$) Suppose $(x,y)\in[(1,2)].$ Then, $(x,y)R(1,2).$ So, $\dfrac{y}{x}=\dfrac{2}{1}.$ That is, $y=2x.$ Hence, $(x,y)\in\qty{(x,y)\mid y=2x;\ x,y\in\R}.\qquad\square$\par 
+	($\supseteq$) Suppose $(x,y)\in\qty{(x,y)\mid y=2x}.$ Then, $(x,y)=(x,2x).$ Since $\dfrac{2x}{x}=\dfrac{2}{1},$ we have $(x,2x)R(1,2).$ Therefore, $(x,y)\in[(1,2)].$
 \end{p}
 
 \newpage
@@ -896,16 +930,18 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $A=\qty{x,y,z}.$ Define functions $f:\pwer(A)$ by $f(a)=\qty{a}$ and $g:A\to\pwer(A)$ by $g(a)=A-\qty{a}.$ Find $\Im(f)$ and $\Im(g).$}
 \end{q}\end{framed}
 \begin{clm}
-	
+	$\Im(f)=\qty{\qty{x},\qty{y},\qty{z}}.$
 \end{clm}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $a\in A.$ Then, we have $f(a)=\qty{a}.$ Since $a\in A,\ \qty{a}\in\qty{\qty{x},\qty{y},\qty{z}}$. Therefore, $\Im(f)\subseteq\qty{\qty{x},\qty{y},\qty{z}}.\qquad\square$\par 
+	($\supseteq$) Suppose $a\in\qty{\qty{x},\qty{y},\qty{z}}.$ WLOG, suppose $a=\qty{x}.$ Choose $b=x.$ So, $f(b)=\qty{b}=\qty{x}=a.$ Therefore, $a\in\Im(f).$ That is, $\qty{\qty{x},\qty{y},\qty{z}}\subseteq\Im(f).$
 \end{p}
 \begin{clm}
-	
+	$\Im(g)=\qty{\qty{y,z},\qty{x,z},\qty{x,y}}.$
 \end{clm}
 \begin{p}
-	
+	($\subseteq$) Suppose $a\in A.$ Then, $a=x,$ or $a=y,$ or $a=z.$ WLOG, suppose $a=x.$ Then, \[f(a)=A-\qty{a}=\qty{x,y,z}-\qty{x}=\qty{y,z}.\] Since $\qty{y,z}\subseteq\qty{\qty{y,z},\qty{x,z},\qty{x,y}},$ we know that $f(a)\in\qty{\qty{y,z},\qty{x,z},\qty{x,y}}.$ Therefore, we've proven $\Im(f)\subseteq\qty{\qty{y,z},\qty{x,z},\qty{x,y}}.\qquad\square$\par 
+	($\supseteq$) Suppose $a\in\qty{\qty{y,z},\qty{x,z},\qty{x,y}}.$ WLOG, suppose $a=\qty{y,z}.$ Note that \[\exists x\in A\st f(x)=A-\qty{x}=\qty{y,z}=a.\] So, $a\in\Im(f).$ That is, $\qty{\qty{y,z},\qty{x,z},\qty{x,y}}\subseteq\Im(f).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -913,7 +949,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $f:\R\to\R$ be given by $f(x)=2x^3+3x^2-12x+1.$ Let $X=\qty[-1,2].$ Find $f(X).$}
 \end{q}\end{framed}
 \begin{ans}
-	Prove.	
+	Find $f'(x)=6x^2+6x-12.$ So, $f(x)$ is not always increasing or decreasing. Find critical points by setting $f'(x)=0:\ 6x^2+6x-12=0,$ so we get $(x+2)(x-1)=0,$ or $x=-2,\ x=1.$ Since $X=\qty[-1,2],$ it must be $x=1.$ Check $f''(x)=12x+6:\ f''(1)=12(1)+6=12+6>0.$ So, $f(1)$ is the minimum value: $f(1)=2(1)^3+3(1)^2-12(1)+1=-6.$ Then, maximum value will be found at $x=-1$ or $x=2.$ At $x=-1,$ $f(-1)=2(-1)^3+3(-1)^2-12(-1)+1=14.$ At $x=2,$ we have $f(2)=2(2)^3+3(2)^2-12(2)+1=5.$ Since $14>5,$ maximum value occurs at $x=-1.$ So, $f(X)=\qty[-6,14].$
 \end{ans}
 
 \begin{df}[$\epsilon-\delta$ Definition of Continuity]
