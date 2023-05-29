@@ -17,10 +17,13 @@
    3. MATH 112Z (Calculus II) Learning Notes - Completed
    4. MATH 211 (Calculus III) Learning Notes - Completed
    5. MATH 250 (Foundation of Math) Learning Notes - Completed
-   6. Math 250 Proof Practice - In Progress
+   6. Math 250 Proof Practice - Completed
+   7. Linear Algebra Done Right - In Progress
 5. Markdown Template - Completed
 6. R
    1. Data Visualization (ggplot2) - Completed
    2. Introduction to tidyverse - Completed
 7. Java
    1. CS 170 Learning Notes - Completed
+8. MATLAB
+   1. MATLAB Math Experiments - In Progress
