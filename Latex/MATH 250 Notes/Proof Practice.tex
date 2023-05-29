@@ -58,6 +58,8 @@
 \def\dsst{\displaystyle}
 \def\f{f^{-1}}
 \def\of{\circ}
+\def\g{g^{-1}}
+\def\dg{\Delta_g}
 
 % Title Information
 \title{Foundations of Mathematics -- \textbf{Proof Practice}}
@@ -961,7 +963,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Consider the function $f(x)=\begin{cases}0,&x<0\\1,&x\geq0\end{cases}.$ Rigorously prove that $f$ is discontinuous at $x=0.$ Your proof should involve $\epsilon$ and $\delta.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Choose $\epsilon=\dfrac{1}{2}$.	Then, we need $\qty|f(x)-f(0)|<\dfrac{1}{2}.$ That is, we want $\qty|f(x)-1|<\dfrac{1}{2},$ or $-\dfrac{1}{2}<f(x)-1<\dfrac{1}{2}.$ That is, $\dfrac{1}{2}<f(x)<\dfrac{3}{2}.$ Note that $\forall x\in(-\delta,0),$ $f(x)=0,$ by definition of $(x).$ That is, $f(x)\notin\qty(\dfrac{1}{2},\dfrac{3}{2}).$ So, $f$ is discontinuous at $x=0.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -969,7 +971,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Use the formal definition of continuity, prove that the function $f(x)=x^2+4x+3$ is continuous at $x=-2.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $\epsilon>0$ be given. Suppose $\delta=\sqrt{\epsilon}.$ Since $\epsilon>0,$ we know $\delta=\sqrt{\epsilon}>0.$ Suppose $\qty|x-(-2)|=\qty|x+2|<\delta.$ Then, \[\begin{aligned}\qty|f(x)-f(-2)|=\qty|x^2+4x+3-(-1)|=\qty|x^2+4x+3+1|&=\qty|x^2+4x+4|\\&=\qty|(x+2)^2|\\&=\qty|x+2|\qty|x+2|\\&<\delta\cdot\delta=\sqrt{\epsilon}\cdot\sqrt{\epsilon}=\epsilon.\end{aligned}\] Since $\epsilon$ was arbitrary, we've shown that \[\forall\epsilon>0,\exists\ \delta=\sqrt{\epsilon}>0\st\qty|x+2|>\delta\implies\qty|f(x)-f(-2)|<\epsilon.\] So, $f$ is continuous at $x=-2.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -977,7 +979,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Use the formal definition of continuity, prove that the function $f(x)=x^2+4x+3$ is continuous at $x=2.$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $\epsilon>0$ be given. Suppose $\delta=\min\qty{1,\dfrac{\epsilon}{9}}.$ Then, $\delta\leq1$ and $\delta\leq\dfrac{\epsilon}{9}.$ Suppose $x\in\R$ and $\qty|x-2|<\delta.$ Since $\qty|x-2|<\delta\leq1,$ we have $1<x<3.$ So, $7<x+6<9.$ That is, $\qty|x+6|<9.$ Then, \[\begin{aligned}\qty|f(x)-f(2)|=\qty|x^2+4x+3-15|&=\qty|x^2+4x-12|\\&=\qty|(x-2)(x+6)|\\&=\qty|x-2|\qty|x+6|\\&<9\qty|x-2|\\&<9\cdot\delta\\&\leq9\cdot\dfrac{\epsilon}{9}=\epsilon.\end{aligned}\] Since $\epsilon$ was arbitrary, we've proven that \[\forall\epsilon>0,\exists\ \delta=\min\qty{1,\dfrac{\epsilon}{9}}>0\st\qty|x-2|<\delta\implies\qty|f(2)-f(x)|<\epsilon.\] So, by the definition of continuity, $f$ is continuous at $x=2.$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -985,7 +987,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Prove or disprove: Every injective map form $\R\to\R$ is bijective.}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	Consider $f:\R\to\R$ defined as $f(x)=e^x$.	For $x,y\in\R,$ if $f(x)=f(y),$ we have $e^x=e^y.$ Take logarithm with base $e$, we have $\ln e^x=\ln e^y.$ So, $x=y.$ Hence, $f$ is injective. Consider $b=-1\in\R.$ Set $f(x)=-1.$ That is, $e^x=-1.$ $\divideontimes$ This contradicts with the fact that $f(x)>0.$ Therefore, our assumption is wrong, and $f(x)$ cannot be $-1.$ Hence, by definition, $f$ is not surjective. 
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -993,10 +995,13 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Show that the function $f:\R-\qty{0}\to\R$ defined by $f(x)=\dfrac{x+1}{x}$ is injective but not surjective. How could we change the codomain so that $f$ is surjective?}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\begin{itemize}
+		\item \underline{\textbf{Injective}}: Suppose $x,y\in\R-\qty{0}\st f(x)=f(y).$ Then, we get \[\begin{aligned}\dfrac{x+1}{x}&=\dfrac{y+1}{y}\\(x+1)y&=(y+1)x\\xy+y&=xy+x\\y&=x.\end{aligned}\] So, $f(x)=f(y)\implies x=y.$ That is, $f$ is injective. $\qquad\square$
+		\item \underline{\textbf{Not Surjective}}: Set $f(x)=1.$ So we should have $\dfrac{x+1}{x}=1.$ So, $x+1=x,$ or $1=0.$ This is not possible, so $f(x)\neq1.$ Therefore, $f$ is not surjective.
+	\end{itemize}
 \end{p}
 \begin{ans}
-	
+	We can change the codomain to $\R-\qty{1}.$ So that our function will become surjective. 
 \end{ans}
 
 \begin{framed}\begin{q}
@@ -1004,7 +1009,7 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $f:A\to B$ for a function and $X\subseteq A$. Prove or disprove: $\f(f(X))=X.$}
 \end{q}\end{framed}
 \begin{dis}
-	Prove.	
+	Consider $A=\qty{1,2,3}$ and $B=\qty{a,b}$. Define $f(1)=a$ and $f(2)=f(3)=b.$ Set $X=\qty{2},$ then $f(X)=f(\qty{2})=\qty{b}.$ Therefore, $\f(f(X))=\f(\qty{b})=\qty{2,3}.$ Since $3\in\f(f(X))$ but $3\notin X,$ $\f(f(X))\neq X.$
 \end{dis}
 
 \begin{framed}\begin{q}
@@ -1012,7 +1017,9 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $f:A\to B$ for a function and $X\subseteq A$. Prove or disprove: $f(\f(f(X)))=f(X).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $f:A\to B$ be a function and $X\subseteq A.$\par 
+	($\subseteq$) Suppose $x\in f(\f(f(X))).$ Then, $\exists a\in\f(f(X))\st f(a)=x.$ Since $a\in\f(f(X)),$ $f(a)\in f(X).$ Note $f(a)=x,$ so $x\in f(X).\qquad\square$\par 
+	($\supseteq$) Suppose $x\in f(X).$ Then, $\exists a\in X\st f(a)=x.$ Since $f(a)=x\in f(X),$ we have $f(a)\in f(X).$ Then, $a\in\f(f(X)).$ Therefore, $f(a)\in f(\f(f(X))).$ That is, $x\in f(\f(f(X))).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -1020,7 +1027,12 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Let $f:A\to B$ and $g:B\to C$, and assume that $f$ is surjective. Prove that $g\of f$ is injective if and only if $g$ and $f$ are both injective.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\Rightarrow$) Suppose $g\of f$ is injective.
+	\begin{itemize}
+		\item \underline{\textbf{$f$ injective}}: Let $x,y\in A\st f(x)=f(y).$ Apply $g$ on both sides, we get $g(f(x))=g(f(y)).$ That is, $(g\of f)(x)=(g\of f)(y).$ Since $(g\of f)$ is injective, we have $x=y.$ Hence, $f$ is injective.
+		\item \underline{\textbf{$g$ injective}}: Let $x,y\in B\st g(x)=g(y).$ Since $f$ is surjective from $A\to B,$ $\exists\ a,b\in A\st f(a)=x$ and $f(b)=y.$ Then, $g(x)=g(f(a))=(g\of f)(a)$ and $g(y)=g(f(b))=(g\of f)(b).$ Therefore, $(g\of f)(a)=(g\of f)(b).$ Since $g\of f$ is injective, we have $a=b.$ Since $f$ is injective (proven above), we have $f(a)=f(b).$ Since $f(a)=x$ and $f(b)=y,$ we know $x=y,$ and hence $g$ is also injective. $\qquad\square$
+	\end{itemize}
+	($\Leftarrow$) Suppose $g$ and $f$ are injective. Let $x,y\in A\st(g\of f)(x)=(g\of f)(y).$ Since $(g\of f)(x)=g(f(x))$ and $(g\of f)(y)=g(f(y)),$ we have $g(f(x))=g(f(y)).$ Since $g$ is injective, we know $f(x)=f(y).$ Further since $f$ is also injective, we have $x=y.$ Then, $g\of f$ is injective. 
 \end{p}
 
 \begin{framed}\begin{q}
@@ -1028,19 +1040,22 @@ The Fibonacci Sequence $f_n$ is defined recursively as follows: \[f_1=1,\quad f_
 	{Suppose that $f:A\to B$ is a function. Prove that $f$ is injective if and only if for all subsets $C,D$ of $A$, $f(C\cap D)=f(C)\cap f(D).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	Let $f:A\to B$ be an injective function. Let $C,D\subseteq A.$\par 
+	($\Rightarrow$)Suppose $f$ is injective. WTS: $f(C\cap D)=f(C)\cap f(D).$\par 
+	\indent\indent($\subseteq$) Let $x\in f(C\cap D).$ Then, $\exists\ a\in C\cap D\st f(a)=x.$ Since $a\in C\cap D,$ we have $a\in C$ and $a\in D.$ Since $a\in C,$ $f(a)\in f(C)$ That is, $x\in f(C).$ Similarly, since $a\in D,$ $f(a)\in f(D),$ and thus $x\in f(D).$ Since $x\in f(C)$ and $x\in f(D),$ by definition of set intersection, $x\in f(C)\cap f(D).\qquad\square$\par 
+	\indent\indent ($\supseteq$) Let $x\in f(C)\cap f(D).$ Then, $x\in f(C)$ and $x\in f(D).$ So, $\exists\ c\in C\st f(c)=x$ and $\exists\ d\in D\st f(d)=x.$ Therefore, we know $f(c)=f(d)=x.$ Since $f$ is injective, we have $c=d.$ Hence, $c\in C$ and $c\in D,$ and that is, $c\in C\cap D.$ So, $f(c)=x\in f(C\cap D).\qquad\square$\par 
+	($\Leftarrow$) Suppose $f(C\cap D)=f(C)\cap f(D).$ Suppose $x,y\in A\st f(x)=f(y).$ Say $f(x)=f(y)=m.$ Suppose $C=\qty{x}\subseteq A$ and $D=\qty{y}\subseteq A.$ Then, by assumption, $f(C)=f(\qty{x})=\qty{m}$ and $f(D)=f(\qty{y})=\qty{m}.$ So, $f(C\cap D)=f(C)\cap f(D)=\qty{m}\cap\qty{m}=\qty{m}.$ If $C\cap D=\emptyset,$ then $f(C\cap D)=f(\emptyset)=\emptyset\neq\qty{m}.$ Hence, $C\cap D\neq\emptyset.$ That is, $\qty{x}\cap\qty{y}\neq\emptyset.$ The only way for intersection of two single-element sets being non-empty is that the two elements are identical. So, $x=y.$
 \end{p}
-
-\begin{thm}
-A function is a bijection if and only if it is invertible.	
-\end{thm}
 
 \begin{framed}\begin{q}
 	{Exam 3 Review 14}
 	{Let $A,B$ be sets, and let $F(A,B)$ denote the set of all functions from $A$ to $B$. Let $g:A\to A$ be a bijection. Define a new function $\Delta_g: F(A,B)\to F(A,B)$ as follows: $f\mapsto f\of g.$ Prove that $\Delta_g$ is a bijection.}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	\begin{itemize}
+		\item \underline{\textbf{Injective}}: Suppose $f,h\in F(A,B)\st \Delta_g(f)=\Delta_g(h).$ Since $g$ is a bijection, $g$ is also invertible. Denote the inverse of $g$ as $\g.$ By definition, $\dg(f)=f\of g$ and $\dg(h)=h\of g.$ So, by assumption, $f\of g=h\of g.$ Apply $f\of g$ and $h\of g$ to $\g,$ respectively, we have $(f\of g)\of\g=(h\of g)\of\g.$ So, we know that $f\of(g\of\g)=h\of(g\of\g).$ Since $g\of\g=i_A,$ we have $f\of i_A=h\of i_A.$ That is, $f=h.\qquad\square$
+		\item \underline{\textbf{Surjective}}: Suppose $h\in F(A,B).$ Choose $f=h\of\g\in F(A,B).$ Then, \[\dg(f)=f\of g=(h\of\g)\of g=h\of(\g\of g)=h\of i_A=h.\] Therefore, $\exists f=h\of\g\in F(A,B)\st\dg(f)=h\quad\forall h\in F(A,B).$ That is, $\dg$ is surjective.
+	\end{itemize}	
 \end{p}
 
 \begin{framed}\begin{q}
@@ -1048,7 +1063,8 @@ A function is a bijection if and only if it is invertible.
 	{Let $A,B$ be sets, and let $f:A\to B$ be a function. Let $I$ be an index, and let $\qty{C_i}_{i\in I}$ be a collection of subsets such that for all $i\in I,C_i\subseteq B.$ Prove that $\dsst\f\qty(\bigcap_{i\in I}C_i)=\bigcap_{i\in I}\f(C_i).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $a\in\dsst\f\qty(\bigcap_{i\in I}C_i).$ So, by definition of inverse image, $f(a)\in \dsst\bigcap_{i\in I}C_i.$ That is, $\forall i\in I,\ f(a)\in C_i.$ By definition of inverse image, $a\in\f(C_i)\quad\forall i\in I.$ That is, $a\in\dsst\bigcap_{i\in I}\f(C_i),$ by definition of set intersection. $\qquad\square$\par 
+	($\supseteq$)	Suppose $a\in\dsst\bigcap_{i\in I}\f(C_i).$ By definition of set intersection, $a\in\f(C_i)\quad\forall i\in I.$ By definition of inverse image, $f(a)\in C_i\quad\forall i\in I.$ That is, $f(a)\in\dsst\bigcap_{i\in I}C_i.$ So, $a\in\dsst\f\qty(\bigcap_{i\in I}C_i).$
 \end{p}
 
 \begin{framed}\begin{q}
@@ -1056,7 +1072,8 @@ A function is a bijection if and only if it is invertible.
 	{Let $A,B$ be sets, and let $f:A\to B$ be a function. Let $I$ be an index, and let $\qty{C_i}_{i\in I}$ be a collection of subsets such that for all $i\in I,C_i\subseteq B.$ Prove that $\dsst\f\qty(\bigcup_{i\in I}C_i)=\bigcup_{i\in I}\f(C_i).$}
 \end{q}\end{framed}
 \begin{p}
-	Prove.	
+	($\subseteq$) Suppose $a\in\dsst\f\qty(\bigcup_{i\in I}C_i).$ By definition of inverse image, $f(a)\in\dsst\bigcup_{i\in I}C_i.$ Hence, by definition of set union, $f(a)\in C_k\fs k\in I.$ So, $a\in\f(C_k)\fs k\in I.$ Since $\f(C_k)\subseteq\dsst\bigcup_{i\in I}\f(C_i),$ we have $a\in\dsst\bigcup_{i\in I}\f(C_i).\qquad\square$\par 
+	($\supseteq$) Suppose $a\in\dsst\bigcup_{i\in I}\f(C_i).$ Then, by definition of set union, $a\in\f(C_k)\fs k\in I.$ By definition of inverse image, $f(a)\in C_k\fs k\in I.$ So, $f(a)\in\dsst\bigcup_{i\in I}C_i.$ That is, $a\in\dsst\f\qty(\bigcup_{i\in I}C_i).$
 \end{p}
 
 \label{LastPage}
