@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
 
 \geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
 
@@ -55,25 +55,33 @@
 \newtheorem{prop}{Proposition}[subsection]
 \newtheorem{conj}{Conjecture}[subsection]
 
-\linespread{1.15}
+\linespread{1.1}
 
 \title{\textbf{Linear Algebra Done Right}}
 \author{Jiuru Lyu}
 \date{\today}
 
-\def\Z{{\mathbb{Z}}}
-\def\R{{\mathbb{R}}}
-\def\C{{\mathbb{C}}}
-\def\Q{{\mathbb{Q}}}
-\def\E{{\mathbb{E}}}
-\def\F{{\mathbb{F}}}
-\def\d{{\mathrm{d}}}
-\def\i{{\mathrm{i}}}
+\def\Z{\mathbb{Z}}
+\def\Zp{\mathbb{Z}^+}
+\def\N{\mathbb{N}}
+\def\Np{\mathbb{N}^+}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\E{\mathbb{E}}
+\def\F{\mathbb{F}}
+\def\d{\mathrm{d}}
+\def\i{\mathrm{i}}
+\def\P{\mathcal{P}}
+\def\L{\mathcal{L}}
+\def\M{\mathcal{M}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varemptyset}
 \def\st{\emph{ s.t. }}
 \def\fs{\emph{ f.s. }}
 \def\LI{\mathrm{L.I.}}
+\def\FD{\mathrm{F.D.}}
+\def\span{\mathrm{span}}
 
 \begin{document}
 \maketitle
@@ -151,6 +159,7 @@
 	\end{enumerate}
 \end{thm}
 
+\newpage
 \subsection{Definition of Vector Space}
 \begin{df}{Addition on $V$}
 	An \textit{addition} on $V$ is a function $(u,v)\mapsto u+v$ for all $u,v\in V.$	
@@ -182,7 +191,7 @@
 	A vector space has a unique additive identity. 
 \end{thm}
 	\begin{prf}
-		Suppose $0$ and $0'$ are both additive identities for some vector space $V$. So, \[\begin{aligned}0'&=0'+0\qquad\textit{Since }0\textit{ is an additive identity}\\&=0+0'\qquad\textit{commutativity}\\&=0.\qquad\textit{Since }0'\textit{ is an additive identity}\end{aligned}\]\par Then, $0'=0.$	
+		Suppose $0$ and $0'$ are both additive identities for some vector space $V$. So, \[\begin{aligned}0'&=0'+0&\textit{Since }0\textit{ is an additive identity}\\&=0+0'&\textit{commutativity}\\&=0.&\textit{Since }0'\textit{ is an additive identity}\end{aligned}\]\par Then, $0'=0.$	
 	\end{prf}
 \begin{thm}{Unique Additive Inverse of Vector Spaces}
 	A vector in a vector space has a unique additive inverse.
@@ -225,7 +234,7 @@
 	$\F^S$ is a vector space.
 \end{thm}
 
-
+\newpage
 \subsection{Subspace}
 \begin{df}{Subspace}
 	A subset $U$ of $V$ is called a \textit{subspace} of $V$ if $U$ is also a vector space using the same addition and scalar multiplication as on $V$.
@@ -298,31 +307,31 @@
 		Note that $U+W=\qty{(x,y,z)\mid x,y,z\in\F}=\F^3.$ Suppose \ding{172}: $(x,y,z)=(x,y,0)+(0,0,z),$ for some $x,y,z\in\F$ and \ding{173}: $(x,y,z)=(x',y',0)+(0,0,z')$ for some $x',y',z'\in\F.$ Then, \ding{172}$-$\ding{173}: \[(0,0,0)=(x-x',y-y',0)+(0,0,z-z')=(x-x',y-y',z-z').\] Then, $x-x'=y-y'=z-z'=0,$ which indicates $x=x',\ y=y',\ z=z'.$ So, by definition $U+W$ is a direct sum, or $\F^3=U\oplus W.$
 	\end{prf}
 \end{eg}
-\begin{eg}
+\begin{eg}\label{eg1.3.5}
 	Suppose $U_j$ is the subspace of $\F^n\st$\[\begin{aligned}U_1&=\qty{x,0,0,\cdots,0\mid x\in\F}\\U_2&=\qty{0,x,0,\cdots,0\mid x\in\F}\\&\vdots\\U_n&=\qty{0,0,0,\cdots,x\mid x\in\F}\end{aligned}\] Then, $\F^n=U_1\oplus U_2\oplus\cdots\oplus U_n.$
 	\begin{prf}
-		
+		Note that $\F^n=U_1+U_2+\cdots+U_n$ is evident. Now, we'll prove that $U_1+U_2+\cdots+U_n$ is a direct sum. Consider $x=(x_1,x_2,\cdots,x_n)\in\F^n.$ Assume that \[\begin{aligned}x&=(x_1,0,\cdots,0)+\cdots+(0,\cdots,0,x_n)\qquad\text{\ding{172}}\\\text{and}\quad x&=(x_1',0,\cdots,0)+\cdots+(0,\cdots,0,x_n')\qquad\text{\ding{173}}\end{aligned}\] Then, from \ding{172}-\ding{173}, we know that \[0=(x_1-x_1',\cdots,x_n-x_n')=(0,0,\cdots,0).\] Then, $\forall i=1,\cdots,n$ we have $x_i-x_i'=0,$ or $x_i=x_i'.$ Therefore, by definition, we know $U_1+\cdots+U_n$ is a direct sum. 
 	\end{prf}
 \end{eg}
 \begin{eg}\label{eg1.3.6}
 	Let \[\begin{aligned}U_1&=\qty{(x,y,0)\mid x,y\in\F}\\U_2&=\qty{(0,0,z)\mid z\in\F}\\U_3&=\qty{(0,y,y)\mid y\in\F}\end{aligned}\] Show that $U_1+U_2+U_3$ is not a direct sum.
 	\begin{prf}
-		
+		Consider $(0,0,0)\in\F^3.$ Note that \[(0,0,0)=(0,0,0)+(0,0,0)+(0,0,0)\] and \[(0,0,0)=(0,1,0)+(0,0,1)+(0,-1,-1).\] Then, $U_1+U_2+U_3$ is not a direct sum by definition. 
 	\end{prf}
 \end{eg}
-\begin{thm}{}
+\begin{thm}{}\label{1.12}
 	Suppose	$U_1,\cdots,U_m$ are subspaces of $V$. Then,$U_1+\cdots+U_m$ is a direct sum if and only if the only way to write $0$ as a sum $u_1+\cdots+u_m$ is by taking each $u_j=0.$
 \end{thm}
 	\begin{prf}
-		\par ($\Rightarrow$)
-		($\Leftarrow$)
+		\par ($\Rightarrow$) Since $U_1+\cdots+U_m$ is a direct sum, by definition, the only way to write $0\in\F^n$ is to write it as \[0=0+\cdots+0\qquad\text{where }0\in U_i\forall i=1,\cdots,m.\qquad\square\]\par 
+		($\Leftarrow$) Suppose the only way to write $0$ as a sum $u_1+\cdots+u_m$ is by taking each $u_j=0.$ Assume that for some $v\in V,$ we have \[\begin{aligned}v&=u_1+\cdots+u_m,\quad u_j\in U_j\qquad\text{\ding{172}}\\\text{and}\quad v&=u_1'+\cdots+u_m',\quad u_j'\in U_j \qquad\text{\ding{173}}.\end{aligned}\] Then, by \ding{172}-\ding{173}, and according to the conclusion from \egref{eg1.3.5}, we have \[0=(u_1-u_1')+\cdots+(u_m-u_m')=0+\cdots+0.\] So, $\forall i\in 1,\cdots,m,$ we have $u_i-u_i'=0.$ that is, $u_i=u_i'.$ So, $\forall v\in V,$ there is only one way to write $v$ as a sum of $u_1+\cdots_u+m.$ Therefore, by definition, $U_1+\cdots+U_m$ is a direct sum. 
 	\end{prf}
 \begin{thm}{}\label{thm1.3.4}
-	Suppose	$U$ amd $W$ are subspaces of $V$. Then,$U+W$ is a direct sum if and only if $U\cap W=\qty{0}$.
+	Suppose	$U$ amd $W$ are subspaces of $V$. Then, $U+W$ is a direct sum if and only if $U\cap W=\qty{0}$.
 \end{thm}
 	\begin{prf}
-		\par ($\Rightarrow$)
-		($\Leftarrow$)
+		\par ($\Rightarrow$) Suppose $U+W$ is a direct sum. Assume $v\in U\cap W.$ Then, $v\in U$ and $v\in W.$ By definition of subspace, we know $-v\in W$ as well. Note that \[0=v+(-v)\in U\cap W.\] Then, by \thmref{1.12}, we know that the only representation of $0\in U\cap W$ is $0=0+0$ since $U\cap W$ is a direct sum. Hence, it must be that $v=-v=0,$ and thus $U\cap W=\qty{0}.\qquad\square$\par 
+		($\Leftarrow$) Suppose $U\cap W=\qty{0}.$ Let $u\in U$ and $w\in W\st u+w=0.$ Then, we have $u=-w.$ Since $-w\in W,$ we know $u=-w\in W.$ By $u\in U$ and $u\in W,$ we know that $u\in U\cap W=\qty{0}.$ Therefore, $0=0+0$ is the only to represent $0\in U+W.$ By \thmref{1.12}, we know $U+W$ is a direct sum.
 	\end{prf}
 \begin{rmk}
 	When extending \thmref{thm1.3.4} to 3 subspaces $U_1,U+2,U+3,$ we cannot conclude $U_1\oplus U_2\oplus U_3$ if we have $U_1\cap U_2=U_1\cap U_3=U_2\cap U_3=\qty{0}.$ See \egref{eg1.3.6} as a counter example.
@@ -331,6 +340,87 @@
 \newpage
 \section{Finite-Dimensional Vector Spaces}
 \subsection{Span and Linear Independence}
+\begin{nota}
+	We usually write list of vectors without using parentheses.	
+\end{nota}
+\begin{eg}
+	$(4,1,6),(9,5,7)$ is a list of vectors of length $2$ in $\R^3.$
+\end{eg}
+\begin{df}{Linear Combination}
+	A \textit{linear combination} of a list $v_1,\cdots,v_m$ of vectors in $V$ is a vector of the form \[a_1v_1+\cdots+a_mv_m,\] where $a_1,\cdots,a_m\in\F.$	
+\end{df}
+\begin{eg}
+	Since $(17,-4,2)=6(2,1,-3)+5(1,-2,4),$ we say $(17,-4,2)$ is a linear combination of $(2,1,-3),(1,-2,4).$	
+\end{eg}
+\begin{df}{Span}
+	\[\span\qty(v_1,\cdots,v_m)=\qty{a_1v_1+\cdots+a_mv_m\mid a_1\cdots a_m\in\F}.\]	
+\end{df}
+\begin{eg}
+	Consider $\span(e_1,e_2,e_3):$ \[\begin{aligned}\span(e_1,e_2,e_3)&=\qty{a_1e_1+a_2e_2+a_3e_3\mid a_1,a_2,a_3\in\F}\\&=\qty{(a_1,a_2,a_3)\mid a_1,a_2,a_3\in\F}=\R^3.\end{aligned}\]	
+\end{eg}
+\begin{thm}{}\label{2.1.4}
+	The span of a list of vectors in $V$ is the smallest subspace of $V$ containing all the vectors in the list. 
+\end{thm}
+\begin{prf}
+	To prove this theorem, we will prove two parts: span is a subspace and span is the smallest subspace. 
+	\begin{enumerate}	
+		\item Span is a subspace of $V$.
+		\begin{enumerate}
+			\item By definition of span, we know $\span(v_1,\cdots,v_m)=\qty{a_1v_1+\cdots+a_mv_m\mid a_1,\cdots,a_m\in\F}.$ If we set $a_1,\cdots,a_m=0,$ then we have $0=0v_1+\cdots+0v_m.$ So, $0\in\span{v_1,\cdots,v_m}.$
+			\item Let $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m)$ and $b_1v_1+\cdots+b_mv_m\in\span(v_1,\cdots,v_m).$ Then, \[(a_1v_1+\cdots+a_mv_m)+(b_1v_1+\cdots+b_mv_m)=(a_1+b_1)v_1+\cdots+(a_m+b_m)v_m.\] Since $(a_1+b_1),\cdots,(a_m+b_m)\in\F,$ we know $(a_1+b_1)v_1+\cdots+(a_m+b_m)v_m\in\span(v_1,\cdots,v_m).$
+			\item Let $\lambda\in\F$ and $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m)$. Then, \[\lambda(a_1v_1+\cdots+a_mv_m)=\lambda a_1v_1+\cdots+\lambda a_mv_m.\] Since $\lambda a_1,\cdots,\lambda a_m\in\F,$ we know that $\lambda(a_1v_1+\cdots+a_mv_m)\in\span(v_1,\cdots,v_m).$
+		\end{enumerate}
+		Therefore, we have proven that span is a subspace of $V$. $\qquad\square$
+		\item Now, we want to show that span is the smallest subspace.\par Let $U$ be a subspace of $V$ containing $v_1,\cdots,v_m$. If we can  show that $\span(v_1,\cdots,v_m)\subseteq U$, we then know span is the smallest subspace containing $v_1,\cdots,v_m.$ Since $U$ is a subspace containing $v_1,\cdots,v_m,$ it is closed under addition and scalar multiplication. So, $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m).$ Therefore, $\span(v_1,\cdots,v_m)\subseteq U.$
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Span as a Verb}
+	If $\span(v_1,\cdots,v_m)=V,$ we say $v_1,\cdots,v_m$ \textit{spans} $V$.
+\end{df}
+\begin{df}{Finite-Dimensional Vector Space}
+	A vector space $V$ is called \textit{finite-dimensional} if $\exists$ a list of vectors, say $v_1,\cdots,v_m\st\span(v_1,\cdots,v_m)=V.$ In the following of this notes, we will use $\FD$ as a shortcut for saying ``finite-dimensional.''
+\end{df}
+\begin{df}{Infinte-Dimensional Vector Space}
+	A vector space $V$ is infinite-dimensional if it is not $\FD.$ This is equivalent to say that $\forall$ lists of vectors in $V$, they do not span $V$.
+\end{df}
+\begin{df}{Polynomial Functions}
+	A function $p:\F\to\F$ is called a \textit{polynomial} with coefficients in $\F$ if $\exists\ a_0,\cdots,a_m\in\F\st p(z)=a_0+a_1z+a_2z^2+\cdots+a_mz^m\quad\forall z\in\F.$ 
+\end{df}
+\begin{nota}
+	We use $\P(\F)$ to denote the set of all polynomial with coefficients in $\F.$	
+\end{nota}
+\begin{thm}{}
+	$\P(\F)$ is a vector space over $\F.$
+\end{thm}
+\begin{prf}
+	Recall the definition of $\F^\F.$ We will show $\P(\F)$ is a subspace of $\F^\F.$
+	\begin{enumerate}
+		\item $0=0+0z+\cdots+0z^m\in\P(\F).$
+		\item Suppose $p(z)=a_mz^m+\cdots+a_1z+a_0$ and $q(z)=b_nz^n+\cdots+b_1z+b_0\in\P(\F).$ WLOG, suppose $m>n,$ then we have $p(z)+q(z)=a_mz^m+\cdots+(a_n+b_n)z^n+\cdots+(a_0+b_0)\in\P(\F).$
+		\item Suppose $\lambda\in\F.$ Then, $\lambda p(z)=\lambda(a_mz^m+\cdots+a_1z+a_0)=\lambda a_mz^m+\cdots+\lambda a_0\in\P(\F).$
+	\end{enumerate}	
+	Hence, we've shown $\P(\F)$ is a subspace over $\F.$
+\end{prf}
+\begin{df}{Degree of a Polynomial}
+	A polynomial $p\in\P(\F)$ is said to have \textit{degree} $m$ if $\exists$ scalars $a_0,\cdots,a_m\in\F$ with $a_m\neq0\st p(z)=a_mz^m+\cdots+a_1z+a_0\quad\forall z\in\F.$ We write $\deg p=m.$ Specially, $\deg0\coloneqq-\infty$ and $\deg a_0\coloneqq0$ when $a_0\neq0.$
+\end{df}
+\begin{df}{$\P_m(\F)$}
+	For $m\in\Np,$ $\P_m(\F)$ denotes the set of all polynomial with coefficients in $\F$ and degree$\leq m.$ i.e., \[\P_m(\F)\coloneqq\qty{p\in\P(\F)\mid\deg p\leq m}.\]
+\end{df}
+\begin{eg}
+	For each $m\in\N,$ $\P_m(\F)$ is a $\FD$ vector space. 	
+\end{eg}
+\begin{prf}
+		
+\end{prf}
+\begin{rmk}
+	In this proof, we are abusing notation by letting $z^k$ to denote a function.	
+\end{rmk}
+
+
+
+
+
 \subsection{Bases}
 \subsection{Dimension}
 
