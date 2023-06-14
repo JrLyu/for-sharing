@@ -1,0 +1,1344 @@
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, tcolorbox, utopia}
+
+\geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
+
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+
+\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex}}{\par\end{framed}}
+
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
+
+\newtheorem*{hint}{Hint.}
+\newtheorem*{rmk}{Remark.}
+\newtheorem*{ext}{Extension.}
+
+\linespread{1.1}
+
+\title{\textbf{Linear Algebra Done Right}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\def\dsst{\displaystyle}
+\def\Z{\mathbb{Z}}
+\def\Zp{\mathbb{Z}^+}
+\def\N{\mathbb{N}}
+\def\Np{\mathbb{N}^+}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\E{\mathbb{E}}
+\def\F{\mathbb{F}}
+\def\d{\mathrm{d}}
+\def\i{\mathrm{i}}
+\def\P{\mathcal{P}}
+\def\L{\mathcal{L}}
+\def\M{\mathcal{M}}
+\def\T{T^{-1}}
+\def\At{A^t}
+\def\Ct{C^t}
+\def\Ua{U^0}
+\def\of{\circ}
+\def\epsilon{\varepsilon}
+\def\phi{\varphi}
+\def\emptyset{\varnothing}
+\def\st{\emph{ s.t. }}
+\def\fs{\emph{ f.s. }}
+\def\LI{\mathrm{L.I.}}
+\def\FD{\emph{f-d}}
+\def\span{\mathrm{span}}
+\def\len{\mathrm{len}}
+\def\pqde{\qquad\square}
+\def\Null{\mathrm{null\ }}
+\def\range{\mathrm{range\ }}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Vector Spaces}
+\subsection{$\R^n$ and $\C^n$}
+\begin{df}{Complex Number}
+	A \textit{complex number} is an ordered pair $(a,b),$ where $a,b\in\R,$ but we write it as $a+b\i.$
+\end{df}
+\begin{nota}
+	$\C\coloneqq\qty{a+b\i\mid a,b\in\R}$
+\end{nota}
+\begin{df}{Addition \& Multiplication}
+	\[(a+b\i)+(c+d\i)=(a+c)+(b+d)]\i\]
+	\[(a+b\i)(c+d\i)=(ac-bd)+(ad+bc)\i\]
+\end{df}
+\begin{thm}{Properties of Complex Arithmetic}
+	\begin{enumerate}
+		\item commutativity: $\alpha+\beta=\beta+\alpha;\quad \alpha\beta=\beta\alpha,\quad\forall\alpha,\beta\in\C.$
+		\item associativity: $(\alpha+\beta)+\lambda=\alpha+(\beta+\lambda);\quad(\alpha\beta)\lambda=\alpha(\beta\lambda),\quad\forall\alpha,\beta,\lambda\in\C.$
+		\item identities: $\lambda+0=\lambda;\quad\lambda\cdot1=\lambda,\forall\lambda\in\C.$
+		\item additive inverse: $\forall\alpha\in\C,\exists$ unique $\beta\in\C\st\alpha+\beta=0.$
+		\item multiplicative inverse: $\forall\alpha\in\C,\alpha\neq0,\exists$ unique $\beta\in\C\st\alpha\beta=1.$
+		\item distributivity: $\lambda(\alpha+\beta)=\lambda\alpha+\lambda\beta,\quad\forall\lambda,\alpha,\beta\in\C.$
+	\end{enumerate}
+\end{thm}
+\begin{df}{Subtraction}
+	If $-\alpha$ is the additive inverse of $\alpha,$ \textit{subtraction} on $\C$ is defined by \[\beta-\alpha=\beta+(-\alpha).\]	
+\end{df}
+\begin{df}{Division}
+	For $\alpha\neq0,$ let $\dfrac{1}{\alpha}$ denote the multiplicative inverse of $\alpha.$ Then, \textit{division} on $\C$ is defined by \[\dfrac{\beta}{\alpha}=\beta\cdot\qty(\dfrac{1}{\alpha})\]
+\end{df}
+\begin{nota}
+	$\F$ is either $\R$ or $\C.$	
+\end{nota}
+\begin{df}{List/Tuple}
+	Suppose $n$ is a non-negative integer. A list of length $n$ is an ordered collection of $n$ elements separated by commas and surrounded by parentheses: $(x_1,x_2,x_3,\cdots,x_n).$ Two lists are equal if and only if they have the same length and the same elements in the same order. 
+\end{df}
+\begin{rmk}
+	Lists must have a FINITE length.	
+\end{rmk}
+\begin{df}{$\F^n$ and Coordinate}
+	$\F^n$ is the set of all lists of length $n$ of elements of $\F$: \[\F^n\coloneqq\qty{(x_1,\cdots,x_n)\mid x_i\in\R\forall i=1,\cdots,n},\] where $x_i$ is the $i^\text{th}$ \textit{coordinate} of $(x_1,\cdots,x_n).$
+\end{df}
+\begin{eg}
+	$\R^2=\qty{(x,y)\mid x,y\in\R}$ and $\R^3=\qty{(x,y,z)\mid x,y,z\in\R}.$
+\end{eg}
+\begin{df}{Addition on $\F^n$}
+	\textit{Addition} on $\F^n$ is defined by adding corresponding coordinates: \[(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n).\]	
+\end{df}
+\begin{thm}{Commutativity of Addition on $\F^n$}
+	If $x,y\in\F^n,$ then $x+y=y+x.$
+\end{thm}
+	\begin{prf}
+		Suppose $x=(x_1,\cdots,x_n)$ and $y=(y_1,\cdots,y_n).$ Then \[\begin{aligned}x+y&=(x_1+y_1,\cdots,x_n+y_n)\\&=(y_1+x_1,\cdots,y_n+x_n)=y+x.\end{aligned}\]
+	\end{prf}
+\begin{df}{Zero}
+	Let $0$ denote the list of length $n$ whose coordinates are all $0$: $0\coloneqq(0,\cdots,0).$	
+\end{df}
+\begin{df}{Additive Inverse on $\F^n$}
+	For $x\in\F^n,$ the additive inverse of $x$, denoted $-x,$ is the vector $-x\in\F^n\st x+(-x)=0.$	
+\end{df}
+\begin{df}{Scalar Multiplication in $\F^n$}
+	The product of a number $\lambda\in\F$ and a vector $x\in\F^n$ is computed by multiplying each coordinate of the vector by $\lambda:$ \[\lambda x=\lambda(x_1,\cdots,x_n)=(\lambda x_1,\cdots,\lambda x_n),\] where $x=(x_1,\cdots,x_n)\in\F^n.$
+\end{df}
+\begin{thm}{Properties of Arithmetic Operations on $\F^n$}
+	\begin{enumerate}
+		\item $(x+y)+z=x+(y+z)\quad\forall x,y,z\in\F^n$
+		\item $(ab)x=a(bx)\quad\forall x\in\F^n$ and $\forall a,b\in\F.$
+		\item $1\cdot x=x\quad\forall x\in\F^n$ and $1\in\F.$
+		\item $\lambda(x+y)=\lambda x+\lambda y\quad\forall\lambda\in\R$ and $\forall x,y\in\F^n.$
+		\item $(a+b)x=ax+bx\quad\forall a,b\in\F$ and $\forall x\in\F^n.$
+	\end{enumerate}
+\end{thm}
+
+\newpage
+\subsection{Definition of Vector Space}
+\begin{df}{Addition on $V$}
+	An \textit{addition} on $V$ is a function $(u,v)\mapsto u+v$ for all $u,v\in V.$	
+\end{df}
+\begin{df}{Scalar Multiplication on $V$}
+	A \textit{scalar multiplication} on $V$ is a function $(\lambda,v)\mapsto \lambda v$ for all $\lambda\in\F$ and $v\in V.$	
+\end{df}
+\begin{df}{Vector Space}
+	A \textit{vector space} is a set $V$ along with an addition on $V$ and a scalar multiplication$\st$the following properties hold: 
+	\begin{enumerate}
+		\item commutativity: $u+v=v+u\quad\forall u,v\in V$
+		\item associativity: $(u+v)+w=u+(v+w)$ and $(ab)v=a(bv)\quad\forall u,v,w\in V$ and $\forall a,b\in\F.$
+		\item additive identity: $\exists0\in V\st v+0=v\quad\forall v\in V.$
+		\item additive inverse: $\exists w\in V\st v+w=0\quad\forall v\in V.$
+		\item multiplicative identity: $\exists1\in V\st1\cdot v=v\quad\forall v\in V.$
+		\item distributive properties: $a(u+v)=au+av$ and $(a+b)v=av+bv\quad\forall u,v\in V$ and $a,b\in\F.$
+	\end{enumerate}
+\end{df}
+\begin{df}{Vector}
+	Elements of a vector space are called \textit{vectors} or points.	
+\end{df}
+\begin{nota}
+	$V$ is a vector space over $\F.$	
+\end{nota}
+\begin{df}{Real and Complex Vector Space}
+	A vector space over $\R$ is called a \textit{real vector space}, and a vector space over $\C$ is called a \textit{complex vector space}.	
+\end{df}
+\begin{thm}{Unique Additive Identity of Vector Spaces}
+	A vector space has a unique additive identity. 
+\end{thm}
+	\begin{prf}
+		Suppose $0$ and $0'$ are both additive identities for some vector space $V$. So, \[\begin{aligned}0'&=0'+0&\textit{Since }0\textit{ is an additive identity}\\&=0+0'&\textit{commutativity}\\&=0.&\textit{Since }0'\textit{ is an additive identity}\end{aligned}\]\par Then, $0'=0.$	
+	\end{prf}
+\begin{thm}{Unique Additive Inverse of Vector Spaces}
+	A vector in a vector space has a unique additive inverse.
+\end{thm}
+	\begin{prf}
+		Let $V$ be a vector space. Suppose $w$ and $w'$ are additive inverses of $v$ for some $v\in V$. Note that \[\begin{aligned}w&=w+0\\&=w+(v+w')\\&=(w+v)+w\\&=0+w'=w'.\end{aligned}\]
+	\end{prf}
+\begin{nota}
+	Let $v,w\in V.$ Then, $-v$ denotes the additive inverse of $v$.
+\end{nota}
+\begin{df}{Subtraction}
+	$w-v$ is defined to be $w+(-v).$	
+\end{df}
+\begin{thm}{}
+	$0\cdot v=0\quad\forall v\in V.$
+\end{thm}
+	\begin{prf}
+		Since $v\in V,$ we know \[\begin{aligned}0\cdot v=(0+0)v&=0\cdot v+0\cdot v\\0\cdot v+(-0\cdot v)&=0\cdot+0\cdot+(-0\cdot v)\\0&=0\cdot v\end{aligned}\]	
+	\end{prf}
+\begin{thm}{}
+	$a\cdot0=0\quad\forall a\in\F.$
+\end{thm}
+	\begin{prf}
+		For $a\in\F,$ we have \[\begin{aligned}a\cdot0=a\cdot(0+0)&=a\cdot0+a\cdot0\\a\cdot0+(-a\cdot0)&=a\cdot0+a\cdot0+(-a\cdot0)\\0&=a\cdot0.\end{aligned}\]	
+	\end{prf}
+\begin{thm}{}
+	$(-1)v=-v\quad\forall v\in V.$	
+\end{thm}
+	\begin{prf}
+		For $v\in V,$ we have \[v+(-1)v=1\cdot v+(-1)\cdot v=(1+(-1))\cdot v=0\cdot v=0.\]\par Therefore, by definition, $(-1)v=-v.$	
+	\end{prf}
+\begin{nota} $\F^S$
+	\begin{enumerate}
+		\item If $S$ is a set, then $\F^S$ denotes the set of functions from $S$ to $\F$.
+		\item For $f,g\in\F^S,$ the \underline{sum} $f+g\in\F^S$ is the function defined by $(f+g)(x)=f(x)+g(x)\quad\forall x\in S.$
+		\item For $\lambda\in\F$ and $f\in\F^S,$ the \underline{product} $\lambda f\in\F^S$ is the function defined by $(\lambda f)(x)=\lambda f(x)\quad\forall x\in S.$
+	\end{enumerate}
+\end{nota}
+\begin{thm}{}
+	$\F^S$ is a vector space.
+\end{thm}
+
+\newpage
+\subsection{Subspace}
+\begin{df}{Subspace}
+	A subset $U$ of $V$ is called a \textit{subspace} of $V$ if $U$ is also a vector space using the same addition and scalar multiplication as on $V$.
+\end{df}
+\begin{thm}{Conditions for a Subspace}
+	A subset $U$ of $V$ is a subspace of $V$ if and only if $U$ satisfies the following conditions: 
+	\begin{enumerate}
+		\item additive identity: $0\in U;$
+		\item closed under addition: $u,w\in U\implies u+w\in U;$
+		\item closed under scalar multiplication: $a\in \F$ and $u\in U\implies au\in U.$
+	\end{enumerate}
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$) Suppose $U$ is a subspace of $V$. By definition, $U$ is then a vector space, and so those conditions are automatically satisfied. $\qquad\square$\par 
+		($\Leftarrow$)	Suppose $U$ satisfies the three conditions. Since $U$ is a subset of $V$, $U$ automatically has \textit{associativity}, \textit{commutativity}, \textit{multiplicative identity}, and \textit{distributivity}. So, we want to check $U$ has additive inverse and additive identities. \par For additive identity, we know $0\in U,$ by assumption.\par For additive inverse, by condition \#3, we know $-u=(-1)u\in U.$\par Then, $U$ is a vector space. 
+	\end{prf}
+\begin{eg}
+	If $b\in\F$, then $\qty{(x_1,x_2,x_3,x_4)\in\F^4\mid x_3=5x_4+b}$ is a subspace of $\F^4$ if and only if $b=0$.	
+	\begin{prf}
+		\par($\Rightarrow$) Suppose $U=\qty{(x_1,x_2,x_3,x_4)\in\F^4\mid x_3=5x_4+b}$ is a subspace of $\F^4.$ Then, $0=(0,0,0,0)\in U.$ So, $0=5\cdot0+b,$ or $b=0.\qquad\square$\par 
+		($\Leftarrow$) Suppose $b=0.$ Then, $x_3=5x_4.$ So, $U=\qty{(x_1,x_2,5x_4,x_4)\in\F^4}$
+		\begin{enumerate}
+			\item $0=(0,0,0,0)\in U$
+			\item Note that \[(x_1,x_2,5x_4,x_4)+(y_1,y_2,5y_4,y_4)=(x_1+y_1,x_2+y_2,5(x_4+y_4),x_4+y_4)\in U\] So, addition is closed under $U$.
+			\item $\forall a\in\F,$ we have \[a(x_1,x_2,5x_4,x_4)=(ax_1, ax_2, 5(ax_4), ax_4)\in U\] Then, $U$ is a subspace of $\F^4.$
+		\end{enumerate}
+	\end{prf}
+\end{eg}
+\begin{eg}
+	The set of continuous real-valued functions on interval $[0,1]$ is a subspace of $\R^{[0,1]}.$
+	\begin{prf}
+		\begin{enumerate}
+			\item $0$ (zero mapping)$\in U$
+			\item Set $f$ and $g\in \mathcal{C}[0,1],$ the set of continuous functions on interval $[0,1].$ Then, $f+g\in\mathcal{C}[0,1].$
+			\item From Calculus, we know that $\forall a\in\F,\quad af\in\mathcal{C}[0,1].$
+		\end{enumerate}
+	\end{prf}	
+\end{eg}
+\begin{df}{Sum of Subspaces}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V$. The \textit{sum} of $U_1,\cdots,U_m,$ denoted as $U_1+\cdots+U_m,$ is the set of all possible sums of elements of $U_1,\cdots,U_m$: \[U_1+\cdots+U_m=\qty{u_1+\cdots+u_m\mid u_i\in U_i\quad\forall i=1,\cdots,m}.\]	
+\end{df}
+\begin{eg}
+	Suppose $U=\qty{(x,0,0)\in\F^3\mid x\in\F}$ and  $W=\qty{(0,y,0)\in\F^3\mid y\in\F},$ then \[U+W=\qty{(x,y,0)\in\F^3\mid x,y\in\F}.\]
+\end{eg}
+\begin{thm}{}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V.$ Then, $U_1+\cdots+U_m$ is the \textit{smallest subspace} of $V$ containing $U_1,\cdots,U_m.$	
+\end{thm}
+	\begin{prf}
+		Suppose $U_1,\cdots,U_m$ are subspaces of $U$. Let $U_1+\cdots+U_m=\qty{u_1+\cdots+u_m\mid u_j\in U_j, j=1,\cdots m}.$ Suppose $w_j\in U_j,$ then $w_1+\cdots+w_m\in U_1+\cdots+U_m.$
+		\begin{enumerate}
+			\item $U_1+\cdots+U_m$ is a subspace of $V$.
+			\begin{enumerate}
+				\item Note that \[(u_1+\cdots+u_m)+(w_1+\cdots+w_m)=(u_1+w_1)+\cdots+(u_m+w_m)\in U_1+\cdots+U_m,\] so $U_1+\cdots+U_m$ is closed under addition.
+				\item Similarly, $U_1+\cdots+U_m$ is closed under scalar multiplication.
+				\item Note that $U_j$ is a subspace, so $0\in U_j.$ Hence, $(0,\cdots,0)=0\in U_1+\cdots+U_m.\qquad\square$
+			\end{enumerate}
+			\item Now, we want to show this subspace is the smallest subspace containing $U_1,\cdots,U_m.$ That is, we want to show $\forall\ W\supseteq U_1\cup\cdots\cup U_m,$ we have $W\supseteq U_1+\cdots+U_m$.\par Note that $U_j\subseteq U_1+\cdots+U_m,$ so we have $(U_1\cup U_2\cup\cdots\cup U_m)\subseteq U_1+\cdots+U_m$. This means $U_1+\cdots+U_m$ must contain $U_1,\cdots,U_m.$ Let $W$ be some subspace containing $U_1,\cdots,U_m.$ Then, for $j=1,\cdots,m,$ we have $u_j\in U_j,$ which indicates $u_j\in W.$ Therefore, $u_1+\cdots+u_m\in V$ and thus $U_1+\cdots+U_m\subseteq W.$\par Since $W$ was arbitrary, we've shown $\forall\ W$ that contains $U_1,\cdots,U_m,$ $U_1+\cdots+U_m\subseteq W.$ Therefore, $U_1+\cdots+U_m$ is the smallest. 
+		\end{enumerate}
+	\end{prf}
+\begin{df}{Direct Sum}
+	Suppose $U_1,\cdots,U_m$ are subspaces of $V.$ $U_1+\cdots+U_m$ is called a \textit{direct sum} if each element of $U_1+\cdots+U_m$ can be written in only one way as a sum $u_1+\cdots+u_m,$ where $u_j\in U_j.$
+\end{df}
+\begin{nota}
+	If $U_1+\cdots+U_m$ is a direct sum, then we use $U_1\oplus\cdots\oplus U_m$ to denote it.	
+\end{nota}
+\begin{eg}
+	Let $U=\qty{(x,y,0)\in\F^3\mid x,y\in\F}$ and $W=\qty{(0,0,z)\in\F^3\mid z\in\F}.$ Then, $\F^3=U\oplus W.$
+	\begin{prf}
+		Note that $U+W=\qty{(x,y,z)\mid x,y,z\in\F}=\F^3.$ Suppose \begin{equation}\label{eq1}(x,y,z)=(x,y,0)+(0,0,z),\end{equation} for some $x,y,z\in\F$ and \begin{equation}\label{eq2}(x,y,z)=(x',y',0)+(0,0,z')\end{equation} for some $x',y',z'\in\F.$ Then, (\ref{eq1})$-$(\ref{eq2}): \[(0,0,0)=(x-x',y-y',0)+(0,0,z-z')=(x-x',y-y',z-z').\] Then, $x-x'=y-y'=z-z'=0,$ which indicates $x=x',\ y=y',\ z=z'.$ So, by definition $U+W$ is a direct sum, or $\F^3=U\oplus W.$
+	\end{prf}
+\end{eg}
+\begin{eg}
+	Suppose $U_j$ is the subspace of $\F^n\st$\[\begin{aligned}U_1&=\qty{x,0,0,\cdots,0\mid x\in\F}\\U_2&=\qty{0,x,0,\cdots,0\mid x\in\F}\\&\vdots\\U_n&=\qty{0,0,0,\cdots,x\mid x\in\F}\end{aligned}\] Then, $\F^n=U_1\oplus U_2\oplus\cdots\oplus U_n.$
+	\begin{prf}
+		Note that $\F^n=U_1+U_2+\cdots+U_n$ is evident. Now, we'll prove that $U_1+U_2+\cdots+U_n$ is a direct sum. Consider $x=(x_1,x_2,\cdots,x_n)\in\F^n.$ Assume that \begin{equation}\label{eq3}x=(x_1,0,\cdots,0)+\cdots+(0,\cdots,0,x_n)\end{equation}and \begin{equation}\label{eq4}x=(x_1',0,\cdots,0)+\cdots+(0,\cdots,0,x_n')\end{equation} Then, from (\ref{eq3})-(\ref{eq4}), we know that \[0=(x_1-x_1',\cdots,x_n-x_n')=(0,0,\cdots,0).\] Then, $\forall i=1,\cdots,n$ we have $x_i-x_i'=0,$ or $x_i=x_i'.$ Therefore, by definition, we know $U_1+\cdots+U_n$ is a direct sum. 
+	\end{prf}
+\end{eg}
+\begin{eg}
+	Let \[\begin{aligned}U_1&=\qty{(x,y,0)\mid x,y\in\F}\\U_2&=\qty{(0,0,z)\mid z\in\F}\\U_3&=\qty{(0,y,y)\mid y\in\F}\end{aligned}\] Show that $U_1+U_2+U_3$ is not a direct sum.
+	\begin{prf}
+		Consider $(0,0,0)\in\F^3.$ Note that \[(0,0,0)=(0,0,0)+(0,0,0)+(0,0,0)\] and \[(0,0,0)=(0,1,0)+(0,0,1)+(0,-1,-1).\] Then, $U_1+U_2+U_3$ is not a direct sum by definition. 
+	\end{prf}
+\end{eg}
+\begin{thm}{}
+	Suppose	$U_1,\cdots,U_m$ are subspaces of $V$. Then,$U_1+\cdots+U_m$ is a direct sum if and only if the only way to write $0$ as a sum $u_1+\cdots+u_m$ is by taking each $u_j=0.$
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$) Since $U_1+\cdots+U_m$ is a direct sum, by definition, the only way to write $0\in\F^n$ is to write it as \[0=0+\cdots+0\qquad\text{where }0\in U_i\forall i=1,\cdots,m.\qquad\square\]\par 
+		($\Leftarrow$) Suppose the only way to write $0$ as a sum $u_1+\cdots+u_m$ is by taking each $u_j=0.$ Assume that for some $v\in V,$ we have \begin{equation}\label{eq5}v=u_1+\cdots+u_m,\quad u_j\in U_j\end{equation}and\begin{equation}\label{eq6}\quad v=u_1'+\cdots+u_m',\quad u_j'\in U_j.\end{equation} Then, by (\ref{eq5})-(\ref{eq6}), and according to the conclusion from Example 1.3.11, we have \[0=(u_1-u_1')+\cdots+(u_m-u_m')=0+\cdots+0.\] So, $\forall i\in 1,\cdots,m,$ we have $u_i-u_i'=0.$ that is, $u_i=u_i'.$ So, $\forall v\in V,$ there is only one way to write $v$ as a sum of $u_1+\cdots_u+m.$ Therefore, by definition, $U_1+\cdots+U_m$ is a direct sum. 
+	\end{prf}
+\begin{thm}{}
+	Suppose	$U$ amd $W$ are subspaces of $V$. Then, $U+W$ is a direct sum if and only if $U\cap W=\qty{0}$.
+\end{thm}
+	\begin{prf}
+		\par ($\Rightarrow$) Suppose $U+W$ is a direct sum. Assume $v\in U\cap W.$ Then, $v\in U$ and $v\in W.$ By definition of subspace, we know $-v\in W$ as well. Note that \[0=v+(-v)\in U\cap W.\] Then, by Theorem 1.3.13, we know that the only representation of $0\in U\cap W$ is $0=0+0$ since $U\cap W$ is a direct sum. Hence, it must be that $v=-v=0,$ and thus $U\cap W=\qty{0}.\qquad\square$\par 
+		($\Leftarrow$) Suppose $U\cap W=\qty{0}.$ Let $u\in U$ and $w\in W\st u+w=0.$ Then, we have $u=-w.$ Since $-w\in W,$ we know $u=-w\in W.$ By $u\in U$ and $u\in W,$ we know that $u\in U\cap W=\qty{0}.$ Therefore, $0=0+0$ is the only to represent $0\in U+W.$ By Theorem 1.3.13, we know $U+W$ is a direct sum.
+	\end{prf}
+\begin{rmk}
+	When extending Theorem 1.3.14 to 3 subspaces $U_1,U_2,U_3,$ we cannot conclude $U_1\oplus U_2\oplus U_3$ if we have $U_1\cap U_2=U_1\cap U_3=U_2\cap U_3=\qty{0}.$ See Example 1.3.12 as a counterexample.
+\end{rmk}
+
+\newpage
+\section{Finite-Dimensional Vector Spaces}
+\subsection{Span and Linear Independence}
+\begin{nota}
+	We usually write list of vectors without using parentheses.	
+\end{nota}
+\begin{eg}
+	$(4,1,6),(9,5,7)$ is a list of vectors of length $2$ in $\R^3.$
+\end{eg}
+\begin{df}{Linear Combination}
+	A \textit{linear combination} of a list $v_1,\cdots,v_m$ of vectors in $V$ is a vector of the form \[a_1v_1+\cdots+a_mv_m,\] where $a_1,\cdots,a_m\in\F.$	
+\end{df}
+\begin{eg}
+	Since $(17,-4,2)=6(2,1,-3)+5(1,-2,4),$ we say $(17,-4,2)$ is a linear combination of $(2,1,-3),(1,-2,4).$	
+\end{eg}
+\begin{df}{Span}
+	\[\span\qty(v_1,\cdots,v_m)=\qty{a_1v_1+\cdots+a_mv_m\mid a_1\cdots a_m\in\F}.\]	
+\end{df}
+\begin{eg}
+	Consider $\span(e_1,e_2,e_3):$ \[\begin{aligned}\span(e_1,e_2,e_3)&=\qty{a_1e_1+a_2e_2+a_3e_3\mid a_1,a_2,a_3\in\F}\\&=\qty{(a_1,a_2,a_3)\mid a_1,a_2,a_3\in\F}=\R^3.\end{aligned}\]	
+\end{eg}
+\begin{thm}{}
+	The span of a list of vectors in $V$ is the smallest subspace of $V$ containing all the vectors in the list. 
+\end{thm}
+\begin{prf}
+	To prove this theorem, we will prove two parts: span is a subspace and span is the smallest subspace. 
+	\begin{enumerate}	
+		\item Span is a subspace of $V$.
+		\begin{enumerate}
+			\item By definition of span, we know $\span(v_1,\cdots,v_m)=\qty{a_1v_1+\cdots+a_mv_m\mid a_1,\cdots,a_m\in\F}.$ If we set $a_1,\cdots,a_m=0,$ then we have $0=0v_1+\cdots+0v_m.$ So, $0\in\span{v_1,\cdots,v_m}.$
+			\item Let $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m)$ and $b_1v_1+\cdots+b_mv_m\in\span(v_1,\cdots,v_m).$ Then, \[(a_1v_1+\cdots+a_mv_m)+(b_1v_1+\cdots+b_mv_m)=(a_1+b_1)v_1+\cdots+(a_m+b_m)v_m.\] Since $(a_1+b_1),\cdots,(a_m+b_m)\in\F,$ we know $(a_1+b_1)v_1+\cdots+(a_m+b_m)v_m\in\span(v_1,\cdots,v_m).$
+			\item Let $\lambda\in\F$ and $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m)$. Then, \[\lambda(a_1v_1+\cdots+a_mv_m)=\lambda a_1v_1+\cdots+\lambda a_mv_m.\] Since $\lambda a_1,\cdots,\lambda a_m\in\F,$ we know that $\lambda(a_1v_1+\cdots+a_mv_m)\in\span(v_1,\cdots,v_m).$
+		\end{enumerate}
+		Therefore, we have proven that span is a subspace of $V$. $\qquad\square$
+		\item Now, we want to show that span is the smallest subspace.\par Let $U$ be a subspace of $V$ containing $v_1,\cdots,v_m$. If we can  show that $\span(v_1,\cdots,v_m)\subseteq U$, we then know span is the smallest subspace containing $v_1,\cdots,v_m.$ Since $U$ is a subspace containing $v_1,\cdots,v_m,$ it is closed under addition and scalar multiplication. So, $a_1v_1+\cdots+a_mv_m\in\span(v_1,\cdots,v_m).$ Therefore, $\span(v_1,\cdots,v_m)\subseteq U.$
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Span as a Verb}
+	If $\span(v_1,\cdots,v_m)=V,$ we say $v_1,\cdots,v_m$ \textit{spans} $V$.
+\end{df}
+\begin{df}{Finite-Dimensional Vector Space}
+	A vector space $V$ is called \textit{finite-dimensional} if $\exists$ a list of vectors, say $v_1,\cdots,v_m\st\span(v_1,\cdots,v_m)=V.$ In the following of this notes, we will use $\FD$ as a shortcut for saying ``finite-dimensional.''
+\end{df}
+\begin{df}{Infinte-Dimensional Vector Space}
+	A vector space $V$ is infinite-dimensional if it is not $\FD.$ This is equivalent to say that $\forall$ lists of vectors in $V$, they do not span $V$.
+\end{df}
+\begin{df}{Polynomial Functions}
+	A function $p:\F\to\F$ is called a \textit{polynomial} with coefficients in $\F$ if $\exists\ a_0,\cdots,a_m\in\F\st p(z)=a_0+a_1z+a_2z^2+\cdots+a_mz^m\quad\forall z\in\F.$ 
+\end{df}
+\begin{nota}
+	We use $\P(\F)$ to denote the set of all polynomial with coefficients in $\F.$	
+\end{nota}
+\begin{thm}{}
+	$\P(\F)$ is a vector space over $\F.$
+\end{thm}
+\begin{prf}
+	Recall the definition of $\F^\F.$ We will show $\P(\F)$ is a subspace of $\F^\F.$
+	\begin{enumerate}
+		\item $0=0+0z+\cdots+0z^m\in\P(\F).$
+		\item Suppose $p(z)=a_mz^m+\cdots+a_1z+a_0$ and $q(z)=b_nz^n+\cdots+b_1z+b_0\in\P(\F).$ WLOG, suppose $m>n,$ then we have $p(z)+q(z)=a_mz^m+\cdots+(a_n+b_n)z^n+\cdots+(a_0+b_0)\in\P(\F).$
+		\item Suppose $\lambda\in\F.$ Then, $\lambda p(z)=\lambda(a_mz^m+\cdots+a_1z+a_0)=\lambda a_mz^m+\cdots+\lambda a_0\in\P(\F).$
+	\end{enumerate}	
+	Hence, we've shown $\P(\F)$ is a subspace over $\F.$
+\end{prf}
+\begin{df}{Degree of a Polynomial}
+	A polynomial $p\in\P(\F)$ is said to have \textit{degree} $m$ if $\exists$ scalars $a_0,\cdots,a_m\in\F$ with $a_m\neq0\st p(z)=a_mz^m+\cdots+a_1z+a_0\quad\forall z\in\F.$ We write $\deg p=m.$ Specially, $\deg0\coloneqq-\infty$ and $\deg a_0\coloneqq0$ when $a_0\neq0.$
+\end{df}
+\begin{df}{$\P_m(\F)$}
+	For $m\in\Np,$ $\P_m(\F)$ denotes the set of all polynomial with coefficients in $\F$ and degree$\leq m.$ i.e., \[\P_m(\F)\coloneqq\qty{p\in\P(\F)\mid\deg p\leq m}.\]
+\end{df}
+\begin{eg}
+	For each $m\in\N,$ $\P_m(\F)$ is a $\FD$ vector space. 	
+	\begin{prf}
+		Note that $\P_m(\F)$ is a vector space because it is a subspace of $\P(\F).$ Suppose $p(z)\in\P_m(\F),$ then $p(z)=a_0+a_1z+\cdots+a_mz^m\in\span(1,z,\cdots,z^m).$ Then, by definition, $\P_m(\F)$ is $\FD$.
+	\end{prf}
+\end{eg}
+\begin{rmk}
+	In this proof, we are abusing notation by letting $z^k$ to denote a function.	
+\end{rmk}
+\begin{eg}
+	$\P(\F)$ is infinite-dimensional.
+	\begin{prf}
+		For any list of vectors in $\P(\F),$ by definition of list, the length of it is finite. Suppose the highest degree in this list is $m$. Consider a polynomial with degree of $m+1:\ z^{m+1}.$ Since $z^{m+1}$ cannot be written as linear combinations of the list of polynomials, we know the list does not span $\P(\F).$ So, $\P(\F)$ is infinite-dimensional. 
+	\end{prf}
+\end{eg}
+\begin{df}{Linear Independence}
+	A list $v_1,\cdots,v_m$ of vectors in $V$ is called \textit{linearly independent} ($\LI$) if the only choice of $a_1,\cdots,a_m\in\F$ that makes $a_1v_1+\cdots+a_mv_m=0$ is $a_1=\cdots=a_m=0.$	 Specially, the empty list $()$ is declared to be $\LI.$
+\end{df}
+\begin{df}{Linear Dependence}
+	$v_1,\cdots,v_m$ is called \textit{linearly dependent} if it is not $\LI$. Or, equivalently, $v_1,\cdots,v_m$ is \textit{linearly dependent} if $\exists\ a_1,\cdots, a_m\in\F$ not all $0\st \dsst\sum_{i=0}^ma_iv_i=0.$	
+\end{df}
+\begin{eg}
+	Let $v_1,\cdots,v_m\in V$. If $v_j$ is a linear combination of other $v$'s, then $v_1,\cdots,v_m$ is linearly dependent. 
+	\begin{prf}
+		By assumption, $v_j=a_1v_1+\cdots+a_{j-1}v_{j-1}+a_{j+1}v_{j+a}+\cdots+a_mv_m$ for some $a_i$ not all $0$. So, $0=a_1v_1+\cdots+a_{j-1}v_{j-1}+a_{j+1}v_{j+1}+\cdots+a_mv_m-v_j,$ a linear combination of $v_1,\cdots,v_m$. Since $-v_j$ has a coefficient of $-1\neq0$, by definition, $v_1,\cdots,v_m$ is not $\LI.$
+	\end{prf}
+\end{eg}
+\begin{lem}{Linear Dependence Lemma}
+	Suppose $v_1,\cdots,v_m$ is a linearly dependent list in $V$. Then, $\exists\ j\in\qty{1,\cdots,m}\st$ the following hold: 
+	\begin{enumerate}
+		\item $v_j\in\span(v_1,\cdots,v_{j-1})$
+		\item if the $j^\text{th}$ term is removed from $v_1,\cdots,v_m,$ the span of the remaining list equals $\span(v_1,\cdots,v_m)$.
+	\end{enumerate}
+\end{lem}
+\begin{prf}
+	\begin{enumerate}
+		\item Since $v_1,\cdots,v_m$ is linearly dependent, $a_1v_1+\cdots+a_mv_m=0,$ for some $a_i\neq0.$ Let $j$ be the maximized index $\st a_j\neq0.$ Then, $a_{j+1}=\cdots=a_m=0$, by this assumption. Hence, \[\begin{aligned}a_jv_j&=-a_1v_1-\cdots-a_{j-1}v_{j-1}-a_{j+1}v_{j+1}-\cdots-a_mv_m\\&=-a_1v_1-\cdots-a_{j-1}v_{j-1}\\v_j&=-\dfrac{a_1}{a_j}v_1-\cdots-\dfrac{a_{j-1}}{a_j}v_{j-1}.\end{aligned}\] Since $-\dfrac{a_1}{a_j},\cdots,-\dfrac{a_{j-1}}{a_j}\in\F,$ we know $v_j\in\span(v_1,\cdots,v_{j-1}).\qquad\square$
+		\item Consider \[\begin{aligned}\span(v_1,\cdots,v_j,\cdots,v_m)&=\span(v_1,\cdots,-\dfrac{a_1}{a_j}v_1-\cdots-\dfrac{a_{j-1}}{a_j}v_{j-1},\cdots,v_m)\\&=\span(v_1,\cdots,v_{j-1},v_{j+1},\cdots,v_m).\end{aligned}\]
+	\end{enumerate}	
+\end{prf}
+\begin{rmk}
+	By using this Lemma 2.1.21, we can do lots of proofs using the ``step'' strategy. Namely, we start to remove vectors from a list that are linearly dependent to obtain a $\LI$ list. However, this ``step'' strategy can only be used when dealing with FINITE-dimensional vector spaces. 
+\end{rmk}
+\begin{thm}{}
+	Let $V$ be a $\FD$ vector space. Let $\span(w_1,\cdots,w_n)=V.$ Let $u_1,\cdots,u_m$ be $\LI.$ Then, $m\leq n.$
+\end{thm}
+\begin{prf}
+	\par $\boxed{\text{Step }1}$ Note that $u_1,w_1,\cdots,w_n$ is linearly dependent because $u_1\in V=\span(w_1,\cdots,w_n).$ Then, by Lemma 2.1.21, we can remove one of the $w$'s, say $w_{j1}$. Then, the list becomes \[\qty{u_1,w_1,\cdots,w_n}\setminus\qty{w_{j1}}.\]\par 
+	$\boxed{\text{Step }2}$ Adjoin $u_2.$ Apply the same reasoning, since $\span\qty(\qty{u_1,w_1,\cdots,w_n}\setminus\qty{w_{j1}})=V,$ we know $\qty{u_1,u_2,w_1,\cdots,w_n}\setminus\qty{w_{j1}}$ is linearly dependent. Since $u_2\notin\span(u_1),$ Lemma 2.1.21 is not applicable to $u_2$. Now, we can remove another $w$ from the list, say $w_{j2}.$ The list becomes \[\qty{u_1,u_2,w_1,\cdots,w_n}\setminus\qty{w_{j1},w_{j2}}.\]\par\indent\indent$\vdots$\par 
+	$\boxed{\text{Step }m}$ After $m$ steps, we list will become \[\qty{u_1,\cdots,u_m,w_1,\cdots,w_n}\setminus\qty{w_{j1},\cdots,w_{jm}}.\] Since $\span(\qty{u_1,\cdots,u_m,w_1,\cdots,w_n}\setminus\qty{w_{j1},\cdots,w_{jm}})=V,$ this list is still linearly dependent, so by Lemma 2.1.21, we know $\exists\ w$ to be removed. Therefore, $n\geq m.$
+\end{prf}
+\begin{thm}{}
+	Every subspace of a $\FD$ vector space is $\FD.$
+\end{thm}
+\begin{prf}
+	Suppose $V$ to be a $\FD$ vector space and $U$ to be a subspace of $V$.\par 
+	$\boxed{\text{Step }1}$ If $U=\qty{0},$ then $U$ is $\FD.$ If $U\neq\qty{0},$ then choose $v_i\in U\st v_1\neq 0.$\par \indent\indent$\vdots$\par 
+	$\boxed{\text{Step }j }$ If $U=\span(v_1,\cdots,v_{j-1}),$ then $U$ is $\FD.$ If $U\neq\span(v_1,\cdots,v_{j-1}),$ then choose $v_j\in U\st v_j\notin\span(v_1,\cdots,v_{j-1})$.\par 
+	By Lemma 2.1.21 and Theorem 2.1.22, we know this process will eventually terminate because the vector list that spans $U$ cannot be longer than any spanning list of $V$. Therefore, $U$ is $\FD.$
+\end{prf}
+
+\newpage
+\subsection{Bases}
+\begin{df}{Basis}
+	A \textit{basis} of $V$ is a list of vectors in $V$ that is $\LI$ and spans $V$.
+\end{df}
+\begin{eg}
+	\begin{enumerate}
+		\item The standard basis of $\F^n$: \[(1,0,\cdots,0),(0,1,0,\cdots,0),\cdots,(0,\cdots,0,1).\]
+		\item $(1,1,0),(0,0,1)$ is a basis of $V$, where $V=\qty{(x,x,y)\in\F^3\mid x,y\in\F}.$
+		\begin{prf}
+		\begin{enumerate}
+			\item Suppose $a_1(1,1,0)+a_2(0,0,1)=0,$ we have $(a_1,a_1,a_2)=0.$ So, it must be $a_1=a_2=0.$ Therefore, $(1,1,0),(0,0,1)$ is $\LI.\qquad\square$
+			\item Suppose $(x,x,y)\in V.$ Note that $(x,x,y)=x(1,1,0)+y(0,0,1)$, then, $V=\span((1,1,0),(0,0,1)).$ 
+		\end{enumerate}
+		Therefore, we've proven $(1,1,0),(0,0,1)$ is a basis of $V$ according to the definition of basis.
+		\end{prf}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}{Criterion for Basis}
+	A list $v_1,\cdots,v_n\in V$ is a basis list of $V$ if and only if every $v\in V$ can be written uniquely in the form $v=a_1v_1+\cdots+a_nv_n,$ where $a_i\in\F.$	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Let $v_1,\cdots,v_n$ be a basis of $V$. Let $v\in V.$ By definition of basis, $V=\span(v_1,\cdots,v_n).$ So, $v\in\span(v_1,\cdots,v_n),$ and thus $v=a_1v_1+\cdots+a_nv_n$ for some $a_i\in\F.$ Assume for the sake of contradiction that $v=b_1v_1+\cdots+b_nv_n$ for some $b_i\neq a_i\in\F.$ Then, \[\begin{aligned}v-v&=(a_1-b_1)v_1+\cdots+(a_n-b_n)v_n\\0&=(a_1-b_1)v_1+\cdots+(a_n-b_n)v_n.\end{aligned}\] Since $v_1,\cdots,v_n$ is a basis, it is $\LI.$ So, $0=0v_1+\cdots+0v_n.$ Therefore, we know $a_1-b_1=\cdots=a_n-b_n=0.$ That is, $a_1=b_1,\cdots,a_n=b_n.$ $\divideontimes$ This is a contradiction with the assumption that $\exists\ a_i\neq b_i.$ Hence, it must be that $v=a_1v_1+\cdots+a_nv_n$ is unique.$\qquad\square$\par 
+	($\Leftarrow$) Suppose $v=a_1v_1+\cdots+a_nv_n$ is the unique representation $\forall\ v\in V.$ Then, $v\in\span(v_1,\cdots,v_n).$ Since $v\in V,$ then $V\subseteq\span(v_1,\cdots,v_n).$ However, $v_1,\cdots,v_n\in V,$ so $\span(v_1,\cdots,v_n)\subseteq V.$ Therefore, $\span(v_1,\cdots,v_n)=V.$ To show $v_1,\cdots,v_n$ is $\LI,$ further consider $0=a_1v_1+\cdots+a_nv_n.$ Since $0\in V,$ by assumption, $\exists$ a unique way to write $0$ as $a_1v_1+\cdots+a_nv_n,$ and that unique way is to take every $a_i=0.$ Hence, by definition, we know $v_1,\cdots,v_n$ is $\LI$. Since $v_1,\cdots,v_n$ is $\LI$ and $\span(v_1,\cdots,v_n)=V,$ we know $v_1,\cdots,v_n$ is a basis list of $V$.
+\end{prf}
+\begin{thm}{}
+	Every spanning list can be reduced to a basis of the vector space. 	
+\end{thm}
+\begin{prf}
+	Suppose $V=\span(v_1,\cdots,v_n).$ If $v_i=0,$ we just remove $v_i.$ So, let's suppose $v_i\neq0.$\par 
+	$\boxed{\text{Step }1}$ If $v_2\in\span(v_1),$ delete it. If $v_2\notin\span(v_2),$ keep it.\par\indent\indent$\vdots$\par 
+	$\boxed{\text{Step }j}$ If $v_j\in\span(v_1,\cdots,v_{j-1}),$ delete it. If $v_j\notin\span(v_1,\cdots,v_{j-1}),$ keep it.\par\indent\indent$\vdots$\par 
+	$\boxed{\text{Step }n}$ After $n$ steps, we will have a ``sub-list'' from the original list $\st$ it spans $V$ and is $\LI.$ Therefore, the basis list is contained in the spanning list. 
+\end{prf}
+\begin{cor}
+	Every $\FD$ vector space has a basis. 	
+\end{cor}
+\begin{prf}
+	By definition, $\FD$ vector space always has a spanning list. By Theorem 2.2.4, a spanning list contain a basis.
+\end{prf}
+\begin{thm}{}
+	Every linearly independent list of vectors in a $\FD$ vector space can be extended to a basis of the vector space. 
+\end{thm}
+\begin{prf}
+	Suppose $u_1,\cdots,u_m$ is $\LI$ in a $\FD$ vector space of $V$. Let $w_1,\cdots,w_n$ be a basis of $V$. Then, $u_1,\cdots,u_m,w_1,\cdots,w_n$ spans $V$. According to Lemma 2.1.21 and Theorem 2.1.22, we can reduce $u_1,\cdots,u_m,w_1,\cdots,w_m$ to some list of $u_1,\cdots,u_m$ and some $w$'s.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Then, there is a subspace $W$ of $V\st V=U\oplus W.$ 
+\end{thm}
+\begin{prf}
+	Since $V$ is $\FD,$ $U$, as $V$'s subspace, is also $\FD.$ So, $\exists$ a basis of $U$, say $u_1,\cdots,u_m.$ Then, $u_1,\cdots,u_m$ is $\LI$ and $\in V.$ By Theorem 2.2.6, this list can be extended to a basis \[u_1,\cdots,u_m,w_1,\cdots,w_n\text{ of }V.\] Let $W=\span(w_1,\cdots,w_n).$ We'll show $V=U\oplus W.$
+	\begin{enumerate}
+		\item WTS: $V=U+W.$ Suppose $v\in V.$ Then, \[v=\underbrace{a_1u_1+\cdots+a_mu_m}_{\in U}+\underbrace{b_1w_1+\cdots+b_nw_n}_{\in W}.\] So, $v\in U+W,$ or $V=U+W.\qquad\square$
+		\item WTS: $U\cap W=\qty{0}.$ Suppose $v\in U\cap W.$ Then, $v\in U$ and $v\in W.$ So, \[v=a_1u_1+\cdots+a_mv_m=b_1w_1+\cdots+b_nw_n.\] Hence, \begin{equation}\label{eq7}a_1u_1+\cdots+a_mu_m-b_1w_1-\cdots-b_nw_n=0.\end{equation} Since by assumption, $u_1,\cdots,u_m,w_1,\cdots,w_n$ is a basis of $V$, so $u_1,\cdots,u_m,w_1,\cdots,w_n$ is $\LI.$ Therefore, the only way for Equation (\ref{eq7}) to hold is when $a_1=\cdots=a_m=b_1=\cdots=b_n=0.$ Hence, $v=0u_1+\cdots+u_m=0.$ That is, $U\cap W=\qty{0}.$
+	\end{enumerate}
+	Therefore, we've shown that $V=U\oplus W.$
+\end{prf}
+
+\newpage
+\subsection{Dimension}
+\begin{thm}{}
+	Let $B_1$ and $B_2$ be two bases of $V$, then $B_1$ and $B_2$ have the same length. 	
+\end{thm}
+\begin{prf}
+	Since $B_1$ is $\LI$ in $V$ and $B_2$ spans $V$, by Theorem 2.1.22, we know $\len(B_1)\leq\len(B_2).$ Interchanging the roles of $B_1$ and $B_2,$ we have $\len(B_2)\leq\len(B_1).$ So, we have $\len(B_1)=\len(B_2).$
+\end{prf}
+\begin{df}{Dimension}
+	The \textit{dimension} of a $\FD$ vector space $V$ is the length of any basis of $V$.	
+\end{df}
+\begin{nota}
+	We use $\dim V$ to denote the dimension of a $\FD$ vector space $V$.	
+\end{nota}
+\begin{eg}
+	$\dim\F^n=n$ and $\dim\P_m(\F)=m+1\ (1,z,z^2,\cdots,z^m).$
+\end{eg}
+\begin{thm}{}
+	If $V$ is $\FD$ and $U$ is a subspace of $V$, then $\dim U\leq\dim V.$	
+\end{thm}
+\begin{prf}
+	Let $B_1$ be a basis of $U$ and $B_2$ be a basis of $V$. Then, $B_1$ is a $\LI$ list of $V$ and $B_2$ spans $V$. Then, By Theorem 2.1.22, we know that $\len(B_1)\leq\len(B_2).$ So, by definition of dimension, we know $\dim U\leq\dim V.$
+\end{prf}
+\begin{ext}
+	If $V$ is $\FD$ and $U$ is a subspace of $V$, given $U\subsetneq V,$ then $\dim U<\dim V.$
+\end{ext}
+\begin{prf}
+	Let $u_1,\cdots,u_m$ be a basis of $U$. Since $U\subsetneq V,$ we know $V-U\neq\emptyset$. So, choose $v\in V-U.$ Then, $v\notin\span(u_1,\cdots,u_m).$ Therefore, $u_1,\cdots,u_m,v$ is $\LI$ in $V$. That is \[\begin{aligned}\dim V&\geq\dim(\span(u_1,\cdots,u_m,v))\\&>\dim(\span(u_1,\cdots,u_m))\\&=\dim U.\end{aligned}\]	
+\end{prf}
+\begin{thm}{}
+	Let $V$ be $\FD,$ then every $\LI$ list of vectors in $V$ with length $\dim V$ is a basis of $V$.	
+\end{thm}
+\begin{prf}
+	Let $v_1,\cdots,v_n\in V$ be $\LI.$ Let $n=\dim V.$ When extending the list to basis, we get \[\qty{v_1,m\cdots,v_n}\cup\emptyset\] as a basis of $V$. That is, $v_1,\cdots,v_n$ has already been a basis of $V$.
+\end{prf}
+\begin{rmk} The proof given above is not that straight-forward, so we are giving an easier-understanding proof as follows.\end{rmk}
+\begin{prf}
+	Suppose for the sake of contradiction that $\exists v_1,\cdots,v_n\in V$ not a basis of $V$ for $n=\dim V.$ Then, $\span(v_1,\cdots,v_n)\neq V.$ That is, $\exists\ v_{n+1}\st v_{n+1}\notin\span(v_1,\cdots,v_n).$ Adding $v_{n+1}$ to the vector list, we have $v_1,\cdots,v_n,v_{n+1}$ is $\LI.$ By Theorem 2.3.5, we know $\len(v_1,\cdots,v_{n+1})=n+1\leq\dim V.$ $\divideontimes$ This contradicts with the fact that $\dim V=n<n+1.$ So, our assumption is incorrect, and it must be that $v_1,\cdots,v_n$ is a basis of $V$.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is $\FD$. Then, every spanning list of vectors in $V$ with length $\dim V$ is a basis of $V$.
+\end{thm}
+\begin{eg}
+	Show that $1,(x-5)^2,(x-5)^3$ is a basis of the subspace $U$ of $\P_3(\R)$ defined by \[U=\qty{p\in\P_3(\R)\mid p'(5)=0}.\]	
+	\begin{prf}
+		Consider $a_1+a_2(x-5)^2+a_3(x-5)^3=0,$ we will get $a_1=a_2=a_3=0$ easily from the equation. Then, $1,(x-5)^2,(x-5)^3$ is $\LI.$ So, by Theorem 2.3.5, we know $\dim U\geq3.$ Since $U\subsetneq\P_3(\R),$ we have $\dim U<\dim\P_3(\R)=4.$ Therefore, $\dim U=3=\len(1,(x-5)^2,(x-5)^3).$ By Theorem 2.3.6, we know $1,(x-5)^2,(x-5)^3$ is a basis of $U$.
+	\end{prf}
+\end{eg}
+\begin{thm}{}
+	If $U_1$ and $U_2$ are subspaces of a $\FD$ vector space, then \[\dim(U_1+U_2)=\dim(U_1)+\dim(U_2)-\dim(U_1\cap U_2).\]	
+\end{thm}
+\begin{prf}
+	Let $u_1,\cdots,u_m$ be a basis of $U_1\cap U_2,$ then $\dim(U_1\cap U_2)=m.$ Also, $u_1,\cdots,u_m$ is $\LI$ in $U_1,$ so we can extend it to a basis of $U_1$ as $u_1,\cdots,u_m,v_1,\cdots,v_j.$ Then, $\dim(U_1)=m+j.$ Similarly, extending $u_1,\cdots,u_m$ to a basis of $U_2$, we will get $u_1,\cdots,u_m,w_1,\cdots,w_k.$ So, $\dim(U_2)=m+k.$ Now, we want to show $u_1,\cdots,u_m,v_1,\cdots,v_j,w_1,\cdots,w_k$ is a basis of $U_1+U_2.$
+	\begin{enumerate}
+		\item Since $U_1,U_2\subseteq\span(u_1,\cdots,u_m,v_1,\cdots,v_j,w_1,\cdots,w_k),$ we know that \[\span(u_1,\cdots,u_m,v_1,\cdots,v_j,w_1,\cdots,w_k)=U_1+U_2.\qquad\square\]
+		\item Suppose $a_1u_1+\cdots+a_mu_m+b_1v_1+\cdots+b_jv_j+c_1w_1+\cdots+c_kw_k=0.$ Then we know that \[c_1w_1+\cdots+c_kw_k=-a_1u_1-\cdots-a_mu_m-b_1v_1-\cdots-b_jv_j.\] Since $c_1w_1+\cdots+c_kw_k\in U_2,$ and $-a_1u_1-\cdots-a_mu_m-b_1v_1-\cdots-b_jv_j\in U_1,$ we know that $c_1w_1+\cdots+c_kw_k\in U_1\cap U_2.$ Therefore, $c_1w_1+\cdots+c_kw_k=d_1u_1+\cdots+d_mu_m.$ Since $u_1,\cdots,u_m,w_1,\cdots,w_k$ is $\LI,$ we know $c_1=\cdots=c_k=0.$ So, $-a_1u_1-\cdots-a_mu_m-b_1v_1-\cdots-b_jv_j=0.$ Since $u_1,\cdots,u_m,v_1,\cdots,v_j$ is $\LI,$ we have $a_1=\cdots=a_m=b_1=\cdots=b_j=0.$ Therefore, we've proven $u_1,\cdots,u_m,v_1,\cdots,v_j,w_1,\cdots,w_k$ is $\LI$ and thus is a basis of $U_1+U_2.\qquad\square$
+	\end{enumerate}
+	Since $u_1,\cdots,u_m,v_1,\cdots,v_j,w_1,\cdots,w_k$ is a basis of $U_1+U_2,$ we know $\dim(U_1+U_2)=m+j+k.$ Further note that \[\begin{aligned}\dim(U_1)+\dim(U_2)-\dim(U_1\cap U_2)&=(m+j)+(m+k)-m\\&=m+j+k\\&=\dim(U_1+U_2).\end{aligned}\]
+\end{prf}
+
+\newpage
+\section{Linear Maps}
+\begin{nota}
+	In this section, we use $V$ and $W$ to denote vector spaces over $\F$.
+\end{nota}
+
+\subsection{The Vector Space of Linear Maps}
+\begin{df}{Linear Map}
+	A \textit{linear map} from $V$ to $W$ is a function $T:V\to W$ with the following properties: 
+	\begin{itemize}
+		\item additivity: $T(u+v)=Tu+Tv\qquad\forall u,v\in V.$
+		\item homogeneity: $T(\lambda v)=\lambda(Tv)\qquad\forall\lambda\in\F\text{ and }\forall v\in V.$
+	\end{itemize}
+\end{df}
+\begin{nota}
+	The set of all linear maps from $V$ to $W$ is denoted by $\L(V,W).$	
+\end{nota}
+\begin{eg}
+	\begin{enumerate}
+		\item Zero-mapping: $0\in\L(V,W)$ is defined by $0v=0.$
+		\item Identity-mapping: $I\in\L(V,V)$ is defined by $Iv=v.$
+		\item Differentiation: $D\in\L(\P(\R),\P(\R))$ is defined by $Dp=p'.$
+		\begin{prf}
+			Note that $(f+g)'=f'+g'$ and $(\lambda f)'=\lambda f'.$	
+		\end{prf}
+		\item Integration: $T\in\L(\P(\R),\R)$ is defined by $Tp=\dsst\int_0^1p(x)\ \d{x}$
+		\begin{prf}
+			Note that $\dsst\int_0^1(f+g)=\int_0^1f+\int_0^1g$ and $\dsst\int_0^1\lambda f=\lambda\int_0^1f.$	
+		\end{prf}
+		\item Backward shift: $T\in\L(\F^\infty,\F^\infty)$ as $T(x_1,x_2,x_3,\cdots)=(x_2,x_3,\cdots).$
+		\begin{prf}
+			Note that \[\begin{aligned}T(x_1,x_2,x_3,\cdots)+T(y_1,y_2,y_3,\cdots)&=(x_2,x_3,\cdots)+(y_2,y_3,\cdots)\\&=(x_2+y_2,x_3+y_3,\cdots)\\&=T(x_1+y_1,x_2+y_2,x_3+y_3,\cdots).\end{aligned}\] Therefore, $T$ is additive. Homogeneity of $T$ is travial and thus omitted here. 
+		\end{prf}
+		\item From $\F^n$ to $\F^m$, we define $T\in\L(\F^n,\F^m)$ as \[T(x_1,\cdots,x_n)=(A_{1,1}x_1+\cdots+A_{1,n}x_n,\cdots,A_{m,1}x_1+\cdots+A_{m,n}x_n),\] where $A_{j,k}\in\F\quad\forall j=1,\cdots,m$ and $k=1,\cdots,n.$
+	\end{enumerate}	
+\end{eg}
+\begin{thm}{}
+	Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_n\in W.$ Then, $\exists$ a unique linear map $T:V\to W\st$ $Tv_j=w_j\quad\forall j=1,\cdots,n.$
+\end{thm}
+\begin{rmk}
+	If $T$ in Theorem 3.1.1 is a linear mapping, we should have 
+	\begin{enumerate}
+		\item $T(v_1+\cdots+v_n)=Tv_1+\cdots+Tv_n=w_1+\cdots+w_n,$ by additivity of $T$, and
+		\item $T(\lambda_jv_j)=\lambda_jTv_j,$ by homogeneity of $T.$
+	\end{enumerate}
+	Combine the two properties, we should have \[T(\lambda_1v_1+\cdots+\lambda_nv_n)=\lambda_1Tv_1+\cdots=\lambda_nTv_n=\lambda_1w_1+\cdots+\lambda_nw_n.\]
+	This remark will be very helpful in our following proof of the theorem.
+\end{rmk}
+\begin{prf}
+	Let's define $T:V\to W$ by $T(c_1v_1+\cdots+c_nv_n)=c_1w_1+\cdots+c_nw_n,$ where $c_1,\cdots,c_n$ are arbitrary elements of $\F.$ Now, we want to show that $T$ is a linear mapping.\par 
+	Suppose $u,v\in V$,  $u=a_1v_1+\cdots+a_nv_n$, and $v=c_1v_1+\cdots+c_nv_n.$ Then, we have \[\begin{aligned}T(u+v)&=T((a_1+c_1)v_1+\cdots+(a_n+c_n)v_n)\\&=(a_1+c_1)w_1+\cdots+(a_n+c_n)w_n\\&=(a_1w_1+\cdots+a_nw_n)+(c_1w_1+\cdots+c_nw_n)\\&=Tu+Tv.\qquad\square\end{aligned}\]\par 
+	Now, we want to show $T$ has homogeneity. Suppose $\lambda\in\F.$ Then, we know \[\begin{aligned}T(\lambda v)&=T(\lambda c_1v_1+\cdots+\lambda c_nv_n)\\&=\lambda c_1w_1+\cdots+\lambda c_nw_n\\&=\lambda(c_1w_1+\cdots+c_nw_n)\\&=\lambda Tv.\qquad\square\end{aligned}\]\par 
+	Also, we want to show that this $T$ satisfy the condition the theorem is asking (i.e., $Tv_j=w_j$). Note that when $c_j=0$ and other $c$'s equal $0$, we will get $Tv_j=w_j.\qquad\square$\par 
+	Finally, we will prove the uniqueness of this $T$. Suppose that $T'\in\L(V,W)$ and $T'v_j=w_j.$ Let $c_1,\cdots,c_n\in\F.$ Then, $T'(c_jv_j)=c_jw_j.$ So, we know that $T'(c_1v_1+\cdots+c_nv_n)=c_1w_1+\cdots+c_nw_n.$ However, by definition, we know $c_1w_1+\cdots+c_nw_n=T(c_1w_1+\cdots+c_nv_n).$ So, we can conclude that $T'(c_1v_1+\cdots+c_nv_n)=T(c_1w_1+\cdots+c_nv_n).$ Thus, $T'=T,$ and thus the $T$ we defined above is unique in $\L(V,W).$
+\end{prf}
+\begin{df}{Addition and Scalar Multiplication on $\L(V,W)$}
+	Suppose $S,T\in\L(V,W)$ and $\lambda\in\F.$ Then, the \textit{addition} is defined as $(S+T)(v)\coloneqq Sv+Tv,$ and the \textit{scalar multiplication} is defined as $(\lambda T)(v)\coloneqq\lambda(Tv)\quad\forall v\in V$.	
+\end{df}
+\begin{thm}{}
+	$\L(V,W)$ is a vector space.
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item additive identity: Note that the zero-mapping $0\in\L(V,W)$ satisfies the following equation: \[(0+T)(v)=0v+Tv=0+Tv=Tv.\qquad\square\]
+		\item commutativity: Note that \[(S+T)(v)=Sv+Tv=Tv+Sv=(T+S)(v).\qquad\square\]
+		\item associativity: Let $S,T,R\in\L(V,W).$ Then, \[\begin{aligned}((S+T)+R)(v)=(S+T)(v)+Rv&=Sv+Tv+Rv\\&=Sv+(Tv+Rv)\\&=Sv+(T+R)(v)\\&=(S+(T+R))(v).\end{aligned}\] Let $a,b\in\F.$ Then, \[((ab)T)(v)=T(abv)=T(a(bv))=aT(bv)=(a(bT))(v).\pqde\]
+		\item multiplicative identity: Note we have $1\in\F\st$\[(1\cdot T)(v)=T(1\cdot v)=Tv.\pqde\]
+		\item additive inverse: Note that \[(T+(-T))(v)=Tv+(-T)(v)=Tv+T(-v)=T(v-v)=T0=0.\pqde\]
+		\item distributivity: Note that \[a(T+S)(v)=a(Tv+Sv)=aTv+aSv,\] and \[(a+b)Tv=T((a+b)v)=T(av+bv)=T(av)+T(bv)=aTv+bTv.\]
+	\end{enumerate}
+\end{prf}
+\begin{df}{Product of Linear Maps}
+	If $T\in\L(U,V)$ and $S\in\L(V,W),$ then the \textit{product} $ST\in\L(U,W)$ is defined by $(ST)(u)=S(Tu)\quad\forall u\in U.$	
+\end{df}
+\begin{rmk}
+	Compare this definition with composite functions. $ST$ is only defined when $T$ maps into the domain of $S$.	
+\end{rmk}
+\begin{thm}{Algebraic Properties of Products of Linear Maps}
+	\begin{enumerate}
+		\item associativity: $(T_1T_2)T_3=T_1(T_2T_3)$.
+		\item identity: $TI=IT=T,$ where $I$ is the identity mapping
+		\item distributive properties: $(S_1+S_2)T=S_1T+S_2T$ and $S(T_1+T_2)=ST_1+ST_2$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	First, we want to show the associativity. Note that \[[(T_1T_2)T_3](v)=(T_1T_2)(T_3v)=(T_1)(T_2(T_3v))=(T_1)[(T_2T_3)(v)].\pqde\] Then, we want to show the identity. This proof can be done using the following diagram: \begin{center}\tikzset{every picture/.style={line width=0.75pt}}\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]\draw    (129,193.27) -- (129,170.27) ;\draw [shift={(129,168.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;\draw    (195,166.27) -- (195,193.27) ;\draw [shift={(195,195.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;\draw    (139,157.27) -- (182,157.27) ;\draw [shift={(184,157.27)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;\draw (122,146.4) node [anchor=north west][inner sep=0.75pt]    {$V$};\draw (122,197.4) node [anchor=north west][inner sep=0.75pt]    {$V$};\draw (186,148.4) node [anchor=north west][inner sep=0.75pt]    {$W$};\draw (185,199.4) node [anchor=north west][inner sep=0.75pt]    {$W$};\draw (105,173.4) node [anchor=north west][inner sep=0.75pt]    {$I_{V}$};\draw (197,169.67) node [anchor=north west][inner sep=0.75pt]    {$I_{W}$};\draw (152,137.67) node [anchor=north west][inner sep=0.75pt]    {$T$};\end{tikzpicture}$\pqde$\end{center} Finally, we will show the distributive properties. Note that \[\begin{aligned} [(S_1+S_2)T](v)=(S_1+S_2)(Tv)&=S_1(Tv)+S_2(Tv)\\&=(S_1T)(v)+(S_2T)(v)\\&=(S_1T+S_2T)(v).\end{aligned}\] Similarly, we can show \[\begin{aligned} [S(T_1+T_2)](v)=S[(T_1+T_2)(v)]&=S(T_1v+T_2v)\\&=S(T_1v)+S(T_2v)\\&=(ST_1)(v)+(ST_2)(v)\\&=(ST_1+ST_2)(v).\end{aligned}\]
+\end{prf}
+\begin{eg}
+	Suppose $D\in\L(\P(\R),\P(\R))$ is the differentiation map, and $T\in\L(\P(\R),\P(\R))$ be defined by $(Tp)(x)=x^2p(x).$ Show that $DT\neq TD$.
+	\begin{prf}
+		Note that $(DT)p=D(Tp)=D(x^2p(x))=2xp(x)+x^2p'(x)$. Similarly, we can compute a general formula for $TD$: $(TD)p=T(Dp)=T(p')=x^2p'(x).$ Since $2xp(x)+x^2p'(x)\neq x^2p'(x)$, we know $DT\neq TD$.
+	\end{prf}
+\end{eg}
+\begin{thm}{}
+	Let $T\in\L(V,W),$ then $T(0)=0$.
+\end{thm}
+\begin{prf}
+	Since $T(0)=T(0+0)=T(0)+T(0)$, we know $0=T(0),$ or $T(0)=0$.	
+\end{prf}
+\begin{cor}
+	If $T(0)\neq0,$ then $T\notin\L(V,W)$.	
+\end{cor}
+
+\newpage
+\subsection{Null Spaces and Ranges}
+\begin{df}{Null Space/Kernel}
+	For $T\in\L(V,W),$ the \textit{null space} of $T$, denoted $\Null T$, is the subset of $V$ consisting of those vectors that $T$ maps to $0$: $\Null T=\qty{v\in V\mid Tv=0}.$
+\end{df}
+\begin{rmk}
+	Sometimes, null space of $T$ is also called the kernal of $T$, denoted as $\ker T.$	
+\end{rmk}
+\begin{eg}
+	\begin{enumerate}
+		\item Null space of zero-mapping: Let $T$ be the zero mapping from $V$ to $W$. Since $Tv=0\quad\forall v\in V,$ we know $\Null T=V.$
+		\item $D\in\L(\P(\R),\P(\R))$ as $Dp=p'$: $\Null D=\qty{a\mid a\in\R}.$
+		\item $T\in\L(\F^\infty,\F^\infty)$ as $T(x_1,x_2,x_3,\cdots)=(x_2,x_3,\cdots)$: $\Null T=\qty{(a,0,0,\cdots)\mid a\in\F}.$
+	\end{enumerate}	
+\end{eg}
+\begin{thm}{}
+	Suppose $T\in\L(V,W)$. Then, $\Null T$ is a subspace of $V$.
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Note that $T(0)=0,$ so $0\in\Null T.\pqde$
+		\item Suppose $u,v\in\Null T.$ Then, $Tu=Tv=0$. So, $T(u+v)=Tu+Tv=0+0=0.$ Hence, $u+v\in\Null T.\pqde$
+		\item Suppose $u\in\Null T$ and $\lambda\in\F$. Then, $Tu=0$. So, $T(\lambda u)=\lambda Tu=\lambda\cdot0=0$. Therefore, $\lambda u\in\Null T.$
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Injective/Injection}
+	A function $T:V\to W$ is called \textit{injective} of $Tu=Tv$ implies $u=v$.	
+\end{df}
+\begin{rmk}
+	Sometimes, the contrapositive will be much more helpful: $T$ is injective if $u\neq v$, then $Tu\neq v$.
+\end{rmk}
+\begin{thm}{}
+	Let	$T\in\L(V,W)$. Then, $T$ is injective if and only if $\Null T=\qty{0}.$
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Suppose $T$ is an injective. We've already known that $\qty{0}\subseteq\Null T$. Then, we need to show $\Null T\subseteq\qty{0}$. Suppose $v\in\Null T$, then $Tv=0$. However, since $T$ is an injection, and $Tv=T0=0,$ then we have $v=0.$ So, $\Null T\subseteq\qty{0}$. Therefore, it's sufficient to say $\Null T=\qty{0}.\pqde$
+	\par ($\Leftarrow$) Suppose $\Null T=\qty{0}$. Suppose $u,v\in V$ and $Tu=Tv.$ Then, $Tu-Tv=T(u-v)=0.$ Hence, $u-v\in\Null T$. By $\Null T=\qty{0},$ we know $u-v=0,$ so $u=v.$ Then, $T$ is an injection.
+\end{prf}
+\begin{df}{Range/Image}
+	For $T\in\L(V,W)$, the range of $T$ is the subset of $W$ consisting of those vectors that are of the form $Tv$ for some $v\in V$: $\range T=\qty{Tv\mid v\in V}.$
+\end{df}
+\begin{thm}{}
+	If $T\in\L(V,W)$, then $\range T$ is a subspace of $W$.	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Since $T(0)=0,$ we know $0\in\range T.\pqde$
+		\item Suppose $w_1,w_2\in\range T$. Then, $\exists v_1,v_2\in V\st Tv_1=w_1$ and $Tv_2=w_2$. Then, $w_1+w_2=Tv_1+Tv_2=T(v_1+v_2)$. Since $v_1+v_2\in V,$ we have $w_1+w_2=T(v_1+v_2)\in\range T.\pqde$
+		\item Suppose $w\in\range T$ and $\lambda\in\F$. Then, $\exists v\in V\st w=Tv$. So, $\lambda w=\lambda (Tv)=T(\lambda v).$ Since $\lambda v\in V,$ $\lambda w=T(\lambda v)\in\range T.$
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Surjective/Surjection}
+	A function $T:V\to W$ is called \textit{surjective} if $\range T=W$.	
+\end{df}
+\begin{rmk}
+	A function $T:V\to W$ is called a \emph{bijection}, or is bijective, if it is both injective and surjective.	
+\end{rmk}
+\begin{thm}{Fundamental Theorem of Linear Maps}
+	Suppose $V$ is $\FD$ and $T\in\L(V,W)$. Then, $\range T$ is $\FD$ and \[\dim V=\dim\Null T+\dim\range T.\]
+\end{thm}
+\begin{prf}
+	Let $u_1,\cdots,u_m$ be a basis of $\Null T.$ Then, $\dim\Null T=m.$ By Theorem 3.2.3, we know $\Null T$ is a basis of $V$, so we can extend the basis to a basis of $V$: $u_1,\cdots,u_m,v_1,\cdots,v_n$. Thus, $\dim V=m+n$. \textit{WTS: $\dim\range T=n$. Further WTS: $Tv_1,\cdots,Tv_n$ is a basis of $\range T$.}\par 
+	Suppose $v\in V.$ Then \[v=a_1u_1+\cdots+a_mu_m+b_1v_1+\cdots+b_nv_n.\] Since $u_1,\cdots,u_m\in\Null T,$ we know $Tu_1,\cdots,Tu_m=0.$ Therefore, \[Tv=a_1Tu_1+\cdots+a_mTu_m+b_1Tv_1+\cdots+b_nTv_n=b_1Tv_1+\cdots+b_nTv_n.\] Hence, $\span(Tv_1,\cdots,Tv_n)=\range T,$ and thus range $T$ is $\FD$. \textit{Now, WTS: $Tv_1,\cdots,Tv_n$ is $\LI$.}\par 
+	Consider $c_1Tv_1+\cdots+c_nTv_n=0.$ Then, $T(c_1v_1+\cdots+c_nv_n)=0.$ Hence, $c_1v_1+\cdots+c_nv_n\in\Null T.$ Since $u_1,\cdots,u_m$ is a basis of $\Null T,$ we know \[c_1v_1+\cdots+c_nv_n=d_1u_1+\cdots+d_mu_m\quad\fs d_i\in\F.\] So, \begin{equation}\label{eq8}c_1v_1+\cdots+c_nv_n-d_1u_1-\cdots-d_mu_m=0.\end{equation} However, by assumption, we know $v_1,\cdots,v_n,u_1,\cdots,u_m$ is a basis of $V$, and thus it is $\LI.$ So, the only way to make Equation (\ref{eq8}) hold is by taking $c_1=\cdots=c_n=-d_1=\cdots=-d_m=0.$ Therefore, we've shown $Tv_1,\cdots,Tv_n$ is $\LI$, and thus is a basis of $\range T.$ Then, $\dim\range T=n.$\par 
+	So, we've shown that $\dim\Null T+\dim\range T=m+n=\dim V.$
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ vector spaces $\st$ $\dim V>\dim W.$ Then, no linear map from $V$ to $W$ is injective.
+\end{thm}
+\begin{prf}
+	Let $T\in\L(V,W)$. By the Fundamental Theorem of Linear Maps, we have $\dim V=\dim\Null T+\dim\range T$. Then, we know \[\begin{aligned}\dim\Null T&=\dim V-\dim\range T\\&\geq\dim V-\dim W>0&[\dim\range T\leq\dim W]\end{aligned}\] This implies that $\Null T\neq\qty{0}.$ So, $T$ is not injective by Theorem 3.2.5.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ vector space $\st \dim V<\dim W$. Then, no linear map from $V$ to $W$ is surjective.	
+\end{thm}
+\begin{prf}
+	We know \[\begin{aligned}\dim\range T&=\dim V-\dim\Null T\\&\leq\dim V<\dim W\end{aligned}\]	Then, $T$ cannot be surjective by definition. 
+\end{prf}
+\begin{eg} Solving Linear Systems Using Linear Maps I\par 
+	For a homogenous system of linear equations, \[\begin{cases}A_{1,1}x_1+\cdots+A_{1,n}x_n=0\\\qquad\qquad\vdots\\A_{m,1}x_1+\cdots+A_{m,n}x_n=0\end{cases},\] where $A_{j,k}\in\F$ and $(x_1,\cdots,x_n)\in\F^n,$ we can defined a linear map $T:\F^n\to\F^m$ as \[T(x_1,\cdots,x_n)=\qty(\sum_{k=1}^nA_{1,k}x_k,\cdots,\sum_{k=1}^nA_{m,k}x_k).\] 	Apparently, $(x_1,\cdots,x_n)=0$ is a solution to the system, but the question is ``If there are any non-zero solutions for this linear system?''
+\end{eg}
+\begin{thm}{}
+	A homogeneous system of linear equations with more variables than equations has non-zero solutions.
+\end{thm}
+\begin{prf}
+	Suppose $T\in\L(V,W)$. Then, $\dim V=n$ and $\dim W=m$. Suppose $n>m.$ So, $\dim V>\dim W.$ By the Theorem 3.2.5, we know $T$ is not injective.
+\end{prf}
+\begin{eg} Solving Linear Systems Using Linear Maps II\par 
+	For an inhomogeneous system of linear equations \[\begin{cases}\dsst\sum_{k=1}^nA_{1,k}x_k=c_1\\\qquad\vdots\\\dsst\sum_{k=1}^nA_{m,k}x_k=c_m\end{cases},\] where $A_{j,k}\in\F$ and $(c_1,\cdots,c_m)\in\F^m$ and $(x_1,\cdots,x_n)\in\F^n,$ we can define $T:\F^n\to\F^m$ by \[T(x_1,\cdots,x_m)=\qty(\dsst\sum_{k=1}^nA_{1,k}x_k,\cdots,\dsst\sum_{k=1}^nA_{m,k}x_k=c_1).\] However, in this case, $(x_1,\cdots,x_n)=0$ may not be a solution to the system.
+\end{eg}
+\begin{thm}{}
+	An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
+\end{thm}
+\begin{prf}
+	Suppose	$T\in\L(V,W)$. So, $\dim V=n$ and $\dim W=m.$ Suppose $n<m.$ Then, $\dim V<\dim W.$ By Theorem 3.2.11, we know $T$ is not surjective.
+\end{prf}
+
+\newpage
+\subsection{Matrices}
+\begin{df}{Matrix}
+	Let $m,n\in\Zp$. An \textit{$m$-by-$n$ matrix $A$} is a rectangular array of elements of $\F$ with $m$ rows and $n$ columns: \[A=\mqty(A_{1,1}&\cdots&A_{1,n}\\\vdots&&\vdots\\A_{m,1}&\cdots&A_{m,n}).\] The notation $A_{j,k}$ denotes the entry in row $j$, column $k$ of $A$.
+\end{df}
+\begin{df}{Matrix of a Linear Map}
+	Suppose $T\in\L(V,W)$	 and $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_m$ is a basis of $W$. The \textit{matrix of $T$} with respect to these bases is the $m\times n$ matrix $\M(T)$ whose $A_{j,k}$ are defined by \[Tv_k=A_{1,k}w_1+\cdots+A_{m,k}w_m.\] If the bases are not clear from the context, then the notation $\M(T,(v_1,\cdots,v_n),(w_1,\cdots,w_m))$ is used.
+\end{df}
+\begin{eg}
+	Suppose $T\in\L(\F^2,\F^3)$ is defined by $T(x,y)=(x+3y,2x+5y,7x+9y).$ Find the matrix of $T$ with respect to the standard bases of $\F^2$ and $\F^3.$
+	\begin{ans}
+		Note that $T(1,0)=(1,2,7)$ and $T(0,1)=(3,5,9)$. Then, \[\M(T)=\mqty(1&3\\2&5\\7&9).\]
+	\end{ans}
+\end{eg}
+\begin{eg}
+	Suppose $D\in\L(\P_3(\R),\P_2(\R))$ is the differentiation map defined by $Dp=p'$. Find the matrix of $D$ with respect to the standard bases of $\P_3(\R)$ and $\P_2(\R)$.
+	\begin{ans}
+		Standard bases of $\P_3(\R):$ $1,x,x^2,x^3.$ Standard bases of $\P_2(\R):$ $1,x,x^2.$ Since $(x^n)'=nx^{n-1},$ so we have \[\begin{aligned}D(1)&=0=0\cdot1+0\cdot x+0\cdot x^2\\D(x)&=1=1\cdot1+0\cdot x+0\cdot x^2\\D(x^2)&=2x=0\cdot1+2\cdot x+0\cdot x^2\\D(x^3)&=3x^2=0\cdot1+0\cdot x+3\cdot x^2\end{aligned}\] So, we have \[\M(D)=\mqty(0&1&0&0\\0&0&2&0\\0&0&0&3).\]
+	\end{ans}
+\end{eg}
+\begin{df}{Matrix Addition}
+	The \textit{sum of two matrices of the same size} is the matrix obtained by adding corresponding entries in the matrices: \[\mqty(A_{1,1}&\cdots&A_{1,n}\\\vdots&&\vdots\\A_{m,1}&\cdots&A_{m,n})+\mqty(C_{1,1}&\cdots&C_{1,n}\\\vdots&&\vdots\\C_{m,1}&\cdots&C_{m,n})=\mqty(A_{1,1}+C_{1,1}&\cdots&A_{1,n}+C_{1,n}\\\vdots&&\vdots\\A_{m,1}+C_{m,1}&\cdots&A_{m,n}+C_{m,n}).\]	
+\end{df}
+\begin{thm}{}
+	Suppose $S,T\in\L(V,W).$ Then, $\M(S+T)=\M(S)+\M(T).$
+\end{thm}
+\begin{prf}
+	Let $v_1,\cdots,v_n$ be a basis of V and $w_1,\cdots,w_n$ be a basis of $W$. Suppose $\M(S)=A$ and $\M(T)=C.$ Then, if $1\leq k\leq n,$ we have\[\begin{aligned}(S+T)v_k&=Sv_k+Tv_k\\&=(A_{1,k}w_1+\cdots+A_{m,k}w_m)+(C_{1,k}w_1+\cdots+C_{m,k}w_m)\\&=(A_{1,k}+C_{1,k})w_1+\cdots+(A_{m,k}+C_{m,k})w_m.\end{aligned}\]	Hence, we have $\M(S+T)=\M(S)+\M(T).$
+\end{prf}
+\begin{df}{Scalar Multiplication of a Matrix}
+	The \textit{product of a scalar and a matrix} is the matrix obtained by multiplying each entry in the matrix by the scalar: \[\lambda\mqty(A_{1,1}&\cdots&A_{1,n}\\\vdots&&\vdots\\A_{m,1}&\cdots&A_{m,n})=\mqty(\lambda A_{1,1}&\cdots&\lambda A_{1,n}\\\vdots&&\vdots\\\lambda A_{m,1}&\cdots&\lambda A_{m,n}).\] In other words, $(\lambda A)_{j,k}=\lambda A_{j,k}.$
+\end{df}
+\begin{thm}{}
+	Suppose	$\lambda\in\F$ and $T\in\L(V,W)$. Then, $\M(\lambda T)=\lambda\M(T).$
+\end{thm}
+\begin{prf}
+	Let $v_1,\cdots,v_n$ be a basis of V and $\M(T)=A.$ When $1\leq k\leq v$, note that \[\begin{aligned}(\lambda T)v_k&=\lambda(Tv_k)\\&=\lambda(A_{1,k}w_1+\cdots+A_{m,k}w_m)\\&=(\lambda A_{1,k})w_1+\cdots+(\lambda A_{m,k})w_m.\end{aligned}\] So, $\M(\lambda T)=\lambda\M(T).$
+\end{prf}
+\begin{nota}
+	$\F^{m,n}\coloneqq$ the set of all $m\times n$ matrices with entries in $\F$.	
+\end{nota}
+\begin{thm}{}
+	Suppose $m,n\in\Zp.$ With addition and scalar multiplication defined above, $\F^{m,n}$ is a vector space and $\dim\F^{m,n}=mn.$
+\end{thm}
+\begin{prf}
+	It is trivial to prove $\F^{m,n}$ is a vector space.$\pqde$\par Define $A_{j,k}$ as the matrix with $1$ on its $j^\text{th}$ row, $k^\text{th}$ column and $0$ elsewhere. Then, we can see that $A_{j,k}$ for $j=1,\cdots,m$ and $k=1,\cdots,n$ is a basis for $\F^{m,n}.$ So, $\dim\F^{m,n}=m\cdot n.$	
+\end{prf}
+\begin{df}{Matrix Multiplication}
+	Suppose $A$ is an $m\times n$ matrix and $C$ is an $n\times p$ matrix. Then, $AC$ is defined to be the $m\times p$ matrix whose entry in row $j$. column $k$ is given by \[(AC)_{j,k}=\sum_{r=1}^nA_{j,r}C_{r,k}.\]	
+\end{df}
+\begin{rmk}
+	Matrix multiplication is not commutative. i.e., $AC\neq CA$. However, it is distributive and associative.	
+\end{rmk}
+\begin{thm}{}
+	If $T\in\L(U,V)$ and $S\in\L(V,W),$ then $\M(ST)=\M(S)\M(T)$.
+\end{thm}
+\begin{nota}
+	Suppose $A$ is an $m\times n$ matrix.
+	\begin{enumerate}
+		\item If $1\leq j\leq m,$ then $A_{j,\cdot}$ denotes the $1\times n$ matrix consisting of row $j$ of $A$.
+		\item If $1\leq k\leq n$, then $A_{\cdot,k}$ denotes the $m\times1$ matrix consisting of column $k$ of $A$.
+	\end{enumerate}	
+	In other words, \[A=\mqty(A_{1,1}&\cdots&A_{1,n}\\\vdots&&\vdots\\A_{m,1}&\cdots&A_{m,n});\qquad A_{j,\cdot}=\mqty(A_{j,1}&\cdots&A_{j,n})\in\F^{1,n};\qquad A_{\cdot,k}=\mqty(A_{1,k}\\\vdots\\A_{m,k})\in\F^{m,1}.\]
+\end{nota}
+\begin{thm}{Practical Interpretations of Matrix Multiplication}
+	\begin{enumerate}
+		\item Suppose $A$ is an $m\times n$ matrix and $C$ is an $n\times p$ matrix. Then, $(AC)_{j,k}=A_{j,\cdot}C_{\cdot,k}$ for $1\leq j\leq m$ and $1\leq k\leq p.$
+		\item Suppose $A$ is an $m\times n$ matrix and $C$ is an $n\times p$ matrix. Then, $(AC)_{\cdot,k}=AC_{\cdot,k}$ for $1\leq k\leq p.$
+		\item Suppose $A$ is an $m\times n$ matrix and $C=\mqty(c_1\\\vdots\\c_n)$ is an $n\times1$ matrix. Then, \[AC=c_1A_{\cdot,1}+\cdots+c_nA_{\cdot,n}.\] In other words, $AC$ is a linear combination of the columns of $A$, with the scalars that multiply the columns coming from $C$.
+	\end{enumerate}	
+\end{thm}
+\begin{eg}
+	\[\mqty(1&2\\3&4\\5&6)\mqty(5\\1)=5\mqty(1\\3\\5)+1\mqty(2\\4\\6)=\mqty(7\\19\\31).\]	
+\end{eg}
+
+\newpage
+\subsection{Invertibility and Isomorphic Vector Spaces}
+\begin{df}{Invertible}
+	A linear map $T\in\L(V,W)$ is called \textit{invertible} if $\exists$ a linear map $S\in\L(W,V)\st ST$ equals the identity map on $I$ and $TS$ equals the identity map on $W$.	
+\end{df}
+\begin{df}{Inverse}
+	A linear map $S\in\L(W,V)$ satisfying $ST=I$ and $TS=I$ is called an \textit{inverse} of $T$.	
+\end{df}
+\begin{thm}{}
+	An invertible linear map has a unique inverse.	
+\end{thm}
+\begin{prf}
+	Suppose $T\in\L(V,W)$ is invertible. Let $S_1$ and $S_2$ be inverses of $T$.Then, \[S_1=S_1I=S_1(TS_2)=(S_1T)S_2=IS_2=S_2.\] Thus, $S_1=S_2,$ and so inverse is unique.
+\end{prf}
+\begin{nota}
+	If $T$ is invertible, then its inverse is denoted by $\T.$	
+\end{nota}
+\begin{thm}{}
+	A linear map is invertible if and only if it is injective and surjective.
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Let $T\in\L(V,W)$ be invertible. Then, $T\T=I_W$ and $\T T=T_V$. Let $Tv=0$. Note that $(\T T)v=0,$ so $Iv=0$ and thus $v=0$. Therefore, $\Null T=\qty{0}$, and so $T$ is an injection. 
+	\par To show $T$ is surjective, suppose $w\in W.$ Note that since $\T\in\L(W,V),$ $\T w\in V.$ So, \[T(\T w)=(T\T)w=T_Ww=w\in W.\] Therefore, $\T w$ is the $v\in V$ we intend to find. Hence, $T$ is also a surjection. $\pqde$
+	\par ($\Leftarrow$) Let $T$ be surjective and injective. For $w\in W,$ define $Sw\in V\st T(Sw)=w.$ So, we know $Sw$ is unique. Since $(T\of S)w=w,$ we know $(T\of S)=I_W.$ Consider $(S\of T)v=S(Tv),$ we have $T(S(Tv))=Tv,$ by definition of $S$. Since $T$ is injective, we know $S(Tv)=V.$ So, $(S\of T)v=v,$ and thus $ST=T_V.$ Therefore $T$ is invertible.
+	\par Now, we want to show $S$ is a linear map. Let $w_1,w_2\in W,$ then \[T(S(w_1+w_2))=(TS)(w_1+w_2)=I_W(w_1+w_2)=w_1+w_2.\] By definition, $w_1+w_2=T(Sw_1)+T(Sw_3)=T(Sw_1+Sw_2).$ So, $T(S(w_1+w_2))=T(Sw_1+Sw_2).$ By $T$ is an injection, we have $S(w_1+w_2)=Sw_1+Sw_2.$ So, $S$ is additive. Further consider \[T(S(\lambda w))=\lambda w=\lambda(T(Sw))=T(\lambda Sw)\] for some $w\in W.$ Again, since $T$ is injective, $S(\lambda w)=\lambda Sw.$ So, $S$ has homogeneity. Then, $S$ is a linear map.
+\end{prf}
+\begin{df}{Isomorphism}
+	An \textit{isomorphism} is an invertible linear map. 	
+\end{df}
+\begin{df}{Isomorphic}
+	Two vector spaces are called \textit{isomorphic} if there is an isomorphism from one vector space onto the other one.	
+\end{df}
+\begin{nota}
+	If two vector spaces $V$ and $W$ are isomorphic, we denote them as $V\cong W.$	
+\end{nota}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ vector spaces, then $V\cong W$ if and only if $\dim V=\dim W.$	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Suppose $V\cong W.$ By Fundamental Theorem of Linear Maps, we know \[\dim V=\dim\Null T+\dim\range T.\] Since $V\cong W,$ $T$ is invertible and thus is injective and surjective. So, $\dim\Null T=0$ and $\dim\range T=\dim W.$ Therefore, $\dim V=0+\dim W=\dim W.\pqde$
+	\par ($\Leftarrow$)	Suppose $\dim V=\dim W.$ Suppose $v_1,\cdots,v_n$ and $w_1,\cdots,w_n$ are bases of $V$ and $W$, respectively. Then, $\dim V=\dim W=n.$ Here, we want to define a bijection between $V$ and $W$. Let $T$ be defined as $Tv_i=wi\quad(i=1,\cdots,n).$\par 
+	Let $Tv=0$. Then, $T(a_1v_1+\cdots+a_nv_n)=0$. So, by definition, $a_1w_1+\cdots+a_nw_n=0.$ Since $w_1,\cdots,w_n$ is a basis, we have $a_1=\cdots=a_n=0$. So, $\Null T=\qty{0},$ and thus $T$ is an injection.\par 
+	Let $w\in W$ be any vector. Then, we know $w=c_1w_1+\cdots+c_nw_n$. Note that, by definition of $T$, we have $T(c_1v_1+\cdots+c_nv_n)=c_1w_1+\cdots+c_nw_n$. Hence, $\forall w\in W,\exists v=c_1v_1+\cdots+c_nv_n\in V\st Tv=w.$ Therefore, $T$ is a surjection.\par 
+	Finally, it is trivial to show that $T$ is indeed a linear map, and so the proof is complete.
+\end{prf}
+\begin{thm}{}
+	Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_m$ is a basis of $W$. then, $\M$ is an isomorphism between $\L(V,W)$ and $\F^{m,n}.$	
+\end{thm}
+\begin{prf}
+	We already know $\M$ is linear, so we just need to show $\M$ is a bijection. \par 
+	To prove $\M$ is injective, consider $\M(T)=0$ for some $T\in\L(V,W)$. So, we get $Tv_k=0$. Since $v_1,\cdots,v_n$ is a basis of $V$, we know $Tv=0\quad\forall v\in V$. Then, $T$ is the zero-mapping, or $T=0$. Therefore, $\Null\M=\qty{0}$.\par 
+	To show $\M$ is surjective, suppose $A\in\F^{m,n}$. Let $T$ be a linear map from $V$ to $W\st$ \[Tv_k=\dsst\sum_{j=1}^mA_{j,k}w_j,\quad k=1,\cdots,n.\] Obviously, $\M(T)=A$, and thus $\range\M=\F^{m,n}$. So, $\M$ is also a surjection.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$. Then, $\L(V,W)$ is $\FD$ and $\dim\L(V,W)=(\dim V)(\dim W).$	
+\end{thm}
+\begin{prf}
+	By Theorem 3.4.10 and Theorem 3.4.9, we know $\dim\L(V,W)=\dim\F^{m,n}.$ Further by Theorem 3.3.10, we know $\dim\F^{m,n}=(m)(n).$ As $\dim V=n$ and $\dim W=m$, so we have \[\dim\L(V,W)=(\dim V)(\dim W).\]	
+\end{prf}
+\begin{df}{Matrix of a Vector, $\M(v)$}
+	Suppose $v\in V$ and $v_1,\cdots,v_n$ is a basis of $V$. The \textit{matrix of $v$} with respect to this basis is the $n\times1$ matrix \[\M(v)=\mqty(c_1\\\vdots\\c_n),\] where $c_1,\cdots,c_n$ are scalars $\st v=c_1v_1+\cdots+c_nv_n$.
+\end{df}
+\begin{thm}{$\M(T)_{\cdot,k}=\M(v_k)$}
+	Suppose $T\in\L(V,W)$ and $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_m$ is a basis of $W$. Let $1\leq k\leq n$. Then, the $k^\text{th}$ column of $\M(T)$, which is denoted by $\M(T)_{\cdot,k}$, equals $\M(v_k)$.
+\end{thm}
+\begin{prf}
+	This theorem is an immediate result by definitions of matrix of a linear mapping and a vector. 	
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V,W)$ and $v\in V$. Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_m$ is a basis of $W$. Then, $\M(Tv)=\M(T)\M(v).$	
+\end{thm}
+\begin{prf}
+	Note that $v=c_1v_1+\cdots+c_nv_n,$ so we have $Tv=c_1Tv_1+\cdots+c_nTv_n$. So, by Theorem 3.4.13, we know \[\begin{aligned}\M(Tv)&=c_1\M(Tv_1)+\cdots+c_n\M(Tv_n)\\&=c_1\M(T)_{\cdot,1}+\cdots+c_n\M(T)_{\cdot,n}\\&=\M(T)\M(v).\end{aligned}\] The final equality holds due to our interpretation of matrix multiplication as column linear combinations (Theorem 3.3.14(3))
+\end{prf}
+\begin{rmk}
+	$\M:\F^n\to\F^{n,1}$ is an isomorphism: \[v=c_1v_1+\cdots+c_nv_n\longmapsto\mqty(c_1\\\vdots\\c_n).\]	
+\end{rmk}
+\begin{prf}
+	Suppose $\M(v)=0:\ \M(c_1v_1+\cdots+c_nv_n)=0$. So, we have $c_1w_1+\cdots+c_nw_n=0$. Since $w_1,\cdots,w_n$ is a basis, $c_1=\cdots=c_n=0$. So, $v=0$. Therefore, $\Null\M=\qty{0}$, and so $\M$ is injective.$\pqde$\par 
+	Now, prove $\M$ is surjective. Note that $\forall\mqty(c_1\\\vdots\\c_n)$, we have $\M(c_1v_1+\cdots+c_nv_n)=\mqty(c_1\\\vdots\\c_n)$. So, $\M$ is a surjection. $\pqde$\par 
+	Finally, its' trivial to prove $\M$ is a linear map. $\pqde$\par 
+	Since $\M$ is both surjective and injective, $\M$ is an isomorphism. 	
+\end{prf}
+\begin{df}{Operator}
+	A linear map from a vector space to itself is called an \textit{operator}.
+\end{df}
+\begin{nota}
+	The notation $\L(V)$ denotes the set of all operators on $V$. So, $\L(v)=\L(V,V)$.	
+\end{nota}
+\begin{thm}{}
+	Suppose $V$ is $\FD$ and $T\in\L(V)$. Then, the following are equivalent: (a) $T$ is invertible; (b) $T$ is injective; and (c) $T$ is surjective. 
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Clearly (a) implies (b). $\pqde$
+		\item Suppose (b): $T$ is injective. So, $\Null T=\qty{0}$. Then, by Fundamental Theorem of Linear Maps, we know \[\dim V=\dim\Null T+\dim\range T=0+\dim\range T.\] Since $\dim\range T=\dim V,$ we know $T$ is surjective. $\pqde$
+		\item Suppose (c): $T$ is surjective. So, $\range T=V$. Then, by Fundamental Theorem of Linear maps, we have \[\dim\Null T=\dim V-\dim\range T=0.\] So, $\Null T=\qty{0},$ and thus $T$ is injective. Since $T$ is surjective and injective, $T$ is invertible. 
+	\end{enumerate}	
+\end{prf}
+\begin{eg}
+	Show that for each polynomial $q\in\P(\R),$ there exists a polynomial $p\in\P(\F)$ such that $((x^2+5x+7)p)''=q$.
+\end{eg}
+\begin{prf}
+	We know that every non-zero polynomial must have a degree of $m$. So, we can think of this problem under $\P_m(\R)$. Note that \[((x^2+5x+7)p)''=2p+(4x+10)p'+(x^2+5x+7)p''=q.\] Therefore, the degree of $p$ and $q$ should be the same. Define $T:\P_m(\R)\to\P_m(\R)$ as \[Tp=((x^2+5x+7)p)''.\] Then, $T$ is an operator on $\P_m(\R)$. Consider $Tp=0$. We have $ax+b=(x^2+5x+7)p$. Note that only when $p=0$, the equation above holds. So, it must be that $p=0$ when $Tp=0$. That is, $\Null T=\qty{0}$, and so $T$ is injective. By Theorem 3.4.18, we know $T$ is also surjective, and so our proof is complete.
+\end{prf}
+
+\newpage
+\subsection{Duality}
+\begin{df}{Linear Functional}
+	A \textit{linear functional} on $V$ is a linear map from $V$ to $\F$. That is, a linear functional is an element of $\L(V,\F)$.	
+\end{df}
+\begin{eg}
+	\begin{enumerate}
+		\item Fix $(c_1,\cdots,c_n)\in\F^n$. Define $\phi:\F^n\to\F$ by $\phi(x_1,\cdots,x_n)=c_1x_1+\cdots+c_nx_n$. Then, $\phi$ is a linear functional on $\F^n$.
+		\item Define $\phi:\P(\R)\to\R$ as $\phi(p)=3p''(5)+7p(4)$.
+		\item Define $\phi:\P(\R)\to\R$ as $\phi(p)=\dsst\int_0^1p(x) \d x$.
+	\end{enumerate}	
+\end{eg}
+\begin{df}{Dual Space/$V'$/$V^*$}
+	The \textit{dual space} of $V$, denoted as $V'$, is the vector space of all linear functionals on $V$. In other words, $V'=\L(V,\F)$.
+\end{df}
+\begin{thm}{}
+	Suppose $V$ is $\FD$. Then, $V'$ is also $\FD$ and $\dim V'=\dim V$.	
+\end{thm}
+\begin{prf}
+	Note that for a general linear map, $\L(V,W)\cong\F^{m,n}$. So, $\L(V,\F)=V'\cong\F^{1,n}$. Hence, \[\dim V'=\dim\F^{1,n}=1\cdot n=n=\dim V.\]	
+\end{prf}
+\begin{df}{Dual Basis}
+	If $v_1,\cdots,v_n$ is a basis of $V$, then the \textit{dual basis} of $v_1,\cdots,v_n$ is the list $\phi_1,\cdots,\phi_n$ of elements of $V'$, where each $\phi_j$ is the linear functional on $V\st$ \[\phi_j(v_k)=\begin{cases}1\quad\text{if }k=j\\0\quad\text{if }k\neq j\end{cases}.\]
+\end{df}
+\begin{eg}
+	Find the dual basis of $e_1,\cdots,e_n\in\F^n$	
+\end{eg}
+\begin{ans}
+	\begin{center}
+	\begin{tabular}{cccc}
+		$\phi_1(e_1)=1$&$\phi_2(e_1)=0$&$\cdots$&$\phi_n(e_1)=0$\\
+		$\phi_1(e_2)=0$&$\phi_2(e_2)=1$&$\cdots$&$\phi_n(e_2)=0$\\
+		$\vdots$&$\vdots$&$\ddots$&$\vdots$\\
+		$\phi_1(e_n)=1$&$\phi_2(e_n)=0$&$\cdots$&$\phi_n(e_n)=1$
+	\end{tabular}
+	\end{center}
+	Define $\phi_j$ as \[\phi_j(x)=\phi_j(x_1,\cdots,x_n)=x_1\phi_j(e_1)+\cdots+x_j\phi_j(e_j)+\cdots+x_n\phi_j(e_n)=x_j.\]
+\end{ans}
+\begin{thm}{}
+	Suppose $V$ is $\FD$. Then, the dual basis of a basis of $V$ is a basis of $V'$.	
+\end{thm}
+\begin{prf}
+	Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $\phi_1,\cdots,\phi_n$ denotes the dual basis. Since we've shown $\dim V=\dim V'$ in Theorem 3.5.4, we only need to show $\phi_1,\cdots,\phi_n$ is $\LI.$	Select $c_1\phi_1+\cdots+c_n\phi_n=0$. Then, \[(c_1\phi_1+\cdots+c_n\phi_n)(v)=0\quad\forall\ v\in V.\] Suppose $v=v_1+\cdots+v_n$, then \[(c_1\phi_1+\cdots+c_n\phi_n)(v_j)=c_j\quad\text{for }j=1,\cdots,n.\] So, $(c_1\phi_1+\cdots+c_n\phi_n)(v)=c_1+\cdots+c_n=0$. So, it must be that $c_1=\cdots=c_n=0$. Therefore, $\phi_1,\cdots,\phi_n$ is $\LI$ and our proof is complete. 
+\end{prf}
+\begin{df}{Dual Map}
+	If $T\in\L(V,W)$, then the \textit{dual map} of $T$ is the linear map $T'\in\L(W',V')$ defined by $T'(\phi)=\phi\of T$ for $\phi\in W'$.	
+\end{df}
+\begin{rmk}	The following diagram represents dual map (but not an exact representation).
+	\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}}
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		\draw    (201,75) -- (257.31,110.21) ;
+		\draw [shift={(259,111.27)}, rotate = 212.02] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (191,83.27) -- (191,139.27) ;
+		\draw [shift={(191,141.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (264,128.27) -- (200.85,154.51) ;
+		\draw [shift={(199,155.27)}, rotate = 337.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw    (232,165.27) .. controls (149.84,188.31) and (144.11,168.67) .. (127.51,123.64) ;
+		\draw [shift={(127,122.27)}, rotate = 69.72] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+		\draw [shift={(232,165.27)}, rotate = 344.34] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+		\draw (183,63.4) node [anchor=north west][inner sep=0.75pt]    {$V$};
+		\draw (259,111.4) node [anchor=north west][inner sep=0.75pt]    {$W$};
+		\draw (184,145.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbb{F}$};
+		\draw (230,73.4) node [anchor=north west][inner sep=0.75pt]    {$T$};
+		\draw (233.5,145.17) node [anchor=north west][inner sep=0.75pt]    {$\varphi \in \mathcal{L}( W,\mathbb{F}) =W'$};
+		\draw (53.5,100.17) node [anchor=north west][inner sep=0.75pt]    {$T'( \varphi ) =\varphi \circ T\in V'$};
+		\draw (134,169.4) node [anchor=north west][inner sep=0.75pt]    {$T'$};
+		\end{tikzpicture}
+	\end{center}
+	Also, dual map is a linear map, so it is additive and homogeneous.
+	\begin{enumerate}
+		\item $T'(\phi+\psi)=(\phi+\psi)\of T=\phi\of T+\psi\of T=T'(\phi)+T'(\psi)$.
+		\item $T'(\lambda\phi)=(\lambda\phi)\of T=\lambda(\phi\of T)=\lambda T'(\phi)$.
+	\end{enumerate}	
+\end{rmk}
+\begin{eg}
+	Suppose $D:\P(\R)\to\P(\R)$ as $Dp=p'$.
+	\begin{enumerate}
+		\item Define a linear functional $\phi:\P(\R)\to\R$ as $\phi(p)=p(3)$. Find $D'(\phi)$. \begin{ans}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=p'(3).\]\end{ans}
+		\item Define $\phi:\P(\R)\to\R$, a linear functional, as $\phi(p)=\dsst\int_0^1p(x)\ \d x$. Find $D'(\phi)$.\begin{ans}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=\int_0^1p'(x)\ \d x=p(1)-p(0).\]\end{ans}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}{Algebraic Properties of Dual Maps}
+	\begin{enumerate}
+		\item $(S+T)'=S'+T'\quad\forall\ S,T\in\L(V,W)$
+		\item $(\lambda T)'=\lambda T'\quad\forall\ T\in\L(V,W)$
+		\item $(ST)'=T'S'\quad\forall\ T\in\L(U,V)$ and $S\in\L(V,W)$
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item $(S+T)'\in\L(W',V')$. Let $\phi\in W'$. Then, \[(S+T)'(\phi)=\phi\of(S+T)=\phi\of S+\phi\of T=S'(\phi)+T'(\phi)=(S'+T')(\phi).\pqde\]
+		\item $(\lambda T)'\in\L(W',V')$. Let $\phi\in W'$. Then, \[(\lambda T)'(\phi)=\phi\of(\lambda T)=\lambda(\phi\of T)=\lambda T'(\phi)=(\lambda T')(\phi).\pqde\]
+		\item $(ST)'\in\L(W',U')$. Let $\phi\in W'$. Then, \[(ST)'(\phi)=\phi\of(ST)=\phi\of(S\of T)=(\phi\of S)\of T=(S'(\phi))\of T=T'(S'(\phi))=(T'S')(\phi).\]
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Transpose/$A^t$}
+	The transpose of a matrix $A$, denoted $A^t$, is the matrix obtained from $A$ by interchanging the rows and columns. i.e., $(A^t)_{k,j}=A_{j,k}.$
+\end{df}
+\begin{rmk}
+	Transpose is additive and homogeneous. That is, $(A+C)^t=A^t+C^t$ and $(\lambda A)^t=\lambda A^t$.	
+\end{rmk}
+\begin{thm}{}
+	If $A$ is an $m\times n$ matrix and $C$ is an $n\times p$ matrix, then $(AC)^t=C^tA^t$.
+\end{thm}
+\begin{prf}
+	Note that \[(AC)^t_{k,j}=(AC)_{j,k}=\sum_{r=1}^nA_{j,r}C_{r,k}=\sum_{r=1}^n(C^t)_{k,r}(A^t)_{r,j}=(C^tA^t)_{k,j}\]	
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V,W)$. Then, $\M(T')=(\M(T))^t$.	
+\end{thm}
+\begin{prf}
+	Suppose $v_1,\cdots,v_n$ is a basis of $V$, $w_1,\cdots,w_m$ is a basis of $W$, $\phi_1,\cdots,\phi_n$ is a basis of $V'$, and $\psi_1,\cdots,\psi_m$ is a basis of $W'$. Let $A=\M(T)$ and $C=\M(T')$. Since $T'(\psi_j)=C_{1,j}\phi_1+\cdots+C_{n,j}\phi_n$ and $T'(\psi_j)=\psi_j\of T$, we have $\psi_j\of T=C_{1,j}\phi_1+\cdots+C_{n,j}\phi_n$. Consider \[\begin{aligned}(\psi_j\of T)(v_k)=(C_{1,j}\phi_1+\cdots+C_{n,j}\phi_n)(v_k)=C_{k,j}\phi_k(v_k)=C_{k,j}.\end{aligned}\]	Also, we have \[(\psi_j\of T)(v_k)=\psi_j(Tv_k)=\psi_j(A_{1,k}w_1+\cdots+A_{m,k}w_m)=\psi_j(A_{j,k}w_j)=A_{j,k}(\phi_j(w_j))=A_{j,k}.\] Therefore, we have $A_{j,k}=C_{k,j}$, and thus $A=C^t$. So, $\M(T)=(\M(T'))^t$.
+\end{prf}
+\begin{df}{Annihilator/$U^0$}
+	For $U\subseteq V,$ the \textit{annihilator} of $U$, denoted as $\Ua$, is defined by \[\Ua=\qty{\phi\in V'\mid \phi(u)=0\quad\forall u\in U}.\]
+\end{df}
+\begin{thm}{}
+	Suppose $U\subseteq V$. Then $\Ua$ is a subspace of $V'$.	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item $0\in\Ua$: Since $0(u)=0\quad\forall u\in U,$ then $0\in\Ua.\pqde$
+		\item Let $\phi,\psi\in\Ua$. Then, \[(\phi+\psi)(u)=\phi(u)+\psi(u)=0.\] So, $\phi+\psi\in\Ua.\pqde$
+		\item Let $\lambda\in\F$ and $\phi\in\Ua$. Then \[(\lambda\phi)(u)=\lambda\phi(u)=\lambda\cdot0=0.\] So, $\lambda\phi\in\Ua.$
+	\end{enumerate}	
+\end{prf}
+\begin{lem}{}
+	Suppose $V$ is $\FD$ vector space. If $U$ is a subspace of $V$ and $S\in\L(U,W)$, then there exists $T\in\L(V,W)\st Tu=Su\quad\forall u\in U$.	
+\end{lem}
+\begin{prf}
+	Suppose $u_1,\cdots,u_m$ is a basis of $U$. Then, we can extend it to a basis of $V$ as $u_1,\cdots,u_m,v_{m+1},\cdots,v_n$. Define $T\in\L(V,W)$ as $Tu_i=Su_i$, $Tv_j=0$, where $i=1,\cdots,m$ and $j=m+1,\cdots,n$. Note that \[\begin{aligned}Tu&=T(a_1u_1+\cdots+a_mu_m)\\&=a_1Tu_1+\cdots+a_mTu_m\\&=a_1Su_1+\cdots+a_mSu_m\\&=S(a_1u_1+\cdots+a_mu_m)=Su.\end{aligned}\] Therefore, we've found such a $T$.
+\end{prf}
+\begin{thm}{}
+	Let $V$ be $\FD$ and $U$ be a subspace of $V$, then $\dim U+\dim\Ua=\dim V.$	
+\end{thm}
+\begin{prf}
+	Let $i\in\L(U,V)$ as $i(u)=u\quad\forall u\in U$. Then, $i'\in\L(V',U')$. So, by Fundamental Theorem of Linear Map, we know \begin{equation}\label{eq9}\dim V'=\dim\Null i'+\dim\range i'.\end{equation} By Theorem 3.5.4, we know $\dim V=\dim V'$ Note that $\Ua=\qty{\phi\in V'\mid\phi(u)=0\quad\forall u\in U}$ and \[\begin{aligned}\Null i'&=\qty{\phi\in V'\mid i'(\phi)=0}\\&=\qty{\phi\in V'\mid\phi\of i=0}\\&=\qty{\phi\in V'\mid(\phi\of i)(u)=0\quad\forall u\in U}\\&=\qty{\phi\in V'\mid\phi(u)=0\quad\forall u\in U}\end{aligned}\] So, $\Ua=\Null i'$, and thus $\dim\Null i'=\dim\Ua$.\par 
+	Further, if $\phi\in U'$, then $\phi: U\to\F$. By Lemma 3.5.16, $\phi$ can be extended to $\psi\in V'$ with $\psi(u)=\phi(u)\quad\forall u\in U$. Note that $i'(\psi)=\psi\of i$, so $(\psi\of i)(u)=\psi(u)=\phi(u)\quad\forall u\in U.$ Then, $\exists\psi\in V'\st i'(\psi)=\phi$. So, $\phi\in\range U'$. So, $\dim\range i'=\dim U'=\dim U$.\par 
+	Substitute $\dim V'=\dim V$, $\dim\Null i'=\dim\Ua$, and $\dim\range i'=\dim U$ to Equation (\ref{eq9}), we get \[\dim V=\dim\Ua+\dim U.\]
+\end{prf}
+\begin{thm}{The Null Space of $T'$}
+	Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Then, 
+	\begin{enumerate}
+		\item $\Null T'=(\range T)^0$
+		\item $\dim\Null T'=\dim\Null T+\dim W-\dim V$
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item ($\subseteq$) Suppose $\phi\in\Null T'\subseteq W'$. Then, $T'(\phi)=\phi\of T=0\in V'$. So, we know \[(\phi\of T)(v)=0\quad\forall v\in V.\quad\text{i.e., }\phi(Tv)=0.\] Note that $Tv\in\range T$. By definition, we have $\phi\in(\range T)^0\pqde$\par 
+		($\supseteq$) Suppose $\phi\in(\range T)^0$. Then, $\phi(w)=0\quad\forall w\in\range T$. That is, $\phi(Tv)=0\quad\forall v\in V$. So, $(\phi\of T)(v)=0\quad\forall v\in V$. Hence, we know $\phi\of T=T'(\phi)=0\in V'$. Thus, $\phi\in\Null T'$\hfill{}$\blacksquare$
+		\item \[\begin{aligned}\dim\Null T'&=\dim(\range T)^0\\&=\dim W-\dim\range T\\&=\dim W-(\dim V-\dim\Null T)\\&=\dim W-\dim V+\dim\Null T.\end{aligned}\]
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Then, $T$ is surjective if and only if $T'$ is injective.	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Suppose $T$ is surjective. Then, $\dim\range T=W$. So, $(\range T)^0=\qty{0}$. Hence, \[\dim\Null T'=\dim(\range T)^0=0.\] Thus, $T'$ is injective. $\pqde$
+	\par ($\Leftarrow$) Suppose $T'$ is injective. Then, \[\dim\Null T'=0.\] So, $\dim(\range T)^0=\dim\Null T'=0$. Then, $(\range T)^0=\qty{0}.$ So, $\dim\range T=W$, and thus $T$ is surjective. 
+\end{prf}
+\begin{thm}{The Range of $T'$}
+	Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Then, 	
+	\begin{enumerate}
+		\item $\dim\range T'=\dim\range T$
+		\item $\range T'=(\Null T)^0$
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item By Fundamental Theorem of Linear Map, we have \[\begin{aligned}\dim\range T'&=\dim W'-\dim\Null T'\\&=\dim W'-\dim(\range T)^0\\&=\dim W'-\dim W'+\dim\range T\\&=\dim\range T.\end{aligned}\]\hfill{}$\blacksquare$
+		\item Suppose $\phi\in\range T'\subseteq V'$. Then, $\exists\psi\in W'\st T'(\psi)=\psi\of T=\phi$. Let $v\in\Null T$. Then, \[\phi(v)=(\psi\of T)(v)=\psi(Tv)=\psi(0)=0.\] Then, $\phi\in(\Null T)^0$. So, $\range T'\subseteq(\Null T)^0.\pqde$\par Note that \[\dim\range T'=\dim\range T=\dim V-\dim\Null T=\dim(\Null T)^0.\] Then, $\range T'\subseteq(\Null T)^0$ and $\dim\range T'=\dim(\Null T)^0$, so it must be that $\range T'=(\Null T)^0$.
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Then, $T$ is injective if and only if $T'$ is surjective.	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) If $T$ is injective, $\Null T=\qty{0}$. So, \[\dim\Null T=\dim V-\dim(\Null T)^0=\dim V-\dim\range T'=0.\] So, $\dim\range T'=\dim V=\dim V'$. Then, $T'$ is surjective. $\pqde$
+	\par ($\Leftarrow$)	If $T'$ is surjective, $\dim\range T'=\dim V'=\dim V$. So, \[\dim\Null T=\dim V-\dim(\Null T)^0=\dim V-\dim\range T'=0.\] Then, $\Null T=\qty{0}$, and so $T$ is injective. 
+\end{prf}
+\begin{df}{Row Rank \& Column Rank}
+	Suppose $A$ is an $m\times n$ matrix with entries in $\F$.
+	\begin{enumerate}
+		\item The \textit{row rank} of $A$ is the dimension of the span of the rows of $A$ in $\F^{1,n}$.
+		\item The \textit{column rank} of $A$ is the dimension of the span of the columns of $A$ in $\F^{m,1}$.
+	\end{enumerate}	
+\end{df}
+\begin{thm}{}
+	Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Then, $\dim\range T$ equals the column rank of $\M(T)$.
+\end{thm}
+\begin{prf}
+	Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $w_1,\cdots,w_m$ is a basis of $W$. Then, \[Tv_k=A_{1,k}w_1+\cdots+A_{m,k}w_m\] and thus \[\M(Tv_k)=\mqty(A_{1,k}\\\vdots\\A_{m,k})\in\F^{m,1}\] Therefore, $\M(T)=\mqty(\M(Tv_1)&\cdots&\M(Tv_n)).$ Note that $\range T=\span(Tv_1,\cdots,Tv_n)$.\par
+	 Define $\M:\span(Tv_1,\cdots,Tv_n)\to\span(\M(Tv_1),\cdots,\M(Tv_n))$ as $w\mapsto\M(w)$.
+	 \begin{enumerate}
+	 	\item $\M$ is surjective: Note that \[c_1\M(Tv_1)+\cdots+c_n\M(Tv_n)=\M(c_1Tv_1+\cdots+c_nTv_n).\] Since $c_1Tv_1+\cdots+c_nTv_n\in\range T,$ we know $\M$ is surjective. $\pqde$
+	 	\item $\M$ is injective: Let \begin{equation}\label{eq10}\M(c_1Tv_1+\cdots+c_nTv_n)=0.\end{equation} We can reduce $c_1Tv_1+\cdots+c_nTv_n$ to a basis $Tv_{j_1},\cdots,Tv_{j_m}$. Then, Equation (\ref{eq10}) becomes $\M(a_1Tv_{j_1}+\cdots+a_mTv_{j_m})=0$. By definition of matrix, we know $\mqty(a_1\\\vdots\\a_m)=0.$ So, $a_1=\cdots=a_m=0$ and $a_1Tv_{j_1}+\cdots+a_mTv_{j_m}=0.$ So, $\M$ is injective. $\pqde$
+	 \end{enumerate}
+	 Since $\M$ is both surjective and injective, $\M$ is a bijection. Thus, $\M$ is an isomorphism between $\span(Tv_1,\cdots,Tv_n)$ and $\span(\M(Tv_1),\cdots,\M(Tv_n))$. In other words, \[\span(Tv_1,\cdots,Tv_n)\cong\span(\M(Tv_1),\cdots,\M(Tv_n)).\] Then, $\dim\span(Tv_1,\cdots,Tv_n)=\dim\span(\M(Tv_1),\cdots,\M(Tv_n))$. That is, \[\dim\range T=\mathrm{column\ }\rank\mathrm{\ of\ }T.\]
+\end{prf}
+\begin{thm}{Row Rank Equals Column Rank}
+	Suppose $A\in\F^{m,n}$. Then, the row rank of $A$ equals the column rank of $A$. 
+\end{thm}
+\begin{prf}
+	Define $T:\F^{n,1}\to\F^{m,1}$ by $Tx=Ax$.	Then, $\M(T)=A$, where $\M(T)$ is computed with respect to the standard basis of $\F^{n,1}$ and $\F^{m,1}$. Note that \[\begin{aligned}\mathrm{column\ }\rank\mathrm{\ of\ }A&=\mathrm{column\ }\rank\mathrm{\ of\ }\M(T)\\&=\dim\range T&\text{Theorem 3.5.23}\\&=\dim\range T'&\text{Theorem 3.5.20(1)}\\&=\mathrm{column\ }\rank\mathrm{\ of\ }\M(T')\\&=\mathrm{column\ }\rank\mathrm{\ of\ }A^t&\text{Theorem 3.5.13}\\&=\mathrm{row\ }\rank\mathrm{\ of\ }A\end{aligned}\]
+\end{prf}
+\begin{df}{Rank}
+	The \textit{rank} of a matrix $A\in\F^{m,n}$ is the column rank of $A$, denoted as $\rank A$.
+\end{df}
+
+\newpage
+\subsection{Quotients of Vector Spaces}
+\begin{df}{$v+U$/Affine Subset}
+	Suppose $v\in V$ and $U$ is a subspace of $V$. Then \[v+U\coloneqq\qty{v+u\mid u\in U}.\] An \textit{affine subset} of $V$ is a subset of $V$ of the form $v+U$ for some $v\in V$ and some subspace $U$ of $V$. The affine subset is said to be \textit{parallel} to $U$.
+\end{df}
+\begin{df}{Quotient Space, $V/U$}
+	Suppose $U$ is a subspace of $V$. Then the quotient space $V/U$ is the set of all affine subsets of $V$ parallel to $U$. In other words, \[V/U\coloneqq\qty{v+U\mid v\in V}.\]	
+\end{df}
+\begin{eg}
+	If $U=\qty{(x,2x)\in\R^2\mid x\in\R}$, then $\R^2/U$ is the set of all lines in $\R^2$ with slope of $2$.	
+\end{eg}
+\begin{thm}{}
+	Suppose $U$ is a subspace of $V$ and $v,w\in V$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $v-w\in U$
+		\item $v+U=w+U$
+		\item $(v+U)\cap(w+U)\neq\emptyset$
+	\end{enumerate}	
+\end{thm}
+
+
+\newpage
+\section{Eigenvectors and Invariant Subspaces}
+\subsection{Invariant Subspaces}
+
+\newpage
+\subsection{Eigenvectors and Upper-Triangular Matrices}
+
+\newpage
+\subsection{Eigenspaces and Diagonal Matrices}
+
+\newpage
+\section{Inner Product Spaces}
+\subsection{Inner Products and Norms}
+
+\newpage
+\subsection{Orthonormal Bases}
+
+\newpage
+\subsection{Orthogonal Complements and Minimization Problems}
+
+\newpage
+\section{Operators on Inner Product Spaces}
+\subsection{Self-Adjoint and Normal Operators}
+
+\newpage
+\subsection{The Spectral Theorem}
+
+\newpage
+\subsection{Positive Operators and Isometries}
+
+\newpage
+\subsection{Polar Decomposition and SVD}
+
+\newpage
+\section{Operators on Complex Vector Spaces}
+\subsection{Generalized Eigenvectors, Nilpotent Operators}
+
+\newpage
+\subsection{Decomposition of an Operator}
+
+\newpage
+\subsection{Characteristic and Minimal Polynomials}
+
+\newpage
+\subsection{Jordan Form}
+
+\newpage
+\section{Operators on Real Vectors Spaces}
+\subsection{Complexification}
+
+\newpage
+\subsection{Operators on Real Inner Product Spaces}
+
+\newpage
+\section{Trace and Determinant}
+\subsection{Trace}
+
+\newpage
+\subsection{Determinant}
+
+\newpage
+\section{Exercises}
+\subsection{Span and Linear Independence}
+\begin{enumerate}
+	\item Suppose $v_1,v_2,v_3,v_4$ spans $V$. Prove that the list $v_1-v_2,v_2-v_3,v_3-v_4,v_4$ also spans $V$.
+	\item Prove that if $\C$ is a vector space on $\R$, then the list $1+\i,1-\i$ is $\LI$. 
+	\item Prove that if $\C$ is a vector space on $\C$, then the list $1+\i,1-\i$ is linearly dependent.
+	\item Prove or give a counterexample: Suppose $v_1,v_2,\cdots,v_m$ is $\LI$ in $V$ and $\lambda\in\F$ with $\lambda\neq0.$ Then $\lambda v_1,\lambda v_2,\cdots,\lambda v_m$ is $\LI$.
+	\item Suppose $v_1,\cdots,v_m$ is $\LI$ in $V$ and $w\in V$. Prove that if $v_1+w,\cdots,v_m+w$ is linearly dependent, then $w\in\span(v_1,\cdots,v_m).$
+\end{enumerate}
+\subsection{Bases}
+\begin{enumerate}
+	\item Find all the vectors spaces that consist of only one basis. \begin{hint}$\qty{0}.$\end{hint}
+	\item Suppose $U$ is a subspace of $\R^5\st U=\qty{(x_1,x_2,x_3,x_4,x_5)\in\R^5\mid x_1=3x_2,x_3=7x_4}.$ Find a basis of $U$. Extend this basis into a basis of $\R^5.$ Then, find a subspace $W$ of $\R^5\st\R^5=U\oplus W.$
+	\item Suppose $v_1,v_2,v_3,v_4$ is a basis of $V$. Prove that $v_1+v_2,v_2+v_3,v_3+v_4,v_4$ is also a basis of $V$.
+	\item \textbf{Prove} or disprove: $\P_3(\F)$ has a basis $p_0,p_1,p_2,p_3\st$ no one from $p_0,p_1,p_2,p_3$ has a degree of $2$. \begin{hint}Use the conclusion from \#3.\end{hint}
+	\item Prove or \textbf{give a counterexample}: If $v_1,v_2,v_3,v_4$ is a basis of $V$ and $U$ is a subspace of $V\st v_1,v_2\in U,v_3\notin U,v_4\notin U,$ then $v_1,v_2$ is basis of $U$.
+\end{enumerate}
+\subsection{Dimension}
+\begin{enumerate}
+	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V\st\dim U=\dim V$. Prove that $U=V$.
+	\item Prove that the subspaces of $\R^2$ are exactly the following: $\qty{0},$ $\R^2$, and all the lines passing through the origin in $\R^2$.
+	\item Suppose $v_1,\cdots,v_m$ is $\LI$ in $V$ and $w\in V.$ Prove $\dim\span(v_1+w,\cdots,v_m+w)\geq m-1.$
+	\item Suppose $p_0,p_1,\cdots,p_m\in\P(\F)\st \deg p_j=j$. Prove $p_0,p_1,\cdots,p_m$ is a basis of $\P_m(\F).$
+	\item Suppose $U$ and $W$ are subspaces of $\R^8\st\dim U=3,\dim W=5,$ and $U+W=\R^8.$ Prove that $\R^8=U\oplus W.$
+	\item Suppose $U$ and $W$ are $5$-dimensional subspaces of $\R^9.$ Prove $U\cap W\neq\qty{0}.$
+	\item Suppose $U$ and $W$ are $4$-dimensional subspaces of $\C^6$. Prove that $\exists$ two vectors in $U\cap W\st$ any one of which is not a scalar multiple of another one.
+	\item Suppose $U_1,\cdots,U_m$ are $\FD$ vector spaces of $V$. Prove that $U_1+\cdots+U_m$ is $\FD$ and \[\dim(U_1+\cdots+U_m)\leq\dim U_1+\cdots+\dim U_m.\]
+	\item Suppose $V$ is $\FD$ and $\dim V=n\geq1.$ Prove that $\exists$ $1$-dimensional subspaces of $V$, $U_1,\cdots,U_n\st$\[V=U_1\oplus\cdots\oplus U_n.\]
+	\item Suppose $U_1,\cdots,U_m$ are $\FD$ vector subspaces of $V\st U_1+\cdots+U_m$ is a direct sum. Prove that $U_1\oplus\cdots\oplus U_m$ is $\FD$ and \[\dim U_1\oplus\cdots\oplus U_m=\dim U_1+\cdots+\dim U_m.\]\begin{hint}Use mathematical induction.\end{hint}\begin{rmk}This problem deepens the analogy between direct sums of subspaces and disjoint unions of subsets. Specifically, compare this problem to the following obvious statement: if a set is written as a disjoint union of finite subsets, then the number of elements in the set equals the sum of the numbers of elements in the disjoint subsets. \end{rmk}
+	\item Prove or give a counter example: \[\begin{aligned}\dim(U_1+U_2+U_3)=&\dim U_1+\dim U_2+\dim U_3\\&-\dim(U_1\cap U_2)-\dim(U_1\cap U_3)-\dim(U_2\cap U_3)\\&+\dim(U_1\cap U_2\cap U_3).\end{aligned}\] \begin{hint}Consider $U_1=\qty{(x,0)\mid x\in\R},\ U_2=\qty{(0,y)\mid y\in\R},\ U_3=\qty{(x,x)\mid x\in\R}.$\end{hint}
+\end{enumerate}
+\subsection{The Vector Space of Linear Maps}
+\begin{enumerate}
+	\item Suppose $T\in\L(V,W)$ and $v_1,\cdots,v_m$ is a vector list in $V\st Tv_1,\cdots,Tv_m$ is $\LI$ in $W$. Prove that $v_1,\cdots,v_m$ is $\LI$.
+	\item Prove that $\L(V,W)$ is a vector space.
+	\item Prove the algebraic properties of products of linear maps. 
+	\item Show that every linear map from a $1$-dimensional vector space to itself is multiplication by some scalar. More precisely, prove that if $\dim V=1$ and $T\in\L(V,V)$, then $\exists\lambda\in\F\st Tv=\lambda v\quad\forall v\in V$.
+\end{enumerate}
+\subsection{Null Spaces and Range}
+\begin{enumerate}
+	\item Suppose $V$ is a vector space and $S,T\in\L(V,V)\st\range S\subset\Null T.$ Prove that $(ST)^2=0.$
+	\item Prove that $\nexists$ a linear map $T:\R^5\to\R^5\st\range T=\Null T.$
+	\item Suppose $T\in\L(V,W)$ is injective and $v_1,\cdots,v_n$ is $\LI$ in $V$. Prove that $Tv_1,\cdots,Tv_n$ is $\LI$ in $W$.
+	\item Suppose $v_1,\cdots,v_n$ spans $V$ and $T\in\L(V,W).$ Prove that $Tv_1,\cdots,Tv_n$ spans $\range T.$
+	\item Suppose $U$ is a $3$-dimensional subspace of $\R^8$ and $T$ is a linear map from $\R^8$ to $\R^5\st \Null T=U.$ Prove that $T$ is surjective. 
+	\item Suppose $V$ and $W$ are $\FD$. Prove that $\exists$ an injective linear map from $V$ to $W\iff\dim V\leq\dim W$.
+	\item Suppose $U$ and $V$ are $\FD$ vector spaces, $S\in\L(V,W),$ and $T\in\L(U,V).$ Prove \[\dim\Null ST\leq\dim\Null S+\dim\Null T.\]
+	\item Suppose $U$ and $V$ are $\FD$ vector spaces, $S\in\L(V,W),$ and $T\in\L(U,V).$ Prove \[\dim\range ST\leq\min\qty{\dim\range S,\dim\range T}.\]
+	\item Suppose $D\in\L(\P(\R),\P(\R))\st \deg Dp=(\deg p)-1\ \forall$ non-constant polynomial $p\in\P(\R).$ \begin{rmk}The notation $D$ is used above to remind you of the differentiation map that sends a polynomial $p$ to $p'$. Without knowing the formula for the derivative of a polynomial (except that it reduces the degree by $1$), you can use the exercise above to show that for every polynomial $q\in\P(\R)$, $\exists$ a polynomial $p\in\P(\R)\st p'=q$.\end{rmk}
+	\item Suppose $p\in\P(\R).$ Prove that $\exists q\in\P(\R)\st 5q''+3q'=p.$\begin{rmk}This problem can be solved without using knowledge in Linear Algebra, but it is more interesting to solve with Linear Algebra.\end{rmk}
+	\item Suppose $T\in\L(V,W)$ and let $w_1,\cdots,w_m$ be a basis of $\range T.$ Prove that $\exists\ \phi_1,\cdots,\phi_m\in\L(V,\F)\st Tv=\phi_1(v)w_1+\cdots+\phi_m(v)w_m\quad\forall v\in V.$
+\end{enumerate}
+\subsection{Matrices}
+\begin{enumerate}
+	\item Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Prove that for any basis in $V$ and $W$, the matrix for $T$ has at least $\dim\range T$ non-zero entries. 
+	\item If $S,T\in\L(V,W),$ then $\M(S+T)=\M(S)+\M(T).$
+	\item Suppose $\lambda\in\F$ and $T\in\L(V,W).$ Then, $\M(\lambda T)=\lambda\M(T).$
+\end{enumerate}
+\subsection{Invertibility and Isomorphism}
+\begin{enumerate}
+	\item Suppose $T\in\L(U,V)$ and $S\in\L(V,W)$ are invertible linear maps. Prove that $ST\in\L(U,W)$ is invertible and $(ST)^{-1}=T^{-1}S^{-1}.$
+	\item Suppose $V$ is $\FD$ and $\dim V>1.$ Prove that the set of non-invertible operators on $V$ is not a subspace of $\L(V).$
+	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Let $S\in\L(U,V).$ Prove that $\exists$ invertible operator $T\in\L(V)\st Tu=Su\quad\forall u\in U\iff S$ is injective. 
+	\item Suppose $W$ is $\FD$ and $T_1,T_2\in\L(V,W).$ Prove that $\Null T_1=\Null T_2\iff\exists$ invertible operator $S\in\L(W)\st T_1=ST_2.$
+	\item Suppose $V$ is $\FD$ and $T_1,T_2\in\L(V,W).$ Prove that $\range T_1=\range T_2\iff\exists$ invertible operator $S\in\L(V)\st T_1=T_2S.$
+	\item Suppose $V$ is $\FD$ and $S,T\in\L(V).$ Prove that $ST$ is invertible $\iff$ both $S$ and $T$ are invertible.
+	\item Suppose $V$ is $\FD$ and $S,T\in\L(V).$ Prove $ST=I\iff TS=I.$
+	\item Suppose $V$ is $\FD$ and $S,T,U\in\L(V)\st STU=I.$ Prove $T$ is invertible and $T^{-1}=US.$
+	\item Suppose $V$ is $\FD$ and $R,S,T\in\L(V)\st RST$ is a surjection. Prove that $S$ is an injection. 
+	\item Suppose $v_1,\cdots,v_n$ is a basis of $V$. Define a linear map $T:V\to\F^{n,1}$ as $Tv=\M(v),$ where $\M(v)$ is the matrix of $v\in V$ with respect to the basis $v_1,\cdots,v_n$. Prove that $T$ is an isomorphism from $V$ to $\F^{n,1}.$
+	\item Prove that $V\cong\L(\F,V).$
+\end{enumerate}
+\subsection{Duality}
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\end{document}
