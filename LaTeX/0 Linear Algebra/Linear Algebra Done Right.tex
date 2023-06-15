@@ -1201,14 +1201,268 @@
 		\item $(v+U)\cap(w+U)\neq\emptyset$
 	\end{enumerate}	
 \end{thm}
+\begin{prf}
+	\begin{enumerate}
+	\item We want to show (1) $\implies (2).$ Suppose $v-w\in U$. Note that $v+u=w+((v-w)+u)$. Since $v-u$ and $u \in U$, we have $(v-w)+u\in U$. So, $v+u\in w+U$. Similarly, we can show that $w+u\in v+U.$ Then, we have $v+U=w+U.\pqde$
+	\item Now, we want to show (2) $\implies$ (3): Suppose $v+U=w+U$. Then, we have $(v+U)\cap(w+U)\neq\emptyset,$ which is evident from the assumption. $\pqde$
+	\item Finally, we will show (3) $\implies$ (1). Suppose $(v+U)\cap(w+U)\neq\emptyset$. Then, $\exists u_1,u_2\in U\st v+u_1=w+u_2$. So we have $v-w=u_2-u_1\in U.$
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Addition \& Scalar Multiplication on $V/U$}
+	Suppose $U$ is a subspace of $V$. Then, \textit{addition} and \textit{scalar multiplication} is defined on $V/U$ by \[(v+U)+(w+U)=(v+w)+U\] and \[\lambda(v+U)=(\lambda v)+U\] for $v,w\in U$ and $\lambda\in\F$.
+\end{df}
+\begin{thm}{}
+	Suppose $U$ is a subspace of $V$. Then, $V/U$, with the operations of addition and scalar multiplication defined above, is a vector space.	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Addition on $V/U$ makes sense.\par Note the addition can be written in the language of mapping as $+:V/U\times V/U\to V/U$. So, we have $(v+U,w+U)\mapsto(v+w)+U$. Suppose $\exists\ \hat{v}.\hat{w}\in V\st v+U=\hat{v}+U$ and $w+U=\hat{w}+U$. Note that $v-\hat{v}\in U$ and $w-\hat{w}\in U$ by Theorem 3.6.4. Then, $(v-\hat{v})+(w-\hat{w})\in U$. So, we have $(v+w)-(\hat{v}+\hat{w})in U$. Further, by Theorem 3.6.4, we have \[(v+w)+U=(\hat{v}+\hat{w})+U.\pqde\]
+		\item Scalar multiplication on $V/U$ makes sense.\par We can write the scalar multiplication on $V/U$ as a mapping: $\cdot: \F\times V/U\to V/U$ defined as $(\lambda,v+U)\mapsto\lambda v+U$. Suppose $\exists\ \hat{v}\in V\st v+U=\hat{v}+U$. So we know $v-\hat{v}\in U$, and thus $\lambda(v-\hat{v})=\lambda v-\lambda\hat{v}\in U$. By Theorem 3.6.4, we then have $(\lambda v)+U=(\lambda\hat{v})+ U$. Thus, the scalar multiplication makes sense. $\pqde$
+		\item additive identity: $0+U=U.\pqde$
+		\item additive inverse: $(-v)+U.\pqde$
+		\item commutativity: \[\begin{aligned}(v+U)+(w+U)=(v+w)+U&=(w+v)+U\\&=(w+U)+(v+U).\pqde\end{aligned}\]
+		\item associativity: \[\begin{aligned} [(v+U)+(w+U)]+(x+U)&=[(v+w)+U]+(x+U)\\&=[(v+w)+x]+U\\&=[v+(w+x)]+U\\&=(v+U)+[(w+x)+U]\\&=(v+U)+[(x+U)+(x+U)].\pqde\end{aligned}\]
+		\item multiplicative identity: $1\cdot(v+U)=(1\cdot v)+U=v+U.\pqde$
+		\item distributivity: \[\begin{aligned}a[(v+U)+(w+U)]&=a[(v+w)+U]\\&=a(v+w)+U\\&=(av+aw)+U\\&=(av+U)+(aw+U)\\&=a(v+U)+a(w+U).\end{aligned}\]\[\begin{aligned}(a+b)(v+U)&=(a+b)v+U\\&=(av+bv)+U\\&=(av+U)+(bv+U)\\&=a(v+U)+b(v+U)\end{aligned}\]
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Quotient Map}
+	Suppose $U$ is a subspace of $V$. The \textit{quotient map} $\pi$ is the linear map $\pi:V\to V/U$ defined by $\pi(v)\coloneqq v+U\quad\forall v\in V$.
+\end{df}
+\begin{rmk}
+	Here are some properties of the quotient map: 
+	\begin{enumerate}
+		\item $\pi(v)$ is defined $\forall v\in V$. Thus, $\pi$ is surjective.
+		\item $\Null\pi=\qty{v\in V\mid\pi(v)=0}$. If $\pi(v)=0,$ then $v+U=U=0+U$. So, $v-0\in U$ by Theorem 3.6.4. Then, $v\in U$. So, $\Null\pi\subseteq U$. Further, $\forall v\in U$, if $\pi(v)=0$, then $v\in\Null \pi$, then $U\subseteq\Null\pi$. So, $U=\Null\pi$.
+		\item $\pi(v+w)=(v+w)+U=(v+U)+(w+U)=\pi(v)+\pi(w).$
+		\item $\pi(\lambda v)=(\lambda v)+U=\lambda(v+U)=\lambda\pi(v).$
+	\end{enumerate}	
+\end{rmk}
+\begin{thm}{}
+	Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Then \[\dim V/U=\dim V-\dim U.\]	
+\end{thm}
+\begin{prf}
+	By Fundamental Theorem of Linear Map, we have \begin{equation}
+\label{eq11}\dim V=\dim\Null\pi+\dim\range\pi.\end{equation} Since $\Null\pi=U$ from the Remark, we have $\dim\Null\pi=\dim U.$ Further, since $\pi$ is surjective as mentioned in the Remark, $\range\pi=V/U$. Hence, $\dim\range\pi=\dim V/U$. Therefore, Equation (\ref{eq11}) becomes \[\dim V=\dim U+\dim V/U,\] or we have \[\dim V/U=\dim V-\dim U\]
+\end{prf}
+\begin{df}{$\tilde{T}$}
+	Suppose $T\in\L(V,W)$. Define $\tilde{T}:V/(\Null T)\to W$ by $\tilde{T}(v+\Null T)-Tv.$
+\end{df}
+\begin{prf}
+	\begin{enumerate}
+		\item This definition makes sense\par Suppose $u,v\in V\st u+\Null T=v+\Null T$. By Theorem 3.6.4, we know $u-v\in\Null T$. Then, $T(u-v)=0$, or $Tu=Tv.\pqde$
+		\item $\tilde{T}$ is a linear map. \[\begin{aligned}\tilde{T}[(u+\Null T)+(v+\Null T)]&=\tilde{T}[(u+v)+\Null T]\\&=T(u+v)\\&=Tu+Tv=\tilde{T}(u+\Null T)+\tilde{T}(v+\Null T).\pqde\end{aligned}\] \[\begin{aligned}\tilde{T}[\lambda(u+\Null T)]&=\tilde{T}(\lambda u+\Null T)\\&=T(\lambda u)\\&=\lambda Tu\\&=\lambda T(u+\Null T).\end{aligned}\]
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V,W)$. Then, 
+	\begin{enumerate}
+		\item $\tilde{T}$ is injective.
+		\item $\range\tilde{T}=\range T$.
+		\item $V/(\Null T)\cong\range T$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $v\in V$ and $\tilde{T}(v+\Null T)=0$. Then, $Tv=0$. So, $v\in\Null T$, or $v-0\in\Null T$. By Theorem 3.6.4, we then have $v+\Null T=0+\Null T$. Then, it implies $\Null\tilde{T}=0.$ So, $\tilde{T}$ is injective.$\pqde$
+		\item By definition of $\tilde{T}$, it must be $\range\tilde{T}=\range T.\pqde$
+		\item Note that $\dim V/(\Null T)=\dim\Null\tilde{T}+\dim\range\tilde{T}=0+\dim\range T$. Then, by Theorem 3.4.9, we know two vector spaces are isomorphic if and only if their dimensions are equal. Then, \[V(\Null T)\cong\range T.\]
+	\end{enumerate}	
+\end{prf}
 
 
 \newpage
 \section{Eigenvectors and Invariant Subspaces}
 \subsection{Invariant Subspaces}
+\begin{thm}{}
+	Suppose $V$ is $\FD$ with $\dim V=n\geq1$. Then, $\exists\ 1-$dimensional subspaces $U_1,\cdots,U_n$ of $V\st$\[V=U_1\oplus\cdots\oplus U_n.\]
+\end{thm}
+\begin{prf}
+	Choose a basis $v_1,\cdots,v_n$ of $V$. Then, we know $V=\span(v_1)+\cdots+\span(v_n)$. Also, $\forall v\in V$, we have $v=a_1v_1+\cdots+a_nv_n$ with $a_jv_j\in\span(v_j)$. Set $a_1v_1+\cdots+a_nv_n=0$. Since $v_1,\cdots,v_n$ is a basis, it must be $a_1=\cdots=a_n=0.$ Then, \[V=\span(v_1)\oplus\cdots\oplus\span(v_n).\]	
+\end{prf}
+\begin{thm}{}
+	Suppose $U_1,\cdots,U_m$ are $\FD$ subspaces of $V\st U_1+\cdots+U_m$ is a direct sum. Then, $U_1\oplus\cdots\oplus U_m$ is $\FD$ and \[\dim U_1\oplus\cdots\oplus U_m=\dim U_1+\cdots+\dim U_m.\]
+\end{thm}
+\begin{prf}
+	Suppose $u_{k,1},\cdots,u_{k.j_k}$ is a basis of the subspace $U_k$. Then, any vector in $\dsst\bigoplus_{i=1}^mU_i$ is in the form of $u_1+\cdots+u_m,\quad u_j\in U_j$. Also, \[u_i=\sum_{k=1}^{j_i}a_{i,k}u_{i,k}.\] So, \[u_1+\cdots+u_m=\sum_{k=1}^{j_1}a_{1,k}u_{1,k}+\cdots+\sum_{k=1}^{j_m}a_{m,k}u_{m,k}.\] Then, $u_1+\cdots+u_m$ is a linear combination of $u_{1,1},\cdots,u_{j,m}$. So, the direct sum is $\FD.\pqde$\par 
+	Further, suppose \[\sum_{k=1}^{j_1}a_{1,k}u_{1,k}+\cdots+\sum_{k=1}^{j_m}a_{m,k}u_{m,k}=0.\] Since $U_1+\cdots+U_m$ is a direct sum, it must be \[\sum_{k=1}^{j_1}a_{1,k}u_{1,k}=\cdots=\sum_{k=1}^{j_m}a_{a,k}u_{m,k}=0.\] Since we selected bases, $a_{1,k}=\cdots=a_{m,k}=0.$ So, $u_{1,1},\cdots,u_{m,j_m}$ is a basis of $U_1\oplus\cdots\oplus U_m$. Then, \[\dim U_1\oplus\cdots\oplus U_m=\dim U_1+\cdots+\dim U_m.\]
+\end{prf}
+\begin{df}{Invariant Subspace}
+	Suppose $T\in\L(V)$. A subspace $U$ of $V$ is called \textit{invariant} under $T$ if $u\in U$ implies $Tu\in U$.	
+\end{df}
+\begin{eg}
+	Suppose $T\in\L(V)$. Show that each of the following subspaces of $V$ is invariant under $T$: 
+	\begin{enumerate}
+		\item $\qty{0}$
+		\begin{prf} $T0=0\in\qty{0}$\end{prf}
+		\item $V$
+		\begin{prf} $u\in V\implies Tu\in V$\end{prf}
+		\item $\Null T$
+		\begin{prf} $u\in\Null T\implies Tu=0\in\range T$\end{prf}
+		\item $\range T$
+		\begin{prf} $u\in\range T\implies Tu\in\range T$\end{prf}
+	\end{enumerate}	
+\end{eg}
+\begin{eg}
+	Suppose $T\in\L(\P(\R))$ is defined by $Tp=p'$. Then, $\P_4(\R)$ is invariant under $T$.
+	\begin{prf}
+		Note that $T p_4)\in\P_4(\R)$. Then, $\P_4(\R)$ is invariant under $T$.	
+	\end{prf}
+\end{eg}
+\begin{df}{Eigenvalue}
+	Suppose $T\in\L(V)$. A number $\lambda\in\F$ is called an \textit{eigenvalue} of $T$ if $\exists\ v\in V\st v\neq0$ and $Tv=\lambda v$.	
+\end{df}
+\begin{cor}{}
+	$T$ has a $1-$dimensional invariant subspace if and only if $T$ has an eigenvalue.	
+\end{cor}
+\begin{prf}
+	\par ($\Rightarrow$) Suppose $\span(v)$ is invariant under $T$. Let $U$ be defined as $U=\qty{\lambda v\mid\lambda\in\F}=\span(v)$. Then. $U$ is the invariant subspace under $T$ and $\dim U=1$. Then, $\forall v\in V$, we have $Tv\in U$. Hence, $\exists\lambda\in\F\st Tv=\lambda v$. Then, $\lambda$ is an eigenvalue. $\pqde$
+	\par ($\Leftarrow$) Suppose $\lambda\in\F$ is an eigenvalue. Then, $Tv=\lambda v$. Hence, $\span(v)$ is a $1=$dimensional invariant subspace under $T$. 
+\end{prf}
+\begin{thm}{Equivalent Conditions to be an Eigenvalue}
+	Suppose $V$ is $\FD$, $T\in\L(V)$, and $\lambda\in\F$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $\lambda$ is an eigenvalue of $T$.
+		\item $T-\lambda I$ is not injective.
+		\item $T-\lambda I$ is not surjective.
+		\item $T-\lambda I$ is not invertible. 
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item (1)$\implies$(2): Suppose $\lambda$ is an eigenvalue of $T$. Then, $\exists v\in V\st v\neq0$ and $Tv-\lambda v$. So, $Tv-\lambda v=(T-\lambda I)v=0$. Since $v\neq0$, $\Null(T-\lambda I)\neq\qty{0},$ and thus $T$ is not injective. $\pqde$
+		\item Note that $T-\lambda I$ is an operator by itself. By Theorem 3.4.17, we know (2), (3), and (4) are equivalent. 
+		\item (4)$\implies$(1): Suppose $T-\lambda I$ is not invertible. Then, it is not injective. So, $\exists v\neq0\st(T-\lambda I)v=0$. That is, $Tv-\lambda Iv=Tv-\lambda v=0$. So, $Tv=\lambda v$. Then, $\lambda$ is an eigenvalue of $T$.
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Eigenvector}
+	Suppose $T\in\L(V)$ and $\lambda\in\F$ is an eigenvalue of $T$. A vector $v\in V$ is called an \textit{eigenvector} of $T$ corresponding to $\lambda$ if $v\neq0$ and $Tv=\lambda v$.
+\end{df}
+\begin{cor}{}
+	A vector $v\in V$ with $v\neq0$ is an eigenvector of $T$ with respect to $\lambda$ if and only if $v\in\Null(T-\lambda I)$.	
+\end{cor}
+\begin{prf}
+	Note that $Tv=\lambda v$ if and only if $(T-\lambda I)v=0$.	
+\end{prf}
+\begin{eg}
+	Suppose $T\in\L(\F^2)$ is defined by $T(w,z)=(-z,w)$.
+	\begin{enumerate}
+		\item Find the eigenvalues and eigenvectors of $T$ if $\F=\R$.
+		\begin{ans}
+			Let $T(2,z)=\lambda(w,z)$. So, $(-z,w)=(\lambda w,\lambda z)$. Then, solve $\begin{cases}-z=\lambda w\\w=\lambda z\end{cases}$.\par  Then, we have $\lambda^2z+z=0$. If $z\neq0$, $\lambda^2+1=0$. This equation has no solutions on $\R$. So $T$ has no eigenvalues. If $w=0, z=0$, then $T(w,z)=T(0.0)=T0$. By definition, $T$ has no eigenvalues.
+		\end{ans}
+		\item Find the eigenvalues and eigenvectors of $T$ if $\F=\C$.
+		\begin{ans}
+			Applying similar rational, $z\neq0$ and solve $\lambda^2+1=0$. Then, we have $\lambda=\pm\i$. If $\lambda=\i$, then $-z=\i w$. So, $v=(w,z)=(w,-\i w)$. If $\lambda-\i$, then $-z=-\i w$, or $z=\i w$. So, $v=(w,\i w)$.
+		\end{ans}
+	\end{enumerate}	
+\end{eg}
+\begin{thm}{}
+	Let $T\in\L(V)$. Suppose $\lambda_1,\cdots,\lambda_m$ are distinct eigenvalues of $T$ and $v_1,\cdots,v_m$ are corresponding eigenvectors. Then, $v_1,\cdots,v_m$ is $\LI$.
+\end{thm}
+\begin{prf}
+	Suppose for the sake of contradiction that $v_1,\cdots,v_m$ is linearly dependent. Let $k$ be the smallest positive integer $\st v_k\in\span(v_1,\cdots,v_{k-1})$. Then, $v_k=a_1v_1+\cdots+a_{k-1}v_{k-1}$. Applying $T$, we have \begin{equation}\label{eq12}\lambda_kv_k=a_1\lambda_1v_1+\cdots+a_{k-1}\lambda_{k-1}v_{k-1}.\end{equation} Since $v_k=a_1v_1+\cdots+a_{k-1}v_{k-1}$, we also have \begin{equation}\label{eq13}\lambda_kv_k=a_1\lambda_kv_1+\cdots+a_{k-1}\lambda_kv_{k-1}.\end{equation} So, by Equation (\ref{eq13})-(\ref{eq12}), we have \[0=a_1(\lambda_k-\lambda_1)v_1+\cdots+a_{k-1}(\lambda_k-\lambda_{k-1})v_{k-1}.\] By assumption, $v_1,\cdots,v_{k-1}$ is $\LI$. Then, it must be that $a_1=\cdots=a_{k-1}=0$ since $\lambda_1,\cdots,\lambda_k$ are distinct eigenvalues. Therefore, $v_k=a_1v_1+\cdots+a_{k-1}v_{k-1}=0.$ $\divideontimes$ This contradicts with the fact that $v_k$ is an eigenvector, which cannot be $0$. So,it must be that $v_1,\cdots,v_m$ are $\LI$
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is $\FD$. Then, each operator on $V$ has at most $\dim V$ distinct eigenvalues.	
+\end{thm}
+\begin{prf}
+	Let $T\in\L(V)$. Suppose $\lambda_1,\cdots,\lambda_m$ are distinct eigenvalues of $T$. Let $v_1,\cdots,v_m$ be corresponding eigenvectors. By Theorem 4.1.12, we know $v_1,\cdots,v_m$ is $\LI$. Further by Theorem 2.3.5, we know $\dim\span(v_1,\cdots,v_m)\leq\dim V$. That is, $m\leq\dim V$ as desired. 	
+\end{prf}
 
 \newpage
 \subsection{Eigenvectors and Upper-Triangular Matrices}
+\begin{df}{$T^m$}
+	Suppose $T\in\L(V)$ and $m$ is a positive integer. Then, $T^m$ is defined by \[T^m\coloneqq\underbrace{T\cdots T}_{m\text{ times}}.\] Specially, $T^0$ is defined to be the identity operator $I$ on $V$. Further, if $T$ is invertible with inverse $\T$, then $T^{-m}$ is defined by $T^{-m}\coloneqq(\T)^m$.
+\end{df}
+\begin{thm}{}
+	\[T^mT^n=T^{m+n};\qquad(T^m)^n=T^{mn}.\]	
+\end{thm}
+\begin{df}{$p(T)$}
+	Suppose $T\in\L(V)$ and $p\in\P(\F)$ is a polynomial given by \[p(z)=a_0+a_1z+a_2z^2+\cdots+a_mz^m,\quad z\in\F.\] Then, $p(T)$ is the operator defined by \[p(T)\coloneqq a_oI+a_1T+a_2T^2+\cdots+a_mT^m.\]
+\end{df}
+\begin{eg}
+	Suppose $D\in\L(\P(\R))$ is the differentiation operator defined by $Dq=q'$ and $p$ is the polynomuial defined by $p(x)=7-3x+5x^2$. Find $p(D)$ and $(p(D))q$.
+	\begin{ans}
+		\[p(D)=7I-3D+5D^2\]\[\begin{aligned}(p(D))q&=(7I-3D+5D^2)q\\&=7Iq-3Dq+5D^2q\\&=7q-3q'+5q''.\end{aligned}\]
+	\end{ans}	
+\end{eg}
+\begin{thm}{}
+	If we fix an operator $T\in\L(V)$, then the function from $\P(\F)$ to $\L(V)$ given by $p\mapsto p(T)$ is linear.
+\end{thm}
+\begin{prf}
+	Suppose $f:\P(\F)\to\L(V)$ is defined by $p\mapsto p(T)$. Suppose \[p=a_0+a_1z+\cdots+a_mz^m\mapsto a_0I+a_1T+\cdots+a_mT^m\] and \[q=b_0+b_1z+\cdots+b_mz^m\mapsto b_0I+b_1T+\cdots+b_mT^m.\] Then, \[\begin{aligned}f(p+q)&=(a_0+b_0)I+(a_1+b_1)T+\cdots+(a_m+b_m)T^m\\&=(a_0I+a_1T+\cdots+a_mT^m)+(b_0I+b_1T+\cdots+b_mT^m)\\&=f(p)+f(q).\end{aligned}\] Further, suppose $\lambda\in\F,$ then \[\begin{aligned}f(\lambda p)&=\lambda a_0I+\lambda a_1T+\cdots+\lambda a_mT^m\\&=\lambda(a_0I+a_1T+\cdots+a_mT^m)\\&=\lambda f(p).\end{aligned}\]
+\end{prf}
+\begin{df}{Product of Polynomials}
+	If $p,q\in\P(\F)$, then $pq\in\P(\F)$ is the polynomial defined by $(pq)(z)\coloneqq p(z)q(z)$ for $z\in\F$.
+\end{df}
+\begin{rmk}
+	$(pq)(z)=p(z)q(z)=q(z)p(z)=(qp)(z)$ for $z\in\F$.	
+\end{rmk}
+\begin{thm}{Multiplicative Properties}
+	Suppose $p,q\in\P(\F)$ and $T\in\L(V)$. Then 
+	\begin{enumerate}
+		\item $(pq)(T)=p(T)q(T)$
+		\item $p(T)q(T)=q(T)p(T)$
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $p(z)=\dsst\sum_{j=0}^ma_jz^j$ and $q(z)=\dsst\sum_{k=0}^nb_kz^k$. Then \[(pq)(z)=p(z)q(z)=\sum_{j=0}^ma_jz^j\sum_{k=0}^nb_kz^k=\sum_{j=0}^m\sum_{k=0}^na_jb_kz^{j+k}\] So, by definition, we have \[p(T)q(T)=\sum_{j=0}^m\sum_{k=0}^na_jb_kT^{j+k}=\qty(\sum_{j=0}^ma_jT^j)\cdot\qty(\sum_{k=0}^nb_kT^k)=p(T)q(T).\pqde\]
+		\item Similar to the Remark, \[p(T)q(T)=(pq)(T)=(qp)(T)=q(T)p(T).\]
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{Fundamental Theorem of Algebra}
+	Every non-constant polynomial with complex coefficients has a zero.	
+\end{thm}
+\begin{thm}{Existence of Eigenvalues}
+	Every operator on a $\FD$, non-zero, complex vector space has an eigenvalue.	
+\end{thm}
+\begin{prf}
+	Let $V$ be a complex vector space with dimension $n>0$. Suppose $T\in\L(V)$. Choose $v\in V\st v\neq0$. Then, $v,Tv,T^2v,\cdots,T^nv$ is linearly dependent because $\dim V=n$ but the length of the list is $n+1>n$. Hence, $\exists\ a_0,a_1,\cdots,a_n$ not all $0\in\C\st$\begin{equation}\label{eq14}0=a_0v+a_1Tv+\cdots+a_nT^nv\end{equation} By Fundamental Theorem of Algebra (Theorem 4.2.8), we have \[a_0+a_1z+\cdots+a_nz^n=c(z-\lambda_1)\cdots(z-\lambda_m)\] with $c\in\C,\ c\neq0$, and $\lambda_j\in\C$. Then, Equation (\ref{eq14}) becomes \[\begin{aligned}0&=a_0v+a_1Tv+\cdots+a_nT^nv\\&=(a_0I+a_1T+\cdots+a_nT^n)v\\&=c(T-\lambda_1I)\cdots(T-\lambda_mI)v\end{aligned}\] Since $v\neq0$ and $c\neq0$, it must be some $T-\lambda_iI=0$. Thus, $T=\lambda_iI$, and $\lambda_i$ is an eigenvalue of $T$.
+\end{prf}
+\begin{df}{Diagonal of a Matrix}
+	The \textit{diagonal of a square matrix} consists of the entires along the line from the upper left corner to the bottom right corner. 	
+\end{df}
+\begin{df}{Upper-Triangular Matrix}
+	A matrix is called \textit{upper-triangular} if all the entires below the diagonal equal $0$. Typically, we present an upper triangular matrix in the form \[\mqty(\lambda_1&&*\\&\ddots&\\0&&\lambda_n).\]
+\end{df}
+\begin{thm}{Conditions for Upper-Triangular Matrix}
+	Suppose $T\in\L(V)$ and $v_1,\cdots,v_n$ is a basis of $V$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item the matrix of $T$ with respect to $v_1,\cdots,v_n$ is upper triangular.
+		\item $Tv_j\in\span(v_1,\cdots,v_j)$ for each $j=1,\cdots,n$
+		\item $\span(1,\cdots,v_j)$ is invariant under $T$ for each $j=1,\cdots,n$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item First, we will show (1)$\iff$(2).\par Suppose $\M(T)=\mqty(A_{1,1}&\cdots&A_{1,n}\\&\ddots&\vdots\\0&&A_{n,n}).$ Then, \[\begin{aligned}Tv_1&=A_{1,1}v_1\\Tv_2&=A_{1,2}v_1+a_{2,2}v_2\\&\vdots\\Tv_j&=A_{1,j}v_1+\cdots+A_{j,j}v_j.\end{aligned}\] So, $Tv_j\in\span(v_1,\cdots,v_j)$. The reverse implication is trivial to prove. $\pqde$
+		\item (3)$\implies$(2) is obvious and trivial to prove.
+		\item Lastly, we want to show (2)$\implies$(3).\par Note that for each fixed $j=1,\cdots,n$, we have \[\begin{aligned}Tv_1&\in\span(v_1)\subseteq\span(v_1,\cdots,v_j)\\Tv_2&\in\span(v_1,v_2)\subseteq\span(v_1,\cdots,v_j)\\&\vdots\\Tv_j&\in\span(v_1,\cdots,v_j)\end{aligned}\] Let $v\in\span(v_1,\cdots,v_j)$. Then, $v$ is a linear combination of $v_1,\cdots,v_j$, then \[Tv\in\span(v_1,\cdots,v_j).\] That is, $\span(v_1,\cdots,v_j)$ is invariant under $T$.
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Quotient Operator}
+	Suppose $T\in\L(V)$ and $U$ is a subspace of $V$ invariant under $T$. The \textit{quotient operator} $T/U\in\L(V/U)$ is defined by $(T/U)(v+U)\coloneqq Tv+U$.
+\end{df}
+\begin{prf}
+	The definition makes sense, and here is the proof. If $v+U=w+U$, then $v-w\in U$. So, $T(v-w)\in U$ since $U$ is invariant. That is, $Tv-Tw\in U$. Then, $Tv+U=Tw+U$.	
+\end{prf}
+\begin{thm}{}
+	Suppose $U$ is a subspace of $V$. Let $v_1+U,\cdots,v_m+U$ be a basis of $V/U$ and $u_1,\cdots,u_n$ be a basis of $U$. Then, $v_1,\cdots,v_m,u_1,\cdots,u_n$ is a basis of $V$. 	
+\end{thm}
+\begin{prf}
+	Let $v\in V$. Then $v+U\in V/U$. So, $v+U=a_1v_1+\cdots+a_mv_m+U$, uniquely. Then, by Theorem 3.6.4, we have $v-(a_1v_1+\cdots+a_mv_m)\in U$. Therefore, $v-(a_1v_1+\cdots+a_mv_m)=b_1u_1+\cdots+b_nu_n$, uniquely. So, $v=a_1v_1+\cdots+a_mv_m+b_1u_1+\cdots+b_nu_n$. uniquely. By definition, $v_1,\cdots,v_m,u_1,\cdots,u_n$ is a basis of $V$.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a $\FD$ complex vector space and $T\in\L(V)$. Then, $T$ has an upper-triangular matrix with respect to some basis of $V$. 	
+\end{thm}
+\begin{prf}
+	\par $\boxed{\text{Base Case}}$	When $\dim V=1$, the implication holds. 
+	\par $\boxed{\text{Inductive Steps}}$ Suppose the implication is true for some complex vector space with dimension of $n-1$.  Let $\dim V=n$ and $v_1$ be any eigenvector of $T$. Suppose $U=\span(v_1).$ Then, $U$ is invariant under $T$. Note that $\dim V/U=\dim V-\dim U=n-1$, so we can use the inductive hypothesis on the quotient operator $T/U\in\L(V/U)$. Then, $\exists$ a basis $v_2+U,\cdots,v_n+U\in V/U\st T/U$ has an upper-triangular matrix. By Theorem 4.2.12, we have \[(T/U)(v_j+U)\in\span(v_2+U,\cdots,c=v_j+U)\quad\text{for }j\in\qty{2,\cdots,n}.\] So, $Tv_j+U=(c_2v_2+\cdots+c_jv_j)+U$. Then, \[Tv_j-(c_2v_2+\cdots+c_jv_j)\in U=\span(v_1).\] So, $Tv_j-(c_2v_2+\cdots+c_jv_j)=c_1v_1$ for some $c_1\in\F$. Then, $Tv_j=c_1v_1+c_2v_2+\cdots+c_jv_j$. So, $Tv_j\in\span(v_1,\cdots,v_j)$ for $j\in\qty{1,\cdots,n}$. Since by Theorem 4.2.14, $v_1,\cdots,v_n$ is a basis of $V$, further by Theorem 4.2.12, $T$ has an upper-triangular matrix with respect to $v_1,\cdots,v_n$. So, the implication is true for $\dim V=n$.
+	\par Since the implication is true for $\dim V=1$ and is true for $\dim V=n$ whenever it is hold for $\dim V=n-1$, by the Principle of Mathematical Induction, the implication is true for all positive integers $n$. Hence, the proof is complete. 
+\end{prf}
+
 
 \newpage
 \subsection{Eigenspaces and Diagonal Matrices}
