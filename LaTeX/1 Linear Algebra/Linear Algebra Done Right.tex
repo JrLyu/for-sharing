@@ -1466,20 +1466,440 @@
 
 \newpage
 \subsection{Eigenspaces and Diagonal Matrices}
+\begin{df}{Diagonal Matrix}
+	A \textit{diagonal matrix} is a square matrix that is $0$ everywhere except possibly along the diagonal.	
+\end{df}
+\begin{df}{Eigenspace, $E(\lambda, T)$}
+	Suppose $T\in\L(V)$ and $\lambda\in\F$. The \textit{eigenspace} of $T$ corresponding to $\lambda$, denoted $E(\lambda, T)$, is defined by \[E(\lambda,T)=\Null(T-\lambda I).\]	In other words, $E(\lambda, T)$ is the set of all eigenvectors of $T$ corresponding to $\lambda$, along with the $0$ vector.
+\end{df}
+\begin{thm}{Sum of Eigenspaces is a Direct Sum}
+	Suppose $V$ is $\FD$ and $T\in\L(V)$. Suppose also that $\lambda_1,\cdots,\lambda_m$ are distinct eigenvalues of $T$. Then \[E(\lambda_1,T)+\cdots+E(\lambda_m,T)\] is a direct sum. Further \[\dim E(\lambda_1, T)+\cdots+\dim E(\lambda_m, T)\leq\dim V.\]	
+\end{thm}
+\begin{prf}
+	Suppose $u_1+\cdots+u_m=0$, where $u_j\in E(\lambda_j, T)$. If some $u_i\neq0$, then $u_1+\cdots+u_m$ can never be $0$ because $u_1,\cdots,u_m$, as eigenvectors corresponding to distinct eigenvalues, is $\LI$. Hence, the only way for $u_1+\cdots+u_m$ to be $0$ is by taking $u_1=\cdots=u_m=0$. Hence, we know $E(\lambda_1,T)+\cdots+E(\lambda_m,T)$ is a direct sum. $\pqde$
+	\par By Theorem 4.1.2, we know \[\begin{aligned}\dim E(\lambda_1,T)+\cdots+\dim E(\lambda_m,T)&=\dim E(\lambda_1,T)\oplus\cdots\oplus E(\lambda_m,T)\\&\leq\dim V.\end{aligned}\]	
+\end{prf}
+\begin{df}{Diagonalizable}
+	An operator $T\in\L(V)$ is called \textit{diagonalizable} if the operator has a diagonal matrix with respect to some basis of $V$. 	
+\end{df}
+\begin{thm}{Conditions Equivalent to Diagonalizability}
+	Suppose $V$ is $\FD$ and $T\in\L(V)$. Let $\lambda_1,\cdots,\lambda_m$	denote the distinct eigenvalues of $T$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $T$ is diagonalizable.
+		\item $V$ has a basis consisting of eigenvectors of $T$.
+		\item $\exists\ 1-$dimensional subspaces $U_1,\cdots,U_n$ of $V$, each invariant under $T$, $\st$ $V=U_1\oplus\cdots\oplus U_n$.
+		\item $V=E(\lambda_1,T)\oplus\cdots\oplus E(\lambda_m,T)$.
+		\item $\dim V=\dim E(\lambda_1,T)+\cdots+\dim E(\lambda_m,T)$.
+	\end{enumerate}
+\end{thm}
+\begin{rmk}
+	To prove this theorem, we will prove (1)$\iff$(2), (2)$\iff$(3), (2)$\implies$(4), (4)$\implies$(5), and (5)$\implies$(2).	
+\end{rmk}
+\begin{prf}
+	\begin{enumerate}
+		\item (1)$\iff$(2): By definition, we know $T$ is diagonalizable if and only if $\exists$ a basis $v_1,\cdots,v_n$ of $T\st$ \[\M(T)=\mqty(\lambda_1&&0\\&\ddots&\\0&&\lambda_n),\] which holds if and only if we have $Tv_1=\lambda_1v_1,\cdots,Tv_n=\lambda_nv_n$. i.e., $v_1,\cdots,v_n$ are eigenvectors of $T.\pqde$
+		\item (2)$\implies$(3): Suppose $v_1,\cdots,v_n$ is a basis of $V$. Then, for some $v\in V$, we have $v=a_1v_1+\cdots+a_nv_n$. So, we know $V=\span(v_1)+\cdots+\span(v_n)$. Further, let $a_1v_1+\cdots+a_mv_m=0$. Since $v_1,\cdots,v_n$ is a basis, it must be $a_1=\cdots=a_m=0$. So, there is only one way to represent $0$. So, \[V=\span(v_1)\oplus\cdots\oplus\span(v_n).\] Now, we want to show each $\span(v_j)$ is invariant. Consider $T(c_jv_j)=c_jTv_j=c_j\lambda_jv_j\in\span(v_j)$. So, $\span(v_j)$ is invariant. $\pqde$
+		\item (3)$\implies$(2): Suppose $\exists\ 1-$dimensional subspaces $U_1,\cdots,U_n$ of $V$, each invariant under $T$, $\st$ $V=U_1\oplus\cdots\oplus U_n$. Then, $\forall v\in V$, we have $v=a_1u_1+\cdots+a_nu_n$ uniquely. Then, $u_1,\cdots,u_n$ is a basis of $V$. Since $U_1,\cdots,U_n$ are $1-$dimensional invariant subspaces, $u_1,\cdots,u_n$ are the eigenvalues. $\pqde$
+		\item (2)$\implies$(4): Suppose $V$ has a basis consisting of eigenvectors of $T$. Then, $v=a_1v_1+\cdots+a_nv_n$ is a linear combination of eigenvectors of $T$. By definition, $E(\lambda_j,T)$ contains the eigenvectors corresponding to $\lambda_j$. Further since $\lambda_1,\cdots,\lambda_m$ is distinct, corresponding eigenvectors are $\LI$. Then, $E(\lambda_j,T)\cap E(\lambda_i,T)=\qty{0}$ if $i\neq j$. Then, we have \[v=a_1v_1+\cdots+a_nv_n\in E(\lambda_1, T)+\cdots+E(\lambda_m,T).\] Hence, $V=\E(\lambda_1,T)+\cdots+E(\lambda_m, T)$. Further by Theorem 4.3.3, we have \[V=\E(\lambda_1,T)\oplus\cdots\oplus E(\lambda_m, T).\pqde\]
+		\item (4)$\implies$(5): This conclusion can be deduced from Theorem 4.3.3 and its proof.
+		\item (5)$\implies$(2): Suppose $\dim V=\dim E(\lambda_1,T)+\cdots+\dim E(\lambda_m,T).$ Select $B_j$, the basis of $E(\lambda_j,T)$ for $j=1,\cdots,m$. Denote $\dim V=n$. Then, if we put these bases together as $B_1,\cdots,B_m$, we can write the collection as $v_1,\cdots,v_n$. Suppose $a_1v_1+\cdots+a_nv_n=0$. Let $u_j$ denote the sum of all the terms $a_kv_k\st v_k\in E(\lambda_j,T)$. Then, the equation becomes $u_1+\cdots+u_m=0$ and each $u_j\in E(\lambda_j,T)$. Since eigenvectors corresponding to distinct eigenvalues are $\LI$, it must be that $u_1=\cdots=u_m=0$. Further, by definition of $u_j$, and since $u_k's$ are bases of $E(\lambda_j,T),$ it must be $a_1=\cdots=a_n=0$. So, we know $v_1,\cdots,v_n$ is $\LI$. Further, since $\len(v_1,\cdots,v_n)=n=\dim V$, we know that $v_1,\cdots,v_n$ is a basis of $V$.
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	If $T\in\L(V)$ has $\dim V$ distinct eigenvalues, then $T$ is diagonalizable.	
+\end{thm}
+\begin{prf}
+	Suppose $T\in\L(V)$ has $\dim V$ distinct eigenvalues: $\lambda_1,\cdots,\lambda_{\dim V}$. Then, it has $v_1,\cdots,v_{\dim V}$ as corresponding eigenvectors and is $\LI$. Note that $\len(v_1,\cdots,v_{\dim V})=\dim V$. So, $v_1,\cdots,v_{\dim V}$ is a basis of $V$. By Theorem 4.3.5, with respect to this basis consisting of eigenvectors, $T$ has a diagonal matrix. 	
+\end{prf}
+\begin{eg}
+	The \textit{Fibonacci Sequence} $F_1,F_2,\cdots$ is defined by \[F_1=F_2=3\qquad\text{and}\qquad F_n=F_{n-2}+F_{n-1}\quad\text{for }n\geq3.\] Define $T\in\L(\R^2)$ by $T(x,y)=(y,x+y).$
+	\begin{enumerate}
+		\item Show that $T^n(0,1)=(F_n,F_{n+1})$ for each $n\in\Zp$.
+		\begin{prf}
+			\begin{itemize}
+				\item Base Case: Note that $T(0,1)=(1,1)=(F_1,F_2)$.
+				\item Inductive Process: Suppose $T^{n-1}(0,1)=(F_{n-1},F_n)$. Then, \[\begin{aligned}T^n=[T(T^{n-1})](0,1)&=T[T^{n-1}(0,1)]\\&=T(F_{n-1},F_n)\\&=(F_n,F_{n-1}+F_n)\\&=(F_n,F_{n+1}).\end{aligned}\] So, $T^n(0,1)=(F_n,F_{n+1})\quad\forall\ n\in\Zp$ by Principle of Mathematical Induction. 
+			\end{itemize}
+		\end{prf}
+		\item Find the eigenvalues of $T$.
+		\begin{ans}
+			Suppose $T(x,y)=\lambda(x,y)$. So, $(y,x+y)=(\lambda x,\lambda y)$. Solve $\begin{cases}y=\lambda x\\x+y=\lambda y\end{cases}$. That is, $x+\lambda x=\lambda^2x$, or $\lambda^2x-\lambda x-x=0$. It follows $x\neq0$, so solving $\lambda^2-\lambda-1=0$, we get \[\lambda_1=\dfrac{1+\sqrt{5}}{2}\qquad\text{and}\qquad\lambda_2=\dfrac{1-\sqrt{5}}{2}.\]
+		\end{ans}
+		\item Since $T$ has two eigenvalues, $T$ should have a basis of $\R^2$ consisting of eigenvectors. Find the basis.
+		\begin{ans}
+			When $\lambda_1=\dfrac{1+\sqrt{5}}{2}$, we have $y=\lambda x=\dfrac{1+\sqrt{5}}{2}x$. So, $v_1=\qty(x,\dfrac{1+\sqrt{5}}{2}x)=x\qty(1,\dfrac{1+\sqrt{5}}{2})$. That is, \[v_1=\qty(1,\dfrac{1+\sqrt{5}}{2}).\] Similarly, we have \[v_2=\qty(1,\dfrac{1-\sqrt{5}}{2}).\] Further, it follows that \[\M(T,v_1,v_2)=\mqty(\lambda_1&0\\0&\lambda_2).\]
+		\end{ans}
+		\item Find $F_n$ using an expression of $n$ only. 
+		\begin{ans}
+			Note that $(0,1)=\dfrac{1}{\sqrt{5}}(v_1-v_2)$. So, we have \[\begin{aligned}T^n(0,1)&=T^n\qty(\dfrac{1}{\sqrt{5}}(v_1-v_2))\\&=\dfrac{1}{\sqrt{5}}T^n(v_1-v_2)\\&=\dfrac{1}{\sqrt{5}}\qty(T^nv_1-T^nv_2)\\&=\dfrac{1}{\sqrt{5}}\qty(\lambda_1^nv_1-\lambda_2^nv_2)\\&=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n\qty(1,\dfrac{1+\sqrt{5}}{2})-\qty(\dfrac{1-\sqrt{5}}{2})^n\qty(1,\dfrac{1-\sqrt{5}}{2}))\\&=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n-\qty(\dfrac{1-\sqrt{5}}{2})^n,\qty(\dfrac{1+\sqrt{5}}{2})^{n+1}-\qty(\dfrac{1-\sqrt{5}}{2})^{n+1})\\&=(F_n,F_{n+1}).\end{aligned}\] So, we have \[F_n=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n-\qty(\dfrac{1-\sqrt{5}}{2})^n).\]
+		\end{ans}
+	\end{enumerate}
+\end{eg}
 
 \newpage
 \section{Inner Product Spaces}
 \subsection{Inner Products and Norms}
+\begin{df}{Dot Product}
+	For $x,y\in\R^n$, the \textit{dot product} of $x$ and $y$, denoted $x\cdot y$, is defined by \[x\cdot y=x_1y_1+\cdots+x_ny_n,\] where $x=\qty(x_1,\cdots,x_n)$ and $y=\qty(y_1,\cdots,y_n)$.	
+\end{df}
+\begin{thm}{Properties of dot Product}
+	\begin{enumerate}
+		\item $x\cdot x=x_1^2+\cdots+x_n^2\geq0\quad\forall x\in\R^n$.
+		\item $x\cdot x=0$ if and only if $x=0$.
+		\item For $y\in\R^n$, define $f:\R^n\to\R$ as $x\mapsto x\cdot y$. Then, $f$ is linear.
+		\item $\forall x,y\in\R^n,\ x\cdot y=y\cdot x$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	Properties \#1, \#2, and \#4 are trivial to prove, so the proof is omitted. Here we complete a proof for property \#3, linearity of dot product. Let $f:\R^n\to\R$ be defined as $x\mapsto x\cdot y$ for a fixed $y\in\R^n$. Note that \[\begin{aligned}f(a+b)=(a+b)\cdot y&=(a_1+b_1)y_1+\cdots+(a_n+b_n)y_n)\\&=\qty(a_1y_1+\cdots+a_ny_n)+\qty(b_1y_1+\cdots+b_ny_n)\\&=f(a)+f(b).\end{aligned}\] Further, notice that \[\begin{aligned}f(\lambda x)=(\lambda x)\cdot y&=(\lambda x_1)y_1+\cdots+(\lambda x_n)y_n\\&=\lambda (x_1y_x+\cdots+x_ny_n=\lambda f(x).\end{aligned}\]
+\end{prf}
+\begin{rmk}
+	For $w,z\in\C^n$, we define the dot product of $w$ and $z$, denoted as $\langle w,z\rangle$, as \[\langle w,z\rangle=w_1\overline{z_1}+\cdots+w_n\overline{z_n}.\]
+\end{rmk}
+\begin{df}{Inner Product}
+	An \textit{inner product} on $V$ is a function that takes each ordered pair $\qty(u,v)$ of elements of $V$ to a number $\langle u,v\rangle\in\F$	and has the following properties: 
+	\begin{enumerate}
+		\item positivity: $\langle v,v\rangle\geq 0\quad\forall v\in V$.
+		\item definiteness: $\langle v,v\rangle=0$ if and only if $v=0$.
+		\item additivity in first slot: $\langle u+v,w\rangle=\langle u,w\rangle+\langle v,w\rangle\quad\forall u,v,w\in V$.
+		\item homogeneity in first slot: $\langle\lambda u,v\rangle=\lambda\langle u,v\rangle\quad\forall\lambda\in\F\text{ and }\forall u,v\in V$.
+		\item conjugate symmetry: $\langle u,v\rangle=\overline{\langle v,u\rangle}\quad\forall u,v\in V.$
+	\end{enumerate}
+\end{df}
+\begin{eg}
+	Here, we offer some examples of inner product. Note that there might be multiple inner products over a vector space, as long as the following the definition and properties given in Definition 5.1.3.
+	\begin{enumerate}
+		\item Consider $\C[-1,1]$, the set of continuous real-valued functions on the interval $[-1,1]$. An inner product can be defined as $\langle f,g\rangle=\dsst\int_{-1}^1f(x)g(x)\ \d x$.
+		\begin{prf}
+			\begin{enumerate}
+				\item $\langle f,f\rangle=\dsst\int_{-1}^1f^2(x)\ \d x\geq0.$
+				\item $\langle f, f\rangle=0$ if and only if $f(x)=0$.
+				\item Note that \[\begin{aligned}\langle f+g,h\rangle&=\dsst\int_{-1}^1[f(x)+g(x)]h(x)\ \d x\\&=\dsst\int_{-1}^1f(x)h(x)+g(x)h(x)\ \d x\\&=\dsst\int_{-1}^1f(x)h(x)\ \d x+\int_{-1}^1g(x)h(x)\ \d x\\&=\langle f,h\rangle+\langle g,h\rangle.\end{aligned}\]
+				\item $\langle\lambda f,g\rangle=\dsst\int_{-1}^1\lambda f(x)g(x)\ \d x=\lambda\int_{-1}^1f(x)g(x)\ \d x=\lambda\langle f,g\rangle$.
+				\item $\langle g,f\rangle=\dsst\int_{-1}^1g(x)f(x)\ \d x=\int_{-1}^1f(x)g(x)\ \d x=\langle f,g\rangle=\overline{\langle f,g\rangle}$.
+			\end{enumerate}	
+		\end{prf}
+		\item An inner product on $\P(\R)$ can be defined as $\langle p,q\rangle=\dsst\int_0^\infty p(x)q(x)e^{-x}\ \d x$
+		\begin{prf}
+			The definition makes sense. Consider the inner product as $\langle\ \rangle:\P(\R)\times\P(\R)\to\R$. Note that $\infty\notin\R$. So we need to show the improper integral converges to a finite number under any circumstances. Consider \[\dfrac{x^2p(x)q(x)}{e^x}=\dfrac{p(x)q(x)e^{-x}}{\frac{1}{x^2}}.\] Note that \[\lim_{x\to\infty}\dfrac{p(x)q(x)e^{-x}}{\frac{1}{x^2}}=0\] Further since $\dsst\int_0^\infty\dfrac{1}{x^2}\ \d x$ converges as it is a $p$-series with $p=2>1$, we know it must be $\dsst\int_0^\infty p(x)q(x)e^{-x}\ \d x$ converges as well, by the comparison test. The remaining job is to show this definition of $\langle\ \rangle$ indeed retain the five properties as required in Definition 5.1.3, which is trivial and so is omitted. 
+		\end{prf}
+	\end{enumerate}	
+\end{eg}
+\begin{df}{Inner Product Space}
+	An \textit{inner product space} is a vector space $V$ along with an inner product on $V$.	
+\end{df}
+\begin{eg}
+	Euclidean Inner Product on $\F^n$ is defined as \[\langle\qty(w_1,\cdots,w_n),\qty(z_1,\cdots,z_n)\rangle=w_1\overline{z_1}+\cdots+w_n\overline{z_n},\]where $\qty(w_1,\cdots,w_n),\qty(z_1,\cdots,z_n)\in\F^n.$
+\end{eg}
+\begin{nota}
+	For the rest of this Chapter, without otherwise specification, $V$ denotes an inner product space over $\F$.	
+\end{nota}
+\begin{rmk}
+	If not explicitly defined, the inner product is the Euclidean inner product as defined in Example 5.1.6.	
+\end{rmk}
+\begin{thm}{Basic Properties of an Inner Product}
+	\begin{enumerate}
+		\item For each fixed $u\in V$, the function that takes $v$ to $\langle v,u\rangle$ is a linear map from $V$ to $\F$.
+		\item $\langle 0,u\rangle=0$ for every $u\in V$.
+		\item $\langle u,0\rangle=0$ for ever $u\in V$.
+		\item $\langle u, v+w\rangle=\langle u,v\rangle+\langle u,w\rangle$ for all $u,v,w\in V$.
+		\item $\langle u,\lambda v\rangle=\overline{\lambda}\langle u,v\rangle\quad\forall\lambda\in\F$ and $u,v\in V$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Define $f: V\to\F$ as $v\mapsto\langle v,u\rangle$ for some fixed $u\in V$. Then, \[f(v+w)=\langle v+w,u\rangle=\langle v,u\rangle+\langle w,u\rangle=f(v)+f(w).\] \[f(\lambda v)=\langle\lambda v,u\rangle=\lambda\langle v,u\rangle=\lambda f(v).\pqde\]
+		\item Since $f$ is a linear map, then $f(0)=\langle 0,u\rangle=0.\pqde$
+		\item Note that $\langle u,0\rangle=\overline{\langle 0,u\rangle}=\overline{0}=0.\pqde$
+		\item Notice \[\begin{aligned}\langle u, v+w\rangle=\overline{\langle v+w, u\rangle}&=\overline{\langle v,u\rangle+\langle w,u\rangle}\\&=\overline{\langle v,u\rangle}+\overline{\langle w,u\rangle}\\&=\langle u,v\rangle+\langle u,w\rangle.\pqde\end{aligned}\]
+		\item Observe that \[\begin{aligned}\langle u,\lambda v\rangle=\overline{\langle\lambda v,u\rangle}&=\overline{\lambda\langle v,u\rangle}\\&=\overline{\lambda}\cdot\overline{\langle v,u\rangle}=\overline{\lambda}\langle u,v\rangle.\end{aligned}\]
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Norm}
+	Suppose $V$ is a vector space. Then, the \textit{norm} of $v$ is a real-valued function $\|\ \|:V\to\R$ satisfying the following properties: 
+	\begin{enumerate}
+		\item $\|v\|\geq0$ and $\|v\|=0$ if and only if $v=0$.
+		\item $\|\alpha v\|=\qty|\alpha|\|v\|\quad\forall\alpha\in\F$ and $v\in V.$
+		\item triangle inequality: $\|u+v\|\leq\|u\|+\|v\|\quad\forall u,v\in\F$.
+	\end{enumerate}	
+\end{df}
+\begin{df}{Norm Induced by An Inner Product}
+	For $v\in V$, $\|v\|=\sqrt{\langle v,v\rangle}$ is a \textit{norm} on $V$.	
+\end{df}
+\begin{rmk}
+	We will prove Definition 5.1.10 is indeed a definition of norm that satisfies the conditions indicated by Definition 5.1.9 throughout the rest of this section.
+\end{rmk}
+\begin{thm}{Basic Properties of Norms}
+	Let $v\in V$. Then, 
+	\begin{enumerate}
+		\item $\|v\|=0$ if and only if $v=0$.
+		\item $\|\lambda v\|=\qty|\lambda|\|v\|\quad\forall\lambda\in\F$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item $\|v\|=0$ if and only if $\sqrt{\langle v,v\rangle}=0,$ which is equivalent to $\langle v,v\rangle=0$. By properties of an inner product, $\langle v,v\rangle=0$ if and only if $v=0$. So, the proof is complete. $\pqde$
+		\item Consider \[\|\lambda v\|^2=\langle\lambda v,\lambda v\rangle=\lambda\cdot\overline{\lambda}\langle v,v\rangle=\qty|\lambda|^2\langle v,v\rangle.\] So, $\|\lambda v\|=\sqrt{\qty|\lambda|^2\langle v,v\rangle}=\qty|\lambda|\|v\|.$
+	\end{enumerate}
+\end{prf}
+\begin{df}{Orthogonal}
+	Two vectors $u,v\in V$ are called \textit{orthogonal} if $\langle u, v\rangle=0$.	
+\end{df}
+\begin{thm}{Orthogonality and $0$}
+	\begin{enumerate}
+		\item $0$ is orthogonal to every vector in $V$.
+		\item $0$ is the only vector in $V$ that is orthogonal to itself.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item As $\langle 0,u\rangle=0\quad\forall u\in V$, the proof is complete. $\pqde$
+		\item Note that $\langle v,v\rangle=0$ if and only if $v=0$, so we complete the proof. $\pqde$
+	\end{enumerate}
+\end{prf}
+\begin{thm}{Pythagorean Theorem}
+	Suppose $u$ and $v$ are orthogonal vectors in $V$, then \[\|u+v\|^2=\|u\|^2+\|v\|^2.\]	
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}\|u+v\|^2&=\langle u+v,u+v\rangle\\&=\langle u, u+v\rangle+\langle v,u+v\rangle\\&=\langle u,u\rangle+\langle u,v\rangle+\langle v,u\rangle+\langle v,v\rangle.\end{aligned}\]	Since $u$ and $v$ are orthogonal, $\langle u,v\rangle=\langle v,u\rangle=0$. So, $\|u+v\|^2=\langle u,u\rangle+\langle v,v\rangle=\|u\|^2+\|v\|^2.$
+\end{prf}
+\begin{thm}{An Orthogonal Decomposition}
+	Suppose $u,v\in V$, with $v\neq0$. Set $c=\dfrac{\langle u,v\rangle}{\|v\|^2}$ and $w=u-\dfrac{\langle u,v\rangle}{\|v\|^2}v$. Then, $\rangle w,v\rangle=0$ and $u=cv+w$.	
+\end{thm}
+\begin{prf}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw   (179.23,85.99) -- (152.64,196.33) -- (220.73,126.4) -- cycle ;
+	\draw   (208.32,126.61) -- (214.42,120.3) -- (220.73,126.4) -- (214.63,132.71) -- cycle ;
+	\draw    (152.64,196.33) -- (178.76,87.93) ;
+	\draw [shift={(179.23,85.99)}, rotate = 103.55] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (152.64,196.33) -- (183.61,164.7) ;
+	\draw [shift={(185,163.27)}, rotate = 134.39] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (154.64,199.73) node [anchor=north west][inner sep=0.75pt]    {$0$};
+	\draw (187,166.67) node [anchor=north west][inner sep=0.75pt]    {$v$};
+	\draw (222.73,129.8) node [anchor=north west][inner sep=0.75pt]    {$cv$};
+	\draw (161.73,70.8) node [anchor=north west][inner sep=0.75pt]    {$u$};
+	\draw (204.73,92.8) node [anchor=north west][inner sep=0.75pt]    {$w$};
+	\end{tikzpicture}
+	\end{center}
+	The idea is the find $c,w\st\langle v,w\rangle=0$ and $w=u-cv$. That is, $u=w+cv$. Since $\langle v,w\rangle=0$, then we have \[\langle v,u-cv\rangle=0=\langle u-cv,v\rangle=\langle u,v\rangle-c\|v\|^2.\] So, \[c=\dfrac{\langle u,v\rangle}{\|v\|^2}\] and \[w=u-cv=u-\dfrac{\langle u,v\rangle}{\|v\|^2}v.\]
+\end{prf}
+\begin{thm}{Cauchy-Schwarz Inequality}
+	Suppose $u,v\in V$. Then, \[\qty|\langle u,v\rangle|\leq\|u\|\|v\|.\]	This inequality is an equality if and only if one of $u,v$ is a scalar multiples of the other. 
+\end{thm}
+\begin{prf}
+	If $v=0$, then $\qty|\langle u,v\rangle|=0=\|u\|\|v\|$. So, we can assume $v\neq0$. Consider the orthogonal decomposition, \[u=\dfrac{\langle u,v\rangle}{\|v\|^2}\cdot v+w.\]	Then, by the Pythagorean Theorem, we have \[\begin{aligned}\|u\|^2=\left\|\dfrac{\langle u,v\rangle}{\|v\|^2}\cdot v\right\|^2+\|w\|^2&=\dfrac{\qty|\langle u,v\rangle|^2}{\|v\|^4}\|v\|^2+\|w\|^2\\&=\dfrac{\qty|\langle u,v\rangle|^2}{\|v\|^2}+\|w\|^2\geq\dfrac{\qty|\langle u,v\rangle|^2}{\|v\|^2}\end{aligned}\] As $\|v\|^2>0$, we have $\|u\|^2\|v\|^2\geq\qty|\langle u,v\rangle|^2$. Further since $\|u\|\geq0,\ \|v\|\geq0$, and $\qty|\langle u,v\rangle|\geq0$, then \[\qty|\langle u,v\rangle|\leq\|u\|\|v\|.\] The equality holds if and only if $\|w\|^2=0$. That is, $w=0$ from the orthogonal decomposition. In other words, $u$ and $v$ are linearly dependent. 
+\end{prf}
+\begin{thm}{Triangle Inequality}
+		Suppose $u,v\in V$. Then \[\|u+v\|\leq\|u\|+\|v\|.\] This inequality is an equality if and only if one of $u,v$ is a non-negative multiple of the other. 
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}\|u+v\|^2&=\langle u+v,u+v\rangle\\&=\langle u,u\rangle+\langle u,v\rangle+\langle v,u\rangle+\langle v,v\rangle\\&=\langle u,u\rangle+\langle v,v\rangle+\langle u,v\rangle+\overline{\langle u,v\rangle}\\&=\|u\|^2+\|v\|^2+2\Re\qty(\langle u,v\rangle)\\&\leq\|u\|^2+\|v\|^2+2\qty|\langle u,v\rangle|\\&\leq\|u\|^2+\|v\|^2+2\|u\|\|v\|&\text{Cauchy-Schwarz Inequality}\\&=\qty(\|u\|+\|v\|)^2.\end{aligned}\] Since $\|u+v\|\geq0,\ \|u\|\geq0,$ and $\|v\|\geq0$, we have \[\|u+v\|\leq\|u\|+\|v\|.\] The equality holds if and only if $\langle u,v\rangle=\|u\|\|v\|$. That is, when $u$ and $v$ are linearly dependent to each other. 
+\end{prf}
+\begin{rmk}
+	After proving this triangle inequality, we finally, and officially, complete our proof to show the norm induced by an inner product as stated in Definition 5.1.10 is indeed a norm satisfying the formal definition of norms as stated in Definition 5.1.9.	
+\end{rmk}
+\begin{thm}{Parallelogram Equality}
+	Suppose $u,v\in V$. Then \[\|u+v\|^2+\|u-v\|^2=2\qty(\|u\|^2+\|v\|^2).\]
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}\|u+v\|^2+\|u-v\|^2&=\langle u+v,u+v\rangle+\langle u-v,u-v\rangle\\&=\langle u,u\rangle+\langle v,v\rangle+\langle u,v\rangle+\langle v,u\rangle+\langle u,u\rangle+\langle v,v\rangle-\langle u,v\rangle-\langle v,u\rangle\\&=\|u\|^2+\|u\|^2+\|v\|^2+\|v\|^2\\&=2\qty(\|u\|^2+\|v\|^2).\end{aligned}\]	
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a real inner product space. Then, \[\langle u,v\rangle=\dfrac{\|u+v\|^2-\|u-v\|^2}{4}.\]	
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}\|u+v\|^2-\|u-v\|^2&=\langle u+v,u+v\rangle-\langle u-v,u-v\rangle\\&=\|u\|^2+\|v\|^2+2\langle u,v\rangle-\qty(\|u\|^2+\|v\|^2-2\langle u,v\rangle)\\&=4\langle u,v\rangle.\end{aligned}\] So, we have \[\langle u,v\rangle=\dfrac{\|u+v\|^2-\|u-v\|^2}{4}.\]
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a complex inner product space. Then, \[\langle u,v\rangle=\dfrac{\|u+v\|^2-\|u-v\|^2+\|u+\i v\|^2\i-\|u-\i v\|^2\i}{4}.\]	
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}&\langle u+v,u+v\rangle-\langle u-v,u-v\rangle+\langle u+\i v,u+\i v\rangle\i-\langle u-\i v,u-\i v\rangle\i\\&=2\langle u,v\rangle+2\langle v,u\rangle+\qty(2\langle u,\i v\rangle+2\langle\i v,u\rangle)\i\\&=2\langle u,v\rangle+2\langle v,u\rangle+\qty(-2\i\langle u,v\rangle+2\i\langle v,u\rangle)\i\\&=2\langle u,v\rangle+2\langle v,u\rangle+2\langle u,v\rangle-2\langle v,u\rangle\\&=4\langle u,v\rangle.\end{aligned}\] so, we have \[\langle u,v\rangle=\dfrac{\|u+v\|^2-\|u-v\|^2+\|u+\i v\|^2\i-\|u-\i v\|^2\i}{4}.\]	
+\end{prf}
+\begin{thm}{}
+	Let $U$ be a vector space. If $\|\ \|$ is a norm on $U$ satisfying the parallelogram equality, then there is an inner product $\langle\ \rangle$ on $U\st\|u\|=\sqrt{\langle u,u\rangle}\quad\forall u\in U.$
+\end{thm}
 
 \newpage
 \subsection{Orthonormal Bases}
+\begin{df}{Orthonormal}
+	A list of vectors is called \textit{orthonormal} if each vector in the list has norm $1$ and is orthogonal to all the other vectors in the list. In other words, a list $e_1,\cdots,e_m$ of vectors in $V$ is orthonormal if \[\langle e_j,e_k\rangle=\begin{cases}1\quad\text{if }j=k\\0\quad\text{if }j\neq k\end{cases}.\]	
+\end{df}
+\begin{thm}{}
+	If $e_1,\cdots,e_m$ is an orthonormal list of vectors in $V$, then \[\|a_1e_1+\cdots+a_me_m\|^2=\qty|a_1|^2+\cdots+\qty|a_m|^2\quad\forall a_1,\cdots,a_m\in\F.\]	
+\end{thm}
+\begin{prf}
+	Note that \[\langle a_1e_1,a_2e_2+\cdots+a_me_m\rangle=\langle a_1e_1,a_2e_2\rangle+\cdots+\langle a_1e_1,a_me_m\rangle=0.\] So, by the Pythagorean Theorem, we have \[\begin{aligned}\|a_1e_1+\cdots+a_me_m\|^2&=\|a_1e_1\|^2+\|a_2e_2+\cdots+a_me_m\|^2\\&=\|a_1e_1\|^2+\|a_2e_2\|^2+\cdots+\|a_me_m\|^2\\&=|a_1|^2+|a_2|^2+\cdots+|a_m|^2.\end{aligned}\]
+\end{prf}
+\begin{thm}{}
+	Every orthonormal list of vectors is $\LI$.
+\end{thm}
+\begin{prf}
+	Suppose $e_1,\cdots,e_m$ is an orthonormal list of vectors in $V$. Then, $\|a_1e_1+\cdots+a_me_m\|^2=0$. By Theorem 5.2.2, it is equivalent to $|a_1|^2+\cdots+|a_m|^2=0$. Since each $|a_j|\geq0$, it must be $a_j=0$ for all $j=1,\cdots,m$. Therefore, the orthonormal list is $\LI$.
+\end{prf}
+\begin{df}{Orthonormal Basis}
+	An \textit{orthonormal basis} of $V$c is an orthonormal list of vectors in $V$ that is also a basis of $V$.	
+\end{df}
+\begin{thm}{}
+	Every orthonormal list of vectors in $V$ with length $\dim V$c is an orthonormal basis of $V$.
+\end{thm}
+\begin{prf}
+	By Theorem 5.2.3, any orthonormal list of vectors must be $\LI$. Further since it has length $\dim V$, it is a basis of $V$. So, by definition, it is an orthonormal basis of $V$.	
+\end{prf}
+\begin{thm}{}
+	Suppose $e_1,\cdots,e_n$ is an orthonormal basis of $V$ and $v\in V$. Then, $v=\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n$, and $\|v\|^2=|\langle v,e_1\rangle|^2+\cdots+|\langle v,e_n\rangle|^2.$
+\end{thm}
+\begin{prf}
+	Suppose $v\in V$ and $v=a_1e_1+\cdots+a_ne_n$. Then, \[\langle v,e_j\rangle=\langle a_1e_1+\cdots+a_ne_n,e_j\rangle=\langle a_je_j,e_j\rangle=a_j.\] So, we have \[v=\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n.\] Further, by Theorem 5.2.2, we have \[\|v\|^2=|\langle v,e_1\rangle|^2+\cdots+|\langle v,e_n\rangle|^2.\]	
+\end{prf}
+\begin{thm}{Gram-Schmidt Procedure}
+	Suppose $v_1,\cdots,v_m$ is $\LI$ list of vectors in $V$. Let $e_1=\dfrac{v_1}{\|v_1\|}$. For $j=2,\cdots,m$, define $e_j$ inductively by \begin{equation}\label{eq15}e_j=\dfrac{v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}}{\|v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}\|}.\end{equation} Then, $e_1,\cdots,e_m$ is an orthonormal list of vectors in $V\st\span(v_1,\cdots,v_j)=\span(e_1,\cdots,e_j)$ for $j=1,\cdots,m$.
+\end{thm}
+\begin{prf}
+	To prove that Gram-Schmidt Procedure indeed produces an orthonormal list of vectors in $V$, we will use prove by mathematical induction. \par
+	$\boxed{\text{Base Case}}$	Suppose $j=1$, then $\span(v_1)=\span(e_1)$ since $v_1$ is a positive multiple of $e_1$. So, the conclusion holds when $j=1$. \par 
+	$\boxed{\text{Inductive Steps}}$ Suppose for some $1<j<m$, we have $\span(v_1,\cdots,v_{j-1})=\span(e_1,\cdots,e_{j-1})$. Since$v_1,\cdots,v_m$ is $\LI$, we know $v_j\notin\span(v_1,\cdots,v_{j-1})$. That is, $v_j\notin\span(e_1,\cdots,e_{j-1})$. (\textit{If $v_j\in\span(e_1,\cdots,e_{j-1}),$ then $v_j=\langle v_j,e_1\rangle e_1+\cdots+\langle v_j,e_{j-1}\rangle e_{j-1}$.) Then, we are dividing by $0$ in Equation (\ref{eq15}).} So, we are not dividing by $0$ in Equation (\ref{eq15}). Dividing a vector by its norm produces a new vector with norm $1$, so $\|e_j\|=1$. Now, we want to verify $e_j$ is orthogonal to $e_1,\cdots,e_{j-1}$. Pick some $k\st 1\leq k<j$. Then \[\begin{aligned}\langle e_j,e_k\rangle &=\left\langle\dfrac{v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}}{\|v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}\|}, e_k\right\rangle\\&=\dfrac{\langle v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}, e_k\rangle}{\|\langle v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}\|}\\&=\dfrac{\langle v_j,e_k\rangle - \langle v_j,e_k\rangle}{\|\langle v_j-\langle v_j,e_1\rangle e_1-\cdots-\langle v_j,e_{j-1}\rangle e_{j-1}\|}\\&=0\end{aligned}\] Then, $e_1,\cdots,e_j$ is an orthonormal basis, and $v_j\in\span(e_1,\cdots,e_j)$ since $v_j$ is a linear combination of $e_1,\cdots,e_j$ by Equation (\ref{eq15}). Further, we have \[\dim\span(v_1,\cdots,v_j)=\dim\span(e_1,\cdots,e_j)\] and \[\span(v_1,\cdots,v_j)\subseteq\span(e_1,\cdots,e_j).\] That is, exactly, $\span(v_1,\cdots,v_j)=\span(e_1,\cdots,e_j).$
+\end{prf}
+\begin{thm}{}
+	Every $\FD$ inner product space has an orthonormal basis.	
+\end{thm}
+\begin{prf}
+	Suppose $V$ is $\FD$, and select a basis of $V$. Apply Gram-Schmidt Procedure (Theorem 5.2.7) to this basis, we then have an orthonormal basis of $V$.	
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is $\FD$. Then, every orthonormal list of vectors in $V$ can be extended to an orthonormal basis of $V$.	
+\end{thm}
+\begin{prf}
+	Suppose $e_1,\cdots,e_m$ is an orthonormal list of vectors in $V$. Then, $e_1,\cdots,e_m$ is $\LI$ and can be extended to a basis $e_1,\cdots,e_m,v_1,\cdots,v_n$ of $V$. Apply Gram-Schmidt Procedure to this basis, we get an orthonormal list $e_1,\cdots,e_m,f_1,\cdots,f_n$. Here, $e_1,\cdots,e_m$ is unchanged since they are already orthonormal. Then, $e_1,\cdots,e_m,f_1,\cdots,f_n$ is an orthonormal basis of $V$.
+\end{prf}
+\begin{thm}{}
+		Suppose $T\in\L(V)$. If $T$ has an upper-triangular matrix with respect to some basis of $V$, then $T$ has an upper-triangular matrix with respect to some orthonormal basis of $V$.
+\end{thm}
+\begin{prf}
+	Suppose $\M(T)$ is upper-triangular with respect to a basis $v_1,\cdots,v_n$ of $V$. Then, we know $\span(v_1,\cdots,v_j)$ is invariant under $T$ for $j=1,\cdots,n$. Apply Gram-Schmidt Procedure to $v_1,\cdots,v_n$, we will get an orthonormal basis $e_1,\cdots,e_n$ of $V$. Further, since $\span(e_1,\cdots,e_j)=\span(v_1,\cdots,v_j)$ for $j=1,\cdots,n$, we know $\span(e_1,\cdots,e_j)$ is invariant under $T$. Therefore, $T$ has an upper-triangular matrix with respect to the orthonormal basis $e_1,\cdots,e_n$.	
+\end{prf}
+\begin{thm}{Schur's Theorem}
+	Suppose $V$ is a $\FD$ complex vector space and $T\in\L(V)$. Then, $T$ has an upper-triangular matrix with respect to some orthonormal basis of $V$.	
+\end{thm}
+\begin{prf}
+	Since $V$ is a $\FD$ complex vector space, $T$ must have an upper-triangular matrix with respect to some basis of $V$. Further, by Theorem 5.2.10, $T$ must have an upper-triangular matrix with respect to an orthonormal basis of $V$.	
+\end{prf}
+\begin{eg}{}
+	The function $\phi:\F^3\to\F$ defined by \[\phi(z_1,z_2,z_3)=2z_1-5z_2+z_3\] is a linear functional on $\F^3$. We could write this linear functional in the form $\phi(z)=\langle z,u\rangle$ for every $z\in\F^3$, where $u=\langle2,-5,1\rangle$.	
+\end{eg}
+\begin{thm}{Riesz Representation Theorem}
+	Suppose $V$ is $\FD$ and $\phi$ is a linear functional on $V$. Then, there is a unique vector $u\in V\st \phi(v)=\langle v,u\rangle$ for every $v\in V$.	
+\end{thm}
+\begin{prf}
+	Let $e_1,\cdots,e_n$ be an orthonormal basis of $V$. Then, for all $v\in V$, we have \[v=\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n.\] So, \[\begin{aligned}\phi(v)&=\phi(\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n)\\&=\langle v,e_1\rangle\phi(e_1)+\cdots+\langle v,e_n\rangle\phi(e_n)\\&=\langle v,\overline{\phi(e_1)}e_1\rangle+\cdots+\langle v,\overline{\phi(e_n)}e_n\rangle\\&=\langle v,\overline{\phi(e_1)}e_1+\cdots+\overline{\phi(e_n)}e_n\rangle.\end{aligned}\] Suppose $\exists u_1,u_2\in V\st\phi(v)=\langle v,u_1\rangle=\langle v,u_2\rangle$. Then, $\langle v,u_1\rangle-\langle v,u_2\rangle=\langle v,u_1-u_2\rangle=0$. Let $v=u_1-u_2$, then we have $\langle u_1-u_2,u_1-u_2\rangle=0$. So, it must be $u_1=u_2$. Therefore, $\exists$ a unique $u\in V$ and \[u=\overline{\phi(e_1)}e_1+\cdots+\overline{\phi(e_n)}e_n\st\phi(v)=\langle v,u\rangle\quad\forall v\in V.\]
+\end{prf}
+\begin{eg}{}
+	Find $u\in\P_2(\R)\st\dsst\int_{-1}^1p(t)(\cos(\pi t))\ \d t=\int_{-1}^1p(t)u(t)\ \d t$ for every $p\in\P_2(\R)$.
+	\begin{rmk} Define an inner product on $\P_2(\R)$ as $\langle p,q\rangle=\dsst\int_{-1}^1p(x)q(x)\ \d x$ to solve this problem.\end{rmk}
+	\begin{ans}
+		Let $\phi\in\L(\P_2(\R),\R)$ be defined as $\phi(t)=\dsst\int_{-1}^1p(t)(\cos(\pi t))\ \d t$. Note that $1,x,x^2$ is a basis of $\P_2(\R)$. To find an orthonormal basis of $\P_2(\R)$, apply Gram-Schmidt Procedure, we have \[e_1=\dfrac{1}{\|1\|}=\dfrac{1}{\sqrt{\dsst\int_{-1}^11\cdot1\ \d t}}=\sqrt{\dfrac{1}{2}}.\] Since $x-\langle x,e_1\rangle e_1=x-\dsst\int_{-1}^1x\sqrt{\dfrac{1}{2}}\ \d x\cdot\sqrt{\dfrac{1}{2}}=x$, and $\|x\|=\sqrt{\dsst\int_{-1}^1x^2\ \d x}=\sqrt{\dfrac{2}{3}}$, we have \[e_2=\dfrac{x}{\sqrt{\dfrac{2}{3}}}=\sqrt{\dfrac{3}{2}}x.\] Further, consider \[\begin{aligned}x^2-\langle x^2,e_1\rangle e_1-\langle x^2,e_2\rangle e_2&=x^2-\dsst\int_{-1}^1x^2\sqrt{\dfrac{1}{2}}\ \d x\cdot\sqrt{\dfrac{1}{2}}-\int_{-1}^1x^2\sqrt{\dfrac{3}{2}}x\ \d x\cdot\sqrt{\dfrac{3}{2}}x\\&=x^2-\dfrac{1}{3},\end{aligned}\] and note that \[\left\|x^2-\dfrac{1}{3}\right\|=\sqrt{\int_{-1}^1\qty(x^2-\dfrac{1}{3})^2\ \d x}=\sqrt{\int_{-1}^1x^4-\dfrac{2}{3}x^2+\dfrac{1}{9}\ \d x}=\sqrt{\dfrac{8}{45}}.\] So, we have \[e_3=\dfrac{\ \ \ x^2-\dfrac{1}{3}\ \ \ }{\sqrt{\dfrac{8}{45}}}=\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3}).\] That is, $e_1=\sqrt{\dfrac{1}{2}},\ e_2=\sqrt{\dfrac{3}{2}}x,\ e_3=\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3})$ is an orthonormal basis of $\P_2(\R)$. Then, we have \[\phi(e_1)=\int_{-1}^1\sqrt{\dfrac{1}{2}}\cos(\pi t)\ \d t=\sqrt{\dfrac{1}{2}}\int_{-1}^1\cos(\pi t)\ \d t=0\] \[\phi(e_2)=\int_{-1}^1\sqrt{\dfrac{3}{2}}t\cos(\pi t)\ \d t=\sqrt{\dfrac{3}{2}}\int_{-1}^1t\cos(\pi t)\ \d t=0\] \[\begin{aligned}\phi(e_3)&=\int_{-1}^1\sqrt{\dfrac{45}{8}}\qty(t^2-\dfrac{1}{3})\cos(\pi t)\ \d t\\&=\sqrt{\dfrac{45}{8}}\int_{-1}^1t^2\cos(\pi t)\ \d t-\sqrt{\dfrac{45}{8}}\cdot\dfrac{1}{3}\underbrace{\int_{-1}^1\cos(\pi t)\ \d t}_0\\&=\sqrt{\dfrac{45}{8}}\int_{-1}^1t^2\cos(\pi t)\ \d t\\&=\sqrt{\dfrac{45}{8}}\qty(-\dfrac{4}{\pi^2}).\end{aligned}\] So, by Theorem 5.2.15 and its proof, we know \[\begin{aligned} u=\phi(e_1)e_1+\phi(e_2)e_2+\phi(e_3)e_3&=0+0+\sqrt{\dfrac{45}{8}}\qty(-\dfrac{4}{\pi^2})\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3})\\&=\dfrac{45}{8}\qty(-\dfrac{4}{\pi^2})\qty(x^2-\dfrac{1}{3})\\&=-\dfrac{45}{2\pi^2}\qty(x^2-\dfrac{1}{3}).\end{aligned}\]
+	\end{ans}
+\end{eg}
 
 \newpage
 \subsection{Orthogonal Complements and Minimization Problems}
+\begin{df}{Orthogonal Complement, $U^\perp$}
+	If $U$ is a subset of $V$, then the \textit{orthogonal complement} of $U$, denoted $U^\perp$, is the set of all vectors in $V$ that are orthogonal to every vector in $U$: \[U^\perp=\qty{v\in v\mid\langle v,u\rangle=0\quad\forall u\in U}.\]	
+\end{df}
+\begin{thm}{Basic Properties of Orthogonal Complements}
+	\begin{enumerate}
+		\item If $U$ is a subset of $V$, then $U^\perp$ is a subspace of $V$.
+		\item $\qty{0}^\perp=V$.
+		\item $V^\perp=\qty{0}$.
+		\item If $U$ is a subset of $V$, then $U\cap U^\perp\subseteq\qty{0}$.
+		\item If $U$ and $W$ are subsets of $V$ and $U\subseteq W$, then $W^\perp\subseteq U^\perp$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Let $v,w\in U^\perp$. Then $\langle v+w,u\rangle=\langle v,w\rangle+\langle w,u\rangle=0+0=0$. So, $v+w\in U^\perp$. Further, suppose $\lambda\in\F$. Then $\langle\lambda v,u\rangle=\lambda\langle v,u\rangle=\lambda\cdot0=0$. So, $\lambda v\in U^\perp$. Finally since $\langle0,u\rangle=0$, we know $0\in U^\perp$. Then, $U^\perp$ is a subspace of $V$.$\pqde$
+		\item Since $\langle v,0\rangle=0\quad\forall v\in V$, we know $\qty{0}^\perp=V$. $\pqde$
+		\item Suppose $v\in V^\perp$. Then, $\langle v,v\rangle=0$. By property of an inner product, it must be that $v=0$. So, $V^\perp=\qty{0}$. $\pqde$
+		\item Suppose $U$ is a subset of $V$. Let $v\in U\cap U^\perp$. Then, $v\in U$ and $v\in U^\perp$. So, $\langle v,v\rangle=0$. Then, it must be that $v=0$. So, $U\cap U^\perp\subseteq\qty{0}$. $\pqde$
+		\item Suppose $U$ and $W$ are subsets of $V$ with $U\subseteq W$. Suppose $v\in W^\perp$. Then, $\langle v,u\rangle=0\quad\forall u\in W$. Since $U\subseteq W$, we have $\langle v,w\rangle=0\quad\forall u\in U$. That is, $v\in U^\perp$. Then, we have $W^\perp\subseteq U^\perp$.
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Suppose $U$ is a $\FD$ subspace of $V$. Then, $V=U\oplus U^\perp$.	
+\end{thm}
+\begin{prf}
+	Suppose $u\in U$ and $w\in U^\perp$. Then, $\forall v\in V$, we have $v=cu+w$ for some $c\in\F$ and $\langle u,w\rangle=0$. Then, we have $V=U+U^\perp$. Further, by Theorem 5.3.2(4), $U\cap U^\perp=\qty{0}$ since $U$ and $U^\perp$ are all subspaces of $V$. Hence, $V=U\oplus U^\perp$.
+\end{prf}
+\begin{cor}{}
+	Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Then, $\dim U^\perp=\dim V-\dim U.$	
+\end{cor}
+\begin{thm}{}
+	Suppose $U$ is a $\FD$ subspace of $V$. Then, $U=(U^\perp)^\perp$.	
+\end{thm}
+\begin{prf}
+	\par ($\subseteq$). Suppose $u\in U$. Then, $\langle u,v\rangle=0\quad\forall v\in U^\perp$. Then, $u\in(U^\perp)^\perp$. That is, $U\subseteq(U^\perp)^\perp.\pqde$	
+	\par ($\supseteq$). Suppose $v\in(U^\perp)^\perp$. Then, $v=u+w$ for some $u\in U$ and $w\in U^\perp$. Then, $w=v-u\in(U^\perp)^\perp$. Since $U\subseteq(U^\perp)^\perp$, we know $u\in U^\perp$. Then, $v-u\in(U^\perp)^\perp$. Hence, $v-u\in U^\perp\cap(U^\perp)^\perp$. That is, $v-u$ is orthogonal to itself. So, it must be that $v-u=0$ or $v=u$. Since $u\in U$ and $v\in U$, we have shown that $(U^\perp)^\perp\subseteq U$.
+\end{prf}
+\begin{df}{Orthogonal Projection, $P_U$}
+	Suppose $U$ is a $\FD$ subspace of $V$. Then orthogonal projection of $V$ onto $U$ is the operator $P_U\in\L(V)$ defined as follows: For $v\in V$, write $v=u+w$, where $u\in U$ and $w\in U^\perp$. Then, $P_Uv=u$.	
+\end{df}
+\begin{rmk} By Theorem 5.3.3, $V=U\oplus U^\perp$, which ensures each $v\in V$ can be uniquely represented in the form of $u+w$ with $u\in U$ and $w\in U^\perp$, and thus $P_U$ is well-defined.\end{rmk}
+\begin{eg}{}
+	Suppose $x\in V$ with $x\neq0$ and $U=\span(x)$. Show that \[P_Uv=\dfrac{\langle v,x\rangle}{\|x^2\|}x\qquad\forall v\in V.\]
+	\begin{prf}
+		Suppose $v\in V$. Then, \[v=\dfrac{\langle v,x\rangle}{\|x^2\|}x+\qty(v-\dfrac{\langle v,x\rangle}{\|x^2\|}x),\] where $\dfrac{\langle v,x\rangle}{\|x^2\|}x\in\span(x)$ and $v-\dfrac{\langle v,x\rangle}{\|x^2\|}x\in U^\perp$. Thus, $P_Uv=\dfrac{\langle v,x\rangle}{\|x^2\|}x$.
+	\end{prf}	
+\end{eg}
+\begin{thm}{Properties of Orthogonal Projections}
+	Suppose $U$ is a $\FD$ subspace of $V$ and $v\in V$. Then, 
+	\begin{enumerate}
+		\item $P_U\in\L(V)$.
+		\item $P_Uu=u\quad\forall u\in U$.
+		\item $P_Uw=0\quad\forall w\in U^\perp$.
+		\item $\range P_U=U$.
+		\item $\Null P_U=U^\perp$.
+		\item $v-P_Uv\in U^\perp$.
+		\item $P_U^2=P_U$.
+		\item $\|P_Uv\|\leq\|v\|$.
+		\item for every orthonormal basis $e_1,\cdots,e_m$ of $U$, \[P_Uv=\langle v,e_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m.\]
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $v_1=u_1+w_1$ and $v_2=u_2+w_2$, where $v_1,v_2\in V$, $u_1,u_2\in U$, and $w_1,w_2\in U^\perp$. Then, $v_1+v_2=(u_1+u_2)+(w_1+w_2)$, where $u_1+u_2\in U$ and $w_1+w_2\in U^\perp$. So, \[P_U(v_1+v_2)=u_1+u_2=P_Uv_1+P_Uv_2.\] Additionally, suppose $\lambda\in\F$. Then, $\lambda v_1=\lambda u_1+\lambda w_1$, where $\lambda u_1\in U$ and $\lambda w_1\in U^\perp$. Then, \[P_U(\lambda v_1)=\lambda u_1=\lambda P_U(v_1).\pqde\]
+		\item Suppose $u\in U$. Then, $u=u+0$, where $u\in U$ and $0\in U^\perp$. So, $P_Uu=u.\pqde$
+		\item Suppose $w\in U^\perp$. Then, $w=0+w$, where $0\in U$ and $w\in U^\perp$. So, $P_Uw=0.\pqde$
+		\item By definition of $P_U$, we have $\range P_U\subseteq U$. By Theorem 5.3.8(2), we know $U\subseteq\range P_U$. So, $\range P_U=U.\pqde$
+		\item By Theorem 5.3.8(3), we have $U^\perp\subseteq\Null P_U$. Further note if $v\in\Null P_U$, then $v=0+v$ with $0+u$ and $v\in U^\perp$. So, $\Null P_U\subseteq U^\perp$. That is, $\Null P_U=U.\pqde$
+		\item If $v=u+w$ with $u\in U$ and $w\in U^\perp$, then \[v-P_Uv=v-u=w\in U^\perp.\pqde\]
+		\item If $v=u+w$ with $u\in U$ and $w\in U^\perp$, then \[(P_U^2)v=P_U(P_Uv)=P_Uu=u=P_Uv.\] So, $P_U^2=P_U.\pqde$
+		\item If $v=u+w$ with $u\in U$ and $w\in U^\perp$, then we have \[\|P_Uv\|^2=\|u\|^2\leq\|u\|^2+\|w\|^2=\|v\|^2\] by the Pythagorean Theorem. $\pqde$
+		\item If $v=u+w$ with $u\in U$ and $w\in U^\perp$, then \[v=u+w=\langle v,e_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m+\qty(v-\langle v,e_1\rangle e_1-\dots-\langle v,e_m\rangle e_m).\] Since $e_1,\cdots,e_m$ is an orthonormal basis of $U$, we have $\langle ve_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m\in U$. Now, consider \[\begin{aligned}\big\langle\langle v,e_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m,v-\langle v,e_1\rangle e_1-\cdots-\langle v,e_m\rangle e_m\big\rangle&=\big\langle\langle v,e_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m,v\big\rangle-\|u\|^2\\&=\langle v,e_1\rangle\langle e_1,v\rangle+\cdots+\langle v,e_m\rangle\langle e_m,v\rangle-\|u\|^2\\&=\langle v,e_1\rangle\overline{\langle v,e_1\rangle}+\cdots+\langle v,e_m\rangle\overline{\langle v,e_m\rangle}-\|u\|^2\\&=\qty|\langle v,e_1\rangle|^2+\cdots+\qty|\langle v,e_m\rangle|^2-\|u\|^2\\&=\|u\|^2-\|u\|^2=0\quad (By\ Theorem\ 5.2.2)\end{aligned}\] Then, $v-\langle v,e_1\rangle e_1-\cdots-\langle v,e_m\rangle e_m\in U^\perp$. So, we have $P_Uv=\langle v,e_1\rangle e_1+\cdots+\langle v,e_m\rangle e_m.$
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{Minimizing the Distance to a Subspace}
+	Suppose $U$ is a $\FD$ subspace of $V$, $v\in V$, and $u\in U$. Then, $\|v-P_Uv\|\leq\|v-u\|$. The inequality is an equality if and only if $u=P_Uv$.
+\end{thm}
+\begin{prf}
+	Note that $\|v-P_Uv\|^2\leq\|v-P_Uv\|^2+\|P_Uv-u\|^2$ since $\|P_Uv-u\|^2\geq0$. Further, since $v-P_Uv\in U^\perp$ by Theorem 5.3.8(6) and $P_Uv-u\in U$ by the Pythagorean Theorem, we have \[\|v-P_Uv\|^2+\|P_Uv-u\|^2=\|v=P_Uv+P_Uv-u\|^2=\|v-u\|^2.\] Then, $\|u-P_Uv\|^2\leq\|v=P_Uv\|^2+\|P_Uv-u\|^2=\|v-u\|^2$. Since $\|v-P_Uv\|^2\geq0$ and $\|v-u\|^2\geq0$, we have $\|v-P_Uv\|\leq\|v-u\|$. The equality holds if and only  if $\|P_Uv-u\|^2=0$. That is, $\|P_Uv-u\|=0$, $P_Uv-u=0$, or $P_Uv=u$.
+\end{prf}
+\begin{eg}{}
+	In $\R^4$, set $U=\span((1,1,0,0),(1,1,1,2))$. Find $u\in U\st\|u-(1,2,3,4)\|$ is as small as possible.
+	\begin{ans}
+		By Theorem 5.3.9, we need to find $P_Uv=\langle v,e_1\rangle e_1+\langle v,e_2\rangle e_2$. Thus, we need to use Gram-Schmidt Procedure to find $e_1$ and $e_2$: \[e_1=\dfrac{1}{\sqrt{2}}(1,1,0,0)\qquad\text{and}\qquad e_2=\dfrac{1}{\sqrt{5}}(0,0,1,2).\] Set $v=(1,2,3,4)$, we have \[\begin{aligned}P_Uv&=\langle(1,2,3,4),\dfrac{1}{\sqrt{2}}(1,1,0,0)\rangle\dfrac{1}{\sqrt{2}}(1,1,0,0)+\langle(1,2,3,4),\dfrac{1}{\sqrt{5}}(0,0,1,2)\rangle\dfrac{1}{\sqrt{5}}(0,0,1,2)\\&=\qty(\dfrac{3}{2},\dfrac{3}{2},\dfrac{11}{5},\dfrac{22}{5}).\end{aligned}\]	
+	\end{ans}
+	
+\end{eg}
 
 \newpage
 \section{Operators on Inner Product Spaces}
 \subsection{Self-Adjoint and Normal Operators}
+\begin{df}{Adjoint, $T^*$}
+	Suppose $T\in\L(V,W)$. The \textit{adjoint} of $T$ is the function $T^*:W\to V\st$ \[\langle Tv,w\rangle=\langle v,T^*w\rangle\] for every $v\in V$ and every $w\in W$.
+\end{df}
+
 
 \newpage
 \subsection{The Spectral Theorem}
@@ -1592,7 +2012,57 @@
 \end{enumerate}
 \subsection{Duality}
 \begin{enumerate}
-	\item 
+	\item Let $V$ be $\FD$ and $U$ is a subspace of $V\st U\neq V$. Prove that $\exists\ \phi\in V'\st\forall u\in U,\ \phi(u)=0$ but $\phi\neq0$.
+	\item Suppose $V$ is $\FD$, $v_1,\cdots,v_m\in V$. Define a linear map $\Gamma:V'\to\F^m$ as follows: \[\Gamma(\phi)=(\phi(v_1),\cdots,\phi(v_m).\]\begin{enumerate}\item Prove that $v_1,\cdots,v_m$ spans $V$ if and only if $\Gamma$ is injective. \item Prove that $v_1,\cdots,v_m$ is $\LI$ if and only if $\Gamma$ is surjective. \end{enumerate}
+	\item Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $\phi_1,\cdots,\phi_n$ is the corresponding dual basis of $v'$. Suppose $\psi\in V'$. Prove that \[\psi=\psi(v_1)\phi_1+\cdots+\psi(v_n)\phi_n.\]
+	\item Suppose $W$ is $\FD$ and $T\in\L(V,W)$. Prove that $T'=0$ if and only if $T=0$.
+	\item Suppose $V$ and $W$ are $\FD$. Prove that the linear map from $T\in\L(V,W)$ to $T'\in\L(W',V')$ is an isomorphism between $L(V,W)$ and $L(W',V')$.
+	\item Suppose $V$ is $\FD$ and $U\subset V$. Prove that $U=\qty{0}$ if and only if $U^0=V'$.
+	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Prove that $U=V$ if and only if $U^0=\qty{0}$.
+	\item Suppose $U$ and $V$ are subsets of $V$ with $U\subset W$. Prove that $W^0\subset U^0$.
+	\item Suppose $V$ is $\FD$ and $U$ and $W$ are subspaces of $V$ with $W^0\subset U^0$. Prove that $U\subseteq W$.
+	\item Suppose $U$ and $W$ are subspaces of $V$. Prove that $(U+W)^0=U^0\cap W^0$.
+	\item Suppose $V$ is $\FD$ and $U$ and $W$ are subspaces of $V$. Prove that $(U\cap W)^0=U^0+W^0$.
 \end{enumerate}
-
+\subsection{Quotient Space}
+\begin{enumerate}
+	\item Suppose $v,x\in V$ and $U$ and $W$ are subspaces of $V\st v+U=x+W$. Prove that $U=W$. 
+\end{enumerate}
+\subsection{Invariant Spaces}
+\begin{enumerate}
+	\item Suppose $T\in\L(V)$ and $U$ is the subspace of $V$. \begin{enumerate}\item Prove that if $U\subset\Null T$, then $U$ is invariant under $T$. \item Prove that if $\range T\subset U$ then $U$ is invariant under $T$. \end{enumerate}
+	\item Suppose $S,T\in\L(V)\st ST=TS$. Prove that $\Null S$ is invariant under $T$. 
+	\item Suppose $S,T\in\L(V)\st ST=TS$. Prove that $\range S$ is invariant under $T$. 
+	\item Suppose $T\in\L(V)$ and $U_1,\cdots,U_m$ are invariant subspaces of $V$ under $T$. Prove that $U_1+\cdots+U_m$ are invariant under $T$. 
+	\item Suppose $T\in\L(V)$. Prove that the intersection of any collection of invariant subspaces of $V$ under $T$ is also invariant under $T$. 
+	\item Prove or give a counterexample: If $V$ is $\FD$ and $U$ is a subspace of $V\st U$ is invariant under every operators of $V$, then $U=\qty{0}$ or $U=V$.
+	\item Define $T\in\L(\R^2)$ as $T(x,y)=(-3y,x)$. Find the eigenvalues of $T$.
+	\item Define $T\in\L(\F^2)$ as $T(w,z)=(z,w)$. Find all the eigenvalues and eigenvectors of $T$.
+	\item Define $T\in\L(\F^3)$ as $T(z_1,z_2,z_3)=(2z_2,0,5z_3)$, Find all the eigenvalues and eigenvectors of $T$. 
+	\item Suppose $T\in\L(V)$. Let $S\in\L(V)$ is invertible. \begin{enumerate}\item Prove that $T$ and $S^{-1}TS$ have identical eigenvalues. \item What is the relationship between the eigenvectors of $T$ and the eigenvectors of $S^{-1}TS$? \end{enumerate}
+	\item Define $T\in\L(\C^\infty)$ as $T(z_1,z_2,\cdots)=(0,z_1,z_2,\cdots).$ Prove that $T$ has no eigenvalues.
+	\item Suppose $T\in\L(V)$ is invertible. \begin{enumerate}\item Suppose $\lambda\in\F$ and $\lambda\neq0$. Prove that $\lambda$ is an eigenvalue of $T$ if and only if $\dfrac{1}{\lambda}$ is an eigenvalue of $\T$. \item Prove that $T$ and $\T$ have identical eigenvectors. \end{enumerate}
+	\item Suppose $T\in\L(V)$ and $\exists$ nonzero $v,w\in V\st Tv=3w$ and $Tw=3v$. Prove that $3$ or $-3$ is an eigenvalue of $T$.
+	\item Suppose $V$ is $\FD$ and $S,T\in\L(V)$. Prove that $ST$ and $TS$ have identical eigenvalues. 
+\end{enumerate}
+\subsection{Eigenvalues and Upper-Triangular Matrices}
+\begin{enumerate}
+	\item Suppose $T\in\L(V)$ and $\exists n\in\Zp\st T^n=0$. \begin{enumerate}\item Prove that $(I-T)$ is invertible and $(I-T)^{-1}=I+T+\cdots+T^{n-1}$.\item Give a rationale of coming up with the formula above. \end{enumerate}
+	\item Suppose $T\in\L(V)$ and $(T-2I)(T-3I)(T-4I)=0$. Suppose $\lambda$ is an eigenvalue of $T$. Prove that $\lambda=2$, $\lambda=3$, or $\lambda=4$.
+	\item Suppose $T\in\L(V)$, $T^2=I$, and $-1$ is not an eigenvalue of $T$. Prove that $T=I$.
+	\item Suppose $P\in\L(V)$ and $P^2=P$. Prove that $V=\Null P\oplus\range P.$
+	\item Suppose $T\in\L(V)$. Prove that $9$ is an eigenvalue of $T^2$ if and only if $3$ or $-3$ is an eigenvalue of $T$.
+	\item Find a $T\in\L(\R^2)\st T^4=-I$.
+	\item Suppose $T\in\L(V)$ and $v$ is the eigenvector of $T$ corresponding to the eigenvalue $\lambda$. Let $p\in\P(\F).$ Prove that $p(T)v=p(\lambda)v$. 
+\end{enumerate}
+\subsection{Eigenspace and Diagonal Matrices}
+\begin{enumerate}
+	\item Suppose $T\in\L(V)$ is diagonalizable. Prove that $V=\Null T\oplus\range T$.
+	\item Suppose $V$ is $\FD$ and $T\in\L(V)$. Prove that the following conditions are equivalent: \begin{enumerate}\item $V=\Null T\oplus\range T$; \item $V=\Null T+\range T$; \item $\Null T\cap\range T=\qty{0}$. \end{enumerate}
+	\item Suppose $V$ is $\FD$, $T\in\L(V)$ has $\dim V$ distinct eigenvalues, and $S\in\L(V)$ has identical eigenvectors with $T$ (but not necessarily corresponding to the same eigenvalues). Prove that $ST=TS$.
+	\item Suppose $T\in\L(V)$ has a diagonal matrix corresponding to some basis of $V$, denoted as $A$. Let $\lambda\in\F$. Prove that $\lambda$ will appear on the diagonal of $A$ exactly $\dim E(\lambda,T)$ times. 
+	\item Suppose $T\in\L(\F^5)$ and $\dim E(8,T)=4$. Prove that $(T-2I)$ or $(T-6I)$ is invertible.
+	\item Suppose $T\in\L(V)$ is invertible. Prove that for every nonzero $\lambda\in\F$, we have $E(\lambda,T)=\qty(\dfrac{1}{\lambda},\T)$.
+	\item Suppose $V$ is $\FD$ and $T\in\L(V)$. Let $\lambda_1,\cdots,\lambda_m$ be distinct nonzero eigenvalues. Prove that \[\dim E(\lambda_1,T)+\cdots+\dim E(\lambda_m,T)\leq\dim\range T.\]
+\end{enumerate}
 \end{document}
