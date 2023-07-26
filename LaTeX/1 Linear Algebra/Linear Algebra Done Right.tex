@@ -43,7 +43,7 @@
 \setcounter{nprf}{0}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
-\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
 
 \newtheorem*{hint}{Hint.}
 \newtheorem*{rmk}{Remark.}
@@ -800,15 +800,15 @@
 \end{df}
 \begin{eg}
 	Suppose $T\in\L(\F^2,\F^3)$ is defined by $T(x,y)=(x+3y,2x+5y,7x+9y).$ Find the matrix of $T$ with respect to the standard bases of $\F^2$ and $\F^3.$
-	\begin{ans}
+	\begin{sol}
 		Note that $T(1,0)=(1,2,7)$ and $T(0,1)=(3,5,9)$. Then, \[\M(T)=\mqty(1&3\\2&5\\7&9).\]
-	\end{ans}
+	\end{sol}
 \end{eg}
 \begin{eg}
 	Suppose $D\in\L(\P_3(\R),\P_2(\R))$ is the differentiation map defined by $Dp=p'$. Find the matrix of $D$ with respect to the standard bases of $\P_3(\R)$ and $\P_2(\R)$.
-	\begin{ans}
+	\begin{sol}
 		Standard bases of $\P_3(\R):$ $1,x,x^2,x^3.$ Standard bases of $\P_2(\R):$ $1,x,x^2.$ Since $(x^n)'=nx^{n-1},$ so we have \[\begin{aligned}D(1)&=0=0\cdot1+0\cdot x+0\cdot x^2\\D(x)&=1=1\cdot1+0\cdot x+0\cdot x^2\\D(x^2)&=2x=0\cdot1+2\cdot x+0\cdot x^2\\D(x^3)&=3x^2=0\cdot1+0\cdot x+3\cdot x^2\end{aligned}\] So, we have \[\M(D)=\mqty(0&1&0&0\\0&0&2&0\\0&0&0&3).\]
-	\end{ans}
+	\end{sol}
 \end{eg}
 \begin{df}{Matrix Addition}
 	The \textit{sum of two matrices of the same size} is the matrix obtained by adding corresponding entries in the matrices: \[\mqty(A_{1,1}&\cdots&A_{1,n}\\\vdots&&\vdots\\A_{m,1}&\cdots&A_{m,n})+\mqty(C_{1,1}&\cdots&C_{1,n}\\\vdots&&\vdots\\C_{m,1}&\cdots&C_{m,n})=\mqty(A_{1,1}+C_{1,1}&\cdots&A_{1,n}+C_{1,n}\\\vdots&&\vdots\\A_{m,1}+C_{m,1}&\cdots&A_{m,n}+C_{m,n}).\]	
@@ -998,7 +998,7 @@
 \begin{eg}
 	Find the dual basis of $e_1,\cdots,e_n\in\F^n$	
 \end{eg}
-\begin{ans}
+\begin{sol}
 	\begin{center}
 	\begin{tabular}{cccc}
 		$\phi_1(e_1)=1$&$\phi_2(e_1)=0$&$\cdots$&$\phi_n(e_1)=0$\\
@@ -1008,7 +1008,7 @@
 	\end{tabular}
 	\end{center}
 	Define $\phi_j$ as \[\phi_j(x)=\phi_j(x_1,\cdots,x_n)=x_1\phi_j(e_1)+\cdots+x_j\phi_j(e_j)+\cdots+x_n\phi_j(e_n)=x_j.\]
-\end{ans}
+\end{sol}
 \begin{thm}{}
 	Suppose $V$ is $\FD$. Then, the dual basis of a basis of $V$ is a basis of $V'$.	
 \end{thm}
@@ -1049,8 +1049,8 @@
 \begin{eg}
 	Suppose $D:\P(\R)\to\P(\R)$ as $Dp=p'$.
 	\begin{enumerate}
-		\item Define a linear functional $\phi:\P(\R)\to\R$ as $\phi(p)=p(3)$. Find $D'(\phi)$. \begin{ans}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=p'(3).\]\end{ans}
-		\item Define $\phi:\P(\R)\to\R$, a linear functional, as $\phi(p)=\dsst\int_0^1p(x)\ \d x$. Find $D'(\phi)$.\begin{ans}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=\int_0^1p'(x)\ \d x=p(1)-p(0).\]\end{ans}
+		\item Define a linear functional $\phi:\P(\R)\to\R$ as $\phi(p)=p(3)$. Find $D'(\phi)$. \begin{sol}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=p'(3).\]\end{sol}
+		\item Define $\phi:\P(\R)\to\R$, a linear functional, as $\phi(p)=\dsst\int_0^1p(x)\ \d x$. Find $D'(\phi)$.\begin{sol}\[(D'(\phi))(p)=(\phi\of D)(p)=\phi(Dp)=\phi(p')=\int_0^1p'(x)\ \d x=p(1)-p(0).\]\end{sol}
 	\end{enumerate}	
 \end{eg}
 \begin{thm}{Algebraic Properties of Dual Maps}
@@ -1348,13 +1348,13 @@
 	Suppose $T\in\L(\F^2)$ is defined by $T(w,z)=(-z,w)$.
 	\begin{enumerate}
 		\item Find the eigenvalues and eigenvectors of $T$ if $\F=\R$.
-		\begin{ans}
+		\begin{sol}
 			Let $T(2,z)=\lambda(w,z)$. So, $(-z,w)=(\lambda w,\lambda z)$. Then, solve $\begin{cases}-z=\lambda w\\w=\lambda z\end{cases}$.\par  Then, we have $\lambda^2z+z=0$. If $z\neq0$, $\lambda^2+1=0$. This equation has no solutions on $\R$. So $T$ has no eigenvalues. If $w=0, z=0$, then $T(w,z)=T(0.0)=T0$. By definition, $T$ has no eigenvalues.
-		\end{ans}
+		\end{sol}
 		\item Find the eigenvalues and eigenvectors of $T$ if $\F=\C$.
-		\begin{ans}
+		\begin{sol}
 			Applying similar rational, $z\neq0$ and solve $\lambda^2+1=0$. Then, we have $\lambda=\pm\i$. If $\lambda=\i$, then $-z=\i w$. So, $v=(w,z)=(w,-\i w)$. If $\lambda-\i$, then $-z=-\i w$, or $z=\i w$. So, $v=(w,\i w)$.
-		\end{ans}
+		\end{sol}
 	\end{enumerate}	
 \end{eg}
 \begin{thm}{}
@@ -1383,9 +1383,9 @@
 \end{df}
 \begin{eg}
 	Suppose $D\in\L(\P(\R))$ is the differentiation operator defined by $Dq=q'$ and $p$ is the polynomuial defined by $p(x)=7-3x+5x^2$. Find $p(D)$ and $(p(D))q$.
-	\begin{ans}
+	\begin{sol}
 		\[p(D)=7I-3D+5D^2\]\[\begin{aligned}(p(D))q&=(7I-3D+5D^2)q\\&=7Iq-3Dq+5D^2q\\&=7q-3q'+5q''.\end{aligned}\]
-	\end{ans}	
+	\end{sol}	
 \end{eg}
 \begin{thm}{}
 	If we fix an operator $T\in\L(V)$, then the function from $\P(\F)$ to $\L(V)$ given by $p\mapsto p(T)$ is linear.
@@ -1522,17 +1522,17 @@
 			\end{itemize}
 		\end{prf}
 		\item Find the eigenvalues of $T$.
-		\begin{ans}
+		\begin{sol}
 			Suppose $T(x,y)=\lambda(x,y)$. So, $(y,x+y)=(\lambda x,\lambda y)$. Solve $\begin{cases}y=\lambda x\\x+y=\lambda y\end{cases}$. That is, $x+\lambda x=\lambda^2x$, or $\lambda^2x-\lambda x-x=0$. It follows $x\neq0$, so solving $\lambda^2-\lambda-1=0$, we get \[\lambda_1=\dfrac{1+\sqrt{5}}{2}\qquad\text{and}\qquad\lambda_2=\dfrac{1-\sqrt{5}}{2}.\]
-		\end{ans}
+		\end{sol}
 		\item Since $T$ has two eigenvalues, $T$ should have a basis of $\R^2$ consisting of eigenvectors. Find the basis.
-		\begin{ans}
+		\begin{sol}
 			When $\lambda_1=\dfrac{1+\sqrt{5}}{2}$, we have $y=\lambda x=\dfrac{1+\sqrt{5}}{2}x$. So, $v_1=\qty(x,\dfrac{1+\sqrt{5}}{2}x)=x\qty(1,\dfrac{1+\sqrt{5}}{2})$. That is, \[v_1=\qty(1,\dfrac{1+\sqrt{5}}{2}).\] Similarly, we have \[v_2=\qty(1,\dfrac{1-\sqrt{5}}{2}).\] Further, it follows that \[\M(T,v_1,v_2)=\mqty(\lambda_1&0\\0&\lambda_2).\]
-		\end{ans}
+		\end{sol}
 		\item Find $F_n$ using an expression of $n$ only. 
-		\begin{ans}
+		\begin{sol}
 			Note that $(0,1)=\dfrac{1}{\sqrt{5}}(v_1-v_2)$. So, we have \[\begin{aligned}T^n(0,1)&=T^n\qty(\dfrac{1}{\sqrt{5}}(v_1-v_2))\\&=\dfrac{1}{\sqrt{5}}T^n(v_1-v_2)\\&=\dfrac{1}{\sqrt{5}}\qty(T^nv_1-T^nv_2)\\&=\dfrac{1}{\sqrt{5}}\qty(\lambda_1^nv_1-\lambda_2^nv_2)\\&=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n\qty(1,\dfrac{1+\sqrt{5}}{2})-\qty(\dfrac{1-\sqrt{5}}{2})^n\qty(1,\dfrac{1-\sqrt{5}}{2}))\\&=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n-\qty(\dfrac{1-\sqrt{5}}{2})^n,\qty(\dfrac{1+\sqrt{5}}{2})^{n+1}-\qty(\dfrac{1-\sqrt{5}}{2})^{n+1})\\&=(F_n,F_{n+1}).\end{aligned}\] So, we have \[F_n=\dfrac{1}{\sqrt{5}}\qty(\qty(\dfrac{1+\sqrt{5}}{2})^n-\qty(\dfrac{1-\sqrt{5}}{2})^n).\]
-		\end{ans}
+		\end{sol}
 	\end{enumerate}
 \end{eg}
 
@@ -1798,9 +1798,9 @@
 \begin{eg}{}
 	Find $u\in\P_2(\R)\st\dsst\int_{-1}^1p(t)(\cos(\pi t))\ \d t=\int_{-1}^1p(t)u(t)\ \d t$ for every $p\in\P_2(\R)$.
 	\begin{rmk} Define an inner product on $\P_2(\R)$ as $\langle p,q\rangle=\dsst\int_{-1}^1p(x)q(x)\ \d x$ to solve this problem.\end{rmk}
-	\begin{ans}
+	\begin{sol}
 		Let $\phi\in\L(\P_2(\R),\R)$ be defined as $\phi(t)=\dsst\int_{-1}^1p(t)(\cos(\pi t))\ \d t$. Note that $1,x,x^2$ is a basis of $\P_2(\R)$. To find an orthonormal basis of $\P_2(\R)$, apply Gram-Schmidt Procedure, we have \[e_1=\dfrac{1}{\|1\|}=\dfrac{1}{\sqrt{\dsst\int_{-1}^11\cdot1\ \d t}}=\sqrt{\dfrac{1}{2}}.\] Since $x-\langle x,e_1\rangle e_1=x-\dsst\int_{-1}^1x\sqrt{\dfrac{1}{2}}\ \d x\cdot\sqrt{\dfrac{1}{2}}=x$, and $\|x\|=\sqrt{\dsst\int_{-1}^1x^2\ \d x}=\sqrt{\dfrac{2}{3}}$, we have \[e_2=\dfrac{x}{\sqrt{\dfrac{2}{3}}}=\sqrt{\dfrac{3}{2}}x.\] Further, consider \[\begin{aligned}x^2-\langle x^2,e_1\rangle e_1-\langle x^2,e_2\rangle e_2&=x^2-\dsst\int_{-1}^1x^2\sqrt{\dfrac{1}{2}}\ \d x\cdot\sqrt{\dfrac{1}{2}}-\int_{-1}^1x^2\sqrt{\dfrac{3}{2}}x\ \d x\cdot\sqrt{\dfrac{3}{2}}x\\&=x^2-\dfrac{1}{3},\end{aligned}\] and note that \[\left\|x^2-\dfrac{1}{3}\right\|=\sqrt{\int_{-1}^1\qty(x^2-\dfrac{1}{3})^2\ \d x}=\sqrt{\int_{-1}^1x^4-\dfrac{2}{3}x^2+\dfrac{1}{9}\ \d x}=\sqrt{\dfrac{8}{45}}.\] So, we have \[e_3=\dfrac{\ \ \ x^2-\dfrac{1}{3}\ \ \ }{\sqrt{\dfrac{8}{45}}}=\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3}).\] That is, $e_1=\sqrt{\dfrac{1}{2}},\ e_2=\sqrt{\dfrac{3}{2}}x,\ e_3=\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3})$ is an orthonormal basis of $\P_2(\R)$. Then, we have \[\phi(e_1)=\int_{-1}^1\sqrt{\dfrac{1}{2}}\cos(\pi t)\ \d t=\sqrt{\dfrac{1}{2}}\int_{-1}^1\cos(\pi t)\ \d t=0\] \[\phi(e_2)=\int_{-1}^1\sqrt{\dfrac{3}{2}}t\cos(\pi t)\ \d t=\sqrt{\dfrac{3}{2}}\int_{-1}^1t\cos(\pi t)\ \d t=0\] \[\begin{aligned}\phi(e_3)&=\int_{-1}^1\sqrt{\dfrac{45}{8}}\qty(t^2-\dfrac{1}{3})\cos(\pi t)\ \d t\\&=\sqrt{\dfrac{45}{8}}\int_{-1}^1t^2\cos(\pi t)\ \d t-\sqrt{\dfrac{45}{8}}\cdot\dfrac{1}{3}\underbrace{\int_{-1}^1\cos(\pi t)\ \d t}_0\\&=\sqrt{\dfrac{45}{8}}\int_{-1}^1t^2\cos(\pi t)\ \d t\\&=\sqrt{\dfrac{45}{8}}\qty(-\dfrac{4}{\pi^2}).\end{aligned}\] So, by Theorem 5.2.15 and its proof, we know \[\begin{aligned} u=\phi(e_1)e_1+\phi(e_2)e_2+\phi(e_3)e_3&=0+0+\sqrt{\dfrac{45}{8}}\qty(-\dfrac{4}{\pi^2})\sqrt{\dfrac{45}{8}}\qty(x^2-\dfrac{1}{3})\\&=\dfrac{45}{8}\qty(-\dfrac{4}{\pi^2})\qty(x^2-\dfrac{1}{3})\\&=-\dfrac{45}{2\pi^2}\qty(x^2-\dfrac{1}{3}).\end{aligned}\]
-	\end{ans}
+	\end{sol}
 \end{eg}
 
 \newpage
@@ -1887,11 +1887,12 @@
 \end{prf}
 \begin{eg}{}
 	In $\R^4$, set $U=\span((1,1,0,0),(1,1,1,2))$. Find $u\in U\st\|u-(1,2,3,4)\|$ is as small as possible.
-	\begin{ans}
+	\begin{sol}
 		By Theorem 5.3.9, we need to find $P_Uv=\langle v,e_1\rangle e_1+\langle v,e_2\rangle e_2$. Thus, we need to use Gram-Schmidt Procedure to find $e_1$ and $e_2$: \[e_1=\dfrac{1}{\sqrt{2}}(1,1,0,0)\qquad\text{and}\qquad e_2=\dfrac{1}{\sqrt{5}}(0,0,1,2).\] Set $v=(1,2,3,4)$, we have \[\begin{aligned}P_Uv&=\langle(1,2,3,4),\dfrac{1}{\sqrt{2}}(1,1,0,0)\rangle\dfrac{1}{\sqrt{2}}(1,1,0,0)+\langle(1,2,3,4),\dfrac{1}{\sqrt{5}}(0,0,1,2)\rangle\dfrac{1}{\sqrt{5}}(0,0,1,2)\\&=\qty(\dfrac{3}{2},\dfrac{3}{2},\dfrac{11}{5},\dfrac{22}{5}).\end{aligned}\]	
-	\end{ans}
+	\end{sol}
 	
 \end{eg}
+
 
 \newpage
 \section{Operators on Inner Product Spaces}
@@ -1899,13 +1900,258 @@
 \begin{df}{Adjoint, $T^*$}
 	Suppose $T\in\L(V,W)$. The \textit{adjoint} of $T$ is the function $T^*:W\to V\st$ \[\langle Tv,w\rangle=\langle v,T^*w\rangle\] for every $v\in V$ and every $w\in W$.
 \end{df}
-
+\begin{thm}{}
+	If $T\in\L(V,W),$ then $T^*\in\L(W,V).$
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item The definition of adjoint makes sense.\par Suppose $T\in\L(V,W)$. Fix $w\in W$. Let $f:V\to\F$ be defined as $v\mapsto\langle Tv,w\rangle$. Then, $f$ is a linear functional on $V$. Note that \[\begin{aligned}f(au+bv)=\langle T(au+bv),w\rangle&=\langle aTu+bTv,w\rangle\\&=a\langle Tu,w\rangle+b\langle Tv,w\rangle\\&=af(u)+b(fv).\end{aligned}\] By Riesz Representation Theorem, we know $f(v)=\langle v,\Delta\rangle$ for some $\Delta\in V$. We call this unique $\Delta$ as $T^*w$. That is, for each $w\in W$, $\exists$ unique $T^*w\in V$. So, $T^*$ is well-defined as a function from $W$ to $V$. $\pqde$
+		\item Adjoint is a linear map.\par Suppose $w_1,w_2\in W$. If $v\in V$, then \[\begin{aligned}\langle v,T^*(w_1+w_2)\rangle=\langle Tv,w_1+w_2\rangle&=\langle Tv,w_1\rangle+\langle Tv,w_2\rangle\\&=\langle v,T^*w_1\rangle+\langle v,T^*w_2\rangle\\&=\langle v,T^*w_1+T^*w_2\rangle.\end{aligned}\] So, $T^*(w_1+w_2)=T^*w_1+T^*w_2.\pqde$\par Now fix $w\in W$ and $\lambda\in\F$. If $v\in V$, then \[\begin{aligned}\langle v,T^*(\lambda w)\rangle=\langle Tv,\lambda w\rangle&=\overline{\lambda}\langle Tv,w\rangle\\&=\overline{\lambda}\langle v,T^*w\rangle\\&=\langle v,\lambda T^*w\rangle.\end{aligned}\] So, we know $T^*(\lambda w)=\lambda T^*w.\pqde$\par Thus, we've shown $T^*$ is a linear map as desired. 
+	\end{enumerate}	
+\end{prf}
+\begin{eg}
+	Define $T:\R^3\to\R^2$ by $T(x_1,x_2,x_3)=(x_2+3x_3,2x_1)$. Find a formula for $T^*$.
+	\begin{sol}
+		Define $T^*:\R^2\to\R^3$. Let $y=(y_1,y_2)\in\R^2$. Then, \[\begin{aligned}\langle x,T^*y\rangle=\langle Tx,y\rangle&=y_1x_2+3y_1x_3+2x_1y_2\\&=\langle(x_1,x_2,x_3),(2y_2,y_1,3y_1)\rangle.\end{aligned}\] Thus, $T^*:\R^2\to\R^3$ is defined as $T^*(y_1,y_2)=(2y_2,y_1,3y_1).$
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Fix $u\in V$ and $x\in W$. Define $T\in\L(V,W)$ by $Tv=\langle v,u\rangle x$ for every $v\in V$. Find a formula for $T^*$.
+	\begin{sol}
+		Define $T^*\in\L(W,V)$. Consider \[\begin{aligned}\langle v,T^*w\rangle=\langle Tv,w\rangle&=\big\langle\langle v,u\rangle x,w\big\rangle\\&=\langle v,u\rangle\langle x,w\rangle\\&=\big\langle v,\langle w,x\rangle u\big\rangle.\end{aligned}\] So, we have $T^*w=\langle w,x\rangle u$.
+	\end{sol}
+\end{eg}
+\begin{thm}{Properties of the Adjoint}
+	\begin{enumerate}
+		\item $(S+T)^*=S^*+T^*\quad\forall S,T\in\L(V,W)$.
+		\item $(\lambda T)^*=\overline{\lambda}T^*\quad\forall\lambda\in\F$ and $T\in\L(V,W)$.
+		\item $(T^*)^*=T\quad\forall T\in\L(V,W)$.
+		\item $I^*=I$, where $I$ is the identity operator on $V$.
+		\item $(ST)^*=T^*S^*\quad\forall T\in\L(V,W)$ and $S\in\L(W,U)$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Consider \[\begin{aligned}\langle v,(S+T)^*w\rangle=\langle(S+T)v,w\rangle&=\langle Sv,w\rangle+\langle Tv,w\rangle\\&=\langle v,S^*w\rangle+\langle v,T^*w\rangle\\&=\langle v,S^*w+T^*w\rangle\\&=\langle v,(S^*+T^*)w\rangle.\end{aligned}\] So, we have $(S+T)^*w=(S^*+T^*)w\quad\forall w\in W.\pqde$
+		\item Note that \[\begin{aligned}\langle v,(\lambda T)^*w\rangle=\langle(\lambda T)v,w\rangle&=\lambda\langle Tv,w\rangle\\&=\lambda\langle v,T^*w\rangle\\&=\langle v,\overline{\lambda}T^*w\rangle.\end{aligned}\] So, we get $(\lambda T)^*w=\overline{\lambda}T^*w\quad\forall w\in W.\pqde$
+		\item Consider \[\begin{aligned}\langle v,(T^*)^*w\rangle=\langle T^*v,w\rangle&=\overline{\langle w,T^*v\rangle}\\&=\overline{\langle Tw,v\rangle}\\&=\langle v,Tw\rangle.\end{aligned}\] So, it is $(T^*)^*w=Tw\quad\forall w\in W.\pqde$
+		\item Note we have \[\langle v,I^*w\rangle=\langle Iv,w\rangle=\langle v,w\rangle.\] So, $I^*w=w\quad\forall w\in W$. That is, $I^*=I.\pqde$
+		\item We have \[\begin{aligned}\langle v,(ST)^*w\rangle=\langle(ST)v,w\rangle&=\langle S(Tv),w\rangle\\&=\langle Tv,S^*w\rangle\\&=\langle v,T^*(S^*w)\rangle.\end{aligned}\]So, $(ST)^*w=T^*(S^*w)=(T^*S^*)w\quad\forall w\in W.$
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{Null Space and Range of $T^*$}
+	Suppose $T\in\L(V,W)$. Then, 
+	\begin{enumerate}
+		\item $\Null T^*=(\range T)^\perp$.
+		\item $\range T=(\null T^*)^\perp$.
+		\item $\Null T=(\range T^*)^\perp$.
+		\item $\range T^*=(\Null T)^\perp$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $w\in\Null T^*$. Then, $T^*w=0$. So, $\langle v,T^*w\rangle=0$. That is, $\langle Tv,w\rangle=0\quad\forall v\in0$. Then, $w$ is orthogonal to any $Tv$. That is, $w\in(\range T)^\perp$. Conversely, if $w\in(\range T)^\perp$, we have $\langle Tv,w\rangle=0$, and thus $\langle v,T^*w\rangle=0,$ or $T^*w=0$. That is, $w\in\Null T^*$. Hence, $\Null T^*=(\range T)^\perp.\pqde$
+		\item Note that $(\Null T^*)^\perp=\qty(\qty(\range T)^\perp)^\perp=\range T.\pqde$
+		\item Suppose $v\in\Null T$. Then, $Tv=0,$ and $\langle Tv,w\rangle=0$. So, $\langle v,T^*w\rangle=0\quad\forall w\in W$. Then, $v$ is orthogonal to every vectors in $T^*w$. So, $v\in\qty(\range T^*)^\perp$. In the other way around, if we assume $v\in\qty(\range T^*)^\perp$, then $\langle v,T^*w\rangle=\langle Tv,w\rangle=0$. So, $Tv=0$, and thus $v\in\Null T$. Hence, we have $\Null T=\qty(\range T^*)^\perp.\pqde$
+		\item Consider $(\Null T)^\perp=\qty((\range T^*)^\perp)^\perp=\range T^*$.
+	\end{enumerate}	
+\end{prf}
+\begin{df}{Conjugate Transpose}
+	The \textit{conjugate transpose} of an $m\times n$ matrix is the $n\times m$ matrix obtained by interchanging the rows and columns and then taking the conjugate of each entry. 	
+\end{df}
+\begin{thm}{}
+	Let $T\in\L(V,W)$. Suppose $e_1,\cdots,e_n$ is an orthonormal basis of $V$ and $f_1,\cdots,f_m$ is an orthonormal basis of $W$. Then, $\M\qty(T^*,(f_1,\cdots,f_m),(e_1,\cdots,e_m))$ is the conjugate transpose of $\M\qty(T,(e_1,\cdots,e_n),(f_1,\cdots,f_m))$.
+\end{thm}
+\begin{prf}
+	Suppose $\M(T)$ denote the matrix $\M\qty(T,(e_1,\cdots,e_n),(f_1,\cdots,f_m))$ and let $\M(T^*)$ denote the matrix $\M\qty(T^*,(f_1,\cdots,f_m),(e_1,\cdots,e_m))$. Then, note that $Te_k=\langle Te_k,f_1\rangle f_1+\cdots+\langle Te_k,f_m\rangle f_m$. So, \[\qty(\M(T))_{j,k}=\langle Te_k,f_j\rangle.\] Further, consider $T^*f_k=\langle T^*f_k,e_1\rangle e_1+\cdots+\langle T^*f_k,e_n\rangle e_n$. That is, \[\begin{aligned}\qty(\M(T^*))_{j,k}=\langle T^*f_k,e_j\rangle&=\overline{\langle e_j,T^*f_k\rangle}\\&=\overline{\langle Te_j,f_k\rangle}\\&=\overline{\qty(\M(T))_{k,j}}\end{aligned}\] So, we've shown that $\M(T^*)$ is the conjugate transpose of $\M(T)$.
+\end{prf}
+\begin{df}{Self-Adjoint}
+	An operator $T\in\L(V)$ is called \textit{self-adjoint} if $T=T^*$. In other words, $T\in\L(V)$ is self-adjoint if and only if $\langle Tv,w\rangle=\langle v,Tw\rangle\quad\forall v,w\in V$.	
+\end{df}
+\begin{thm}{}
+	The sum of two self-adjoint operators is self-adjoint, and the product of a real scalar and a self-adjoint operator is self-adjoint. 	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $T,S\in\L(V)$ are self-adjoint. Then, \[(S+T)^*=S^*+T^*=S+T.\] So, $S+T$ is self-adjoint. $\pqde$
+		\item Let $\lambda\in\R$. Then, \[(\lambda T)^*=\lambda T^*=\lambda T.\] So, $\lambda T$ is self-adjoint. 
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Every eigenvalue of a self-adjoint operator is real.	
+\end{thm}
+\begin{prf}
+	Suppose $T$ is a self-adjoint operator on $V$. Let $\lambda$ be an eigenvalue of $T$, and let $v$ be a non-zero vector in $V\st Tv=\lambda v$. Then, \[\lambda\|v\|^2=\langle\lambda v,v\rangle=\langle Tv,v\rangle=\langle v,Tv\rangle=\langle v,\lambda v\rangle=\overline{\lambda}\|v\|^2.\] So, it must be $\lambda=\overline{\lambda}$, which means $\lambda$ is real.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a complex inner product space and $T\in\L(V)$. Suppose $\langle Tv,v\rangle=0\quad\forall v\in V$. Then, $T=0$.	
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}\langle Tu,w\rangle&=\dfrac{1}{4}\qty\Big[\big\langle T(u+w),u+w\big\rangle-\big\langle T(u-w),u-w\big\rangle]\\&\qquad+\dfrac{\i}{4}\qty\Big[\big\langle T(u+\i w),u+\i w\big\rangle-\big\langle T(u-\i w),(u-\i w)\big\rangle]\\&=0\quad\forall u,w\in V.\end{aligned}\] Let $w=Tu\in V$. Then, $\langle Tu,Tu\rangle=0$. That is, $Tu=0\quad\forall u\in V$. So, $T=0$.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a complex inner product space and $T\in\L(V)$. Then, $T$ is self-adjoint if and only if $\langle Tv,v\rangle\in\R\quad\forall v\in V$.	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$) Let $v\in V$. Then, \begin{equation}\label{eq16}\begin{aligned}\langle Tv,v\rangle-\overline{\langle Tv,v\rangle}&=\langle Tv,v\rangle-\langle v,Tv\rangle\\&=\langle Tv,v\rangle-\langle T^*v,v\rangle\\&=\langle (T-T^*)v,v\rangle\end{aligned}\end{equation} If $\langle Tv,v\rangle\in\R\quad\forall v\in V$, then Equation (\ref{eq16})$=0$. That is, $\langle (T-T^*)v,v\rangle=0\quad\forall v\in V$. So, $T-T^*=0,$ or $T=T^*$. That is, $T$ is self-adjoint. $\pqde$
+	\par ($\Leftarrow$)	Conversely, if $T$ is self-adjoint, then Equation (\ref{eq16})$=0$. That is, $\langle Tv,v\rangle=\overline{\langle Tv,v\rangle}=0$, or we have $\langle Tv,v\rangle=\overline{\langle Tv,v\rangle}$. This is equivalent to the conclusion $\langle Tv,v\rangle\in\R$.
+\end{prf}
+\begin{thm}{}
+	Suppose $T$ is a self-adjoint operator on $V\st\langle Tv,v\rangle=0\quad\forall v=V$. Then, $T=0$.	
+\end{thm}
+\begin{prf}
+	We've already shown this to be true under a complex inner product space. Thus, we can assume $V$ is a real inner product space. If $u,w\in V$, then \[\begin{aligned}\langle Tu,w\rangle&=\dfrac{1}{4}\langle T(u+w),u+w\rangle-\langle T(u-w),u-w\rangle\\&=0\quad\forall u,w\in V.\end{aligned}\]	Let $w=Tu$. Then, $\langle Tu,Tu\rangle=0$, or $Tu=0\quad\forall u\in V$. So, $T=0$.
+\end{prf}
+\begin{df}{Normal Operator}
+	An operator on an inner product space is called \textit{normal} if it commutes with its adjoint. In other words, $T\in\L(V)$ is normal if $TT^*=T^*T$.	
+\end{df}
+\begin{eg}
+	Let $T$ be the operator on $\F^2$ whose matrix with respect to the standard basis is \[\mqty(2&-3\\3&2).\] Show that $T$ is not self-adjoint but is still normal.
+	\begin{prf}
+		Since $\M(T)=\mqty(2&-3\\3&2)$ and $\M(T^*)=\mqty(2&3\\-3&2),$ then $\M(T)\neq\M(T^*),$ and thus it is not self-adjoint. However, note that \[\mqty(2&-3\\3&2)\mqty(2&3\\-3&2)=\mqty(13&0\\0&13)\] and \[\mqty(2&3\\-3&2)\mqty(2&-3\\3&2)=\mqty(13&0\\0&13).\] So, by definition, $T$ is normal. 
+	\end{prf}
+\end{eg}
+\begin{thm}{}
+	An operator $T\in\L(V)$ is normal if and only if $\|Tv\|=\|T^*v\|\quad\forall v\in V$.	
+\end{thm}
+\begin{prf}
+	Note that \[\begin{aligned}T\text{ is normal}&\iff T^*T-TT^*=0\\&\iff\big\langle(T^*T-TT^*)v,v\big\rangle=0\quad\forall v\in V\\&\iff\langle T^*Tv,v\rangle=\langle TT^*v,v\rangle\quad\forall v\in V\\&\iff\langle Tv,Tv\rangle=\langle T^*v,T^*v\rangle\quad\forall v\in V\\&\iff\|Tv\|^2=\|T^*v\|^2\quad\forall v\in V.\end{aligned}\] Since $\|Tv\|\geq0$ and $\|T^*v\|\geq0$, it is equivalent to \[\|Tv\|=\|T^*v\|\quad\forall v\in V.\]	
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$ is normal and $v\in V$ is an eigenvector of $T$ with eigenvalue $\lambda$. Then, $v$ is also an eigenvector of $T^*$ with eigenvalue $\overline{\lambda}$.	
+\end{thm}
+\begin{prf}
+	Note that $(T-\lambda I)^*=T^*-\overline{\lambda}I$. Consider $(T-\lambda I)(T-\lambda I)^*=TT^*-\overline{\lambda}T-\lambda T^*+\lambda\overline{\lambda}$ and $(T-\lambda I)^*(T-\lambda I)=T^*T-\overline{\lambda}T-\lambda T^*+\lambda\overline{\lambda}$. Since, $T$ is normal, $TT^*=T^*T$. So. \[(T-\lambda I)(T-\lambda I)^*=(T-\lambda I)^*(T-\lambda I).\] That is, $T-\lambda I$ is also normal. So, by Theorem 6.1.17, we have \[\|(T-\lambda I)v\|=\|(T^*-\overline{\lambda}I)v\|=0.\] That is, $T^*v=\overline{\lambda}v$, or $v$ is an eigenvector of $T^*$ with eigenvalue $\overline{\lambda}$.
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$ is normal. Then, eigenvectors of $T$ corresponding to distinct eigenvalues are orthogonal.	
+\end{thm}
+\begin{prf}
+	Suppose $\alpha,\beta$ are distinct eigenvalues of $T$, with corresponding eigenvectors $u,v$. Then, $Tu=\alpha u$ and $Tv=\beta v$. By Theorem 6.1.18, we have $T^*v=\overline{\beta}v$. So, we have \[\begin{aligned}(\alpha-\beta)\langle u,v\rangle&=\langle\alpha u,v\rangle-\langle u,\overline{\beta}v\rangle\\&=\langle Tu,v\rangle-\langle U,T^*v\rangle\\&=\langle Tu,v\rangle-\langle Tu,v\rangle\\&=0.\end{aligned}\] Since $\alpha\neq\beta$, it must be $\langle u,v\rangle=0$. So, $u$ and $v$ are orthogonal. 
+\end{prf}
 
 \newpage
 \subsection{The Spectral Theorem}
+\begin{thm}{Complex Spectral Theorem}
+	Suppose $\F=\C$ and $T\in\L(V)$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $T$ is normal.
+		\item $V$ has an orthonormal basis consisting of eigenvectors of $T$.
+		\item $T$ has a diagonal matrix with respect to some orthonormal basis of $V$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	Note that ($2$)$\iff$($3$) is obvious by Theorem 4.3.5. No we need to show ($3$)$\iff$($1$) to complete the proof. $\pqde$\par 
+	Suppose ($3$). Then, $\M(T)$ is diagonal. That is, $\M(T^*)$ is also diagonal. Then, $\M(T)\M(T^*)=\M(T^*)\M(T)$. That is $\M(TT^*)=\M(T^*T)$, or $TT^*=T^*T$. So, $T$ is normal. $\pqde$\par 
+	Suppose ($1$). That is, $T$ is normal. Then, by Schur's Theorem, $\exists$ an orthonormal basis $e_1,\cdots,e_n$ of $V\st\M(T,(e_1,e_n))$ is an upper triangular matrix. Suppose \[\M(T,(e_1,\cdots,e_n))=\mqty(a_{1,1}&\cdots&a_{1,n}\\&\ddots&\vdots\\0&&a_{n,n}).\] Then, \[\M(T^*,(e_1,\cdots,e_n))=\mqty(\overline{a_{1,1}}&&0\\\vdots&\ddots&\\\overline{a_{1,n}}&\cdots&\overline{a_{n,n}}).\] Then, $Te_1=a_{1,1}e_1$ and $T^*e_1=\overline{a_{1,1}}e_1+\cdots+\overline{a_{1,n}}e_n$. Further, note that $\|Te_1\|^2=\qty|a_{1,1}|^2$ and $\|T^*e_1\|^2=\qty|a_{1,1}|^2+\cdots+\qty|a_{1,n}|^2$. Since $\|Te_1\|^2=\|T^*e_1\|^2$, we have $\qty|a_{1,1}|^2=\qty|a_{1,1}|^2+\cdots+\qty|a_{1,n}|^2$. Then, it must be that $\qty|a_{1,2}|^2+\cdots+\qty|a_{1,n}|^2=0$. Applying this procedure to $\|Te_2\|^2=\|T^*e_2\|^2,\cdots,\|Te_n\|^2=\|T^*e_n\|^2$, we have $|a_{j,k}|=0$ when $j\neq k$. So, $\M(T)$ is a diagonal matrix. 
+\end{prf}
+\begin{lem}{Invertible Quadratic Expressions}
+	Suppose $T\in\L(V)$ is self-adjoint and $b,c\in\R$ are $\st b^2<4c$. Then, $T^2+bT+cI$ is invertible.	
+\end{lem}
+\begin{prf}
+	Let $v\in V\st v\neq0$. Note that \[\begin{aligned}\langle(T^2+bT+cI)v,v\rangle&=\langle T^2v,v\rangle+b\langle Tv,v\rangle+c\langle v,v\rangle\\&=\langle Tv,Tv\rangle+b\langle Tv,v\rangle+c\|v\|^2&T\ is\ self-adjoint\\&\geq\|Tv\|^2-\qty|b|\|Tv\|\|v\|+c\|v\|^2&Cauchy-Schwarz\\&=\qty(\|Tv\|-\dfrac{\qty|b|\|v\|}{2})^2+\qty(c-\dfrac{b^2}{4})\|v\|^2\\&>0&b^2<4c\end{aligned}\] Then, $\forall v\neq0,\ \langle(T^2+bT+cI)v,v\rangle>0$. So, it must be that $(T^2+bT+cI)v=0$ if and only if $v=0$. Then, $\Null(T^2+bT+cI)=\qty{0}$. Thus, $T^2+bT+cI$ is injective, and thus it is invertible.
+\end{prf}
+\begin{lem}{}
+	Suppose $V\neq\qty{0}$ and $T\in\L(V)$ is a self-adjoint operator. Then, $T$ has an eigenvalue. 	
+\end{lem}
+\begin{prf}
+	Let $m=\dim V$ and choose $v\in V$. Then, $v,Tv,\cdots,T^nv$ cannot be $\LI$ because we have $n+1>\dim V$ vectors in the list. So, $\exists a_0,\cdots,a_n\in\R\st a_0v+a_1Tv+\cdots+a_nT^nv=0$. Make the $a$'s the coefficient of a polynomial then \[a_0+a_1x+\cdots+a_nx^n=c(x^2+b_1x+c_1)\cdots(x^2+b_Mx+c_M)(x-\lambda_1)\cdots(x-\lambda_m),\] where $c$ is a non-zero real number, each $b_j,c_j,\lambda_j\in\R$, each $b_j<4c_j$, and $m+M\geq1$. Then, we have \[\begin{aligned}0&=a_0v+a_1Tv+\cdots+a_nT^nv\\&=(a_0I+a_1T+\cdots+a_nT^n)v\\&=c(T^2+b_1T+c_1I)\cdots(T^2+b_MT+c_MI)(T-\lambda_1I)\cdots(T-\lambda_mI).\end{aligned}\] By Lemma 6.2.2,  $T^2+b_jT+c_jI$ is invertible. Since $c\neq0$, it must be that $0=(T-\lambda_1I)\cdots(T-\lambda_mI)$. Hence, $T-\lambda_jI$ is not injective for at least one $j$. So, $T$ has at least one eigenvalue. 
+\end{prf}
+\begin{df}{Restriction Operator, $T|_U$}
+	Suppose $T\in\L(V)$ and $U$ is an invariant subspace of $V$ under $T$. Then, the \textit{restriction operator}, $T|_U\in\L(V)$, is defined as $T|_U(u)=Tu$ for $u\in U$.
+\end{df}
+\begin{thm}{}
+	Suppose $T\in\L(V)$ is self-adjoint and $U$ is a subspace of $V$ that is invariant under $T$. Then, 
+	\begin{enumerate}
+		\item $U^\perp$ is invariant under $T$;
+		\item $T|_U\in\L(U)$ is self-adjoint;
+		\item $T|_{U^\perp}\in\L(U^\perp)$ is self-adjoint. 
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Suppose $v\in U^\perp$ and $u\in U$. Then, $\langle v,Tu\rangle=\langle Tv,u\rangle=0$ since $U$ is invariant under $T$ (and hence $Tu\in U$) and $v\in U^\perp$. Then, we have $Tv\in U^\perp\quad\forall v\in U^\perp$, proving $U^\perp$ is an invariant subspace under $T.\pqde$
+		\item Note that if $u,v\in U$, then \[\langle(T|_U)u,v\rangle=\langle Tu,v\rangle=\langle u,Tv\rangle=\langle u,(T|_U)v\rangle.\] Therefore, $T|_U$ is self-adjoint. $\pqde$
+		\item Replace $U$ with $U^\perp$ in ($2$) and apply the conclusion from ($1$), and we complete the proof.
+	\end{enumerate}
+\end{prf}
+\begin{thm}{Real Spectral Theorem}
+	Suppose $\F=\R$ and $T\in\L(V)$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $T$ is self-adjoint;
+		\item $V$ has an orthonormal basis consisting of eigenvectors of $T$.
+		\item $T$ has a diagonal matrix with respect to some orthonormal basis of $V$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	Similar to the complex case, ($2$)$\iff$($3$) is obvious. So, we will show ($3$)$\implies$($1$) and ($1$)$\implies$($2$) to complete the proof. $\pqde$\par 
+	Suppose ($3$) holds. Then, $\M(T)$ is diagonal. So, we have $\M(T)^t=\M(T)$. That is, $T=T^*$, and thus $T$ is self-adjoint. $\pqde$\par 
+	Suppose ($1$) holds. We will use mathematical induction on $\dim V$. $\boxed{\text{Base Case}}$ When $\dim V=1$. Clearly, ($1$)$\implies$($2$). $\boxed{\text{Inductive Steps}}$ Assume $\dim V>1$ and ($1$)$\implies$($2$) holds for all cases with dimension $\dim V-1$. Let $u$ be an eigenvector of $T$ with $\|u\|=1$. Let $U=\span(u)$. Then, $\dim U=1$. Since $V=U\oplus U^\perp$, we know $\dim U^\perp=\dim V-\dim U=\dim V-1$. So, ($1$)$\implies$($2$) holds on $U^\perp$. That is, $\exists$ an orthonormal basis of $U^\perp$ consisting of eigenvectors of $T|_{U^\perp}$. Now, add $u$ to this orthonormal basis, we get a basis of $V$. Further since $u\in U$, this basis is an orthonormal basis of $V$ consisting of eigenvectors of $T$. 
+\end{prf}
 
 \newpage
 \subsection{Positive Operators and Isometries}
+\begin{df}{Positive Operator}
+	An operator $T\in\L(V)$ is called \textit{positive} if $T$ is self-adjoint and $\langle Tv,v\rangle\geq0\quad\forall v\in V$.	
+\end{df}
+\begin{df}{Square Root}
+	An operator $R$ is called a \textit{square root} of an operator $T$ if $R^2=T$.	
+\end{df}
+\begin{eg}
+	Suppose $T\in\L(\R^3)$ and $R\in\L(\R^3)$ be defined as $T(z_1,z_2,z_3)=(z_3,0,0)$ and $R(z_1,z_2,z_3)=(z_2,z_3,0)$. Then, $R$ is a square root of $T$.
+	\begin{prf}
+		Since $R^2(z_1,z_2,z_3)=R(z_2,z_3,0)=(z_3,0,0)=T(z_1,z_2,z_3)$, $R$ is a square root of $T$.
+	\end{prf}	
+\end{eg}
+\begin{thm}{Characterization of Positive Operators}
+	Let $T\in\L(V)$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $T$ is positive;
+		\item $T$ is self-adjoint and all the eigenvalues of $T$ are non-negative;
+		\item $T$ has a positive square root;
+		\item $T$ has a self-adjoint square root;
+		\item $\exists$ an operator $R\in\L(V)\st T=R^*R$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	\par ($1$)$\implies$($2$): Since $T$ is positive, then $T$ is self-adjoint. Let $\lambda$ be an eigenvalue of $T$. Then, $Tv=\lambda v$ for some $v\in V$. Then, $\langle Tv,v\rangle=\langle\lambda v,v\rangle=\lambda\langle v,v\rangle=\lambda\|v\|^2$. Since $T$ is positive, $\langle Tv,v\rangle\geq0$. Further since $\|v\|^2\geq0$, it must also be $\lambda\geq0$. So, we complete the proof. $\pqde$\par 
+	($2$)$\implies$($3$): Suppose $T$ is self-adjoint and all the eigenvalues of $T$ are non-negative. By the Spectrum Theorem, $\exists$ an orthonormal basis $e_1,\cdots,e_n$, where $e_1,\cdots,e_n$ are eigenvectors of $T$. Let $\lambda_1,\cdots,\lambda_n$ be the corresponding eigenvalues, where $\lambda_j\geq0$. Let $R\in\L(V)\st Re_j=\sqrt{\lambda_j}e_j$. Then \[\begin{aligned}\langle Rv,v\rangle&=\Big\langle a_1\sqrt{\lambda_1}e_1+\cdots+a_n\sqrt{\lambda_n}e_n,a_1e_1+\cdots+a_ne_n\Big\rangle\\&=\qty|a_1|^2\sqrt{\lambda_1}+\cdots+\qty|a_n|^2\sqrt{\lambda_n}\geq0.\end{aligned}\] Further, we can verity $R$ is self-adjoint (proof omitted). So, $R$ is positive by definition. Note that \[R^2e_j=R\qty(\sqrt{\lambda_j}e_j)=\sqrt{\lambda_j}\sqrt{\lambda_j}e_j=\lambda_je_j=Te_j.\] So, $R$ is a square root of $T$. $\pqde$\par 
+	($3$)$\implies$($4$): Suppose $T$ has a positive square root. By definition, positive operators are self-adjoint. $\pqde$\par 
+	($4$)$\implies$($5$): Suppose $T$ has a self-adjoint square root. Then, we have $R\in\L(V)\st R^*=R$ and $R^2=T$. That is, $T=R^2=RR=R^*R.\pqde$\par 
+	($5$)$\implies$($1$): Suppose $\exists$ an operator $R\in\L(V)\st T=T^*T$. Then, \[T^*=\qty(R^*R)^*=R^*\qty(R^*)^*=R^*R=T.\] So, $T$ is self-adjoint. Now, since \[\langle Tv,v\rangle=\langle R^*Rv,v\rangle=\langle Rv,Rv\rangle=\|Rv\|^2\geq0,\] we have $T$ is a positive operator. 
+\end{prf}
+\begin{thm}{}
+	Each positive operator on $V$ has a unique positive square root.	
+\end{thm}
+\begin{prf}
+	Let $T$ be a positive operator on $V$. Select $v$ to be an eigenvector of $T$ with corresponding eigenvalue of $\lambda$. Then, we have $Tv=\lambda v$. Let $R$ be a positive square root of $T$. Apply Spectrum Theorem to $R$, then $\exists$ an orthonormal basis $e_1,\cdots,e_n$, where $e_1,\cdots,e_n$ are eigenvectors of $R$. Then, $\exists\lambda_1,\cdots,\lambda_n\geq0\st Re_j=\sqrt{\lambda_j}e_j$. Suppose $v\in V$ and $v=a_1e_1+\cdots+a_ne_n$. Then, \[Rv=a_1\sqrt{\lambda_1}e_1+\cdots+a_n\sqrt{\lambda_n}e_n\quad\text{and}\quad R^2v=a_1\lambda_1e_1+\cdots+a_n\lambda_ne_n.\] Further, $Tv=\lambda v=\lambda a_1e_1+\cdots+\lambda a_ne_n$. Since $R^2v=Tv$, we know \[a_1\qty(\lambda_1-\lambda)e_1+\cdots+a_n\qty(\lambda_n-\lambda)e_n=0.\] Since $e_1,\cdots,e_n$ is an orthonormal basis, for each $j=1,\cdots,n$, we have $a_j(\lambda_j-\lambda)=0$. So, it must be $a_j=0$ or $\lambda_j=\lambda$. If $a_j=0$, then we can delet it from the representation of $v$. So, \[v=\sum_{\qty{j\mid\lambda_j=\lambda}}a_je_j\] Hence, \[Rv=\sum_{\qty{j\mid\lambda_j=\lambda}}a_j\sqrt{\lambda}e_j=\sqrt{\lambda}v.\]
+\end{prf}
+\begin{df}{Isometry}
+	An operator $S\in\L(V)$ is called an \textit{isometry} if $\|Sv\|=\|v\|\quad\forall v\in V$. In other words, an operator is an isometry if ti preserves norms. 	
+\end{df}
+\begin{eg}
+	Let $\lambda_1,\cdots,\lambda_n\in\F$ with $\qty|\lambda_j|$ and $S\in\L(V)\st Se_j=\lambda_je_j$ for some orthonormal bases $e_1,\cdots,e_n$ of $V$. Then, $S$ is an isometry. 
+	\begin{prf}
+		Let $v\in V$. Then, $v=\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n$. So, $\|v\|^2=\qty|\langle v,e_1\rangle|^2+\cdots+\qty|\langle v,e_n\rangle|^2$. Further, $Sv=\lambda_1\langle v,e_1\rangle e_1+\cdots+\lambda_n\langle v,e_n\rangle e_n,$ and thus $\|Sv\|^2=\qty|\lambda_1|^2\qty|\langle v,e_1\rangle|^2+\cdots+\qty|\lambda_n|^2\qty|\langle v,e_n\rangle|^2$. Since $\qty|\lambda_j|=1$, we know \[\|Sv\|^2=\qty|\langle v,e_1\rangle|^2+\cdots+\qty|\langle v,e_n\rangle|^2=\|v\|^2.\] So, $\|Sv\|=\|v\|$ since $\|Sv\|\geq0$ and $\|v\|\geq0$. That is, by definition, $S$ is an isometry. 
+	\end{prf}
+\end{eg}
+\begin{thm}{Characterization of Isometries}
+	Suppose $S\in\L(V)$. Then, the following are equivalent: 
+	\begin{enumerate}
+		\item $S$ is an isometry.
+		\item $\langle Su,Sv\rangle=\langle u,v\rangle\quad\forall u,v\in V$;
+		\item $Se_1,\cdots,Se_n$ is orthonormal for every orthonormal list of vectors $e_1,\cdots,e_n$ in $V$;
+		\item $\exists$ an orthonormal basis $e_1,\cdots,e_n$ of $V\st Se_1,\cdots,Se_n$ is orthonormal;
+		\item $S^*S=I$;
+		\item $SS^*=I$;
+		\item $S^*$ is an isometry;
+		\item $S$ is invertible and $S^{-1}=S^*$.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	su	
+\end{prf}
+
 
 \newpage
 \subsection{Polar Decomposition and SVD}
