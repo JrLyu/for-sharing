@@ -1,0 +1,118 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
+%%% for coding %%%
+\usepackage{listings}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
+
+
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+
+\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex}}{\par\end{framed}}
+
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
+
+\newtheorem*{hint}{Hint.}
+\newtheorem*{rmk}{Remark.}
+\newtheorem*{ext}{Extension.}
+
+\linespread{1.25}
+
+\title{Emory University\\\textbf{MATH 212 Differential Equations Learning Notes}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varemptyset}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{First Order Ordinary Differential Equations}
+\subsection{Introduction}
+\begin{df}{Ordinary Differential Equations/ODEs}
+	An \textit{ordinary differential equation} is an equation that contains one or more derivatives of an unknown function $y=y(x)$.
+\end{df}
+\begin{df}{Order of ODEs}
+	The \textit{order} of an ODE is the maximum order of the derivatives appearing in the equation.
+\end{df}
+\begin{df}{Solution to ODEs}
+	The \textit{solution} to an ODE is a function $y$ that satisfies the equation.	
+\end{df}
+\begin{eg}
+	Solve $y''=3x+1$.
+	\begin{sol}
+		\[\begin{aligned}y'&=\int3x+1\ \d x=\dfrac{3}{2}x^2+x+C\\y&=\int y'\ \d x=\int\dfrac{3}{2}x^2+x+C\ \d x=\dfrac{1}{2}x^3+\dfrac{1}{x}x^2+Cx+D.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{df}{Linear ODEs/Non-Linear ODEs}
+	A first order ODE is \textit{linear} if it can be written as \[y'+p(x)y=f(x).\] Otherwise, it is \textit{non-linear}.
+\end{df}
+\begin{df}{Homogenous/Non-Homogenous Linear ODEs}
+	If $f(x)=0$, then the linear ODE is \textit{homogenous}. That is, \[y'+p(x)y=0.\] Otherwise, it is \textit{non-homogenous}.
+\end{df}
+\begin{df}{Trivial/Non-Trivial Solution}
+	$y=0$ is a \textit{trivial solution} to a homogenous ODE. Any other solutions are \textit{non-trivial}.	
+\end{df}
+\begin{df}{One-Parameter Family of Solutions}
+	We call $C$ a \textit{parameter} and the equation, therefore solution, defines a \textit{one-parameter family} of solutions.	
+\end{df}
+\begin{eg}
+	For the ODE $y'=1$, $y_1=x+C_1$ is a solution to it, and it is a one-parameter family of solutions. Similarly, for $y'=\dfrac{1}{x^2}$, the one-parameter families of solutions are defined by $y_2=-\dfrac{1}{x}+C_2$ on the interval $(-\infty,0)\cup(0,\infty)$.
+\end{eg}
+
+
+
+\section{Second Order ODEs}
+
+\section{System of ODEs}
+\end{document}

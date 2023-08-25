@@ -2149,19 +2149,111 @@
 	\end{enumerate}	
 \end{thm}
 \begin{prf}
-	su	
+	\par ($1$)$\implies$($2$): Note that \[\begin{aligned}\langle Su,Sv\rangle=\dfrac{\|Su+Sv\|^2-\|Su-Sv\|^2}{4}&=\dfrac{\|S(u+v)\|^2-\|S(u-v)\|^2}{4}\\&=\dfrac{\|u+v\|^2-\|u-v\|^2}{4}\\&=\langle u,v\rangle\pqde\end{aligned}\]	
+	\par ($2$)$\implies$($3$): We have \[\langle Se_i,Se_j\rangle=\langle e_i,e_j\rangle=\begin{cases}1\quad\text{if }i=j\\0\quad\text{if }i\neq j\end{cases}\] So, $Se_1,\cdots,Se_n$ are orthonormal. $\pqde$
+	\par ($3$)$\implies$($4$): Suppose $e_1,\cdots,e_m$ is orthonormal. We can extend it to a basis of $V$: $e_1,\cdots,e_m,v_{m+1},\cdots,v_n$. Then, apply the Gram-Schmidt Procedure, we get an orthonormal basis, $e_1,\cdots,e_m,e_{m+1},\cdots,e_n$ of $V$. $\pqde$
+	\par ($4$)$\implies$($5$): Suppose $e_1,\cdots,e_n$ is an orthonormal basis of $V$. Then, \[\langle S^*Se_j,e_k\rangle=\langle Se_j,Se_k\rangle=\langle e_j,e_j\rangle.\] Suppose $u,v\in V\st u=a_1e_1+\cdots+a_ne_n$ and $v=b_1e_1+\cdots+b_ne_n$. Then, \[\begin{aligned}\langle S^*Su,v\rangle=\langle Su,Sv\rangle&=\langle S(a_1e_1+\cdots+a_ne_n),S(b_1e_1+\cdots+b_ne_n)\rangle\\&=\langle a_1Se_1+\cdots+a_nSe_n,b_1Se_1+\cdots+b_nSe_n\rangle\\&=\langle a_1Se_1,b_1Se_1\rangle+\cdots+\langle a_nSe_n,b_nSe_n\rangle\\&=a_1\overline{b_1}\|Se_1\|^2+\cdots+a_n\overline{b_n}\|Se_n\|^2\\&=a_1\overline{b_1}+\cdots+a_n\overline{b_n}\\&=\langle u,v\rangle.\end{aligned}\] So, $S^*Su=u$, or $S^*S=I.\pqde$
+	\par ($5$)$\implies$($6$): Suppose $S^*S=I$. Then, $S=S^*$. So, $SS^*=I.\pqde$
+	\par ($6$)$\implies$($7$): Suppose $S^*S=I$. Then, \[\|S^*v\|^2=\langle S^*v,S^*v\rangle=\langle SS^*v,v\rangle=\langle v,v\rangle=\|v\|^2.\pqde\]
+	\par ($7$)$\implies$($8$): Suppose $S^*$ is an isometry. Then, we know $S^*S=I$ and $SS^*=I$ by the proofs done above. So, $S$ is invertible, and $S^{-1}=S^*.\pqde$
+	\par ($8$)$\implies$($1$): Finally, suppose $S$ is invertible and $S^{-1}=S^*$. Then, $S^*S=I$. Note that \[\|Sv\|^2=\langle Sv,Sv\rangle=\langle S^*Sv,v\rangle=\langle v,v\rangle=\|v\|^2.\]
 \end{prf}
-
+\begin{thm}{}
+	Suppose $V$ is a complex inner product space and $S\in\L(V)$. Then, $S$ is an isometry if and only if $\exists$ an orthonormal basis of $V$ consisting of eigenvectors of $S$ whose corresponding eigenvalues all have absolute value of $1$.	
+\end{thm}
+\begin{prf}
+	\par ($\Rightarrow$): By the Spectrum Theorem, $\exists$ an orthonormal basis $e_1,\cdots,e_n$, where $e_1,\cdots,e_n$ are eigenvectors of $S$. Suppose $\lambda_1,\cdots,\lambda_n$ are the corresponding eigenvalues. Then, we have \[\|Se_j\|=\|\lambda_je_j\|=\qty|\lambda_j|.\] Since $S$ is an isometry, $\|Se_j\|=\|e_j\|=1$. So, $\qty|\lambda_j|=\|Se_j\|=1.\pqde$
+	\par ($\Leftarrow$): This direction is proven in Example 6.3.7. 
+\end{prf}
 
 \newpage
 \subsection{Polar Decomposition and SVD}
+\begin{nota}
+	If $T$ is a positive operator, then $\sqrt{T}$ denotes the unique positive square root of $T$. 
+\end{nota}
+\begin{rmk}We want to verify that the definition of $\sqrt{T^*T}$ is reasonable: $\langle T^*Tv,v\rangle=\langle Tv,Tv\rangle\geq0$. Also, $\qty(T^*T)^*=T^*T$. So, $T^*T$ is a positive operator, and thus $\sqrt{T^*T}$ is well-defined. \end{rmk}
+\begin{thm}{Polar Decomposition}
+	Suppose $T\in\L(V)$. Then, $\exists$ an isometry $S\in\L(V)\st T=S\sqrt{T^*T}$.	
+\end{thm}
+\begin{prf}
+	\par $\boxed{\text{Step }1}$ Characteristics of $\range\sqrt{T^*T}$: Note that \[\begin{aligned}\|Tv\|^2=\langle Tv,Tv\rangle&=\langle T^*Tv,v\rangle\\&=\langle\sqrt{T^*T}\sqrt{T^*T}v,v\rangle\\&=\langle\sqrt{T^*T}v,\sqrt{T^*T}v\rangle\\&=\|\sqrt{T^*T}v\|^2.\end{aligned}\] So, $\forall v\in V$, we have $\|Tv\|=\|\sqrt{T^*T}v\|$. Define $S_1:\range\sqrt{T^*T}\to\range T$ as $S_1\qty(\sqrt{T^*T}v)=Tv$. Then, we have $\|S_1\sqrt{T^*T}v\|=\|Tv\|$.
+	\begin{enumerate}
+		\item Now, we want to verify that $S_1$ is well-defined. Suppose $v_1,v_2\in V\st\sqrt{T^*T}v_1=\sqrt{T^*T}v_2$. Then, \[\begin{aligned}\|Tv_1-Tv_2\|=\|T\qty(v_1-v_2)\|&=\|\sqrt{T^*T}\qty(v_1-v_2)\|\\&=\|\sqrt{T^*T}v_1-\sqrt{T^*T}v_2\|\\&=0.\end{aligned}\] So, $S_1$ is well-defined. 
+		\item Further, we want to show $S_1$ is linear. By using the linearity of $T$, we can easily prove that $S_1$ is also linear.
+		\item Additionally, $S_1$ is surjective by definition of $S_1$.
+		\item Also, $S_1$ is isometry. Note that $\forall u\in\range\sqrt{T^*T}$, we have $\|S_1u\|=\|u\|$ since $\|\sqrt{T^*T}v\|=\|Tv\|$.
+		\item Hence, $S_1$ is injective: Note that $\|S_1v\|=0$ if and only if $\|v\|=0$, which is equivalent to $v=0$. So, $\Null S_1=\qty{0}.\pqde$
+	\end{enumerate}
+	\par $\boxed{\text{Step }2}$ Extend $S_1$ to an isometry on $V$. Note that we have $\dim\range\sqrt{T^*T}=\dim\range T$. So, we know $\dim\qty(\range\sqrt{T^*T})^\perp=\dim\qty(\range T)^\perp$. Select an orthonormal basis $e_1,\cdots,e_m$ of $\qty(\range\sqrt{T^*T})^\perp$ and an orthonormal basis $f_1,\cdots,f_m$ of $\qty(\range T)^\perp$. Now, let's define $S_2:\qty(\range\sqrt{T^*T})^\perp\to\qty(\range T)^\perp$ as $S_1\qty(a_1e_1+\cdots+a_me_m)=a_1f_1+\cdots+a_mf_m$. We can then not only show $S_2$ is well-defined but also $S_2$ is linear. Moreover, $\forall w\in\qty(\range\sqrt{T^*T})^\perp$, if $w=a_1e_1+\cdots+a_me_m$, we have \[\begin{aligned}\|S_2w\|^2=\|S_2\qty(a_1e_1+\cdots+a_me_m)\|^2&=\|a_1f_1+\cdots+a_mf_m\|^2\\&=\qty|a_1|^2+\cdots+\qty|a_m|^2\\&=\|a_1e_1+\cdots+a_me_m\|^2\\&=\|w\|^2.\end{aligned}\] So, $\|S_2w\|=\|w\|$. Now, we define \[Sv=\begin{cases}S_1v,\quad v\in\range\sqrt{T^*T}\\S_2v,\quad v\in\qty(\range\sqrt{T^*T})^\perp\end{cases}\] Note that since $V=\range\sqrt{T^*T}\oplus\qty(\range\sqrt{T^*T})^\perp$, we can uniquely represent $v\in V$ as $v=u+w$ for some $u\in\range\sqrt{T^*T}$ and $w\in\qty(\range\sqrt{T^*T})^\perp$. Hence, we can also write the definition of $S$ as $Sv=S_1u+S_2w$. If we select $\sqrt{T^*T}v\in\range\sqrt{T^*T}$, then we have $S\qty(\sqrt{T^*T}v)=S_1\qty(\sqrt{T^*T}v)=Tv$. Therefore, $T=S\sqrt{T^*T}\quad\forall v\in V.\pqde$
+	\par Finally, we will show $S$ is an isometry. Note that $v=u+w$. So, by Pythagorean Theorem, \[\begin{aligned}\|Sv\|^2=\|S_1u+S_2w\|^2&\|S_1u\|^2+\|S_2w\|^2\\&=\|u\|^2+\|w\|^2\\&=\|v\|^2.\end{aligned}\]
+\end{prf}
+\begin{df}{Singular Values}
+	Suppose $T\in\L(V)$. The \textit{singular values} of $T$ are the eigenvalues of $\sqrt{T^*T}$, with each eigenvalue $\lambda$ repeated $\dim E\qty(\lambda,\sqrt{T^*T})$ times. 	
+\end{df}
+\begin{eg}
+	Define $T\in\L(\F^4)$ by \[T(z_1,z_2,z_3,z_4)=(0,3z_1,2z_2,-3z_4).\] Find the singular values of $T$. 
+	\begin{sol}
+		Suppose $v=\qty(z_1,z_2,z_3,z_4)\in\F^4$ and $w=\qty(y_1,y_2,y_3,y_4)\in\F^4$. Consider \[\begin{aligned}\langle v,T^*w\rangle&=\langle Tv,w\rangle\\&=\langle\qty(0,3z_1,2z_2,-3z_4),\qty(y_1,y_2,y_3,y_4)\rangle\\&=3z_1\overline{y_2}+2z_2\overline{y_3}-3z_4\overline{y_4}\\&=\langle\qty(z_1,z_2,z_3,z_3),\qty(3y_2,2y_3,0,-3y_4)\rangle.\end{aligned}\] So, $T^*w=T^*\qty(y_1,y_2,y_3,y_4)=\qty(3y_2,2y_3,0,-3y_4)$. Then, $T^*T\qty(z_1,z_2,z_3,z_4)=\qty(9z_1,4z_2,0,9z_4)$. Then, $\sqrt{T^*T}\qty(z_2,z_2,z_3,z_4)=\qty(3_z1,2z_2,0,3z_4)$. So, the eigenvalues of $\sqrt{T^*T}$ are $3$, $2$, and $0$. Also, \[\dim E\qty(3,\sqrt{T^*T})=2,\quad\dim E\qty(2,\sqrt{T^*T})=\dim E\qty(0,\sqrt{T^*T})=1.\] So, the singular values are $3,3,2,0$.
+	\end{sol}
+\end{eg}
+\begin{thm}{Singular Value Decomposition (SVD)}
+	Suppose $T\in\L(V)$ has singular values $s_1,\cdots,s_n$. Then, $\exists$ orthonormal bases $e_1,\cdots,e_n$ and $f_1,\cdots,f_n$ of $V\st$ \[Tv=s_1\langle v,e_1\rangle f_1+\cdots+s_n\langle v,e_n\rangle f_n\] for every $v\in V$.
+\end{thm}
+\begin{rmk}Relevant Theorem used in proving SVD: Spectrum Theorem, Characterization and Properties of Isometry, and Polar Decomposition. \end{rmk}
+\begin{prf}
+	Apply the Spectrum Theorem to $\sqrt{T^*T}$, we know $\exists$ an orthonormal basis $e_1,\cdots,e_n$ of $V\st$\[\sqrt{T^*T}e_j=s_je_j\quad\forall j=1,\cdots,n.\] Note that $\forall v\in V$, we have \begin{equation}\label{eq17} v=\langle v,e_1\rangle e_1+\cdots+\langle v,e_n\rangle e_n\end{equation} Apply $\sqrt{T^*T}$ to Equation (\ref{eq17}) we have \begin{equation}\label{eq18} \sqrt{T^*T}v=s_1\langle v,e_1\rangle e_1+\cdots+s_n\langle v,e_n\rangle e_n.\end{equation} By Polar Decomposition, $\exists$ an isometry $S\in\L(V)\st T=S\sqrt{T^*T}$. Apply $S$ to Equation (\ref{eq18}), we get \[S\qty(\sqrt{T^*T}v)=s_1\langle v,e_1\rangle Se_1+\cdots+s_n\langle v,e_n\rangle Se_n.\] By the characteristics of isometry, since $e_1,\cdots,e_n$ is an orthonormal basis, $Se_1,\cdots,Se_n$ is also an orthonormal basis. Let $f_j=Se_j$. Then, \[Tv=S\sqrt{T^*T}v=s_1\langle v,e_e\rangle f_1+\cdots+s_n\langle v,e_n\rangle f_n.\]
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Then, the singular values of $T$ are the non-negative square roots of the eigenvalues of $T^*T$, with each eigenvalue $\lambda$ repeated $\dim E\qty(\lambda,T^*T)$ times. 	
+\end{thm}
+\begin{prf}
+	By the Spectrum Theorem, $\exists$ an orthonormal basis $e_1,\cdots,e_n$ and non-negative number $\lambda_1,\cdots,\lambda_n\st T^*Te_j=\lambda_je_j\quad\forall j=1,\cdots,n$. Then, we have $\sqrt{T^*T}e_j=\sqrt{\lambda_j}e_j\quad\forall j=1,\cdots,n$, which completes the proof. 
+\end{prf}
 
 \newpage
 \section{Operators on Complex Vector Spaces}
 \subsection{Generalized Eigenvectors, Nilpotent Operators}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Then, \[\qty{0}\subseteq\Null T^0\subseteq\Null T^1\subseteq\cdots\subseteq\Null T^k\subseteq\Null T^{k+1}\subseteq\cdots\]	
+\end{thm}
+\begin{prf}
+	Let $k\in\Np$. Let $v\in\Null T^k$. Then, $T^kv=0$. Then, we know $T(T^kv)=T^{k+1}v=0$. So, $v\in\Null T^{k+1}$. That is, $\Null T^k\subseteq\Null T^{k+1}$ as desired. 	
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Suppose $m$ is a non-negative integer $\st$ $\Null T^m=\Null T^{m+1}$. Then, \[\Null T^m=\Null T^{m+1}=\Null T^{m+2}=\Null T^{m+3}=\cdots\]	
+\end{thm}
+\begin{prf}
+	Let $k\in\N$. We've already shown $\Null T^{m+k}\subseteq\Null T^{m+k+1}$ in Theorem 7.1.1. Now, let $v\in\Null T^{m+k+1}$. So, $T^{m+k+1}(v)=0$. That is, $T^{m+1}\qty(T^kv)=0$. So, $T^kv\in\Null T^{m+1}=\Null T^m$. In other words, $T^m\qty(T^kv)=T^{m+k}(v)=0$. So, $v\in\Null T^{m+k}$. Then, $\Null T^{m+k+1}\subseteq\Null T^{m+k}$. Hence, \[\Null T^{m+k}=\Null T^{m+k+1}.\]
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Let $n=\dim V$. Then, \[\Null T^n=\Null T^{n+1}=\Null T^{n+2}=\cdots\]	
+\end{thm}
+\begin{prf}
+	Suppose for the sake of contradiction that $\Null T^n\neq\Null T^{n+1}$. Then, \[\Null T^0\nsubseteq\Null T\nsubseteq T^2\nsubseteq\cdots\nsubseteq\Null T^n\nsubseteq T^{n+1}.\] As the symbol $\nsubseteq$ means ``contained in but not equal to,'' at each of the strict inclusions in the chain above, the dimension increases by at least $1$. That is, $\dim\Null T^{n+1}\geq n+1$. $\divideontimes$ This is a contradiction because a subspace of $V$ ($\Null T^{n+1}$)	 cannot be a dimension larger than $\dim V=n$. So, it must be that our assumption is wrong, and $\Null T^n=\Null T^{n+1}$.
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Let $n=\dim V$. Then, \[V=\Null T^n\oplus\range T^n.\]	
+\end{thm}
+\begin{prf}
+	Note that $\dim V=\dim\Null T^n+\dim\range T^n$ by the Fundamental Theorem of Linear Maps. So, we only need to prove $\qty(\Null T^n)\cap\qty(\range T^n)=\qty{0}$. Let $v\in\qty(\Null T^n)\cap\qty(\range T^n)$. Then, $\exists u\in V\st v=T^nu$. Since $v\in\Null T^n$, $T^Nv=T^n\qty(T^nu)=0$. That is, $T^{2n}u=T^nv=0$. Therefore, $u\in\Null T^{2n}=\Null T^n$. So, we now have $T^nu=0$. Hence, $v=T^nu=0$. Then, i $\qty(\Null T^n)\cap\qty(\range T^n)=\qty{0}$, and thus $V=\Null T^n\oplus\range T^n$.
+\end{prf}
+\begin{df}{Generalized Eigenvector}
+	Suppose $T\in\L(V)$ and $\lambda$ is an eigenvalue of $T$. A vector $v\in V$ is called a \textit{generalized eigenvector} of $T$ corresponding to $\lambda$ if $v\neq0$ and $\qty(T-\lambda I)^jv=0$ for some positive integer $j$.	
+\end{df}
+\begin{df}{Generalized Eigenspace, $G\qty(\lambda, T)$}
+	Suppose $T\in\L(V)$ and $\lambda\in\F$. The \textit{generalized eigenspace} of $T$ corresponding to $\lambda$, denoted $G\qty(\lambda, T)$, is defined to be the set of all generalized eigenvectors of $T$ corresponding to $\lambda$, along with the $0$ vector. 	
+\end{df}
+\begin{thm}{}
+	Suppose $T\in\L(V)$ and $\lambda\in\F$. Then, \[G\qty(\lambda, T)=\Null\qty(T-\lambda I)^{\dim V}.\]	
+\end{thm}
+\begin{prf}
+		
+\end{prf}
+
 
 \newpage
 \subsection{Decomposition of an Operator}
+
 
 \newpage
 \subsection{Characteristic and Minimal Polynomials}
