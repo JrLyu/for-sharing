@@ -1,0 +1,196 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia, tcolorbox}
+%%% for coding %%%
+\usepackage{listings}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
+
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+
+%%% for coding %%%
+\lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
+
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+
+\newenvironment*{eg}[1]{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex\ #1}}{\par\end{framed}}
+
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
+
+\newtheorem*{hint}{Hint.}
+\newtheorem*{rmk}{Remark.}
+\newtheorem*{ext}{Extension.}
+
+\linespread{1.25}
+
+\title{\textbf{This is a title}}
+\author{Jiuru Lyu}
+\date{\today}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varemptyset}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Floating Point Numbers}
+\subsection{Binary Representation}
+\begin{df}{Binary}
+	$0$ and $1$; on and off.	
+\end{df}
+\begin{eg}{Represent Numbers in Base-2}
+	\par Consider $13=1(10)+3(1)=1(10)+3(10^0)$ in base-10. It can be converted into base-2 by decomposing $13$ as $1(2^3)+1(2^2)+0(2^1)+1(2^0)$.
+\end{eg}
+\begin{eg}{Fractions in Base-2}
+	\[\dfrac{7}{16}=\dfrac{1}{16}(7)=\qty(2^{-4})\qty(2^2+2^1+2^0)=2^{-2}+2^{-3}+2^{-4}.\]
+\end{eg}
+\begin{eg}{Repeating Fractions in Base-2}
+	\[\begin{aligned}\dfrac{1}{5}=\dfrac{1}{8}+\epsilon_1\quad&\Longrightarrow\quad\epsilon_1=\dfrac{1}{5}-\dfrac{1}{8}=\dfrac{8-5}{(5\times8)}=\dfrac{3}{40}\\\epsilon_1=\dfrac{3}{3(16)}+\epsilon_2\quad&\Longrightarrow\quad\cdots\end{aligned}\] Repeating the steps above, we would finally get \[\dfrac{1}{5}=\dfrac{1}{8}+\dfrac{1}{16}+\dfrac{1}{128}+\dfrac{1}{256}+\cdots\]
+\end{eg}
+\begin{thm}{}
+	Let $n\in\Z$ and $n\geq1$, then \[\sum_{k=0}^{n-1}2^k=2^{n-1}+2^{n-2}+\cdots+2^0=2^n-1.\]	
+\end{thm}
+\subsection{Integers in Computers}
+\begin{df}{Storing Integers}
+	\texttt{unit8} stands for unsigned integers and \texttt{int8} stands for signed integers. 
+	\begin{rmk} The $8$ here represents $8$ bits. It is a measure of how much storage (how many $0$s or $1$s).\end{rmk}
+	\[\begin{aligned}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		\ $b_7$&$b_6$\ &\ $b_5$&$b_4$\ &\ $b_3$&$b_2$\ &\ $b_1$&\ $b_0$\\
+		\hline
+	\end{tabular}&\\
+	\begin{tabular}{ccccccccc}	
+		unsigned: &$2^7$&$2^6$&$2^5$&$2^4$&$2^3$&$2^2$&$2^1$&$2^0$\\
+		signed:   &$-2^7$&$2^6$&$2^5$&$2^4$&$2^3$&$2^2$&$2^1$&$2^0$
+	\end{tabular}&
+	\end{aligned}\]
+\end{df}
+\begin{eg}{}
+	\[\texttt{unit8}(13)=00001101\] Since $-13=1(-2^7)+1(2^6)+1(2^5)+1(2^4)+0(2^3)+0(2^2)+1(2^1)+1(2^0)$, we have \[\texttt{int8}(-13)=11110011\]
+\end{eg}
+\begin{rmk}
+	Largest and Smallest Integers: \[\begin{aligned}\textnormal{\texttt{uint8}}(x_L)&=11111111\quad\Longrightarrow x_L=2^7+2^6+\cdots+2^0=2^8-1=255\\\textnormal{\texttt{uint8}}(x_S)&=00000000\quad\Longrightarrow x_S=0(2^7)+0(2^6)+\cdots+0(2^0)=0\\\textnormal{\texttt{int8}}(x_L)&=01111111\quad\Longrightarrow x_L=0(-2^7)+2^6+\cdots+2^0=2^7-1=127\\\textnormal{\texttt{int8}}(x_S)&=100000000\quad\Longrightarrow x_S=1(-2^7)+0(2^6)+\cdots+0(2^0)=-128\end{aligned}\]	
+\end{rmk}
+\subsection{Representation of Floating Point Numbers}
+\begin{df}{Normalized Scientific Notation}
+	Only $1$ digit (non-zero) to the left of the decimal point.	
+\end{df}
+\begin{eg}{}
+	\[\begin{aligned}123.456\times10^7&\\12.3456\times10^8&\\1.23456\times10^9&\rightarrow\text{normalized}\end{aligned}\]	
+\end{eg}
+\begin{df}{Anatomy of Floating Point Numbers}
+	A floating point number, $\texttt{float}(x)$, consists of three parts: $s(x)$ (sign bit), $e(x)$ (exponent bits), and $f(x)$ (fraction bits).
+\end{df}
+\begin{df}{Precision}
+	Precision is defined by the number 	of bits per part:
+	\begin{center}\begin{tabular}{c|c|c|c|c}
+	&$s(x)$&$e(x)$&$f(x)$&total\\\hline
+	double precision (DP)&$1$&$11$&$52$&$64$\\
+	single precision (SP)&$1$&$8$&$23$&$32$\\
+	half precision (HP)&$1$&$5$&$10$&$16$\\
+	\end{tabular}\end{center}
+	\begin{rmk}The less bits the float point number has, the less storage it requires and faster computation it performs, but more error introduces.\end{rmk}
+\end{df}
+\begin{df}{Floating Point Number}
+	\begin{equation}\label{eq1}\texttt{float}(x)=(-1)^{s(x)}\qty(1+\dfrac{f(x)}{2^\text{\# of fraction bits}})2^{E(x)},\end{equation} where $E(x)$ is called the \textit{unbiased exponent} because it is centered about $0$ and is calculated through the $e(x)$, the \textit{biased exponent} because it can only be non-negative integers, by the following formula: \[E(x)=e(x)-\qty(2^{\text{\# of exponent bits}-1}-1).\]	
+	\begin{rmk}
+		Eq. (\ref{eq1}) is in normalized scientific notation because the largest number $f(x)$ can represent is $2^\textnormal{\# of fraction bits}-1$. Hence, \[1+\dfrac{f(x)}{2^\textnormal{\# of fraction bits}}<2,\] and thus there will be only $1$ digit in front of the decimal point.
+	\end{rmk}
+\end{df}
+\begin{eg}{Formula for a Floating Point Number in Double Precision (DP)}
+	\[\texttt{float}_\text{DP}(x)=(-1)^{s(x)}\qty(1+\dfrac{f(x)}{2^{52}})2^{e(x)-1023}.\]	
+\end{eg}
+\begin{eg}{Converting DP into Decimal}
+	\par Suppose a DP floating number is stored as $s(x)=0$, $e(x)=10000000011,$ and $f(x)=0100100\cdots0$. Find its representation in decimal base-10.
+	\begin{sol}
+		$e(x)=10000000011=2^{10}+2^{1}+2^{0}$ and $f(x)=0100100\cdots0=2^{50}+2^{47}$. Then, the unbiased exponent $E(x)=e(x)-1023=2^{10}+2^1+2^0-\qty(2^{10}-1)=4$. So, \[\begin{aligned}\texttt{float}_\text{DP}(x)&=(-1)^{s(x)}+\qty(1+\dfrac{f(x)}{2^{52}})2^{E(x)}\\&=(-1)^0\qty(1+\dfrac{2^{50}+2^{47}}{2^{52}})2^4\\&=\qty(1+2^{-2}+2^{-5})2^4\\&=2^4+2^2+2^{-1}\\&=16+4+0.5=20.5\end{aligned}\]
+	\end{sol}
+\end{eg}
+
+
+
+\begin{lstlisting}[language = Matlab, title = {Answer.m}]
+% Plot function f(x) = 2*x^3 - x - 2
+ezplot('2*x^3-x-2', [0, 2])
+hold on
+plot([0, 2], [0, 0], 'r')
+\end{lstlisting}
+
+\begin{algorithm}
+\caption{Bisection Algorithm}
+\SetKwData{In}{\rmfamily\textbf{in}}\SetKwData{To}{\rmfamily\textbf{to}}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Stop}{\rmfamily{\textbf{stop}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+\SetKwComment{Comment}{/* }{ */}
+\DontPrintSemicolon
+\KwIn{$a,b,M,\delta,\epsilon$\;$u\leftarrow f(a)$\;$b\leftarrow f(b)$\;$e\leftarrow b-a$}
+\KwOut{output}
+\BlankLine
+\Begin{
+	\If{$\text{sign}(u)=\text{sign}(v)$}{\Stop}
+	\For{k=1 \To M}{
+		$e\leftarrow e/2$\;
+		$c\leftarrow a+e$\;
+		$w\leftarrow f(c)$\;
+		\Return $k,c,w,e$\;
+		\If{$|e|<\delta$\Or$|w|<\epsilon$}{\Stop}
+		\eIf{$\text{sign}(u)\neq=\text{sign}(v)$}{
+			$b\leftarrow c$\;
+			$v\leftarrow w$\;
+		} {
+			$a\leftarrow c$\;
+			$u\leftarrow w$\;
+		}
+	}
+}
+\end{algorithm}
+\end{document}

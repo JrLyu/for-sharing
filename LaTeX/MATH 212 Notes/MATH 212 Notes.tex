@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -70,6 +70,8 @@
 \def\cis{\mathrm{cis}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varemptyset}
+\def\dsst{\displaystyle}
+\def\pqde{\quad\square}
 
 \begin{document}
 \maketitle
@@ -77,7 +79,7 @@
 \tableofcontents
 
 \newpage
-\section{First Order Ordinary Differential Equations}
+\section{First Order ODEs}
 \subsection{Introduction}
 \begin{df}{Ordinary Differential Equations/ODEs}
 	An \textit{ordinary differential equation} is an equation that contains one or more derivatives of an unknown function $y=y(x)$.
@@ -109,7 +111,61 @@
 \begin{eg}
 	For the ODE $y'=1$, $y_1=x+C_1$ is a solution to it, and it is a one-parameter family of solutions. Similarly, for $y'=\dfrac{1}{x^2}$, the one-parameter families of solutions are defined by $y_2=-\dfrac{1}{x}+C_2$ on the interval $(-\infty,0)\cup(0,\infty)$.
 \end{eg}
+\begin{df}{General Solution}
+	Given the general form of the linear ODE $y'+p(x)y=f(x)$ if $p$ and $f$ are continuous on some open interval $(a,b)$ and there is a unique formula $y=y(x,c)$ and we have the following properties: 
+	\begin{itemize}
+		\item for each fixed $c$, the resulting function of $x$ is a solution of the ODE on $(a,b)$, and
+		\item if $y$ is a solution of the ODE, then $y$ can be obtained by choosing the value of $c$ appropriately. 
+	\end{itemize}
+	The function $y=y(x,c)$ is called a \textit{general solution}. \par More generally, we can write an ODE as \[P_0(x)y'+P_1(x)y=F(x).\] In this case, the ODE has a general solution on any open interval in which $P_0,\ P_1,$ and $F$ are continuous and $P_0\neq0$.
+\end{df}
+\begin{df}{Initial Value Problem (IVP)}
+	A differential equation with an initial condition.
+\end{df}
+\begin{eg}
+	Let $a$ be a constant. Find the general solution of $y'-ay=0$ and solve the IVP $\begin{cases}y'-ay=0\\y(x_0)=y_0.\end{cases}$
+	\begin{sol}
+		Classification: First order, Linear, Homogeneous.\par Trivial Solution: $y=0$.\par General solution: \[\begin{aligned}\dv{y}{x}&=ay\\\int\dfrac{1}{y}\ \d y&=\int a\ \d x\\\ln\qty|y|&=ax+c\\y&=e^{ax+c}=Ae^{ax}.\end{aligned}\]\par\textit{This general solution includes the trivial solution.}\par IVP: Substitute $x=x_0$ and $y=y_0$: \[y_0=Ae^{ax_0}\quad\longrightarrow\quad A=y_0e^{-ax_0}\]\par So, \[y^\text{IVP}=y_0e^{-ax_0}e^{ax}=y_0e^{a(x-x_0)}.\]\par \textit{This IVP is a ``generic initial condition.'' We need more information on $x_0, y_0$ to get a more specific solution. }
+	\end{sol}
+\end{eg}
 
+\subsection{The Method of Integrating Factors}
+\begin{thm}{}
+	If $p$ is continuous on $(a,b)$, then the general solution of the homogeneous equation $y'+p(x)y=0$ on $(a,b)$ is given by \[y=ce^{-\int p(x)\ \d x}.\]
+\end{thm}
+\begin{prf}\par 
+	(a). Substitute the solution formula to show that $y=ce^{-\int p(x)\ \d x}$ is a solution for any choice of $c$. \[y'=c\qty(-\int p(x)\ \d x)'e^{-\int p(x)\ \d x}=-cp(x)e^{-\int p(x)\ \d x}.\] Then, \[y'+p(x)y=-cp(x)e^{-\int p(x)\ \d x}+cp(x)e^{-\int p(x)\ \d x}=0.\] So, $y=ce^{-\int p(x)\ \d x}$ is a solution for any choice of $c$. $\pqde$\par
+	(b). Want to show: any solution of $y'+p(x)y=0$ can be written as $y=ce^{-\int p(x)\ \d x}$. Note that $y=0$ is a trivial solution, so we assume $y\neq0$. \[\begin{aligned}y'+p(x)y&=0\\y'&=-p(x)y\\\dfrac{y'}{y}&=-p(x)\\\leadsto\int\dfrac{1}{y}\ \d y&=\int-p(x)\ \d x\\\ln\qty|y|&=-\int p(x)\ \d x\\y&=ce^{-\int p(x)\ \d x}.\end{aligned}\] Note that when $c=0$, $y=0$ is the trivial solution. So, any solution of $y'+p(x)y=0$ can be written as $y=ce^{-\int p(x)\ \d x}$.
+\end{prf}
+\begin{eg}
+	Solve the IVP \[\begin{cases}xy'+y=0\\y(1)=3.\end{cases}\]
+	\begin{sol}
+		Note that $P_0(x)=x$ and $P_1(x)=1$, which are continuous on $\R$. Since we need $P_0(x)\neq0$, $x\neq0$. So the interval of validity is $\R\backslash\qty{0}$.\par 
+		$\boxed{\text{Method 1: Separation of Variables}}$ \[y'=-\dfrac{y}{x}.\] Note that $y=0$ is a solution. Assume $y\neq0$. \[\begin{aligned}\dfrac{y'}{y}=-\dfrac{1}{x}\quad\leadsto\quad\int\dfrac{1}{y}\ \d y&=-\int\dfrac{1}{x}\ \d x+k\\\ln\qty|y|&=-\ln\qty|x|+k\\\qty|y|&=e^{k}\dfrac{1}{\qty|x|}\\y&=\dfrac{c}{x}\end{aligned}\]\par 
+		$\boxed{\text{Method 2: Solution Formula}}$ By Theorem 1.2.1, \[y=ce^{-\int p(x)\ \d x}=ce^{-\int\frac{1}{x}\ \d x}=ce^{-\ln\qty|x|}=\dfrac{c}{x}.\]\par 
+		$\boxed{\text{Solving the IVP}}$ Substitute $x=1$ and $y=3$: \[3=\dfrac{c}{1}\quad\longrightarrow\quad c=3.\] So, $y^\text{IVP}=\dfrac{3}{x}$.
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $(4+x^2)y'+2xy=4x$. Classify the equation and find the general solution $y=y(x,c)$.
+	\begin{sol}
+		This is a first order, linear, non-homogeneous differential equation.\par
+		Note that $P_0(x)=4+x^2$, $P_1(x)=2x$, $F(x)=4x$, and $P_0\neq0\ \forall x\in\R$, so the interval of validity is $\R$. Also note that $\dsst\dv{x}\qty\big[4+x^2]=2x$, so the equation can be written as \[(4+x^2)\dv{y}{x}+\dv{x}\qty\big[4+x^2]y=4x.\] Using the product rule to re-write the LHS as \[\begin{aligned}\dv{x}\qty\big[(4+x^2)y]&=4x\\\int\dv{x}\qty\big[(4+x^2)y]\ \d x&=\int 4x\ \d x+c\\(4+x^2)y&=2x^2+c\\y&=\dfrac{2x^2+c}{4+x^2}.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $y'-2y=4-x$. Classify the equation and find the general solution $y=y(x,c)$.
+	\begin{sol}
+		This is a first order, linear, non-homogeneous differential equation.\par
+		Since $P_0(x)=1$, $P_1(x)=-2y$, $F(x)=4-x$, and $P_0(x)\neq0\ \forall x\in\R$, the interval of validity is $\R$. Consider $\mu=\mu(x)\neq0$. Multiply both sides of the equation by $\mu(x)$: \begin{equation}\label{eq1}\mu(x)y'-2\mu(x)y=\mu(x)(4-x)\end{equation} To make the LHS a product rule, we need \[\dv{x}\qty\big[\mu(x)y(x)]=\mu'(x)y(x)+\mu(x)y'(x)=\mu(x)y'(x)-2\mu(x)y.\] So, we have $\mu'=-2\mu$, or $\mu'+2\mu=0,$ a first order, linear, homogeneous ODE. Solving this ODE, we get $\mu(x)=ce^{-2x}$. Since we only want one specific $\mu$ that would work, take $c=1$. So, $\mu(x)=e^{-2x}$. Substituting $\mu(x)=e^{-2x}$ to Eq. (\ref{eq1}): \[e^{-2x}y'-2e^{-2x}y=e^{-2x}(4-x),\quad\widetilde{P}_0=e^{-2x}\neq0,\ \widetilde{P}_1=-2e^{-2x}.\] Using the product rule: \[\begin{aligned}\dv{x}\qty[e^{-2x}y]&=4e^{-2x}-xe^{-2x}\\\int\dv{x}\qty[e^{-2x}y]\ \d x&=\int 4e^{-2x}-xe^{-2x}\ \d x+c\\e^{-2x}y&=\dfrac{1}{2}xe^{-2x}-\dfrac{7}{4}e^{-2x}+c\\y&=e^{2x}\qty(\dfrac{1}{2}xe^{-2x}-\dfrac{7}{4}e^{-2x}+c)\\&=\dfrac{1}{2}x-\dfrac{7}{4}+ce^{2x}.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{thm}{Method of Integrating Factor}
+	Given the first order linear differential equation $y'+p(x)y=f(x)$, with $p$ and $f$ both continuous on some interval $(a,b)$, \[y(x)=\dfrac{1}{\mu(x)}\qty[\int\mu(x)f(x)\ \d x+c]\] is the general solution to the equation, with \[\mu(x)=e^{\int p(x)\ \d x}.\] We call $\mu(x)$ the \textit{integrating factor}.
+\end{thm}
+\begin{prf}
+	Consider $\mu=\mu(x)\neq0$. Multiplying the both sides of $y'+p(x)y=f(x)$ by $\mu$: \begin{equation}\label{eq2}\mu y'+p\mu y=\mu f.\end{equation} Impose $\mu y'+p\mu y=\dsst\dv{x}\qty\big[\mu y]$ to find $\mu=\mu(x)$: \[\begin{aligned}\mu y'+p\mu y&=\mu' y+\mu y'\\\mu'-p\mu&=0,&\text{first order, linear, homogeneous ODE}\\\mu(x)&=e^{\int p(x)\ \d x}, &\text{the integrating factor}\end{aligned}\] Substitute $\mu(x)=e^{\int p(x)\ \d x}$ into Eq. (\ref{eq2}): \[\begin{aligned}\dv{x}\qty\big[\mu y]&=\mu f\\\int\dv{x}\qty\big[\mu y]\ \d x&=\int\mu f\ \d x+c\\\mu y&=\int\mu f\ \d x+c\\y(x)&=\dfrac{1}{\mu(x)}\qty[\int\mu(x)f(x)\ \d x+c].\end{aligned}\]
+\end{prf}
 
 
 \section{Second Order ODEs}
