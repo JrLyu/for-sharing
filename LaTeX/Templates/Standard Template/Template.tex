@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, , graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -34,34 +34,30 @@
 %%% for coding %%%
 \lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
 
-\newcounter{ndf}[subsection]
-\setcounter{ndf}{0}
-\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{ndf}\thendf\ (#1).}}{\par}
-\newcommand*{\dfref}[1]{Definition \ref{#1}.\thendf}
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
 
-\newcounter{neg}[subsection]
-\setcounter{neg}{0}
-\newenvironment*{eg}{\par\noindent\textbf{Example \thesubsection.\stepcounter{neg}\theneg}}{\par}
-\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \thesubsection.\theneg}}\par}{\hfill{$\square$}\par}
+\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex}}{\par\end{framed}}
 
-\newcounter{nthm}[subsection]
-\setcounter{nthm}{0}
-\newenvironment*{thm}[1]{\begin{framed}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{nthm}\thenthm\ #1.} \par}{\par\end{framed}}
-\newcommand*{\thmref}[1]{Theorem \ref{#1}.\thenthm}
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
-\newenvironment*{prf}{\par\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
+\newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
 
-\newtheorem*{rmk}{Remark}
-\newtheorem*{ext}{Extension}
-
-\newtheorem{cor}{Corollary}[section]
-\newtheorem{lem}{Lemma}[section]
-\newtheorem{ax}{Axiom}[section]
-\newtheorem{nota}{Notation}[section]
-\newtheorem{prop}{Proposition}[subsection]
-\newtheorem{conj}{Conjecture}[subsection]
+\newtheorem*{hint}{Hint.}
+\newtheorem*{rmk}{Remark.}
+\newtheorem*{ext}{Extension.}
 
 \linespread{1.25}
 
@@ -79,7 +75,7 @@
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
 \def\epsilon{\varepsilon}
-\def\emptyset{\varemptyset}
+\def\emptyset{\varnothing}
 
 \begin{document}
 \maketitle
@@ -89,20 +85,20 @@
 \section{This is the section name}
 \subsection{This is the subsection name}
 
-\begin{thm}{Name of thm}\label{thm}
-	This is a theorem. We can refer to the theorem by \thmref{thm}
+\begin{thm}{Name of thm}
+	This is a theorem. 
 \end{thm}
 
-\begin{df}{Name for df}\label{df}
-	This is a definition. We can refer to the df by \dfref{df}
+\begin{df}{Name for df}
+	This is a definition. 
 \end{df}
 
 \begin{eg}
 	This is an example
-\end{eg}
-\begin{ans}
+	\begin{sol}
 		
-\end{ans}
+	\end{sol}
+\end{eg}
 
 \begin{rmk}
 	This is a remark
@@ -112,24 +108,24 @@
 	This is a proof
 \end{prf}
 
-\begin{cor}
+\begin{cor}{}
 	This is a corollary
 \end{cor}
 
-\begin{lem}
+\begin{lem}{}
 	This is a lemma
 \end{lem}
 
-\begin{prop}
+\begin{prop}{}
 	This is a proposition
 \end{prop}
 
-\begin{conj}
+\begin{conj}{}
 	This is a conjecture
 \end{conj}
 
-\begin{ax}
-	
+\begin{ax}{}
+	This is an axiom.
 \end{ax}
 
 \begin{lstlisting}[language = Matlab, title = {Answer.m}]

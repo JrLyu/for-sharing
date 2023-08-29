@@ -4,6 +4,7 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
 \usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
+
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -59,17 +60,18 @@
 \author{Jiuru Lyu}
 \date{\today}
 
-\def\Z{{\mathbb{Z}}}
-\def\R{{\mathbb{R}}}
-\def\C{{\mathbb{C}}}
-\def\Q{{\mathbb{Q}}}
-\def\E{{\mathbb{E}}}
-\def\d{{\mathrm{d}}}
-\def\i{{\mathrm{i}}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\E{\mathbb{E}}
+\def\N{\mathbb{N}}
+\def\d{\mathrm{d}}
+\def\i{\mathrm{i}}
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
 \def\epsilon{\varepsilon}
-\def\emptyset{\varemptyset}
+\def\emptyset{\varnothing}
 \def\dsst{\displaystyle}
 
 \begin{document}
@@ -143,6 +145,135 @@
 	 	\end{center}
 	 	\[\begin{aligned}\iint_D4xy-y^3\ \d A=\int_0^1\int_{x^3}^{\sqrt{x}}4xy-y^3\ \d y\d x&=\int_0^1\qty[2xy^2-\dfrac{1}{4}y^4]_{x^3}^{\sqrt{x}}\ \d x\\&=\int_0^12x\qty(x-x^6)-\dfrac{1}{4}\qty(x^2-x^{12})\ \d x\\&=\int_0^12x^2-2x^7-\dfrac{1}{4}x^2+\dfrac{1}{4}x^{12}\ \d x\\&=\qty[\dfrac{2}{3}x^3-\dfrac{1}{4}x^8-\dfrac{1}{12}x^3+\dfrac{1}{52}x^{13}]_0^1\\&=\dfrac{2}{3}-\dfrac{1}{4}-\dfrac{1}{12}+\dfrac{1}{52}=\dfrac{55}{156}.\end{aligned}\]
 	 \end{sol}
+\end{eg}
+
+\newpage
+\section{Probability}
+\subsection{Sample Space and Probability}
+\begin{df}{Experiment}
+	An \textit{experiment} is a procedure with well-defined outcome.	
+\end{df}
+\begin{df}{Sample Space/$S$}
+	The \textit{sample space}, denoted as $S$ is the set of all possible outcomes of an experiment. 
+\end{df}
+\begin{df}{Event}
+	An \textit{event} is a collection of outcomes.	
+\end{df}
+\begin{eg}
+	Consider flipping two coins. Use $H$ to represent heads and $T$ to represent tails. Then, $S=\qty{HH, HT, TH, TT}$. Event ``one heads''$=\qty{HT, TH}$, and the event ``at least one heads''$=\qty{HT, TH, HH}$.
+\end{eg}
+\begin{df}{Union/$\cup$}
+	$A\cup B$ is the \textit{union} of $A$ and $B$, meaning everything in $A$ and everything in $B$.
+\end{df}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (111.1,128) -- (275.1,128) -- (275.1,226.27) -- (111.1,226.27) -- cycle ;
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.11 ] (136.45,177.14) .. controls (136.45,159.16) and (151.02,144.59) .. (169,144.59) .. controls (186.98,144.59) and (201.55,159.16) .. (201.55,177.14) .. controls (201.55,195.11) and (186.98,209.68) .. (169,209.68) .. controls (151.02,209.68) and (136.45,195.11) .. (136.45,177.14) -- cycle ;
+\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.08 ] (180.45,177.14) .. controls (180.45,159.16) and (195.02,144.59) .. (213,144.59) .. controls (230.98,144.59) and (245.55,159.16) .. (245.55,177.14) .. controls (245.55,195.11) and (230.98,209.68) .. (213,209.68) .. controls (195.02,209.68) and (180.45,195.11) .. (180.45,177.14) -- cycle ;
+\draw (126,138.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+\draw (240,136.4) node [anchor=north west][inner sep=0.75pt]    {$B$};
+\draw (97,136.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
+\end{tikzpicture}	
+\end{center}
+\begin{df}{Intersection/$\cap$}
+	$A\cap B$ is the \textit{intersection} of $A$ and $B$, everything in both $A$ and $B$	
+\end{df}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (111.1,128) -- (275.1,128) -- (275.1,226.27) -- (111.1,226.27) -- cycle ;
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.11 ] (136.45,177.14) .. controls (136.45,159.16) and (151.02,144.59) .. (169,144.59) .. controls (186.98,144.59) and (201.55,159.16) .. (201.55,177.14) .. controls (201.55,195.11) and (186.98,209.68) .. (169,209.68) .. controls (151.02,209.68) and (136.45,195.11) .. (136.45,177.14) -- cycle ;
+\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.08 ] (180.45,177.14) .. controls (180.45,159.16) and (195.02,144.59) .. (213,144.59) .. controls (230.98,144.59) and (245.55,159.16) .. (245.55,177.14) .. controls (245.55,195.11) and (230.98,209.68) .. (213,209.68) .. controls (195.02,209.68) and (180.45,195.11) .. (180.45,177.14) -- cycle ;
+\draw    (191.1,118.27) -- (191.1,175.14) ;
+\draw [shift={(191.1,177.14)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (126,138.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+\draw (240,136.4) node [anchor=north west][inner sep=0.75pt]    {$B$};
+\draw (97,136.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
+\draw (171,98.4) node [anchor=north west][inner sep=0.75pt]    {$A\cap B$};
+\end{tikzpicture}
+\end{center}
+\begin{df}{Complement/$A^c$}
+	$A^c$ denotes the \textit{complement} of $A$, meaning everything in$S$ that is not in $A$.	
+\end{df}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (111.1,128) -- (275.1,128) -- (275.1,226.27) -- (111.1,226.27) -- cycle ;
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.11 ] (136.45,177.14) .. controls (136.45,159.16) and (151.02,144.59) .. (169,144.59) .. controls (186.98,144.59) and (201.55,159.16) .. (201.55,177.14) .. controls (201.55,195.11) and (186.98,209.68) .. (169,209.68) .. controls (151.02,209.68) and (136.45,195.11) .. (136.45,177.14) -- cycle ;
+\draw (160,170.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+\draw (97,136.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
+\draw (237,143.4) node [anchor=north west][inner sep=0.75pt]    {$A^{c}$};
+\end{tikzpicture}	
+\end{center}
+\begin{cor}{}
+	$A\cap A^c=\qty{}=\emptyset$.	
+\end{cor}
+\begin{df}{Mutually Exclusive}
+	Two sets $A$ and $B$ over the same sample space are \textit{mutually exclusive} if they have no outcomes in common. i.e., $A\cap B=\emptyset$.	
+\end{df}
+\begin{rmk}
+	$A$ and $A^c$ are mutually exclusive, but not all sets mutually exclusive are complements of each other.	
+\end{rmk}
+\begin{df}{Probability Function}
+	Let $A$ be an event over a sample space $S$. Then, $P(A)$ denotes the \textit{probability} of $A$ and $P$ is the \textit{probability function}. The probability function $P$ assigns a number $P(A)$ for each event $A\subseteq S$.
+\end{df}
+\begin{ax}{Kolmogorov Axioms}
+	\begin{enumerate}
+		\item Let $A$ be an event in $S$, then $P(A)\geq0$.
+		\item $P(S)=1$.
+		\item If $A$ and $B$ are mutually exclusive, then $P(A\cup B)=P(A)+P(B)$.
+		\item If $A_1,\dots,A_n,\dots$ are mutually exclusive sets, then \[P\qty(\bigcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty P(A_i).\]
+	\end{enumerate}	
+\end{ax}
+\begin{prop}{}
+	$P(A^c)=1-P(A)$.	
+\end{prop}
+\begin{prf}
+	Note that $P(S)=1$. Since $A^c\cup A=S$, we have $P(A\cap A^c)=1$. Since $A$ and $A^c$ are mutually exclusive, $P(A\cup A^c)=P(A)+P(A^c)=1$. So, $P(A^c)=1-P(A)$.	
+\end{prf}
+\begin{prop}{}
+	$P(\emptyset)=0$.	
+\end{prop}
+\begin{prf}
+	Note that $P(S)=1$. Then, $P(S^c)=1-P(S)$. By definition, we know $S^c=\emptyset$. So, $P(\emptyset)=1-P(S)=1-1=0$.	
+\end{prf}
+\begin{prop}{}
+	$P(A\cup B)=P(A)+P(B)-P(A\cap B)$	
+\end{prop}
+\begin{prf}
+	Consider the following Venn diagram: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw   (111.1,128) -- (275.1,128) -- (275.1,226.27) -- (111.1,226.27) -- cycle ;
+	\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.11 ] (136.45,177.14) .. controls (136.45,159.16) and (151.02,144.59) .. (169,144.59) .. controls (186.98,144.59) and (201.55,159.16) .. (201.55,177.14) .. controls (201.55,195.11) and (186.98,209.68) .. (169,209.68) .. controls (151.02,209.68) and (136.45,195.11) .. (136.45,177.14) -- cycle ;
+	\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.13 ] (169,177.14) .. controls (169,159.16) and (183.57,144.59) .. (201.55,144.59) .. controls (219.52,144.59) and (234.1,159.16) .. (234.1,177.14) .. controls (234.1,195.11) and (219.52,209.68) .. (201.55,209.68) .. controls (183.57,209.68) and (169,195.11) .. (169,177.14) -- cycle ;
+	\draw    (185.1,175.27) -- (185.1,237.27) ;
+	\draw [shift={(185.1,239.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (155.1,174.27) -- (155.1,115.27) ;
+	\draw [shift={(155.1,113.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (214.1,172.27) -- (214.1,113.27) ;
+	\draw [shift={(214.1,111.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (127,141.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+	\draw (97,136.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
+	\draw (228,140.4) node [anchor=north west][inner sep=0.75pt]    {$B$};
+	\draw (127,89.4) node [anchor=north west][inner sep=0.75pt]    {$A\cap B^{c}$};
+	\draw (199,90.4) node [anchor=north west][inner sep=0.75pt]    {$A^{c} \cap B$};
+	\draw (164,241.4) node [anchor=north west][inner sep=0.75pt]    {$A \cap B$};
+	\end{tikzpicture}
+	\end{center}
+	Note that $P(A)=P(A\cap B)+P(A\cap B^c)$ and $P(B)=P(A\cap B)+P(A^c\cap B)$. So, we have \begin{equation}\label{eq1}P(A)+P(B)=\boxed{P(A\cap B^c)+P(A^c\cap B)+P(A\cap B)}+P(A\cap B).\end{equation} From the Venn diagram, we notice that $P(A\cap B^c)+P(A^c\cap B)+P(A\cap B)$ is exactly $P(A\cup B)$. So, Eq. (\ref{eq1}) becomes $P(A)+P(B)=P(A\cup B)+P(A\cap B)$. That is exactly what is required: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+\end{prf}
+\begin{df}{Classical Probability}
+	In a discrete and finite case, $S$ is finite and all outcomes are equally likely, and the probability function is defined as \[P(A)=\dfrac{\qty|A|}{\qty|S|},\] where $\qty|A|$ is the cardinality of $A$ and $\qty|S|$ is the cardinality of $S$.	
+\end{df}
+\begin{eg}
+	Despite the definition of classical probability (probability function defined for a discrete and finite case), there are other definitions of probability functions: 
+	\begin{enumerate}
+		\item Discrete and Countably Infinite: \par Let $S=\N$ be the set of natural numbers. Then, \[P(k)=\dfrac{1}{2^k}.\] It can also be verified that \[P(S)=\sum_{k=1}^\infty\dfrac{1}{2^k}=1.\]
+		\item Continuous and Uncountably Infinite: \par Let $S=\qty[0,1]$. Suppose $E$ is a subset of $\qty[0,1]$ such that $\dsst\int_E\ \d x$ is defined. Then, \[P(E)=\int_E\ \d x,\] and it can also be verified that $P(S)=1$.
+	\end{enumerate}	
 \end{eg}
 
 
