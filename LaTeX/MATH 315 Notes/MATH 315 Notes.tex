@@ -38,7 +38,7 @@
 \setcounter{index}{0}
 \newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
 
-\newenvironment*{eg}[1]{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex\ #1}}{\par\end{framed}}
+\newenvironment*{eg}[1]{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{framed}}
 
 \newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
 
@@ -71,11 +71,12 @@
 \def\Q{{\mathbb{Q}}}
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
-\def\i{{\mathrm{i}}}
-\def\Arg{{\mathrm{Arg}}}
-\def\cis{\mathrm{cis}}
+
+\def\Inf{\texttt{Inf}}
+\def\NaN{\texttt{NaN}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varemptyset}
+
 
 \begin{document}
 \maketitle
@@ -155,6 +156,47 @@
 	\par Suppose a DP floating number is stored as $s(x)=0$, $e(x)=10000000011,$ and $f(x)=0100100\cdots0$. Find its representation in decimal base-10.
 	\begin{sol}
 		$e(x)=10000000011=2^{10}+2^{1}+2^{0}$ and $f(x)=0100100\cdots0=2^{50}+2^{47}$. Then, the unbiased exponent $E(x)=e(x)-1023=2^{10}+2^1+2^0-\qty(2^{10}-1)=4$. So, \[\begin{aligned}\texttt{float}_\text{DP}(x)&=(-1)^{s(x)}+\qty(1+\dfrac{f(x)}{2^{52}})2^{E(x)}\\&=(-1)^0\qty(1+\dfrac{2^{50}+2^{47}}{2^{52}})2^4\\&=\qty(1+2^{-2}+2^{-5})2^4\\&=2^4+2^2+2^{-1}\\&=16+4+0.5=20.5\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{eg}{Converting Value to DP}
+	\par Suppose a number in base-10 is $-10.75$. Find its representation of floating point number under DP.
+	\begin{sol}
+	We have
+		\[\begin{aligned}\texttt{value}(x)=-10.75&=(-1)(10+0.75)\\&=(-1)\qty(2^3+2^1+2^{-1}+2^{-2})\\&=(-1)\qty(1+2^{-2}+2^{-4}+2^{-5})2^3\quad\qty\Big[\text{In normalized scientific notation}]\\&=(-1)^1\qty(1+\dfrac{2^{50}+2^{48}+2^{47}}{2^{52}})2^{1026-1023}\\&=(-1)^1\qty(1+\dfrac{2^{50}+2^{48}+2^{47}}{2^{52}})2^{2^{10}+2^{1}-1023}\end{aligned}\]So, we have $s(x)=1$, $e(X)=10000000010$, and $f(x)=010110\cdots0$.
+	\end{sol}
+\end{eg}
+\begin{thm}{Some Special Rules}
+	\begin{enumerate}
+		\item The formula \[\texttt{value}(x)=(-1)^{s(x)}+\qty(1+\dfrac{f(x)}{2^{52}})2^{e(x)-1023}\] only holds when $0<e(x)<2^{11}-1$ or $00\cdots01<e(x)<11\cdots10$.
+		\item If $e(x)=11\cdots1$, then it encodes special numbers.
+		\item If $e(x)=00\cdots0$: 
+		\begin{itemize}
+			\item If $f(x)=00\cdots0$, then $\texttt{value}(x)=0$.
+			\item If $f(x)>0$, it encodes a \textit{denormalized floating point number}: \[\texttt{value}(x)=(-1)^{s(x)}\qty(0+\dfrac{f(x)}{2^{52}})2^{-1022}.\] This denormalized floating point number is more precise when describing really small things. 
+		\end{itemize}
+	\end{enumerate}
+\end{thm}
+\begin{df}{Machine Epsilon/$\epsilon_\text{WP}$}
+	Let ``WP'' stands for the working precision (DP/SP/HP/etc.). The \textit{machine epsilon}, denoted as $\epsilon_\text{WP}$, is the gap between $1$ and the next largest floating point number. Equivalently, it can be viewed as the smallest possible non-zero value of $\dfrac{f(x)}{2^\text{number of fraction bits}}$. So, $\epsilon_\text{DP}=2^{-52}$, $\epsilon_\text{SP}=2^{-23}$, and $\epsilon_\text{HP}=2^{-10}$.
+\end{df}
+\begin{df}{Special Numbers}
+	\begin{enumerate}
+		\item $\pm0$: when $s(x)=\pm1$ and $e(x)=f(x)=0$.
+		\item $\pm\Inf$
+		\item $\NaN$: not-a-number
+	\end{enumerate}	
+\end{df}
+\begin{df}{Floating Point Arithmetic}
+	\begin{enumerate}
+		\item The set of real numbers, $\R$, is closed under arithmetic operations.
+		\item The set of all WP floating point numbers, however, is not closed under arithmetic operations. For example, $\texttt{float}_\text{DP}(x)=\texttt{float}_\text{DP}(y)=2^{52}+1$, but $xy=2^{104}+\epsilon$ cannot be represented using DP. 
+		\item Suppose $x$ and $y$ are floating point numbers, then $x\oplus y=\texttt{float}(x+y)$ and $x\otimes y=\texttt{float}(xy)$. Consider \texttt{float} as a rounding process, we can also define subtraction and division of floating point numbers. 
+	\end{enumerate}	
+\end{df}
+\begin{eg}{}
+	Assume we are only allowed three significant digits (in Base-10) in a computer. Suppose $x=1.23\times10^4$ and $y=6.54\times10^3$. Find $x\oplus y=\texttt{float}(x+y)$.
+	\begin{sol}
+		\[\begin{aligned}x\oplus y&=\texttt{float}(x+y)\\&=\texttt{float}(1.23\times10^4+6.54\times10^3)\\&=\texttt{float}(1.23\times10^4+0.654\times10^3)\\&=\texttt{float}(1.884\times10^4)\\&=1.88\times10^4.\end{aligned}\]
 	\end{sol}
 \end{eg}
 

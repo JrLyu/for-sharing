@@ -129,7 +129,7 @@
 	\end{sol}
 \end{eg}
 
-\subsection{The Method of Integrating Factors}
+\subsection{Linear First Order ODEs}
 \begin{thm}{}
 	If $p$ is continuous on $(a,b)$, then the general solution of the homogeneous equation $y'+p(x)y=0$ on $(a,b)$ is given by \[y=ce^{-\int p(x)\ \d x}.\]
 \end{thm}
@@ -166,6 +166,70 @@
 \begin{prf}
 	Consider $\mu=\mu(x)\neq0$. Multiplying the both sides of $y'+p(x)y=f(x)$ by $\mu$: \begin{equation}\label{eq2}\mu y'+p\mu y=\mu f.\end{equation} Impose $\mu y'+p\mu y=\dsst\dv{x}\qty\big[\mu y]$ to find $\mu=\mu(x)$: \[\begin{aligned}\mu y'+p\mu y&=\mu' y+\mu y'\\\mu'-p\mu&=0,&\text{first order, linear, homogeneous ODE}\\\mu(x)&=e^{\int p(x)\ \d x}, &\text{the integrating factor}\end{aligned}\] Substitute $\mu(x)=e^{\int p(x)\ \d x}$ into Eq. (\ref{eq2}): \[\begin{aligned}\dv{x}\qty\big[\mu y]&=\mu f\\\int\dv{x}\qty\big[\mu y]\ \d x&=\int\mu f\ \d x+c\\\mu y&=\int\mu f\ \d x+c\\y(x)&=\dfrac{1}{\mu(x)}\qty[\int\mu(x)f(x)\ \d x+c].\end{aligned}\]
 \end{prf}
+\begin{eg}
+	Give the equation $y'+2y=x^3e^{-2x}$. Classify the equation and find the general solution $y=y(x,c)$.
+	\begin{sol}
+		It is a first order, linear, non-homogeneous ODE, with $p=2$ and $f=x^3e^{-2x}$. Let $\mu(x)$ be the integrating factor. Then, \[\mu(x)=e^{\int2\ \d x}=e^{2x}.\] So, by the method of integrating factor, we know \[\begin{aligned}\dv{x}\qty\Big[\mu(x)y]&=\mu(x)f(x)\\\int\dv{x}\qty\Big[e^{2x}y]\ \d{x}&=\int e^{2x}x^3e^{-2x}\ \d{x}+c\\e^{2x}y&=\int x^3\ \d{x}+c\\e^{2x}y&=\dfrac{1}{4}x^4+c\\y&=\dfrac{1}{4}x^4e^{-2x}+ce^{-2x}.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{rmk}
+	Re-examine the formula we derived from the method of integrating factor: \[y(x)=\dfrac{1}{\mu}\int f\mu\ \d x+\boxed{\dfrac{c}{\mu}}.\] The part being boxed, $\dfrac{c}{\mu}$, is independent from $f$ and is exactly $ce^{-\int p\ \d x}$ if we expand, which is the solution for a homogeneous differential equation. 
+\end{rmk}
+\begin{df}{Complementary Equation}
+	The \textit{complementary equation} to a first order ODE $y'+py=f$ is the homogeneous part of it. i.e., $y'+py=0$.	
+\end{df}
+\begin{thm}{Method of Variation of Parameters}
+	Given the first order linear differential equation $y'+p(x)y=f(x)$, with $p$ and $f$ both continuous on some interval $(a,b)$, \[y(x)=y_1(x)\qty[\int\dfrac{f(x)}{y_1(x)}\ \d x+c]\] is the general solution to the equation, where $y_1$ is a solution of the complementary euqation $y'+py=0$.
+\end{thm}
+\begin{prf}
+	Call $y_1$ a solution of the complementary equation $y'+p(x)y=0$. Then, we want to find $y(x)=u(x)y_1(x)$, the general solution of $y'+p(x)y=f(x)$, where $u$ is an unknown function of $f$. Note that, by product rule, $y'(x)=u'y_1+uy_1'$. Then, the equation becomes \[\begin{aligned}(u'y_1+uy_1')+p(x)(uy_1)&=f(x)\\u'y_1+uy_1'+puy_1&=f\\y_1u'+\underbrace{(y_1'+py_1)}_{0}u&=f\\y_1u'&=f\implies u(x)=\int\dfrac{f(x)}{y_1(x)}\ \d x+c.\end{aligned}\] Therefore, the formula to find $y$ is given by \[y=y_1u=y_1(x)\qty[\int\dfrac{f(x)}{y_1(x)}\ \d{x}+c].\]
+\end{prf}
+\begin{rmk}
+	The method of variation of parameters will be more useful when solving second or higher order differential equations.	
+\end{rmk}
+\begin{eg}
+	Give the equation $y'+2y=x^3e^{-2x}$. Find the general solution $y=y(x,c)$ using the method of variation of parameters.
+	\begin{sol}
+		It is a first order, linear, non-homogeneous ODE, with $p=2$ and $f=x^3e^{-2x}$. Let $y_1$ be the solution of the complementary equation $y'+2y=0$. Then, $y_1(x)=e^{-\int2\ \d{x}}=e^{-2x}$. By the method of variation of parameters, suppose $y=uy_1$, where $u$ is an unknown function of $x$. Then, \[u(x)=\int\dfrac{f(x)}{y_1(x)}\ \d{x}+c=\int\dfrac{x^3e^{-2x}}{e^{-2x}}\ \d{x}+c=\int x^3\ \d{x}+c=\dfrac{1}{4}x^4+c.\] So, \[y=uy_1=e^{-2x}\qty(\dfrac{1}{4}x^4+c)=\dfrac{1}{4}x^4e^{-2x}+ce^{-2x}.\]
+	\end{sol}
+\end{eg}
+\begin{thm}{Existence and Uniqueness Theorem}
+	Suppose that $p=p(x)$ and $f=f(x)$ are continuous on $(a,b)$. Then, a general solution of $y'+p(x)y=f(x)$ on $(a,b)$ is  \[y(x)=y_1(x)\qty[\int\dfrac{f(x)}{y_1(x)}\ \d{x}+c],\]	 where $y_1(x)$ is a solution of the complementary equation (i.e., $y'+p(x)y=0$).\par 
+	If $x_0$ is an arbitrary point in $(a,b)$ and $y_0$ is an arbitrary real number, then the initial value problem, \[y'+p(x)y=f(x),\quad y(x_0)=y_0\] has a unique solution on $(a,b)$.
+\end{thm}
+
+\subsection{Non-Linear First Order ODEs}
+\begin{df}{General Forms}
+	The general form of a non-linear first order ODE is given by \[y'=f\qty(x,y\qty(x)).\] If we take $M(x,y)=-f(x,y)$ and $N(x,y)=1$, we can also re-write the equation into \[M(x,y)+N(x,y)y'=0,\] or \[M(x,y)\ \d{x}+N(x,y)\ \d{y}=0.\]
+\end{df}
+\begin{df}{Separable Equations}
+	If $M(x,y)=M(x)$ and $N(x,y)=N(y)$, then the ODE is called \textit{separable}.
+\end{df}
+\begin{thm}{Separation of Variables (SoV)}
+	Consider the non-linear first order ODE $M(x,y)+N(x,y)y'=0$, with $M(x,y)=M(x)$ and $N(x,y)=N(y)$. Then we can find an implicit solution of the ODE in the form of \[F(x,y)=c,\] where $F(x,y)$ is a function of $x$ and $y$ and \[F(x,y)=\int M(x)\ \d{x}+\int N(y)\ \d{y}.\]
+\end{thm}
+\begin{prf}
+	Let $H_1'(x)=M(x)$ and $H_2'(y)=N(y)$. Then, the equation becomes \[\begin{aligned}H_1'(x)+H_2'(y)y'&=0\\\dv{x}\qty\Big[H_1(x)]+\dv{y}\qty\Big[H_2(y)]\dv{y}{x}&=0\end{aligned}\] By using the chain rule, $\dsst\dv{y}\qty\Big[H_2(y)]\dv{y}{x}=\dv{x}\qty\Big[H_2\qty(y(x))].$ So, the equation becomes \[\begin{aligned}\dv{x}\qty\Big[H_1(x)]+\dv{x}\qty\Big[H_2\qty(y(x))]&=0\\\dv{x}\qty\Big[H_1(x)+H_2(y)]&=0\\H_1(x)+H_2(y)&=c\\\int M(x)\ \dv{x}+\int N(y)\ \d{y}&=c\\F(x,y)&=c\end{aligned}\]
+\end{prf}
+\begin{eg}
+	Given the equation $\dsst y'=\dfrac{x^2}{1-y^2}$. Classify the differential equation and find the general solution.
+	\begin{sol}
+		It is a first order, non-linear ODE. Since $y'=\dfrac{x^2}{1-y^2}$, so we have $1-y^2\neq0$. That is, $y^2\neq1,$ or $y\neq\pm1$. Using the separation of variables (SoV), we have \[\begin{aligned}(1-y^2)y'&=x^2\\\int 1-y^2\ \d{y}&=\int x^2\ \d{x}\\y-\dfrac{1}{3}y^3&=\dfrac{1}{3}x^3+c\\y-\dfrac{1}{3}y^3-\dfrac{1}{3}x^3&=c\\3y-y^3-x^3&=c\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $\dsst y'=\dfrac{(y-3)\cos{x}}{1+2y^2}$. Classify the equation and find the general solution.
+	\begin{sol}
+		It is a first order, non-linear ODE. Since $1+2y^2\neq0\quad\forall y\in\R$. Note that if we take $y-3=0$, we get $y=3$, a constant solution to the differential equation. Now, assume $y\neq3$. Then, use SoV: \[\int\dfrac{1+2y^2}{y-3}\ \d{y}=\int\cos{x}\ \d{x}+c=\sin{x}+c.\] Set $t=y-3$, $\d{t}=\d{y}$. So, $y=t+3$ and $y^2=(t+3)^2$. Then, \[\begin{aligned}\int\dfrac{1+2y^2}{y-3}\ \d{y}=\int\dfrac{1+2(t+3)^2}{t}\ \d{t}&=\int\dfrac{1+2t^2+12t+18}{t}\ \d{t}\\&=\int\dfrac{19}{t}+12+2t\ \d{t}\\&=19\ln\qty|t|+12t+t^2\\&=19\ln\qty|y-3|+12(y-3)+(y-3)^2\\&=19\ln\qty|y-3|+6y+y^2-27.\end{aligned}\] So, \[19\ln\qty|y-3|+y^2+6y-27-\sin{x}=c\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Give the equation $y'=\dfrac{1}{2}x\qty(1-y^2)$. Classify the equation and find the general solution. 
+	\begin{sol}
+		It is a first order, non-linear ODE. Notice that we have the constant solutions when we take $1-y^2=0$, or $y=\pm1$. Now, assume $y\neq\pm1$. Using SoV: \[\int\dfrac{2}{1-y^2}\ \d{y}=\int x\ \d{x}+c=\dfrac{1}{2}x^2+c.\]	Note that $\dfrac{2}{1-y^2}=\dfrac{2}{(1-y)(1+y)}$. Use partial fractions. Assume \[\dfrac{2}{(1-y)(1+y)}=\dfrac{A}{1-y}+\dfrac{B}{1+y}.\] Then, we get $A(1+y)+B(1-y)=2$. That is, $(A+B)+(A-B)y=2$. Attempting to solve the system of equations $\begin{cases}A-B=0\\A+B=2\end{cases}$, then we get $A=B=1$.Therefore, \[\dfrac{2}{1-y^2}=\dfrac{1}{1-y}+\dfrac{1}{1+y}.\] Then, \[\begin{aligned}\int\dfrac{1}{1-y}+\dfrac{1}{!+y}\ \d{y}&=\dfrac{1}{2}x^2+c\\-\ln\qty|1-y|+\ln\qty|1+y|&=\dfrac{1}{2}x^2+c\\\ln\qty|1+y|-\ln\qty|1-y|-\dfrac{1}{2}x^2&=c.\end{aligned}\]
+	\end{sol}
+\end{eg}
+
 
 
 \section{Second Order ODEs}
