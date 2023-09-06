@@ -317,19 +317,62 @@
 \begin{thm}{Bayes Theorem}
 	\[P(B|A)=\dfrac{P(A\cap B)}{P(A)}=\dfrac{P(A|B)P(B)}{P(A|B)P(B)+P(A|B^c)P(B^c)}.\]	
 \end{thm}
-\begin{df}{Independence}
-	Events $A$ and $B$ are \textit{independent} if $P(A|B)=P(A)$, meaning the occurrence of $B$ does note affect the occurrence of $A$.
-\end{df}
-\begin{cor}{}
-	If $A$ and $B$ are independent, then $P(A\cap B)=P(A|B)P(B)=P(A)P(B).$
-\end{cor}
 \begin{eg}{Coronary Artery Disease (CAD)}
 	\par The probability of someone having CAD is 60\%. In a study of 101 patients, 37 of them are known to NOT have CAD and 64 are known to have CAD. Of the 37 patients without CAD, 34 had negative tests while 3 had positive tests. Of the 64 with CAD, 54 had positive tests and 10 had negative tests. Find the probability of a patient has CAD given positive test.
 	\begin{sol}
 		Let $T+$ be positive test, $T-$ be negative test, $D+$ be presence of CAD, and $D-$ be absence of CAD. Then, from the problem, we have \[P(D+)=0.6;\quad P(D-)=1-P(D+)=0.4\] and \[P(T+|D+)=\dfrac{54}{64}\approx0.84;\quad P(T-|D-)=\dfrac{34}{37}\approx0.92;\quad P(T+|D-)=\dfrac{3}{37}\approx0.08.\] Then, by Bayes Theorem, \[\begin{aligned}P(D+|T+)&=\dfrac{P(T+|D+)P(D+)}{P(T+|D+)P(D+)+P(T+|D-)P(D-)}\\&=\dfrac{0.84\times0.6}{0.84\times0.6+0.08\times0.4}\approx\boxed{0.94}.\end{aligned}\]
 	\end{sol}
 \end{eg}
-
+\begin{df}{Independence}
+	Events $A$ and $B$ are \textit{independent} if $P(A|B)=P(A)$, meaning the occurrence of $B$ does note affect the occurrence of $A$.
+\end{df}
+\begin{cor}{}
+	If $A$ and $B$ are independent, then $P(A\cap B)=P(A|B)P(B)=P(A)P(B).$
+\end{cor}
+\begin{eg}{Draw a card from 52 card deck}
+	\par Let $A$: The card is an Ace and $H$: The card is a hearts. Then, \[P(A\cap H)=P(\text{The card is an Ace of hearts})=\dfrac{1}{52}=\dfrac{1}{4}\cdot\dfrac{1}{13}=P(H)P(A).\] So, ranks and suits are independent. 
+\end{eg}
+\begin{eg}{Mutually Exclusive v.s. Independence}
+	\par A coin is flipped twice: $S=\qty{HH, TH, HT, TT}$. Let $A=\text{The first flip is }H=\qty{HH,HT}$ and $B=\text{The second flip is }T=\qty{HT,TT}$.
+	\begin{itemize}
+		\item $A$ and $B$ are independent: $A\cap B=\qty{HT}$. So, $P(A\cap B)=\dfrac{1}{4}$. Since $P(A\cap B)\dfrac{1}{4}=\dfrac{1}{2}\cdot\dfrac{1}{2}=P(A)P(B)$, we know $A$ and $B$ are independent. 
+		\item $A$ and $B$ are not mutually exclusive because $P(A\cap B)=\dfrac{1}{4}\neq0$.
+	\end{itemize}
+\end{eg}
+\begin{df}{Repeated Trials}
+	A sequence of events $A_1,\dots,A_n$ is called independent if for any combination \[P(A_{i1}\cap A_{i2}\cap\cdots\cap A_{ik})=P(A_{i1})P(A_{i2})\cdots P(A_{ik}).\] In this case, each individual event is  called a \textit{trial}.
+\end{df}
+\begin{eg}{}
+	Roll a fair die repeatedly. What is the probability that the first $6$ appears on the roll $k$? If I win when $6$ is rolled, what is the probability that I win? 
+	\begin{sol}
+		Let $A_j=\text{the first }6\text{ is rolled on roll }j$.
+		\begin{center}\begin{tabular}{ll}
+		$j=1$&$P(A_1)=\dfrac{1}{6}$\\\\
+		$j=2$&$P(A_2)=\qty(\dfrac{5}{6})\qty(\dfrac{1}{6})$\\\\
+		$j=3$&$P(A_3)=\qty(\dfrac{5}{6})\qty(\dfrac{5}{6})\qty(\dfrac{1}{6})=\qty(\dfrac{5}{6})^2\qty(\dfrac{1}{6})$\\\\
+		$j=4$&$P(A_4)=\qty(\dfrac{5}{6})^3\qty(\dfrac{1}{6})$\\
+		$\vdots$&\\
+		$j=k$&$P(A_k)=\qty(\dfrac{5}{6})^{k-1}\qty(\dfrac{1}{6})$
+		\end{tabular}\end{center}
+		So, \[\begin{aligned}P(\text{I win})&=P(A_1)+P(A_2)+\cdots+P(A_k)+\cdots\\&=\dfrac{1}{6}+\qty(\dfrac{5}{6})\qty(\dfrac{1}{6})+\cdots+\qty(\dfrac{5}{6})^{k-1}\qty(\dfrac{1}{6})+\cdots\\&=\qty(\dfrac{1}{6})\qty(1+\qty(\dfrac{5}{6})+\cdots+\qty(\dfrac{5}{6})^{k-1}+\cdots)\\&=\qty(\dfrac{1}{6})\sum_{i=0}^\infty\qty(\dfrac{5}{6})^i=\dfrac{1}{6}\cdot\dfrac{1}{1-\dfrac{5}{6}}=\dfrac{1}{6}\cdot6=\boxed{1}.\end{aligned}\]
+	\end{sol}
+\end{eg}
+\begin{eg}{}
+	Three people $A,B$ and $C$ take turn to flip a coin. Whoever gets a heads wins. Find the probability of each individual winning. 
+	\begin{sol}
+		First consider the case when Player $A$ wins. Let $A_j=\text{Player }A\text{ wins on the }j\text{-th turn}$. 
+		\begin{center}\begin{tabular}{ll}
+		$j=1$&$P(A_1)=\dfrac{1}{2}$\\\\
+		$j=2$&$P(A_2)=\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})\qty(\dfrac{1}{2})$\\\\
+		$j=3$&$P(A_3)=\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})\qty(\dfrac{1}{2})=\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})^2\qty(\dfrac{1}{6})$\\\\
+		$j=4$&$P(A_4)=\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})^3\qty(\dfrac{1}{2})$\\
+		$\vdots$&\\
+		$j=k$&$P(A_k)=\qty(\dfrac{1}{2}\cdot\dfrac{1}{2}\cdot\dfrac{1}{2})^{k-1}\qty(\dfrac{1}{2})=\qty(\dfrac{1}{8})^{k-1}\qty(\dfrac{1}{2})$
+		\end{tabular}\end{center}	
+		So, \[\begin{aligned}P(A\text{ wins})=\sum_{j=1}^\infty P(A_j)&=\dfrac{1}{2}+\qty(\dfrac{1}{8})\qty(\dfrac{1}{2})+\cdots+\qty(\dfrac{1}{8})^{k-1}\qty(\dfrac{1}{2})+\cdots\\&=\dfrac{1}{2}\sum_{i=0}^\infty\qty(\dfrac{1}{8})^i\\&=\dfrac{1}{2}\cdot\dfrac{1}{1-\dfrac{1}{8}}=\dfrac{1}{2}\cdot\dfrac{8}{7}=\boxed{\dfrac{4}{7}}.\end{aligned}\]
+		Similarly, we can get the probability of player $B$ wins to be $P(B\text{ wins})=\dfrac{2}{7}$. Finally, we can compute the probability of player $C$ wins by \[P(C\text{ wins})=1-P(A\text{ wins})-P(B\text{ wins})=1-\dfrac{4}{7}-\dfrac{2}{7}=\dfrac{1}{7}.\]
+	\end{sol}
+\end{eg}
 
 
 \end{document}
