@@ -71,7 +71,8 @@
 \def\Q{{\mathbb{Q}}}
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
-
+\def\float{\texttt{float}}
+\def\flt{\texttt{float}}
 \def\Inf{\texttt{Inf}}
 \def\NaN{\texttt{NaN}}
 \def\epsilon{\varepsilon}
@@ -200,14 +201,56 @@
 	\end{sol}
 \end{eg}
 
+\subsection{Errors}
+\begin{df}{Errors We May See}
+	\begin{enumerate}
+		\item \textit{Overflow}: The exponent is too large. This means $\qty|x|$ is large and the computer will represent it as $\pm\Inf.$ Note: In DP, $x_\text{large}=\qty(2-2^{-52})\times2^{1023}\approx1.798\times10^{308}$. This number is referred as \texttt{realmax} in MATLAB.
+		\item \textit{Underflow}: Large negative exponent. This means $\qty|x|$ is tiny and the computer will represent it as $\pm0$. Note: In SP, $x_\text{small}\approx2.225\times10^{-53}$ and is referred as \texttt{realmin} in MATLAB.
+		\item \textit{Roundoff error}: cutoff or round at some point. 
+	\end{enumerate}	
+	Note that sometimes we are encounter the catastrophic cancellation, meaning the subtraction leads to our loss of significance or information. In this case, it is different from underflow error or roundoff error.
+\end{df}
+\begin{eg}{Catastrophic Cancellation/Loss of Significance Due to Subtraction}
+	\[\begin{aligned}x&=3.141592920353983\approx\dfrac{355}{113}&\quad16\text{ digits}\\y&=3.141592653589794\approx\pi&\quad16\text{ digits}\\x-y&=0.000000266764189&\quad9\text{ digits}\end{aligned}\]
+\end{eg}
+\begin{df}{Relative Error}
+	Let $z\in\R$. The relative error between $\float(z)$ and $z$ is denoted as $\mu$ and \[\mu=\dfrac{\float(z)-z}{z}\]\[\float(z)=z(1+\mu),\] where we know \[\qty|\mu|\leq\dfrac{\epsilon_\text{WP}}{2}.\]
+\end{df}
+\begin{eg}{Propagation of Errors}
+	There are two major sources of errors: storing number and arithmetics. \par Consider a computer only allow $3$ significant figures. Then $\epsilon_\text{WP}=0.01$.\par Consider $x=\dfrac{1}{3}$, $y=\dfrac{8}{7}$, and $x+y=\dfrac{31}{21}$. Then, \[\float(x)=0.333=3.33\times10^{-1}=x\qty(1+\mu_x).\] Solving for $\mu_x$: \[\begin{aligned}\dfrac{333}{1000}&=\dfrac{1}{3}\qty(1+\mu_x)\\\mu_x&=\dfrac{999}{1000}-1=\dfrac{-1}{1000}=-0.001\end{aligned}\] Note that $\qty|\mu_x|=0.01<\dfrac{\epsilon_\text{WP}}{2}$. Similarly, we can solve  $\float(y)=1.14\times10^0=y\qty(1+\mu_y)$ for $\qty|\mu_y|=0.0025$. Now, consider the floating point addition \[\begin{aligned}x\oplus y&=\flt(\flt(x)+\flt(y))\\&=\flt(3.33\times10^{-1}+1.14\times10^0)\\&=\flt(1.473\times10^0)\\&=1.47\times10^0.\end{aligned}\] Also, solve $x\oplus y=(x+y)\qty(1+\mu_a)$ for $\qty|\mu_a|=0.0042$. Note that \[\qty|\mu_x|+\qty|\mu_y|=0.0035<0.0042=\qty|\mu_a|.\] This is called the propagation of error. 
+\end{eg}
+\begin{eg}{Plotting Exponentials Using Factored and Expanded Forms}
+	Consider $p(x)=(1-x)^{10}$ and its expanded form.
+	Plot them to see which is better. 
+	\begin{lstlisting}[language = Matlab, title = {Example 1.4.5}]
+	%% Defining the Functions
+	p_1 = @(x) (1-x).^10;
+	p_2 = @(x) x.^10-10*x.^9+45*x.^8-120*x.^7+210*x.^6-252*x.^5+...
+			210*x.^4-120*x.^3+45*x.^2-10*x+1;
+	%% Ploting the Functions
+	x = linspace(0, 2, 100);
+	plot(x, p_1(x))
+	hold on
+	plot(x, p_2(x))
+	legend("Factor", "Expanded")
+	%% Zooming In
+	y = linspace(0.99, 1.01, 100);
+	hold off
+	plot(y, p_1(y))
+	hold on
+	plot(y, p_2(y))
+	legend("Factor", "Expanded")
+	\end{lstlisting}
+	\begin{figure}[H]\centering
+	\subfigure[Plotting Functions]{\label{plottingFuc}\includegraphics[width=0.48\textwidth]{figs/Ex2_3_1_Ploting_Functions}}
+	\hfill
+	\subfigure[Zooming In]{\label{zoomingIn}\includegraphics[width=0.5\textwidth]{figs/Ex2_3_1_Ploting_Functions}}\end{figure}
+	It seems that the two functions are the same (Fig \ref{plottingFuc}); however if we zooming in (Fig \ref{zoomingIn}), the expanded version introduces more error than the factored version because the expanded version requires more arithmetical operations in it. 
+	\end{eg}
 
 
-\begin{lstlisting}[language = Matlab, title = {Answer.m}]
-% Plot function f(x) = 2*x^3 - x - 2
-ezplot('2*x^3-x-2', [0, 2])
-hold on
-plot([0, 2], [0, 0], 'r')
-\end{lstlisting}
+
+
 
 \begin{algorithm}
 \caption{Bisection Algorithm}
