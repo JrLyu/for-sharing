@@ -73,6 +73,10 @@
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
 \def\dsst{\displaystyle}
+\def\st{\ s.t.\ }
+
+\newcommand\perm[2][n]{_{#1}P_{#2}}
+\newcommand\com[2][n]{_{#1}C_{#2}}
 
 \begin{document}
 \maketitle
@@ -373,6 +377,50 @@
 		Similarly, we can get the probability of player $B$ wins to be $P(B\text{ wins})=\dfrac{2}{7}$. Finally, we can compute the probability of player $C$ wins by \[P(C\text{ wins})=1-P(A\text{ wins})-P(B\text{ wins})=1-\dfrac{4}{7}-\dfrac{2}{7}=\dfrac{1}{7}.\]
 	\end{sol}
 \end{eg}
+
+\subsection{Combinatorics}
+\begin{thm}{Multiplication Rule}
+	If operation $A$ can be performed in $n$ ways and operation $B$ in $m$ ways, then the sequence (operation $A$, operation $B$) can be performed in $n\times m$ ways.	
+\end{thm}
+\begin{cor}{Ordered Sequence}
+	Consider a set $A$ and $\qty|A|=n$. Then, an \textit{ordered sequence} of $A$, $(x_1,x_2,\dots,x_k)\st x_i\in A$, is picked with replacement of elements. Then, \[\qty|(x_1,x_2,\dots,x_k)|=n^k.\]	
+\end{cor}
+\begin{rmk}
+	In this situation, repetition is allowed. 	
+\end{rmk}
+\begin{df}{Permutation}
+	\textit{Permutation} is an ordered sequence without replacement of elements. That is, $(x_1,x_2,\dots,x_k)\st x_i\in A$ and $x_i\neq x_j\forall i\neq j$. Then, \[\qty|(x_1,x_2,\dots,x_k)|=n(n-1)\cdots(n-k+1).\] It is also written as $\perm[n]{k}=\dfrac{n!}{(n-k)!}$.
+\end{df}
+\begin{df}{Combination}
+	\textit{Combination} is an unordered permutation (no order, no replacement of elements). So, we have \begin{align*}\text{permutation}&=\text{combination}\times\text{orderings}\\\perm[n]{k}&=\com[n]{k}\times k!\\\com{k}&=\dfrac{\perm{k}}{k!}=\dfrac{n!}{(n-k)!k!}=\binom{n}{k}\end{align*}
+\end{df}
+\begin{rmk}
+	People are always distinct. Letter or coins are not usually distinct. 	
+\end{rmk}
+\begin{eg}
+	How many ways can we scramble the letters in STATISTICS? 
+	\begin{sol}
+		If the letter are distinct, then $10!$ ways to scramble the word. However, they are not distinct: 
+		\begin{center}\begin{tabular}{c|c}
+			Non-distinct Letters&Ways to Scramble\\\hline
+			$S - 3$&$3!$\\
+			$T - 3$&$3!$\\
+			$I - 2$&$2!$
+		\end{tabular}\end{center}
+		So, ways to scramble the word $N$ satisfies \begin{align*}10!&=N\cdot3!\cdot3!\cdot2!\\N&=\dfrac{10!}{3!\cdot3!\cdot2!}\quad\text{Multinomial Coefficient}\end{align*}
+	\end{sol}
+\end{eg}
+\begin{df}{Multinomial Coefficient}
+	The \textit{multinomial coefficient} is the number of ways that $n$ objects with $n_j$ of type $j$, where $j=1,\dots,r$, can be distinctly ordered. So, \[\sum_{j=1}^rn_j=n\] and \[\text{Multinomial Coefficient}=\dfrac{n!}{n_1!\cdot n_2!\cdot\cdots\cdot n_r!}\]
+\end{df}
+\begin{rmk}
+	Tips for Counting:
+	\begin{enumerate}
+		\item Draw a picture of the structure
+		\item Construct a smaller problem when there are large numbers or variables.
+		\item If the structure of the problem falls into different categories, then add instead of multiple. 
+	\end{enumerate}	
+\end{rmk}
 
 
 \end{document}
