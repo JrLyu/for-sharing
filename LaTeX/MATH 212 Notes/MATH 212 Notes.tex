@@ -69,6 +69,7 @@
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
 \def\epsilon{\varepsilon}
+\def\phi{\varphi}
 \def\emptyset{\varemptyset}
 \def\dsst{\displaystyle}
 \def\pqde{\quad\square}
@@ -200,8 +201,9 @@
 
 \subsection{Non-Linear First Order ODEs}
 \begin{df}{General Forms}
-	The general form of a non-linear first order ODE is given by \[y'=f\qty(x,y\qty(x)).\] If we take $M(x,y)=-f(x,y)$ and $N(x,y)=1$, we can also re-write the equation into \[M(x,y)+N(x,y)y'=0,\] or \[M(x,y)\ \d{x}+N(x,y)\ \d{y}=0.\]
+	The general form of a non-linear first order ODE is given by \[y'=f\qty(x,y\qty(x)).\] If we take $M(x,y)=-f(x,y)$ and $N(x,y)=1$, we can also re-write the equation into \[M(x,y)+N(x,y)y'=0, \quad\text{or}\quad M(x,y)\ \d{x}+N(x,y)\ \d{y}=0.\]
 \end{df}
+\subsubsection{Separable Equations}
 \begin{df}{Separable Equations}
 	If $M(x,y)=M(x)$ and $N(x,y)=N(y)$, then the ODE is called \textit{separable}.
 \end{df}
@@ -251,7 +253,46 @@
 \begin{eg}
 	In the IVP above (Example 1.3.8), $f(x,y)=y^\frac{1}{3},$ and so $\dsst\pdv{f}{y}=\dfrac{1}{3}y^{-\frac{2}{3}}$, which is not continuous at $y=0$. So, the IVP $\nexists$ a unique solution on the interval given: $R=\qty{x\in\R,y\in\R}.$	
 \end{eg}
+\subsubsection{Exact Equations}
+\begin{thm}{Multivariable Chain Rule}
+	Given $F(x,y)=c$, where $y=y(x)$. Then, the total derivative with respect to $x$ is \[\pdv{F}{x}+\pdv{F}{y}\dv{y}{x}=0.\]
+\end{thm}
 
+\begin{eg}
+	Exact ODEs
+	\begin{align*}
+		M(x,y)\ \d{x}+N(x,y)\ \d{y}&=0\\M(x,y)+N(x,y)\dv{y}{x}&=0\quad\text{if }y=y(x)\\M(x,y)\dv{x}{y}+N(x,y)&=0\quad\text{if }x=x(y).
+	\end{align*}
+\end{eg}
+\begin{eg}
+	Show that $x^4y^3+x^2y^5+2xy=c$ is an implicit solution of \[\qty(4x^3y^3+2xy^5+2y)\ \d{x}+\qty(3x^4y^2+5x^2y^4+2x)\ \d{y}=0.\]
+	\begin{sol}
+		\[\pdv{F}{x}=4x^3y^3+2xy^5+2y;\quad\pdv{F}{y}=3x^4y^2+5x^2y^4+2x\] If $y=y(x)$: \[\qty(4x^3y^3+2xy^5+2y)+\qty(3x^4y^2+5x^2y^4+2x)\dv{y}{x}=0.\] If $x=x(y)$: \[\qty(4x^3y^3+2xy^5+2y)\dv{x}{y}+\qty(3x^4y^2+5x^2y^4+2x)=0.\] So the implicit function is a solution to the differential equation. 
+	\end{sol}
+\end{eg}
+\begin{thm}{}
+	Given an implicit function $F(x,y)=c$. It is a solution to the differential equation if \[F_x\ \d{x}+F_y\ \d{y}=0.\]	
+\end{thm}
+\begin{df}{Exact ODEs}
+	We say that an ODE of the form $M(x,y)\ \d{x}+N(x,y)\ \d{y}=0$ is \textit{exact} if $\exists\ F(x,y)=c$, with $F_x$ and $F_y$ continuous, such that \[M(x,y)=F_x(x,y)\quad\text{and}\quad N(x,y)=F_y(x,y).\]	
+\end{df}
+\begin{thm}{Characterization of Exact ODEs}
+	Suppose that $M$ and $N$ are continuous on $R$ and have continuous partial derivatives $M_y,\ N_x$ on $R$. Then, \[M(x,y)\ \d{x}+N(x,y)\ \d{y}=0\] is exact if and only if \[M_y(x,y)=N_x(x,y)\] on $R$.	
+\end{thm}
+\begin{eg}
+	Show this ODE is exact: \[\qty(4x^3y^3+2xy^5+2y)\ \d{x}+\qty(3x^4y^2+5x^2y^4+2x)\ \d{y}=0.\]
+	\begin{sol}
+		\[M(x,y)=4x^3y^3+2xy^5+2y;\quad M_y(x,y)=12x^3y^2+10xy^4+2\]
+		\[N(x,y)=3x^4y^2+5x^2y^4+2x;\quad N_x(x,y)=12x^3y^2+10xy^4+2\]
+		Since $M_y(x,y)=N_x(x,y)$, it is exact. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of \[\qty(4x^3y^3+3x^2)\ \d{x}+\qty(3x^4y^2+6y^2)\ \d{y}=0\]
+	\begin{sol}
+		Note that $M(x,y)=4x^3y^3+3x^2$ and $N(x,y)=3x^4y^2+6y^2$, so \[M_y(x,y)=12x^3y^2;\quad N_x(x,y)=12x^3y^2.\] Since $M_y(x,y)=N_x(x,y)$, the ODE is exact. Then, \begin{align*}F(x,y)&=\int M(x,y)\ \d{x}+\phi(y)\\&=\int4x^3y^3+3x^2\ \d{x}+\phi(y)\\&=x^4y^4+x^4+\phi(y).\end{align*} Since $F_y(x,y)=3x^4y^2+\phi'(y)=3x^4y^2+6y^2$, we have $\phi'(y)=6y^2$. That is, \[\phi(y)=\int 6y^2\ \d{y}+c=2y^3+c.\] So, $F(x,y)=x^4y^3+x^3+2y^3+c$. Then, the implicit solution is \[x^4y^3+x^3+2y^3=c.\] Alternatively, we can use $F(x,y)=\dsst\int N(x,y)\ \d{y}+\psi(x)$ to get the same result. 
+	\end{sol}
+\end{eg}
 
 
 \section{Second Order ODEs}

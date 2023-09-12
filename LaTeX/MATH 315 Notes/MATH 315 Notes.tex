@@ -61,7 +61,7 @@
 
 \linespread{1.25}
 
-\title{\textbf{This is a title}}
+\title{\textbf{Emory University\\\textbf{MATH 315 Numerical Analysis}\\ Learning Notes}}
 \author{Jiuru Lyu}
 \date{\today}
 
@@ -77,6 +77,8 @@
 \def\NaN{\texttt{NaN}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varemptyset}
+\def\A{\vb A}
+\def\dsst{\displaystyle}
 
 
 \begin{document}
@@ -248,34 +250,112 @@
 	It seems that the two functions are the same (Fig \ref{plottingFuc}); however if we zooming in (Fig \ref{zoomingIn}), the expanded version introduces more error than the factored version because the expanded version requires more arithmetical operations in it. 
 	\end{eg}
 
-
-
-
-
-\begin{algorithm}
-\caption{Bisection Algorithm}
-\SetKwData{In}{\rmfamily\textbf{in}}\SetKwData{To}{\rmfamily\textbf{to}}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Stop}{\rmfamily{\textbf{stop}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
-\SetKwComment{Comment}{/* }{ */}
-\DontPrintSemicolon
-\KwIn{$a,b,M,\delta,\epsilon$\;$u\leftarrow f(a)$\;$b\leftarrow f(b)$\;$e\leftarrow b-a$}
-\KwOut{output}
-\BlankLine
-\Begin{
-	\If{$\text{sign}(u)=\text{sign}(v)$}{\Stop}
-	\For{k=1 \To M}{
-		$e\leftarrow e/2$\;
-		$c\leftarrow a+e$\;
-		$w\leftarrow f(c)$\;
-		\Return $k,c,w,e$\;
-		\If{$|e|<\delta$\Or$|w|<\epsilon$}{\Stop}
-		\eIf{$\text{sign}(u)\neq=\text{sign}(v)$}{
-			$b\leftarrow c$\;
-			$v\leftarrow w$\;
-		} {
-			$a\leftarrow c$\;
-			$u\leftarrow w$\;
+\newpage
+\section{Solutions of Linear Systems}
+\begin{rmk} Assumption throughout this chapter: $\A$ is a square $n\times n$ matrix. \end{rmk}
+\subsection{Simply Solved Linear Systems}
+\begin{df}{Linear System}
+	\begin{itemize}
+		\item Equation form: $x_i$ are variables (what we solve for) and $a_{ij}$ are coefficients: \begin{align*}a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n&=b_1\\a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n&=b_2\\\vdots\\a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n&=b_n\end{align*} This system has $n$ equations and $n$ variables. 
+		\item Matrix form: \[\mqty[a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\a_{n1}&a_{n2}&\cdots&a_{nn}]\mqty[x_1\\x_2\\\vdots\\x_n]=\mqty[b_1\\b_2\\\vdots\\b_n]\implies \A x=b,\] where $\A$ is the coefficient matrix, a $n\times n$ matrix, $x$ is the unknown, the solution vector with length $n$, and $b$ is the right hand side, vector with length $n$.
+	\end{itemize}	
+\end{df}
+\begin{thm}{Number of Solutions to a Linear System}
+	A linear system $\A x=b$ could have the following numbers of solutions: 
+	\begin{itemize}
+		\item One unique solution: $\A x=b$ is nonsingular; $\A$ is invertible.
+		\item No solutions: $\A x=b$ is singular.
+		\item Infinite many solutions: $\A x=b$ is singular. 
+	\end{itemize}	
+\end{thm}
+\begin{thm}{Matrix-Vector Multiplication}
+	Let $\A\in\R^{m\times n}$ and $x\in\R^n$. 
+	\begin{itemize}
+		\item View 1: Row-wise. Let $y=\A x$, then $\dsst y_i=\sum_{j=1}^n a_{ij}x_j$ as the $i^\text{th}$ row of $y$. 
+		\item View 2: Column-wise. $\A x$ is a linear combination of columns of $\A$. So, $\dsst y=\sum_{j=1}^nx_j\va{a_j}$, where we regard $\A$ as $\mqty[\va{a_1}&\va{a_2}&\cdots&\va{a_n}]$
+	\end{itemize}	
+\end{thm}
+\begin{lstlisting}[language = Matlab, title = {Row-Wise Vector Multiplication}]
+y = zeros(n, 1);
+for i = 1:n % loop over rows
+	for j = 1:n % loop over sum
+		y(i) = y(i) + A(i,j) + x(j);
+	end
+end
+\end{lstlisting}
+\begin{lstlisting}[language = Matlab, title = {Row-Wise Vector Multiplication (Vectorization)}]
+y = zeros(n, 1);
+for i = 1:n % loop over rows
+	y(i) = A(i,:) * x(i); % vectorization
+end
+\end{lstlisting}
+\begin{lstlisting}[language = Matlab, title = {Column-Wise Vector Multiplication}]
+y = zeros(n, 1);
+for j = 1:n % loop over columns
+	y = y + x(j) * A(:, j);
+end
+\end{lstlisting}
+\begin{df}{Important Part of a Matrix}
+	\begin{itemize}
+		\item Diagonal Part
+		\item Strictly Upper Triangular Part
+		\item Strictly Lower Triangular Part
+	\end{itemize}	
+\end{df}
+\begin{thm}{Solving Diagonal Matrix}
+	Given \[\mqty[a_{11}&&\\&\ddots&\\&&a_{nn}]\mqty[x_1\\\vdots\\x_n]=\mqty[b_1\\\vdots\\b_n],\] we have \[a_{11}x_1=b_1;\quad a_{22}x_2=b_2;\quad\cdots\quad a_{nn}x_n=b_n\] So we have \[x_i=\dfrac{b_i}{a_{ii}},\] only if $a_{ii}\neq0.$
+	\begin{rmk}$a_{ii}\neq0$ holes if $\A$ is invertible. \end{rmk}
+\end{thm}
+\begin{rmk}A Diagonal matrix is also a lower triangular matrix or an upper triangular matrix. \end{rmk}
+\begin{lstlisting}[language = Matlab, title = {Solving Diagonal Matrix}]
+x = zeros(n, 1);
+for i = 1:n
+	x(i) = b(i) / A(i,i); % overflow and underflow
+end
+\end{lstlisting}
+\begin{thm}{Solving Lower Triangular Systems}
+	Given \[\mqty[a_{11}&&&\\a_{21}&a_{22}&&\\\vdots&&\ddots&\\a_{n1}&\cdots&&a_{nn}]\mqty[x_2\\x_2\\\vdots\\x_n]=\mqty[b_1\\b_2\\\vdots\\v_n],\] we have \begin{align*}a_{11}x_1&=b_1\\a_{21}x_1+a_{22}x_{2}&=b_2\\\vdots\\a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n&=b_n\end{align*} We can use the Forward Substitution to solve: \[x_i=\dfrac{b_1-a_{i1}x_1-a_{i2}x_2-\cdots-a_{i(i-1)}x_{i-1}}{a_{ii}.}\]
+\end{thm}
+\begin{algorithm}\caption{Row-Oriented Forward Substitution}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+\KwIn{matrix $\A=\mqty[a_{ij}]$; vector $b=\mqty[b_i]$}
+\KwOut{solution vector $x=\mqty[x_i]$}
+\BlankLine\Begin{
+	\For(\tcp{loop over rows}){i = 1 \KwTo n} { 
+		\For(\tcp{loop over columns}) {j = 1 \KwTo i-1} {
+			$b_i \coloneqq b_i-a_{ij}x_j$\;
+		}
+		$x_i \coloneqq b_i/a_{ii}$\;
+	}
+}
+\end{algorithm}
+\begin{eg}{}
+	Given \[\mqty[-5&&\\3&3&\\2&-5&3]\mqty[x_1\\x_2\\x_3]=\mqty[-10\\3\\21].\] Use column-wise forward substitution to solve this system. 
+	\begin{sol}
+		In column-wise: \[x_1\mqty[-5\\3\\2]+x_2\mqty[0\\3\\-5]+x_3\mqty[0\\0\\4]=\mqty[-10\\3\\21].\]	
+		\begin{enumerate}
+			\item Step 1: Solve for $x_1=-10/-5=2.$
+			\item Step 2: Plug $x_1=2$ into the equation: \[x_2\mqty[0\\3\\-5]+x_3\mqty[0\\0\\4]=\mqty[-10\\3\\21]-(2)\mqty[-5\\3\\2]=\mqty[0\\-3\\17].\]
+			\item Step 3: Solve for $x_2=-3/3=-1$.
+			\item Step 4: Plug $x_2=-1$ into the equation: \[x_3\mqty[0\\0\\4]=\mqty[0\\-3\\17]-(-1)\mqty[0\\3\\-5]=\mqty[0\\0\\12].\]
+			\item Step 5: Solve for $x_3=12/4=3.$
+		\end{enumerate}
+	\end{sol}
+\end{eg}
+\begin{algorithm}\caption{Column-Oriented Forward Substitution}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+\KwIn{matrix $\A=\mqty[a_{ij}]$; vector $b=\mqty[b_i]$}
+\KwOut{solution vector $x=\mqty[x_i]$}
+\BlankLine\Begin{
+	\For{j = 1 \KwTo n} { 
+		$x_j\coloneqq b_j/a_{jj}$\;
+		\For{i = j+1 \KwTo n} {
+			$b_i \coloneqq b_i-a_{ij}x_j$\;
 		}
 	}
 }
 \end{algorithm}
+\begin{thm}{Computational Cost of Forward Substitution}
+	Number of floating point operations ($+$, $-$, $\times$, $/$) in row $i$ is $1$ division, $(i-1)$ multiplications, and $(i-1)$ subtractions. So, Number of floating points operations, or flops, of the algorithm is \begin{align*}\text{flops}=\sum_{i=1}^n(1+i-1+i-1)&=\sum_{i=1}^n(2i-1)\\&=2\sum_{i=1}^ni-\sum_{i=1}^n1\\&=2\qty[\dfrac{(n+1)(n)}{2}]-n\\&=n^2\end{align*}
+	\begin{rmk}It should be the same number of flops if we do column-oriented forward substitution. \end{rmk}
+\end{thm}
+
 \end{document}
