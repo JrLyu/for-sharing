@@ -54,7 +54,7 @@
 \newtheorem*{rmk}{Remark.}
 \newtheorem*{ext}{Extension.}
 
-\linespread{1.25}
+\linespread{1.15}
 
 \title{Emory University\\\textbf{MATH 361 Mathematical Statistics I}\\ Learning Notes}
 \author{Jiuru Lyu}
@@ -423,6 +423,29 @@
 		\item If the structure of the problem falls into different categories, then add instead of multiple. 
 	\end{enumerate}	
 \end{rmk}
+
+\subsection{Combinatorial Probabilities}
+\begin{rmk}
+	Probability Tips
+	\begin{enumerate}
+		\item Avoid multiplying probabilities. Always set up quotient.
+		\item Keep track of order. If we have order in the sample space, we will need order in the event.
+		\item Know some basic sample spaces:
+		\begin{itemize}
+			\item Rolling $n$ fair die: $\qty|S|=6^n$ (ordered).
+			\item Flipping $n$ coins: $\qty|S|=2^n$
+			\item Dealing a hand of $n$ cards: $\dsst\binom{52}{n}$
+		\end{itemize}
+	\end{enumerate}	
+\end{rmk}
+\begin{eg}{}
+	Roll $5$ Fair Die. What is the size of the sample space? What is the probability that the first three have one face and the last two another? What is the probability that two faces show up exactly twice? 
+	\begin{sol}
+		\par Size of the sample space: $\qty|S|=6^5$.
+		\par Let $A=$ the probability that the first three have one face and the last two another. $\qty|A|=(6\times1\times1)\times(5\times1)=30$. So, $P(A)=\dfrac{30}{6^5}=\dfrac{5}{6^4}$.
+		\par Let $B=$ the probability that two faces show up exactly twice. Note that we use $\dsst\binom{6}{2}$ to give the faces of the pairs. $\dsst\binom{4}{1}$ to the last one. $\dfrac{5!}{2!\cdot2!\cdot1!}$ ways to order the faces. So, $\qty|B|=\dsst\binom{6}{2}\binom{4}{1}\dfrac{5!}{2!\cdot2!\cdot1!}$. Then, $P(B)=\dfrac{\binom{6}{2}\binom{4}{1}\frac{5!}{2!\cdot2!\cdot1!}}{6^5}$.
+	\end{sol}
+\end{eg}
 
 
 \end{document}
