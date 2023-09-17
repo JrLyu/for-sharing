@@ -53,7 +53,7 @@
 \newtheorem*{rmk}{Remark.}
 \newtheorem*{ext}{Extension.}
 
-\linespread{1.25}
+\linespread{1.2}
 
 \title{Emory University\\\textbf{MATH 212 Differential Equations Learning Notes}}
 \author{Jiuru Lyu}
@@ -199,11 +199,10 @@
 	If $x_0$ is an arbitrary point in $(a,b)$ and $y_0$ is an arbitrary real number, then the initial value problem, \[y'+p(x)y=f(x),\quad y(x_0)=y_0\] has a unique solution on $(a,b)$.
 \end{thm}
 
-\subsection{Non-Linear First Order ODEs}
+\subsection{Separable Equations}
 \begin{df}{General Forms}
 	The general form of a non-linear first order ODE is given by \[y'=f\qty(x,y\qty(x)).\] If we take $M(x,y)=-f(x,y)$ and $N(x,y)=1$, we can also re-write the equation into \[M(x,y)+N(x,y)y'=0, \quad\text{or}\quad M(x,y)\ \d{x}+N(x,y)\ \d{y}=0.\]
 \end{df}
-\subsubsection{Separable Equations}
 \begin{df}{Separable Equations}
 	If $M(x,y)=M(x)$ and $N(x,y)=N(y)$, then the ODE is called \textit{separable}.
 \end{df}
@@ -253,7 +252,8 @@
 \begin{eg}
 	In the IVP above (Example 1.3.8), $f(x,y)=y^\frac{1}{3},$ and so $\dsst\pdv{f}{y}=\dfrac{1}{3}y^{-\frac{2}{3}}$, which is not continuous at $y=0$. So, the IVP $\nexists$ a unique solution on the interval given: $R=\qty{x\in\R,y\in\R}.$	
 \end{eg}
-\subsubsection{Exact Equations}
+
+\subsection{Exact Equations}
 \begin{thm}{Multivariable Chain Rule}
 	Given $F(x,y)=c$, where $y=y(x)$. Then, the total derivative with respect to $x$ is \[\pdv{F}{x}+\pdv{F}{y}\dv{y}{x}=0.\]
 \end{thm}
@@ -292,6 +292,50 @@
 	\begin{sol}
 		Note that $M(x,y)=4x^3y^3+3x^2$ and $N(x,y)=3x^4y^2+6y^2$, so \[M_y(x,y)=12x^3y^2;\quad N_x(x,y)=12x^3y^2.\] Since $M_y(x,y)=N_x(x,y)$, the ODE is exact. Then, \begin{align*}F(x,y)&=\int M(x,y)\ \d{x}+\phi(y)\\&=\int4x^3y^3+3x^2\ \d{x}+\phi(y)\\&=x^4y^4+x^4+\phi(y).\end{align*} Since $F_y(x,y)=3x^4y^2+\phi'(y)=3x^4y^2+6y^2$, we have $\phi'(y)=6y^2$. That is, \[\phi(y)=\int 6y^2\ \d{y}+c=2y^3+c.\] So, $F(x,y)=x^4y^3+x^3+2y^3+c$. Then, the implicit solution is \[x^4y^3+x^3+2y^3=c.\] Alternatively, we can use $F(x,y)=\dsst\int N(x,y)\ \d{y}+\psi(x)$ to get the same result. 
 	\end{sol}
+\end{eg}
+\begin{thm}{Method of Integrating Factors for Exact ODEs}
+	Given $M(x,y)\ \d{x}+N(x,y)\ \d{y}=0$ is not exact. Consider $\mu=\mu(x,y)\neq0$. Multiply \[\mu(x)=e^{\int\frac{M_y-N_x}{N}\ \d{x}}\quad\text{or}\quad\mu(y)=e^{\int\frac{N_x-M_y}{M}\ \d{y}},\] we could make the ODE exact and thus solvable. 
+\end{thm}
+\begin{prf}
+	Given $M(x,y)\ \d{x}+N(x,y)\ \d{y}=0$ is not exact. Consider $\mu=\mu(x,y)\neq0$. Multiply both sides by $\mu$: \begin{equation}\label{eq3}\mu M(x,y)\ \d{x}+\mu N(x,y)\ \d{y}=0\end{equation} Then, we have \[\widetilde{M}(x,y)=\mu M;\quad\text{and}\quad\widetilde{N}(x,y)=\mu N.\] Thus, the condition for Eq. (\ref{eq3}) to be exact is $\widetilde{M}_y=\widetilde{N}_x$, or $(\mu M)_y=(\mu N)_x$. By product rule, \begin{equation}\label{eq4}\mu_y M+\mu M_y=\mu_x N+\mu N_x\end{equation} \begin{rmk} Eq. (\ref{eq4}) is a PDE, which we cannot solve. So, make the assumption that $\mu$ is a function of only $x$ or only $y$. \end{rmk}
+	\begin{itemize}
+		\item If $\mu=\mu(x)$, then $\mu_y=0$. So, we have \begin{align*}\mu M_y&=\mu_x N+\mu N_x\\N\mu_x+\qty(N_x-M_y)\mu&=0\\\mu(x)&=e^{\int\frac{M_y-N_x}{N}\ \d{x}}.\end{align*}
+		If $\mu=\mu(y)$, then $\mu_x=0$. So, we have \begin{align*}\mu_y M+\mu M_y&=\mu N_x\\M\mu_y+\qty(M_y-N_x)\mu&=0\\\mu(x)&=e^{\int\frac{N_x-M_y}{M}\ \d{y}}.\end{align*}
+	\end{itemize}
+\end{prf}
+\begin{rmk} To decide on if we should use $\mu(x)$ or $\mu(y)$, test if $\dfrac{M_y-N_x}{N}$ is a function of $x$ only and inf $\dfrac{N_x-M_y}{M}$ is a function of $y$ only.\end{rmk}
+\begin{eg}
+	Given the equation $(3x+2y^2)\ \d{x}+2xy\ \d{y}=0$. Find the integrating factor and solve the ODE.
+	\begin{sol}
+		Note that $M(x,y)=3x+2y^2$ and $N(x,y)=2xy$. So, $M_y=4y$ and $N_x=2y$. So, the ODE is not exact, and we should find an integrating factor. It is easier to divide by $N$ since there is only $1$ term: \[\dfrac{M_y-N_x}{N}=\dfrac{4y-2y}{2xy}=\dfrac{1}{x},\] is a function of $x$ only. So, by the Method of Integrating Factors, we know \[\mu(x)=e^{\int\frac{1}{x}\ \d{x}}=e^{\ln{x}}=x\quad(x\neq0).\]\par 
+		Now, multiply both decide of the original ODE by $x$: \[(3x^2+2xy^2)\ \d{x}+2x^2y\ \d{y}=0,\] where $\widetilde{M}(x,y)=3x^2+2xy^2$ and $\widetilde{N}(x,y)=2x^2y.$ So, \begin{align*}F(x,y)&=\int\widetilde{N}(x,y)\ \d{y}+\psi(x)\\&=\int 2x^2y\ \d{y}+\psi(x)\\&=x^2y^2+\psi(x)\end{align*} Compute the partial deriviate of $F$ with respect to $x$, we get\begin{align*}\pdv{F(x,y)}{x}=2xy^2+\psi'(x)&=3x^2+2xy^2\\\psi'(x)&=3x^2\\\psi(x)&=\int 3x^2\ \d{x}+c=x^3+c\end{align*} So, the solution is \[x^2y^2+x^3=c.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Solve the equation $\qty(2xy^3-2x^3y^3-4xy^2+2x)\ \d{x}+\qty(3x^2y^2+4y)\ \d{y}=0$.
+	\begin{sol}
+		\begin{itemize}
+			\item Test if the equation is exact: \[M(x,y)=2xy^3-2x^3y^3-4xy^2+2x;\quad M_y=6xy^2-6x^3y^2-8xy\]\[N(x,y)=3x^2y^2+4y;\quad N_x=6xy^2\] Since $M_y\neq N_x$, the equation is no exact.
+			\item Find an integrating factor. Try: \[\dfrac{M_y-N_x}{N}=\dfrac{6xy^2-6x^3y^2-8xy-6xy^2}{3x^2y^2+4y}=\dfrac{-2x(3x^2y^2+4y)}{3x^2y^2+4y}=-2x,\] which is a function of $x$ only. So, the integrating factor $\mu=\mu(x)\neq0$ is \[\mu=e^{\int-2x\ \d{x}}=e^{-x^2}.\]
+			\item Multiply the equation by $\mu$: \[e^{-x^2}\qty(2xy^3-2x^3y^3-4xy^2+2x)\ \d{x}+e^{-x^2}\qty(3x^2y^2+4y)\ \d{y}=0.\] We can easily show that the equation is exact. \begin{align*}F(x,y)&=\int e^{-x^2}\qty(3x^2y^2+4y)\ \d{y}+\psi(x)\\&=e^{-x^2}\qty(x^2y^3+2y^2)+\psi(x).\end{align*} So, \begin{align*}F_x(x,y)&=-(2x)e^{-x^2}\qty(x^2y^3+2y^2)+e^{-x^2}\qty(2xy^3)+\psi'(x)\\&=e^{-x^2}\qty(2xy^3-2x^3y^3-4xy^2)+\psi'(x).\end{align*} Note that \begin{align*}e^{-x^2}\qty(2xy^3-2x^3y^3-4xy^2)+\psi'(x)&=e^{-x^2}\qty(2xy^3-2x^3y^3-4xy^2+2x)\\\psi'(x)&=e^{-x^2}\qty(2x)\\\psi(x)&=\int(2x)e^{-x^2}\ \d{x}+c=-e^{-x^2}+c.\end{align*}
+			\item So, the solution is \[e^{-x^2}\qty(x^2y^3+2y^2-1)=c.\]
+		\end{itemize}
+	\end{sol}
+\end{eg}
+
+\subsection{Autonomous ODEs}
+\begin{df}{Autonomous ODEs}
+	ODEs in the form $y'=f(y)$ is called \textit{autonomous ODEs}. In other words, the dependent variable $x$ does not appear explicitly in the equation.
+\end{df}
+\begin{rmk} Autonomous ODEs are separable.\end{rmk}
+\begin{eg}
+	Exponential Growth\par 
+	Let $y=\phi(t)$ be the population of the given species at time $t$. Assume that the rate of change of the population is proportional to the current value of $y$, and the constant of proportionality is given by $r$, called the rate of growth ($r>0$) or decline ($r<0$). \par 
+	A differential equation to model this situation is given by \[\begin{cases}y'=ry\\y(0)=y_0\end{cases}\] and the solution is \[y=y_0e^{rt}.\]
+\end{eg}
+\begin{eg}
+	Logistic Growth \par 
+	The \textit{logistic growth} is modeled by the differential equation \[y'=r\qty(1-\dfrac{y}{K})y,\] where $r>0$ represents the intrinsic growth rate in absence of limiting factors, and $K>0$ is the environmental carrying capacity. 
 \end{eg}
 
 
