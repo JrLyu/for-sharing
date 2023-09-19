@@ -79,7 +79,7 @@
 \def\emptyset{\varemptyset}
 \def\A{\vb A}
 \def\dsst{\displaystyle}
-
+\def\bigO{\mathcal{O}}
 
 \begin{document}
 \maketitle
@@ -356,6 +356,105 @@ end
 \begin{thm}{Computational Cost of Forward Substitution}
 	Number of floating point operations ($+$, $-$, $\times$, $/$) in row $i$ is $1$ division, $(i-1)$ multiplications, and $(i-1)$ subtractions. So, Number of floating points operations, or flops, of the algorithm is \begin{align*}\text{flops}=\sum_{i=1}^n(1+i-1+i-1)&=\sum_{i=1}^n(2i-1)\\&=2\sum_{i=1}^ni-\sum_{i=1}^n1\\&=2\qty[\dfrac{(n+1)(n)}{2}]-n\\&=n^2\end{align*}
 	\begin{rmk}It should be the same number of flops if we do column-oriented forward substitution. \end{rmk}
+	\begin{rmk} Solving upper triangular system using backward substitution. \end{rmk}
 \end{thm}
+
+\subsection{GEPP and Matrix Factorization}
+\begin{thm}{Gaussian Elimination}
+	In Gaussian Elimination, we are allowed to 
+	\begin{enumerate}
+		\item Swap rows (exchange, pivot)
+		\item Add multiple of one row to another
+		\item Multiply row by non-zero scalar. 
+	\end{enumerate}
+\end{thm}
+\begin{rmk}We require the equation with the largest coefficient in magnitude at the top when doing the Gaussian Elimination. This is because we want to divide by large numbers instead of smaller ones (which will cause errors).\end{rmk}
+\begin{algorithm}\caption{General Structure of GEPP}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+
+\BlankLine\Begin{
+	\For{\text{all stages}} { 
+		\text{pivot}\;
+		\text{eliminate}\;
+	}
+}
+\end{algorithm}
+\begin{lstlisting}[language = Matlab, title = {At stage $k$, eliminate $x_k$, from rows $k+1$ to $n$}]
+for i = k+1:n
+	m(i,k) = a(i,k) / a(k,k); % find the multiplier
+	a(i,k) = 0;
+	for j = k+1:n
+		a(i,j) = a(i,j) - m(i,k) * a(k,j); % could use vectorization
+	end
+	b(i) = b(i) - m(i,k) * b(k);
+end
+\end{lstlisting}
+\begin{lstlisting}[language = Matlab, title = {Pivoting at stage $k$: find the coefficient with the largest magnitude}]
+%% The code tells us which row has the pivot.
+p = k;
+for i = k+1:n
+	if abs(a(p,k)) < abs(a(i,k))
+		p = i;
+	end
+end
+%% Swap rows in A and b
+A([p,k],:) = A([k,p],:);
+b(p) = b(k);
+\end{lstlisting}
+\begin{thm}{Cost of GEPP}
+	At stage $k$, we only focus on rows $k$ through $n$ and columns $k$ through $n$. We have $(n-k)$ divisions for multipliers. For every multiplier we have $(n-k)$ multiplications, which are then used $(n-k)$ times to change each row. So, we have $(n-k)$ multiplications in total. Subtractions come with multiplications, so we also have $(n-k)(n-k)$ subtractions. 
+\end{thm}
+\begin{thm}{Another Perspective on GEPP}
+	The process of GEPP can be written as matrix multiplication $\vb E\vb A$, where $\vb E$ is an elementary matrix and act on the rows of $\vb A$.	
+\end{thm}
+\begin{thm}{Matrix Factorizations: $\vb P\vb A=\vb L\vb U$}
+	\[\vb P\vb A=\vb L\vb U,\] where $\vb U$ is upper-triangular, $\vb L$ is lower-triangular, and $\vb P$ is the pivot or permutation matrix.\par 
+	This factorization comes from GEPP. Almost all matrices $\vb A$ have $\vb P\vb A=\vb L\vb U$ unless we have a column of all zeros in $\vb A$. \par
+\end{thm}
+\begin{thm}{Solving $\vb Ax=b$ with $\vb P\vb A=\vb L\vb U$}
+	Given $\vb Ax+b$ and pre-computed $\vb P\vb A=\vb L\vb U$: \begin{align*}\vb P\vb A&=\vb Pb\\\vb L\vb U&=\vb Pb\\\vb Ux&=\vb L^{-1}\vb Pb&\text{using forward substitution}\\x&=\vb U^{-1}\vb L^{-1}\vb Pb&\text{using backward substitution}\end{align*}
+	This process need around $\bigO\qty(n^2)$ operations. $\bigO(\cdot)$ is the big-O notation, meaning the number is dominated by $n^2$.
+\begin{lstlisting}[language=Matlab, title={$\vb P\vb A=\vb L\vb U$ in MATLAB}]
+[L, U, P] = lu(A);
+% P could be omitted sometimes. 
+\end{lstlisting}
+\end{thm}
+\begin{thm}{Cholesky Factorization}
+	If $\A$ is symmetric ($\A=\A^T$) and positive definite (all eigenvalues are positive), then $\A=\vb R^T\vb R$, where $\vb R$ is upper-triangular and $\vb R^T$ is lower-triangular. This factorization is $2$ time less expensive than GEPP. 
+\end{thm}
+\begin{rmk}
+	Choleksy Factorization is just the $\vb P\A=\vb L\vb U$ factorization for SPDs (symmetric positive definite matrices).
+\end{rmk}
+\begin{thm}{Other Matrix Factorization}
+\begin{enumerate}
+	\item $\vb Q\vb R$ decomposition: \[\A=\vb Q\vb R,\] where $\vb R$ is upper-triangular and $\vb Q$ is orthogonal such that $\vb Q^T\vb Q=\vb Q^T\vb Q=\vb I$.\par  $\vb Q$ is really easy to be inverted and comes from the Gram-Schmidt process. \par This composition is a bit more expensive than $\vb P\A=\vb L\vb U$.
+	\item Singular Value Decomposition (SVD): \[\vb A=\vb U\vb\Sigma\vb V^T,\] where $\vb U$ and $\vb V^T$ are orthogonal and $\vb\Sigma$ is diagonal. This factorization is also more expensive than $\vb P\A=\vb L\vb U$ decomposition.
+\end{enumerate}
+\end{thm}
+
+\subsection{Measuring Accuracy of Solutions}
+\begin{df}{Vector Norms}
+	A vector norm is a function $\|\cdot\|:\R^n\to\R$ that satisfies
+	\begin{itemize}
+		\item $\|x\|\geq0\quad\forall x\in\R^n$ and $\|x\|=0$ if and only if $x=0$.
+		\item $\|cx\|=\qty|c|\|x\|\quad\forall x\in\R^n$ and $c\in\R$.
+		\item Triangular inequality: $\|x+y\|\leq\|x\|+\|y\|\quad\forall x,y\in\R^n$.
+	\end{itemize}	
+\end{df}
+\begin{df}{Common Definitions of Norm}
+	\begin{itemize}
+		\item Pythagorean Distance: $\|x\|_2=\sqrt{x_1^2+x_2^2+\cdots+x_n^2}$.
+		\item Taxicab/Manhattan Distance: $\|x\|_1=\qty|x_1|+\qty|x_2|+\cdots+\qty|x_n|$.
+		\item Infinity Norm: $\|x\|_\infty=\dsst\max_{i=1,\dots,n}\qty|x_i|$.
+	\end{itemize}	
+\end{df}
+\begin{df}{Measuring Erros}
+	Suppose $x$ is the true solution, and $\hat{x}$ is the approximate solution. Then \begin{align*}\textit{Error}&=\|\hat{x}-x\|\\\textit{Relative Error}&=\dfrac{\|\hat{x}-x\|}{\|x\|},\quad x\neq0.\end{align*}	
+	\begin{rmk}In practice, we do not know $x$, the true solution. So this measurement cannot be used.\end{rmk}
+\end{df}
+\begin{df}{Residual}
+	We know $\vb A$, $b$, $\hat{x}$, and we want to solve $\vb Ax=b$. So, the \begin{align*}\textit{Residual}&=\A\hat{x}-b\\\textit{Residual Norm}&=\|\A\hat{x}-b\|\\\textit{Relative Residual Norm}&=\dfrac{\|\A\hat{x}-b\|}{\|b\|}\end{align*}
+	
+\end{df}
+
 
 \end{document}
