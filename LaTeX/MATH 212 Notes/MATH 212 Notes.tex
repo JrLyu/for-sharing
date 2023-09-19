@@ -335,11 +335,29 @@
 \end{eg}
 \begin{eg}
 	Logistic Growth \par 
-	The \textit{logistic growth} is modeled by the differential equation \[y'=r\qty(1-\dfrac{y}{K})y,\] where $r>0$ represents the intrinsic growth rate in absence of limiting factors, and $K>0$ is the environmental carrying capacity. 
+	The \textit{logistic growth} is modeled by the differential equation \[y'=r\qty(1-\dfrac{y}{K})y,\] where $r>0$ represents the intrinsic growth rate in absence of limiting factors, and $K>0$ is the environmental carrying capacity. \par 
+	In this system, we have $y=0$ and $y=k$ as the constant solutions/equilibria/critical points of the ODE. $y=0$ is the \textit{unstable equilibrium solution}, and $y=k$ is the \textit{asymptotic stable solution}. \par 
+	This model shows that when $0<y<K$, the population will grow until $K$ (that is, $\dsst\lim_{t\to\infty}y=K$) and when $y>K$, the population will decrease to $K$ ($\dsst\lim_{t\to\infty}y=K$).\par 
+	We can model the logistic growth using the following ODE as well \[y'=-r\qty(1-\dfrac{y}{T})y,\] where $r$ represents the intrinsic growth rate in absence of limiting factors and $T$ is the threshold level. \par 
+	In this system, we have $y=0$ and $y=T$ as the equilibrium solutions, $y=T$ is the unstable solution and $y=0$ is the asymptotic stable solution. That is, when $0<y<T$, the population will decrease to $0$ ($\dsst\lim_{t\to\infty}y=0$) and when $y>T$, the population will grow forever ($\dsst\lim_{t\to\infty}y=\infty$).\par A solution to the IVP \[y'=-r\qty(1-\dfrac{y}{T})y;\quad y(0)=y_0\] is $y=\dfrac{y_0T}{y_0+\qty(T-y_0)e^{rt}}$.\par 
+	The solution also have a vertical asymptote $t=t^*$ such that $y\to\infty$. To find such an asymptote, we want $\dsst\lim_{t\to t^*}y^\text{IVP}=0$. So, we set the denominator to $0$, i.e., $y_0+\qty(T-y_0)e^{rt}=0$, and we get $t=\dfrac{1}{r}\ln\qty(\dfrac{y_0}{y_0-T})$ with $y_0>T$ by solving the equation.\par 
+	Combining the two models, we give a more accurate model of the population. We call it \textit{Logistic Growth with a Threshold}. \[y=-r\qty(1-\dfrac{y}{T})\qty(1-\dfrac{y}{K}y),\] where $r>0$ is the intrinsic growth rate in the absence of limiting factors and $0<T<K$, where $T$ is the threshold level and $K$ is the environmental carrying capacity. \par In this system, $y=K$ and $y=0$ are asymptotic stable solutions and $y=T$ is the unstable equilibrium solution. Given the IVP \[y=-r\qty(1-\dfrac{y}{T})\qty(1-\dfrac{y}{K}y);\quad y(0)=y_0.\]The behavior of the IVP solution with respect to $y_0$ is given as the following: 
+	\begin{itemize}
+		\item If $0<y_0<T$, then $y(t)\to0$ as $t\to\infty$.
+		\item If $y_0=T$, then $y(t)=T$ for all $t$.
+		\item If $T<y_0<K$, then $y(t)\to K$ as $t\to\infty$.
+		\item If $y_0=K$, then $y(t)=K$ for all $t$.
+		\item If $y_0>K$, then $y(t)\to K$ as $t\to\infty$.
+	\end{itemize}
+\end{eg}
+\begin{eg}
+	Newton's Law of Cooling\par 
+	Newton's law of cooling states that the rate of change of the temperature of an object is proportional to the difference between its own temperature and the ambient temperature (i.e., the temperature of tis surroundings). This law is summarized using the following ODE \[T'=-k(T-T_a),\] where $T$ represents the temperature of an object, $T_a$ is the ambient temperature of the surrounding environment, and $k>0$ is the cooling constant. \par The equilibrium solution $T=T_a$ is asymptotic stable. Using either integrating factor or SoV, we find the general solution as $T=Ae^{-kt}+T_a.$
 \end{eg}
 
-
+\newpage
 \section{Second Order ODEs}
 
+\newpage
 \section{System of ODEs}
 \end{document}
