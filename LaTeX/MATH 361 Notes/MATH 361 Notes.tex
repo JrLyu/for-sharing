@@ -447,5 +447,53 @@
 	\end{sol}
 \end{eg}
 
+\newpage
+\section{Random Variables}
+\subsection{Discrete RV: Binomial \& Hypergeometric}
+\begin{df}{Random Variable}
+	A \textit{random variable} is a number determined by the outcome of an experiment, $X:S\to\R$. Usually, we are not particularly interested in $S$ but in the distribution of the outcomes for $X$. We want to describe the probability associated with different values of $X$.
+\end{df}
+\begin{eg}
+	Flip three coins. Count the number of heads ($H$): \[S=\qty{HHH, HHT, HTH, TTH TTH THT, HTT, TTT}\] \[\widetilde{S}=\qty{3H, 2H, 1H, 0H}.\] Note in $\widetilde{S}$, not every outcome is equally likely. We would need to define a function for or a list of the values for each outcome in $\widetilde{S}$. This is an example of a \textit{discrete random variable}.
+\end{eg}
+\begin{eg}
+	Pick a student. Let the random variable $Y=$ height of the students in cm. Then, $Y$ is an example of a \textit{continuous random variable}. Continuous random variables can take on an interval of values. 	
+\end{eg}
+\begin{nota}
+	$X$ is a random variable and has a distribution (it is still abstract and unrealized). $x$ is a number and a realized random variable $X$.
+\end{nota}
+\begin{df}{Discrete Random Variable}
+	A \textit{discrete random variable} is a random variable whose range is finite of countable. 	
+\end{df}
+\begin{df}{Probability Density (Mass) Function / pdf}
+	\[P_X(x)=P(X=x)=P\qty(\qty{s\in S\mid X(s)=x}).\]
+\end{df}
+\begin{df}{Cumulative Density Function / cdf}
+	\[F_X(x)=P(X\leq x).\]	
+\end{df}
+\begin{rmk}CDFs and PDFs can be represented by functions, graphs, or tables. \end{rmk}
+\begin{eg}
+	Roll three fair die. Let $X$ be the largest value of the three die. Find the pdf.
+	\begin{sol}
+		Note the pdf \[P_X(x)=P(X=x)=P(X\leq x)-P(X\leq x-1).\] Find the cdf of $x$. The die that take on at most the value $x$, so each die have $x$ possible outcomes, and considering order, we know \[F_X(x)=\dfrac{x^3}{6^3}.\] Therefore, \[P_X(x)=P(X\leq x)-P(X\leq x-1)=F_X(x)-F_X(x-1)=\dfrac{x^3}{6^3}-\dfrac{(x-1)^3}{6^3}.\]
+	\end{sol}
+\end{eg}
+\begin{df}{Bernoulli Distribution}
+	The \textit{Bernoulli distribution} is the classic ``flip one coin,'' where $X$ is the number of heads. Let $X\sim\text{Bernoulli}(p)$, where $p$ stands for the probability of success. $x=1$ for success and $x=0$ for failure. The pdf of Bernoulli distribution is \[P_X(x)=p^x\qty(1-p)^{1-x}\] So, \[P_X(1)=p;\qquad P_X(0)=(1-p).\]
+\end{df}
+\begin{df}{Binomial Distribution}
+	The \textit{binomial distribution} is adding Bernoulli trials together. Let $Y=X_1+\cdots+X_n$ be the number  of success with $X\sim\text{Bernoulli}(p)$ and $Y\sim\text{Binomial}(n,p)$. $n$ is the number of trials and $p$ is the probability of success. The pdf of binomial distribution is \[P_Y(y)=\binom{n}{y}p^y\qty(1-p)^y.\]
+\end{df}
+\begin{df}{Hypergeometric Distribution}
+	Suppose we have a bag of red ($r$)	 and white ($w$) chips and $r+w=N$. Let $X=$ the number of red chips when choosing $n$ chips \textit{without replacement}. Then, $X\sim\text{Hypergeometric}(r,w,n)$, and the pdf is given by \[P_X(x)=P(X=x)=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{r+w}{n}},\] where $\dsst\binom{r}{x}$ is the number of ways to get $x$ red, $\dsst\binom{w}{n-x}$ is the number of ways to get $n-x$ white, and $\dsst\binom{r+w}{n}$ is the total number of picking a size of $x$.
+\end{df}
+\begin{rmk}
+	If we choose sequence (ordered choose without replacement), we should get the exact same answer: $\perm[r]{x}$ is the number of ways the red chips can be selected in order, $\perm[w]{n-x}$ is the ways to choose the white chips, $\dsst\binom{n}{x}$ is the locations of the red chips, and $\perm[N]{n}$ is the orders of $n$ chips. Then, 
+	\begin{align*}
+		P_X(x)=P(X=x)=\dfrac{\qty(\perm[r]{x})\cdot\qty(\perm[w]{n-x})\cdot\dsst\binom{n}{x}}{\perm[N]{n}}&=\dfrac{\dfrac{r!}{(r-x)!}\cdot\dfrac{w!}{(w-(n-x))!}\cdot\dfrac{n!}{(n-x)!x!}}{\dfrac{N!}{(N-n)!}}\\
+		&=\dfrac{\dfrac{r!}{(r-x)!x!}\cdot\dfrac{w!}{(w-(n-x))!(n-x)!}}{\dfrac{N!}{(N-n)!n!}}\\&=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{N}{n}}.
+	\end{align*}
+\end{rmk}
+
 
 \end{document}
