@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia, tcolorbox}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, tcolorbox}
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -49,17 +49,19 @@
 \newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
 
+
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
 
-\newtheorem*{hint}{Hint.}
-\newtheorem*{rmk}{Remark.}
-\newtheorem*{ext}{Extension.}
+\newtheorem{hint}{Hint.}[section]
+\newtheorem{rmk}{Remark.}[section]
+\newtheorem{ext}{Extension.}[section]
+\newtheorem{clm}{Claim.}[section]
 
-\linespread{1.25}
+\linespread{1.15}
 
 \title{\textbf{Emory University\\\textbf{MATH 315 Numerical Analysis}\\ Learning Notes}}
 \author{Jiuru Lyu}
@@ -80,6 +82,10 @@
 \def\A{\vb A}
 \def\dsst{\displaystyle}
 \def\bigO{\mathcal{O}}
+\def\pqed{\quad\square}
+\def\st{\emph{\ s.t.\ }}
+\def\hat{\widehat}
+\def\tilde{\widetilde}
 
 \begin{document}
 \maketitle
@@ -435,9 +441,9 @@ b(p) = b(k);
 \begin{df}{Vector Norms}
 	A vector norm is a function $\|\cdot\|:\R^n\to\R$ that satisfies
 	\begin{itemize}
-		\item $\|x\|\geq0\quad\forall x\in\R^n$ and $\|x\|=0$ if and only if $x=0$.
-		\item $\|cx\|=\qty|c|\|x\|\quad\forall x\in\R^n$ and $c\in\R$.
-		\item Triangular inequality: $\|x+y\|\leq\|x\|+\|y\|\quad\forall x,y\in\R^n$.
+		\item \textbf{Positive Definiteness}: $\|x\|\geq0\quad\forall x\in\R^n$ and $\|x\|=0$ if and only if $x=0$.
+		\item \textbf{Positive Homogeneity}: $\|cx\|=\qty|c|\|x\|\quad\forall x\in\R^n$ and $c\in\R$.
+		\item \textbf{Triangular Inequality}: $\|x+y\|\leq\|x\|+\|y\|\quad\forall x,y\in\R^n$.
 	\end{itemize}	
 \end{df}
 \begin{df}{Common Definitions of Norm}
@@ -447,6 +453,53 @@ b(p) = b(k);
 		\item Infinity Norm: $\|x\|_\infty=\dsst\max_{i=1,\dots,n}\qty|x_i|$.
 	\end{itemize}	
 \end{df}
+\begin{prf}
+	In this prove, we want to show the $1-$norm is a proper norm.
+	\begin{itemize}
+		\item \textbf{Positive Definiteness}: Note that $\|x\|_1=\qty|x_1++\cdots+\qty|x_n|\geq0$ since each $\qty|x_j|\geq0$. If one $x_i\neq0$, $\qty|x_i|\geq0$, then $\|x\|_1>0$. So, if $\|x\|_1=0$, it must be $x=0$. $\pqed$
+		\item \textbf{Positive Homogeneity}: \begin{align*}\|cx\|_1&=\qty|cx_1|+\qty|cx_2|+\cdots+\qty|cx_n|\\&=\qty|c|\qty|x_1|+\qty|c|\qty|x_2|+\cdots+\qty|c|\qty|x_n|\\&=\qty|c|\qty(\qty|x_1|+\qty|x_2|+\cdots+\qty|x_n|)\\&=\qty|c|\|x\|_1.\pqed\end{align*}
+		\item \textbf{Triangle Inequality}: \begin{align*}\|x+y\|_1&=\qty|x_1+y_1|+\qty|x_2+y_2|+\cdots+\qty|x_n+y_n|\\&\leq\qty|x_1|+\qty|y_1|+\qty|x_2|+\qty|y_2|+\cdots+\qty|x_n|+\qty|y_n|\\&=\qty(\qty|x_1|+\qty|x_2|+\cdots+\qty|x_n|)+\qty(\qty|y_1|+\qty|y_2|+\cdots+\qty|y_n|)\\&=\|x\|_1+\|y\|_1.\end{align*}
+	\end{itemize}	
+\end{prf}
+\begin{df}{Matrix Norm}
+	A matrix norm is a function $\|\cdot\|:\R^{n\times n}\to\R\st$
+	\begin{itemize}
+		\item \textbf{Positive Definiteness}: $\|\A\|\geq0$ and $\|\A\|=0$ if and only if $\A=0$.
+		\item \textbf{Positive Homogeneity}: $\|c\A\|=\qty|c|\|\A\|$.
+		\item \textbf{Triangle Inequality}: $\|\A+\vb{B}\|\leq\|\A\|+\|\vb{B}\|$.
+	\end{itemize}	
+\end{df}
+\begin{df}{Some Matrix Norms}
+	\begin{enumerate}
+		\item \textbf{Frobenius Norm}: \[\|\A\|_F=\sqrt{\sum_{j=1}^n\sum_{i=1}^na_{ij}^2}.\]
+		\item \textbf{Induced Matrix Norm}: Let $\A\in\R^{n\times n}$, $x\in\R^{n\times1}$, and $p=1,2,\infty,\cdots$, then \[\|\A\|_p=\max_{x\neq0}\dfrac{\|\A x\|_p}{\|x\|_p}=\max_{\|x\|_p=1}\|\A x\|_p.\]
+	\end{enumerate}	
+\end{df}
+\begin{rmk}Induced norm intuition: how much does $\|x\|_p$ change when we apply $\A$?\end{rmk}
+\begin{thm}{Induced Matrix Norms with different $p$'s}
+	\begin{itemize}
+		\item $\|\A\|_2=\sigma_1$, the largest singular value. That is, if $\A=\vb U\vb\Sigma\vb V^T$, then $\|\A\|_2$ is the largest entry in $\vb\Sigma$.
+		\item $\dsst\|\A\|_1=\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|$, the maximum column sum.
+		\item $\dsst\|\A\|_\infty=\max_{i=1,\dots,n}\sum_{j=1}^n\qty|a_{ij}|$, the maximum row sum. 
+	\end{itemize}	
+\end{thm}
+\begin{prf}
+	Let's show that $\|\A\|_1$ is the maximum column sum. We will (1) show $\|\A\|_1\leq$ the maximum column sum, and (2) find one case when we attain the upper bound. Given $\|x\|_1=1$, then \begin{align*}\|\A x\|_1=\sum_{i=1}^n\qty|\underbrace{\sum_{j=1}^n a_{ij}x_{i}}_{i-\text{th entry of}\A x}|&\leq\sum_{i=1}^n\sum_{j=1}^n\qty|a_{ij}|\qty|x_i|\\&=\sum_{j=1}^n\qty|x_j|\qty(\sum_{i=1}^n\qty|a_{ij}|)\\&\leq\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|,\text{ when }x\text{ has exactly 1}\text{ entry equal to }1.\end{align*} When $x=e_{j^*}$ be a standard basis vector with $1$ in $j^*$ position, where $j^*$ is the column of $\A$ with maximum column sum, we have \[\|\A e_{j^*}\|_1=\|j-\text{th column of }\A\|_1=\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|.\]	
+\end{prf}
+\begin{eg}{}
+	Given that $\A=\mqty[-1&2\\-12&9]$, find $\|\A\|_1$ and $\|\A\|_\infty$.
+	\[\|\A\|_1=\text{maximum column sum}=\max_{j=1,\dots,n}\|\A(:.j)\|_1=13.\]
+	\[\|\A\|_\infty=\text{maximum row sum}=21.\]
+\end{eg}
+\begin{thm}{Submultiplicativity of Induced Norm}
+	\[\|\A x\|_p\leq\|\A\|_p\|x\|_p.\]
+\end{thm}
+\begin{prf}
+	By definition, we know $\dsst\|\A\|_p=\max_{x\neq0}\dfrac{\|\A x\|_p}{\|x\|_p}$. Then, \begin{align*}\|\A\|_p&\geq\dfrac{\|\A x\|_p}{\|x\|_p}\\\|\A x\|_p&\leq\|\A\|_p\|x\|_p.\end{align*}	
+\end{prf}
+\begin{cor}{}
+	$\|\A\vb B\|_p\leq\|\A\|_p\|\vb B\|_p.$	
+\end{cor}
 \begin{df}{Measuring Erros}
 	Suppose $x$ is the true solution, and $\hat{x}$ is the approximate solution. Then \begin{align*}\textit{Error}&=\|\hat{x}-x\|\\\textit{Relative Error}&=\dfrac{\|\hat{x}-x\|}{\|x\|},\quad x\neq0.\end{align*}	
 	\begin{rmk}In practice, we do not know $x$, the true solution. So this measurement cannot be used.\end{rmk}
@@ -455,6 +508,71 @@ b(p) = b(k);
 	We know $\vb A$, $b$, $\hat{x}$, and we want to solve $\vb Ax=b$. So, the \begin{align*}\textit{Residual}&=\A\hat{x}-b\\\textit{Residual Norm}&=\|\A\hat{x}-b\|\\\textit{Relative Residual Norm}&=\dfrac{\|\A\hat{x}-b\|}{\|b\|}\end{align*}
 	
 \end{df}
+\begin{eg}{}
+	Let $\A=\mqty[0.835&0.667\\0.333&0.266], b=\mqty[0.168\\0.067].$ Let $x=\mqty[1\\-1]$ be the exact solution to the system $\A x=b$ and $\hat{x}=\mqty[267\\-334]$, a bad computation of the solution. Then, \begin{align*}\dfrac{\|b-\A\hat{x}\|_2}{\|x\|_2}&\approx0.006\\\dfrac{\|x-\hat{x}\|_2}{\|x\|_2}&\approx\bigO(10^2)\end{align*}	
+	\begin{rmk}	The residual norm is not always a good estimate of the relative error.\end{rmk}
+\end{eg}
+\begin{df}{Ill-Conditioned, Well-Conditioned}
+	If the system is linearly dependent, we call the system \textit{ill-conditioned}. If the system is linearly independent, we call it \textit{well-conditioned}.	
+\end{df}
+\begin{df}{Condition Numbers}
+	The condition number of $\A$ is $\kappa\qty(\A)=\|\A\|\|\A^{-1}\|$. Note that $\kappa(\A)\geq1$ and $\kappa(\vb I)=1$. If $\kappa(\A)$ is large, then $\A$ is ill-conditioned. If $\kappa(\A)$ is close to $1$, then $\A$ is well-conditioned. 	
+\end{df}
+\begin{rmk}
+	Some intuition on $\kappa(\A)$: 
+	\begin{itemize}
+		\item $\|\A\|$: how much $\A$ moves $x$: $\A x=b$.
+		\item $\|\A^{-1}\|$: how much $\A^{-1}$ moves $b$: $x=\A^{-1}b$.
+	\end{itemize}
+	So, if $\kappa(\A)=\|\A\|\|\A^{-1}\|$ is close to $1$, the moves balance each other. If $\kappa(\A)$ is large, then we move the vectors a lot. 
+\end{rmk}
+\begin{thm}{Upper Bound for Relative Error}
+	\[\underbrace{\dfrac{\|x-\hat{x}\|}{\|x\|}}_\text{Relative Error}\leq\kappa(\A)\cdot\underbrace{\dfrac{\|b-\A\hat{x}\|}{\|b\|}}_\text{Relative Residual}=\|\A\|\|\A^{-1}\|\dfrac{\|b-\A\hat{x}\|}{\|b\|}.\]	
+\end{thm}
+\begin{prf}
+	We want to use residual norm to compare $\|x-\hat{x}\|$ and $\|x\|$. Suppose $x$ is the true solution: $b=\A x$. Then, \[\|b\|=\|\A x\|\leq\|\A\|\|x\|.\] So, \begin{equation}\label{eq2}\dfrac{1}{\|x\|}\leq\dfrac{\|\A\|}{\|b\|}\end{equation} Consider the residual: $r=b-\A\hat{x}=\A x-\A\hat{x}=\A\qty(x-\hat{x}).$ So, $x-\hat{x}=\A^{-1}r$. Therefore, \begin{equation}\label{eq3}\|x-\hat{x}\|=\|\A^{-1}r\|\leq\|\A^{-1}\|\|r\|\end{equation} Putting Eq. (\ref{eq2}) and Eq. (\ref{eq3}) together, we have \[\|x-\hat{x}\|\cdot\dfrac{1}{\|x\|}\leq\|\A^{-1}\|\|r\|\cdot\dfrac{\|\A\|}{\|b\|}\] Re-arrange the inequality, we have \[\dfrac{\|x-\hat{x}\|}{\|x\|}\leq\|\A\|\|\A^{-1}\|\dfrac{\|b-\A\hat{x}\|}{\|b\|}.\]
+\end{prf}
+\begin{rmk}
+	Since norms measure how far two things are apart from each other, $\|x-\hat{x}\|=\|\hat{x}-x\|$ and $\|b-\A\hat{x}\|=\|\A\hat{x}-b\|$.
+\end{rmk}
+\begin{cor}{}
+	If $\kappa(\A)\approx1$, then a small residual implies that $\hat{x}$ is a good approximation to the true solution $x$. If $\kappa(\A)$ is large, then we still don't know if $\hat{x}$ is a good approximation to the true solution. 
+\end{cor}
+\begin{eg}{}
+	Given $\A_1=\mqty[1&10\\0&1]$ and $\A_2=\mqty[1&10^6\\0&1]$. Which matrix will have a better approximation to the true solution? 
+	\begin{sol}
+		\[\kappa_1(\A_1)=\|\A_1\|_1\|\A^{-1}_1\|_1.\] Since $\det(\A_1)=1-0=1,$ we know $\A_1^{-1}=\dfrac{1}{\det(\A_1)}\mqty[1&-10\\0&1]=\mqty[1&-10\\0&1].$ So, \[\kappa_1(\A_1)=\|\A_1\|_1\|\A^{-1}_1\|_1=(11)(11)=121.\] Similarly, \[\kappa_2(\A_2)=\|\A_2\|_1\|\A_2^{-1}\|_1=\qty(1+10^6)\qty(1+10^6)=\bigO(10^12).\] Since $\kappa_2(\A_2)\gg\kappa_1(\A_1)$, $\A_1$ will yield a more accurate approximation.
+	\end{sol}
+	\begin{rmk}
+		Think $\kappa(\A)$ as an indicator for how much movement of $x$ will there be if we apply $\A$ on $x$.	
+	\end{rmk}
+\end{eg}
+\begin{clm}
+	Conditioning is inherent to the problem. So, no algorithms can improve conditioning.
+\end{clm}
+\begin{df}{Algorithm Stability/Backward Stability}
+	When we solve $\A x=b$, we will have some algorithm $\hat{x}=\text{algorithm}(\A,b)$. Imagine we run the algorithm in reverse (backwards). We should obtain $\hat{\A}$ and $\hat{b}\st\hat{\A}\hat{x}=\hat{b}$ in exact arithmetic. An algorithm is \textit{backward stable} if $\|\A-\hat{\A}\|$ and $\|b-\hat{b}\|$ are small.	
+\end{df}
+\begin{rmk}
+	Algorithm stability has nothing to do with conditioning.	
+\end{rmk}
+\begin{eg}{}
+	Given $\A=\mqty[\alpha&1\\1&2]$. We know that solving $\A x=b$ using Gaussian Elimination without pivoting, we could get a solution far from true. So, Gaussian Elimination without pivoting is not backward stable. In contrast, GEPP is a backward stable algorithm. 
+\end{eg}
+\begin{eg}{Is Multiplication Backward Stable?}
+	Define \[x\otimes y=\float(\float(x)\times\float(y))\] on a computer with $3$ significant digits. Suppose $x=\dfrac{1}{3}$ and $y=\dfrac{1}{2}$. Then, \[x\otimes y=\float((0.333)(0.500)=0.167;\quad\epsilon_\text{WP}=1.01-1.00=10^{-2}\] Take $\hat{x}=0.334$ and $\hat{y}=0.500$, we get $\hat{x}\hat{y}=0.167$. Since $\|x-\hat{x}\|\approx0.001\leq\dfrac{1}{2}\epsilon_\text{WP}$, we say multiplication is backward stable. Similarly, we could show all floating point operations are backward stable, in fact. 
+\end{eg}
+\begin{eg}{}
+	Prove that $\|\vb Qx\|_2=\|x\|_2$ for any $x\in\R^{n}$ if $\vb Q$ is orthogonal. 
+	\begin{prf}
+		Since $\vb Q$ is orthogonal, $\vb Q^T\vb Q=\vb Q\vb Q^T=\vb I$. Note that the $2-$norm: \[\|x\|_2^2=x_1^2+x_2^2+\cdots+x_n^2=x^Tx.\] Then, \[\|\vb Qx\|_2^2=\qty(\vb Qx)^T\qty(\vb Qx)=x^T\vb Q^T\vb Qx=x^Tx=\|x\|_2^2.\] So, \[\|\vb Qx\|_2=\|x\|_2.\]
+	\end{prf}
+	\begin{ext} What is $\|\vb Q\|_2$? What is $\kappa(\vb Q)$?	\end{ext}
+	\begin{sol}
+		\[\|\vb Q\|_2=\max_{\|x\|_2=1}\dfrac{\|\vb Qx\|_2}{\|x\|_2}=\max_{\|x\|_2=1}\dfrac{\|x\|_2}{\|x\|_2}=\max_{\|x\|_2=1}1=1.\]
+		\[\kappa(\vb Q)=\|\vb Q\|_2\|\vb Q^{-1}\|_2=\|\vb Q\|_2\|\vb Q^T\|_2=1\cdot1=1.\]
+	\end{sol}
+\end{eg}
 
 
 \end{document}
