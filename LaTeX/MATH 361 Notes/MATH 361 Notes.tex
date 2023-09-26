@@ -494,6 +494,41 @@
 		&=\dfrac{\dfrac{r!}{(r-x)!x!}\cdot\dfrac{w!}{(w-(n-x))!(n-x)!}}{\dfrac{N!}{(N-n)!n!}}\\&=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{N}{n}}.
 	\end{align*}
 \end{rmk}
+\subsection{Continuous Random Variables}
+\begin{df}{Random Variable}
+	A \textit{random variable} is an outcome of an experiment mapped to a number: $X:S\to\R$. We are most interested describing the probability associated with different values 	of $X$. 
+\end{df}
+\begin{eg}
+	In a chemistry experiment that depends on temperature. Let $Y=$ the temperature measured for experiment, then the unit of temperature will/may lead to different ``looking'' results.  	
+\end{eg}
+\begin{df}{Continuous Random Variables}
+	A \textit{continuous random variable} is a function from a sample space $S$ to the real numbers $\st$ for any values $a,b$ with $a<b$, there exists a function $f_Y(y)\st$\[P(a<Y<b)=\int_a^bf_Y(y)\ \d{y},\] where $f_Y(y)$ is called the \textit{pdf (probability density function)}, and (1) $f_Y(y)\geq0\quad\forall y\in\R$; (2) $\dsst\int_{-\infty}^\infty f_Y(y)\ \d{y}=1.$ Meanwhile, the \textit{cdf (cumulative distribution function)} is defined as \[P(Y\leq y)=F_Y(y)=\int_{-\infty}^y f_Y(t)\ \d{t}.\] The \textit{q-th quantile} $c$ can be defined as $F(c)=q\quad\forall q\in(0,1)$.
+\end{df}
+\begin{rmk}
+	The probability for $a<Y<b$	can be regarded as the area under $f_Y(y)$ over the interval $(a,b)$. Therefore, $P(Y=a)=0$.
+\end{rmk}
+\begin{df}{Uniform Distribution}
+	Suppose $Y$ is a continuous random variable, and $Y\sim\text{Uniform}(a,b)$, then \[f_Y(y)=\begin{cases}\dfrac{1}{b-a}&y\in[a,b];\\0&\text{otherwise}.\end{cases}\]
+\end{df}
+\begin{rmk} $Y$ is continuous does not imply $f_Y(y)$ is also continuous.\end{rmk}
+\begin{df}{Exponential Distribution}
+	Suppose $Y$ is a continuous random variable, and $Y\sim\text{Exponential}(\lambda)$ with $\lambda>0$ is defined as \[f_Y(y)=\lambda e^{-\lambda y},\quad y\geq0.\]	
+\end{df}
+\begin{thm}{Fundamental Theorem of Calculus}
+	\begin{itemize}
+		\item $\dsst\dv{x}\int_a^x f(t)\ \d{t}=F(x)$; and
+		\item $\dsst\int_a^b f(x)\ \d{x}=F(b)-F(a)\st\dv{x}F(x)=f(x)$.
+	\end{itemize}	
+\end{thm}
+\begin{eg}
+	The Temperature Example - Cont'd.\par 
+	Let $X=$ temperature in $^\circ$F and $Y=$ temperature in $^\circ$C. Given $f_X(x)$, $F_X(x)$, and $Y=\dsst\dfrac{5}{9}(X-32)$. Use the cdf$\to$pdf method to find $f_Y(y)$.
+	\begin{sol}
+		\begin{align*}F_Y(y)=P(Y\leq y)&=P\qty(Y=\dfrac{5}{9}(X-32)\leq y)\\&=P\qty(X\leq\dfrac{9}{5}y+32)\\&=F_X\qty(\dfrac{9}{5}y+32).\end{align*}
+		The derivative of cdf gives pdf: 
+		\begin{align*}f_Y(y)=\dv{y}F_Y(y)&=\dv{y}F_X\qty(\dfrac{9}{5}y+32)\\&=f_X\qty(\dfrac{9}{5}y+32)\dv{y}\qty(\dfrac{9}{5}y+32)&\qty\Big[Chain\ Rule]\\&=\dfrac{9}{5}f_X\qty(\dfrac{9}{5}+32).\end{align*}
+	\end{sol}
+\end{eg}
 
 
 \end{document}
