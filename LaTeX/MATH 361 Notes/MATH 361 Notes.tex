@@ -64,7 +64,6 @@
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\Q{\mathbb{Q}}
-\def\E{\mathbb{E}}
 \def\N{\mathbb{N}}
 \def\d{\mathrm{d}}
 \def\i{\mathrm{i}}
@@ -529,6 +528,37 @@
 		\begin{align*}f_Y(y)=\dv{y}F_Y(y)&=\dv{y}F_X\qty(\dfrac{9}{5}y+32)\\&=f_X\qty(\dfrac{9}{5}y+32)\dv{y}\qty(\dfrac{9}{5}y+32)&\qty\Big[Chain\ Rule]\\&=\dfrac{9}{5}f_X\qty(\dfrac{9}{5}+32).\end{align*}
 	\end{sol}
 \end{eg}
+
+\subsection{Expected Values and Variances}
+\begin{df}{Expected Values}
+	For discrete random variables, \[E(X)=\sum_{\text{all values of }x}xP_X(x)=\sum_{\text{all values of }x}xP(X=x).\] For continuous random variables, \[E(Y)=\int_{-\infty}^\infty yf(y)\ \d{y}\]
+\end{df}
+\begin{rmk}
+	$E(X)=\mu_X=\mu$ is the balancing point of the distribution, also known as the \textbf{first moment}. Another center of the distribution is the \textbf{median}, $m$, such that  \[P(X\geq m)=P(X<m)=\dfrac{1}{2}.\]
+\end{rmk}
+\begin{thm}{Properties of Expected Values}
+	\begin{itemize}
+		\item Let $Y=g(X)$. Then, \[E(Y)=E(g(X))=\begin{cases}\dsst\sum_{\text{all }x} g(x)P_X(x),\quad&\text{discrete}\\\\\dsst\int_{-\infty}^\infty g(x)f(x)\ \d{x},\quad&\text{continuous}\end{cases}\]
+		\item Special Case: $Y=aX+b$. \[E(Y)=E(aX+b)=aE(X)+b.\] This special case also indicates that $E(X)$ is linear. 
+	\end{itemize}	
+\end{thm}
+\begin{df}{Variance}
+	The width of a distribution can be described by the variance. The \textit{variance} is the \textit{second centered moment}: \[Var(X)=E\qty((X-\mu)^2)\] Another way to write variance is \[Var(X)=E\qty(X^2)-E(X)^2\]
+\end{df}
+\begin{thm}{Properties of Variance}
+	\begin{itemize}
+		\item Variance is not linear.
+		\item Variance is translation invariant: \[Var(X+b)=Var(X).\]
+	\end{itemize}	
+\end{thm}
+\begin{rmk}
+	Variance of a line: \[Var(aX+b)=a^2Var(X)\]	
+	\begin{prf}
+		\begin{align*}
+			Var(aX+b)&=E\qty((aX+b)^2)-E(aX+b)^2\\&=E\qty(a^2X^2+b^2+2abX)-\qty(aE(X)+b)^2\\&=a^2E\qty(X^2)+b^2+2abE(X)-a^2E(X)^2-b^2-2abE(X)\\&=a^2\qty(E\qty(X^2)-E(X)^2)\\&=a^2Var(X)
+		\end{align*}
+	\end{prf}
+\end{rmk}
 
 
 \end{document}
