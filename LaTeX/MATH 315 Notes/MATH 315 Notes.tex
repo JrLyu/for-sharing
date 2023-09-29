@@ -407,7 +407,7 @@ A([p,k],:) = A([k,p],:);
 b(p) = b(k);
 \end{lstlisting}
 \begin{thm}{Cost of GEPP}
-	At stage $k$, we only focus on rows $k$ through $n$ and columns $k$ through $n$. We have $(n-k)$ divisions for multipliers. For every multiplier we have $(n-k)$ multiplications, which are then used $(n-k)$ times to change each row. So, we have $(n-k)$ multiplications in total. Subtractions come with multiplications, so we also have $(n-k)(n-k)$ subtractions. 
+	At stage $k$, we only focus on rows $k$ through $n$ and columns $k$ through $n$. We have $(n-k)$ divisions for multipliers. For every multiplier we have $(n-k)$ multiplications, which are then used $(n-k)$ times to change each row. So, we have $(n-k)(n-k)$ multiplications in total. Subtractions come with multiplications, so we also have $(n-k)(n-k)$ subtractions. 
 \end{thm}
 \begin{thm}{Another Perspective on GEPP}
 	The process of GEPP can be written as matrix multiplication $\vb E\vb A$, where $\vb E$ is an elementary matrix and act on the rows of $\vb A$.	
@@ -484,7 +484,7 @@ b(p) = b(k);
 	\end{itemize}	
 \end{thm}
 \begin{prf}
-	Let's show that $\|\A\|_1$ is the maximum column sum. We will (1) show $\|\A\|_1\leq$ the maximum column sum, and (2) find one case when we attain the upper bound. Given $\|x\|_1=1$, then \begin{align*}\|\A x\|_1=\sum_{i=1}^n\qty|\underbrace{\sum_{j=1}^n a_{ij}x_{i}}_{i-\text{th entry of}\A x}|&\leq\sum_{i=1}^n\sum_{j=1}^n\qty|a_{ij}|\qty|x_i|\\&=\sum_{j=1}^n\qty|x_j|\qty(\sum_{i=1}^n\qty|a_{ij}|)\\&\leq\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|,\text{ when }x\text{ has exactly 1}\text{ entry equal to }1.\end{align*} When $x=e_{j^*}$ be a standard basis vector with $1$ in $j^*$ position, where $j^*$ is the column of $\A$ with maximum column sum, we have \[\|\A e_{j^*}\|_1=\|j-\text{th column of }\A\|_1=\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|.\]	
+	Let's show that $\|\A\|_1$ is the maximum column sum. We will (1) show $\|\A\|_1\leq$ the maximum column sum, and (2) find one case when we attain the upper bound. Given $\|x\|_1=1$, then \begin{align*}\|\A x\|_1=\sum_{i=1}^n\qty|\underbrace{\sum_{j=1}^n a_{ij}x_{j}}_{i-\text{th entry of}\A x}|&\leq\sum_{i=1}^n\sum_{j=1}^n\qty|a_{ij}|\qty|x_j|\\&=\sum_{j=1}^n\qty|x_j|\qty(\sum_{i=1}^n\qty|a_{ij}|)\\&\leq\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|,\text{ when }x\text{ has exactly 1}\text{ entry equal to }1.\end{align*} When $x=e_{j^*}$ be a standard basis vector with $1$ in $j^*$ position, where $j^*$ is the column of $\A$ with maximum column sum, we have \[\|\A e_{j^*}\|_1=\|j-\text{th column of }\A\|_1=\max_{j=1,\dots,n}\sum_{i=1}^n\qty|a_{ij}|.\]	
 \end{prf}
 \begin{eg}{}
 	Given that $\A=\mqty[-1&2\\-12&9]$, find $\|\A\|_1$ and $\|\A\|_\infty$.
