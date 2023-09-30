@@ -73,6 +73,7 @@
 \def\emptyset{\varemptyset}
 \def\dsst{\displaystyle}
 \def\pqde{\quad\square}
+\def\A{\vb A}
 
 \begin{document}
 \maketitle
@@ -357,6 +358,79 @@
 
 \newpage
 \section{Second Order ODEs}
+\subsection{Linear Algebra}
+\begin{df}{System of Linear Ordinary Differential Equations}
+	A \textit{system of ODEs} is in general given by \[\begin{cases}y_1'=f_1(t,y_1,y_2,\dots,y_n)\\y_2'=f_2(t,y_1,y_2,\dots,y_n)\\\vdots\\y_n'=f_n(t,y_1,y_2,\dots,y_n).\end{cases}\]	A system of ODEs is called \textit{linear} if it can be written in the following form \[y'=\A(t)y+f(t),\] where \[\A(t)=\mqty[a_{11}(t)&a_{12}(t)&\cdots&a_{1n}(t)\\a_{21}(t)&a_{22}(t)&\cdots&a_{2n}(t)\\\vdots&\vdots&\ddots&\vdots\\a_{n1}(t)&a_{n2}(t)&\cdots&a_{nn}(t)],\quad y=\mqty[y_1\\y_2\\\vdots\\y_n],\quad f(t)=\mqty[f_1(t)\\f_2(t)\\\vdots\\f_n(t)].\] The system can be \begin{itemize}
+		\item \textit{Homogeneous}, if $f(t)=\va 0$
+		\item \textit{Non-homogeneous}, if $f(t)\neq\va 0$
+	\end{itemize}
+\end{df}
+\begin{df}{Matrix Equality}
+	Suppose $\A$ and $\vb B$ are matrices of the same size. We say $\A=\vb B$ if $A_{ij}=b_{ij}$ for all $i$ and $j$. In other words, $\A=\vb B$ if they are equal componentwise.
+\end{df}
+\begin{df}{Null Matrix/Zero}
+	The symbol $\vb 0$ will be used to denote the matrix (or vector) each of whose elements is zero. 
+\end{df}
+\begin{df}{Transpose}
+	$\A^T$ is the \textit{transpose} of $\A$ and it is obtained by interchanging the rows and columns of $\A$. If $\A=\mqty[A_{ij}]$, then $\A^T=\mqty[A_{ji}].$
+\end{df}
+\begin{df}{Matrix Addition}
+	Suppose $\A$ and $\vb B$ are matrices of the same size. Then, $\A+\vb B=\mqty[a_{ij}+b_{ij}]$	for all $i$ and $j$.
+\end{df}
+\begin{df}{Product of a Matrix and a Scalar}
+	Suppose $\A\in\R^{m\times n}$ and $c\in\R$, then $c\A=\mqty[ca_{ij}]$.	
+\end{df}
+\begin{df}{Dot Product/Scalar Product}
+	Suppose $\vb x=\mqty[x_1\\x_2]\in\R^{2\times1}$ and $\vb y=\mqty[y_1\\y_2]\in\R^{2\times1}$. Then, the \textit{dot product} of $\vb x$ and $\vb y$ is defined to be \[\vb x\cdot\vb y=\mqty[x_1\\x_2]\cdot\mqty[y_1\\y_2]=\mqty[x_1&x_2]\mqty[y_1\\y_2]=\vb x^Ty=x_1y_1+x_2y_2.\]
+\end{df}
+\begin{df}{Matrix Product}
+	Suppose $\widetilde{\A}\in\R^{m\times n}$ and $\widetilde{\vb B}\in\R^{n\times p}$. Then, each $c_{ij}$ of $\widetilde{\vb C}\in\R^{m\times p}$ such that $\widetilde{\vb C}=\widetilde{\A}\widetilde{\vb B}$ is the dot product between row $i$ of $\A$ and column $j$ of $\vb B$. That is, \[c_{ij}=\sum_{i=1}^na_{ik}b_{kj}.\] 	
+\end{df}
+\begin{df}{Identity Matrix}
+	The $n\times n$ multiplicative identity is the \textit{identity matrix} \[\vb I=\mqty[1&0&\cdots&0\\0&1&\cdots&0\\\vdots&\vdots&\ddots&\vdots\\0&0&\cdots&1].\] From the definition of matrix multiplication, we have $\A\vb I=\vb I\A=\A$.
+\end{df}
+\begin{df}{Determinant}
+	Given a matrix $\A$, we can always find the \textit{determinant} of $\A$, which is a number associated to $\A$, denoted as $\det(\A)$ or $\qty|\A|$. Suppose $\A\in\R^{2\times2}$, then \[\det(\A)=\det\mqty[a_{11}&a_{12}\\a_{21}&a_{22}]=a_{11}a_{22}-a_{12}a_{21}.\]
+\end{df}
+\begin{df}{Inverse}
+	For $\A\in\R^{n\times n}$, if $\A$ is invertible, then $\exists\vb B\in\R^{n\times m}$ such that $\A\vb B=\vb I$. We denote $\vb B$ as $\A^{-1}$, the \textit{inverse} of $\A$.	
+\end{df}
+\begin{thm}{Determinant and Invertibility}
+	If $\det(\A)\neq0$, then the matrix $\A$ is nonsingular and invertible. Conversely, if $\det(\A)=0$, then the matrix is singular and not invertible. \par 
+	If $\det(\A)\neq0$, then the inverse is given by \[\A^{-1}=\dfrac{1}{\det(\A)}\mqty[a_{22}&-a_{12}\\-a_{21}&a_{11}].\]
+\end{thm}
+\begin{thm}{Determinants are Multiplicable}
+	\[\det(\A\vb B)=\det(\vb B\A)=\det(\A)\det(\vb B).\]	
+\end{thm}
+\begin{df}{Linear Systems of Algebraic Equations}
+	Given an $n\times n$ matrix $\A$, an $n\times1$ vector $b$, and a vector of unknowns $x$, $\A x=b$ is called \textit{linear system of equations}. If $b=0$, the system if called \textit{homogeneous}. If $b\neq0$, then the linear system is called \textit{non-homogenous}.
+\end{df}
+\begin{thm}{Singularity of Systems}
+	If the system is homogenous, it is nonsingular if it exists a unique solution (which is the null vector); it is singular if it has infinitely many solutions. \par 
+	If the system if non-homogenous, then it is nonsingular if it has a unique solution ($x=\A^{-1}b$), and it is singular if it has either infinitely many solutions or no solutions. 
+\end{thm}
+\begin{df}{Eigenvector, Eigenvalue, Eigenpairs}
+	Suppose that $\A$ is an $n\times n$ matrix. A nonzero vector $v$ that satisfies the equation \[\A v=\lambda v\] is called an \textit{eigenvector} of matrix $\A$. The scalar $\lambda$ is the \textit{eigenvalue} associated with this eigenvector. An \textit{eigenpair} is the pair $\qty{\lambda_i,v_i}$ with $i=1,\dots,n$.
+\end{df}
+\begin{thm}{Finding Eigenpairs}
+	To find an eigenpair $\qty{\lambda_i,v_i}$ with $i=1,\dots,n$, we need to find the roots of the characteristics polynomial of $\A$. That is, we need to solve the problem \[\det(\A-\lambda\vb I)=0.\] Once we have the eigenvalues, we need to solve the linear systems \[\qty(\A-\lambda_i\vb I)v_i=0\quad\text{with }i=1,\dots,n.\]
+\end{thm}
+\begin{prf}
+	\begin{align*}\A v=\lambda v\implies\A v-\lambda v&=0\\\qty(\A-\lambda\vb I)v&=0\end{align*} To solve this homogeneous linear system, we cannot have $v=0$ since $v$ is defined to be nonzero. Therefore, the system has infinite many solutions. That is, $\A-\lambda\vb I$ is singular, or $\det\qty(\A-\lambda\vb I)=0$.
+\end{prf}
+\begin{rmk} The matrix $\A-\lambda\vb I$ is singular, meaning the system has infinitely many solutions. Finding the eigenvector consists of identifying a direction (invariant under the action of $\A$) and choose a representative of it. \end{rmk}
+\begin{df}{Similar Matrices}
+	Two $n\times n$ matrices $\A$ and $\vb B$ are \textit{similar} if there exists an invertible matrix $\vb T$ such that \[\vb B=\vb T^{-1}\A\vb T\quad\text{and}\quad\A=\vb T\vb B\vb T^{-1}.\]
+\end{df}
+\begin{df}{Diagonalizable Matrix}
+	A matrix $\A$ is said to be \textit{diagonalizable} if it is similar to a diagonal matrix $\vb D$. In this case, the entries of the diagonal matrix $\vb D$ are the eigenvalues of $\vb A$.	
+\end{df}
+\begin{thm}{Characterization of Diagonalizablity}
+	A matrix is diagonalizable if and only if it has $n$ linearly independent eigenvectors. 
+\end{thm}
+\begin{prf}
+	Consider the eigenpairs $\qty{\lambda_i,v_i}$ with $i=1,\dots,n$ of an $n\times n$ matrix $\A$. Let $\vb V$ be the matrix of the $n$ linearly independent eigenvectors, namely $\vb V=\mqty[v_1&v_2&\dots&v_n]$, then \[\vb D=\vb V^{-1}\A\vb V.\]
+\end{prf}
 
 \newpage
 \section{System of ODEs}
