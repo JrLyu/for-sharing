@@ -36,11 +36,11 @@
 
 \newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
 
-\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
@@ -74,6 +74,7 @@
 \def\dsst{\displaystyle}
 \def\pqde{\quad\square}
 \def\A{\vb A}
+\def\Y{\vb Y}
 
 \begin{document}
 \maketitle
@@ -357,7 +358,7 @@
 \end{eg}
 
 \newpage
-\section{Second Order ODEs}
+\section{System of ODEs}
 \subsection{Linear Algebra}
 \begin{df}{System of Linear Ordinary Differential Equations}
 	A \textit{system of ODEs} is in general given by \[\begin{cases}y_1'=f_1(t,y_1,y_2,\dots,y_n)\\y_2'=f_2(t,y_1,y_2,\dots,y_n)\\\vdots\\y_n'=f_n(t,y_1,y_2,\dots,y_n).\end{cases}\]	A system of ODEs is called \textit{linear} if it can be written in the following form \[y'=\A(t)y+f(t),\] where \[\A(t)=\mqty[a_{11}(t)&a_{12}(t)&\cdots&a_{1n}(t)\\a_{21}(t)&a_{22}(t)&\cdots&a_{2n}(t)\\\vdots&\vdots&\ddots&\vdots\\a_{n1}(t)&a_{n2}(t)&\cdots&a_{nn}(t)],\quad y=\mqty[y_1\\y_2\\\vdots\\y_n],\quad f(t)=\mqty[f_1(t)\\f_2(t)\\\vdots\\f_n(t)].\] The system can be \begin{itemize}
@@ -432,6 +433,93 @@
 	Consider the eigenpairs $\qty{\lambda_i,v_i}$ with $i=1,\dots,n$ of an $n\times n$ matrix $\A$. Let $\vb V$ be the matrix of the $n$ linearly independent eigenvectors, namely $\vb V=\mqty[v_1&v_2&\dots&v_n]$, then \[\vb D=\vb V^{-1}\A\vb V.\]
 \end{prf}
 
+\subsection{Basic Theorems on System of ODEs}
+\begin{eg}
+	Solve the following system of ODEs: \[\begin{cases}y_1'=y_1-y_2\quad&\text{\ding{172}}\\y_2'=2y_2\quad&\text{\ding{173}}\end{cases}\]
+	\begin{sol}
+		From \ding{173}: $y_2'-2y_2=0$ is linear homogeneous ODE, so $y_2=c_2e^{2x}$. Substitute $y_2=c_2e^{2x}$ into \ding{172}: we have $y_1'-y_1=-c_2e^{2x}$. Using the method of integrating factor, we get \[y_1=c_1e^x-c_2e^{2x}.\] Therefore, \[y(x)=\mqty[c_1e^x-c_2e^{2x}\\c_2e^{2x}]=c_1\mqty[1\\0]e^{x}+c_2\mqty[-1\\1]e^{2x}.\]
+	\end{sol}
+\end{eg}
+\begin{cor}{Forms of Solutions}	
+	When solving systems, we are aiming to find solutions in the following form: \[y(t)=c_1x_1e^{\lambda_1 t}+c_2x_2e^{\lambda_2 t},\] where $c_1,c_2$ are constants, $x_1,x_2$ are eigenvectors, and $\lambda_1,\lambda_2$ are eigenvalues. 
+\end{cor}
+\begin{df}{Continuous}
+	A matrix is \textit{continuous} if and only if all its components are continuous.	
+\end{df}
+\begin{thm}{Basic theory of Linear Systems (Homogeneous)}
+	If $y'=\A(t)y$ with $\A(t)$ continuous on $(a,b)$, then $y=0$ is the trivial solution of the system. Any other solutions will be nontrivial. 	
+\end{thm}
+\begin{df}{Linear Combination of Solutions}
+	If $y_1,y_2$ are vector functions defined on $(a,b)$ and $c_1,c_2$ are parameters, then $c_1y_1+c_2y_2$ is a \textit{linear combination} of $y_1,y_2$.
+\end{df}
+\begin{thm}{Principle of superposition}
+	If $y_1,y_2$ are solutions of $y'=\A(t)y$ on $(a,b)$, then $c_1y_1+c_2y_2$ is also a solution of $y'=\A(t)y$ on $(a,b)$.	
+\end{thm}
+\begin{df}{Fundamental set of Solutions}
+	We say that the set $\qty{y_1,y_2}$ is a \textit{fundamental set of solutions} of $y'=\A(t)y$ on $(a,b)$ if every solution of $y'=\A(t)y$ on $(a,b)$ can be written as a linear combination of $y_1$ and $y_2$. In this case, $y(t)=c_1y_1+c_2y_2$ is a \textit{general solution} of the system on $(a,b)$.
+\end{df}
+\begin{df}{Linear Independence}
+	We say that $y_1,y_2$ are \textit{linearly independent} on $(a,b)$	if $c_1y_1+c_2y_2=0$ if and only if $c_1=c_2=0$.
+\end{df}
+\begin{thm}{Fundamental Set of Solutions and Linear Independence}
+	Suppose that $\A(t)$ is continuous on $(a,b)$. The set $\qty{y_1,y_2}$ is a fundamental set of solutions if $y_1$ and $y_2$ are linearly independent. 	
+\end{thm}
+\begin{df}{Fundamental Matrix and Wronskian}
+	Suppose $y_1$ and $y_2$ are solutions of $y'=\A(t)y$. Suppose the initial condition is $y(t_0)=y_0$, then the \textit{fundamental matrix} is \[\Y=\mqty[|&|\\y_1(t_0)&y_2(t_0)\\|&|]=\mqty[y_1^{(1)}(t_0)&y_2^{(1)}(t_0)\\\\y_1^{(2)}(t_0)&y_2^{(2)}(t_0)],\] and the \textit{Wronskian} of $y_1$ and $y_2$ is \[W\qty(\mqty[y_1&y_2])=\det\qty(\Y(t_0)).\]
+\end{df}
+\begin{rmk}{Intuitions of Fundamental Matrices and Wronskians}
+	\par Consider $c_1y_1+c_2y_2=0$ if and only if $c_1=c_2=0$ in vector form: \[c_1\mqty[y_1^{(1)}\\y_{1}^{(2)}]+c_2\mqty[y_2^{(1)}\\y_2^{(2)}]=0.\] Given initial condition: $y(t_0)=y_0$: \begin{align*}\mqty[y^{(1)}(t_0)\\y^{(2)}(t_0)]&=\mqty[y_0^{(1)}\\y_0^{(2)}]\\c_1\mqty[y_1^{(1)}(t_0)\\y_1^{(2)}(t_0)]+c_2\mqty[y_2^{(1)}(t_0)\\y_2^{(2)}(t_0)]&=\mqty[y_0^{(1)}\\y_0^{(2)}]\\\mqty[y_1^{(1)}(t_0)&y_2^{(1)}(t_0)\\y_1^{(2)}(t_0)&y_2^{(2)}(t_0)]\mqty[c_1\\c_2]&=\mqty[y_0^{(1)}\\y_0^{(2)}]\end{align*} To ensure we have a unique solution $\mqty[c_1\\c_2],$ we have that \[\Y(t_0)=\mqty[y_1^{(1)}(t_0)&y_2^{(1)}(t_0)\\y_1^{(2)}(t_0)&y_2^{(2)}(t_0)]\] should be nonsingular. That is, $\det(\Y(t_0))\neq0$.
+\end{rmk}
+\begin{df}{Matrix Differential Equations}
+	Let $\Y=\mqty[y_1&y_2]$. Then, \[\Y'=\mqty[y_1'&y_2']=\mqty[\A y_1&\A y_2]=\A\mqty[y_1&y_2]=\A\Y.\] The form $\Y'=\A\Y$ is called the \textit{matrix differential equations}.
+\end{df}
+\begin{eg}
+	Write the following system of equations in matrix form \[\begin{cases}y_1'=y_1-y_2\quad&\text{\ding{172}}\\y_2'=2y_2\quad&\text{\ding{173}}\end{cases}\]
+	\begin{sol}
+		\[y'=\mqty[y_1'\\y_2']=\mqty[1&-1\\0&2]\mqty[y_1\\y_2].\]
+	\end{sol}
+\end{eg}
+\begin{thm}{Existence and Uniqueness}
+	If $\A(t)$ and $f(t)$ are continuous on $(a,b)$, $t_0\in(a,b)$, and $k$ is an arbitrary vector, then the IVP of the system $\begin{cases}y'&=\A(t)y+f(t)\\y(t_0)&=k\end{cases}$ has a unique solution on $(a,b)$.
+\end{thm}
+\begin{eg}
+	Given the following system of ODEs \[\begin{cases}y_1'=y_1+2y_2+2e^{4t}\\y_2'=2y_1+y_2+e^{4t}.\end{cases}\] Write the system in the matrix form and conclude that every initial value problem will have a unique solution on $\R$. Then, verify that \[y=\dfrac{1}{5}\mqty[8\\7]e^{4t}+c_1\mqty[1\\1]e^{3t}+c_2\mqty[1\\-1]e^{-t}\] is a solution of the system for all values of $c_1$ and $c_2$.
+	\begin{sol}
+		\begin{equation}\label{eq5}y'(t)=\mqty[1&2\\2&1]y(t)+\mqty[2\\1]e^{4t}.\end{equation} Note that both $\A$ and $f$ are continuous on $\R$, so every IVP will have a unique solution. Now, consider the solution given. We want to show the solution satisfies Eq. (\ref{eq5}). \begin{align*}\text{LHS}=y'&=\dfrac{4}{5}\mqty[8\\7]e^{4t}+3c_1\mqty[1\\1]e^{3t}-c_2\mqty[1\\-1]e^{-t}\\&=\mqty[32/5e^{4t}+3c_1e^{3t}-c_2e^{-t}\\28/5e^{4t}+3c_1e^{3t}+c_2e^{-t}]\end{align*}\begin{align*}\text{RHS: }\quad y&=\dfrac{1}{5}\mqty[8\\7]e^{4t}+c_1\mqty[1\\1]e^{3t}+c_2\mqty[1\\-1]e^{-t}\\&=\mqty[8/5e^{4t}+c_1e^{3t}+c_2e^{-t}\\7/5e^{4t}+c_1e^{3t}-c_2e^{-t}]\\&\mqty[1&2\\2&1]\mqty[8/5e^{4t}+c_1e^{3t}+c_2e^{-t}\\7/5e^{4t}+c_1e^{3t}-c_2e^{-t}]+\mqty[2e^{4t}\\e^{4t}]\\=&\mqty[8/5e^{4t}+c_1e^{3t}+c_2e^{-t}+14/5e^{4t}+2c_1e^{3t}-2c_2e^{-t}+2e^{4t}\\16/5e^{4t}+2c_1e^{3t}+2c_2e^{-t}+7/5e^{4t}+c_1e^{3t}-c_2e^{-t}+e^{4t}]\\=&\mqty[32/5e^{4t}+3c_1e^{4t}-c_2e^{-t}\\28/5e^{4t}+3c_1e^{3t}+c_2e^{-t}]\end{align*} So, LHS $=$ RSH.
+	\end{sol}
+\end{eg}
+\begin{thm}{Solutions of a System, Fundamental Set of Solutions, Linear independency, and Wronskian}
+	Suppose the matrix $\A=\A(t)\in\R^{n\times n}$ is continuous on $(a,b)$; let $y_1,\dots,y_n$ be solutions of $y'=\A(t)y$ on $(a,b)$. Then, the following statements are equivalent: 
+	\begin{itemize}
+		\item The general solution of $y'=\A(t)y$ on $(a,b)$ is $y=c_1y_1+\cdots+c_ny_n$, where $c_1,\dots,c_n$ are arbitrary constants.
+		\item $\qty{y_1,\dots,y_n}$ is a fundamental set of solutions of $y'=\A(t)y$ on $(a,b)$.
+		\item $\qty{y_1,\dots,y_n}$ is linearly independent on $(a,b)$.
+		\item The Wronskian of $\qty{y_1,\dots,y_n}$ is nonzero at some point of $(a,b)$.
+		\item The Wronskian of $\qty{y_1,\dots,y_n}$ is nonzero at any point of $(a,b)$.
+	\end{itemize}
+	We call $\Y$ a fundamental matrix if any of the statement is true. 
+\end{thm}
+\begin{eg}
+	Given $\A=\mqty[-4&-3\\6&5]$, $y_1=\mqty[-e^{2t}\\2e^{2t}]$, and $y_2=\mqty[-e^{-t}\\e^{-t}]$. Compute the Wronskian of the solutions toward the system $y'=\A y$. Compute the general solution.
+	\begin{sol}
+		\[W\qty(\mqty[y_1&y_2])=\det\mqty[-e^{2t}&-e^{-t}\\2e^{2t}&e^{-t}]=-e^{2t}e^{-t}-\qty(-e^{-t})\qty(2e^{2t})=e^t\neq0\quad\forall t\in\R.\] Since $W\qty(\mqty[y_1&y_2])\neq0$, $y_1$ and $y_2$ are linear independent. Then, the general solution is \[y=c_1y_1+c_2y_2=c_1\mqty[-1\\2]e^{2t}+c_2\mqty[-1\\1]e^{-t}.\] 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the system $y'=\A y$, with $\A=\mqty[2&4\\4&2]$. find the general solution.
+	\begin{sol}
+		Solving the eigenvalue problem: $\det(\A-\lambda\vb I)=0\implies\lambda_1=-2$ and $\lambda_2=6$.\par When $\lambda_1=-2$, $x_1=\mqty[1\\-1]$; when $\lambda_2=6$, $x_2=\mqty[1\\1]$. So, \begin{align*}y_1&=x_1e^{\lambda_1t}=\mqty[1\\-1]e^{-2t}=\mqty[e^{-2t}\\-e^{-2t}]\\y_2&=x_2e^{\lambda_2t}=\mqty[1\\1]e^{6t}=\mqty[e^{6t}\\e^{6t}].\end{align*} \[W\qty(\mqty[y_1&y_2])=\det\mqty[e^{-2t}&e^{6t}\\-e^{-2t}&e^{6t}]=e^{-2t}\qty(e^{6t})-\qty(e^{6t})\qty(-e^{-2t})=2e^{4t}\neq0\quad\forall t\in\R.\] Then, $y_1$ and $y_2$ are linearly independent, and the general solution is \[y_1=c_1\mqty[1\\-1]e^{-2t}+c_2\mqty[1\\1]e^{6t}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Solve the following system of ODEs: \[y'=\mqty[-\frac{1}{2}&1\\0&-\frac{1}{2}]y.\]
+	\begin{sol}
+		\[\det(\A-\lambda\vb I)=\mqty|-\frac{1}{2}-\lambda&1\\0&-\frac{1}{2}-\lambda|=\qty(-\dfrac{1}{2}-\lambda)^2=0\implies \lambda_1=\lambda_2=-\dfrac{1}{2}.\] Here we have repeated eigenvalues, so we cannot solve the system via solving the eigenvalue problem. However, we are dealing with an upper-triangular system, which has nice properties when solving: \[\begin{cases}y^{(1)'}=-\frac{1}{2}y^{(1)}+y^{(2)}\quad&\text{\ding{172}}\\y^{(2)'}=-\frac{1}{2}y^{(2)}\quad&\text{\ding{173}}\end{cases}\] From \ding{173}, $y^{(2)}=c_2e^{-\frac{1}{2}t}$. So, $y^{(1)'}+\frac{1}{2}y^{(1)}=c_2e^{-\frac{1}{2}t}$. So, we have \[\begin{cases}y^{(1)}=c_1e^{-\frac{1}{2}t}+&c_2te^{-\frac{1}{2}t}\\y^{(2)}=&c_2e^{-\frac{1}{2}t}.\end{cases}\] So, the general solution is \[y=\underbrace{c_1\mqty[1\\0]e^{-\frac{1}{2}t}}_\text{from eigenvalue problem}+\underbrace{c_2\mqty[t\\1]e^{-\frac{1}{2}t}}_{\text{in the form }\qty(w+tx)e^{\lambda t}}.\]
+	\end{sol}
+\end{eg}
+
+
+
 \newpage
-\section{System of ODEs}
+\section{Second Order ODEs}
 \end{document}
