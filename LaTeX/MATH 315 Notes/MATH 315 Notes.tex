@@ -86,6 +86,7 @@
 \def\st{\emph{\ s.t.\ }}
 \def\hat{\widehat}
 \def\tilde{\widetilde}
+\def\l{\ell}
 
 \begin{document}
 \maketitle
@@ -620,8 +621,33 @@ b(p) = b(k);
 \begin{eg}{Power Series}
 	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.
 	\begin{sol}
-		
+		Suppose $p_2(x)=c_0+c_1x+c_2x^2$. Then, \begin{align*}(-1,0):\ p_2(-1)&=c_0+c_1(-1)+c_2(-1)^2=0\\(0,1):\ p_2(0)&=c_0+c_1(0)+c_2(0^2)=1\\(1,3):\ p_2(1)&=c_0+c_1(1)+c_2(1)^2=3.\end{align*} In matrix form: \[\mqty[1&-1&1\\1&0&0\\1&1&1]\mqty[c_0\\c_1\\c_2]=\mqty[0\\1\\3]\implies\mqty[c_0\\c_1\\c_2]=\mqty[1\\3/2\\1/2].\]
 	\end{sol}
+\end{eg}
+\begin{df}{Newton Form}
+	\[p_N(x)=b_0+b_1\qty(x-x_0)+b_2(x-x_0)(x-x_1)+\cdots+b_N(x-x_0)(x-x_1)\cdots(x-x_{N-1}).\]
+	\begin{itemize}
+		\item Pros: we are having a lower triangular system: 
+		\begin{align*}p_N(x_0)&=b_0\\p_N(x_1)&=b_0+b_1(x-x_0)\\p_N(x_2)&=b_0+b_1(x-x_0)+b_2(x-x_0)(x-x_1).\end{align*}
+	\end{itemize}
+\end{df}
+\begin{eg}{Newton Form}
+	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.
+	\begin{sol}
+		\begin{align*}p_N(x)&=b_0+b_1(x-(-1))+b_2(x-(-1))(x-0)\\p_N(-1)&=b_0\\p_N(0)&=b_0+b_1\\p_N(1)&=b_1+2b_1+2b_2\end{align*} In matrix form: \[\mqty[1&0&0\\1&1&0\\1&2&2]\mqty[b_0\\b_1\\b_2]=\mqty[0\\1\\3]\xrightarrow[\text{Substitution}]{\text{Forward}}\mqty[b_0\\b_1\\b_2]=\mqty[0\\1\\1/2].\]
+	\end{sol}
+\end{eg}
+\begin{df}{Lagrange Polynomials}
+	\begin{itemize}
+		\item Coefficient $=$ function values $f_i$. $\Longrightarrow$ we don't need to solve anything
+		\item \[\l(x):\begin{cases}1\quad\text{at }x=x_i\\0\quad\text{ at}x=x_j,\ j\neq i\end{cases}\] Now, we want to construct a polynomial that has roots at all the nodes: \[\omega(x)=(x-x_0)(x-x_1)\cdots(x-x_N).\] Then, if we assume we have distinct noes, we have \[\l_0(x)=\dfrac{(x-x_1)(x-x_2)\cdots(x-x_N)}{(x_0-x_1)(x_0-x_2)\cdots(x_0-x_N)}\] \[\l_3(x)=\dfrac{(x-x_0)(x-x_1)(x-x_2)(x-x_4)\cdots(x-x_N)}{(x_3-x_0)(x_3-x_1)(x_3-x_2)(x_3-x_4)\cdots(x_3-x_N)}\] Generalizing, we have \[\l_k(x)=\dfrac{(x-x_0)(x-x_1)\cdots(x-x_{k-1})(x-x_{k+1})\cdots(x-x_N)}{\text{numerator evaluated at }x=x_k}=\prod_{j=0,\ j\neq k}^N=\dfrac{x-x_j}{x_k-x_j}.\]
+		\item $\dsst p_N(x)=\sum_{i=0}^N f_i\cdot\l_i(x)$.
+		\item Pros: No solving. Great for theory.
+		\item Cons: constructing $\l_i(x)$ is tricky.
+	\end{itemize}
+\end{df}
+\begin{eg}{Lagrange Polynomials}
+	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.	
 \end{eg}
 
 

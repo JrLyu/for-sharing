@@ -4,7 +4,6 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
 \usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
-
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -561,6 +560,61 @@
 \end{rmk}
 
 \subsection{Joint Densities}
+\begin{df}{Joint pdf of $X,Y$}
+	\begin{itemize}
+		\item Discrete: $p_{X,Y}(k_1,k_2)=P(X=k_1,Y=k_2)$.
+		\item Continuous: $f_{X,Y}=P(X,Y\in R)=\dsst\iint_Rf_{x,Y}(x,y)\ \d{A}$.
+	\end{itemize}	
+\end{df}
+\begin{df}{Marginal pdf}
+	We can recover the single variable pdf from the joint pdf. This is called the \textit{marginal pdf}.
+	\begin{itemize}
+		\item Discrete: $p_X(x)=P(X=x, Y=\text{anything})$.
+		\item Continuous: $P(a\le X\le b)=\dsst\int_a^b\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{y}\d{x}$. $\implies f_X(x)=\dsst\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{y}$.
+	\end{itemize}	
+\end{df}
+\begin{thm}{Independence}
+	Two random variable $X,Y$ are \textit{independent} if 
+	\begin{itemize}
+		\item Discrete: $p_{X,Y}(x,y)=P(X=x,Y=y)=P(X=x)P(Y=y)=p_X(x)p_Y(y).$
+		\item Continuous: $f_{X,Y}(x,y)=f_X(x)f_Y(y)$.
+	\end{itemize}	
+\end{thm}
+\begin{prf}
+	We will prove the continuous case using the cdf $\to$ pdf method. If $X$ and $Y$ are independent, the events $X\in[a,b]$ and $Y\in[c,d]$ are independent $\forall a,b,c,d$. Then, \begin{align*}F_{X,Y}(x,y)=P(X\leq x, Y\leq y)&=\int_{-\infty}^x\int_{-\infty}^yf_{X,Y}(s,t)\ \d{t}\d{s}\\&=\int_{-\infty}^xf_X(s)\int_{-\infty}^y f_Y(t)\ \d{t}\d{s}&\qty\big[Independence]\end{align*}	So, \[f_{x,y}(x,y)=\pdv[2]{}{x}{y}F_{X,Y}(x,y)=f_X(x)f_Y(y)\qquad\qty\big[Fund.\ Thm.\ of\ Calculus]\]
+\end{prf}
+\begin{cor}{}
+	Independent random variables must have a rectangle domain. 
+	\begin{eg}
+		Given $X<0$, $Y<0$, there's a chance that they can be independent. However, given $0<X\leq Y\leq 1$, there is no chance that they will be independent. 
+	\end{eg}
+\end{cor}
+\begin{eg}
+	Suppose $X$ and $Y$ have the joint pdf \[f_{X,Y}(x,y)=2\quad 0<x\leq y\leq1\] Find the pdf of $Z=\dfrac{Y}{X}$.
+	\begin{sol}
+		\begin{center}
+			\tikzset{every picture/.style={line width=0.75pt}}
+			\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+			\draw  (53,190.65) -- (223.73,190.65)(70.07,68) -- (70.07,204.27) (216.73,185.65) -- (223.73,190.65) -- (216.73,195.65) (65.07,75) -- (70.07,68) -- (75.07,75)  ;
+			\draw    (169.73,81.27) -- (51.73,210.27) ;
+			\draw    (70.07,190.65) -- (123.73,55.27) ;
+			\draw    (69.73,111.27) -- (141.73,111.27) ;
+			\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.23 ] (101.66,111.39) -- (141.73,111.27) -- (70.1,190.3) -- cycle ;
+			\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.06 ] (142.19,111.27) -- (69.73,189.92) -- (69.73,111.27) -- cycle ;
+			\draw    (39.73,152) -- (137.73,152) ;
+			\draw [shift={(139.73,152)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+			\draw (171.73,84.67) node [anchor=north west][inner sep=0.75pt]    {$y=x$};
+			\draw (125.73,58.67) node [anchor=north west][inner sep=0.75pt]    {$y=zx$};
+			\draw (103,122.4) node [anchor=north west][inner sep=0.75pt]    {$R$};
+			\draw (138,151.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+			\draw (224,191.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+			\draw (53,68.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+			\end{tikzpicture}
+		\end{center}
+		\begin{align*}P_Z(z)=P(Z\leq z)=P\qty(\dfrac{Y}{X}\leq z)=P(Y\leq zX)&=\iint_R f_{X,Y}(x,y)\ \d{x}\d{y}\\&=\int_0^1\int_{y/z}^y2\ \d{x}\d{y}\\&=\int_0^12\qty(y-\dfrac{y}{z})\ \d{y}\\&=\int_0^12\qty(1-\dfrac{1}{z})y\ \d{y}\\&=2\cdot\qty(1-\dfrac{1}{z})\cdot\dfrac{1}{2}\mqty[y^2]_0^1\\&=1-\dfrac{1}{2}\end{align*} Therefore, \[f_Z(z)=\dv{z}F_Z(z)=\dv{z}\qty(1-\dfrac{1}{z})=z^{-2},\quad z>1.\]
+	\end{sol}
+\end{eg}
+
 
 
 \end{document}
