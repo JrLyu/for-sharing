@@ -648,8 +648,45 @@ b(p) = b(k);
 \end{df}
 \begin{eg}{Lagrange Polynomials}
 	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.	
+	\begin{sol}
+		\[\l_0(x)=\dfrac{(x-0)(x-1)}{(-1-0)(-1-1)};\quad\l_1(x)=\dfrac{(x-(-1))(x-1)}{(0-(-1))(0-1)};\quad\l_2(x)=\dfrac{(x-(-1))(x-0)}{(1-(-1))(1-0)}\] So, \[p_N(x)=f_0\l_0(x)+f_1\l_1(x)+f_2\l_2(x).\]
+	\end{sol}
+\end{eg}
+\begin{df}{Chebyshev Polynomial}
+	\begin{itemize}
+		\item Only works for domain $[-1,1]$, but easy to extend to $[a,b]$.
+		\item $T_j(x)=\cos(j\cdot\arccos(x)),\quad j=0,\dots,N$. Therefore, $T_0(x)=\cos(0\cdot\arccos(x))=1$ and $T_1=\cos(1\cdot\arccos(x))=x.$ By trigonometric identities, we can show \[T_{j+1}=2xT_j(x)-T_{j-1}(x).\]
+		\begin{rmk}Domain is limited to $[-1,1]$ because $\arccos(x)$ can only take $x\in[-1,1].$\end{rmk}
+		\item We solve for $d_0,\dots,d_N$, where \[p_N(x)=d_0T_0(x)+d_1T_1(x)+d_2T_2(x)+\cdots+d_NT_N(x)\]
+		\item Pros: Nice numerical properties due to oscillation.
+		\item Cons: Highly non-intuitive. 
+	\end{itemize}
+\end{df}
+\begin{eg}{Chebyshev Polynomial}
+	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.	
+	\begin{sol}
+		Assume $p_2(x)=d_0T_0+d_1T_1(x)+d_2T_2(x)$, where $T_0(x)=1$, $T_1(x)=x$, $T_2(x)=2x^2-1$. Then, \begin{align*}p_2(-1)&=d_0+d_1(-1)+d_2(1)\\p_2(0)&=d_0+d_1(0)+d_2(-1)\\p_2(1)&=d_0+d_!(1)+d_2(1)\end{align*} In matrix form, we have \[\mqty[1&-1&1\\1&0*-1\\1&1&1]\mqty[d_0\\d_1\\d_2]=\mqty[0\\1\\3]\implies\mqty[d_0\\d_1\\d_2]=\mqty[5/4\\3/2\\1/4]\]
+	\end{sol}
 \end{eg}
 
+\subsection{Error in Polynomial Interpolation}
+\begin{rmk} Set-up:
+	\begin{itemize}
+		\item $f(x)$, the unknown function
+		\item $\qty{(x_i,f_i)}_{i=0}^N$, data, where $f_i=f(x_i)$.
+		\item $p_N(x)$, degree $N$ interpolant
+		\item Our goal is to find $\mathrm{error}=f(x)-p_N(x)$. Note that at $x=x_i$, $f(x_i)-p_N(x_i)=0$ for $i=1,\dots,N$. So, $x_i$ are roots of $f(x_i)-p_N(x_i)$. Recall that $x_i$ are also roots of $\omega(x)=(x-x_0)(x-x_1)\cdots(x-x_N)$. We wonder if we can build a connection between them.
+	\end{itemize}	
+\end{rmk}
+\begin{thm}{}
+	$\exists\ \xi_x$, a point on $[a,b]$ depends on $x$ such that \[f(x)-p_N(x)=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x).\]
+\end{thm}
+\begin{eg}{}
+	Suppose $f(x)=x^2$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par  Then, \[f(x)-p_1(x)=x^2-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{LHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2!}(2)=x^2-x=\text{RHS}\]
+\end{eg}
+\begin{eg}{}
+	Suppose $f(x)=x^3$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par Then, \[f(x)-p_1(x)=x^2-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{RHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2}(6\xi_x)=x^2-x.\]\par Question: Can we find a $\xi_x$ where $\dfrac{x^2-x}{2}(6\xi_x)=x^2-x$.\par Answer: Say we want to evaluate error at $x=\dfrac{1}{2}$, we can certainly find some $\xi_x=\xi_\frac{1}{2}$ such that \[\qty(\dfrac{1}{2})^2-\qty(\dfrac{1}{2})=\dfrac{(1/2)^2-(1/2)}{2}(6\xi_x).\]
+\end{eg}
 
 
 \end{document}
