@@ -615,6 +615,93 @@
 	\end{sol}
 \end{eg}
 
+\subsection{Combining Independent Random Variables}
+\begin{rmk}
+	First check for dependencies of the domain: We need rectangular relationship between $X$ and $Y$. 	
+\end{rmk}
+\begin{thm}{Review}
+	\begin{itemize}
+		\item Joint cdf: $\dsst F_{X,Y}(x,y)=P(X\leq x, Y\leq y)=\int_{-\infty}^x\int_{-\infty}^yf_{X,Y}(s,t)\ \d{t}\d{s}$
+		\item If $Y=aX+b$, then \[f_Y(y)=\dfrac{1}{\qty|a|}f_X\qty(\dfrac{y-b}{a}).\]
+	\end{itemize}	
+\end{thm}
+\begin{thm}{Strategies for Finding New pdfs}
+	\begin{itemize}
+		\item Discrete pdf: compute the probability directly
+		\item Continuous pdf: use the cdf $\to$ pdf method.
+	\end{itemize}	
+\end{thm}
+\begin{eg}
+	Let $X\sim\text{Binomial}(n,p)$ and $Y\sim\text{Binomial}(m,p)$. Let $X$ and $Y$ be independent. Find the pdf for $W=X+Y$.
+	\begin{sol}
+		\[P_X(x)=\binom{n}{x}p^x(1-p)^{n-x};\quad P_Y(y)=\binom{m}{y}p^y(1-p)^{m-y}\]\begin{align*}P_W(w)=P(W=w)&=\sum_x\underbrace{P_X(x)P_Y(w-x)}_{\text{Joint pdf} P_{X,Y}(x,y),\ w=x+y}\\&=\sum_x\binom{n}{x}p^x(1-p)^{n-x}\binom{m}{w-x}p^{w-x}(1-p)^{m-(w-x)}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{x+w-x}(1-p)^{n-x+m-w+x}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{w}(1-p)^{n+m-w}\\&=p^w(1-p)^{n+m-w}\qty(\sum_x\binom{n}{x}\binom{m}{w-x})\\&=\binom{m+n}{w}p^w(1-p)^{n+m-w}\end{align*} So, $W=X+Y\sim\text{Binomial}(n+m,p)$
+	\end{sol}
+\end{eg}
+\begin{thm}{Sum of Continuous Independent Random Variable, $W=X+Y$}
+	\[f_W(w)=\int_{-\infty}^\infty f_X(x)f_Y(w-x)\ \d{x}\]	
+\end{thm}
+\begin{prf}
+	By independence, we have \begin{align*}F_W(w)&=P(W\leq w)\\&=P(X+Y\leq w)\\&=P(Y\leq w-X)\\&=\int_{-\infty}^\infty\int_{-\infty}^{w-x} f_X(x)f_Y(y)\ \d{y}\d{x}\end{align*} Then, by Fundamental Theorem of Calculus, we have \begin{align*}f_W(w)&=\dv{w}\int_{-\infty}^\infty\int_{-\infty}^{w-x}f_X(x)f_Y(y)\ \d{y}\d{x}\\&=\int_{-\infty}^\infty f_X(x)\dv{w}\int_{-\infty}^{w-x}f_Y(y)\ \d{y}\ \d{x}\\\text{convolution}&=\int_{-\infty}^\infty f_X(x)f_Y(w-x)(1)\ \d{x}\end{align*}
+\end{prf}
+\begin{thm}{Quotient of Continuous Independent Random Variables, $W=\dfrac{Y}{X}$}
+	\[f_W(w)=\int_{-\infty}^\infty\qty|x|f_X(x)f_Y(wx)\ \d{x};\quad \dv{w}(wx)=\qty|x|\]
+\end{thm}
+\begin{thm}{Product of Continuous Independent Random Variables, $W=XY$}
+	\[f_W(w)=\int_{-\infty}^\infty\dfrac{1}{\qty|x|}f_X(x)f_Y\qty(\dfrac{w}{x})\ \d{x},\quad x\neq0;\quad\dv{w}\qty(\dfrac{w}{x})=\dfrac{1}{\qty|x|}.\]	
+\end{thm}
+
+\subsection{Further Properties of Mean and Variance}
+\begin{lem}{}
+	Assume $X,Y$ are continuous random variable with joint pdf $f_{X,Y}(x,y)$ and let $g(X,Y)$ be a function of random variable $X,Y$, then \[E(g(X,Y))=\iint_{\R^2}g(x,y)f_{X,Y}(x,y)\ \d{x}\d{y}.\]	
+\end{lem}
+\begin{thm}{Linearity of Expected Values}
+	\[E(X+Y)=E(X)+E(Y)\]	
+\end{thm}
+\begin{prf}
+	Suppose $X$ and $Y$ are two continuous random variables, we want to examine the sum of their expected values. 
+	\begin{align*}
+		E(X+Y)&=\iint_{\R^2}(x+y)f_{X,Y}(x,y)\ \d{x}\d{y}\\&=\iint_{\R^2}\qty\big[xf_{X,Y}(x,y)+yf_{X,Y}(x,y)]\ \d{x}\d{y}\\&=\iint_{\R^2}xf_{X,Y}(x,y)\ \d{y}\d{x}+\iint_{\R^2}yf_{X,Y}(x,y)\ \d{x}\d{y}\\&=\int_{-\infty}^\infty x\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{y}\ \d{x}+int_{-\infty}^\infty y\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{x}\ \d{y}\\&=\int_{-\infty}^\infty xf_X(x)\ \d{x}+\int_{-\infty}^\infty yf_Y(x)\ \d{y}=E(X)+E(Y).
+	\end{align*}	
+\end{prf}
+\begin{prop}{}
+	We hope the expected value of a product to be $E(XY)=E(X)E(Y)$.
+\end{prop}
+\begin{dis}
+	Take an urn with two chips numbered $1$ and $2$. Draw $2$ chips without replacement. Let $X_1=$ the value on draw $1$ and $X_2=$ the value on draw $2$. \begin{align*}E(X_1)&=\sum_{i=1}^2iP(X=i)=1\qty(\dfrac{1}{2})+2\qty(\dfrac{1}{2})=\dfrac{3}{2}\\P(X_2=1)&=P(X_2=1\mid X_1=1)P(X_1=1)+P(X_2=1\mid X_1=2) P(X_1=2)=0+1\qty(\dfrac{1}{2})=\dfrac{1}{2}\\P(X_2=2)&=P(X_2=2\mid X_1=1)P(X_1=1)+P(X_2=2\mid X_1=2)P(X_1=2)=1\qty(\dfrac{1}{2})+0=\dfrac{1}{2}\\E(X_2)&=\sum_{i=1}^2iP(X=i)=1\qty(\dfrac{1}{2})+2\qty(\dfrac{1}{2})=\dfrac{3}{2}\end{align*}\[E(X_1)E(X_2)=\qty(\dfrac{3}{2})\qty(\dfrac{3}{2})=\dfrac{9}{4};\quad E(X_1X_2)=E(2)=2.\] Therefore, $E(X_1)E(X_2)\neq E(X_1X_2)$.
+\end{dis}
+\begin{thm}{Expected Value of a Product}
+	If $X,Y$ are independent, then \[E(XY)=E(X)E(Y).\]
+\end{thm}
+\begin{prf}
+	Suppose $X$ and $Y$ are independent. Then, \begin{align*}E(X,Y)&=\iint_{\R^2}xyf_{X,Y}(x,y)\ \d{x}\d{y}\\&=\iint_{\R^2}xyf_X(x)f_Y(y)\ \d{x}\d{y}&\quad Independence\\&=\qty(\int_{-\infty}^\infty xf_X(x)\ \d{x})\qty(\int_{-\infty}^\infty yf_Y(y)\ \d{y})=E(X)E(Y).\end{align*}	
+\end{prf}
+\begin{thm}{Variance of a Sum}
+	\[Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y),\] where \[Cov(X,Y)=E(XY)=E(X)E(Y).\] Specially, if $X$ and $Y$ are independent, \[Var(X+Y)=Var(X)+Var(Y),\] and \[Cov(X,Y)=0.\]
+\end{thm}
+\begin{prf}
+	Recall $Var(X)=E(X^2)-E(X)^2$. Then, \begin{align*}Var(X+Y)&=E\qty((X+Y)^2)-E(X+Y)^2\\&=E\qty(X^2+Y^2+2XY)-\qty[E(X)+E(Y)]^2\\&=E\qty(X^2)+E\qty(Y^2)+2E(XY)-E(X)^2-E(Y)^2-2E(X)E(Y)\\&=\qty[E\qty(X^2)-E(X)^2]+\qty[E\qty(Y^2)-E(Y)^2]+2\qty[E(XY)-E(X)E(Y)]\\&=Var(X)+Var(Y)+2\qty[E(XY)-E(X)E(Y)]\\&=Var(X)+Var(Y)+2Cov(X,Y)\end{align*} When $X$ and $Y$ are independent, $E(XY)=E(X)E(Y)$, so $E(XY)-E(X)E(Y)=0$. Then, \[Var(X+Y)=Var(X)+Var(Y).\]
+\end{prf}
+\begin{rmk}
+	$Cov(X,Y)$ does not imply $X$ and $Y$ are independent. When $E(X)$ or $E(Y)$ is $0$, we would have $Cov(X,Y)=0$ as well. 	
+\end{rmk}
+\begin{rmk}
+	Summary of Properties: 
+	\begin{itemize}
+		\item Always true: 
+		\begin{itemize}
+			\item $E(aX+b)=aE(X)+b$
+			\item $E(X+Y)=E(X)+E(Y)$
+			\item $Var(aX+b)=a^2Var(X)$
+			\item $Var(X)=E\qty(X^2)-E(X)^2$
+		\end{itemize}
+		\item When $X$ and $Y$ are independent: 
+		\begin{itemize}
+			\item $E(XY)=E(X)E(Y)$
+			\item $Var(X+Y)=Var(X)+Var(Y)$
+		\end{itemize}
+	\end{itemize}	
+\end{rmk}
+
 
 
 \end{document}

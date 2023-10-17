@@ -687,6 +687,101 @@ b(p) = b(k);
 \begin{eg}{}
 	Suppose $f(x)=x^3$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par Then, \[f(x)-p_1(x)=x^2-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{RHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2}(6\xi_x)=x^2-x.\]\par Question: Can we find a $\xi_x$ where $\dfrac{x^2-x}{2}(6\xi_x)=x^2-x$.\par Answer: Say we want to evaluate error at $x=\dfrac{1}{2}$, we can certainly find some $\xi_x=\xi_\frac{1}{2}$ such that \[\qty(\dfrac{1}{2})^2-\qty(\dfrac{1}{2})=\dfrac{(1/2)^2-(1/2)}{2}(6\xi_x).\]
 \end{eg}
+\begin{rmk}
+	Some intuition on why this equation holds. 
+	\begin{itemize}
+		\item When is $f(x)-p_N(x)=0$? At $x_0,\dots,x_N$ due to interpolation.
+		\item When is $\omega(x)=0$? At $x_0,\dots,x_N$ due to construction.
+		\item So, $f(x)-p_N(x)$ has roots $x_0,\dots,x_N$, which means we can ``factor'' out the roost using $\omega(x)$: $f(x)-p_N(x)=\omega(x)g(x)$.
+		\item What is $\xi_x$? It is found through the Rolle's Theorem. a special case for the Mean Value Theorem: If $f(a)=f(b)=0$, then $\exists\xi\in[a,b]\st f'(\xi)=0$.
+	\end{itemize}
+\end{rmk}
+\begin{thm}{Make Error Small}
+	\[\max_{x\in[a,b]}\qty|f(x)-p_N(x)|\leq\underbrace{\max_{x\in[a,b]}\qty|\omega(x)|}_\text{make this small!}\cdot\dfrac{\overbrace{\max_{z\in[a,b]}\qty|f^{(N+1)}(z)|}^\text{typically unknown}}{(N+1)!}\]	
+\end{thm}
+\begin{thm}{Make $\qty|\omega(x)|$ small}
+	\[\omega(x)=(x-x_0)(x-x_1)\cdots(x-x_N)\] Choose $x_i$ so that usually $x$ is ``close'' to some $x_i$: Chebyshev points, roots of Chebyshev polynomials: \[x_i=\cos\qty(\dfrac{2i-1}{2n}\pi),\quad i=1,\dots,n\]
+\end{thm}
+\begin{thm}{}
+	\[\qty|\omega(x)|\leq\qty|b-a|^{N+1}\]
+	\begin{rmk}This inequality is true because $\omega(x)$ can be regarded as distances from $x$ to $x_i$'s. Hence, another approach to make $\qty|\omega(x)|$ smaller is to make the interval $[a,b]$ smaller. \end{rmk}
+\end{thm}
+\begin{df}{Linear Splines}
+	\begin{itemize}
+		\item Data: $\qty{(x_i,f_i)}_{i=1}^N$
+		\item Ordering: $a=x_0<x_1<x_2<\cdots<x_N=b$
+		\begin{rmk} We do not require equally spaced points here. \end{rmk}
+		\item Liner Splines: \[S_{1,N}(x)=\begin{cases}f_0\cdot\dfrac{x-x_1}{x_0-x_1}+f_1\cdot\dfrac{x-x_0}{x_1-x_0},&\quad x\in[x_0,x_1]\\f_1\cdot\dfrac{x-x_2}{x_1-x_2}+f_2\cdot\dfrac{x-x_1}{x_2-x_1},&\quad x\in[x_1,x_2]\\\vdots\\f_{N-1}\cdot\dfrac{x-x_N}{x_{N-1}-x_N}+f_N\cdot\dfrac{x-x_{N-1}}{x_N-x_{N-1}},&\quad x\in[x_{N-1},x_N]\end{cases},\] where $1$ indicates the degree of each piece ($1$ for linear) and $N$ is the number of intervals ($N+1$ points create $N$ intervals)
+	\end{itemize}	
+\end{df}
+\begin{eg}{}
+	Given $\qty{(-1,0),(0,1),(1,3)}$. Construct $S_{1,2}(x)$.
+	\begin{sol}
+		\[S_{1,2}=\begin{cases}0\cdot\dfrac{x-0}{(-1)-0}+1\cdot\dfrac{x-(-1)}{0-(-1)}=x+1&\quad x\in[-1,0]\\1\cdot\dfrac{x-1}{0-1}+3\cdot\dfrac{x-0}{1-0}=1-x+3x=2x+1&\quad x\in[0,1]\end{cases}.\]
+	\end{sol}
+\end{eg}
+\begin{df}{Linear B-Splines}
+	We define the linear B-splines basis as follows: \[L_0(x)=\begin{cases}\dfrac{x-x_1}{x_0-x_1}&\quad x\in[x_0,x_1]\\0&\quad o/w\text{ (otherwise)}\end{cases}\] \[L_i(x)=\begin{cases}\dfrac{x-x_{i-1}}{x_i-x_{i-1}}&\quad x\in[x_{i-1},x_i]\text{ (left of }x_i)\\\dfrac{x-x_{i+1}}{x_i-x_{i+1}}&\quad x\in[x_i,x_{i+1}]\text{ (right of }x_i)\\0,&\quad o/w\end{cases},\quad i=1,\dots,N-1.\] \[L_N(x)=\begin{cases}\dfrac{x-x_{N-1}}{x_{N}-x_{N-1}}&\quad x\in[x_{N-1},x_N]\\0&\quad o/w\end{cases}\] Therefore, we can write the linear splines as \[S_{1,N}(x)=f_0L_0(x)+f_1L_1(x)+\cdots+f_NL_N(x).\]
+\end{df}
+\begin{df}{Cubic Splines}
+	\[S_{3,N}(x)=\begin{cases}p_1(x)=a_{1,0}+a_{1,1}x+a_{1,2}x^2+a_{1,3}x^3&\quad x\in[x_0,x_1]\\p_2(x)=a_{2,0}+a_{2,1}x+a_{2,2}x^2+a_{2,3}x^3&\quad x\in[x_1,x_2]\\\vdots\\p_N(x)=a_{N,0}+a_{N,1}x+a_{N,2}x^2+a_{N,3}x^3&\quad x\in[x_{N-1},x_N]\end{cases},\] where $a_{i,j}$ are unknowns. We have in total $4N$ unknowns, so we need $4N$ equations to solve them. We want the splines to interpolate and continuous. So, for $i=1,\dots, N$ we have \[p_i(x_{i-1})=f_{i-1}\quad\text{and}\quad p_i(x_i)=f_i,\] which gives us in total $2N$ equations. To ensure continuous, we want the derivatives to be continuous, so we have \[p'_i(x_i)=p'_{i+1}(x_i)\quad\text{for }i=1,\dots,N-1,\] which gives us another $N-1$ equations. To further ensure continuous and smoothy, we need continuous second derivatives, so we have \[p_i''(x_i)=p_{i+1}''(x_i)\quad\text{for }i=1,\dots,N-1,\] which also gives us $N-1$ equations. Now, we have in total $4N-2$ equations, and we cannot take the $3^\text{rd}$ derivatives because after taking the $3^\text{rd}$ derivatives, there will be only constants left. Hence, we still need $2$ more equations, and there are several different approaches: 
+	\begin{itemize}
+		\item Natural boundary conditions: \[p_1''(x_0)=0;\qquad p''_N(x_N)=0.\]
+		\item Second derivative conditions: \[p_1''(x_0)=f''(x_0);\qquad p_N''(x_N)=f''(x_N)\] This condition is not always helpful because we don't always know the information on the original function.
+		\item First derivative conditions: \[p_1'(x_0)=f'(x_0);\qquad p_N'(x_N)=f'(x_N).\]
+		\item Not-a-knot condition: \[p_1'''(x_1)=p_2'''(x_1);\qquad p_{N-1}'''(x_{N-1})=p_N'''(x_{N-1})\]
+	\end{itemize}
+\end{df}
+\begin{df}{Cubic B-Splines}
+	Assume we have equally spaced points $x_0$, $x_1=x_0+h$, $x_2=x_1+h,\cdots$. We want to find $B_p(x)$ center at $x_p$: 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} 
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100.73,211) -- (414.73,211) ;
+	\draw [shift={(416.73,211)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [shift={(98.73,211)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (250,199.27) -- (250,211) ;
+	\draw    (310,199.27) -- (310,211) ;
+	\draw    (370,199.27) -- (370,211) ;
+	\draw    (190,199.27) -- (190,211) ;
+	\draw    (130,199.27) -- (130,211) ;
+	\draw    (77.73,281.27) .. controls (77.73,210.27) and (187.73,209.27) .. (186.73,140.27) ;
+	\draw    (419.73,287.27) .. controls (419.73,216.27) and (321.73,210.27) .. (320.73,141.27) ;
+	\draw    (112.73,206.27) .. controls (220.73,200.27) and (198.73,149.27) .. (250.73,149.27) .. controls (302.73,149.27) and (279.73,200.27) .. (390.73,206.27) ;
+	\draw    (220.73,212.27) -- (220.73,233.27) ;
+	\draw [shift={(220.73,235.27)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (279.73,211.27) -- (279.73,130.27) ;
+	\draw [shift={(279.73,128.27)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (241,213.4) node [anchor=north west][inner sep=0.75pt]    {$x_{p}$};
+	\draw (287.37,214.4) node [anchor=north west][inner sep=0.75pt]    {$x_{p} +h$};
+	\draw (344,213.4) node [anchor=north west][inner sep=0.75pt]    {$x_{p} +2h$};
+	\draw (169,214.4) node [anchor=north west][inner sep=0.75pt]    {$x_{p} -h$};
+	\draw (104,215.4) node [anchor=north west][inner sep=0.75pt]    {$x_{p} -2h$};
+	\draw (57,138.4) node [anchor=north west][inner sep=0.75pt]    {$A( x-( x_{p} -2h))^{3}$};
+	\draw (330,143.4) node [anchor=north west][inner sep=0.75pt]    {$A( x-( x_{p} +2h))^{3}$};
+	\draw (122,242.4) node [anchor=north west][inner sep=0.75pt]    {$A( x-( x_{p} -2h))^{3}+B( x_p-( x-h))^{3}$};
+	\draw (176,101.4) node [anchor=north west][inner sep=0.75pt]    {$A( x-( x_{p} +2h))^{3}+B( x_p-( x+h))^{3}$};
+	\end{tikzpicture}
+	\end{center}
+	We require $B_p(x_p)=1$, so we have \[A\qty(x-\qty(x_p-2h))^3+B\qty(x-\qty(x_p-h))^3=1.\] We require continuity, so \[A( x-( x_{p} -2h))^{3} B( x-( x-h))^{3}=A( x-( x_{p} +2h))^{3} B( x-( x+h))^{3}.\] Solving the system, we will have \[B_p(x)=\begin{cases}0&\quad x<x_p-2h\\\dfrac{1}{4h^3}\qty(x-\qty(x_p-2h))^3&\quad x_p-2h\le x<x_p-h\\\dfrac{1}{4h^3}\qty(x-(x_p-2h))^3-\dfrac{1}{h^3}\qty(x-(x_p-h))^3&\quad x_p-h\le x<x_p\\-\dfrac{1}{4h^3}\qty(x-(x_p+2h))^3+\dfrac{1}{h^3}\qty(x-(x_p+h))^3&\quad x_p\le x<x_p+h\\-\dfrac{1}{4h^3}\qty(x-(x_p+2h))^3&\quad x_p+h\le x+x_p+2h\\0&\quad x_p+2h\le x\end{cases}\] Then, we have \[S_N(x)=\sum_{i=-1}^{N+1}a_i\cdot B_i(x),\] where \[B_p\qty(x_{p-1})=\dfrac{1}{4};\quad B_p(x_p)=1;\quad B_p\qty(x_{p+1})=\dfrac{1}{4}\]
+\end{df}
+
+\subsection{Least Square}
+\begin{df}{Least Square Polynomial}
+	Let $q_M(x)$ be a polynomial of degree $M$. We want to measure the error between $q_M(x)$ and $f(x)$ with data $\qty{(x_i,f_i)}_{i=0}^N$. We define \[\sigma\qty(q_M(x))\equiv\sum_{r=0}^N\qty{q_M(x_r)-f_r}^2\] The \textit{least square polynomial} of degree $M$, $p_M(x)$, satisfies \[\sigma\qty(p_M)\le\sigma(q_M)\] for any other degree $M$ polynomial $q_M(x)$.
+\end{df}
+\begin{eg}{Find the Best Fit Line}
+	\begin{center}\begin{tabular}{c|c|c}
+		$i$&$x_i$&$f_i$\\\hline
+		$0$&$1$&$2$\\
+		$1$&$3$&$4$\\
+		$2$&$4$&$3$\\
+		$3$&$5$&$1$
+	\end{tabular}\end{center}
+	\begin{sol}
+		Suppose $p_1(x)=a_0+a_1x$. Then, \[\sigma\qty(p_1)=\sum_{r=0}^3\qty{a_0+a_1x_r-f_r}^2\] To minimize $\sigma(p_1)$, we set $\dsst\pdv{\sigma}{a_0}=\pdv{\sigma}{a_0}=0$: \begin{align*}\pdv{\sigma\qty(p_1)}{a_0}&=\sum_{r=0}^32\qty(a_0+a_1x_r-f_r)=0\\\pdv{\sigma\qty(p_1)}{a_0}&=\sum_{r=0}^22x_r\qty(a_0+a_1x_r-f_r)=0\end{align*} Plugging in data, we have \[\pdv{\sigma\qty(p_1)}{a_0}=2(4a_0+13a_1-10)=0;\quad \pdv{\sigma\qty(p_1)}{a_0}=2(13a_0+51a_1-31)=0\] Solve the following system: \[\mqty[4&13\\13&51]\mqty[a_0\\a_1]=\mqty[10\\31]\implies\mqty[a_0\\a_1]=\mqty[107/35\\-6/35].\]
+	\end{sol}
+\end{eg}
 
 
 \end{document}

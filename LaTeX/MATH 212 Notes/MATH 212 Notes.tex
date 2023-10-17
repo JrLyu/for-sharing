@@ -517,6 +517,37 @@
 		\[\det(\A-\lambda\vb I)=\mqty|-\frac{1}{2}-\lambda&1\\0&-\frac{1}{2}-\lambda|=\qty(-\dfrac{1}{2}-\lambda)^2=0\implies \lambda_1=\lambda_2=-\dfrac{1}{2}.\] Here we have repeated eigenvalues, so we cannot solve the system via solving the eigenvalue problem. However, we are dealing with an upper-triangular system, which has nice properties when solving: \[\begin{cases}y^{(1)'}=-\frac{1}{2}y^{(1)}+y^{(2)}\quad&\text{\ding{172}}\\y^{(2)'}=-\frac{1}{2}y^{(2)}\quad&\text{\ding{173}}\end{cases}\] From \ding{173}, $y^{(2)}=c_2e^{-\frac{1}{2}t}$. So, $y^{(1)'}+\frac{1}{2}y^{(1)}=c_2e^{-\frac{1}{2}t}$. So, we have \[\begin{cases}y^{(1)}=c_1e^{-\frac{1}{2}t}+&c_2te^{-\frac{1}{2}t}\\y^{(2)}=&c_2e^{-\frac{1}{2}t}.\end{cases}\] So, the general solution is \[y=\underbrace{c_1\mqty[1\\0]e^{-\frac{1}{2}t}}_\text{from eigenvalue problem}+\underbrace{c_2\mqty[t\\1]e^{-\frac{1}{2}t}}_{\text{in the form }\qty(w+tx)e^{\lambda t}}.\]
 	\end{sol}
 \end{eg}
+\begin{thm}{}
+	Given $y'=\A y$. If $\A$ has repeated real eigenvalues and eigenvectors, then the solution is given by \[y=c_1xe^{\lambda t}+c_2(tx+w)e^{\lambda t},\] where $\lambda$ and $x$ are such that $\A x=\lambda x$, and $w$ is the \textit{generalized eigenvector} such that \[(\A-\lambda\vb I)w=x.\]
+\end{thm}
+\begin{prf}
+	Note that $y=(tx+w)e^{\lambda t}$ is a solution to $y'=\A y$. So, \begin{align*}\text{LHS}=y'&=xe^{\lambda t}+\lambda(tx+2)e^{\lambda t}\\&=(x+t\lambda x+\lambda w)e^{\lambda t}\end{align*} and \[\text{RHS}=\A y=\A(tx+w)e^{\lambda t}=(t\A x+\A w)e^{\lambda t}.\] By $\text{LHS}=\text{RHS}$, we have \begin{align*}(x+t\lambda x+\lambda w)e^{\lambda t}&=(t\A x+\A w)e^{\lambda t}\\x+t\lambda x+\lambda w&=t\underbrace{\A x}_{=\lambda x}+\A\\x+\lambda w&=\A w\\\A w-\lambda w&=x\implies(\A-\lambda\vb I)w=x.\end{align*}
+\end{prf}
+\begin{thm}{}
+	If $\lambda$ and $\overline{\lambda}$ are complex eigenvalues of $\A$, and $x$ is the eigenvector of $\A$ corresponding to $\lambda$, then $\A\overline{x}=\overline{\lambda}\overline{x}$. That is, $\overline{x}$ is the eigenvector of $\A$ corresponding to $\overline{\lambda}$.
+\end{thm}
+\begin{prf}
+	We know $\A x=\lambda x$. So, $\overline{\A x}=\overline{\lambda x}$. Note that $\overline{\A x}=\A\overline{x}$ and $\overline{\lambda x}=\overline{\lambda}\overline{x}$. So, we have $\A\overline{x}=\overline{\lambda}\overline{x}$.
+\end{prf}
+\begin{thm}{}
+	Suppose $z=a+\i b\in\C$, then $\overline{z}=a-\i b$, $a=\Re(z)\in\R$, and $b=\Im(z)\in\R$. Then, \begin{align*}\dfrac{z+\overline{z}}{2}&=\dfrac{(a+\i b)+(a-\i b)}{2}=\dfrac{2a}{2}=a=\Re(z)\\\dfrac{z-\overline{z}}{2\i}&=\dfrac{(a+\i b)-(a-\i b)}{2\i}=\dfrac{2\i b}{2\i}=b=\Im(z)\end{align*}	
+\end{thm}
+\begin{df}{Euler's Formula}
+	\[e^{\i\theta}=\cos\theta+\i\sin\theta\]	
+\end{df}
+\begin{thm}{}
+	Given $y'=\A y$, where $\A$ has complex conjugate eigenvalues and eigenvectors such that $\lambda=\alpha+\i\beta,\ \overline{\lambda}=\alpha-\i\beta,\ x=u+\i v,\text{ and }\overline{x}=u-\i v,$	with $\alpha,\beta\in\R$ and $u,b\in\R^2$. Then, a complex solution to the system will be \[y^\C=xe^{\lambda t}=(u+\i v)e^{(\alpha+\i\beta)t};\quad\overline{y^\C}=\overline{x}e^{\overline{\lambda}t}=(u-\i v)e^{\alpha-\i\beta}t.\] Note that, by the Euler's Formula, \begin{align*}y^\C=(u+\i v)e^{\alpha t}e^{i\beta t}&=e^{\alpha t}(u+\i v)(\cos(\beta t)+\i\sin(\beta t))\\&=e^{\alpha t}(u\cos(\beta t)-v\sin(\beta t))+\i e^{\alpha t}(u\sin(\beta t)+v\cos(\beta t))\end{align*} So, we have \[y_1=\Re\qty(y^\C)=e^{\alpha t}(u\cos(\beta t)-v\sin(\beta t));\quad y_2=\Im\qty(y^\C)=e^{\alpha t}(u\sin(\beta t)+v\cos(\beta t))\]
+\end{thm}
+\begin{rmk}
+	Note that $y_1$ and $y_2$ are linearly independent if and only if $u$ and $v$ are linear independent. 	
+\end{rmk}
+\begin{eg}{}
+	Solve the system of ODEs: $y'=\mqty[4&-5\\5&-2]y$.
+	\begin{sol}
+		Find eigenvalues and eigenvectors: $\det(\A-\lambda\vb I)=0\implies\lambda_{1,2}=1\pm4\i$.	Suppose $\lambda=1+4\i$, then \[\mqty[3-4\i&-5\\5&-3-4\i]\mqty[x_1^{(1)}\\x_1^{(2)}]=\mqty[0\\0]\implies\dfrac{3-4\i}{5}x_1^{(1)}=x_1^{(2)}\implies x_1=\mqty[5\\3-4\i].\] Therefore, when $\overline{\lambda}=1-4\i$, we have $x_2=\overline{x}=\mqty[5\\3+4\i].$ So, the complex solutions are \[y^\C=xe^{\lambda t}=\mqty[5\\3-4\i]e^{(1+4\i)t};\quad \overline{y^\C}=\overline{x}e^{\overline{\lambda}t}=\mqty[5\\3+4\i]e^{(1-4\i)t}.\]\begin{rmk}By Principle of Superposition, any linear combination of $y_1$ and $y_2$ is a solution to the system. We want to combine $y^\C$ and $\overline{y^\C}$ in order to get $\Re(y^\C)$ and $\Im(y^\C)$.\end{rmk} By Euler's Formula: \begin{align*}y^\C=\mqty[5\\3-4\i]e^{(1+4\i)t}=\mqty[5\\3-4\i]e^te^{4\i t}&=e^t\mqty[5\\3-4\i](\cos(4t)+\i\sin(4t))\\&=e^t\mqty[5\cos(4t)+\i5\sin(4t)\\3\cos(4t)+\i3\sin(4t)-\i4\cos(4t)+4\sin(4t)]\\&=e^t\qty(\mqty[5\cos(4t)\\3\cos(4t)+4\sin(4t)]+\i\mqty[5\sin(4t)\\3\sin(4t)-4\cos(4t)]).\end{align*} So, \[y_1=\Re(y^\C)=e^t\mqty[5\cos(4t)\\3\cos(4t)+4\sin(4t)]\quad\text{and}\quad y_2=\Im(y^\C)=e^t\mqty[5\sin(4t)\\3\sin(4t)-4\cos(4t)].\] We found two real-valued solutions to the system. In order to write the general solution, we need to verify that $\qty{y_1,y_2}$ is a fundamental set of solutions (FSS): \[W\qty[y_1,y_2]=\det\mqty[e^t5\cos(4t)&e^t5\sin(4t)\\e^t(3\cos(4t)+4\sin(4t))&e^t(3\sin(4t)-4\cos(4t))]\] Choose $t=0$, we have $W\qty[y_1,y_2]=\mqty|5&0\\3&-4|=-20\neq0$. Then, $\qty{y_1,y_2}$ is a FSS, and $y=c_1y_1+c_2y_2$ is a general solution to the system., 
+
+	\end{sol}
+\end{eg}
 
 
 
