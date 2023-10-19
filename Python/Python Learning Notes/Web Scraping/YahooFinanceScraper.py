@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from tqdm import tqdm
-import SP500
+import GetData
+from datetime import datetime
 
 
 # utility function to download a webpage and return a beautiful soup doc
@@ -35,7 +36,7 @@ def getData(code):
     news_df.to_csv(f"data/{code}.csv")
 
 
-code = SP500.get_code()
+code = GetData.get_code()
 
 for i in tqdm(range(len(code))):
     getData(code[i])
