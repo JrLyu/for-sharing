@@ -1,4 +1,4 @@
-def get_code():
+def get_code(test=False):
     """
     This function returns the list of stock tickers for the S&P 500.
         :return: List of stock tickers
@@ -36,4 +36,7 @@ def get_code():
         "UNP", "UAL", "UPS", "URI", "UNH", "UHS", "VLO", "VTR", "VLTO", "VRSN", "VRSK", "VZ", "VRTX", "VFC", "VTRS",
         "VICI", "V", "VMC", "WAB", "WBA", "WMT", "WBD", "WM", "WAT", "WEC", "WFC", "WELL", "WST", "WDC", "WRK", "WY",
         "WHR", "WMB", "WTW", "GWW", "WYNN", "XEL", "XYL", "YUM", "ZBRA", "ZBH", "ZION", "ZTS"]
+    if test:
+        code = ["MMM", "AOS", "ABT", "ABBV", "ACN", "ADM", "ADBE", "ADP", "AES", "AFL", "A", "ABNB", "APD", "AKAM", "ALK",
+        "ALB", "ARE", "ALGN"]
     return code

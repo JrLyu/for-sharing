@@ -4,6 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 import GetData
 import datetime
+import numpy as np
 
 def sentiment(my_code):
     """
@@ -20,11 +21,11 @@ def sentiment(my_code):
         sentiment_dic = analyzer.polarity_scores(df.iloc[j, 1])
         compound.append(sentiment_dic["compound"])
     sentiment_score = pd.DataFrame({"Compound": compound})
+    
+    return np.mean(np.array(sentiment_score), axis=0)[0]
 
-    return float(sentiment_score.mean())
 
-
-code = GetData.get_code()
+code = GetData.get_code(test=True)
 ticker = []
 sentimentScore = []
 for i in tqdm(range(len(code))):
@@ -37,6 +38,6 @@ sentiment_df.to_csv(f"new_data/sentiment_{datetime.date.today()}.csv", index=Fal
 
 # sentiment_df.dropna()
 
-print(f"Top 50 Stocks with Highest Sentiment Score: \n\n{sentiment_df.head(50)}")
+print(f"Top 5 Stocks with Highest Sentiment Score: \n\n{sentiment_df.head(5)}")
 
-print(f"50 Stocks with Lowest Sentiment Score:\n\n{sentiment_df.dropna().tail(50)}")
+print(f"5 Stocks with Lowest Sentiment Score:\n\n{sentiment_df.dropna().tail(5)}")
