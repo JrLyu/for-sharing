@@ -663,9 +663,9 @@
 		E(X+Y)&=\iint_{\R^2}(x+y)f_{X,Y}(x,y)\ \d{x}\d{y}\\&=\iint_{\R^2}\qty\big[xf_{X,Y}(x,y)+yf_{X,Y}(x,y)]\ \d{x}\d{y}\\&=\iint_{\R^2}xf_{X,Y}(x,y)\ \d{y}\d{x}+\iint_{\R^2}yf_{X,Y}(x,y)\ \d{x}\d{y}\\&=\int_{-\infty}^\infty x\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{y}\ \d{x}+int_{-\infty}^\infty y\int_{-\infty}^\infty f_{X,Y}(x,y)\ \d{x}\ \d{y}\\&=\int_{-\infty}^\infty xf_X(x)\ \d{x}+\int_{-\infty}^\infty yf_Y(x)\ \d{y}=E(X)+E(Y).
 	\end{align*}	
 \end{prf}
-\begin{prop}{}
+\begin{conj}{}
 	We hope the expected value of a product to be $E(XY)=E(X)E(Y)$.
-\end{prop}
+\end{conj}
 \begin{dis}
 	Take an urn with two chips numbered $1$ and $2$. Draw $2$ chips without replacement. Let $X_1=$ the value on draw $1$ and $X_2=$ the value on draw $2$. \begin{align*}E(X_1)&=\sum_{i=1}^2iP(X=i)=1\qty(\dfrac{1}{2})+2\qty(\dfrac{1}{2})=\dfrac{3}{2}\\P(X_2=1)&=P(X_2=1\mid X_1=1)P(X_1=1)+P(X_2=1\mid X_1=2) P(X_1=2)=0+1\qty(\dfrac{1}{2})=\dfrac{1}{2}\\P(X_2=2)&=P(X_2=2\mid X_1=1)P(X_1=1)+P(X_2=2\mid X_1=2)P(X_1=2)=1\qty(\dfrac{1}{2})+0=\dfrac{1}{2}\\E(X_2)&=\sum_{i=1}^2iP(X=i)=1\qty(\dfrac{1}{2})+2\qty(\dfrac{1}{2})=\dfrac{3}{2}\end{align*}\[E(X_1)E(X_2)=\qty(\dfrac{3}{2})\qty(\dfrac{3}{2})=\dfrac{9}{4};\quad E(X_1X_2)=E(2)=2.\] Therefore, $E(X_1)E(X_2)\neq E(X_1X_2)$.
 \end{dis}
