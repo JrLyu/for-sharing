@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS170_Notes/CS170_Notes.iml" filepath="$PROJECT_DIR$/CS170_Notes/CS170_Notes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/Enrichment.iml" filepath="$PROJECT_DIR$/Java/Enrichment.iml" />
     </modules>
   </component>
 </project>
