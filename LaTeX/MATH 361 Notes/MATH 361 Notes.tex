@@ -72,6 +72,7 @@
 \def\emptyset{\varnothing}
 \def\dsst{\displaystyle}
 \def\st{\ s.t.\ }
+\def\bar{\overline}
 
 \newcommand\perm[2][n]{_{#1}P_{#2}}
 \newcommand\com[2][n]{_{#1}C_{#2}}
@@ -701,6 +702,44 @@
 		\end{itemize}
 	\end{itemize}	
 \end{rmk}
+
+\subsection{Order Statistics}
+\begin{df}{Median}
+	The point where half data lies above and half below.	
+\end{df}
+\begin{eg}
+	When all the GPAs are ordered, a number is assigned by placement in the list	
+\end{eg}
+\begin{df}{Max/Min}
+	The largest and smallest values.	
+\end{df}
+\begin{df}{Percentiles}
+	A score that tells you the percent of people that you scored better than.	
+\end{df}
+\begin{df}{$i$-th Order Statistics}
+	Let $Y$ be a continuous random variable for which we have drawn a \textit{random sample} (independent and identically distributed/\textit{i.i.d.}), say we have  $y_1,y_2,\dots,y_n$. We re-order them from smallest to largest: \[y_\text{min}=y_1'\leq y_2'\leq\cdots\leq y_n'=y_\text{max}\] Define a new random variable $Y_i'$, and $Y_i'$ is called the \textit{$i$-th order statistics}. Given a random sample $Y_1,\dots,Y_n$, we define \[Y_\text{min}=\min\qty(Y_1,\dots,Y_n);\quad Y_\text{max}=\max\qty(Y_1,\dots,Y_n).\]
+\end{df}
+\begin{df}{Percentiles}
+	For any value $p$ between $0$ and $1$, the $100p$-th percentile is the observation such that $np$ observations are less than that value, and $n(1-p)$ are greater. 
+\end{df}
+\begin{eg}
+	Suppose a random sample $y_1=3.2,\ y_2=4,\ y_3=1.1,\ y_4=0$. Then, \[0\leq1.1\leq3.2\leq4.\] So, $Y_\text{min}=0=y_\text{min}$, $y_2'=1.1$, $y_3'=3.2$, and $y_\text{max}=4=Y_\text{max}$.
+\end{eg}
+\begin{eg}
+	Let $Y_1,\dots,Y_n$ be a random sample from $Y\sim\text{Uniform}(0,a)$ where are do not know $a$. We can estimate $a$ by different methods. \par 
+	$\boxed{\text{Method }1}$ Use the sample mean: \[E(Y)=\mu=\dfrac{a}{2}\] So we solve for $\hat{a}\approx2\mu\approx2\overline{Y}$. Then, we can estimate $a$ with $\bar{Y}$. However, we might have $y_\text{max}\geq2\bar{Y}$ which leads to a better method.\par 
+	$\boxed{\text{Method }2}$ Use observed $y_\text{max}$. We know the following inequality must hold: \[a\geq Y_\text{max}.\] To find $E(Y_\text{max})$, we first need to find the pdf of $Y_\text{max}$. We consider the cdf$\to$pdf method: \begin{align*}F_{Y_\text{max}}(y)=P\qty(Y_\text{max}\leq y)&=P\qty(Y_1\leq y_1, Y_2\leq y_2, Y_3\leq y_3,\dots,Y_n\leq y_n)\\&=P(Y_1\leq y_1)P(Y_2\leq y_2)\cdots P(Y_n\leq y_n)\\&=\qty(\dfrac{y}{a})^n\end{align*} So, we know \[f_{Y_\text{max}}(y)=\dv{y}F_{Y_\text{max}}(y)=\dv{y}\qty[\qty(\dfrac{y}{a})^n]=\dfrac{n}{a}\qty(\dfrac{y}{a})^{n-1}.\] So, we can find the expected value: \begin{align*}E(Y_\text{max})=\int_0^ayf_{Y_\text{max}}(y)\ \d{y}&=\int_0^ay\dfrac{n}{a}\qty(\dfrac{y}{a})^{n-1}\ \d{y}\\&=\dfrac{n}{a^n}\int_0^ay^n\ \d{y}\\&=\dfrac{n}{a^n}\qty[\dfrac{1}{n+1}y^{n+1}]_0^a\\&=\dfrac{n}{a^n}\cdot\dfrac{1}{n+1}a^{n+1}\\&=\dfrac{n}{n+1}a\end{align*}Therefore, we can estimate $y_\text{max}=\dsst\dfrac{n}{n+1}a$. So we get $a\approx\dfrac{n+1}{n}y_\text{max}.$
+\end{eg}
+\begin{thm}{Order Statistics}
+	\[Y_\text{max}:\ F_{Y_\text{max}}(y)=F_y(y)^n\implies f_{Y_\text{max}}(y)=nF_Y(y)^{n-1}f_Y(y).\] \[Y_\text{min}:\ F_{Y_\text{min}}(y)=1-\qty[1-F_y(y)]^n\implies f_{Y_\text{min}}(y)=n\qty[1-F_Y(y)]^{n-1}f_Y(y).\]
+\end{thm}
+\begin{prf}
+	The formula of $Y_\text{min}$ will proven here. \begin{align*}F_{Y_\text{min}}(y)=P(Y_\text{min}\leq y)&=1-P(Y_\text{min}>y)\\&=1-P(Y_1>y,Y_2>y,\dots,Y_n>y)\\&=1-P(Y_1>y)P(Y_2>y)\cdots P(Y_n>y)\\&=1-[1-F_Y(y)][1-F_Y(y)]\cdots[1-F_Y(y)]\\&=1-[1-F_Y(y)]^n\end{align*} So, we would also have $f_{Y_\text{min}}(y)=n\qty[1-F_Y(y)]^{n-1}f_Y(y)$.
+\end{prf}
+\begin{thm}{$i$-th Order Statistics}
+	\[Y_i':\ f_{Y_i'}(y)=\dfrac{n!}{(i-1)!(n-i)!}[F_Y(y)]^{i-1}[1-F_Y(y)]^{n-i}f_Y(y),\quad1\leq i\leq n.\]
+\end{thm}
+
 
 
 

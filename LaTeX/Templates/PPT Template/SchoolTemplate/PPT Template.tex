@@ -1,0 +1,178 @@
+\documentclass[aspectratio=43, 9pt, utf8, mathserif]{beamer}
+
+\usepackage{amssymb, amsmath, amsthm, amsfonts, epsfig, mathtools, times, verbatim, anyfontsize, subfigure, graphicx, tabularx, tikz, mathptmx, physics, utopia, pgf, beamerfoils}
+\usepackage[export]{adjustbox}
+\setbeamertemplate{caption}[numbered]
+\newcounter{saveenumi}
+\resetcounteronoverlays{saveenumi}
+
+%% bibtex Settings
+\usepackage[backend=bibtex,style=numeric-comp,sorting=none]{biblatex} %不列出所有作者
+%\usepackage[backend=bibtex,sorting=none,maxnames=9,minnames=3]{biblatex} %列出所有作者
+% \addbibresource{ref.bib} %BibTeX数据文件及位置
+\setbeamerfont{footnote}{size=\tiny} %设置脚注引用文献的字体大小
+\setbeamertemplate{bibliography item}[text] %设置参考文献图标样式数字标号
+
+%% For coding
+\usepackage{listings} 
+\lstset{
+	frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}, keywordstyle=\color{blue}\bfseries, commentstyle=\color{orange}\ttfamily, 	backgroundcolor=\color{darkgray!6}, showstringspaces=false, numbers=left, numberstyle=\tiny, basicstyle=\ttfamily, stringstyle=\ttfamily, breaklines=true, extendedchars=false,  texcl=true, morekeywords={classdef,function,global,parfor,persistent,spmd,plot}} 
+	
+% Theme selection
+\usetheme{Boadilla}
+
+% Colors and Frames
+\useinnertheme{circles}
+\useoutertheme{miniframes}
+\usecolortheme{beaver}
+\usefonttheme{serif}
+
+\definecolor{emoryblue}{RGB}{1, 33, 105} 
+\definecolor{lightblue}{RGB}{0, 125, 186}
+\definecolor{mediumblue}{RGB}{ 0, 51, 160}
+\definecolor{darkblue}{RGB}{12, 35, 64}
+\definecolor{red}{RGB}{185, 58, 38}
+\definecolor{green}{RGB}{72, 127, 132}
+\definecolor{gray1}{RGB}{217, 217, 214}
+\definecolor{gray5}{RGB}{177, 179, 179}
+\definecolor{gray3}{RGB}{208, 208, 206}
+
+% miniframes mode
+\setbeamertemplate{itemize items}{\color{darkblue}$\bullet$} %bulletpoints
+\setbeamercolor{section number projected}{bg = mediumblue!80, fg=gray1}% toc
+\setbeamercolor{title}{bg=emoryblue!80!darkblue!80,fg=gray1} % titlepage
+\setbeamercolor{palette secondary}{bg=darkblue!90, fg=gray1} % left
+\setbeamercolor{palette tertiary}{bg=emoryblue!30,fg=darkblue} % middle
+\setbeamercolor{palette primary}{bg=gray3,fg=darkblue} % right
+% Title page
+\setbeamercolor*{author}{fg = darkblue}
+\setbeamercolor*{institute}{fg = darkblue}
+\setbeamercolor*{date}{fg = darkblue}
+% subtitles (headings)
+\setbeamercolor*{titlelike}{fg=darkblue}
+% blocks
+\setbeamercolor*{structure}{bg=darkblue!20, fg=darkblue}
+\setbeamercolor*{example text}{use=structure, fg = green}
+\setbeamercolor*{alerted text}{use=structure, fg = red}
+% Logo
+\MyLogo{\pgfputat{\pgfxy(-0.5,0)}{\pgfbox[right,base]{\includegraphics[height=2cm]{fig/logo}}}}
+
+%% ------- Information on the Presentation ------
+\author[My name]{Jiuru Lyu}
+\title[Name to be Include]{Title of the Presentation}
+\institute[My institution]{Full name of my institution}
+\date{\today}
+
+%% ------ Start ------
+\begin{document}
+\everymath{\displaystyle}
+
+% Title page
+\LogoOn
+\begin{frame}
+    \titlepage 
+\end{frame}
+\LogoOff
+
+% Toc Page
+\begin{frame}
+    \frametitle{\textbf{Table of Contents}}
+    \tableofcontents % 生成目录（如果为空，请编译两次）
+\end{frame}
+
+\section{Introduction}\label{sec:introduction}
+\begin{frame}
+\frametitle{\textbf{Introduction}}
+\begin{block}{Block Title 1}
+\begin{itemize}
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore . 
+    \item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    \item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  \end{itemize}
+\end{block}
+    
+\begin{exampleblock}{Block Title 2}
+\begin{enumerate}
+    \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore . 
+    \item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    \item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  \end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{\textbf{Example of subfigure}}
+\centering
+Idea A $\Longleftrightarrow$ Idea B
+\vskip 2em
+\begin{figure}
+    \subfigure[Image Caption]{\includegraphics[width=0.4\linewidth]{example-image}}
+    \subfigure[Image Caption]{\includegraphics[width=0.4\linewidth]{example-image}}
+    \caption{This is a caption}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{\textbf{Black hole}}
+\begin{exampleblock}{The metric and the electromagnetic field of the spherically symmetric solution}
+\begin{align}
+    ds^2&=-fdt^2+\frac{dr^2}{f}+r^2 d\Omega_2^2\,,\label{BImetric}\\
+    F&=Edt\wedge dr\label{BIE}\,, \quad E=\frac{Q}{\sqrt{r^4+Q^2/b^2}}\,.
+\end{align}
+\end{exampleblock}
+where
+\begin{equation}
+\begin{split}
+    f=&1-\frac{2M}{r}+\frac{r^2}{l^2}+\frac{2b^2}{r}\int_r^\infty \Bigl(\sqrt{r^4+\frac{Q^2}{b^2}}-r^2\Bigr)dr\nonumber\\
+    =&1-\frac{2M}{r}+\frac{r^2}{l^2}+\frac{2b^2 r^2}{3}\Bigl(1-\sqrt{1+\frac{Q^2}{b^2 r^4}}\Bigr)\nonumber\\
+    &+\frac{4Q^2}{3r^2}\,{}_2 F_1\left(\frac{1}{4},\frac{1}{2}; \frac{5}{4};-\frac{Q^2}{b^2 r^4}\right)\,,
+\end{split}
+\end{equation}
+and $_2 F_1$ is the hypergeometry function, $M$ and $Q$ stand for black hole mass and charge. $d\Omega$ is the unit sphere on $S^2$.
+\end{frame}
+
+\section{Content}\label{sec:content}
+\begin{frame}
+\frametitle{\textbf{Content}}
+\begin{block}{Mass $M$}
+\begin{equation}
+    f(r_h) = 0 \Longrightarrow M = \frac{T}{v}-\frac{1-\sqrt{\frac{16}{v^4}+1}}{4 \pi }-\frac{1}{2 \pi  v^2}
+\end{equation}
+\end{block}
+    
+\begin{exampleblock}{Hawking temperature $T$}
+\begin{equation}\label{eq:T}
+    T = f^{\prime}(r_+) / 4 \pi = \frac{1}{4\pi r_+}\!\left[1\!+\!\frac{3r_+^2}{l^2}\!+\!2b^2 r_+^2\Bigl(1\!-\!\sqrt{1\!+\!\frac{Q^2}{b^2 r_+^4}}\Bigr)\right]
+\end{equation}
+\end{exampleblock}
+    
+\begin{alertblock}{Electric potential $\Phi$}
+\begin{equation}
+    \Phi=\int_{r_+}^\infty E dr
+    =\frac{Q}{r_+}\,{}_2 F_1\!\left(\frac{1}{4},\frac{1}{2};\frac{5}{4};-\frac{Q^2}{b^2 r_+^4}\right)\,.
+\end{equation}
+\end{alertblock}
+    
+The corresponding entropy is $S = \pi r_+^2$, The specific volume $v = 2 r_+ l_P^2$ and corresponding pressure $P = - \frac{\Lambda}{8 \pi} = \frac{3}{8 \pi l^2}$
+\end{frame}
+
+\section{Conclusion}\label{sec:conclusion}
+\begin{frame}
+\frametitle{Conclusion}
+\begin{block}{Conclusion 1}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+\end{block}
+
+\begin{exampleblock}{Conclusion 2}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+\end{exampleblock}
+\end{frame}
+
+\LogoOn
+\begin{frame}[noframenumbering]
+\centering
+\fontsize{40}{50}\selectfont Q \& A\\Thank You!
+\end{frame}
+\LogoOff
+
+\end{document}
