@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include <SFML/Graphics.hpp>
 
 #include "scene.hpp"
@@ -22,7 +20,11 @@ void processInput(sf::RenderWindow& window) {
 }
 
 void update(sf::Time delta, sf::Shape& player) {
-    return;
+    Point2D position = { player.getPosition().x, player.getPosition().y };
+    Point2D velocity = calculateVelocity();
+    Point2D newPosition = move(position, velocity, 0.001f * delta.asMilliseconds());
+    Point2D adjustedPosition = adjustToBorders(newPosition);
+    player.setPosition(adjustedPosition.x, adjustedPosition.y);
 }
 
 void render(sf::RenderWindow& window, const sf::Sprite& background, const sf::Shape& player) {

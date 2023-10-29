@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libWarmUp-MovingOn-DrawALine-test-src-part.a "CMakeFiles/WarmUp-MovingOn-DrawALine-test-src-part.dir/src/borders.cpp.o"
+/Library/Developer/CommandLineTools/usr/bin/ranlib libWarmUp-MovingOn-DrawALine-test-src-part.a

@@ -317,7 +317,9 @@
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/HelloWorld/Welcome/CMakeFiles/install.dir
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/HelloWorld/Welcome/CMakeFiles/install/local.dir
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/HelloWorld/Welcome/CMakeFiles/install/strip.dir
-/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-StartTheGame-run.dir
+/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-run.dir
+/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test-src-part.dir
+/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test.dir
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/edit_cache.dir
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/rebuild_cache.dir
 /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task/CMakeFiles/list_install_components.dir

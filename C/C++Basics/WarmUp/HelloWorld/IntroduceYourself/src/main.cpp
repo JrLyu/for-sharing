@@ -3,6 +3,7 @@
 
 int main() {
     std::string name;
-    /* TODO */
+    std::cin >> name;
+    std::cout << "Hello " << name << "\n";
     return 0;
 }

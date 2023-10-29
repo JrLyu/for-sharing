@@ -236,6 +236,10 @@ MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: Me
 MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: MemoryManagement/LinkedList/task/CMakeFiles/MemoryManagement-LinkedLists-LinkedList-run.dir/src/loop.cpp.o
 MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: MemoryManagement/LinkedList/task/CMakeFiles/MemoryManagement-LinkedLists-LinkedList-run.dir/src/approaching.cpp.o
 MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: MemoryManagement/LinkedList/task/CMakeFiles/MemoryManagement-LinkedLists-LinkedList-run.dir/build.make
+MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: /Library/Frameworks/./sfml-graphics.framework/Versions/2.6.0/sfml-graphics
+MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: /Library/Frameworks/./sfml-audio.framework/Versions/2.6.0/sfml-audio
+MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: /Library/Frameworks/./sfml-window.framework/Versions/2.6.0/sfml-window
+MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: /Library/Frameworks/./sfml-system.framework/Versions/2.6.0/sfml-system
 MemoryManagement/LinkedList/task/MemoryManagement-LinkedLists-LinkedList-run: MemoryManagement/LinkedList/task/CMakeFiles/MemoryManagement-LinkedLists-LinkedList-run.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable MemoryManagement-LinkedLists-LinkedList-run"
 	cd /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/MemoryManagement/LinkedList/task && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E copy_directory /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/resources/ /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/MemoryManagement/LinkedList/task/resources/

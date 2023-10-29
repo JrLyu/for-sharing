@@ -601,7 +601,10 @@ MemoryManagement-TypeCastsAndCStrings-TypeCastsQuestion_SOURCE_DIR:STATIC=/Users
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
 //The directory containing a CMake configuration file for SFML.
-SFML_DIR:PATH=SFML_DIR-NOTFOUND
+SFML_DIR:PATH=/Library/Frameworks/SFML.framework/Resources/CMake
+
+//Path to a file.
+SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 
 //Value Computed by CMake
 WarmUp-HelloWorld-AgeDoestNotMatter_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/HelloWorld/AgeDoestNotMatter
@@ -647,6 +650,60 @@ WarmUp-HelloWorld-Welcome_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 WarmUp-HelloWorld-Welcome_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/HelloWorld/Welcome
+
+//Value Computed by CMake
+WarmUp-MovingOn-DrawALine_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-DrawALine_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-DrawALine_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-GivingDirection_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-GivingDirection_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-GivingDirection_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-HavingFun_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-HavingFun_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-HavingFun_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-LookAround_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-LookAround_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-LookAround_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-MoveAnObject_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-MoveAnObject_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-MoveAnObject_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-MovingUp_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
+
+//Value Computed by CMake
+WarmUp-MovingOn-MovingUp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+WarmUp-MovingOn-MovingUp_SOURCE_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/WarmUp/MovingOn/task
 
 //Value Computed by CMake
 WarmUp-MovingOn-StartTheGame_BINARY_DIR:STATIC=/Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/WarmUp/MovingOn/task
@@ -963,6 +1020,8 @@ _Python_EXECUTABLE:INTERNAL=/Library/Frameworks/Python.framework/Versions/3.11/b
 //Python Properties
 _Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;1;64;;cpython-311-darwin;abi3;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages
 _Python_INTERPRETER_SIGNATURE:INTERNAL=16af98a70dcdf7b11ba7bd79a89c931f
+//Interpreter reason failure
+_Python_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python_NumPy_REASON_FAILURE:INTERNAL=
 cmake_package_name:INTERNAL=GTest

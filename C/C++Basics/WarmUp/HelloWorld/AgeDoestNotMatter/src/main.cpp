@@ -5,9 +5,9 @@ int main() {
     std::string name;
     int age = 0;
     std::cout << "What is your name?\n";
-    /* TODO */
+    std::cin >> name;
     std::cout << "What is your age?\n";
-    /* TODO */
-    /* TODO */
+    std::cin >> age;
+    std::cout << "Hello " << name << "\n" << age << " age" << "\n";
     return 0;
 }

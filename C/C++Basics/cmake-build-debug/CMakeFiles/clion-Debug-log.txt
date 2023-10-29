@@ -1,52 +1,16 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics -B /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug
--- The C compiler identification is AppleClang 15.0.0.15000040
--- The CXX compiler identification is AppleClang 15.0.0.15000040
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/test-framework
-[ 11%] Creating directories for 'googletest'
-[ 22%] Performing download step (git clone) for 'googletest'
-Cloning into 'googletest-src'...
-HEAD is now at 15460959 Update versions of WORKSPACE dependencies
-[ 33%] Performing update step for 'googletest'
-[ 44%] No patch step for 'googletest'
-[ 55%] No configure step for 'googletest'
-[ 66%] No build step for 'googletest'
-[ 77%] No install step for 'googletest'
-[ 88%] No test step for 'googletest'
-[100%] Completed 'googletest'
+[ 11%] Performing update step for 'googletest'
+[ 22%] No patch step for 'googletest'
+[ 33%] No configure step for 'googletest'
+[ 44%] No build step for 'googletest'
+[ 55%] No install step for 'googletest'
+[ 66%] No test step for 'googletest'
+[ 77%] Completed 'googletest'
 [100%] Built target googletest
--- Found Python: /Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11 (found version "3.11.1") found components: Interpreter 
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
-CMake Warning at CMakeLists.txt:40 (find_package):
-  By not providing "FindSFML.cmake" in CMAKE_MODULE_PATH this project has
-  asked CMake to find a package configuration file provided by "SFML", but
-  CMake did not find one.
-
-  Could not find a package configuration file provided by "SFML" (requested
-  version 2.5.1) with any of the following names:
-
-    SFMLConfig.cmake
-    sfml-config.cmake
-
-  Add the installation prefix of "SFML" to CMAKE_PREFIX_PATH or set
-  "SFML_DIR" to a directory containing one of the above files.  If "SFML"
-  provides a separate development package or SDK, be sure it has been
-  installed.
-
-
--- Configuring done (10.7s)
--- Generating done (0.3s)
+-- Found SFML 2.6.0 in /Library/Frameworks/SFML.framework/Resources/CMake
+-- Configuring done (0.6s)
+-- Generating done (0.4s)
 -- Build files have been written to: /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug

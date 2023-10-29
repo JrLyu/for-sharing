@@ -955,17 +955,43 @@ WarmUp-HelloWorld-Welcome-run/fast:
 .PHONY : WarmUp-HelloWorld-Welcome-run/fast
 
 #=============================================================================
-# Target rules for targets named WarmUp-MovingOn-StartTheGame-run
+# Target rules for targets named WarmUp-MovingOn-DrawALine-run
 
 # Build rule for target.
-WarmUp-MovingOn-StartTheGame-run: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WarmUp-MovingOn-StartTheGame-run
-.PHONY : WarmUp-MovingOn-StartTheGame-run
+WarmUp-MovingOn-DrawALine-run: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WarmUp-MovingOn-DrawALine-run
+.PHONY : WarmUp-MovingOn-DrawALine-run
 
 # fast build rule for target.
-WarmUp-MovingOn-StartTheGame-run/fast:
-	$(MAKE) $(MAKESILENT) -f WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-StartTheGame-run.dir/build.make WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-StartTheGame-run.dir/build
-.PHONY : WarmUp-MovingOn-StartTheGame-run/fast
+WarmUp-MovingOn-DrawALine-run/fast:
+	$(MAKE) $(MAKESILENT) -f WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-run.dir/build.make WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-run.dir/build
+.PHONY : WarmUp-MovingOn-DrawALine-run/fast
+
+#=============================================================================
+# Target rules for targets named WarmUp-MovingOn-DrawALine-test-src-part
+
+# Build rule for target.
+WarmUp-MovingOn-DrawALine-test-src-part: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WarmUp-MovingOn-DrawALine-test-src-part
+.PHONY : WarmUp-MovingOn-DrawALine-test-src-part
+
+# fast build rule for target.
+WarmUp-MovingOn-DrawALine-test-src-part/fast:
+	$(MAKE) $(MAKESILENT) -f WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test-src-part.dir/build.make WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test-src-part.dir/build
+.PHONY : WarmUp-MovingOn-DrawALine-test-src-part/fast
+
+#=============================================================================
+# Target rules for targets named WarmUp-MovingOn-DrawALine-test
+
+# Build rule for target.
+WarmUp-MovingOn-DrawALine-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WarmUp-MovingOn-DrawALine-test
+.PHONY : WarmUp-MovingOn-DrawALine-test
+
+# fast build rule for target.
+WarmUp-MovingOn-DrawALine-test/fast:
+	$(MAKE) $(MAKESILENT) -f WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test.dir/build.make WarmUp/MovingOn/task/CMakeFiles/WarmUp-MovingOn-DrawALine-test.dir/build
+.PHONY : WarmUp-MovingOn-DrawALine-test/fast
 
 #=============================================================================
 # Target rules for targets named WarmUp-Quiz-Calculator-run
@@ -1153,7 +1179,9 @@ help:
 	@echo "... WarmUp-HelloWorld-IntroduceYourself-run"
 	@echo "... WarmUp-HelloWorld-TypesOfVariables-run"
 	@echo "... WarmUp-HelloWorld-Welcome-run"
-	@echo "... WarmUp-MovingOn-StartTheGame-run"
+	@echo "... WarmUp-MovingOn-DrawALine-run"
+	@echo "... WarmUp-MovingOn-DrawALine-test"
+	@echo "... WarmUp-MovingOn-DrawALine-test-src-part"
 	@echo "... WarmUp-Quiz-Calculator-run"
 	@echo "... WarmUp-Quiz-Initialization-run"
 	@echo "... WarmUp-Quiz-LetUsStart-run"
