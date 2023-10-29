@@ -63,7 +63,7 @@ def getData(code):
         print(f"Error fetching news content for {code}: {e}")
         return []
 
-code = GetData.get_code(test=False)
+code = GetData.get_code(test=True)
 
 for i in tqdm(range(len(code))):
     getData(code[i])

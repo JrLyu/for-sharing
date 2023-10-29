@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libMemoryManagement-LinkedLists-LinkedList-test-src-part.a "CMakeFiles/MemoryManagement-LinkedLists-LinkedList-test-src-part.dir/src/dllist.cpp.o"
+/Library/Developer/CommandLineTools/usr/bin/ranlib libMemoryManagement-LinkedLists-LinkedList-test-src-part.a

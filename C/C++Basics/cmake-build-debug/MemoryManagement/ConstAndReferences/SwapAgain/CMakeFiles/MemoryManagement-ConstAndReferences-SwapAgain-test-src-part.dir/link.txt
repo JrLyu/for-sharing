@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libMemoryManagement-ConstAndReferences-SwapAgain-test-src-part.a "CMakeFiles/MemoryManagement-ConstAndReferences-SwapAgain-test-src-part.dir/src/task.cpp.o"
+/Library/Developer/CommandLineTools/usr/bin/ranlib libMemoryManagement-ConstAndReferences-SwapAgain-test-src-part.a

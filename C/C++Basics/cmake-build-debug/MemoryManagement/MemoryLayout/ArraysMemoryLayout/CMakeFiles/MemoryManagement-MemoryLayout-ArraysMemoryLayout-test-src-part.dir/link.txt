@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libMemoryManagement-MemoryLayout-ArraysMemoryLayout-test-src-part.a "CMakeFiles/MemoryManagement-MemoryLayout-ArraysMemoryLayout-test-src-part.dir/src/task.cpp.o"
+/Library/Developer/CommandLineTools/usr/bin/ranlib libMemoryManagement-MemoryLayout-ArraysMemoryLayout-test-src-part.a

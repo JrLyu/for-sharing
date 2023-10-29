@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libWarmUp-Quiz-SumPositive-test-src-part.a "CMakeFiles/WarmUp-Quiz-SumPositive-test-src-part.dir/src/task.cpp.o"
+/Library/Developer/CommandLineTools/usr/bin/ranlib libWarmUp-Quiz-SumPositive-test-src-part.a
