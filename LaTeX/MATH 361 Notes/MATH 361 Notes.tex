@@ -740,7 +740,39 @@
 	\[Y_i':\ f_{Y_i'}(y)=\dfrac{n!}{(i-1)!(n-i)!}[F_Y(y)]^{i-1}[1-F_Y(y)]^{n-i}f_Y(y),\quad1\leq i\leq n.\]
 \end{thm}
 
-
+\subsection{Conditional Densities}
+\begin{df}{Conditional Probability}
+	Let $X,Y$ be discrete random variables with joint pdf $p_{X,Y}(x,y)$, then the conditional probability \[p_{Y\mid X}(y)=P(Y=y\mid X=x)=\dfrac{p_{X,Y}(x,y)}{p_X(x)}.\]	
+\end{df}
+\begin{eg}
+	A bag with $5$ fair coins and one $2$ headed coin. Choose a coin and flip it $n$ times. Let $X=\begin{cases}1\quad\text{if the coin is fiar}\\2\quad\text{if the two headed coin is selected}\end{cases}$	and $Y=$ the number of heads in $n$ tosses. Find $P_Y(y)$.
+	\begin{sol}
+		Our plan: find $p_X(x)\implies p_{Y\mid X=1}(y),\ p_{Y\mid X=2}(y)\implies p_{X,Y}(x,y)=p_{Y\mid X}(y)p_X(x)\implies$ sum over all values of $x$ to get the $p_Y(y)$. \[p_X(x)=\begin{cases}\dfrac{5}{6}\quad X=1\\\\\dfrac{1}{6}\quad X=2\end{cases}\]\[p_{Y\mid1}(y)=\binom{n}{y}\qty(\dfrac{1}{2})^y\qty(1-\dfrac{1}{2})^{n-y}=\binom{n}{y}\qty(\dfrac{1}{2})^n\]\[p_{Y\mid2}(y)=\begin{cases}0\quad y<n\\1\quad y=n\end{cases}.\] Therefore, the joint pdf 
+		\begin{center}\begin{tabular}{c|c|c|c|c}
+			&$Y=0$&$Y=1$&$Y=k$&$Y=n$\\\hline
+			&&&\\
+			$X=1$&$\qty(\dfrac{1}{2})^{n}\qty(\dfrac{5}{6})$&$\dsst\binom{n}{1}\qty(\dfrac{1}{2})^n\qty(\dfrac{5}{6})$&$\dsst\binom{n}{k}\qty(\frac{1}{2})^n\qty(\frac{5}{6})$&$1\dsst\qty(\frac{1}{2})^n\qty(\frac{5}{6})$\\
+			&&&\\
+			$X=2$&$0$&$0$&$0$&$1\dsst\qty(\frac{1}{6})$\\
+			&&&\\
+			$p_Y(y)$&$\qty(\dfrac{1}{2})^{n}\qty(\dfrac{5}{6})$&$\dsst\binom{n}{1}\qty(\dfrac{1}{2})^n\qty(\dfrac{5}{6})$&$\dsst\binom{n}{k}\qty(\frac{1}{2})^n\qty(\frac{5}{6})$&$\dsst\qty(\frac{1}{2})^n\qty(\frac{5}{6})+\qty(\frac{1}{6})$
+		\end{tabular}\end{center}
+		In other words, \[p_Y(y)=\begin{cases}\dsst\qty(\dfrac{5}{6})\binom{n}{y}\qty(\dfrac{1}{2})^n\quad 0\leq y<n\\\\\qty(\dfrac{1}{2})^n\qty(\dfrac{5}{6})+\qty(\dfrac{1}{6})\quad y=n\end{cases}\]
+	\end{sol}
+\end{eg}
+\begin{rmk}If we define the conditional density in the same way as in the discrete case, we shall have \[\dfrac{P(X=x, Y=y)}{P(X=x)}.\] However, $P(X=x)=0$ when $X$ is continuous. Thus, we need an alternative definition when $X$ is continuous. \end{rmk}
+\begin{df}{Conditional Probability - Continuous}
+	Let $X$ and $Y$ be two continuous random variables. Then, the conditional probability \[f_{Y\mid X}(y)=\dfrac{f_{X,Y}(x,y)}{f_X(x)}.\]	
+\end{df}
+\begin{prf}
+	We will use the cdf$\to$pdf method. Define the cdf of the conditional probability to be \begin{align*}F_{Y\mid X}(y)&=\lim_{h\to0}P(Y\leq y\mid X\in[x,x+h])\\&=\lim_{h\to0}\dfrac{\dsst\int_x^{x+h}\int_{-\infty}^yP_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\int_x^{x+h}f_X(s)\ \d{x}}&\dfrac{0}{0}\implies L'Hopitals'\\&=\lim_{h\to0}\dfrac{\dsst\dv{h}\int_x^{x+h}\int_{-\infty}^yP_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\dv{h}\int_x^{x+h}f_X(s)\ \d{s}}\\&=\lim_{h\to0}\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x+h,t)\ \d{t}}{\dsst f_X(x+h)}\\&=\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x,t)\ \d{t}}{f_X(x)}\end{align*}	So, we know \begin{align*}f_{Y\mid X}(y)&=\dv{y}\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x,t)\ \d{t}}{f_X(x)}\\&=\dfrac{f_{X,Y}(x,y)}{f_X(x)}.\end{align*}
+\end{prf}
+\begin{eg}
+	A stick of unit length, and break it at a random point. Let $X=$ length of the larger piece. Then, break the larger piece, and let $Y=$ the length of the larger piece after the second break. Find $E(Y)$.
+	\begin{sol}
+		Find the pdf of $X$: let $W=$ the breaking point. Assume $W\sim\text{Uniform}(0,1)$. Then, $X=\max(W,1-W)$. So we have \begin{align*}F_X(x)=P(X\leq x)&=P(W\leq x\text{ and }1-x\leq W)\\&=P(W\in[1-x,x])&X\in\qty[\dfrac{1}{2},1]\\&=\int_{1-x}^x1\ \d{w}=2x-1\\f_X(x)=\dv{x}F_X(x)&=\dv{x}[2x-1]=2.\end{align*} Find the joint pdf: repeat the same process for $Y\mid X\sim\text{Uniform}\qty(\dfrac{X}{2},X)$. We have \begin{align*}f_{Y\mid X}(y)&=\dfrac{1}{x-\frac{x}{2}}=\dfrac{2}{x}&y\in\qty[\dfrac{x}{2},x]\\f_{X,Y}(x,y)&=f_{Y\mid X}(y)f_X(x)\\&=\dfrac{2}{x}\cdot2=\dfrac{4}{x}.&x\in\qty[\dfrac{1}{2},1],\ y\in\qty[\dfrac{x}{2},x]\end{align*} Now, we can find the expected value: \begin{align*}E(Y)&=\int_{1/2}^1\int_{x/2}^xyf_{X,Y}(x,y)\ \d{y}\d{x}\\&=\int_{1/2}^1\int_{x/2}^xy\dfrac{4}{x}\ \d{y}\d{x}\\&=\int_{1/2}^1\dfrac{4}{x}\qty[\dfrac{1}{2}y^2]_{x/2}^x\ \d{x}\\&=\int_{1/2}^1\dfrac{2}{x}\qty(x^2-\dfrac{x^2}{4})\ \d{x}\\&=\int_{1/2}^1\dfrac{3}{2}x\ \d{x}\\&=\dfrac{3}{2}\qty[\dfrac{1}{2}x^2]_{1/2}^1\\&=\dfrac{3}{4}\qty(1-\dfrac{1}{4})=\dfrac{9}{16}.\end{align*}
+	\end{sol}
+\end{eg}
 
 
 \end{document}

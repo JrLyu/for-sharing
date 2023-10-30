@@ -667,7 +667,7 @@ b(p) = b(k);
 \begin{eg}{Chebyshev Polynomial}
 	Interpolate the points $\qty{(-1,0), (0,1), (1,3)}$.	
 	\begin{sol}
-		Assume $p_2(x)=d_0T_0+d_1T_1(x)+d_2T_2(x)$, where $T_0(x)=1$, $T_1(x)=x$, $T_2(x)=2x^2-1$. Then, \begin{align*}p_2(-1)&=d_0+d_1(-1)+d_2(1)\\p_2(0)&=d_0+d_1(0)+d_2(-1)\\p_2(1)&=d_0+d_!(1)+d_2(1)\end{align*} In matrix form, we have \[\mqty[1&-1&1\\1&0*-1\\1&1&1]\mqty[d_0\\d_1\\d_2]=\mqty[0\\1\\3]\implies\mqty[d_0\\d_1\\d_2]=\mqty[5/4\\3/2\\1/4]\]
+		Assume $p_2(x)=d_0T_0+d_1T_1(x)+d_2T_2(x)$, where $T_0(x)=1$, $T_1(x)=x$, $T_2(x)=2x^2-1$. Then, \begin{align*}p_2(-1)&=d_0+d_1(-1)+d_2(1)\\p_2(0)&=d_0+d_1(0)+d_2(-1)\\p_2(1)&=d_0+d_!(1)+d_2(1)\end{align*} In matrix form, we have \[\mqty[1&-1&1\\1&0&-1\\1&1&1]\mqty[d_0\\d_1\\d_2]=\mqty[0\\1\\3]\implies\mqty[d_0\\d_1\\d_2]=\mqty[5/4\\3/2\\1/4]\]
 	\end{sol}
 \end{eg}
 
@@ -687,7 +687,7 @@ b(p) = b(k);
 	Suppose $f(x)=x^2$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par  Then, \[f(x)-p_1(x)=x^2-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{LHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2!}(2)=x^2-x=\text{RHS}\]
 \end{eg}
 \begin{eg}{}
-	Suppose $f(x)=x^3$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par Then, \[f(x)-p_1(x)=x^2-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{RHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2}(6\xi_x)=x^2-x.\]\par Question: Can we find a $\xi_x$ where $\dfrac{x^2-x}{2}(6\xi_x)=x^2-x$.\par Answer: Say we want to evaluate error at $x=\dfrac{1}{2}$, we can certainly find some $\xi_x=\xi_\frac{1}{2}$ such that \[\qty(\dfrac{1}{2})^2-\qty(\dfrac{1}{2})=\dfrac{(1/2)^2-(1/2)}{2}(6\xi_x).\]
+	Suppose $f(x)=x^3$ on $[0,1]$. We have data $\qty{(0,0), (1,1)}$ and interpolant $p_1(x)=x$.\par Then, \[f(x)-p_1(x)=x^3-x\] and \[\omega(x)=(x-0)(x-1)=x^2-x.\]\par Therefore, \[\text{RHS}=\dfrac{\omega(x)}{(N+1)!}f^{(N+1)}(\xi_x)=\dfrac{x^2-x}{(1+1)!}f''(\xi_x)=\dfrac{x^2-x}{2}(6\xi_x)=x^2-x.\]\par Question: Can we find a $\xi_x$ where $\dfrac{x^2-x}{2}(6\xi_x)=x^2-x$.\par Answer: Say we want to evaluate error at $x=\dfrac{1}{2}$, we can certainly find some $\xi_x=\xi_\frac{1}{2}$ such that \[\qty(\dfrac{1}{2})^2-\qty(\dfrac{1}{2})=\dfrac{(1/2)^2-(1/2)}{2}(6\xi_x).\]
 \end{eg}
 \begin{rmk}
 	Some intuition on why this equation holds. 
@@ -713,7 +713,7 @@ b(p) = b(k);
 		\item Data: $\qty{(x_i,f_i)}_{i=1}^N$
 		\item Ordering: $a=x_0<x_1<x_2<\cdots<x_N=b$
 		\begin{rmk} We do not require equally spaced points here. \end{rmk}
-		\item Liner Splines: \[S_{1,N}(x)=\begin{cases}f_0\cdot\dfrac{x-x_1}{x_0-x_1}+f_1\cdot\dfrac{x-x_0}{x_1-x_0},&\quad x\in[x_0,x_1]\\f_1\cdot\dfrac{x-x_2}{x_1-x_2}+f_2\cdot\dfrac{x-x_1}{x_2-x_1},&\quad x\in[x_1,x_2]\\\vdots\\f_{N-1}\cdot\dfrac{x-x_N}{x_{N-1}-x_N}+f_N\cdot\dfrac{x-x_{N-1}}{x_N-x_{N-1}},&\quad x\in[x_{N-1},x_N]\end{cases},\] where $1$ indicates the degree of each piece ($1$ for linear) and $N$ is the number of intervals ($N+1$ points create $N$ intervals)
+		\item Linear Splines: \[S_{1,N}(x)=\begin{cases}f_0\cdot\dfrac{x-x_1}{x_0-x_1}+f_1\cdot\dfrac{x-x_0}{x_1-x_0},&\quad x\in[x_0,x_1]\\f_1\cdot\dfrac{x-x_2}{x_1-x_2}+f_2\cdot\dfrac{x-x_1}{x_2-x_1},&\quad x\in[x_1,x_2]\\\vdots\\f_{N-1}\cdot\dfrac{x-x_N}{x_{N-1}-x_N}+f_N\cdot\dfrac{x-x_{N-1}}{x_N-x_{N-1}},&\quad x\in[x_{N-1},x_N]\end{cases},\] where $1$ indicates the degree of each piece ($1$ for linear) and $N$ is the number of intervals ($N+1$ points create $N$ intervals)
 	\end{itemize}	
 \end{df}
 \begin{eg}{}
@@ -850,8 +850,8 @@ b(p) = b(k);
 		\draw (148,155.4) node [anchor=north west][inner sep=0.75pt]    {$=$};
 		\end{tikzpicture}
 		\end{center}
-		\item Substitute: \begin{align*}\|\vb Va-f\|_2^2&=\|\vb Q\vb Ra-f\|_2^2\\&=\|\underbrace{\vb Q^T(\vb Q}_{\vb{I}}\vb Ra-f)\|_2^2 &2-norms\ invariant\ to\ orthogonal\ matrices\\&=\|\vb Ra-f\|_2^2\\&=\Bigg\|\mqty[\vb R_M\\\vb 0]a-\mqty[b\\c]\Bigg\|_2^2&parition\ f\ into\ 2\ parts\\&=\|\vb R_Ma-b\|_2^2-\|c\|_2^2. \end{align*}
-		\item We need to solve $\vb R_Ma=b$ using backward substitution.
+		\item Substitute: \begin{align*}\|\vb Va-f\|_2^2&=\|\vb Q\vb Ra-f\|_2^2\\&=\|\underbrace{\vb Q^T(\vb Q}_{\vb{I}}\vb Ra-f)\|_2^2 &2-norms\ invariant\ to\ orthogonal\ matrices\\&=\|\vb Ra-\vb Q^Tf\|_2^2\\&=\Bigg\|\mqty[\vb R_M\\\vb 0]a-\mqty[b\\c]\Bigg\|_2^2&parition\ \vb Q^Tf\ into\ 2\ parts\\&=\|\vb R_Ma-b\|_2^2-\|c\|_2^2. \end{align*}
+		\item Solve $\vb R_Ma=b$ using backward substitution, where $b$ is the first $M$ row of $\vb Q^Tf$.
 	\end{itemize}	
 \end{df}
 
@@ -870,7 +870,7 @@ b(p) = b(k);
 	\[f'(x)=\lim_{h\to0}\dfrac{f(x+h)-f(x)}{h}.\]
 \end{df}
 \begin{df}{Finite Difference Approxiation}
-	\[f'(x)\approx\dfrac{f(x+h)-f(X)}{h}\]
+	\[f'(x)\approx\dfrac{f(x+h)-f(x)}{h}\]
 	\begin{center}
 	\tikzset{every picture/.style={line width=0.75pt}}
 	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1018,7 +1018,7 @@ b(p) = b(k);
 	\[R_{CT}(f,h)\equiv h\sum_{i=1}^N\qty(\dfrac{f(x_{i-1})+f(x_i))}{2})\]	
 \end{df}
 \begin{df}{Quadrature Rule}
-	The Quadrature question concerns ``Can we find a square that has the same area as a circle?'' In the integration problem, the Quadrature Rules states that given points $x_0<x_1<\cdots<x_N$ and weights $w_0,w_1,\dots,w_N$, then \[R(f)=\equiv\sum_{i=0}^N w_if(x_i).\]	
+	The Quadrature question concerns ``Can we find a square that has the same area as a circle?'' In the integration problem, the Quadrature Rules states that given points $x_0<x_1<\cdots<x_N$ and weights $w_0,w_1,\dots,w_N$, then \[R(f)\equiv\sum_{i=0}^N w_if(x_i).\]	
 \end{df}
 \begin{thm}{Properties of $R(f)$}
 	\begin{itemize}
@@ -1213,10 +1213,10 @@ b(p) = b(k);
 \begin{df}{Etimate Error}
 	\begin{align*}E(f,T^*)&=\qty|I(f,T^*)-R_1(f,T^*)|\\&\approx\qty|R_2(f,T^*)-R_1(f,T^*)|\end{align*}
 \end{df}
-\begin{algorithm}\caption{Row-Oriented Forward Substitution}
+\begin{algorithm}\caption{Adaptive Integration}
 	Partition $T$ into subintervals $T_i$, where $i=1,\dots,n$;\\
 	Compute	$R(f,T_i)$ and $E(f,T_i)$ for $i=1,\dots,n$;\\
-	Find the subinterval with largest error and bisect. Say $T_{i^*}$ is the interval, then we turn it into $T_{i^*}^\text{left}$ and $T_{i^*}^\text{right}$.;\\
+	Find the subinterval with largest error and bisect. Say $T_{i^*}$ is the interval, then we turn it into $T_{i^*}^\text{left}$ and $T_{i^*}^\text{right}$;\\
 	Repeat. Stop when we get $\dsst\sum_{i=1}^nE(f,T_i)\leq\underbrace{\text{tolerance}}_\text{to be chosen}$;
 \end{algorithm}
 \begin{df}{Gauss Rules}
