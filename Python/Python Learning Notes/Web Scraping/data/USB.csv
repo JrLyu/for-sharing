@@ -1,15 +1,42 @@
-,0
-0,U.S. Bancorp Investors Just Got Huge News
-1,U.S. Bancorp (NYSE:USB) Q3 2023 Earnings Call Transcript
-2,"Company News for Oct 19, 2023"
-3,Why U.S. Bancorp Stock Pulled Back Today
-4,US regional banks earn more on loans but warn on rising deposit costs
-5,U.S. Bancorp (USB) Q3 2023 Earnings: Strong Performance Despite Challenging Interest Rate ...
-6,"Regional Bank Earnings Kick Off: U.S. Bank, Citizens, M&T"
-7,U.S. Bancorp Posts Solid Net Interest Income Boosted by Higher Rates. Why The Stock Is Falling.
-8,U.S. Bancorp's (USB) Q3 Earnings Beat as Revenues Improve Y/Y
-9,"East West Bancorp (EWBC) Up on Q3 Earnings Beat, Revenue GrowthZacks"
-10,"First Horizon (FHN) Q3 Earnings Beat, Revenues Decline Y/YZacks"
-11,U.S. Bancorp (USB) Q3 Earnings: Taking a Look at Key Metrics Versus Estimates
-12,"Compared to Estimates, Fifth Third Bancorp (FITB) Q3 Earnings: A Look at Key MetricsZacks"
-13,Here's What Key Metrics Tell Us About American Express (AXP) Q3 EarningsZacks
+,body
+0,"Cloud storage is very cheap and incredibly handy.  I use Google Drive and get some space for free and it's dirt cheap to get like 100Gb.  Use it for receipts, documents, whatever.  You can also get a cheap USB document scanner and set it up to automatically scan and load stuff to your cloud storage so you have digital backups.  "
+1,"Back in 2011/12 I brought 4 bitcoin for £12 each. I had recently heard about this new currency and figured I would see if they would ever increase enough so I could cash them later. 
+
+Stored them in an offline wallet on my laptop, and backed it up on a USB drive.
+
+Anyway, I ended up forgetting about them until just before Xmas just gone. Looked up the price and thought holy shit, I got money... go me.
+
+Then I remembered that the hard drive I had the wallet on died about 2 years ago. Fuck.... Wait a minute, I got the usb backup. Go me.....
+
+So I find the usb drive, plug it in, and my heart sinks. 
+
+At some point over the years I obviously forgot what this drive had on it as it had a load of random files for work, spreadsheets, documents etc. But no wallet file. I must have formatted it. I tried everything I could to recover the file but it was gone.
+
+I still have the dead hard drive, somewhere. Who knows, one day I might even work out which drive it was (I have many old dead drives). Then I can sit and look at it and imagine what life could have been like if wasn't so stupid to create just one more backup.
+
+Or I might just frame it, titled ""My greatest mistake""
+
+I still have one Casascius physical bitcoin 1btc that is unredeemed, but I refuse to redeem that as i promised it to my son when he turns 18.
+
+Edit (Spelling error)"
+2,"Eh, I'd say it's still fine to buy stuff you weren't initially planning on getting as long as you know you'll use it. Like, first Prime Day I bought a portable battery for charging USB devices. It wasn't something I knew I wanted, but I saw it and thought it would be useful, and it really has been. It holds a charge for a long time and has been very useful in power outages, long trips, and conventions.
+
+That's pretty much the main reason I like browsing sales. Sometimes I can find solutions to problems I didn't know I could afford to solve."
+3,"TOTP is literally exactly the same to phish as SMS. 
+
+1. Send user to a phishing page.
+
+2. Ask for their password. Record it.
+
+3. Redirect them to a phishing page that asks for their TOTP code. 
+
+4. Enter the password and then enter the TOTP code into the service to authenticate as the victim.
+
+You can automate the entire process.
+
+FIDO won't let you sign a message for a different domain than the one asking for the second factor. This means that the message you give to the attacker cannot be proxied to the service. You don't need a ""bunch of keys"". You buy one and register it to all of the services you use. They even make ones that sit in your USB drive permanently.
+
+If you don't trust the local device then there is literally nothing you could ever do in order to authenticate safely. So why even bring that up?"
+4,"Direct attacks against phone companies to redirect SMS traffic are fairly common, which is why it's consider a poor second factor. Recently, [Reddit lost a lot of old passwords sure to intercepted SMS messages](https://arstechnica.com/information-technology/2018/08/password-breach-teaches-reddit-that-yes-phone-based-2fa-is-that-bad/). (The graphic with a phishing form is misleading, the article explains the attack further down.) TOTP isn't perfect, but it's immune to this type of attack and it's better. Yubikey is definitely a better solution where it can be implemented. (I had an employer who banned all USB devices from their buildings, which made ""just put a yubikey on your key ring"" a non-viable solution for people like me.)
+
+Tangent: Email is also consider a poor second factor, for anyone reading this who might be tempted to use it instead. Attackers who can get into a victim's email can typically reset passwords for most of their accounts using that email address. This means that for most websites ""access to email"" becomes a single authentication factor."
