@@ -72,6 +72,7 @@
 \def\bar{\overline}
 \def\E{\vb{E}}
 \def\Var{\vb{Var}}
+\def\Cov{\vb{Cov}}
 \def\P{\vb{P}}
 \def\M{\vb{M}}
 
@@ -466,7 +467,7 @@
 	A \textit{discrete random variable} is a random variable whose range is finite of countable. 	
 \end{df}
 \begin{df}{Probability Density (Mass) Function / pdf}
-	\[P_X(x)=\P(X=x)=\P\qty(\qty{s\in S\mid X(s)=x}).\]
+	\[\P_X(x)=\P(X=x)=\P\qty(\qty{s\in S\mid X(s)=x}).\]
 \end{df}
 \begin{df}{Cumulative Density Function / cdf}
 	\[F_X(x)=\P(X\leq x).\]	
@@ -475,22 +476,22 @@
 \begin{eg}
 	Roll three fair die. Let $X$ be the largest value of the three die. Find the pdf.
 	\begin{sol}
-		Note the pdf \[P_X(x)=\P(X=x)=\P(X\leq x)-\P(X\leq x-1).\] Find the cdf of $x$. The die that take on at most the value $x$, so each die have $x$ possible outcomes, and considering order, we know \[F_X(x)=\dfrac{x^3}{6^3}.\] Therefore, \[P_X(x)=\P(X\leq x)-\P(X\leq x-1)=F_X(x)-F_X(x-1)=\dfrac{x^3}{6^3}-\dfrac{(x-1)^3}{6^3}.\]
+		Note the pdf \[\P_X(x)=\P(X=x)=\P(X\leq x)-\P(X\leq x-1).\] Find the cdf of $x$. The die that take on at most the value $x$, so each die have $x$ possible outcomes, and considering order, we know \[F_X(x)=\dfrac{x^3}{6^3}.\] Therefore, \[\P_X(x)=\P(X\leq x)-\P(X\leq x-1)=F_X(x)-F_X(x-1)=\dfrac{x^3}{6^3}-\dfrac{(x-1)^3}{6^3}.\]
 	\end{sol}
 \end{eg}
 \begin{df}{Bernoulli Distribution}
-	The \textit{Bernoulli distribution} is the classic ``flip one coin,'' where $X$ is the number of heads. Let $X\sim\text{Bernoulli}(p)$, where $p$ stands for the probability of success. $x=1$ for success and $x=0$ for failure. The pdf of Bernoulli distribution is \[P_X(x)=p^x\qty(1-p)^{1-x}\] So, \[P_X(1)=p;\qquad P_X(0)=(1-p).\]
+	The \textit{Bernoulli distribution} is the classic ``flip one coin,'' where $X$ is the number of heads. Let $X\sim\text{Bernoulli}(p)$, where $p$ stands for the probability of success. $x=1$ for success and $x=0$ for failure. The pdf of Bernoulli distribution is \[\P_X(x)=p^x\qty(1-p)^{1-x}\] So, \[\P_X(1)=p;\qquad \P_X(0)=(1-p).\]
 \end{df}
 \begin{df}{Binomial Distribution}
-	The \textit{binomial distribution} is adding Bernoulli trials together. Let $Y=X_1+\cdots+X_n$ be the number  of success with $X\sim\text{Bernoulli}(p)$ and $Y\sim\text{Binomial}(n,p)$. $n$ is the number of trials and $p$ is the probability of success. The pdf of binomial distribution is \[P_Y(y)=\binom{n}{y}p^y\qty(1-p)^y.\]
+	The \textit{binomial distribution} is adding Bernoulli trials together. Let $Y=X_1+\cdots+X_n$ be the number  of success with $X\sim\text{Bernoulli}(p)$ and $Y\sim\text{Binomial}(n,p)$. $n$ is the number of trials and $p$ is the probability of success. The pdf of binomial distribution is \[\P_Y(y)=\binom{n}{y}p^y\qty(1-p)^y.\]
 \end{df}
 \begin{df}{Hypergeometric Distribution}
-	Suppose we have a bag of red ($r$)	 and white ($w$) chips and $r+w=N$. Let $X=$ the number of red chips when choosing $n$ chips \textit{without replacement}. Then, $X\sim\text{Hypergeometric}(r,w,n)$, and the pdf is given by \[P_X(x)=\P(X=x)=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{r+w}{n}},\] where $\dsst\binom{r}{x}$ is the number of ways to get $x$ red, $\dsst\binom{w}{n-x}$ is the number of ways to get $n-x$ white, and $\dsst\binom{r+w}{n}$ is the total number of picking a size of $x$.
+	Suppose we have a bag of red ($r$)	 and white ($w$) chips and $r+w=N$. Let $X=$ the number of red chips when choosing $n$ chips \textit{without replacement}. Then, $X\sim\text{Hypergeometric}(r,w,n)$, and the pdf is given by \[\P_X(x)=\P(X=x)=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{r+w}{n}},\] where $\dsst\binom{r}{x}$ is the number of ways to get $x$ red, $\dsst\binom{w}{n-x}$ is the number of ways to get $n-x$ white, and $\dsst\binom{r+w}{n}$ is the total number of picking a size of $x$.
 \end{df}
 \begin{rmk}
 	If we choose sequence (ordered choose without replacement), we should get the exact same answer: $\perm[r]{x}$ is the number of ways the red chips can be selected in order, $\perm[w]{n-x}$ is the ways to choose the white chips, $\dsst\binom{n}{x}$ is the locations of the red chips, and $\perm[N]{n}$ is the orders of $n$ chips. Then, 
 	\begin{align*}
-		P_X(x)=\P(X=x)=\dfrac{\qty(\perm[r]{x})\cdot\qty(\perm[w]{n-x})\cdot\dsst\binom{n}{x}}{\perm[N]{n}}&=\dfrac{\dfrac{r!}{(r-x)!}\cdot\dfrac{w!}{(w-(n-x))!}\cdot\dfrac{n!}{(n-x)!x!}}{\dfrac{N!}{(N-n)!}}\\
+		\P_X(x)=\P(X=x)=\dfrac{\qty(\perm[r]{x})\cdot\qty(\perm[w]{n-x})\cdot\dsst\binom{n}{x}}{\perm[N]{n}}&=\dfrac{\dfrac{r!}{(r-x)!}\cdot\dfrac{w!}{(w-(n-x))!}\cdot\dfrac{n!}{(n-x)!x!}}{\dfrac{N!}{(N-n)!}}\\
 		&=\dfrac{\dfrac{r!}{(r-x)!x!}\cdot\dfrac{w!}{(w-(n-x))!(n-x)!}}{\dfrac{N!}{(N-n)!n!}}\\&=\dfrac{\dsst\binom{r}{x}\binom{w}{n-x}}{\dsst\binom{N}{n}}.
 	\end{align*}
 \end{rmk}
@@ -532,14 +533,14 @@
 
 \subsection{Expected Values and Variances}
 \begin{df}{Expected Values}
-	For discrete random variables, \[\E(X)=\sum_{\text{all values of }x}xP_X(x)=\sum_{\text{all values of }x}x\P(X=x).\] For continuous random variables, \[\E(Y)=\int_{-\infty}^\infty yf(y)\ \d{y}\]
+	For discrete random variables, \[\E(X)=\sum_{\text{all values of }x}x\P_X(x)=\sum_{\text{all values of }x}x\P(X=x).\] For continuous random variables, \[\E(Y)=\int_{-\infty}^\infty yf(y)\ \d{y}\]
 \end{df}
 \begin{rmk}
 	$\E(X)=\mu_X=\mu$ is the balancing point of the distribution, also known as the \textbf{first moment}. Another center of the distribution is the \textbf{median}, $m$, such that  \[\P(X\geq m)=\P(X<m)=\dfrac{1}{2}.\]
 \end{rmk}
 \begin{thm}{Properties of Expected Values}
 	\begin{itemize}
-		\item Let $Y=g(X)$. Then, \[\E(Y)=\E(g(X))=\begin{cases}\dsst\sum_{\text{all }x} g(x)P_X(x),\quad&\text{discrete}\\\\\dsst\int_{-\infty}^\infty g(x)f(x)\ \d{x},\quad&\text{continuous}\end{cases}\]
+		\item Let $Y=g(X)$. Then, \[\E(Y)=\E(g(X))=\begin{cases}\dsst\sum_{\text{all }x} g(x)\P_X(x),\quad&\text{discrete}\\\\\dsst\int_{-\infty}^\infty g(x)f(x)\ \d{x},\quad&\text{continuous}\end{cases}\]
 		\item Special Case: $Y=aX+b$. \[\E(Y)=\E(aX+b)=a\E(X)+b.\] This special case also indicates that $\E(X)$ is linear. 
 	\end{itemize}	
 \end{thm}
@@ -613,7 +614,7 @@
 			\draw (53,68.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
 			\end{tikzpicture}
 		\end{center}
-		\begin{align*}P_Z(z)=\P(Z\leq z)=\P\qty(\dfrac{Y}{X}\leq z)=\P(Y\leq zX)&=\iint_R f_{X,Y}(x,y)\ \d{x}\d{y}\\&=\int_0^1\int_{y/z}^y2\ \d{x}\d{y}\\&=\int_0^12\qty(y-\dfrac{y}{z})\ \d{y}\\&=\int_0^12\qty(1-\dfrac{1}{z})y\ \d{y}\\&=2\cdot\qty(1-\dfrac{1}{z})\cdot\dfrac{1}{2}\mqty[y^2]_0^1\\&=1-\dfrac{1}{2}\end{align*} Therefore, \[f_Z(z)=\dv{z}F_Z(z)=\dv{z}\qty(1-\dfrac{1}{z})=z^{-2},\quad z>1.\]
+		\begin{align*}\P_Z(z)=\P(Z\leq z)=\P\qty(\dfrac{Y}{X}\leq z)=\P(Y\leq zX)&=\iint_R f_{X,Y}(x,y)\ \d{x}\d{y}\\&=\int_0^1\int_{y/z}^y2\ \d{x}\d{y}\\&=\int_0^12\qty(y-\dfrac{y}{z})\ \d{y}\\&=\int_0^12\qty(1-\dfrac{1}{z})y\ \d{y}\\&=2\cdot\qty(1-\dfrac{1}{z})\cdot\dfrac{1}{2}\mqty[y^2]_0^1\\&=1-\dfrac{1}{2}\end{align*} Therefore, \[f_Z(z)=\dv{z}F_Z(z)=\dv{z}\qty(1-\dfrac{1}{z})=z^{-2},\quad z>1.\]
 	\end{sol}
 \end{eg}
 
@@ -636,7 +637,7 @@
 \begin{eg}
 	Let $X\sim\text{Binomial}(n,p)$ and $Y\sim\text{Binomial}(m,p)$. Let $X$ and $Y$ be independent. Find the pdf for $W=X+Y$.
 	\begin{sol}
-		\[P_X(x)=\binom{n}{x}p^x(1-p)^{n-x};\quad P_Y(y)=\binom{m}{y}p^y(1-p)^{m-y}\]\begin{align*}P_W(w)=\P(W=w)&=\sum_x\underbrace{P_X(x)P_Y(w-x)}_{\text{Joint pdf} P_{X,Y}(x,y),\ w=x+y}\\&=\sum_x\binom{n}{x}p^x(1-p)^{n-x}\binom{m}{w-x}p^{w-x}(1-p)^{m-(w-x)}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{x+w-x}(1-p)^{n-x+m-w+x}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{w}(1-p)^{n+m-w}\\&=p^w(1-p)^{n+m-w}\qty(\sum_x\binom{n}{x}\binom{m}{w-x})\\&=\binom{m+n}{w}p^w(1-p)^{n+m-w}\end{align*} So, $W=X+Y\sim\text{Binomial}(n+m,p)$
+		\[\P_X(x)=\binom{n}{x}p^x(1-p)^{n-x};\quad \P_Y(y)=\binom{m}{y}p^y(1-p)^{m-y}\]\begin{align*}\P_W(w)=\P(W=w)&=\sum_x\underbrace{\P_X(x)\P_Y(w-x)}_{\text{Joint pdf} \P_{X,Y}(x,y),\ w=x+y}\\&=\sum_x\binom{n}{x}p^x(1-p)^{n-x}\binom{m}{w-x}p^{w-x}(1-p)^{m-(w-x)}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{x+w-x}(1-p)^{n-x+m-w+x}\\&=\sum_x\binom{n}{x}\binom{m}{w-x}p^{w}(1-p)^{n+m-w}\\&=p^w(1-p)^{n+m-w}\qty(\sum_x\binom{n}{x}\binom{m}{w-x})\\&=\binom{m+n}{w}p^w(1-p)^{n+m-w}\end{align*} So, $W=X+Y\sim\text{Binomial}(n+m,p)$
 	\end{sol}
 \end{eg}
 \begin{thm}{Sum of Continuous Independent Random Variable, $W=X+Y$}
@@ -678,13 +679,13 @@
 	Suppose $X$ and $Y$ are independent. Then, \begin{align*}\E(X,Y)&=\iint_{\R^2}xyf_{X,Y}(x,y)\ \d{x}\d{y}\\&=\iint_{\R^2}xyf_X(x)f_Y(y)\ \d{x}\d{y}&\quad Independence\\&=\qty(\int_{-\infty}^\infty xf_X(x)\ \d{x})\qty(\int_{-\infty}^\infty yf_Y(y)\ \d{y})=\E(X)\E(Y).\end{align*}	
 \end{prf}
 \begin{thm}{Variance of a Sum}
-	\[\Var(X+Y)=\Var(X)+\Var(Y)+2Cov(X,Y),\] where \[Cov(X,Y)=\E(XY)=\E(X)\E(Y).\] Specially, if $X$ and $Y$ are independent, \[\Var(X+Y)=\Var(X)+\Var(Y),\] and \[Cov(X,Y)=0.\]
+	\[\Var(X+Y)=\Var(X)+\Var(Y)+2\Cov(X,Y),\] where \[\Cov(X,Y)=\E(XY)-\E(X)\E(Y).\] Specially, if $X$ and $Y$ are independent, \[\Var(X+Y)=\Var(X)+\Var(Y),\] and \[\Cov(X,Y)=0.\]
 \end{thm}
 \begin{prf}
-	Recall $\Var(X)=\E(X^2)-\E(X)^2$. Then, \begin{align*}\Var(X+Y)&=\E\qty((X+Y)^2)-\E(X+Y)^2\\&=\E\qty(X^2+Y^2+2XY)-\qty[\E(X)+\E(Y)]^2\\&=\E\qty(X^2)+\E\qty(Y^2)+2\E(XY)-\E(X)^2-\E(Y)^2-2\E(X)\E(Y)\\&=\qty[\E\qty(X^2)-\E(X)^2]+\qty[\E\qty(Y^2)-\E(Y)^2]+2\qty[\E(XY)-\E(X)\E(Y)]\\&=\Var(X)+\Var(Y)+2\qty[\E(XY)-\E(X)\E(Y)]\\&=\Var(X)+\Var(Y)+2Cov(X,Y)\end{align*} When $X$ and $Y$ are independent, $\E(XY)=\E(X)\E(Y)$, so $\E(XY)-\E(X)\E(Y)=0$. Then, \[\Var(X+Y)=\Var(X)+\Var(Y).\]
+	Recall $\Var(X)=\E(X^2)-\E(X)^2$. Then, \begin{align*}\Var(X+Y)&=\E\qty((X+Y)^2)-\E(X+Y)^2\\&=\E\qty(X^2+Y^2+2XY)-\qty[\E(X)+\E(Y)]^2\\&=\E\qty(X^2)+\E\qty(Y^2)+2\E(XY)-\E(X)^2-\E(Y)^2-2\E(X)\E(Y)\\&=\qty[\E\qty(X^2)-\E(X)^2]+\qty[\E\qty(Y^2)-\E(Y)^2]+2\qty[\E(XY)-\E(X)\E(Y)]\\&=\Var(X)+\Var(Y)+2\qty[\E(XY)-\E(X)\E(Y)]\\&=\Var(X)+\Var(Y)+2\Cov(X,Y)\end{align*} When $X$ and $Y$ are independent, $\E(XY)=\E(X)\E(Y)$, so $\E(XY)-\E(X)\E(Y)=0$. Then, \[\Var(X+Y)=\Var(X)+\Var(Y).\]
 \end{prf}
 \begin{rmk}
-	$Cov(X,Y)$ does not imply $X$ and $Y$ are independent. When $\E(X)$ or $\E(Y)$ is $0$, we would have $Cov(X,Y)=0$ as well. 	
+	$\Cov(X,Y)$ does not imply $X$ and $Y$ are independent. When $\E(X)$ or $\E(Y)$ is $0$, we would have $\Cov(X,Y)=0$ as well. 	
 \end{rmk}
 \begin{rmk}
 	Summary of Properties: 
@@ -746,7 +747,7 @@
 	Let $X,Y$ be discrete random variables with joint pdf $p_{X,Y}(x,y)$, then the conditional probability \[p_{Y\mid X}(y)=\P(Y=y\mid X=x)=\dfrac{p_{X,Y}(x,y)}{p_X(x)}.\]	
 \end{df}
 \begin{eg}
-	A bag with $5$ fair coins and one $2$ headed coin. Choose a coin and flip it $n$ times. Let $X=\begin{cases}1\quad\text{if the coin is fiar}\\2\quad\text{if the two headed coin is selected}\end{cases}$	and $Y=$ the number of heads in $n$ tosses. Find $P_Y(y)$.
+	A bag with $5$ fair coins and one $2$ headed coin. Choose a coin and flip it $n$ times. Let $X=\begin{cases}1\quad\text{if the coin is fiar}\\2\quad\text{if the two headed coin is selected}\end{cases}$	and $Y=$ the number of heads in $n$ tosses. Find $\P_Y(y)$.
 	\begin{sol}
 		Our plan: find $p_X(x)\implies p_{Y\mid X=1}(y),\ p_{Y\mid X=2}(y)\implies p_{X,Y}(x,y)=p_{Y\mid X}(y)p_X(x)\implies$ sum over all values of $x$ to get the $p_Y(y)$. \[p_X(x)=\begin{cases}\dfrac{5}{6}\quad X=1\\\\\dfrac{1}{6}\quad X=2\end{cases}\]\[p_{Y\mid1}(y)=\binom{n}{y}\qty(\dfrac{1}{2})^y\qty(1-\dfrac{1}{2})^{n-y}=\binom{n}{y}\qty(\dfrac{1}{2})^n\]\[p_{Y\mid2}(y)=\begin{cases}0\quad y<n\\1\quad y=n\end{cases}.\] Therefore, the joint pdf 
 		\begin{center}\begin{tabular}{c|c|c|c|c}
@@ -766,7 +767,7 @@
 	Let $X$ and $Y$ be two continuous random variables. Then, the conditional probability \[f_{Y\mid X}(y)=\dfrac{f_{X,Y}(x,y)}{f_X(x)}.\]	
 \end{df}
 \begin{prf}
-	We will use the cdf$\to$pdf method. Define the cdf of the conditional probability to be \begin{align*}F_{Y\mid X}(y)&=\lim_{h\to0}\P(Y\leq y\mid X\in[x,x+h])\\&=\lim_{h\to0}\dfrac{\dsst\int_x^{x+h}\int_{-\infty}^yP_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\int_x^{x+h}f_X(s)\ \d{x}}&\dfrac{0}{0}\implies L'Hopitals'\\&=\lim_{h\to0}\dfrac{\dsst\dv{h}\int_x^{x+h}\int_{-\infty}^yP_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\dv{h}\int_x^{x+h}f_X(s)\ \d{s}}\\&=\lim_{h\to0}\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x+h,t)\ \d{t}}{\dsst f_X(x+h)}\\&=\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x,t)\ \d{t}}{f_X(x)}\end{align*}	So, we know \begin{align*}f_{Y\mid X}(y)&=\dv{y}\dfrac{\dsst\int_{-\infty}^yP_{X,Y}(x,t)\ \d{t}}{f_X(x)}\\&=\dfrac{f_{X,Y}(x,y)}{f_X(x)}.\end{align*}
+	We will use the cdf$\to$pdf method. Define the cdf of the conditional probability to be \begin{align*}F_{Y\mid X}(y)&=\lim_{h\to0}\P(Y\leq y\mid X\in[x,x+h])\\&=\lim_{h\to0}\dfrac{\dsst\int_x^{x+h}\int_{-\infty}^y\P_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\int_x^{x+h}f_X(s)\ \d{x}}&\dfrac{0}{0}\implies L'Hopitals'\\&=\lim_{h\to0}\dfrac{\dsst\dv{h}\int_x^{x+h}\int_{-\infty}^y\P_{X,Y}(s,t)\ \d{t}\d{s}}{\dsst\dv{h}\int_x^{x+h}f_X(s)\ \d{s}}\\&=\lim_{h\to0}\dfrac{\dsst\int_{-\infty}^y\P_{X,Y}(x+h,t)\ \d{t}}{\dsst f_X(x+h)}\\&=\dfrac{\dsst\int_{-\infty}^y\P_{X,Y}(x,t)\ \d{t}}{f_X(x)}\end{align*}	So, we know \begin{align*}f_{Y\mid X}(y)&=\dv{y}\dfrac{\dsst\int_{-\infty}^y\P_{X,Y}(x,t)\ \d{t}}{f_X(x)}\\&=\dfrac{f_{X,Y}(x,y)}{f_X(x)}.\end{align*}
 \end{prf}
 \begin{eg}
 	A stick of unit length, and break it at a random point. Let $X=$ length of the larger piece. Then, break the larger piece, and let $Y=$ the length of the larger piece after the second break. Find $\E(Y)$.
@@ -777,7 +778,7 @@
 
 \subsection{Moment Generating Functions (mgf)}
 \begin{df}{Moment}
-	The moments of the distribution of $X$ are \[\\E\qty(X^k)\quad\text{for }k=1,2,\dots\] if they exists. The mean $\mu$ is the first moment. 
+	The moments of the distribution of $X$ are \[\E\qty(X^k)\quad\text{for }k=1,2,\dots\] if they exists. The mean $\mu$ is the first moment. 
 \end{df}
 \begin{df}{Moment Generating Functions/mgf}
 	\[\M_X(t)=\E\qty(e^{tX})=\begin{cases}\dsst\sum_ke^{tk}p_X(k)\quad\text{if }X\text{ is discrete}\\\\\dsst\int_{-\infty}^\infty e^{tx}f_X(x)\ \d{x}\quad\text{if }X\text{ is continuous}\end{cases}\]	
