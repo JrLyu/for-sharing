@@ -1,11 +1,84 @@
-,body
-0,"[I thought it was LEAPS that they were loss harvesting.](https://twitter.com/PelosiTracker_/status/1552299246065442820) The position definitely didn't make money and CHIPS doesn't benefit NVDA as much as IDMs like INTC and other fab suppliers. NVDA can write off some of it's validation footprint, but they don't manufacture chips or much board volume."
-1,"> 200 call options (20,000 shares) expiring 6/17/22
+body
+"My [last post](https://www.reddit.com/r/stocks/comments/11ezwar/rate_my_portfolio_rstocks_quarterly_thread_march/jah0b73/) was 6 months ago.
 
-https://disclosures-clerk.house.gov/public_disc/ptr-pdfs/2022/20021374.pdf
+To recap, a brief overview of my strategy, that has not since changed:
 
+> I am 26, so I have several decades until retirement. My goal is to hold the stocks in my portfolio perpetually, though I'm not reserved to make adjustments and sell when a) I see an opportunity to take profits b) my thesis changes. My long term goal is passive income generation, though I don't chase yields. I don't pay much attention to valuation or macro, as I think that since I plan on holding these stocks for decades while buying every month, those don't matter to me much.
 
-NVDA actually opposed the bill because they didn't get any of that sweet sweet monies."
-2,"You mean after NIO Partnered with NVDA and released and pretty dope looking Fuking car that has more range than Tesla, it won’t go up!!??"
-3,"Me a noob: *put $5 into NVDA way back*
-This will definitely fly."
+> I invest regularly every month, so I'm okay with buying at a higher valuation at times and lower valuation at other times. In my opinion, buying at the best possible time is more difficult than buying a good company. That said, if I see an undervalued stock I like, I don't hesitate to buy more and when I make my regular contributions, I try weigh towards stocks that might have been beaten down or seem undervalued.
+
+> I like stocks that are quality companies with:
+
+> -	A sustainable business model - high cash flow generation, high ROIC / ROCE, good balance sheet. Bonus points for recurring, diversified revenue, and optionality.
+> -	Business model and products I understand, or at least understand their value. I don't think I'll ever understand ASML's machines, but I understand why it's one of a kind company.
+> -	A wide moat. Bonus points are for brand value, network effect, IP, barriers to entry / high switching costs, supply chain, etc. I am okay with paying a high multiple for a company that cannot be replicated by throwing money at the problem. Almost every company I own scores very high in this regard in my own checklist.
+> -	High margins. I focus mostly on gross margin, but consider other margin metrics, too.
+> -	Sustainable buybacks and dividend growth.
+> -	Great management.
+
+I made some changes to my portfolio:
+
+- I no longer own the CARB carbon allowance ETF. It was good for some hedging but I wanted to simplify my approach a bit.
+- I no longer own small cap and EM ETFs. I only have MSCI World ETF (15%) and MSCI World Quality ETF (10%). I wanted to intensify my focus on quality companies and simplify my approach.
+
+- I sold BN & BAM, UNP, LMT, ADBE, JNJ. I was no longer comfortable with Brookfield's structure and my lack of understanding it, so I sold all my Brookfield holdings after almost 4 years I've held them. ADBE had really nice growth and I felt better taking the profits. I like that they will probably adapt to generative AI pretty well. I love the company and might buy back later. UNP, LMT, JNJ are all good but I think I wanted to focus on more innovative (less so with LMT) and consumer oriented businesses (less so with JNJ).
+
+- I bought LVMH, LLY, PM, IDXX, ZTS, L'oreal, META. I briefly held EL which I sold (at loss) and bought L'oreal instead.
+
+- I increased the weights of my core holdings. 6 of my stocks (MSFT, AAPL, ASML, V, MA, NVO) account for >50% of my stocks, 9 (+ LVMH, GOOG, COST) account for 50% of my overall portfolio.
+
+My current holdings:
+
+| **Name**                        | Ticker | Return | Weight | Target weight |
+|---------------------------------|--------|-------:|-------:|--------------:|
+| **MSCI World**                  |        |  23,7% |  14,6% |         15,0% |
+| **MSCI World Quality**          |        |  31,9% |   9,8% |         10,0% |
+| **Microsoft**                   | MSFT   |  51,9% |   7,6% |          6,5% |
+| **Apple**                       | AAPL   |  48,2% |   6,8% |          6,5% |
+| **ASML Holding**                | ASML   |   9,7% |   6,4% |          6,5% |
+| **Visa**                        | V      |  15,1% |   6,2% |          6,0% |
+| **MasterCard**                  | MA     |  20,1% |   5,8% |          6,0% |
+| **Novo Nordisk**                | NVO    |  31,1% |   5,2% |          5,5% |
+| **LVMH**                        | EPA:MC |  -5,9% |   5,0% |          4,5% |
+| **Costco**                      | COST   |   6,8% |   3,8% |          4,0% |
+| **Alphabet**                    | GOOG   |  33,3% |   4,5% |          3,5% |
+| **Eli Lilly**                   | LLY    |  15,1% |   1,9% |          3,5% |
+| **The Home Depot**              | HD     |  13,1% |   4,4% |          3,0% |
+| **Ulta Beauty**                 | ULTA   |   3,9% |   3,8% |          3,0% |
+| **Intuitive Surgical**          | ISRG   |  71,7% |   3,4% |          3,0% |
+| **Meta Platforms**              | META   |  51,3% |   2,9% |          3,0% |
+| **L'Oreal**                     | EPA:OR |   2,1% |   1,5% |          3,0% |
+| **Philip Morris International** | PM     |   1,2% |   2,7% |          2,5% |
+| **Zoetis**                      | ZTS    |  14,6% |   2,1% |          2,5% |
+| **Idexx Laboratories**          | IDXX   |   5,1% |   1,4% |          2,5% |
+
+I view all of these as great companies with a history of compounding and a great future driven by secular trends. I think the themes of my portfolio are pretty clear:
+
+- Big tech with massive cash flows and wide moat (AAPL, MSFT, ASML, GOOG, META). I was hesitant about buying Meta, but the numbers are so good. The semiconductor business is too complicated for my liking, so I tend to avoid those companies (I briefly owned AMD and NVDA a few years ago). ASML is even more complicated, but that's part of the monopoly and it seems like they are decades ahead of any competition, especially with protectionist policies from the US and EU. NVDA matches a lot of what I look for in the company, but I think there is and will be too much volatility, so I'm not buying it.
+
+- Toll booth companies for a world with growing cashless payments (MA, V). Some of the greatest businesses in the world. Not much more to say. There might be competition in the future, but their scale gives them so many advantages.
+
+- Aging society, obesity, diabetes (NVO, LLY, ISRG). NVO and LLY are probably the two best pharma companies in the world. They might seem overvalued, but once you look into the companies, you realize they really are that great. NVO and LLY now also pretty much make miracle drugs with an ever increasing number of patients. Even without Wegovy / Ozempic / Mounjaro they have amazing numbers. Now they'll have walking happy advertisements walking around. The benefits of the drugs clearly outsize the side effects, so once it becomes accessible, it will be great business.
+
+- Quality retail / consumer stocks with loyal customers, good business models, high market share (LVMH, COST, HD, ULTA).
+
+- Luxury, beauty, cosmetics (LVMH, ULTA, L'oreal). LVMH is an incredibly well managed conglomerate, probably one of the greatest in the world. There are companies that are centuries old and it's unbelievable how huge they made the luxury market. I recommend the [Acquired podcast episode](https://open.spotify.com/episode/7lMY1C8AMFinpVMTgAH9D9) about the company. ULTA has incredible customer loyalty and growth. I'm curious if they can expand internationally sometime later. L'Oreal is similarly a giant conglomerate. I at first went with Estee Lauder, but it seems like the next few years will be volatile. I believe EL will be very strong in the future, but I don't want to risk the short term volatility. L'Oreal is very similar and the entire beauty industry is very hard to penetrate because these two companies and a few other have consolidated so much of the market and they will buy out any potentially large competitor. I can't see it ever changing. I can't imagine a future where this trend of skincare, beauty is ever reversed, and it only stands to grow as these generations grow older and healthspans grow longer all around the world. I am sure ULTA and Sephora (within LVMH) benefit from this as well.
+
+- A growing market of pet owners who grow ever closer to their companions (ZTS, IDXX). It's crazy how close millenials and gen Z are to their pets. They are part of family. They are already willing to spend so much on their pets at the expense of their own comfort. As their pets grow older, they will be even closer and they will need to spend a lot on their care. IDEXX has the benefit that diagnostics is much more important with pets as they cannot communicate their symptoms.
+
+- Not really a theme, but for some nice dividends I got a nicotine holding, I went with PM. This is one I've hesitated about a lot. I'm not going to write a whole analysis, since it's such a small holding, but I don't see our society ever leaving nicotine and I expect we will see a huge continuing growth in smokeless nicotine products. This might sound contrarian, but I wouldn't be surprised if nicotine was much more normalized in the future (in decades time) as a supplement similar to caffeine. The winners will almost certainly be big tobacco companies as it is and likely will remain a highly regulated market with high entry barriers. Even if that doesn't happen, I think there is still money to be made in cigarettes, as even though the number of smokers decreases in most of the world, the revenue is not dropping yet. And I think there is a generation of nicotine addicts growing up in most of the world due to flavored vapes and nicotine pouches."
+"My Portfolio; I haven't changed it much but over about 2 years I've had a 44% gain.  
+AMD: 17%  
+GOOGL: 4%  
+F: 2%  
+INTC: 10%  
+MSFT: 24%  
+NVDA: 35%  
+ORA: 8%"
+"25% TSLA  
+25% NVDA  
+25% MSFT  
+25% AAPL"
+"The highest price target on NVDA is $1100, the median price target is $625 and the lowest price target is $535, which is $80 ABOVE the current stock price of $455. [https://www.marketwatch.com/investing/stock/nvda/analystestimates](https://www.marketwatch.com/investing/stock/nvda/analystestimates).
+
+ Buying NVDA now is an absolute no-brainer."

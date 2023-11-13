@@ -1,69 +1,78 @@
-# import modules
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from tqdm import tqdm
-import GetData
+import pickle as pk
 
+def get_trending_tickers():
+    """
+    Fetch the current trending tickers from Slickcharts.
 
-# utility function to download a webpage and return a beautiful soup doc
+    Returns:
+    - list: List of ticker symbols.
+    """
+    url = 'https://www.slickcharts.com/sp500'
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    tickers = [a.text for a in soup.select('.table-responsive table tbody tr td a')]
+    return tickers
+
 def get_page(url):
-    response = requests.get(url)
-    page_content = response.text
-    doc = BeautifulSoup(page_content, 'html.parser')
-    return doc
+    """Utility function to download a webpage and return a beautiful soup doc."""
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return BeautifulSoup(response.text, 'html.parser')
+    except requests.RequestException as e:
+        print(f"Error fetching page {url}: {e}")
+        return None
 
-
-# get the URL using response variable
-def getDataHead(code):
+def get_news_data(code):
     """
-    This function scrapes the news headlines from Yahoo Finance for a given stock ticker.
-        :param code: Stock ticker
-        :return: A csv file containing the news headlines
-    """
-    my_url = f"https://finance.yahoo.com/quote/{code}?p={code}"
-    doc = get_page(my_url)
-    # Appropriate tags common to news-headlines to filter out the necessary information.
-    a_tags = doc.find_all('a', {'class': "js-content-viewer"})
-    news_list = []
-    for i in range(1, len(a_tags) + 1):
-        news = a_tags[i - 1].text
-        news_list.append(news)
-
-    # Save news headlines to a csv file for sentiment analysis
-    news_df = pd.DataFrame(news_list)
-    news_df.to_csv(f"data/{code}.csv")
-
-# get the URL using response variable
-def getData(code):
-    """
-    This function scrapes the news article bodies from Yahoo Finance for a given stock ticker.
-        :param code: Stock ticker
-        :return: A csv file containing the news headlines
+    This function scrapes the news headlines and article bodies from Yahoo Finance
+    for a given stock ticker and returns them as dataframes.
     """
     base_url = f"https://finance.yahoo.com/quote/{code}?p={code}"
-    try:
-        r = requests.get(base_url)
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, 'html.parser')
-        news_links = [item.a['href'] for item in soup.find_all('h3', class_='Mb(5px)') if item.a and item.a['href'].startswith('/')]
+    soup = get_page(base_url)
+    if not soup:
+        return None, None
 
-        contents = []
-        for link in news_links:
-            full_url = "https://finance.yahoo.com" + link
-            news_page = requests.get(full_url)
-            news_soup = BeautifulSoup(news_page.content, 'html.parser')
-            paragraphs = news_soup.find_all('p')
+    # Get headlines
+    headlines = [item.text for item in soup.find_all('a', {'class': "js-content-viewer"})]
+
+    # Get news article contents
+    news_links = [item.a['href'] for item in soup.find_all('h3', class_='Mb(5px)')
+                  if item.a and item.a['href'].startswith('/')]
+    contents = []
+    for link in news_links:
+        full_url = "https://finance.yahoo.com" + link
+        news_page = get_page(full_url)
+        if news_page:
+            paragraphs = news_page.find_all('p')
             article_content = ' '.join([para.get_text() for para in paragraphs])
             contents.append(article_content)
+        else:
+            contents += [""]
 
-        news_df = pd.DataFrame(contents)
-        news_df.to_csv(f"data/{code}.csv")
-    except requests.RequestException as e:
-        print(f"Error fetching news content for {code}: {e}")
-        return []
+    return pd.DataFrame(headlines), pd.DataFrame(contents)
 
-code = GetData.get_code(test=True)
+all_sp500_stocks = get_trending_tickers()
 
-for i in tqdm(range(len(code))):
-    getData(code[i])
+all_sp500_stocks = all_sp500_stocks[:10]
+
+codes = all_sp500_stocks[1::2]
+names =  all_sp500_stocks[0::2]
+
+data = []
+
+for stock_code in tqdm(codes):
+    data += [(stock_code, names.pop(0), *get_news_data(stock_code))] #ticker, name, head, content
+
+fileName = "data.txt"
+with open(fileName, 'wb') as f:
+    pk.dump(data, f)
+f.close()

@@ -45,84 +45,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ABBV.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ABNB.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ABT.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ACGL.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ACN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ADBE.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ADI.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ADM.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/ADP.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ADSK.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AEE.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AEP.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -136,13 +59,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AFL.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/AIG.csv">
           <value>
             <Attribute>
@@ -150,70 +66,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AIZ.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AJG.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AKAM.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ALB.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ALGN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ALK.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/ALL.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ALLE.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AMAT.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AMCR.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -234,21 +87,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AMGN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/AMP.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AMT.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -262,119 +101,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ANET.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ANSS.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AON.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AOS.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/APA.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/APD.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/APH.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/APTV.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/ARE.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ATO.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AVB.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AVGO.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AVY.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AWK.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AXON.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AXP.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/AZO.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -402,35 +129,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BAX.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BBWI.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/BBY.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BDX.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BF.B.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -444,35 +143,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BIIB.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BIO.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/BK.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BKNG.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BKR.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -486,13 +157,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BMY.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/BR.csv">
           <value>
             <Attribute>
@@ -500,42 +164,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BRK.B.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/BRO.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BSX.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BWA.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BX.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/BXP.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -556,13 +185,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/ECL.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/FSLR.csv">
           <value>
             <Attribute>
@@ -570,21 +192,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/GOOG.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/GOOGL.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/LNT.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -599,13 +207,6 @@
           </value>
         </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/MO.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/NKE.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -633,14 +234,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Python Learning Notes/Web Scraping/data/WRB.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Python Learning Notes/Web Scraping/new_data/sentiment_2023-10-20.csv">
+        <entry key="/Python Learning Notes/Web Scraping/new_data/sentiment_2023-11-10.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

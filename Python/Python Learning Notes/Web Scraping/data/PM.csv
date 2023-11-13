@@ -1,724 +1,205 @@
-,body
-0,"Its marketing, anyone who takes hedge fund money is a part of the system. We need to create our own system. I'll call it and its nbasuperstar40 name and I will sue you if I am not a part of it is ""RealEconomics"" or ""TrueEconomics"".
+body
+"For the options questions you wanted to ask, but were afraid to.  
+**There are no stupid questions.**  &nbsp;  **Fire away.**  
+This project succeeds via thoughtful sharing of knowledge.  
+**You, too, are invited to respond to these questions.**  
+This is a weekly rotation with past threads linked below.
+
+----
+
+###**BEFORE POSTING,  PLEASE REVIEW THE BELOW LIST OF FREQUENT ANSWERS.**   [.](https://www.reddit.com/r/options/wiki/faq/subreddit_resources)    
+[..](https://www.reddit.com/r/optionsmods/wiki/)   
+
+---
+
+**Don't exercise your (long) options for stock!**   
+**Exercising throws away [extrinsic value](https://www.reddit.com/r/options/wiki/faq/pages/extrinsic_value) that selling retrieves.**   
+**Simply sell your (long) options, to close the position, to harvest value, for a gain or loss.**  
+**Your break-even is the cost of your option when you are selling.**  
+**If exercising (a call), your breakeven is the strike price plus the debit cost to enter the position.**  
+Further reading:   
+**[Monday School: Exercise and Expiration are not what you think they are.](https://www.reddit.com/r/options/comments/m5r8mi/monday_school_exercise_and_expiration_are_not/)**    
+
+**Also, generally, do not take an option to expiration, for similar reasons as above.**
+
+---
+
+**Key informational links**  
+•&nbsp;[Options FAQ / Wiki: Frequent Answers to Questions](https://www.reddit.com/r/options/wiki/faq)  
+•&nbsp;[Options Toolbox Links / Wiki](https://www.reddit.com/r/options/wiki/toolbox/links)  
+•&nbsp;[Options Glossary](https://www.optionseducation.org/referencelibrary/optionsglossary)   
+•&nbsp;[List of Recommended Options Books](https://www.reddit.com/r/options/comments/8qfs14/options_book_list_review_of_all_books_that_helped/)    
+•&nbsp;[Introduction to Options (The Options Playbook)](https://www.optionsplaybook.com/options-introduction/)  
+•&nbsp;[The complete r/options side-bar informational links (made visible for mobile app users.)](https://www.reddit.com/r/options/about/sidebar)  
+•&nbsp;[Characteristics and Risks of Standardized Options (Options Clearing Corporation)](
+https://www.theocc.com/about/publications/character-risks.jsp)  
+•&nbsp;[Binary options and Fraud (Securities Exchange Commission)](https://www.sec.gov/files/ia_binary.pdf)   
+[.](https://www.reddit.com/r/options/wiki/faq/subreddit_resources)
+
+ ----
+
+**Getting started in options**   
+•&nbsp;[Calls and puts, long and short, an introduction (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/basics)     
+•&nbsp;[Options Trading Introduction for Beginners (Investing Fuse)](https://investingfuse.com/options-trading-for-beginners/)    
+•&nbsp;[Options Basics (begals)](https://www.reddit.com/r/options/comments/gh9vpl/options_basics/)  
+•&nbsp;[Exercise & Assignment - A Guide (ScottishTrader)](https://www.reddit.com/r/options/wiki/faq/pages/exercise)  
+•&nbsp;[Why Options Are Rarely Exercised - Chris Butler - Project Option (18 minutes)](https://www.youtube.com/watch?v=PsZsqiBFnmo)  
+•&nbsp;[I just made (or lost) $___. Should I close the trade? (Redtexture)](https://www.reddit.com/r/options/comments/eunnko/noob_safe_haven_thread_jan_27_feb_02_2020/fg6jjjz/)    
+•&nbsp;[Disclose option position details, for a useful response](https://www.reddit.com/r/options/wiki/faq/pages/trade_details)  
+•&nbsp;[OptionAlpha Trading and Options Handbook](https://optionalpha.com/handbook)   
+•&nbsp;[Options Trading Concepts -- Mike & His White Board (TastyTrade)(about 120  10-minute episodes)](https://www.youtube.com/playlist?list=PLPVve34yolHY43YaBegHMzN9WjrTnQfFr)  
+•&nbsp;[Am I a Pattern Day Trader? Know the Day-Trading Margin Requirements (FINRA)](https://www.finra.org/investors/learn-to-invest/advanced-investing/day-trading-margin-requirements-know-rules)   
+•&nbsp;[How To Avoid Becoming a Pattern Day Trader  (Founders Guide)](https://foundersguide.com/pattern-day-trader/)    
+
+---
+
+**Introductory Trading Commentary**   
+&nbsp;&nbsp;&nbsp;•&nbsp;**[Monday School Introductory trade planning advice (PapaCharlie9)](https://www.reddit.com/r/options/wiki/faq/pages/mondayschool)**  
+&nbsp;&nbsp;**Strike Price**   
+&nbsp;&nbsp;&nbsp;•&nbsp;[Options Basics: How to Pick the Right Strike Price (Elvis Picardo - Investopedia)](https://www.investopedia.com/articles/active-trading/021014/options-basics-how-pick-right-strike-price.asp)  
+&nbsp;&nbsp;&nbsp;•&nbsp;[High Probability Options Trading Defined (Kirk DuPlessis, Option Alpha)](https://www.youtube.com/watch?v=DcWHh2co80M)   
+&nbsp;&nbsp;**Breakeven**  
+&nbsp;&nbsp;&nbsp;•&nbsp;[Your break-even (at expiration) isn't as important as you think it is (PapaCharlie9)](https://www.reddit.com/r/options/comments/m0m7at/monday_school_your_breakeven_isnt_as_important_as/)  
+&nbsp;&nbsp;**Expiration**  
+&nbsp;&nbsp;&nbsp;•&nbsp;[Options Expiration & Assignment (Option Alpha)](https://www.youtube.com/watch?v=OnUsu1y1W9w)    
+&nbsp;&nbsp;&nbsp;•&nbsp;[Expiration times and dates (Investopedia)](https://www.investopedia.com/terms/e/expiration-time.asp)  
+&nbsp;&nbsp;**Greeks**  
+&nbsp;&nbsp;&nbsp;•&nbsp;[Options Pricing & The Greeks (Option Alpha) (30 minutes)](https://www.youtube.com/watch?v=kCJcEOYuuII)  
+&nbsp;&nbsp;&nbsp;•&nbsp;[Options Greeks (captut)](https://www.reddit.com/r/options/comments/hl8i2n/option_greeks_101)  
+&nbsp;&nbsp;**Trading and Strategy**    
+&nbsp;&nbsp;&nbsp;•&nbsp;[Fishing for a price: price discovery and orders](https://www.reddit.com/r/options/wiki/faq/pages/introduction#wiki_minimizing_bid-ask_spreads_.28high-volume_options_are_best.29)     
+&nbsp;&nbsp;&nbsp;•&nbsp;[Common mistakes and useful advice for new options traders (wiki)](https://www.reddit.com/r/options/wiki/faq/pages/introduction#wiki_common_mistakes_and_useful_advice_for__new_options_traders)  
+&nbsp;&nbsp;&nbsp;•&nbsp;[Common Intra-Day Stock Market Patterns - (Cory Mitchell - The Balance)](https://www.thebalance.com/common-intra-day-stock-market-patterns-1031456)    
+&nbsp;&nbsp;&nbsp;•&nbsp;[The three best options strategies for earnings reports (Option Alpha)](https://optionalpha.com/blog/the-three-best-option-strategies-for-earnings)   
+
+---
+
+**Managing Trades**  
+•&nbsp;[Managing long calls - a summary (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/managing_long_calls)  
+•&nbsp;[The diagonal call calendar spread, misnamed as the ""poor man's covered call"" (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/diagonal_calendars)  
+•&nbsp;[Selected Option Positions and Trade Management (Wiki)](https://www.reddit.com/r/options/wiki/faq/pages/positions)  
+
+**Why did my options lose value when the stock price moved  favorably?**  
+•&nbsp;[Options extrinsic and intrinsic value, an introduction (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/extrinsic_value)
+      
+**Trade planning, risk reduction, trade size, probabilityand luck**  
+•&nbsp;[Exit-first trade planning, and a risk-reduction checklist (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/trade_planning)  
+•&nbsp;[Monday School: A trade plan is more important than you think it is (PapaCharlie9)](https://www.reddit.com/r/options/comments/mpk6yf/monday_school_a_trade_plan_is_more_important_than/)  
+•&nbsp;[Applying Expected Value Concepts to Option Investing (Select Options)](http://www.selectoptions.com/Edu-Expected-Result)  
+•&nbsp;[Risk Management, or How to Not Lose Your House (boii0708) (March 6 2021)](https://www.reddit.com/r/options/comments/lyp1uc/risk_management_or_how_to_not_lose_your_house/)  
+•&nbsp;[Trade Checklists and Guides (Option Alpha)](https://optionalpha.com/members/guides-checklists)    
+•&nbsp;[Planning for trades to fail. (John Carter)  (at 90 seconds)](https://youtu.be/N5_OkdvPmUI?t=90)    
+•&nbsp;[Poker Wisdom for Option Traders: The Evils of Results-Oriented Thinking (PapaCharlie9)](https://www.reddit.com/r/options/comments/qfq82a/poker_wisdom_for_option_traders_the_evils_of/)   
+
+**Minimizing Bid-Ask Spreads (high-volume options are best)**   
+•&nbsp;[Price discovery for wide bid-ask spreads (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/price_discovery)  
+•&nbsp;[List of option activity by underlying (Market Chameleon)](https://marketchameleon.com/Reports/optionVolumeReport)  
+
+
+**Closing out a trade**  
+•&nbsp;[Most options positions are closed before expiration (Options Playbook)](https://www.optionsplaybook.com/options-introduction/closing-option-position/)       
+•&nbsp;[Risk to reward ratios change: a reason for early exit (Redtexture)](https://www.reddit.com/r/options/wiki/faq/pages/risk_reward_and_exits)   
+ •&nbsp;[Guide: When to Exit Various Positions](
+https://www.reddit.com/r/options/wiki/faq/pages/whentoexit)   
+•&nbsp;[Close positions before expiration: TSLA decline after market close (PapaCharlie9) (September 11, 2020)](https://www.reddit.com/r/options/comments/ipqkua/fridays_tsla_lesson_close_positions_before/)   
+•&nbsp;[5 Tips For Exiting Trades (OptionStalker)](
+https://www.reddit.com/r/options/comments/qtwsm5/5_tips_for_exiting_trades/)   
+•&nbsp;[Why stop loss option orders are a bad idea](https://www.reddit.com/r/options/wiki/faq/pages/stop_loss)   
 
-If you are interesting, PM me."
-1,"I tracked profiles commenting here for about 7 hours this morning mostly during PM. The amount of inorganic accounts spreading FUD on GME and hyping things that aren’t GME is an *alarming* ratio. There are some actual users here who have fallen for that shit and are toeing the same line, but they’re like 20-leaf clovers compared to the amount of astroturfing going on."
-2,"So In terms of the interest, what are they paying that off of? The current price or the price when they were created? And I’m assuming the interest is per year, paid by month? I can PM you if what I asked didn’t make much sense."
-3,"> We wrote software to do most of the moderation for us but that software isn't allowed to read the Reddit new feed fast enough and submit responses, and the admins haven't given us special access despite asking for it.
+---
 
-Hey, I sent a PM about this, but I can probably help out with the ratelimit issue. Given the amount of traffic the subreddit has, the API limits can be somewhat worked around with some clever coding and I'd be willing to help write something.
+**Options exchange operations and processes**     
+•&nbsp;[Options Adjustments for Mergers, Stock Splits and Special dividends; Options Expiration creation; Strike Price creation; Trading Halts and Market Closings; Options Listing requirements;  Collateral Rules; List of Options Exchanges; Market Makers](https://www.reddit.com/r/options/wiki/faq/pages/exchange_operations)   
+•&nbsp;[Options that trade until 4:15 PM (US Eastern) / 3:15 PM (US Central) -- (Tastyworks)](https://support.tastyworks.com/support/solutions/articles/43000435335-options-that-trade-until-3-15-pm-central-)  
 
-PM me on Reddit (don't send me a Reddit Chat) or on Discord or on Twitter if you want to discuss stuff like that"
-4,"I will be messaging you in 1 day on [**2021-02-03 03:57:01 UTC**](http://www.wolframalpha.com/input/?i=2021-02-03%2003:57:01%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/wallstreetbets/comments/lajk83/today_wasnt_a_bloodbath_for_gme_or_amc_we_watched/glowela/?context=3)
+---
 
-[**18 OTHERS CLICKED THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fwallstreetbets%2Fcomments%2Flajk83%2Ftoday_wasnt_a_bloodbath_for_gme_or_amc_we_watched%2Fglowela%2F%5D%0A%0ARemindMe%21%202021-02-03%2003%3A57%3A01%20UTC) to send a PM to also be reminded and to reduce spam.
+**Brokers**   
+•&nbsp;[USA Options Brokers (wiki)](https://www.reddit.com/r/options/wiki/faq/pages/brokers)    
+•&nbsp;[An incomplete list of international brokers trading USA (and European)  options](https://www.reddit.com/r/options/wiki/faq/pages/brokers/)  
 
-^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Delete%20Comment&message=Delete%21%20lajk83)
+---
 
-*****
+**Miscellaneous: Volatility, Options Option Chains & Data, Economic Calendars, Futures Options**   
+•&nbsp;[Graph of the VIX: S&P 500 volatility index (StockCharts)](https://stockcharts.com/h-sc/ui?s=vix)  
+•&nbsp;[Graph of VX Futures Term Structure (Trading Volatility)](http://www.tradingvolatility.net/p/datasourceurldocs.html)  
+•&nbsp;[A selected list of option chain & option data websites](https://www.reddit.com/r/options/wiki/faq/pages/data_sources)  
+•&nbsp;[Options on Futures (CME Group)](https://www.cmegroup.com/education/files/options-on-futures-brochure.pdf)  
+•&nbsp;[Selected calendars of economic reports and events](https://www.reddit.com/r/options/wiki/faq/pages/calendars)  
 
-|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=List%20Of%20Reminders&message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&subject=RemindMeBot%20Feedback)|
-|-|-|-|-|"
-5,"If this is your wish, please PM me -- I'd be HONORED to turn your $5,000 into $0!"
-6,"This post has blown up and the author is gonna need help sorting through PMs.
+---
 
-&#x200B;
+Previous weeks' Option Questions Safe Haven threads.
+  
+[Complete archive: 2018, 2019, 2020, 2021, 2022, 2023](https://www.reddit.com/r/options/wiki/faq/archive/safe_haven_2023)
+---
 
-Reach out to me as well, I will compile information on those attempting to sign their name in the lawsuit to send to u/Shrubber. I cannot do this alone. PM me if you would like to also join me in aiding him.
+---"
+"My [last post](https://www.reddit.com/r/stocks/comments/11ezwar/rate_my_portfolio_rstocks_quarterly_thread_march/jah0b73/) was 6 months ago.
 
-Let us join together. We will not lose. We will Hold. 
+To recap, a brief overview of my strategy, that has not since changed:
 
-We may not have it all together, but together, we fucking got it all."
-7,I had stocks that were to be auto bought at market open but they cancelled it saying that I had cancelled it even though I was asleep. I sent you a PM.
-8,"609 shares here. 
+> I am 26, so I have several decades until retirement. My goal is to hold the stocks in my portfolio perpetually, though I'm not reserved to make adjustments and sell when a) I see an opportunity to take profits b) my thesis changes. My long term goal is passive income generation, though I don't chase yields. I don't pay much attention to valuation or macro, as I think that since I plan on holding these stocks for decades while buying every month, those don't matter to me much.
 
-Literally my live savings on this. Feel free to PM me to sign any legal documents. I'm tired of the rich and powerful keeping me broke!"
-9,"I'm confused if I should comment here or PM you. Either way I got fucked and took screen shots.
+> I invest regularly every month, so I'm okay with buying at a higher valuation at times and lower valuation at other times. In my opinion, buying at the best possible time is more difficult than buying a good company. That said, if I see an undervalued stock I like, I don't hesitate to buy more and when I make my regular contributions, I try weigh towards stocks that might have been beaten down or seem undervalued.
 
-# HOLD THE LINE!"
-10,WTF send me a PM please
-11,"I think you’re horribly wrong here... I’m all for fucking over hedge funds, but these guys have been shorting silver/gold for years. Same with central banks as a method of trying to hide inflation. By all means HOLD GME. But if there’s a similar squeeze in the PM market, it’ll make GME look like peanuts.
+> I like stocks that are quality companies with:
 
-force majeure."
-12,"Too late. The genie is already out of the bottle. Futures are up 7%, physical silver were sold out during the weekend and I bet tomorrow will be a wild session for SLV.  Good or bad for GME, many traders don’t care. They smell blood in PM waters and they are out for another thrilling adventure."
-13,"I'm long PM's, and I'm buying more"
-14,Let’s make this happen. PM if you need help setting up the gofundme. Let’s make sure to launch it post-squeeze.
-15,"The automod won't let me post this because some random word probably, so I'm hijacking your comment:
+> -	A sustainable business model - high cash flow generation, high ROIC / ROCE, good balance sheet. Bonus points for recurring, diversified revenue, and optionality.
+> -	Business model and products I understand, or at least understand their value. I don't think I'll ever understand ASML's machines, but I understand why it's one of a kind company.
+> -	A wide moat. Bonus points are for brand value, network effect, IP, barriers to entry / high switching costs, supply chain, etc. I am okay with paying a high multiple for a company that cannot be replicated by throwing money at the problem. Almost every company I own scores very high in this regard in my own checklist.
+> -	High margins. I focus mostly on gross margin, but consider other margin metrics, too.
+> -	Sustainable buybacks and dividend growth.
+> -	Great management.
 
-&#x200B;
+I made some changes to my portfolio:
 
-# I'm so fucking proud of you apes. And how they're going to try and break our subreddit during the weekend.
+- I no longer own the CARB carbon allowance ETF. It was good for some hedging but I wanted to simplify my approach a bit.
+- I no longer own small cap and EM ETFs. I only have MSCI World ETF (15%) and MSCI World Quality ETF (10%). I wanted to intensify my focus on quality companies and simplify my approach.
 
-**Way to go, monke.**
+- I sold BN & BAM, UNP, LMT, ADBE, JNJ. I was no longer comfortable with Brookfield's structure and my lack of understanding it, so I sold all my Brookfield holdings after almost 4 years I've held them. ADBE had really nice growth and I felt better taking the profits. I like that they will probably adapt to generative AI pretty well. I love the company and might buy back later. UNP, LMT, JNJ are all good but I think I wanted to focus on more innovative (less so with LMT) and consumer oriented businesses (less so with JNJ).
 
-Who would have thought we would close Friday with a volume less than [1/4 of last week's](https://finance.yahoo.com/quote/GME/key-statistics?p=GME)? (for us monke, this means everyone is  💎🙌 ).
+- I bought LVMH, LLY, PM, IDXX, ZTS, L'oreal, META. I briefly held EL which I sold (at loss) and bought L'oreal instead.
 
-Who    would have thought we'd get the stock over 320$ when they manipulated    by colluding, limiting our buying power artificially and laddering  the   price down to 170$ the day before?
+- I increased the weights of my core holdings. 6 of my stocks (MSFT, AAPL, ASML, V, MA, NVO) account for >50% of my stocks, 9 (+ LVMH, GOOG, COST) account for 50% of my overall portfolio.
 
-Every    single day we  💎🙌 , they lose. They lose BIG, so big their wife's    boyfriends have kicked them out and sold their lambos. [A 70 BILLION loss](https://www.reuters.com/article/us-retail-trading-shortbets/losses-on-short-positions-in-u-s-firms-top-70-billion-ortex-data-idUSKBN29X1SW).
+My current holdings:
 
-**Now, this is how they try and bend us over the weekend.**
+| **Name**                        | Ticker | Return | Weight | Target weight |
+|---------------------------------|--------|-------:|-------:|--------------:|
+| **MSCI World**                  |        |  23,7% |  14,6% |         15,0% |
+| **MSCI World Quality**          |        |  31,9% |   9,8% |         10,0% |
+| **Microsoft**                   | MSFT   |  51,9% |   7,6% |          6,5% |
+| **Apple**                       | AAPL   |  48,2% |   6,8% |          6,5% |
+| **ASML Holding**                | ASML   |   9,7% |   6,4% |          6,5% |
+| **Visa**                        | V      |  15,1% |   6,2% |          6,0% |
+| **MasterCard**                  | MA     |  20,1% |   5,8% |          6,0% |
+| **Novo Nordisk**                | NVO    |  31,1% |   5,2% |          5,5% |
+| **LVMH**                        | EPA:MC |  -5,9% |   5,0% |          4,5% |
+| **Costco**                      | COST   |   6,8% |   3,8% |          4,0% |
+| **Alphabet**                    | GOOG   |  33,3% |   4,5% |          3,5% |
+| **Eli Lilly**                   | LLY    |  15,1% |   1,9% |          3,5% |
+| **The Home Depot**              | HD     |  13,1% |   4,4% |          3,0% |
+| **Ulta Beauty**                 | ULTA   |   3,9% |   3,8% |          3,0% |
+| **Intuitive Surgical**          | ISRG   |  71,7% |   3,4% |          3,0% |
+| **Meta Platforms**              | META   |  51,3% |   2,9% |          3,0% |
+| **L'Oreal**                     | EPA:OR |   2,1% |   1,5% |          3,0% |
+| **Philip Morris International** | PM     |   1,2% |   2,7% |          2,5% |
+| **Zoetis**                      | ZTS    |  14,6% |   2,1% |          2,5% |
+| **Idexx Laboratories**          | IDXX   |   5,1% |   1,4% |          2,5% |
 
-They've    already lost, what do they have left? To minimize losses. We know all    the shit they tried already, so what's going to happen now? **They're doubling down on dilluting this community.**
+I view all of these as great companies with a history of compounding and a great future driven by secular trends. I think the themes of my portfolio are pretty clear:
 
-Sorting    by new is an absolute disgrace by now and should just be ignored, but    some of the post even reach rising. Here's what I've found so far and    what even a monke with a smooth brain understands:
+- Big tech with massive cash flows and wide moat (AAPL, MSFT, ASML, GOOG, META). I was hesitant about buying Meta, but the numbers are so good. The semiconductor business is too complicated for my liking, so I tend to avoid those companies (I briefly owned AMD and NVDA a few years ago). ASML is even more complicated, but that's part of the monopoly and it seems like they are decades ahead of any competition, especially with protectionist policies from the US and EU. NVDA matches a lot of what I look for in the company, but I think there is and will be too much volatility, so I'm not buying it.
 
-·They've covered their shorts: No. Fucking. Way. They were at [5.91b$ two days ago (139%)](https://twitter.com/S3Partners/status/1354470406934167560). They were [11.2b$ (113%) yesterday](https://twitter.com/ihors3/status/1355249817048522755). And the short volume ratio [has maintained the same the past two weeks](https://fintel.io/ss/us/gme).    They're repositioning their shorts. The short interest ratio % will  be   reduced and the total ammount will continue to increase as we drive   the  stock price up.
+- Toll booth companies for a world with growing cashless payments (MA, V). Some of the greatest businesses in the world. Not much more to say. There might be competition in the future, but their scale gives them so many advantages.
 
-·$BRUCE is the new $GME.
+- Aging society, obesity, diabetes (NVO, LLY, ISRG). NVO and LLY are probably the two best pharma companies in the world. They might seem overvalued, but once you look into the companies, you realize they really are that great. NVO and LLY now also pretty much make miracle drugs with an ever increasing number of patients. Even without Wegovy / Ozempic / Mounjaro they have amazing numbers. Now they'll have walking happy advertisements walking around. The benefits of the drugs clearly outsize the side effects, so once it becomes accessible, it will be great business.
 
-PART 1: I understand how you feel, you thought you diversified [and then you realized their charts are identical](https://www.reddit.com/r/wallstreetbets/comments/l82vi1/gme_with_amc_and_bb_overlay_virtually_identical/). Being smoothbrained does that to you, believe me I know. What does having two identical charts with different DDs mean? [I did some explaining in this reply](https://www.reddit.com/r/wallstreetbets/comments/l87d25/amc_short_squeeze_is_absolutely_possible_to_and/glbjsh0?utm_source=share&utm_medium=web2x&context=3).    TL;DR: dilluting our funds is the worst fucking thing we can do right    now, especially when we have two (almost) identical stocks and GME  has a   way higher potential of short squeezeng to infinity (based on  the   ammount of short interest, float and the upwards movement caused  by   social media clout the past week).
+- Quality retail / consumer stocks with loyal customers, good business models, high market share (LVMH, COST, HD, ULTA).
 
-PART  2: $FUCKU (who no one is talking about) is going the new $GME, guys,  *""listen up this is the most important DD you will ever read.""*.   Fuck off,  please. Same as above with less spice, tired of read   half-assed DDs in  the middle of the stock movement of the century.
+- Luxury, beauty, cosmetics (LVMH, ULTA, L'oreal). LVMH is an incredibly well managed conglomerate, probably one of the greatest in the world. There are companies that are centuries old and it's unbelievable how huge they made the luxury market. I recommend the [Acquired podcast episode](https://open.spotify.com/episode/7lMY1C8AMFinpVMTgAH9D9) about the company. ULTA has incredible customer loyalty and growth. I'm curious if they can expand internationally sometime later. L'Oreal is similarly a giant conglomerate. I at first went with Estee Lauder, but it seems like the next few years will be volatile. I believe EL will be very strong in the future, but I don't want to risk the short term volatility. L'Oreal is very similar and the entire beauty industry is very hard to penetrate because these two companies and a few other have consolidated so much of the market and they will buy out any potentially large competitor. I can't see it ever changing. I can't imagine a future where this trend of skincare, beauty is ever reversed, and it only stands to grow as these generations grow older and healthspans grow longer all around the world. I am sure ULTA and Sephora (within LVMH) benefit from this as well.
 
-·Fearmongering,   in general. I'm tired of these posts. You sound like your wife's    boyfriend left even her because the weakness of your  🧻  🙌 is   unbearable. I replied [here](https://www.reddit.com/r/wallstreetbets/comments/l88nzd/still_holding_but_sceptical_how_this_will_turn/glbicix?utm_source=share&utm_medium=web2x&context=3)to some of your most worrisome nightmares but you can do a fucking    Google search before believing shit from randos on Twitter.
+- A growing market of pet owners who grow ever closer to their companions (ZTS, IDXX). It's crazy how close millenials and gen Z are to their pets. They are part of family. They are already willing to spend so much on their pets at the expense of their own comfort. As their pets grow older, they will be even closer and they will need to spend a lot on their care. IDEXX has the benefit that diagnostics is much more important with pets as they cannot communicate their symptoms.
 
-These   are just some examples I found floating around like turds on the pond   full of gold we're  drinking from right now. There will be more, so   please, LISTEN to my  TL;DR.
-
-FAQ (answers on links to others of my comment, I'm doing as much as I can but am overwhelmed):
-
-1. [is there a limit to how high we could sell GME for?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gld3yv6?utm_source=share&utm_medium=web2x&context=3)
-2. [Are there whales on our side?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gld49tt?utm_source=share&utm_medium=web2x&context=3)
-3. [Will the market collapse because of us?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldi1g6?utm_source=share&utm_medium=web2x&context=3)
-4. [What's the exit strategy?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldiyfx?utm_source=share&utm_medium=web2x&context=3)
-5. [What does repositioning a short mean?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldkliw?utm_source=share&utm_medium=web2x&context=3)
-6. [Why are they opening new short positions?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldjvdm?utm_source=share&utm_medium=web2x&context=3)
-7. [I can't afford GME! Can I buy something else?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldkliw?utm_source=share&utm_medium=web2x&context=3)
-8. [Do all Hedge Funds work together?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldy8xx?utm_source=share&utm_medium=web2x&context=3)
-9. [What happens if my broker goes bankrupt? Will I get paid?](https://www.reddit.com/r/wallstreetbets/comments/l88nzd/still_holding_but_sceptical_how_this_will_turn/glemxom?utm_source=share&utm_medium=web2x&context=3)
-10. [What happens WHEN GameStop issues shares on the open market?](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/glf4aup?utm_source=share&utm_medium=web2x&context=3)
-11. [TELL ME EXACTLY WHAT TO DO!](https://www.reddit.com/r/wallstreetbets/comments/l8izo3/beware_those_who_are_shilling_other_stocks/gldq5rw?utm_source=share&utm_medium=web2x&context=3)
-
-TL;DR:
-
-.　　　　　　　　　　    ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　\*　　　　　　      　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　.  　　 　   ☀️GME if we  💎🙌　　　 　 ‍ ‍ ‍ ‍  　　　　   　　　　　　　　　　　　,　　   　   .　　　　　　　　　　　　　.　　　ﾟ　  　　　.　　　　    ✦     　   　
-
-　　　　　　　　　　.     ,　　　　.🚀LITERALLY  us now 　　　　　　　　　　　　　　　　　　      　　　　　　　　　　　　　　　　　　    　      　　　　　        　　  　　　　　　　　　　.     　　　　　　　　　　.　　　　　　　　　　　　　. 　　　　　　　　　　　　　　　　       　   　　　　     　　　　　　　　　　　　　　　　       　   　　　　　　　　　　　　　　　　       　    ✦     　   　　　,　　　　　　　　　　　     　\*                  　　　 　　,　　　 ‍ ‍ ‍ ‍ 　    　　　　　　　　　　　　.　　　　　 　　  　　　.　　　　　　　　　　　　.      , 　           　　　　　　　　　　　　　　　　　　　˚　　　 　       　　　　,　　　　　　　　　　　       　    　　　　　　　　　　　　　　　　.　　　      　　    　　　　　 　　　　　.　　　　　　　　　　　　　.　　　　　　　　　　　　　　　\* 　　   　　　　　 ✦     　　　　　　　         　        　　. 　 　　　　　.　
-
-　　     　　 　　　　　　　 　　　　　.　　　　　　　　　
-
-　　　　　　　　　.　　　
-
-　　    　　. 　 　　　　　.　　　　      　　　　　   　　　　　.　　　　　　   　   ˚　　ﾟ\* .　　     　\*
-
-　　　 　　,🌑
-
-&#x200B;
-
-🌎GME if we 🧻 🙌 　　　　　　　　　　　　　.　　　　　　　　　　 ✦ 　　　　   　    　　　˚　　　　　　　　　　　　　　\*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　
-
-Edit: PD: if anyone can post, please, don't even PM me if you don't want, [here's a post-version you can copy, please share](https://www.reddit.com/user/_-Al/comments/l8lkos/im_so_proud_of_you_fools_how_theyre_going_to_try/), no need to mention me. [And here's another if you want to post it outside of Reddit.](https://www.reddit.com/user/_-Al/comments/l8l36k/im_so_fucking_proud_of_you_fools_how_theyre_going/)"
-16,"The only thing I organize is my Pill stack. AM: adderall, Multi vitamin and GME, PM: zinc, cialis and AMC."
-17,"Hey guys retard checking in here. 2020 and 2021 has been a rollercoaster for me. In 2020 I broke up with my 6 years long partner and that is infinitely worst than this. No money can cure the sadness that lasted a few months. I went down the rabbit hole of drinking for a few months and constantly woke up hangover.
-
-Come 2021 my friend introduced me to wallstreetbets and i got so engrossed in stonks I stopped drinking so I can focus on it. It is a hobby now. 
-
-I got 200 GME and seen it went to highs before falling to the lows yesterday. Feeling sad? You should be, it is a lot of money. But remember, it is not a lose or gain till you cash out. 
-
-If a retarded loser like me can recover from binge drinking and diamond hands this shit? you can too. Feel free to PM if any of you are feeling down, there is no point beating yourself up over it. It is just physical materials. 
-
-Go sleep 7 hours, drink water, hit the gym, or spend time with my ex. While i watch on the sidelines."
-18,"Your submission has been removed due to your account not having at least 10 karma (combined post and comment). **Please note** that _only_ post and comment karma count on Reddit - awarder or awardee karma do not contribute to your score. We encourage you to participate in communities of things you find interesting first in order to build up karma. For more information, please see [here](https://redd.it/71to9t). You may still [PM users who post](https://redd.it/3l79t4)  There will be no exceptions to this rule.  Please do not spam modmail with requests to release your content.  Thank you.
-
-*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/r4r) if you have any questions or concerns.*"
-19,"They literally just borrowed 500,000 shares at 9 hence the PM dip. Only 350,000 available now. They are fucked 🤣🚀🚀🚀🚀"
-20,376$ by 2:37 PM EST mark my words
-21,"Me at 12:30 PM: That's it, I'm buying a house and putting 20% down
-
-Me at 12:45 PM: That's it, I'm applying for Food Stamps
-
-Me at 1 PM: That's it, I'm....waiting and watching."
-22," 
-
-Apparently CNBC is so fast they wrote this in less then 50 seconds...
-
-[https://www.cnbc.com/2021/03/10/gamestop-surges-40percent-then-wipes-out-gain-completely-and-is-halted-again.html](https://www.cnbc.com/2021/03/10/gamestop-surges-40percent-then-wipes-out-gain-completely-and-is-halted-again.html)
-
-**PUBLISHED WED, MAR 10 202112:41 PM EST**
-
-the halt was on... you guessed it 03/10/2021 12:41:05
-
-That's either some extremely talented folks there with the fasted written shit ever, or this was some premeditated fuckery."
-23,"I will be messaging you in 2 years on [**2023-03-09 19:36:33 UTC**](http://www.wolframalpha.com/input/?i=2023-03-09%2019:36:33%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://www.reddit.com/r/wallstreetbets/comments/m1cqod/why_im_selling_gme/gqd462y/?context=3)
-
-[**10 OTHERS CLICKED THIS LINK**](https://www.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fwallstreetbets%2Fcomments%2Fm1cqod%2Fwhy_im_selling_gme%2Fgqd462y%2F%5D%0A%0ARemindMe%21%202023-03-09%2019%3A36%3A33%20UTC) to send a PM to also be reminded and to reduce spam.
-
-^(Parent commenter can ) [^(delete this message to hide from others.)](https://www.reddit.com/message/compose/?to=RemindMeBot&subject=Delete%20Comment&message=Delete%21%20m1cqod)
-
-*****
-
-|[^(Info)](https://www.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://www.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://www.reddit.com/message/compose/?to=RemindMeBot&subject=List%20Of%20Reminders&message=MyReminders%21)|[^(Feedback)](https://www.reddit.com/message/compose/?to=Watchful1&subject=RemindMeBot%20Feedback)|
-|-|-|-|-|"
-24,My uncle is a Nigerian Prince and he just messaged me to say that he can help. He's going to send you a check immediately. Could you PM me your address for your account verification? He will mail a check once I receive your routing number and checking account number. Thank you and best of luck!
-25,"jump to content
-MY SUBREDDITS
--DASHBOARD-HOME-POPULAR-ALL-RANDOM-USERS-FRIENDS-MOD-MODQUEUE-SAVED-EDIT|
--------
-wallstreetbets wallstreetbetscommentsother discussions (2)
-Spictacular (681 · 8,039)|messages|chat messages|mod messages|preferences||logout
-search
-this post was submitted on 01 Apr 2019
-3,040 points (96% upvoted)
-shortlink:  
-https://redd.it/b87viz
-submit link
-submit dd
-Get an ad-free experience with special benefits, and directly support Reddit.
-Get Reddit Premium
-wallstreetbets
-
-Use subreddit style
-subscribe+dashboard+shortcut
-526,546 12,872 
-Show my flair on this subreddit. It looks like:
-Spictacular
-community
-markets
-threads
-dd
-chat with wsb
-
-WSB Twitter: @wallstreetbets
-
-GENERAL INFORMATION
-
-Welcome to r/wallstreetbets :
-
-Discussion about day trading, stocks, options, futures, and anything market related
-Charts and Technical Analysis
-Shower before posting.
-Some irresponsible risk taking.
-People sharing trades, ideas, observations.
-Use the ""Filters"" menu across the top to tailor the content here.
-FLAIR SEARCH
-
-Find posts easily with our flair search
-
-DD - YOLOs
-
-Discussion
-
-Fundamentals - Technicals
-
-Stocks - Options
-
-Earnings Thread - Daily Thread
-
-OFFICIAL WSB MERCHANDISE
-
-
-WALL STREET BETS RULES
-No promotion of any newsletter / eductation service for profit / referral or affiliate links
-Don't glorify losing money
-Do be responsible giving and taking advice.
-Do have discussions that relate to trading.
-Don't try to talk about what you don't know.
-Don't post your losses or paper trades. No one gives a shit.
-Don't make posts asking for a trade, IE submissions that boil down to ""<ticker>?"" or ""What do with $?"".
-MARKET TRADING HOURS
-
-Frankfurt	9:00 AM	8:00 PM
-New York	9:30 AM	4:00 PM
-CME	5:00 PM	4:15 PM
-CBOE	8:30 AM	3:15 PM
-Tokyo	9:00 AM	3:00 PM
-Hong Kong	9:30 AM	4:00 PM
-Hours respective to their own timezone.
-source
-
-Message The Moderators
-MODERATORS
-jartek
- 
-somoran
- 
-only1parkjisung
- 
-CKtalon
- 
-grebfar
- 
-turdled
- 
-rm0826
- 
-volzen
- 
-rawbdor
- 
-MyLittlePegasus
- 
-...and 108 more »
-RECENTLY VIEWED LINKS
-No bamboozles, everyone who comments in this thread will be invited to become a mod of r/WSB.
-3038 points | 5018 comments
-China warned other countries not to attend UN meeting on Xinjiang human rights violations – NGO
-38.0k points | 2763 comments
-Dude uses bjj in a street fight!!!
-10.5k points | 1234 comments
-How loud would I have to yell at a bug to kill it?Removed: Cruel to deaf bugs
-14.3k points | 616 comments
-TIL The original word for 'bear' has been lost. People in middle ages were superstitious and thought saying the animal's name would summon it. They called it 'bear' which means 'the brown one' to avoid saying its actual name.
-75.5k points | 2554 comments
-clear
-account activity
-
-3040
-No bamboozles, everyone who comments in this thread will be invited to become a mod of r/WSB. (self.wallstreetbets)
-
-submitted 2 hours ago * by OPINION_IS_UNPOPULAR
- 
-guava flavored mango dick[M]
-
-Make sure you comment and upvote because...
-
-If we reach 5,000 comments, everyone gets some mod privileges.
-
-If we reach #1 on r/all, everyone gets full permissions.
-
-Thread will be locked at 23:59 PM Apr. 2nd, so make sure to comment before then!
-
-THE MODDENING 2019
-EDIT
-
-You have 15 minutes to accept the invitation or it will be rescinded, as there can be a maximum of 25 pending invites at any one time.
-
-EDIT 2
-
-We have hit the rate limit! https://i.imgur.com/b2gBgcL.png
-The moderator invites will resume in 1 hour!
-
-Again, everyone who comments below will be modded eventually
-
-EDIT 3
-
-Currently #400 on r/all...
-
-UPVOTE IF YOU WANT TO SEE THE WORLD BURN
-EDIT 4
-
-#250 now... the modpocalypse is nigh...
-
-If we hit #1 on r/all, we continue adding moderators as fast as we can (considering the ratelimit).
-
-Once everyone has been added as a moderator, we will shut down the subreddit and give everyone full permissions. The subreddit will then open to the public on the following business day at 9:00am
-
-5018 comments sharesavehidegive awardreportcrosspost
-top 500 commentsnavigate by subscribe
-sorted by: random
-this thread is in contest mode - contest mode randomizes comment sorting, hides scores, and collapses replies by default.
-0/10000BoldItalicstrikesupLink>QuoteCode•Bullets1.NumbersTable
-Speaking as: Spictacular
- big editor formatting helpcontent policy
-save
-
-[–]stormwillpass
- 
-⛈️[M] [score hidden] an hour ago stickied comment 
-Oh shit, he isn't joking!
-
-https://i.imgur.com/A0i3Sc5.png
-permalink embedsave reportgive awardreply
-[show replies]
-
-[–]elefont_
- 
- [score hidden] 29 minutes ago 
-Sweeto
-
-permalink embedsave reportgive awardreply
-
-[–]PortInvoker
- 
- [score hidden] 6 minutes ago 
-A mod of wall street bets? Without losing money? Can this be real, or am I being hoodwinked?
-
-permalink embedsave reportgive awardreply
-
-[–]Undiscover
- 
-[🍰] [score hidden] 10 minutes ago 
-That's crazy
-
-permalink embedsave reportgive awardreply
-
-[–]thisislikemythirdalt
- 
- [score hidden] 2 minutes ago 
-Epic.
-
-permalink embedsave reportgive awardreply
-
-[–]RabbiJJAbrams
- 
- [score hidden] 9 minutes ago 
-I want to moderate retards.
-
-permalink embedsave reportgive awardreply
-
-[–]Melvino32
- 
- [score hidden] 6 minutes ago 
-Becoming mod will make me money on robinhood right?
-
-permalink embedsave reportgive awardreply
-
-[–]1SmallVille1
- 
- [score hidden] 29 minutes ago 
-Haha sick
-
-permalink embedsave reportgive awardreply
-
-[–]getName
- 
- [score hidden] 41 minutes ago 
-ok
-
-permalink embedsave reportgive awardreply
-
-[–]toinouz
- 
- [score hidden] 29 minutes ago 
-Bamboozled
-
-permalink embedsave reportgive awardreply
-
-[–]Na16patman
- 
- [score hidden] 7 minutes ago 
-Finally, something to make my parents proud
-
-permalink embedsave reportgive awardreply
-
-[–]bruno4643
- 
- [score hidden] 56 minutes ago 
-I mean I lost some money to the market gods so yea, sure.
-
-permalink embedsave reportgive awardreply
-
-[–]Red_Corgi
- 
- [score hidden] 28 minutes ago 
-Me pls
-
-permalink embedsave reportgive awardreply
-
-[–]BigDickLance1234
- 
- [score hidden] 26 minutes ago 
-You might need some mods with .. intresting features..
-
-permalink embedsave reportgive awardreply
-
-[–]283leis
- 
- [score hidden] 20 minutes ago 
-Why
-
-permalink embedsave reportgive awardreply
-
-[–]4chanstan
- 
- [score hidden] 1 hour ago 
-Uh oh boys
-
-permalink embedsave reportgive awardreply
-
-[–]Chill_Duck_
- 
- [score hidden] 55 minutes ago 
-I love this sub
-
-permalink embedsave reportgive awardreply
-
-[–]ILOVENOGGERS
- 
- [score hidden] 55 minutes ago 
-Fkin autists
-
-permalink embedsave reportgive awardreply
-
-[–]rundigital
- 
- [score hidden] 55 minutes ago 
-April showers bring May flowers, butthole puckers it’s the 1st motherfuckers.
-
-permalink embedsave reportgive awardreply
-
-[–]Dexterplasticwrap
- 
- [score hidden] 47 minutes ago 
-1
-
-permalink embedsave reportgive awardreply
-
-[–]JJnord
- 
- [score hidden] 40 minutes ago 
-Yeet
-
-permalink embedsave reportgive awardreply
-
-[–]SEND_ME_YOUR_CAPITAL
- 
- [score hidden] 33 minutes ago 
-Can I put this on a resume?
-
-permalink embedsave reportgive awardreply
-
-[–]DonnieAzofff
- 
- [score hidden] 28 minutes ago 
-Box spread
-
-permalink embedsave reportgive awardreply
-
-[–]CptnFlowers
- 
- [score hidden] 27 minutes ago 
-Pls
-
-permalink embedsave reportgive awardreply
-
-[–]notaengineer
- 
- [score hidden] 20 minutes ago 
-All in $WSB
-
-permalink embedsave reportgive awardreply
-
-[–]Lursmani1
- 
- [score hidden] 12 minutes ago 
-Bet you're gonna bitch out.
-
-permalink embedsave reportgive awardreply
-
-[–]ray_ph
- 
- [score hidden] 7 minutes ago 
-I’ll take two.
-
-permalink embedsave reportgive awardreply
-
-[–]Vdbebw
- 
- [score hidden] 6 minutes ago 
-Fakka broeders
-
-permalink embedsave reportgive awardreply
-
-[–]Pandastratton
- 
- [score hidden] 3 minutes ago 
-And your a mod and your a mod! Everyone is a mod!
-
-permalink embedsave reportgive awardreply
-
-[–]KindlyClassic
- 
- [score hidden] 3 minutes ago 
-Fake as shit but sure
-
-permalink embedsave reportgive awardreply
-
-[–]Lakart
- 
- [score hidden] 2 minutes ago 
-Hm
-
-permalink embedsave reportgive awardreply
-
-[–]pineapplecup
- 
- [score hidden] just now 
-Hmmm... okay
-
-permalink embedsave reportgive awardreply
-
-[–]GypsySloth
- 
- [score hidden] just now 
-Yooo
-
-permalink embedsave reportgive awardreply
-
-[–]aSkyBelow
- 
- [score hidden] 37 minutes ago 
-I like money
-
-permalink embedsave reportgive awardreply
-
-[–]BiGuyFromBritian
- 
- [score hidden] 7 minutes ago 
-Question is even this comment too late?
-
-permalink embedsave reportgive awardreply
-
-[–]Charmin_Ultrastrong
- 
- [score hidden] 1 hour ago 
-i buyed spx puts and lost
-
-permalink embedsave reportgive awardreply
-
-[–]rynofire
- 
- [score hidden] 1 hour ago 
-Everything in moderation
-
-permalink embedsave reportgive awardreply
-
-[–]xxrelentless
- 
- [score hidden] 1 hour ago 
-Yes
-
-permalink embedsave reportgive awardreply
-
-[–]Greensun30
- 
- [score hidden] 1 hour ago 
-Nice
-
-permalink embedsave reportgive awardreply
-
-[–]FolsomAve
- 
- [score hidden] 1 hour ago 
-This is the way the world ends.
-
-permalink embedsave reportgive awardreply
-
-[–]nickbob65
- 
- [score hidden] 1 hour ago 
-Autism is great
-
-permalink embedsave reportgive awardreply
-
-[–]SoggyPanera1323
- 
- [score hidden] 1 hour ago 
-This will look good on my resume
-
-permalink embedsave reportgive awardreply
-
-[–]TheRealWassuppeople
- 
- [score hidden] 58 minutes ago 
-Hook me up with a mod.
-
-permalink embedsave reportgive awardreply
-
-[–]kaladinsanderson
- 
- [score hidden] 53 minutes ago 
-Holy hot damn what
-
-permalink embedsave reportgive awardreply
-
-[–]Ptmike
- 
- [score hidden] 52 minutes ago 
-Wtf is gonna happen to this sub lol
-
-permalink embedsave reportgive awardreply
-
-[–]tc_whitley
- 
- [score hidden] 50 minutes ago 
-Will this end badly? Stay tuned
-
-permalink embedsave reportgive awardreply
-
-[–]gatortrev
-"
-26,"Translated text:
-
-i want to climb into luigi's anus and pound his rectum from the inside. i then want to lick his asshole clean and proceed to hump his anal cavity, crawl out of his asshole, and blow luigi until his cum pour into my gaping mouth as i swallow it, licking my lips. 
-
-
-
---- 
-
-^(I am a bot created by /u/zero-nothing. Please PM him if I'm doing anything stupid! Reply to a comment with '/u/morse-bot' to call me and I will translate the comment you replied to from morse-to-text or vice versa!)"
-27,PM Me your password then so I can borrow the account from you and sell it on eBay or whatever.
-28,"Crying right now with you. I am jobless, broke, depressed and suicidal. The only thing that has kept me going are my kids and wife. I can’t imagine your pain. I am so sorry. You need anything or want to come over for Thanksgiving? We have three kids and a dog it’s wild here. If you’re ever feeling down or lonely PM me. Apes together strong. 
-
-Like you, for the first time in a long time I have hope. My kids are going to have a better world I think because of this. I should post a video I am a mess and crying right now like a big baby. Fuck yes!!!!!!!! I love you, I love everyone reading this, except all the assholes we hate, you know who you are. 
-
-I want to devote my life to this, I am willing to ride or die with any of you now. I haven’t cried happy tears in a while this is such an awesome day. This is for my kids.
-
-Edit: just want to say I really appreciate the humanity and brother and sisterhood here. We all have so much in common and I love the light at the end of the tunnel we all see now. For those that have reached out, and concerned about me being suicidal, thank you. I would never go through with it, I could never abandon my wife and kids like that. It’s been rough on us all and to say it’s never crossed my mind would be a lie, but I would never go though with it. It’s the hardest way out. I like being lazy and taking the easy way out, like talking to someone."
-29,"I will be messaging you in 1 month on [**2021-02-28 18:50:32 UTC**](http://www.wolframalpha.com/input/?i=2021-02-28%2018:50:32%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/wallstreetbets/comments/l6z6lu/at_this_rate_5000_is_going_to_be_nothing_for_gme/gl4nixu/?context=3)
-
-[**7 OTHERS CLICKED THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fwallstreetbets%2Fcomments%2Fl6z6lu%2Fat_this_rate_5000_is_going_to_be_nothing_for_gme%2Fgl4nixu%2F%5D%0A%0ARemindMe%21%202021-02-28%2018%3A50%3A32%20UTC) to send a PM to also be reminded and to reduce spam.
-
-^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Delete%20Comment&message=Delete%21%20l6z6lu)
-
-*****
-
-|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=List%20Of%20Reminders&message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&subject=RemindMeBot%20Feedback)|
-|-|-|-|-|"
-30,"Hey OP,
-It’s been a long time....to long. We should get together and have a couple drinks. I’ve got some great investment ideas that all involve you giving your money to me. After several months/years of telling you things are really going well and starting to take off, I’ll let you know that “we” lost the entire investment due to unforeseen circumstances that were impossible to predict. If you’re interested, PM me right away as I’m only going to let one of my good friends in on this deal."
-31,Don’t forget to hold them through 2 PM Friday for maximum theta burn.
-32,"I will be messaging you on [**2017-12-25 22:51:35 UTC**](http://www.wolframalpha.com/input/?i=2017-12-25 22:51:35 UTC To Local Time) to remind you of [**this link.**](https://www.reddit.com/r/wallstreetbets/comments/5rb9c7/upvote_to_ban_all_of_canada_from_the_internet/dd5y45f)
-
-[**5 OTHERS CLICKED THIS LINK**](http://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=[https://www.reddit.com/r/wallstreetbets/comments/5rb9c7/upvote_to_ban_all_of_canada_from_the_internet/dd5y45f]%0A%0ARemindMe!  328 days) to send a PM to also be reminded and to reduce spam.
-
-^(Parent commenter can ) [^(delete this message to hide from others.)](http://np.reddit.com/message/compose/?to=RemindMeBot&subject=Delete Comment&message=Delete! dd5y580)
-
-_____
-
-|[^(FAQs)](http://np.reddit.com/r/RemindMeBot/comments/24duzp/remindmebot_info/)|[^(Custom)](http://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=[LINK INSIDE SQUARE BRACKETS else default to FAQs]%0A%0ANOTE: Don't forget to add the time options after the command.%0A%0ARemindMe!)|[^(Your Reminders)](http://np.reddit.com/message/compose/?to=RemindMeBot&subject=List Of Reminders&message=MyReminders!)|[^(Feedback)](http://np.reddit.com/message/compose/?to=RemindMeBotWrangler&subject=Feedback)|[^(Code)](https://github.com/SIlver--/remindmebot-reddit)|[^(Browser Extensions)](https://np.reddit.com/r/RemindMeBot/comments/4kldad/remindmebot_extensions/)
-|-|-|-|-|-|-|"
-33,I’m buying 10 more $GME shares in PM
-34,"Things are about as good as we could ask for right now. The top of the mod team are all long term trusted members, I'm able to come back and resume my usual stuff, and we've got more newfriends than we know what to do with.
-
-Not sure if it'll take an hour or a day or a week but I'm gonna do my best to get everything back to normal. [We're back](https://www.youtube.com/watch?v=lF7M0FISH5Y&t=13s).
-
-**EDIT**: For what it's worth, the Reddit admins were cool when I talked to them. I didn't know what to expect, but they seem like they actually get us and want to let us continue to do our thing. I am not gonna blame them for needing some time to gather facts. If you could do me a favor, give them the benefit of the doubt. Let's try to move forward assuming everyone is on the same page and working toward the same goal, which is a wallstreetbets that continues to be as excellent as it always has been.
-
-I can also tell you flat out that the conspiracy stuff I've been seeing about certain tickers and Reddit being compromised and whatnot is just people misinterpreting the actions of what to them is a black box. If you're worried about something that is going on, missing submissions from now -> whenever, etc, you're *always* welcome to PM me or message modmail and I will try to figure out what's up.
-
-Let's leave all the political nonsense and drama in the dust and get back to being an equities dive bar with a few new members."
-35,"I will be messaging you in 2 days on [**2021-02-19 01:36:04 UTC**](http://www.wolframalpha.com/input/?i=2021-02-19%2001:36:04%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/wallstreetbets/comments/llgits/welcome_back_zjz/gnprngi/?context=3)
-
-[**62 OTHERS CLICKED THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fwallstreetbets%2Fcomments%2Fllgits%2Fwelcome_back_zjz%2Fgnprngi%2F%5D%0A%0ARemindMe%21%202021-02-19%2001%3A36%3A04%20UTC) to send a PM to also be reminded and to reduce spam.
-
-^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Delete%20Comment&message=Delete%21%20llgits)
-
-*****
-
-|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=Reminder&message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&subject=List%20Of%20Reminders&message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&subject=RemindMeBot%20Feedback)|
-|-|-|-|-|"
-36,"Bro if you have a copy of it PM me please, I read the first two lines and it was awesome lol"
-37,"My understanding is that every subscriber username of this sub has been cached (and is updated daily). In the event that WSB gets the ban hammer cause the SEC or someone wants to act like Blizzard, we will all be notified via PM with further instructions."
-38,"If the kid gets banned, I'm hosting a website, and offering to host 100 more indefinitely for free, for anyone that wants to put together their own script to do this.
-
-
-Just PM me if it happens."
-39,"I know, I'll even quote the parts where I hinted at that
-
->  *DFV is simply an eagle-eyed investor who bought into his GME positions quite a while ago, even before anyone here cared about GameStop's fundamentals or the remote possibility of a squeeze*   
->  
->  5 PM..... *on the day before.*"
-40,"GOOD MORNING EVERYONE!!! I wrote this in yesterday’s thread but wanted to share here: 
-
-Their strategy is to let it climb a little in AH and even more in PM so when the bell opens people think they’re selling “high” and paper hands will be gone in the first 20 minutes. Trade sideways all day to piss off the people actually watching, and then rinse and repeat. They really do think you’re that stupid, it’s obvious to anyone who’s been watching the past few weeks, shit even the past few months.
-
-This, is not, a stock. It’s not moving like a stock, it’s not trading like a stock, it’s not covered by the media like a stock, so stop talking about healthy pre market and “this looks bullish” because we have no idea what it looks like. ALL YOU HAVE TO DO IS HOLD, and wait till they bleed out. Their moves are simple and desperate, which means they’re running out of time. Every pass is a Hail Mary and we will intercept one of them and run it back to our end zone soon enough.
-
-EDIT: I’m aware my account is new, I jumped on this in January with barely any knowledge (proof in comments) and really loved what you guys were doing so I’ve been buying and holding ever since. I have read a ton of DD and learned everything I could in the past couple months which still is nothing compared to some of you. I appreciate all the love and I think the best part of this group is you can be a true retard like me and in just a short time... well I’m still retarded, but I like the stock 😜"
-41,"Your submission has been removed due to your account not having at least 10 karma (combined post and comment). **Please note** that _only_ post and comment karma count on Reddit - awarder or awardee karma do not contribute to your score. We encourage you to participate in communities of things you find interesting first in order to build up karma. For more information, please see [here](https://redd.it/71to9t). You may still [PM users who post](https://redd.it/3l79t4)  There will be no exceptions to this rule.  Please do not spam modmail with requests to release your content.  Thank you.
-
-*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/r4r) if you have any questions or concerns.*"
-42,"I spent New Years Eve at my grandma's house when she was 90.
-
-At about 11:45 PM she declared ""well, I guess I'm gonna make it til next year""."
+- Not really a theme, but for some nice dividends I got a nicotine holding, I went with PM. This is one I've hesitated about a lot. I'm not going to write a whole analysis, since it's such a small holding, but I don't see our society ever leaving nicotine and I expect we will see a huge continuing growth in smokeless nicotine products. This might sound contrarian, but I wouldn't be surprised if nicotine was much more normalized in the future (in decades time) as a supplement similar to caffeine. The winners will almost certainly be big tobacco companies as it is and likely will remain a highly regulated market with high entry barriers. Even if that doesn't happen, I think there is still money to be made in cigarettes, as even though the number of smokers decreases in most of the world, the revenue is not dropping yet. And I think there is a generation of nicotine addicts growing up in most of the world due to flavored vapes and nicotine pouches."
