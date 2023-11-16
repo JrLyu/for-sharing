@@ -67,6 +67,7 @@
 \def\d{\mathrm{d}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
+\def\phi{\varphi}
 \def\dsst{\displaystyle}
 \def\st{\ s.t.\ }
 \def\bar{\overline}
@@ -812,6 +813,116 @@
 	\end{sol}
 \end{eg}
 
+\newpage
+\section{Special Distributions}
+\subsection{Poisson Distribution}
+\begin{eg}
+	A publisher estimates that their books have an average $1$ typo every $4$ pages. Let $X=$ number of typos in a $20$ page chapter. Assume: (1) the typos are equally likely to occur anywhere, (2) different typos are independent, and (3) average rate of the typos is $\dfrac{1}{4}$ per page. 
+	\begin{enumerate}
+		\item[a.] Let $X_j=$ \# of typos on page $j$. 
+		\begin{sol}
+			Expect $\dfrac{1}{4}$ per page $\implies p_X(k)=\begin{cases}1/4\quad k=1\\3/4\quad k=0\end{cases}$.\par  Then, $X_j\sim\text{Binomial}\qty(n=20,p=\dfrac{1}{4})$. So, \[\P(X=k)=\binom{20}{k}\qty(\dfrac{1}{4})^k\qty(\dfrac{3}{4})^{20-k}\] Therefore, \[\P(X=5)=\binom{20}{5}\qty(\dfrac{1}{4})^5\qty(\dfrac{3}{4})^{15}\approx20.2\%\]
+			Problem: maximum \# of typo is $20$, but we can have more typos per page!	
+		\end{sol}
+		\item[b.] Subdivide each page into $40$ lines. $\implies n=800$ total lines and $p=\dfrac{1/4}{40}=\dfrac{1}{160}$. 
+		\begin{sol}
+			Let $X_j=$ \# of typos on line $j$. Then, $X_j\sim\text{Binomial}\qty(n=800,p=\dfrac{!}{160})$. So, \[p_{X_j}(k)=\binom{800}{k}\qty(\dfrac{1}{160})^k\qty(\dfrac{159}{160})^{800-k},\quad k=0,\dots,800\]\[\P\qty(X_j=5)=17.6\%\]	
+		\end{sol}
+		\item[c.] Subdivide each line into quarter lines. That is, $n=3200$ quarter lines and $p=\dfrac{1}{640}$.
+		\begin{sol}
+			$X_j=$ a typo on quarter line $j$. So, $X_j\sim\text{Binomial}\qty(3200,\dfrac{1}{640})$. \[p_{X_j}(k)=\binom{3200}{k}\qty(\dfrac{1}{640})^k\qty(\dfrac{639}{640})^{3200-k}.\]	
+		\end{sol}
+		\item[d.] Does this approach a limit? Let $\lambda=$ total \# expected, $n=$ \# of subdivisions, $p=\dfrac{\lambda}{n}$ probability within one division. Then, $\dsst p_X(k)=\binom{n}{k}\qty(\dfrac{\lambda}{n})^k\qty(1-\dfrac{\lambda}{n})^{n-k}$. Fix $k$ and $\lambda$. Find $\dsst\lim_{n\to\infty}p_X(k)$.
+		\begin{sol}
+			\begin{align*}
+				\lim_{n\to\infty}p_X(k)&=\lim_{n\to\infty}\binom{n}{k}\qty(\dfrac{\lambda}{n})^k\qty(1-\dfrac{\lambda}{n})^{n-k}\\
+				&=\lim_{n\to\infty}\dfrac{n!}{(n-k)!k!}\cdot\dfrac{\lambda^k}{n^k}\qty(1-\dfrac{\lambda}{n})^n\qty(1-\dfrac{\lambda}{n})^{-k}\\
+				&=\dfrac{\lambda^k}{k!}\lim_{n\to\infty}\dfrac{n!}{(n-k)!}\cdot\dfrac{1}{n^k\qty(1-\frac{\lambda}{n})^k}\cdot\qty(1-\dfrac{\lambda}{n})^n\\
+				&=\dfrac{\lambda^k}{k!}\lim_{n\to\infty}\dfrac{n(n-1)\cdots(n-k+1)(n-k)!}{(n-k)!(n-\lambda)^k}\cdot\qty(1-\dfrac{\lambda}{n})^n\\
+				&=\dfrac{\lambda^k}{k!}\lim_{n\to\infty}\underbrace{\dfrac{n(n-1)\cdots(n-k+1)}{(n-\lambda)^k}}_{\sim\lim_{n\to\infty}\frac{n^k}{n^k}=1}\underbrace{\qty(1-\dfrac{\lambda}{n})^n}_{=\lim_{n\to\infty}e^{-\lambda}}\\
+				&=\dfrac{\lambda^k}{k!}e^{-\lambda}
+			\end{align*}
+		\end{sol}
+	\end{enumerate}	
+\end{eg}
+\begin{df}{Poisson Distribution}
+	For $X\in\N$ and $\lambda>0$, the pdf of \textit{poisson distribution} is given by \[p_X(k)=P(X=k)=e^{-\lambda}\dfrac{\lambda^k}{k!},\quad\text{for }k=0,1,2,\dots\]
+\end{df}
+\begin{df}{Poisson Model}
+	Assume the events occur with the following assumptions: 
+	\begin{itemize}
+		\item Can subdivide into intervals small enough that $\P(2\text{ events in one interval})=0$.
+		\item Occurrences in different intervals are independent.
+		\item Probability of event is constant.
+	\end{itemize}
+	Then, set $\lambda=$ expected \# of occurrence per unit and $X=$ actual \# of occurrence per unit. Then, we have the \textit{poisson model}: \[\P(X=k)=e^{-\lambda}\dfrac{\lambda^k}{k!}\]
+\end{df}
+\begin{eg}
+	Application of Poisson Distribution
+	\begin{enumerate}
+		\item Radioactive decay (or other discrete reactions).
+		\item Errors/flaws/accidents injuries
+		\item Outbreaks of non-contagious disease.
+	\end{enumerate}
+\end{eg}
+\begin{eg}
+	Wait time Between Poisson Distribution\par Suppose we use a geiger counter to measure the radiation coming off a radioactive sample. The number of ticks in $1$ second of the counter has a poisson distribution, where $\lambda$ is the expected number of ticks, i.e., $\lambda=$ average number of ticks per second. Let $Y=$ the time interval between two consecutive ticks. What is the distribution of $Y$? 
+	\begin{sol}
+		The cdf of $Y$: $F_Y(y)=\P(Y\leq y).$\par Let $t=0$ be the time of the first click. Then, $Y\leq y$ can be interpreted as at least $1$ click in $[0,y]$. So, we have \[F_Y(y)=1-\P(\text{No clicks in }[0,y]).\] The expected number of clicks is $\lambda y\implies\P(\text{none})=e^{-\lambda y}$. Thus, \[F_Y(y)=1-e^{-\lambda y}.\] So, the pdf of $Y$ is given by \[f_Y(y)=\dv{y}F_Y(y)=\lambda e^{-\lambda y},\quad y\geq0\]
+	\end{sol}
+\end{eg}
+\begin{thm}{Wait Time Between Poisson Distribution}
+	Suppose a series of events satisfying the poisson distribution	model are occurring at the rate of $\lambda$ units per time. Let random variable $Y$ denote the interval between consecutive events. Then, $Y$ has the exponential distribution: $Y\sim\text{Exponential}(\lambda)$, and \[f_Y(y)=\lambda e^{-\lambda y},\quad y>0.\]
+\end{thm}
+
+\subsection{Normal Distribution}
+\begin{df}{The Standard Normal}
+	A continuous random variable $Z\sim N(0,1)=\text{Normal}\qty(\mu=0,\sigma^2=1)$	is defined to be the standard normal distribution with pdf \[f_Z(z)=\dfrac{1}{\sqrt{2\pi}}e^{-z^2/2},\quad z\in(-\infty, \infty)\] and the moment generating function \[\M_Z(t)=e^{t^2/2},\quad t\in\R\] The standard normal distribution is also known as the Gaussian distribution or the bell curve. 
+\end{df}
+\begin{df}{The General Normal Distribution}
+	We define the general normal distribution $X\sim N(\mu,\sigma^2)$ by using the transformation $X=\sigma Z+\mu$. Any normal distribution is a linear transformation of the standard normal, and the pdf is given by \[f_X(x)=\dfrac{1}{\sqrt{a\pi}\sigma}e^{-\frac{1}{2\sigma^2}(x-\mu)^2},\quad x\in\R\]
+\end{df}
+\begin{prf}
+	Note that the cdf of $X=\sigma Z+\mu$ is given by \begin{align*}F_X(x)=\P(X\leq x)&=\P(\sigma Z+\mu\leq x)\\&=\P\qty(Z\leq\dfrac{x-\mu}{\sigma})=F_Z\qty(\dfrac{x-\mu}{\sigma})\end{align*} So, the pdf of $X$ is \begin{align*}f_X(x)=\dv{x}F_X(x)&=\dv{x}F_Z\qty(\dfrac{x-\mu}{\sigma})\\&=f_Z\qty(\dfrac{x-\mu}{\sigma})\cdot\dv{x}\qty(\dfrac{x}{\sigma}-\dfrac{\mu}{\sigma})\\&=\dfrac{1}{\sqrt{2\pi}}e^{-\qty(\frac{x-\mu}{\sigma})^2\cdot\frac{1}{2}}\qty(\dfrac{1}{\sigma})\\&=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^2}(x-\mu)^2},\quad x\in\R\end{align*}
+\end{prf}
+\begin{rmk} Using the MGF that if $\mathrm{Normal}+\mathrm{Normal}=\mathrm{Normal}$.\end{rmk}
+\begin{eg}{}
+	Applications of Normal Distribution
+	\begin{itemize}
+		\item Sample means
+		\item Population features
+		\item Lab instrument measures
+	\end{itemize}	
+\end{eg}
+\begin{eg}
+	Why $\dfrac{1}{\sqrt{2\pi}}$?
+	\begin{sol}
+		We want to compute $\dsst\int_{-\infty}^\infty e^{-x^2/2}\ \d{x}$. Instead of finding it directly, we can find \begin{align*}\qty(\int_{-\infty}^\infty e^{-x^2/2}\ \d{x})^2&=\int_{-\infty}^\infty e^{-x^2/2}\ \d{x}\int_{-\infty}^\infty e^{-y^2/2}\ \d{y}\\&=\int_{-\infty}^\infty\int_{-\infty}^\infty e^{-(x^2+y^2)/2}\ \d{x}\d{y}.\end{align*} Use the polar coordinate: $x=r\cos\theta$ and $y=r\sin\theta$. So, we have $\d{x}\d{y}=r\d{r}\d{\theta}$. So, \begin{align*}\qty(\int_{-\infty}^\infty e^{-x^2/2}\ \d{x})^2&=\int_0^{2\pi}\int_0^{\infty}e^{-\qty(r^2\cos^2\theta+r^2\sin^2\theta)/2}r\ \d{r}\d{\theta}\\&=\int_0^{2\pi}\int_0^{\infty}e^{-\frac{1}{2}r^2\qty(\cos^2\theta+\sin^2\theta)}r\ \d{r}\d{\theta}\\&=\int_0^{2\pi}\int_0^{\infty}re^{-\frac{1}{2}r^2}\ \d{r}\d{\theta}&u=\frac{1}{2}r^2,\quad \d{u}=r\d{r}\\&=\int_0^{\pi}\int_0^\infty e^{-u}\ \d{u}\d{\theta}\\&=\int_0^{2\pi}\lim_{t\to\infty}\qty[-e^{-u}]_0^t\ \d{\theta}\\&=\int_0^{2\pi}\lim_{t\to\infty}\qty(-e^{-t}+e^{-0})\ \d{\theta}\\&=\int_0^{2\pi}\ \d{\theta}\\&=\qty\Big[\theta]_0^{2\pi}=2\pi\end{align*} Therefore, $\dsst\int_{-\infty}^\infty e^{-x^2/2}\ \d{x}=\sqrt{2\pi}$. Thus, to ensure the area under the pdf goes to $1$, we need the factor $\dfrac{1}{\sqrt{2\pi}}$.
+	\end{sol}
+\end{eg}
+\begin{thm}{Central Limit Theorem}
+	Let $Y_1,\dots,Y_n$ be a random sample with $\mu=\E\qty(Y_i)$ and $\sigma^2=\Var\qty(Y_i)$, both finite. Then, if \[Z_n=\dfrac{1}{\sqrt{n}\sigma}\qty(Y_1+\cdots+Y_n-n\mu),\]	 we have \[\P(a\leq Z_n\leq b)=\int_a^b\dfrac{1}{\sqrt{2\pi}}e^{-z^2/2}\ \d{z}\quad \text{as }n\to\infty\] That is, $Z_n$ approaches the standard normal as $n\to\infty$.
+\end{thm}
+\begin{prf}
+	Tools used in this proof: MGF determines the distribution. If $\M_{Z_n}(t)\to\M_Z(t)$, then $\P(a\leq Z_n\leq b)\to\P(a\leq Z\leq b)$. \par 
+	Given $Y_1,Y_2,\dots,Y_n$ a random sample as above. Let's define \[W_i=\dfrac{1}{\sigma}\qty(Y_i-\mu).\] Then, \[\E\qty(W_i)=0\qquad\text{and}\qquad\Var\qty(W_i)=1\] Assume the MGF of $W_i$ is well-defined. Without loss of generality, consider the MGF of $W_i$: \begin{align*}\M_{W_i}(t)&=e^{\phi(t)}\\\M_{W_i}(0)&=e^{\phi(0)}=1&by\ well\ defined\\\M_{W_i}'(t)&=e^{\phi(t)}\phi'(t)\\\M'_{W_i}(t)&=e^{\phi(0)}\phi'(0)=\E\qty(W_i)=0\\&\quad 1\cdot\phi'(0)=0\implies\phi'(0)=0\\\M_{W_i}''(t&)=\dv{t}\qty[e^{\phi(t)}\phi'(t)]\\&=e^{\phi(t)}\phi'(t)\phi'(t)+e^{\phi(t)}\phi''(t)\\&=e^{\phi(t)}\qty[\qty(\phi'(t))^2+\phi''(t)]\\\M_{W_i}''(0)&=^{\phi(0)}\qty[\qty(\phi'(0))^2+\phi''(0)]\\&=1\cdot\qty(0+\phi''(0))=\phi''(0)\end{align*} So, \[\Var\qty(W_i)=\E\qty(W_i^2)-\E\qty(W_i)^2=\E\qty(W_i^2)-0=\E\qty(W_i^2)=\M_{W_i}''(0)=1\] \[\implies\phi''(0)=1.\]\par 
+	Now, define \[Z_n=\dfrac{1}{\sqrt{n}}\qty(W_1+W_2+\cdots+W_n).\] By the MGF property that if $X$ and $Y$ are independent, then \[\M_{aX}(t)=\M_X(at)\quad\text{and}\quad\M_{X+Y}(t)=\M_X(t)\M_Y(t)\] We have \[\M_{Z_n}(t)=\prod_{i=1}^n\M_{W_i}\qty(t/\sqrt{n})=\prod_{i=1}^ne^{\phi\qty(t/\sqrt{n})}=\qty(e^{\phi\qty(t/\sqrt{n})})^n=e^{n\phi\qty(t/\sqrt{n})}\] With $x=\dfrac{1}{\sqrt{n}}$, consider \begin{align*}\lim_{n\to\infty}n\phi\qty(t/\sqrt{n})=\lim_{n\to\infty}\dfrac{\phi(xt)}{x^2}\quad\qty(=\dfrac{0}{0})=\lim_{n\to\infty}\dfrac{\phi'(xt)t}{2x}\quad\qty(=\dfrac{0}{0})=\lim_{n\to\infty}\dfrac{\phi''(xt)t^2}{2}=\dfrac{t^2}{2}.\end{align*} That is $\dsst\lim_{n\to\infty}\M_{Z_n}(t)=e^{t^2/2}=\M_Z(t)$, the standard normal MGF. 
+\end{prf}
+\begin{eg} 
+	Binomial Distribution and the Central Limit Theorem\par 
+	Consider $X\sim\text{Binomial}(n,p)$. Note that \[X=X_1+X_2+\cdots+X_n,\quad\text{where }X_i\sim\text{Bernoulli}(p).\] So, \[Z=\dfrac{X-np}{\sqrt{np(1-p)}}\sim N(0,1)\]
+\end{eg}
+\begin{eg}
+	Poisson Distribution and the Central Limit Theorem\par 
+	Consider $X\sim\text{Poisson}(\lambda)$. Suppose \[X=X_1+X_2+\cdots+X_n,\quad\text{where }X_i\sim\text{Poisson}\qty(\dfrac{\lambda}{n})\] Then, \[Z=\dfrac{X-\lambda}{\sqrt{\lambda}}\sim N(0,1).\]
+\end{eg}
+\begin{rmk}
+	What we are doing here is to approximate discrete distributions (e.g. binomial/poisson) with a continuous distribution (normal). There will be some errors. So we need \emph{continuity correction}, adding or subtracting $\dfrac{1}{2}$ to account for approximations of a discrete distribution with a continuous distribution.	
+\end{rmk}
+\begin{eg}
+	Binomial Distribution Continuity Correction\par 
+	\[Z=\dfrac{X-np}{\sqrt{np(1-p)}}\sim N(0,1)\] \[\P(a\leq Z\leq b)\approx\P\qty(\dfrac{a-0.5-np}{\sqrt{np(1-p)}}\leq Z\leq\dfrac{b+0.5-np}{\sqrt{np(1-p)}}).\]
+\end{eg}
 
 
 \end{document}
