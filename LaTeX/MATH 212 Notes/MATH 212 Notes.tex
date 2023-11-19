@@ -36,11 +36,11 @@
 
 \newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
 
-\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
-\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
-\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
-\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
-\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{cor}{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex:\ }}{\par}
+\newenvironment*{lem}{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex:\ }}{\par}
+\newenvironment*{ax}{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex:\ }}{\par}
+\newenvironment*{prop}{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex:\ }}{\par}
+\newenvironment*{conj}{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex:\ }}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
@@ -801,8 +801,167 @@ Let $x,y$ be populations of two species $X, Y$. we model $x,y$ using logistic gr
 	Eq. (\ref{eq9}) looks like a solution to first order homogenous ODE. So, we will prove the formula by constructing a differential equation. \begin{align*}\W&=y_1y_2'-y_1'y_2\\\W'&=y_1'y_2'+y_1y_2''-y_1''y_2-y_1'y_2'\\&=y_1y_2''-y_1''y_2\\&=y_1\qty(-py_2'-qy_2)-\qty(-py_1'-qy_1)y_2&y_1''+py_1'+qy_1=0\\&=-py_1y_2'-qy_1y_2+py_1'y_2+qy_1y_2\\&=-p(y_1y_2'-y_1'y_2)\\&=-p\W\end{align*} When solving $\W'=-p\W$, we will have Eq. (\ref{eq9}).
 	
 \end{prf}
+\begin{cor}{}
+	If $\W\qty[y_1,y_2]\neq0$ at one point of $x_0$, $\W[y_1,y_2]\neq0$ for all $x$'s in the interval. 	
+\end{cor}
+\begin{prf}
+	From Theorem 3.2.13, $\W(x)=\W\qty(x_0)e^{-\int_{x_0}^xp(t)\ \d{t}}$. Since $e^{-\int_{x_0}^xp(t)\ \d{t}}>0$, we know $\W(x)=0\iff\W(x_0)=0.$	
+\end{prf}
+\begin{thm}{}
+	Suppose that $p$ and $q$ are continuous on $(a,b)$, and let $y_1$ and $y_2$ be solutions of \begin{equation}\label{eq10}
+		y''+p(x)y'+q(x)y=0\quad\text{on }(a,b)
+	\end{equation}
+	Then, the following statements are equivalent: 
+	\begin{enumerate}
+		\item The general solution of Eq. (\ref{eq10}) on $(a,b)$ is $y=c_1y_1+c_2y_2$.
+		\item $\qty{y_1,y_2}$ is a fundamental set of solutions (FSS) for Eq. (\ref{eq10}) on $(a,b)$.
+		\item $y_1$ and $y_2$ are linearly independent on $(a,b)$.
+		\item The Wronskian of $\qty{y_1,y_2}$ is nonzero at some point in $(a,b)$.
+		\item The Wronskian of $\qty{y_1,y_2}$ is nonzero at all points in $(a,b)$.
+	\end{enumerate}
+\end{thm}
+\begin{eg}
+	Find the solution of the equation $y''+6y'+5y=0$ given the initial conditions $y(0)=3, y'(0)=-1$.
+	\begin{sol}
+		The characteristic polynomial is $r^2+6r+5r=0\implies(r+1)(r+5)=0$. So, $r_1=-1$ and $r_2=-5$. Therefore, we have $y_1=e^{-x}$ and $y_2=e^{-5x}$. Then, \[y=c_1y_1+c_2y_2=c_1e^{-x}+c_2e^{-5x}\] is still a solution, and $y'=-ce^{-x}+-5c_2e^{-5x}$. Then, by the initial condition: \[\begin{cases}y(0)=c_1e^0+c_2e^0=c_1+c_2=3\\y'(0)=-c_1e^0-5c_2e^0=-c_1-5c_2=-1\end{cases}\implies\begin{cases}c_1=7/2\\c_2=-1/2\end{cases}\] So, \[y^\text{IVP}=\dfrac{7}{2}e^{-x}-\dfrac{1}{2}e^{-5x}\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the solution of the equation $y''+5y'+6y=0$ given the initial conditions $y(0)=2, y'(0)=3$.
+	\begin{sol}
+		The characteristic polynomial: $r^2+5r+6=0\implies(r+2)(r+3)=0$. So, $r_1=-2$ and $r_2=-3$. S0, $y_1=e^{-2x}$ and $y_2=e^{-3x}$. Therefore, \[y=c_1y_1+c_2y_2=c_1e^{-2x}+c_2e^{-3x},\] and then $y'=-2c_1e^{-2x}-3c_2e^{-3x}$. By the initial condition, we have \[\begin{cases}y(0)=c_1e^0+c_2e^0=c_1+c_2=2\\y'(0)=-2c_1e^0-3c_2e^0=-2c_1-3c_2=3\end{cases}\implies\begin{cases}c_1=9\\c_2=-7\end{cases}\] So, \[y^\text{IVP}=9e^x-7e^{-6x}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of the equation $y''+6y'+9y=0$ with initial conditions $y(0)=3,y'(0)=-1$.
+	\begin{sol}
+		The characteristic polynomial: $r^2+6r+9=0\implies(r+3)^2=0\implies r_1=r_2=-3$. In this case, we have repeated roots. Suppose $y=ue^{-3x}$, where $u$ is a function of $x$. \begin{align*}y'&=u'e^{-3x}-3ue^{-3x}=(u'-3u)e^{-3x}\\y''&=\qty(u''-3u')e^{-3x}-3\qty(u'-3u)e^{-3x}\\&=\qty(u''-6u'+9u)e^{-3x}\end{align*} So, \begin{align*}y''+6y'+9y&=\qty(u''-6u'+9u)e^{-3x}+6\qty[\qty(u'-3u)e^{-3x}]+9ue^{-3x}\\&=\qty(u''-6u'+9u+6u'-18u+9u)e^{-3x}\\&=u''e^{-3x}\\&=0\end{align*} Since $e^{-3x}>0\quad\forall x\in\R$, it must be $u''=0\implies u'=c_2\implies u=c_2x+c_1$. So, \[y=ue^{-3x}=\qty(c_2x+c_1)e^{-3x}=c_1e^{-3x}+c_2xe^{-3x}.\] Let $y_1=e^{-3x}$ and $y_2=xe^{-3x}$. Then, \begin{align*}\W\qty[y_1,y_2]&=\mqty|e^{-3x}&xe^{-3x}\\-3e^{-3x}&e^{-3x}-3xe^{-3x}|\\&=e^{-3x}\qty(e^{-3x}-3xe^{-3x})-\qty(-3e^{-3x})\qty(xe^{-ex})\\&=e^{-6x}-3xe^{-6x}+3xe^{-6x}\\&=e^{-6x}\neq0\quad\forall x\in\R.\end{align*} So, $y=c_1e^{-3x}+c_2xe^{-3x}$ is the general solution, and $y'=-3c_1e^{-3x}+c_2\qty(e^{-3x}-3xe^{-3x})$. Therefore, by the initial condition, we have \[\begin{cases}y(0)=c_1=3\\y'(0)=-3c_1+c_2=-1\end{cases}\implies\begin{cases}c_1=3\\c_2=8\end{cases}\] Therefore, solution to the IVP is given by \[y^\text{IVP}=3e^{-3x}+8xe^{-3x}=(3+8x)e^{-3x}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of the equation $y''+4y'+13y=0$. 
+	\begin{sol}
+		The characteristic polynomial: $r^2+4r+13=0\implies r^2+4r+4+9=0$ So we have $(r+2)^2=-9\implies r+2=\pm-3\i \implies r_{1,2}=-2\pm3\i$. In this case, we have complex roots: $y_1^\C=e^{(-2+3\i)x}$ and $y_2^\C=e^{(-2-3\i)x}$. \textit{Key: any linear combination of $y_1^\C$ and $y_2^\C$ is a solution. So, we can choose $\dfrac{y_1^\C+y_2^\C}{2}=\Re\qty(y_1^\C)$ and $\dfrac{y_1^\C-y_2^\C}{2\i}=\Im\qty(y_1^\C)$.} \begin{align*}y_1^\C=e^{(-2+3\i)x}&=e^{-2x}\qty[\cos(3x)+\i\sin(3x)]\\&=e^{-2x}\cos(3x)+\i e^{-2x}\sin(3x)\end{align*} Therefore, \[y_1=\Re\qty(y_1^\C)=e^{-2x}\cos(3x)\quad\text{and}\quad y_2=\Im\qty(y_1^\C)=e^{-2x}\sin(3x)\] Compute the Wronskian: \begin{align*}\W\qty[y_1,y_2]&=\mqty|e^{-2x}\cos(3x)&e^{-2x}\sin(3x)\\-2e^{-2x}\cos(3x)-3e^{-2x}\sin(3x)&-2e^{-2x}\sin(3x)+3^{-2x}\cos(3x)|\\&=e^{-2x}\cos(3x)\qty[-2e^{-2x}\sin(3x)+3e^{-2x}\cos(3x)]+\\&\qquad-e^{-2x}\sin(3x)\qty[-2e^{-2x}\sin(3x)-3e^{-2x}\sin(3x)]\\&=e^{-4x}\qty[-2\cos(3x)\sin(3x)+3\cos^2(3x)]+\\&\qquad-e^{-4x}\qty[-2\cos(3x)\sin(3x)-3\sin^2(3x)]\\&=e^{-4x}\qty(-2\cos(3x)\sin(3x)+3\cos^2(3x)+2\cos(3x)\sin(3x)+3\sin^2(3x))\\&=3e^{-4x}\qty(\sin^2(3x)+\cos^2(3x))\\&=3e^{-4x}\neq0\quad\forall x\in\R.\end{align*} Therefore, $y_1$ and $y_2$ are fundamental set of solutions, and the general solution is given by  $y=c_1y_1+c_2y_2=c_2e^{-2x}\cos(3x)+c_2e^{-2x}\sin(3x).$
+	\end{sol}
+\end{eg}
+\begin{thm}{Summary I: Solving Constant-Coefficient Second Order Homogeneous ODE}
+	Let	$p(r)=ar^2+br+c$ be the characteristic polynomial associated to the equation $ay''+by'+cy=0$. Then, 
+	\begin{itemize}
+		\item If $p(r)=0$ has two real distinct roots $r_1,r_2$, then the general solution of the equation is $y=c_1e^{r_1x}+c_2e^{r_2x}$. \begin{prf}
+			Verify that $y_1$ and $y_2$ are linearly independent. \begin{align*}\W\qty[y_1,y_2]=\mqty|e^{r_1x}&e^{r_2x}\\r_1e^{r_1x}&r_2e^{r_2x}|&=r_2e^{\qty(r_1+r_2)x}-r_1e^{\qty(r_1+r_2)x}\\&=\qty(r_2-r_1)e^{\qty(r_1+r_2)x}\end{align*} Since $e^{(r_1+r_2)x}>0\quad\forall x\in\R$, $\W\neq0\iff r_2-r_1\neq0$. As, by assumption, $r_1\neq r_2$, $r_2-r_1\neq0$, and thus $\W\neq0$. So, $y_1$ and $y_2$ are linearly independent. 
+		\end{prf}
+		\item If $p(r)=0$ has two repeated real roots $r_1=r_2=r$, then the general solution of the equation is $y=c_1e^{rx}+c_2xe^{rx}$.
+		\item If $p(r)=0$ has two complex conjugated roots $r_1=\overline{r_2}=\alpha+\i\beta$, then the general solution of the equation is $y=c_1e^{\alpha x}\cos\qty(\beta x)+c_2e^{\alpha x}\sin\qty(\beta x)$.
+	\end{itemize}
+\end{thm}
+
+\subsection{Non-Homogeneous Second Order Equations}
+\begin{thm}{Existence of Solutions}
+	Suppose that $p,q,f$ are continuous on $(a,b)$. Let $x_0\in(a,b)$, and let $k_0,k_1$ be arbitrary real numbers. Then, the initial value problem \[\begin{cases}y''+p(x)y'+q(x)y=f(x)\\y(x_0)=k_0,\quad y'(x_0)=k_1\end{cases}\]	has a unique solution on $(a,b)$.
+\end{thm}
+\begin{df}{Complementary Equation}
+	The \textit{complementary equation} of $y''+p(x)y'+q(x)y=f(x)$ is given by $y''+p(x)y'+q(x)y=0$.	
+\end{df}
+\begin{thm}{Solution to Non-Homogeneous Constant Coefficient Second Order Equations}
+	Suppose that $p,q$, and $f$ are continuous on $(a,b)$. Let $y_p$ be a \textit{particular solution} of $y''+p(x)y'+q(x)y=f(x)$. Let $\qty{y_1,y_2}$ be a fundamental set of solutions of the complementary equation $y''+p(x)y'+q(x)y=0$ on $(a,b)$. Then, $y$ is a solution if and only if $y=y_p+c_1y_1+c_2y_2$.
+\end{thm}
+\begin{prf}
+	To prove this theorem, we need to prove the following two things: 
+	\begin{itemize}
+		\item Show that $y_p+c_1y_1+c_2y_2$ satisfies the equation.
+		\item Show that $y-y_p$ satisfies the complementary equation. 
+	\end{itemize}
+\end{prf}
+
+\subsubsection{Method of Undetermined Coefficients}
+\begin{eg}
+	Find the general solution of $y''-2y'+y=-3-x+x^2$. 
+	\begin{sol}
+		By the method of undetermined coefficients, suppose \[y_p=A+Bx+Cx^2.\] So, $y_p'=B+2Cx$ and $y_p''=2C$. Therefore, we have \begin{align*}y''-2y'+y&=2C-2(B+2Cx)+A+Bx+Cx^2\\&=2C-2B+4Cx+A+Bx+Cx^2\\&=(A-2B+2C)+(B-4C)x+Cx^2\\&=-3-x+x^2\end{align*} So, we have the following system: \[\begin{cases}A-2B+2C=-3\\B-4C=-1\\C=1\end{cases}\implies\begin{cases}A=1\\B=3\\C=1\end{cases}\] Thus, \[y_p=1+3x+x^2.\] Solve the complementary equation: $y''-2y'+y=0$. Consider the characteristic polynomial: $r^2-2r+1=0\implies(r-1)^2=0\implies r_1=r_2=1$. So, $y_1=e^x$ and $y_2=xe^x$. Therefore, the general solution is \[y=c_1y_1+c_2y_2+y_p=c_1e^x+c_2xe^x+1+3x+x^2.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $y''-7y'+12y=4e^{2x}$. Find a particular solution and then find the general solution. 
+	\begin{sol}
+		By the method of undetermined coefficients, suppose $y_p=Ae^{2x}$, and then we have $y_p'=2Ae^{2x}$ and $y_p''=4Ae^{2x}$. So, \begin{align*}4Ae^{2x}-7\qty(2Ae^{2x})+12Ae^{2x}&=4e^{2x}\\4A-14A+12A&=4\\2A&=4\implies A=2.\end{align*} So, $y_p=2e^{2x}$. Now, consider the complementary equation: $y''-7y'+12y=0$. Then, we have the characteristic polynomial $r^2-7r+12=0\implies(r-3)(r-4)=0$. Then, we have $r_1=3$ and $r_2=4$. So, $y_1=e^{3x}$ and $y^2=e^{4x}$. Check linearly independence: \[\W\qty[y_1,y_2]=\mqty|e^{3x}&e^{4x}\\3e^{3x}&4e^{4x}|=4e^{3x}e^{4x}-3e^{3x}e^{4x}=e^{7x}\neq0.\] So, $y_1$ and $y_2$ are linearly independent, and the general solution is \[y=c_1y_1+c_2y_2+y_p=c_1e^{3x}+c_2e^{4x}+2e^{2x}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $y''-7y'+12y=5e^{4x}$. Find a particular solution and then the general solution. 
+	\begin{sol}
+		Suppose $y_p=Ae^{4x}$. Then, $y_p'=4Ae^{4x}$ and $y_p''=16Ae^{4x}$. So, \begin{align*}16Ae^{4x}-7\qty(4Ae^{4x})+12Ae^{4x}&=5e^{4x}\\16A-28A+12A&=5\\0\cdot A&=5\end{align*} This conclusion indicate that $e^{4x}$ is a solution in the fundamental solution set. So, we need to try something else: $y_p=ue^{4x}$, where $u$ is a function of $x$. Then, \begin{align*}y_p'&=u'e^{4x}+4ue^{4x}=e^{4x}\qty(u'+4u)\\y_p''&=u''e^{4x}+4u'e^{4x}+4u'e^{4x}+16ue^{4x}\\&=e^{4x}\qty(u''+8u'+16u)\end{align*} So, \begin{align*}e^{4x}\qty(u''+8u'+16u)-7e^{4x}\qty(u'+4u)+12ue^{4x}&=5e^{4x}\\u''+8u'+16u-7u'-28u+12u&=5\implies u''+u'=5\end{align*} Guess $u_p'=5, u_p''=0\implies 0+u_p'=5$ So, $u_p=5x$. Therefore, $y_p=ue^{4x}=5xe^{4x}$. The complementary equation and the characteristic polynomial are the same from the previous question. So, \[y=c_1y_1+c_2y_2+y_p=c_1e^{3x}+c_2e^{4x}+5xe^{4x}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the equation $y''-8y'+16y=2e^{4x}$. Find a particular solution and the general solution. 
+	\begin{sol}
+		Complementary equation: $y''-8y'+16y=0$. Consider the characteristic polynomial \[r^2-8r+16=0\implies(r-4)^2=0\implies r_1=r_2=4.\] So, FSS $=\qty{e^{4x}, xe^{4x}}$. Now, guess $y_p=ue^{4x}$. Then, we have \begin{align*}y_p'&=u'e^{4x}+4ue^{4x}=e^{4x}\qty(u'+4u)\\y_p''&=u''e^{4x}+4u'e^{4x}+4u'e^{4x}+16ue^{4x}\\&=e^{4x}\qty(u''+8u'+16u)\end{align*} So, we have \begin{align*}y''-8y'+16y=e^{4x}\qty(u''+8u'+16u)-8e^{4x}\qty(u'+4u)+16ue^{4x}&=2e^{4x}\\u''+8u'+16u-8u'-32u+16u&=2\\u''&=2.\end{align*} So, $u_p''=2\implies u_p'=2x\implies u_p=x^2$. Therefore, $y_p=u_pe^{4x}=x^2e^{4x}$. Thus, the general solution is\[y=c_1y_1+c_2y_2+y_p=c_1e^{4x}+c_2xe^{4x}+x^2e^{4x}.\]
+		\begin{rmk}
+			If we find the general solution to $u''=2$: \[u'=2x+c_2\implies u=x^2+c_2x+c_1\] Then we have \[y=ue^{4x}=\qty(x^2+c_2x+c_1)e^{4x},\] exactly the general solution. 
+		\end{rmk}
+	\end{sol}
+\end{eg}
+\begin{thm}{Summary II: Method of Undetermined Coefficients}
+	If $f(x)=e^{\alpha x}$, when finding the particular solution to \[y''+p(x)y'+q(x)y=f(x),\] we have the following situations when apply the method of undetermined coefficients: 
+	\begin{itemize}
+		\item If $e^{\alpha x}$ is not in the FSS, then $y_p=Ae^{\alpha x}$.
+		\item If $e^{\alpha x}\in$ FSS, but $xe^{\alpha x}\notin$ FSS, then $y_p=Axe^{\alpha x}$.
+		\item If $e^{\alpha x},xe^{\alpha x}\in$ FSS, but $x^2e^{\alpha x}\notin$ FSS, then $y_p=Ax^2e^{\alpha x}$.
+	\end{itemize}
+	If we want to solve $ay''+by'+cy=f(x)$ with the method of undetermined coefficient, in general, we suppose $f(x)=P(x)e^x$. With $\deg(P)=\deg(Q)$, we have 
+	\begin{itemize}
+		\item $y_p=Q(x)e^{\alpha x}$ if $e^{\alpha x}\notin$ FSS
+		\item $y_p=xQ(x)e^{\alpha x}$ if $e^{\alpha x}\in$ FSS and $xe^{\alpha x}\notin$ FSS.
+		\item $y_p=x^2Q(x)e^{\alpha x}$ if $e^{\alpha x}, xe^{\alpha x}\in$ FSS. 
+	\end{itemize}
+\end{thm}
+\begin{thm}{Superposition}
+	Suppose $y_{p_1}$ is a particular solution of $y''+py'+qy=f_1$ and $y_{p_2}$ is a particular solution of $y''+py'+qy=f_2$. Then, $y_{p_1}+y_{p_2}$ is a particular solution of $y''+py'+qy=f_1+f_2$.
+\end{thm}
+\begin{eg}
+	Find a particular solution of $y''-7y'+12y=4e^{2x}+5e^{4x}$. 
+	\begin{sol}	
+		$2e^{2x}$ is a particular solution of $y''-7y'+12y=4e^{2x}$, and $5xe^{4x}$ is a particular solution of $y''-7y'+12y=5e^{4x}$. Then, $y_p=2e^{2x}+5xe^{4x}$ is a particular solution of $y''-7y'+12y=4e^{2x}+5e^{4x}$. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of $y''-3y'+2y=e^{3x}\qty(-1+2x+x^2)$.
+	\begin{sol}
+		Suppose $y_p=e^{3x}\qty(-A+Bx+Cx^2)\implies y_p=ue^{3x}$, where $u$ is a function of $x$. So, \begin{align*}y_p'&=3ue^{3x}+u'e^{3x}\\y_p''&=9ue^{3x}+3u'e^{3x}+u''e^{3x}+3u'e^{3x}\\&=u''e^{3x}+6u'e^{3x}+9ue^{3x}\end{align*} So, we have \begin{align*}u''e^{3x}+6u'e^{3x}+9ue^{3x}-3\qty(3ue^{3x}+u'e^{3x})+2ue^{3x}&=e^{3x}\qty(-1+2x+x^2)\\u''+6u'+9u-9u-3u'+2u&=-1+2x+x^2\\u''+3u'+2u&=-1+2x+x^2.\end{align*}\textit{We don't have to find the general solution. Instead, we just need to find a particular solution.}\par Let $u_p=A+Bx+Cx^2\implies u_p'=B+2Cx\implies u_p''=2C$. Then, \begin{align*}2C+3(B+2Cx)+2\qty(A+Bx+Cx^2)&=-1+2x+x^2\\2C+3B+6Cx+2A+2Bx+2Cx^2&=-1+2x+x^2\\(2A+3B+2C)+(2B+6C)x+2Cx^2&=-1+2x+x^2\end{align*} So, we have the following system of equations: \[\begin{cases}2A+3B+2C=-12\\\qquad\quad B+6C=2\\\qquad\qquad\quad 2C=1\end{cases}\implies\begin{cases}A=-1/4\\B=-1/2\\C=1/2\end{cases}\] Therefore, $u_p=-\dfrac{1}{4}-\dfrac{1}{2}x+\dfrac{1}{2}x^2$, and then \[y_p=e^{3x}\qty(-\dfrac{1}{4}-\dfrac{1}{2}x+\dfrac{1}{2}x^2)\] The complementary equation is $y''-3y'+2y=0$, and the characteristic polynomial is $r^2-3r+2=0\implies(r-1)(r-2)=0\implies r_1=1, r_2=2$. So, the general solution is \[y=c_1y_1+c_2y_2+y_p=c_1e^{x}+c_2e^{2x}+e^{3x}\qty(-\dfrac{1}{4}-\dfrac{1}{2}x+\dfrac{1}{2}x^2). \]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of $y''-4y'+3y=e^{3x}\qty(6+8x+12x^2)$.
+	\begin{sol}
+		The complementary equation is $y''-4y'+3y=0$, and thus the characteristic polynomial is $r^2-4r+3r=0\implies(r-1)(r-3)=0\implies r_1=1,r_2=3$. So, FSS $=\qty{e^x,e^{3x}}$. Suppose $y_p=ue^{3x}$. Then, we can find the first and second derivatives of $y_p$ to be  $y_p'=3ue^{3x}+u'e^{3x}=e^{3x}\qty(3u+u')$ and \begin{align*}y_p''&=9ue^{3x}+3u'e^{3x}+u''e^{3x}+3u'e^{3x}\\&=u''e^{3x}+6u'e^{3x}+9ue^{3x}\\&=e^{3x}\qty(u''+6u'+9u).\end{align*} So, \begin{align*}e^{3x}\qty(u''+6u'+9u)-4e^{3x}\qty(3u+u')+3ue^{3x}&=e^{3x}\qty(6+8x+12x^2)\\u''+6u'+9u-12u-4u'+3u&=6+8x+12x^2\\u''+2u'&=6+8x+12x^2.\end{align*} Suppose $u_p'=A+Bx+Cx^2$, then $u_p''=B+2Cx$. So, \begin{align*}(B+2Cx)+2\qty(A+Bx+Cx^2)&=6+8x+12x^2\\B+2Cx+2A+2Bx+2Cx^2&=6+8x+12x^2\\(2A+B)+(2B+2C)x+2Cx^2&=6+8x+12x^2\end{align*} So, we have the following system: \[\begin{cases}2A+B=6\\2B+2C=8\\2C=12\end{cases}\implies\begin{cases}A=4\\B=-2\\C=6\end{cases}\] So, $u_p'=4-2x+6x^2\implies u_p=4x-x^2+2x^3$. Then, $y_p=u_pe^{3x}=\qty(4x-x^2+2x^3)e^{3x}$. So, the general solution is \[y=c_1y_1+c_2y_2+y_p=c_1e^{x}+c_2e^{3x}+\qty(4x-x^2+2x^3)e^{3x}.\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of $y''-2y'+y=5\cos(2x)+10\sin(2x)$.
+	\begin{sol}
+		The complementary equation is $y''-2y'+y=0$, and so the characteristic polynomial is $r^2-2r+1=0\implies(r-1)^2=0\implies r_1=r_2=1$. So, FSS $=\qty{e^x,xe^x}$. So, suppose $y_p=A\cos(2x)+B\sin(2x)$. Then, \begin{align*}y_p'&=-2A\sin(2x)+2B\cos(2x)\\y_p''&=-4A\cos(2x)-4B\sin(2x)\end{align*} So, \begin{align*}y_p''-2y_p'+y_p&=\qty[-4A\cos(2x)-4B\sin(2x)]-2\qty[-2A\sin(2x)+2B\cos(2x)]\\&\qquad\qquad\qquad\qquad\qquad\qquad\quad+\qty[A\cos(2x)+B\sin(2x)]\\&=(-4A-4B+A)\cos(2x)+(-4B+4A+B)\sin(2x)\\&=(-3A-4B)\cos(2x)+(4A-3B)\sin(2x)\\&=5\cos(2x)+10\sin(2x)\end{align*} So, we have the following system: \[\begin{cases}-3A-4B=5\\4A-3B=10\end{cases}\implies\begin{cases}A=1\\B=-2\end{cases}\implies y_p=\cos(2x)-2s\sin(2x)\] So, the general solution is \[y=c_1y_y+c_2y_2+y_p=c_1e^x+c_2xe^x+\cos(2x)-2\sin(2x).\]
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of $y''+4y=8\cos(2x)+12\sin(2x)$.
+	\begin{sol}
+		The complementary equation is $y''+4y=0$, and so the characteristic polynomial is $p(r)=r^2+4=0\implies r^2=-4\implies r=\pm2\i$. Since $e^{2x\i}=\cos(2x)+\i\sin(2x)$, we know the FSS is $\qty{\cos(2x),\sin(2x)}$. Suppose $y_p=x(A\cos(2x)+B\sin(2x))$. Then, \begin{align*}y_p'&=A\cos(2x)+B\sin(2x)+x(-2A\sin(2x)+2B\cos(2x))\\&=(A+2Bx)\cos(2x)+(B-2Ax)\sin(2x)\\y_p''&=2B\cos(2x)-2(A+2Bx)\sin(2x)-2A\sin(2x)+2(B-2Ax)\cos(2x)\\&=(2B-4Ax+2B)\cos(2x)+(-2A-4Bx-2A)\sin(2x)\\&=(4B-4Ax)\cos(2x)+(-4A-4Bx)\sin(2x).\end{align*} Therefore, \begin{align*}y''+4y&=(4B-4Ax)\cos(2x)+(-4A-4Bx)\sin(2x)\\&\qquad\qquad\qquad+4x(A\cos(2x)+B\sin(2x))\\&=(4B-4Ax+4Ax)\cos(2x)+(-4A-4Bx+4Bx)\sin(2x)\\&=4B\cos(2x)-4A\sin(2x)\\&=8\cos(2x)+12\sin(2x)\end{align*} So, we have the following system \[\begin{cases}4B=8\\-4A=12\end{cases}\implies\begin{cases}A=-3\\B=2\end{cases}\implies y_p=x\qty[-3\cos(2x)+2\sin(2x)].\] So, the general solution is \begin{align*}y=c_1y_1+c_2y_2+y_p&=c_1\cos(2x)+c_2\sin(2x)+x\qty[-3\cos(2x)+2\sin(2x)]\\&=c_1\cos(2x)+c_2\sin(2x)-3x\cos(2x)+2x\sin(2x).\end{align*}	
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the general solution of $y''+3y'+2y=(16+20x)\cos{x}+10\sin{x}$.
+	\begin{sol}
+		The complementary equation is $y''+3y'+2y=0$, and the characteristic polynomial is $p(r)=r^2+3r+2=0\implies(r+1)(r+2)=0\implies r_1=-1,r_2=-2$. So, we know that the FSS $=\qty{e^{-x},e^{-2x}}$. 
+		\begin{rmk}
+			We might consider to set our initial guess as $y_p=(A+Bx)\cos{x}+C\sin{x}$. However, it will not work since we will end up with $3$ parameters with $4$ conditions. Therefore, the rule is treat $\cos{x}$ and $\sin{x}$ in the same say. So, the true guess should be $y_p=(Ax+B)\cos{x}+(Cx+D)\sin{x}$.
+		\end{rmk}
+		Suppose  $y_p=(Ax+B)\cos{x}+(Cx+D)\sin{x}$. Then, we have \begin{align*}y_p'&=A\cos{x}-(Ax+B)\sin{x}+C\sin{x}+(Cx+D)\cos{x}\\&=(Cx+A+D)\cos{x}+(-Ax-B+C)\sin{x}\\y_p''&=C\cos{x}-(Cx+A+D)\sin{x}+(-A)\sin{x}+(-Ax-B+C)\cos{x}\\&=(-Ax-B+C+C)\cos{x}+(-Cx-A-D-A)\sin{x}\\&=(-Ax-B+2C)\cos{x}+(-Cx-2A-D)\sin{x}\end{align*} So, \begin{align*}y_p''+3y_p'+2y_p&=(-Ax-B+2C)\cos{x}+(-Cx-2A-D)\sin{x}\\&\qquad\qquad+3((Cx+A+D)\cos{x}+(-Ax-B+C)\sin{x})\\&\qquad\qquad+2((Ax+B)\cos{x}+(Cx+D)\sin{x})\\&=(-Ax-B+2C+3Cx+3A+3D+2Ax+2B)\cos{x}\\&\qquad\qquad+(-Cx-2A-D-3Ax-3B+3C+2Cx+2D)\sin{x}\\&=((A+3C)x+3A+B+2C+3D)\cos{x})\\&\qquad\qquad+((C-3A)x-2A-3B+3C+D)\sin{x}\end{align*} So, we have the following system: \[\begin{cases}A+3C=20\\3A+B+2C+3D=16\\C-3A=0\\-2A-3B+3C+D=10\end{cases}\implies\begin{cases}A=2\\B=1\\C=6\\D=-1\end{cases}\] Therefore, the general solution is \[y=c_1y_1+c_2y_2+y_p=c_1e^{-x}+c_2e^{-2x}+(2x+1)\cos{x}+(6x-1)\sin{x}.\]
+	\end{sol}
+\end{eg}
 
 
+
+\subsubsection{Method of Variation of Parameters (VoP)}
 
 
 \end{document}

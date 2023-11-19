@@ -9,6 +9,18 @@
 
 \geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
+\lstset{
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\color{green},
+	commentstyle=\color{lightgray},
+	frame=shadownbox,
+	rulesepcolor=\color{lightblack},
+	escapeinside='',
+	xleftmargin=2em,aboveskip=1em,
+	framexleftmargin=2em
+}
+
 \definecolor{darkblue}{HTML}{003472}
 \definecolor{lightblue}{HTML}{70f3ff}
 \definecolor{red}{HTML}{dc3023}
@@ -46,19 +58,34 @@
 \newtcolorbox{rmkbox}[2][]{
 	colback=lightred!5, colframe=red,colbacktitle=red, coltitle=white,title={#2},fonttitle=\bfseries,breakable
 }
+	
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\begin{defbox}{Definition \thesection.\stepcounter{index}\theindex\ (#1).}}{\end{defbox}\par}
 
-\lstset{language=Python}
-\lstset{
-	numbers=left,
-	numberstyle=\tiny,
-	keywordstyle=\color{green},
-	commentstyle=\color{lightgray},
-	frame=shadownbox,
-	rulesepcolor=\color{lightblack},
-	escapeinside='',
-	xleftmargin=2em,aboveskip=1em,
-	framexleftmargin=2em
-	}
+\newenvironment*{eg}{\begin{egbox}{Example \thesection.\stepcounter{index}\theindex}}{\par\end{egbox}}
+
+\newenvironment*{thm}[1]{\begin{thmbox}{Theorem \thesection.\stepcounter{index}\theindex\ #1}}{\par\end{thmbox}}
+
+\newenvironment*{cor}[1]{\begin{extbox}{\bf Corollary \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{lem}[1]{\begin{extbox}{\bf Lemma \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{ax}[1]{\begin{extbox}{\bf Axiom \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{prop}[1]{\begin{extbox}{\bf Proposition \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{conj}[1]{\begin{extbox}{\bf Conjecture \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{nota}[1]{\begin{defbox}{\bf Notation \thesection.\stepcounter{index}\theindex\ #1}}{\end{defbox}}
+
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\begin{prfbox}{\textit\bf Proof \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+\newenvironment*{dis}{\begin{prfbox}{\textit\bf Disproof \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+\newenvironment*{sol}{\begin{prfbox}{\textit\bf Solution \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+
+\newcounter{nrmk}[section]
+\setcounter{nrmk}{0}
+\newenvironment*{rmk}{\begin{rmkbox}{\bf Remark \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
+\newenvironment*{hint}{\begin{rmkbox}{\bf Hint \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
+\newenvironment*{ext}{\begin{rmkbox}{\bf Extension \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
 
 \rhead{\thepage}
 \linespread{1.15}
@@ -80,29 +107,30 @@
 \def\cis{\mathrm{cis}}
 
 \begin{document}
-\begin{defbox}{name}
+\begin{df}{Definition}
 	
-\end{defbox}
+\end{df}
 
-\begin{egbox}{name}
-	
-\end{egbox}
-	
-\begin{thmbox}{name}
-	
-\end{thmbox}
 
-\begin{prfbox}{name}
+\begin{eg}
 	
-\end{prfbox}
+\end{eg}
+	
+\begin{thm}{Theorem}
+	
+\end{thm}
 
-\begin{extbox}{name}
+\begin{prf}
 	
-\end{extbox}
+\end{prf}
 
-\begin{rmkbox}{name}
+\begin{cor}{name}
 	
-\end{rmkbox}
+\end{cor}
+
+\begin{rmk}{name}
+	
+\end{rmk}
 \end{document}
 	
 	

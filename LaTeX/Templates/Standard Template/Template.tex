@@ -34,20 +34,21 @@
 %%% for coding %%%
 \lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
 
+
 \newcounter{index}[subsection]
 \setcounter{index}{0}
-\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesection.\stepcounter{index}\theindex\ (#1).}}{\par}
 
-\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex}}{\par\end{framed}}
+\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesection.\stepcounter{index}\theindex}}{\par\end{framed}}
 
-\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
 
-\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1}}{\par}
-\newenvironment*{nota}{\par\noindent\textbf{Notation \thesubsection.\stepcounter{index}\theindex.}}{\par}
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{nota}{\par\noindent\textbf{Notation \thesection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
@@ -55,9 +56,9 @@
 \newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
 
-\newtheorem*{hint}{Hint.}
-\newtheorem*{rmk}{Remark.}
-\newtheorem*{ext}{Extension.}
+\newtheorem{hint}{Hint}[section]
+\newtheorem{rmk}{Remark}[section]
+\newtheorem{ext}{Extension}[section]
 
 \linespread{1.25}
 
@@ -74,8 +75,10 @@
 \def\i{{\mathrm{i}}}
 \def\Arg{{\mathrm{Arg}}}
 \def\cis{\mathrm{cis}}
+\def\dsst{\displaystyle}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
+\def\phi{\varphi}
 
 \begin{document}
 \maketitle
