@@ -924,5 +924,25 @@
 	\[Z=\dfrac{X-np}{\sqrt{np(1-p)}}\sim N(0,1)\] \[\P(a\leq Z\leq b)\approx\P\qty(\dfrac{a-0.5-np}{\sqrt{np(1-p)}}\leq Z\leq\dfrac{b+0.5-np}{\sqrt{np(1-p)}}).\]
 \end{eg}
 
+\subsection{CDF Tricks}
+\begin{rmk}[Key idea]
+	The key idea here is that we can use a cdf to generate a random sample.	
+\end{rmk}
+\begin{eg}
+	We can let $U\sim\text{Uniform}(0,1)$ and compute $X=F_X^{-1}(U)$. Here we note that \[F_U(u)=P(U\leq u)=u.\]	 Then, we have the following: \begin{align*}F_X(x)=P(X\leq x)=P\qty(F_X^{-1}(u)\leq x)&=P\qty(F_X\qty(F_X^{-1}(U))\leq F_X(x))\\&=P(U\leq F_X(x))\\&=F_U(F_X(x))\\&=F_X(x)\end{align*}
+\end{eg}
+\begin{thm}{}
+	We can use a uniform random sample $\text{Uniform}(0,1)$ to simulate a random variable with cdf $F_X(x)$ by setting $X=F_X^{-1}(U)$.
+\end{thm}
+\begin{eg}
+	Simulate from the density $\dsst f_Y(y)=\dfrac{2\theta^2}{y^3},\quad y\geq\theta$.
+	\begin{sol}
+		$\boxed{\text{Step }1}$ Find the cdf. \begin{align*}F_Y(y)=P(Y\leq y)=\int_{\theta}^yf_Y(t)\ \d{t}=\int_\theta^y\dfrac{2\theta^2}{t^3}\ \d{t}&=2\theta^2\int_\theta^yt^{-3}\ \d{t}\\&=2\theta^2\qty[-\dfrac{1}{2}t^{-2}]_\theta^y\\&=\theta^2\qty(-y^{-2}+\theta^{-2})\\&=1-\dfrac{\theta^2}{y^2},\quad y\geq\theta\end{align*}\par 
+		$\boxed{\text{Step }2}$ Find the inverse of the cdf: \begin{align*}u=F_Y(y)\implies u&=1-\dfrac{\theta^2}{y^2}\\\dfrac{\theta^2}{y^2}&=1-u\\\dfrac{1}{y^2}&=\dfrac{1-u}{\theta^2}\\y^2&=\dfrac{\theta^2}{1-u}\\y&=\sqrt{\dfrac{\theta^2}{1-u}}=\dfrac{\theta}{\sqrt{1-u}}\end{align*} Now, evaluating the above with a value of $u$ will give us a value of $y$.\par 
+		$\boxed{\text{Step }3}$ Turn it into \texttt{R} code. 
+	\end{sol}
+\end{eg}
+
+
 
 \end{document}

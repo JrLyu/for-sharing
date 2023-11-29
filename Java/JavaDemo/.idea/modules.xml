@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JavaDemo.iml" filepath="$PROJECT_DIR$/.idea/JavaDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Demo/Demo.iml" filepath="$PROJECT_DIR$/Demo/Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaDemo.iml" filepath="$PROJECT_DIR$/JavaDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ParameterizedClass/ParameterizedClass.iml" filepath="$PROJECT_DIR$/ParameterizedClass/ParameterizedClass.iml" />
     </modules>
   </component>
 </project>

@@ -1489,6 +1489,73 @@ b(p) = b(k);
 	Theoretically, $A_i-a_i$ should be small. Therefore, the error becomes large when \[P_n'(Z_0)a\approx0.\] That means flatter polynomials at the roots will cause large errors. 
 \end{rmk}
 
+\newpage
+\section{Univariate Minimization}
+\begin{rmk}[Goal]
+	The goal of this chapter is to find a minimum of continuous function $f$ on $[a,b]$. By the Extreme Value Theorem, we will always find such a minimum.	
+\end{rmk}
+\begin{rmk}[A Calculus Perspective]
+	If $f$ is differentiable, local extrema occur when $f'(x)=0$. That is a root finding problem! Suppose $x_1,\dots,x_p$ are where $f'(x_o)=0$. Then, the global minimization on the interval $[a,b]$ will be \[\min_{x\in[a,b]}f(x)=\min\qty{f(x_i),f(a),f(b)}.\]	
+\end{rmk}
+\begin{df}{Minimum/Minimizer}
+	\textit{Minimum} is the smallest value the function can take on $[a,b]$. \textit{Minimizer} is the input ($x$) for which the function attains its minimum. 
+\end{df}
+
+\subsection{Find Minima Without Calculus}
+\begin{df}{U-Shaped Function}
+	A function $f$ is \textit{U-shaped} on $[a,b]$ if 
+	\begin{itemize}
+		\item $f$ is continuous
+		\item Strictly decreasing on $\qty[a,x_m]$, where $x_m$ is the minimizer.
+		\item Strictly increasing on $\qty[a_m,b]$.
+	\end{itemize}
+	If $f$ is continuously differentiable, then $f$ is \textit{U-shaped} if $f'(x)=\begin{cases}<0\quad x\in\qty[a,x_m]\\>0\quad x\in\qty[x_m,b]\end{cases}$
+\end{df}
+\begin{rmk}
+	A U-shaped function has not to be differentiable (i.e., smooth)!	
+\end{rmk}
+\begin{df}{Bracket for a Local Minimum}
+	$[a,b]$ is a \textit{bracket for the minimum} if the minimizer $x_m\in[a,b]$.	
+\end{df}
+\begin{df}{Search Points}
+	Given a bracket $[a,b]$, $c$, $d$ are \textit{search points} if the have $a<c<d<b$.
+\end{df}
+\begin{algorithm}
+	\caption{Bracket Refinement}
+	\KwIn{a bracket $[a,b]$ and two search points $c,d$.}
+	If $f(c)\leq f(d)$, then $[a,d]$ is a bracket for the minimum\;
+	If $f(c)\geq f(d)$, then $[c,d]$ is a bracket for the minimum\;
+\end{algorithm}
+\begin{algorithm}
+	\caption{Golden Section Search}
+	\KwIn{a bracket for the minimum $[a,b],\ r=\dfrac{3-\sqrt{5}}{2}$.}
+	$c\equiv a+r(b-a),\qquad d\equiv b-r(b-a)$\;	
+\end{algorithm}
+\begin{rmk}[Relationship to the Golden Ratio]
+	 $\phi=\dfrac{1+\sqrt{5}}{2}=\dfrac{1}{1-r}$.	
+\end{rmk}
+\begin{rmk}
+Advancement of the Golden Section Search
+	\begin{itemize}
+		\item balance when we refine
+		\item each refinement cuts the bracket down by a factor of $1-r\approx0.618$.
+		\item refinements reuse search points $\longrightarrow$ great for computation. \par (to derive this point, verify that the next search point $c'\equiv c+r(b-c)$ by substituting $c=a+r(b-a)$. Also, keep in mind that $r$ is a root of $x^2-3x+1$. Simply the previous equation, we will have $c'=d$ eventually. )
+	\end{itemize}
+\end{rmk}
+\begin{thm}{Condition to Stop the Golden Section Search}
+	\begin{enumerate}
+		\item Function has a similar value at all four points
+		\item Brackets is small: \[\qty|b-a|\leq\sqrt{\dfrac{\epsilon}{L}},\] where $\epsilon$ is the working precision, and $l$ is some constant. 
+	\end{enumerate}	
+	\begin{rmk}
+		For example, if we want five digits of precision, $\epsilon$ should be around $10^{-6}$ or $10^{-5}$, but generally, the smaller $\epsilon$, the more iterations we need. 
+	\end{rmk}
+\end{thm}
+\begin{prf}
+	Here, we offer some intuition of why that condition for small brackets will work. \par If $f$ is continuously differentiable, then we have \[\qty|\dfrac{f(x)-f\qty(x_m)}{x-x_m}|\leq L,\] where $l$ is the Lipschitz constant. This inequality shows that for all $x\in[a,b]$ and $x\neq x_m$, the slope is bounded: \[\qty|f(x)-f(x_m)|\leq L\qty|x-x_m|\leq L\abs{b-a}\leq\text{some upper bound}\]\par 
+	Now, let's discuss the role of $L$, the Lipschitz constant. Assume $f$ is second-order differentiable. We can approximate $x_m$ with x by using the Taylor's series: \begin{align*}f(x)&\approx f(x_m)+\underbrace{f'(x_m)(x-x_m)}_{0}+\dfrac{f''(x_m)}{2}\qty(x-x_m)^2\\\underbrace{f(x)
+	}_\text{computed}&\approx\underbrace{f(x_m)}_\text{true}\underbrace{\qty(1+\psi)}_\text {relative error}\end{align*} So, we would have \begin{align*}\psi&\equiv\dfrac{f''(x_m)}{2f(x_m)}(x-_m)^2\\\qty|\psi|&\leq\abs{\dfrac{f''(x_m)}{2f(x_m)}}(b-a)^2=L(b-a)^2\end{align*} Therefore, we know $L$ depends on the curvature of $f''(x_m)$ and the value of $f(x_m)$.
+\end{prf}
 
 
 \end{document}

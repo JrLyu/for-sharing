@@ -855,7 +855,7 @@ Let $x,y$ be populations of two species $X, Y$. we model $x,y$ using logistic gr
 	\end{itemize}
 \end{thm}
 
-\subsection{Non-Homogeneous Second Order Equations}
+\subsection{Method of Undetermined Coefficients}
 \begin{thm}{Existence of Solutions}
 	Suppose that $p,q,f$ are continuous on $(a,b)$. Let $x_0\in(a,b)$, and let $k_0,k_1$ be arbitrary real numbers. Then, the initial value problem \[\begin{cases}y''+p(x)y'+q(x)y=f(x)\\y(x_0)=k_0,\quad y'(x_0)=k_1\end{cases}\]	has a unique solution on $(a,b)$.
 \end{thm}
@@ -873,7 +873,6 @@ Let $x,y$ be populations of two species $X, Y$. we model $x,y$ using logistic gr
 	\end{itemize}
 \end{prf}
 
-\subsubsection{Method of Undetermined Coefficients}
 \begin{eg}
 	Find the general solution of $y''-2y'+y=-3-x+x^2$. 
 	\begin{sol}
@@ -959,9 +958,50 @@ Let $x,y$ be populations of two species $X, Y$. we model $x,y$ using logistic gr
 	\end{sol}
 \end{eg}
 
+\subsection{Variable Coeff Nonhomo Second Order ODE}
+\subsubsection{Method of Reduction of Order (RoO)}
+\begin{thm}{Method of Reduction of Order}
+	Given the equation \begin{equation}\label{eq11}P_0(x)y''+P_1(x)y'+P_2(x)y=F(x),\end{equation} and a solution $y_1=y_1(x)$o f its \textit{complementary equation} ($P_0(x)y''+P_1(x)y'+P_2(x)y=0$). Then the general solution of Eq. (\ref{eq11}) has the form $y=uy_1$.
+\end{thm}
+\begin{prf}
+	Given $y=uy_1$, we have $y'=u'y_1+uy_1'$ and \[y''=u''y_1+u'y_1'+u'y_1'+uy_1''=u''y_1+2u'y_1'+uy_1''.\] So, Eq. (\ref{eq11}) becomes \begin{align*}P_0\qty(u''y_1+2u'y_1'+uy_1'')+P_1\qty(u'y_1+uy_1')+P_2(uy_1)&=F\\(P_0y_1)u''+(2P_0y_1'+P_1y_1)u'+\underbrace{(P_0y_1''+P_1y_1'+P_2y_1)}_{=0}u&=F\\(P_0y_1)u''+(2P_0y_1'+P_1y_1)u'&=F\end{align*} Let $Q_0\coloneqq P_0y_1$ and $Q_1\coloneqq 2P_0y_1'+P_1y_1$, so we want to solve $Q_0u''+Q_1u'=F$. Set $z=u'$ and $z'=u''$, we have $Q_0z'+Q_1z=F\implies z'+\dfrac{Q_1}{Q_0}z=\dfrac{F}{Q_0}$. By the method of integrating factor, \[\mu(x)=e^{\int Q_1/Q_0\ \d{x}}.\] So, \[z(x)=e^{-\int\frac{Q_1}{Q_0}\ \d{x}}\qty[\int\dfrac{F}{Q_0}e^{\int\frac{Q_1}{Q_0}\ \d{x}}\ \d{x}+c_2]=u'(x)\]Therefore, $u(x)=\int z(x)\ \d{x} +c_1$. So, the general solution is \[y=u(x)y_1(x)=y_1(x)\int z(x)\ \d{x}+c_1y_1(x).\]
+\end{prf}
+\begin{eg}
+	Given the equation \[xy''-(2x+1)y'+(x+1)y=x^2\] verify that $y_1=e^x$ is a solution of the complementary equation and find the general solution of the equation. 
+	\begin{sol}
+	\begin{itemize}
+		\item Verify $y_1=e^x$ is a solution of the complementary equation. We have $y_1=e^{x}$, $y_1'=e^{x}$, and $y_1''=e^{x}$. As the complementary equation is $xy''-(2x+1)y'+(x+1)y=0$, consider \begin{align*}xy_1''-(2x+1)y_1'+(x+1)y_1&=xe^x-(2x+1)e^x+(x+1)e^x\\&=2xe^{x}-2xe^{x}-e^x+e^x\\&=0.\end{align*}
+		\item Compute a $u(x)$ such that $y=uy_1=ue^{x}$. So, we have $y'=u'e^x+ue^x$ and \[y''=u''e^x+u'e^x+u'e^x+ue^x=u''e^x+2u'e^x+ue^x.\] So, we have \begin{align*}x\qty(u''e^x+2u'e^x+ue^x)-(2x+1)(u'e^x+ue^x)+(x+1)(ue^x)&=x^2\\xe^xu''+(2xe^x-2xe^x-e^x)u'+\underbrace{(xe^x-2xe^x-e^x+e^x)}_0u&=x^2\\e^x(xu''-u')&=x^2\\xu''-u'&=x^2e^{-x}.\end{align*} From the original equation, we know that $x\neq0$. So, $u''-\dfrac{1}{x}u'=xe^{-x}$. Set $z=u'$ and so $z'=u''$. Then, \[z'-\dfrac{1}{x}z=xe^{-x}\implies\mu(x)=e^{\int-\frac{1}{x}\ \d{x}}=e^{-\ln(x)}=\dfrac{1}{x}.\] So, \[u(x)=\int-xe^{-x}+c_2x\ \d{x}=e^{-x}(x+1)+\dfrac{1}{2}c_2x^2+c_1=e^{-x}(x+1)+c_2x^2+c_1.\] Then, the general solution is \[y=u(x)y_1(x)=e^{x}(e^{-x}(x+1)+c_2x^2+c_1)=c_1e^x+c_2x^2e^x+(x+1).\]
+		\item From the general solution, we know FSS $=\qty{e^x,x^2e^x}$ and a particular solution $y_p=x+1$. We can verity these as well. 
+	\end{itemize}	
+	\end{sol}
+\end{eg}
 
+\begin{eg}
+	Given the equation \[x^2y''+xy'-y=x^2+1.\] Verify that $y_1=x$ is a solution of the complementary equation and find the general solution of the equation. 
+	\begin{sol}
+		Note that $y_1=x,\ y_1'=1,\ y_1''=0$. So, $x^2y_1''+xy_1'-y_1=x^2(0)+x-x=0$, and thus it is a solution of the complementary equation.\par Find $y=ux$, where $u$ is a function of $x$. Then, $y'=u+u'x$ and \[y''=u'+u''x+u'=2u'+u''x.\] So, the original equation becomes \begin{align*}x^2y''+xy'-y&=x^2\qty(2u'+u''x)+x\qty(u+u'x)-ux\\&=x^3u''+\qty(2x^2+x^2)u'\\&=x^3u''+3x^2u'=x^2+1.\end{align*} Set $z=u'$ and $z'=u''$. So, we have \[x^3z'+3x^2z=x^2+1\implies z'+\dfrac{3}{x}z=\dfrac{x^2+1}{x^3}\implies\mu(x)=e^{\int\frac{3}{x}\ \d{x}}=x^3.\] So, \begin{align*}z\mu(x)&=\int\mu(x)\cot\dfrac{x^2+1}{x^3}\ \d{x}=\int x^2+1\ \d{x}+c_2\\z\cdot x^3&=\dfrac{1}{3}x^3+x+c_2\\z(x)&=\dfrac{1}{3}+x^{-2}+c_2x^{-3}.\end{align*} So, \[u(x)=\int z(x)\ \d{x}=\dfrac{1}{3}x-x^{-1}-c_2e^{-2}+c_1.\] Therefore, the general solution is \[y(x)=u(x)y_1(x)=x\qty(\dfrac{1}{3}x-x^{-1}-c_2x^{-2}+c_1)=c_1x-\dfrac{c_2}{x}+\qty(\dfrac{1}{3}x^2-1).\]
+	\end{sol}
+\end{eg}
 
 \subsubsection{Method of Variation of Parameters (VoP)}
+\begin{thm}{Method of Variation of Parameters}
+	Given the equation \[P_0(x)y''+P_1(x)y'+P_2(x)y_1=F(x),\] and two solutions $y_1=y_1(x)$ and $y_2=y_2(x)$ of its complementary equation, then a particular solution to the equation has the form $y=u_1y_1+u_2y_2$.
+\end{thm}
+\begin{prf}
+	Since $y=u_1y_1+u_2y_2$, we have $y'=u_1'y_1+u_2y_1'+u_2'y_2+u_2y_2'$. Set $\boxed{u_1'y_1+u_2'y_2=0}$. Therefore, \[y'=u_1y_1'+u_2y_2'\implies y''=u_1'y_1'+u_1y_1''+u_2'y_2'+u_2y_2''.\] So, the original equation becomes \begin{align*}P_0\qty(u_1'y_1'+u_1y_1''+u_2'y_2'+u_2y_2'')+P_1\qty(u_1y_1'+u_2y_2')+P_2\qty(u_1y_1+u_2y_2)&=F\\P_0\qty(u_1'y_1'+u_2'y_2')+P_0\qty(u_1y_1''+u_2y_2'')+P_1\qty(u_1y_1'+u_2y_2')+P_2\qty(u_1y_1+u_2y_2)&=F\\P_0\qty(u_1'y_1'+u_2'y_2')+u_1\underbrace{\qty(P_0y_1''+P_1y_1'+P_2y_1)}_0+u_2\underbrace{\qty(P_0y_1''+P_1y_2'+P_2y_2)}_0&=F\\P_0\qty(u_1'y_1'+u_2'y_2')&=F\\u_1'y_1'+u_2'y_2'&=\dfrac{F}{P_0}\end{align*} Hence, solving the original differential equation becomes solving the following system: \[\begin{cases}u_1'y_1+u_2'y_2=0\quad\text{\ding{172}}\\u_1'y_1'+u_2'y_2'=F/P_0\quad\text{\ding{173}}\end{cases}\] Consider $\text{\ding{172}}\cdot y_2':\quad u_1'y_1y_2'+u_2'y_2y_2'=0\quad\text{\ding{174}}\quad$ and $\text{\ding{173}}\times y_2:\quad u_1'y_1'y_2+u_2'y_2y_2'=F/P_0\cdot y_2\quad\text{\ding{175}}$ Then, we know that $\text{\ding{174}}-\text{\ding{175}}: u_1'y_1y_2'-u_1'y_1'y_2=-\dfrac{F}{P_0}y_2$\begin{align*}u_1'\qty[\underbrace{y_1y_2'-y_1'y_2}_{=\W[y_1,y_2]\neq0\text{ as }y_1,y_2\in\text{FSS}}]&=-\dfrac{F}{P_0}y_2\\u_1'&=-\dfrac{F}{P_0\cdot\W}y_2\implies\boxed{u_1(x)=-\int\dfrac{F(x)}{P_0(x)\W[y_1,y_2]}y_2(x)\ \d{x}}\end{align*} Similarly, we can find \[u_2'=\dfrac{Fy_1}{P_0\qty(y_1y_2'-y_1'y_2)}\implies\boxed{u_2(x)=\int\dfrac{F(x)}{P_0(x)\W[y_1,y_2]}y_1(x)\ \d{x}}.\] So, the general solution is \[y=c_1y_1+c_2y_2+u_1y_1+u_2y_2.\]
+\end{prf}
+\begin{eg}
+	Given the equation \[x^2y''-2xy'+2y=x^{9/2},\quad x\neq0\] and two solutions $y_1=x$ and $y_2=x^2$ of the complementary equation, find the general solution. 
+	\begin{sol}
+		The general solution is \[y=c_1y_1+c_2y_2+u_1y_1+u_2y_2=c_1x+c_2x^2+u_1x+u_2x^2.\] The Wronskian is \[\W\qty[x,x^2]=\mqty|x&x^2\\1&2x|=2x^2-x^2=x^2\neq0\quad\forall x\in\R\backslash\qty{0}.\] So, \[u_1(x)=-\int\dfrac{x^{9/2}}{x^2\cdot x^2}x^2\ \d{x}=-\int x^{5/2}\ \d{x}=-\dfrac{2}{7}x^{7/2}.\] \[u_2(x)=\int\dfrac{x^{9/2}}{x^2\cdot x^2}\cdot x\ \d{x}=\int x^{3/2}\ \d{x}=\dfrac{2}{5}x^{5/2}.\] So, the particular solution is \begin{align*}y_p=u_1x+u_2x^2&=-\dfrac{2}{7}x^{7/2}\cdot x+\dfrac{2}{5}x^{5/2}x^2\\&=-\dfrac{2}{7}x^{9/2}+\dfrac{2}{5}x^{9/2}\\&+\qty(\dfrac{2}{5}-\dfrac{2}{7})x^{9/2}=\dfrac{4}{35}x^{9/2}.\end{align*} Then, the general solution is given by \[y=c_1x+c_2x^2+\dfrac{4}{35}x^{9/2}.\]
+	\end{sol}
+\end{eg}
+\begin{rmk}
+	When given two solutions from the FSS, we can choose to use either RoO or VoP. With constant coefficient equations, RoO and VoP can also be used in addition to method of undetermined coefficients. 
+\end{rmk}
 
+\subsection{Application of Second Order ODEs}
+\subsubsection{Vibrating Strings}
 
 \end{document}

@@ -7,6 +7,16 @@ output:
     df_print: paged
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pandoc)
+pandoc_activate(
+  version = "latest",
+  rmarkdown = getOption("pandoc.activate_rmarkdown", TRUE),
+  quiet = FALSE
+)
+```
+
 ## Distributions in R
 - `d` is for density
 - `p` is for probability

@@ -1,0 +1,89 @@
+---
+title: "CDF Tricks"
+author: "Jiuru Lyu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Trick
+
+We can use a uniform random sample $\textrm{Uniform}(0,1)$ to simulate a random variable with cdf $F_X(x)$ by setting $X=F_X^{-1}(U)$.
+
+## Example
+Simulate from the density $f_Y(y)=\dfrac{2\theta^2}{y^3},\quad y\geq\theta$.
+
+### Step 1: Find the cdf of $Y$
+$$
+\begin{aligned}
+F_Y(y)=P(Y\leq y)=\int_{\theta}^y f_Y(t)dt&=\int_\theta^y\dfrac{2\theta^2}{t^3}dt\\
+&=2\theta^2\int_\theta^y t^{-3}dt\\
+&=2\theta^2\left[-\dfrac{1}{2}t^{-2}\right]_\theta^y\\
+&=\theta^2(-y^{ -2}+\theta^{-2})\\
+&=1-\dfrac{\theta^2}{y^2},\quad y\geq\theta
+\end{aligned}
+$$
+
+### Step 2: Find the inverse of $F_Y(y)$
+$$
+\begin{aligned}
+u=F_Y(y)\implies u&=1-\dfrac{\theta^2}{y^2}\\
+\dfrac{\theta^2}{y^2}&=1-u\\
+\dfrac{1}{y^2}&=\dfrac{1-u}{\theta^2}\\
+y^2&=\dfrac{\theta^2}{1-u}\\
+y&=\dfrac{\theta}{\sqrt{1-u}}
+\end{aligned}
+$$
+
+Now, evaluating the above with a value of $u$ will give us a value of $y$. 
+
+### Step 3: Generate a uniform random sample $u$ and evaluate $y=\dfrac{\theta}{\sqrt{1-u}}$
+
+```{r}
+# Setting up
+theta <- 2
+u <- runif(10000)
+
+# Use u to evaluate y
+y <- theta/sqrt(1-u)
+hist(y[y<20], br=100, freq=FALSE, main="")
+
+# Plot the true density
+ypl <- 0:200/10 + theta
+lines(ypl, 2*theta^2/ypl^3, col="red", lwd=2)
+```
+
+## Exerice
+Consider the density
+$$
+f(y)=\dfrac{\theta}{(y+1)^{\theta+1}},\quad y>0
+$$
+for some $\theta>0$. Write `R` code to sample from this density. Get a histogram using $\theta=4$, and superimpose the density function to check your work.
+
+### Answer
+We should get 
+$$
+F_Y(y)=1-(y+1)^{-\theta},\quad y>0
+$$
+By finding the inverse of the cdf, we get 
+$$
+y=(1-u)^{-1/\theta}-1
+$$
+Then, the `R` code is
+```{r}
+# Setting up
+theta <- 4
+u <- runif(10000)
+
+# Use u to evaluate y and plot the result
+y <- (1-u)^(-1/theta) - 1
+hist(y[y<20], br=100, freq=FALSE, main="")
+
+# Plot the true density
+ypl <- 0:200/10
+lines(ypl, theta/(ypl+1)^(theta+1), col="red", lwd=2)
+```
+
