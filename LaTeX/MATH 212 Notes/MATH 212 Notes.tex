@@ -1003,5 +1003,46 @@ Let $x,y$ be populations of two species $X, Y$. we model $x,y$ using logistic gr
 
 \subsection{Application of Second Order ODEs}
 \subsubsection{Vibrating Strings}
+\begin{eg}
+	Assume no Friction. \par 
+	We can have the following equation \[F=-kx,\quad k>0.\] Since we know $F=ma=-kx$ and $a=x''$, then \[mx''+kx=0,\] which is a second order, linear, constant coefficient, homogeneous ODE.\par 
+	Attempt to solve this ODE, we consider the characteristic polynomial. \[p(r)=mr^2+k=0\implies r^2=-k/m\implies r_{1,2}=\pm\i\sqrt{\dfrac{k}{m}}.\] Let $\omega\coloneqq\sqrt{\dfrac{k}{m}}$, we have \[x^\C=e^{\i\omega t}=\cos\qty(\omega t)+\i\sin\qty(\omega t).\] So, \[x(t)=c_1\cos(\omega t)+c_2\sin(\omega t).\] This is called the \textit{simple harmonic motion}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{fig/harmonicMotion}\label{harmonicMotion}
+		\caption{The Simple Harmonic Motion}
+	\end{figure}
+\end{eg}
+\begin{eg}
+	Take Friction into Account. \par 
+	If we take friction into account, then we should have the following equation \[F=-kx-cv\quad\xrightarrow{v=x'}\quad F=-kx-cx'\] Similarly, since $F=ma=-kx-cx'$, we have \[mx''+cx'+kx=0.\]\par 
+	To solve this ODE, we consider the characteristic polynomial. \[p(r)=mr^2+cr+k=0\implies r_{1,2}=\dfrac{-c\pm\sqrt{c^2-4mk}}{2m}\quad\xrightarrow{\Delta\coloneqq c^2-4mk}\quad r_{1,2}=\dfrac{-c\pm\sqrt{\Delta}}{2m}.\]\par 
+	$\boxed{\text{Case }1}$ Overdamping. $\Delta>0$, then $r_1=\dfrac{-c+\sqrt{\Delta}}{2m}$ and $r_2=\dfrac{-c-\sqrt{\Delta}}{2m}$. So, \[x(t)=c_1e^{r_1t}+c_2e^{r_2t}\] If $r_1$ or $r_2>0$, then $x\to\infty$ when $t\to\infty$. That is impossible. So, we need $r_1,r_2<0$. Since $-c-\sqrt{\Delta}<0$ for sure, we need \[\sqrt{\Delta}=\sqrt{c^2-4mk}<\sqrt{c^2}=c\implies-c+\sqrt{\Delta}<0.\] So, as $t\to\infty$, $x(t)\to0$.
+	\begin{figure}[H]\centering
+		$\qquad$\subfigure{\includegraphics[width=0.3\textwidth]{fig/overdamping1}}\label{overdamping1}
+		\hfill
+		\subfigure{\includegraphics[width=0.45\textwidth]{fig/overdamping2}}\label{overdamping2}$\qquad$
+		\caption{Overdamping}
+	\end{figure}\par 
+	$\boxed{\text{Case }2}$ Critical Damping. $\Delta=0$, then $r_1=r_2=r=\dfrac{-c}{2m}$. So, \[x(t)=c_1e^{rt}+c_2xe^{rt}=\qty(c_1+c_2x)e^{-\frac{c}{2m}t}\]\par 
+	$\boxed{\text{Case }3}$ Underdamping. $\Delta<0$, then $r_1=\dfrac{-c+\i\sqrt{-\Delta}}{2m}$ and $r_2=\dfrac{-c-\i\sqrt{-\Delta}}{2m}$. Let $\omega\coloneqq\dfrac{\sqrt{-\Delta}}{2m}$, then \[r_1=\dfrac{-c+\i\sqrt{-\Delta}}{2m}=\dfrac{-c}{2m}+\i\dfrac{-\Delta}{2m}=\dfrac{-c}{2m}+\i\omega.\] So, \[x^\C(t)=e^{r_1t}=e^{\qty(-\frac{-c}{2m}+\i\omega)t}=e^{-\frac{c}{2m}t}\qty[\cos(\omega t)+\i\sin(\omega t)].\] Therefore, \[x(t)\qty[c_1\cos(\omega t)+c_2\sin(\omega t)]e^{-\frac{c}{2m}t}.\]
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{fig/underdamping}\label{underdamping}
+		\caption{Underdamping}
+	\end{figure}
+\end{eg}
+\begin{eg}
+	If we have an external force, then we will have the following non-homogeneous system. \[mx''+cx'+kx=F(t).\]
+\end{eg}
+\begin{eg}
+	A spring with a mass of $2$kg has natural length $0.5$m. A force of $25.6$N is required to maintain it stretched to a length of $0.7$m. If the spring is stretched to a length of $0.7$m and then released with initial velocity $0$, find the position of the mass at any time $t$.
+	\begin{sol}
+		We attempt to sove \[mx''+kx=0.\] Form the question, we know \begin{align*}F&=-kx\quad k>0\\-25.6&=-k\qty(0.7-0.5)\\k&=\dfrac{25.6}{0.2}=128.\end{align*} Given: $\quad m=2$, $\quad k=128$, $\quad x(0)=0.7-0.5=0.2$, $\quad x'(0)=0$. \[2x''+128x=0\implies x''+64x=0.\] The characteristic polynomial: $p(r)=2r^2+128=0\implies r_{1,2}=\pm8\i$. So, \[x^\C=r^{r_1t}=e^{8\i t}=\cos(8t)+\i\sin(8t)\] That is, \[x(t)=c_1\cos(8t)+c_2\sin(8t).\] So, \[x'(t)=-8c_1\sin(8t)+8c_2\cos(8t)\] We solve the following system: \[\begin{cases}x(0)=c_1\cos(0)+c_2\sin(0)=c_1=0.2\\x'(0)=-8c_1\sin(0)+8c_2\cos(0)=8c_2=0\end{cases}\implies\begin{cases}c_1=0.2\\c_2=0\end{cases}\] Then, \[x^\text{IVP}(t)=0.2\cos(8t).\]
+	\end{sol}	
+\end{eg}
+
+\subsubsection{Circuit and Resistor}
+The general equation is \[LI'+RI=\dfrac{Q}{C}=E(t).\] Since $I=Q'$, we can also write the equation to be \[LQ''+RQ'+\dfrac{Q}{C}=E(t).\] Therefore, depending on the question (what are given), we could have a first order or a second order equation. 
 
 \end{document}
