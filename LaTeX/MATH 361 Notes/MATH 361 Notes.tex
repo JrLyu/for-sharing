@@ -943,6 +943,45 @@
 	\end{sol}
 \end{eg}
 
+\subsection{Geometric and Negative Binomial Distributions}
+\begin{df}{Geometric Distribution}
+	$X=$ the trial on which the first success occurs. $X\sim\text{Geometric}(p)$, and \[p_X(k)=\underbrace{(1-p)^{k-1}}_\text{\# of failure}\underbrace{p}_\text{success},\quad k\geq1\]	
+\end{df}
+\begin{df}{Negative Binomial Distribution}
+	$X=$ the number of trials needed for $r$ success. $X\sim\text{Negative Binomial}(r,p)$, and \[p_X(k)=\underbrace{\binom{k-1}{r-1}}_\text{\# of ways the successes can occur}\underbrace{p^r}_{r\text{ successes}}\underbrace{(1-p)^{k-r}}_{k-r\text{ failure}},\quad k\geq r\]	
+\end{df}
+\begin{rmk}
+	Suppose $X=$ trials for $r$ successes. i.e., $x\sim\text{Negative Binomial}(r,p)$. Then, we have $X=X_1+X_2+\cdots+X_r$, where $X_j$'s are independent and each $X_j\sim\text{Geometric}(p)$.
+\end{rmk}
+\begin{thm}{Geometric Expectation}
+	If $X\sim\text{Geometric}(p)$, then \[\E(x)=\dfrac{1}{p.}\]	
+\end{thm}
+\begin{prf}
+	Recall $\dsst\sum_{k=1}^\infty ka^k=\dfrac{a}{(1-a)^2}$ and $\dsst\sum_{k=1}^\infty k^2a^k=\dfrac{a+a^2}{(1-a)^3}$. So, \[\E(X)=\sum_{k=1}^\infty kp_X(k)=\sum_{k=1}^\infty k(1-p)^{k-1}p.\] Redefine $\widetilde{X}=$ the failures needed to obtain $1$ success. Then $\widetilde{X}=X-1$. Then, \begin{align*}\E(\widetilde{X})=\sum_{k=0}^\infty kp_X(k)=\sum_{k=0}^\infty k(1-p)^kp=\underbrace{0}_{k=0}+\sum_{k=1}^\infty k(1-p)^k\cdot p&=p\sum_{k=1}^\infty k\underbrace{(1-p)^k}_a\\&=p\cdot\dfrac{(1-p)}{(1-(1-p))^2}\\&=\dfrac{p(1-p)}{(1-1+p)^2}=\dfrac{1-p}{p}.\end{align*} So, \[\dfrac{1-p}{p}=\E(X)-1\implies \E(X)=\dfrac{1-p}{p}+1=\dfrac{1-p+p}{p}=\dfrac{1}{p}.\]
+\end{prf}
+\begin{thm}{Geometric Variance}
+	If $X\sim\text{Geometric}(p)$, then \[\Var(X)=\dfrac{1-p}{p^2}.\]
+\end{thm}
+\begin{prf}
+	Use the same definition of $\widetilde{X}$ as above. Then, \begin{align*}\E(\widetilde{X}^2)=\sum_{k=0}^\infty k^2p_X(k)=\sum_{k=1}^\infty k^2(1-p)^k\cdot p&=p\sum_{k=1}^\infty k^2(1-p)^k\\&=p\dfrac{(1-p+(1-p)^2)}{(1-(1-p))^3}\\&=\dfrac{p(1-p+1+p^2-2p)}{(1-1+p)^3}\\&=\dfrac{2-3p+p^2}{p^3}\end{align*} Then, \begin{align*}\Var(\widetilde{X})=\E(\widetilde{X}^2)-\E(\widetilde{X})^2&=\dfrac{2-3p+p^2}{p^3}-\dfrac{(1-p)^2}{p^2}\\&=\dfrac{2-3p+p^2-1-p^2+2p}{p^3}\\&=\dfrac{1-p}{p^2}.\end{align*} As shifting from $X$ to $\widetilde{X}=X-1$ does not change the value of variance, \[\Var(X)=\dfrac{1-p}{p^2}.\]
+\end{prf}
+\begin{thm}{Negative Binomial Expectation and Variance}
+	If $X\sim\text{Negative Binomial}(r,p)$, then \[\E(X)=\dfrac{r}{p}\quad\text{and}\quad\Var(X)=\dfrac{r(1-p)}{p^2}.\]
+\end{thm}
+\begin{prf}
+	As we have shown $X=X_1+X_2+\cdots+X_r$, where $X_j$'s are independent and $X_j\sim\text{Geometric}(p)$. Then, \[\E(X)=\E\qty(\sum_{j=1}^r X_j)=\sum_{j=1}^r\E(X_j)=\sum_{j=1}^r\dfrac{1}{p}=\dfrac{r}{p},\] and \[\Var(X)=\Var\qty(\sum_{j=1}^rX_j)=\sum_{j=1}^r\Var(X_j)=\sum_{j=1}^r\dfrac{1-p}{p^2}=\dfrac{r(1-p)}{p^2}.\]
+\end{prf}
+\begin{thm}{The MGF of Geometric Distribution}
+	If $X\sim\text{Geometric}(p)$, then \[\M_X(t)=\dfrac{p}{e^{-t}-1+p}.\]	
+\end{thm}
+\begin{prf}
+	\begin{align*}\M_X(t)=\E\qty(e^{tX})&=\sum_{k=1}^\infty e^{kt}(1-p)^{k-1}p\\&=\sum_{k=1}^\infty e^{t}e^{t(k-1)}(1-p)^{k-1}p\\&=e^tp\sum_{k=1}^\infty\qty(e^t(1-p))^{k-1}\\&=\dfrac{e^tp}{1-e^t(1-p)}\cdot\dfrac{e^{-t}}{e^{-t}}\\&=\dfrac{e^{-t}e^tp}{e^{-t}-e^{-t}e^t(1-p)}\\&=\dfrac{p}{e^{-t}-1+p}.\end{align*}	
+\end{prf}
+\begin{thm}{The MGF of Negative Binomial Distribution}
+	If $X\sim\text{Negative Binomial}(r, p)$, then \[\M_X(t)=\M_{\sum X_j}(t)=\prod_{j=1}^r\M_{X_j}(t)=\qty(\dfrac{p}{e^{-t}-1+p})^r\]	
+\end{thm}
+
+
 
 
 \end{document}
