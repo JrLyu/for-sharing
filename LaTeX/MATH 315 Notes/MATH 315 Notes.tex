@@ -94,6 +94,7 @@
 \maketitle
 
 \tableofcontents
+\listofalgorithms
 
 \newpage
 \section{Floating Point Numbers}
@@ -1552,10 +1553,58 @@ Advancement of the Golden Section Search
 	\end{rmk}
 \end{thm}
 \begin{prf}
-	Here, we offer some intuition of why that condition for small brackets will work. \par If $f$ is continuously differentiable, then we have \[\qty|\dfrac{f(x)-f\qty(x_m)}{x-x_m}|\leq L,\] where $l$ is the Lipschitz constant. This inequality shows that for all $x\in[a,b]$ and $x\neq x_m$, the slope is bounded: \[\qty|f(x)-f(x_m)|\leq L\qty|x-x_m|\leq L\abs{b-a}\leq\text{some upper bound}\]\par 
-	Now, let's discuss the role of $L$, the Lipschitz constant. Assume $f$ is second-order differentiable. We can approximate $x_m$ with x by using the Taylor's series: \begin{align*}f(x)&\approx f(x_m)+\underbrace{f'(x_m)(x-x_m)}_{0}+\dfrac{f''(x_m)}{2}\qty(x-x_m)^2\\\underbrace{f(x)
-	}_\text{computed}&\approx\underbrace{f(x_m)}_\text{true}\underbrace{\qty(1+\psi)}_\text {relative error}\end{align*} So, we would have \begin{align*}\psi&\equiv\dfrac{f''(x_m)}{2f(x_m)}(x-_m)^2\\\qty|\psi|&\leq\abs{\dfrac{f''(x_m)}{2f(x_m)}}(b-a)^2=L(b-a)^2\end{align*} Therefore, we know $L$ depends on the curvature of $f''(x_m)$ and the value of $f(x_m)$.
+	Here, we offer some intuition of why that condition for small brackets will work. \par If $f$ is continuously differentiable, then we have \[\qty|\dfrac{f(x)-f\qty(x_m)}{x-x_m}|\leq L,\] where $l$ is the Lipschitz constant. This inequality shows that for all $x\in[a,b]$ and $x\neq x_m$, the slope is bounded: \[\qty|f(x)-f(x_m)|\leq L\qty|x-x_m|\leq L\abs{b-a}\leq\text{some upper bound}\]
+	\begin{rmk}	
+	So, if $f$ is a very steep function, $L$ needs to be large to bound the slope. We therefore need small brackets. Then, more iterations are needed to refine the brackets. On the other hand, if $f$ is a very flat function, $L$ can be small but still bound the slope. We could have relatively large brackets, and so less iterations are needed. 
+	\end{rmk}\par 
+	\[\underbrace{L(b-a)^2}_{\text{upper bound of }\qty|f(x)-f(x_m)|\text{ (computed vs. true)}}\leq\overbrace{\epsilon}^{\text{upper bound of }\frac{|F(x)-f(x)|}{|f(x)|}\text{ rounding error, user-defined level of precision}}\]
+	Now, let's discuss the role of $L$, the Lipschitz constant. Assume $f$ is second-order differentiable. We can approximate $x_m$ with x by using the Taylor's series: \begin{align*}f(x)&\approx f(x_m)+\underbrace{f'(x_m)(x-x_m)}_{0}+\dfrac{f''(x_m)}{2}\qty(x-x_m)^2\\\underbrace{f(x)}_\text{computed}&\approx\underbrace{f(x_m)}_\text{true}\underbrace{\qty(1+\psi)}_\text {relative error}\end{align*} So, we would have \begin{align*}\psi&\equiv\dfrac{f''(x_m)}{2f(x_m)}(x-_m)^2\\\qty|\psi|&\leq\abs{\dfrac{f''(x_m)}{2f(x_m)}}(b-a)^2=L(b-a)^2\end{align*} Therefore, we know $L$ depends on the curvature of $f''(x_m)$ and the value of $f(x_m)$.
 \end{prf}
+\begin{rmk}
+		In practice, we don't always know $x_m$ and the derivatives, so $L$ would just be some numbers to pick.	
+	\end{rmk}
+\begin{algorithm}
+	\caption{Quadratic Interpolation Search}
+	\KwIn{A bracket $[a,b]$}
+	Choose some $c\in(a,b)\st f(c)<\min\qty{f(a), f(b)}$. \textit{This is to ensure we have an upward facing parabola}\;
+	Interpolate $\qty{(c,f(c)), (a, f(a)), (b, f(b))}$: \newline In Newton's form, \[P_2(x)=g_0+(x-c)g_1+(x-c)(x-a)g_2,\] where $g_0=f(c)$, $\quad g_1=\dfrac{f(c)-f(a)}{c-a}$, $\quad g_2=\dfrac{\qty(\frac{f(b)-f(c)}{b-c})-g_1}{b-a}$.\newline Note that $g_1<0$ and $g_2>0$\;
+	Compute the minimizer $d$ of $P_2(x)$. \[P_2'(x)=g_1+\qty[(x-a)+(x-c)]g_2=0\] Solve, and we would have $d=x_m=\dfrac{a+c}{2}-\dfrac{g_1}{2g_2}$\;
+	Add $d$ as the new search point and refine the brackets. Repeat\;
+\end{algorithm}
+\begin{rmk} A good choice of $c$ is $\dfrac{a+b}{2}$, the midpoint. \end{rmk}
+
+\subsection{Find Minima with Derivatives}
+\begin{rmk} Assumptions for the Cubic Interpolation Search
+\begin{itemize}
+	\item $f$ is U-shaped on $[a,b]$.
+	\item Extremum lies interior $(a,b)$. We need $f'(a)$ and $f'(b)$ have opposite signs. That is, $f'(a)f'(b)<0$. To be more specific, $f'(a)<0$ and $f'(b)>0$.
+\end{itemize}	
+\end{rmk}
+\begin{algorithm}
+	\caption{Cubic Interpolation Search I: Hermite Interpolation}
+	\KwIn{$(a,f(a)),\quad (b, f(b)),\quad(a,f'(a)),\quad(b,f'(b))$. We have $4$ points in total, so we need $4$ equations.}
+	Interpolate: $P_3(x)=a_3x^3+a_2x^2+a_1x+a_0$\newline We will use the \textit{Hermite interpolation} here.\newline Define a clever basis: $\phi(s)=(1+2s)(1-s)^2$ and $\psi(s)=s(1-s)^2$. Note that $\phi(0)=1$, $\phi(1)=\phi'(0)=\phi'(1)=0$ and $\psi(0)=\psi(1)=\psi'(1)=0$, $\psi'(0)=1$. So, our interpolation function can be written as \[P_3(x)=f(a)\phi(t)+f(b)\phi(1-t)+hf'(a)\psi(t)-hf'(b)\psi(1-t),\] where $t=\dfrac{x-a}{b-a}$ and $h=b-a$\;
+	Minimize $P_3(x)$ and the minimizer will become a search point\;
+	Refine the bracket (\textit{will be discussed later}) and repeat\;
+\end{algorithm}
+\begin{rmk}[Why we need $h$ and why $-h$?]
+	Note that $t$ is a function of $x$, so when computing $\phi'(t)$ and $\psi'(t)$, we need chain rule: \[P_3'(x)=f(a)\phi'(t)\qty(\dfrac{1}{b-a})-f(b)\phi'(1-t)\qty(\dfrac{1}{b-a})+hf'(a)\psi'(t)\qty(\dfrac{1}{b-a})+hf'(b)\psi(1-t)\qty(\dfrac{1}{b-a})\]	
+\end{rmk}
+\begin{algorithm}
+	\caption{Cubic Interpolation Search II: Power Series}
+	Define $P_3(x)=A(x-c)^3+B(x-c)^2+C(x-c)+D$, where $c=\dfrac{a+b}{2}$\;
+	Solve the system we get \[A=\dfrac{[d(f'(b)-f'(a))-(f(b)-f(a))]}{4d^3};\quad B=\dfrac{[f'(b)-f'(a)]}{4d}\]\[C=\dfrac{[3(f(b)-f(a))-d(f'(b)+f'(a))]}{4d};\quad D=\dfrac{[f(a)+f(b)]}{2}-\dfrac{d[f'(b)-f'(a)]}{4},\] where $d=\dfrac{b-a}{2}$, and so $a+d=c$ and $b-d=c$\;
+	Solve $p_3'(x)=0$ to find the minimizer: $\text{roots}=\dfrac{a+b}{2}+\dfrac{-B\pm\sqrt{B^2-3AC}}{3A}$, and the root of smaller magnitude will be chosen as the new search point. Repeat\;
+\end{algorithm}
+\begin{rmk}
+	The cubic interpolation search ensures that a root of $P_3'(x)=0$ exists in $(a,b)$ (by the Intermediate value theorem) and there is only one root in $(a,b)$. 
+\end{rmk}
+\begin{algorithm}
+	\caption{Cubic Interpolation Search III: Bracket Refinement}
+	In this method, we only need one search point to refine the bracket\;
+	If $f'(c)<0$, then the new bracket is $[c,b]$\;
+	If $f'(c)>0$, then the new bracket is $[a,c]$\;	
+\end{algorithm}
 
 
 \end{document}
