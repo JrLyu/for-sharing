@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/Python Learning Notes/QTM151_Notes/data/worldbank_wdi_2019.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Python Learning Notes/QTM151_Notes/data_raw/bills_actions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Python Learning Notes/QTM151_Notes/data_raw/financial.csv">
           <value>
             <Attribute>
@@ -178,6 +192,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Python Learning Notes/Web Scraping/data/CME.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Python Learning Notes/Web Scraping/data/COO.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/DVN.csv">
           <value>
             <Attribute>
@@ -220,6 +248,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Python Learning Notes/Web Scraping/data/PEG.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Python Learning Notes/Web Scraping/data/PM.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Python Learning Notes/Web Scraping/data/T.csv">
           <value>
             <Attribute>
@@ -234,7 +276,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Python Learning Notes/Web Scraping/data/TSLA.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Python Learning Notes/Web Scraping/new_data/sentiment_2023-11-10.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Python Learning Notes/Web Scraping/new_data/sentiment_2023-12-01_&lt;function sentimentNLTK at 0x7fe313104040&gt;.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

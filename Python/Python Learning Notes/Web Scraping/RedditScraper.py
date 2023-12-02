@@ -31,6 +31,7 @@ def get_posts(subs, n=100, time_filter="week"):
     posts = pd.DataFrame(posts,columns=['title', 'score', 'id', 'subreddit', 'url', 'num_comments', 'body', 'created'])
 
     posts.to_csv("./posts.csv", index=False)
+    posts.to_pickle("./posts.pkl")
     print("Done!\n\n Distribution of the Subreddits:")
     print(posts["subreddit"].value_counts())
 
@@ -110,7 +111,7 @@ def match_tickers(post_file, comment_file, tickers):
         if body_ticker:  # Proceed if the list is not empty for a particular ticker
             data += [(ticker, body_ticker)]
 
-            fileName = "data.txt"
+            fileName = "dataReddit.txt"
             with open(fileName, 'wb') as f:
                 pk.dump(data, f)
             f.close()
@@ -126,18 +127,18 @@ def match_tickers(post_file, comment_file, tickers):
         print("All tickers found in comments.")
 
 
-# subs = ["wallstreetbets", "cryptocurrency", "investing", "stocks",
-#         "personalfinance", "options", "robinhood", "stockmarket",
-#         "investing_discussion", "investments"]
-#
-# get_posts(subs, n=5, time_filter="week")  # Get the posts
-#
-# get_comments("./posts.pkl", 5)  # Get the comments
+subs = ["wallstreetbets", "cryptocurrency", "investing", "stocks",
+        "personalfinance", "options", "robinhood", "stockmarket",
+        "investing_discussion", "investments"]
+
+get_posts(subs, n=5, time_filter="week")  # Get the posts
+
+get_comments("./posts.pkl", 5)  # Get the comments
 
 match_tickers("./posts.pkl", "./comments.pkl", GetData.get_code())  # Match the tickers
 
-fileName = "data.txt"
+fileName = "dataReddit.txt"
 with open(fileName, 'rb') as f:
-    data = pk.load(f)  # (ticker, name, head, content)xN
+    data = pk.load(f)  # (ticker, content)xN
 f.close()
 print(data)

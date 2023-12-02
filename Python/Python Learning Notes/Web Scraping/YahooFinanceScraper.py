@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from tqdm import tqdm
 import pickle as pk
+import GetData
 
 def get_trending_tickers():
     """
@@ -58,11 +59,11 @@ def get_news_data(code):
         else:
             contents += [""]
 
-    return pd.DataFrame(headlines), pd.DataFrame(contents)
+    return headlines, contents
 
 all_sp500_stocks = get_trending_tickers()
 
-all_sp500_stocks = all_sp500_stocks[:10]
+# all_sp500_stocks = all_sp500_stocks[:10]
 
 codes = all_sp500_stocks[1::2]
 names =  all_sp500_stocks[0::2]
@@ -72,7 +73,7 @@ data = []
 for stock_code in tqdm(codes):
     data += [(stock_code, names.pop(0), *get_news_data(stock_code))] #ticker, name, head, content
 
-fileName = "data.txt"
+fileName = "dataYahoo.txt"
 with open(fileName, 'wb') as f:
     pk.dump(data, f)
 f.close()

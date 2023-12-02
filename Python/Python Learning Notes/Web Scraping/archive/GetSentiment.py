@@ -2,7 +2,6 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 from tqdm import tqdm
-import GetData
 import datetime
 
 def sentiment(my_code):
@@ -24,7 +23,6 @@ def sentiment(my_code):
     return float(sentiment_score.mean())
 
 
-code = GetData.get_code()
 ticker = []
 sentimentScore = []
 for i in tqdm(range(len(code))):
