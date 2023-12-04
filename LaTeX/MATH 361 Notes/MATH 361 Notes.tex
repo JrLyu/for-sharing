@@ -981,7 +981,60 @@
 	If $X\sim\text{Negative Binomial}(r, p)$, then \[\M_X(t)=\M_{\sum X_j}(t)=\prod_{j=1}^r\M_{X_j}(t)=\qty(\dfrac{p}{e^{-t}-1+p})^r\]	
 \end{thm}
 
+\subsection{Gamma Distribution \& Gamma Function}
+\begin{df}{Gamma Distribution}
+	Let $Y$ be a random variable that denotes the time between consecutive \textit{Poisson} events ($X\sim\text{Poission}(\lambda)$). So, $Y\sim\text{Exponential}(\lambda)$, and \[f_Y(y)=\lambda e^{-\lambda y},\quad y>0.\] Also, though of as the waiting time until the $1^\text{st}$ Poisson event. Now, let's consider $Y$ as the waiting time to the $n-$th event, where we have Poisson event occurring at a rate of $\lambda$. In order to find the pdf of the random variable $Y$, we  will use the cdf $\to$ pdf method. Let's consider the following distirbution. \begin{align*}F_Y(y)&=\P(Y\leq y)\\&=\P(\text{at least }n\text{ events occur in }[0,y])\\&=1-\P(\text{fewer than }n\text{ events occur in }[0,y])\\&=1-\sum_{k=0}^{n-1}e^{-\lambda y}\dfrac{(\lambda y)^k}{k!}\end{align*}
+	\begin{rmk}
+		We expect $\lambda y$ events in $[0,y]$ since $\text{Poisson}(\lambda)$ events.
+	\end{rmk}
+	So, \begin{align*}f_Y(y)=\dv{y}F_Y(y)&=\dv{y}\qty[1-\sum_{k=0}^{n-1}e^{-\lambda y}\dfrac{(\lambda y)^k}{k!}]\\&=0-\qty(\sum_{k=0}^{n-1}-\lambda e^{-\lambda y}\cdot\dfrac{(\lambda y)^k}{k!}+\sum_{k=1}^{n-1}e^{-\lambda y}\dfrac{\lambda k(\lambda y)^{k-1}}{k(k-1)!})\\&=\lambda e^{-\lambda y}\qty[\sum_{k=0}^{n-1}\dfrac{(\lambda y)^k}{k!}-\sum_{k=1}^{n-1}\dfrac{(\lambda y)^{k-1}}{(k-1)!}]\\&=\lambda e^{-\lambda y}\qty[\sum_{k=0}^{n-1}\dfrac{(\lambda y)^k}{k!}-\sum_{k=0}^{n-2}\dfrac{(\lambda y)^k}{k!}]\\&=\lambda e^{-\lambda y}\dfrac{(\lambda y)^{n-1}}{(n-1)!}\\&=\dfrac{\lambda^n}{(n-1)!}y^{n-1}e^{-\lambda y}.\end{align*}
+	The pdf $f_Y(y)=\dfrac{\lambda^n}{(n-1)!}y^{n-1}e^{-\lambda y}$ is the pdf for the \textit{Gamma Distribution} with $Y\sim\text{Gamma}(n, \lambda)$.
+\end{df}
+\begin{rmk}
+	Interpretation: \[\underbrace{\text{Poisson}(\lambda)}_\text{countable evenets ``per unit''}\longrightarrow\underbrace{\text{Exponential}(\lambda)}_\text{Wait time between two events (one time interval)}\longrightarrow\underbrace{\text{Gamma}(r,\lambda)}_{\text{wait time for }r\text{ events (} r\text{ time invertval)}}\]	
+\end{rmk}
+\begin{thm}{Relationship between $\text{Exponential}(\lambda)$ and $\text{Gamma}(r,\lambda)$}
+	Suppose $Y_i\sim\text{Exponential}(\lambda)$ are independent. If \[Y=Y_1+Y_2+\cdots+Y_r,\] then $Y\sim\text{Gamma}(r,\lambda)$.
+\end{thm}
+\begin{df}{Gamma Function}
+	For $x\geq 0$, the \textit{gamma function} of $x$, $\Gamma(x)$ is defined as \[\Gamma(x)=\int_0^\infty t^{x-1}e^t\ \d{t}.\]
+\end{df}
+\begin{thm}{Properties of Gamma Function}
+	\begin{itemize}
+		\item \[\sin(\pi x)=\dfrac{\pi}{\Gamma(x)\Gamma(1-x)}.\]
+		\item Recursive Relationship: \[\Gamma(1)=\int_0^\infty e^{-t}\ \d{t}=1;\ \Gamma(2)=\int_0^\infty te^{-t}\ \d{t}=1\implies \Gamma(x+1)=x\Gamma(x)\quad\text{ for } x\geq2.\]
+	\end{itemize}	
+\end{thm}
+\begin{thm}{Alternative Definition of $\Gamma(n)$ for $n\in\N$ and $Y\sim\text{Gamma}(n,\lambda)$}
+	\begin{align*}
+		\Gamma(n)=(n-1)\Gamma(n-1)&=(n-1)(n-2)\Gamma(n-2)\\&=(n-1)(n-2)\cdots2\Gamma(2)\\&=(n-1)(n-2)\cdots2\cdot1\cdot1\\&=(n-1)!
+	\end{align*}
+	So, suppose $Y\sim\text{Gamma}(n,\lambda)$, we then have \[f_Y(y)=\dfrac{\lambda^n}{(n-1)!}y^{n-1}e^{-\lambda y}=\dfrac{\lambda^n}{\Gamma(n)}y^{n-1}e^{-\lambda y}.\]
+\end{thm}
+\begin{thm}{$\Gamma$-Integral}
+	\[\int_0^\infty t^{\alpha-1}e^{-\beta t}\ \d{t}\xrightarrow[\d{x}=\beta\ \d{t}]{x=\beta t}\beta^{\alpha}\underbrace{\int_0^{\infty} x^{\alpha-1}e^{-x}\ \d{x}}_{\Gamma(\alpha)}=\dfrac{\Gamma(\alpha)}{\beta^{\alpha}}.\]
+\end{thm}
+\begin{thm}{Expectation of $Y\sim\text{Gamma}(r,\lambda)$}
+	If $Y\sim\text{Gamma}(r,\lambda)$, then \[\E(Y)=\dfrac{r}{x}.\]	
+\end{thm}
+\begin{prf}
+	\begin{align*}
+		\E(Y)=\int_0^\infty yf_Y(y)\ \d{y}&=\dfrac{\lambda^r}{\Gamma(r)}
+		\int_0^\infty y\cdot y^{r-1}e^{-\lambda y}\ \d{y}\\&=\dfrac{\lambda^r}{\Gamma(r)}\int_0^\infty y^{r+1-1}e^{-\lambda y}\ \d{y}&[x=\lambda y]\\&=\dfrac{\lambda^r}{\Gamma(r)}\int_0^\infty\lambda^{-(r+1)}x^{r+1-1}e^{-x}\ \d{x}\\&=\dfrac{\lambda^r}{\Gamma(r)\lambda^{r+1}}\underbrace{\int_0^\infty x^{(r+1)-1}e^{-x}\ \d{x}}_{\Gamma(r+1)}\\&=\dfrac{\lambda^r}{\Gamma(r)\lambda^r\cdot\lambda}\cdot\Gamma(r+1)\\&=\dfrac{r\Gamma(r)}{\Gamma(r)\cdot\lambda}=\dfrac{r}{\lambda}.
+	\end{align*}	
+\end{prf}
+\begin{thm}{Higher Moments of $Y\sim\text{Gamma}(r,\lambda)$}
+	In general, \[\E\qty(Y^n)=\int_0^\infty y^nf_Y(y)\ \d{y}=\lambda^n\dfrac{\Gamma(r+n)}{\Gamma(r)}.\]	
+\end{thm}
+\begin{df}{$\chi^2$, Chi-Squared Distribution}
+	Given $Z\sim N(0,1)$, then $Z^2\sim\chi^2$. Let $Y=Z^n$, then \[F_Y(y)=\dfrac{2}{\sqrt{2\pi}}\int_0^{\sqrt{y}}e^{-z^2/2}\ \d{z}\] and thus \[f_Y(y)=\dv{y}F_Y(y)=\dfrac{1}{\sqrt{2\pi}}\underbrace{y^{-1/2}e^{-y/2}}_\text{basis of Gamma pdf}.\] So, in fact, $\chi^2\sim\text{Gamma}\qty(\dfrac{1}{2},\dfrac{1}{2})$.
+\end{df}
+\begin{rmk}
+	We have \[\dfrac{\lambda^r}{\Gamma(r)}=\dfrac{1}{\sqrt{2\pi}}=\dfrac{\qty(\frac{1}{2})^{1/2}}{\sqrt{\pi}}\implies \Gamma(r)=\sqrt{\pi}.\]	
+\end{rmk}
 
+
+	
 
 
 \end{document}
