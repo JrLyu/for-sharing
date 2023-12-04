@@ -1,0 +1,20 @@
+body
+"""Rookie"" and ""trading 0 DTE"" don't really belong in the same sentence. And not just because 0 DTE is relatively risky. It's because doing 0 DTE right requires a deep understanding of the way that contracts behave on expiration day. That's something that often takes months to learn.
+
+> So my question is, Is that even possible? 
+
+Yes. But now ask the other question. Is it possible to lose all $10,000 in a single trade? The answer to that is also yes. Risk and leverage cut both ways. What a big move like that should make you think first and foremost is that you can lose money just as quickly.
+
+>  I see bid/ask of 200 lot increments and RH's inability to set a market order (has to be limit and fills arent guaranteed if the price moves quickly as they often do in 0dte)
+
+I thought you were mistaken about RH vs market orders, because surely an options trading platform wouldn't restrict market orders, but it looks like this is true. Yet another reason not to use RH as an options trading platform, especially for 0 DTE.
+
+https://robinhood.com/us/en/support/articles/options-trading-faq/#WhycantIplacemarketordersonoptions
+
+> Question 1: Would I even be able to BUY that many contracts?
+
+Sure. Maybe not all in one go, as you might only get a partial fill, but as long as the market doesn't move too far away from your limit, you should get all of it eventually. If you enable All-or-None (assuming RH supports that), you may miss the market. 
+
+> Question 2: If I was filled, and waited til the high, Would I have been able to exit?
+
+I don't see why not. You may not get all the profit you want, since it's an auction after all, but as long as you don't get too greedy with your limit, should be fine."
