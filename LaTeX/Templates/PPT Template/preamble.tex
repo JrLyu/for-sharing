@@ -1,0 +1,21 @@
+% UTF-8 encoding
+\documentclass[9pt, dvipsnames]{beamer} 
+
+% Beamer 设置
+\usetheme[secheader]{Boadilla} % 使用的 Beamer 主题： Boadilla, CambridgeUS, Madrid
+\usecolortheme{beaver} % 使用的 Beamer 颜色：beaver, orchid, rose, 
+% 字体设置
+\usefonttheme{serif} % professional 字体: serif, professionalfonts, structurebold
+
+% 其他 Package
+\usepackage{amssymb, amsmath, amsthm, amsfonts, epsfig, mathtools, times, verbatim, anyfontsize, subfigure, graphicx, tabularx, tikz, mathptmx}
+\usepackage[export]{adjustbox}
+\setbeamertemplate{caption}[numbered]
+\newcounter{saveenumi}
+\resetcounteronoverlays{saveenumi}
+\usepackage[multidot]{grffile} % 允许文件名带多个点
+%\usepackage{ctex} % xelatex 中文
+
+\usepackage[T1]{fontenc}
+
+% 使用背景: \pgfdeclareimage[height=\paperheight,width=\paperwidth]{bgimage}{lzu.jpg} \usebackgroundtemplate{\tikz\node[opacity=0.1,inner sep=0]{\pgfuseimage{bgimage}};}

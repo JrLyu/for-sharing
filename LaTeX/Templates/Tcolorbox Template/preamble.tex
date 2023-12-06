@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, lastpage, geometry, graphicx, float, subfigure, arydshln, multicol, url, setspace, mathptmx, framed, xcolor, listings, chemfig}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\lstset{
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\color{green},
+	commentstyle=\color{lightgray},
+	frame=shadownbox,
+	rulesepcolor=\color{lightblack},
+	escapeinside='',
+	xleftmargin=2em,aboveskip=1em,
+	framexleftmargin=2em
+}
+
+\definecolor{darkblue}{HTML}{003472}
+\definecolor{lightblue}{HTML}{70f3ff}
+\definecolor{red}{HTML}{dc3023}
+\definecolor{lightred}{HTML}{f47983}
+\definecolor{green}{HTML}{057748}
+\definecolor{lightgreen}{HTML}{a4e2c6}
+\definecolor{gray}{HTML}{758a99}
+\definecolor{lightgray}{HTML}{41555d}
+\definecolor{lightblack}{HTML}{424c50}
+\definecolor{orange}{HTML}{9b4400}
+\definecolor{yellow}{HTML}{ffa631}
+\definecolor{white}{HTML}{f0fcff}
+
+\tcbuselibrary{skins, breakable, theorems}
+\newtcolorbox{defbox}[2][]{
+	colback=lightgray!5, colframe=lightblack,colbacktitle=lightblack, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{thmbox}[2][]{
+	colback=lightblue!5, colframe=darkblue,colbacktitle=darkblue, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{egbox}[2][]{
+	colback=lightgreen!5, colframe=green,colbacktitle=green, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{prfbox}[2][]{
+	colback=orange!5, colframe=orange,colbacktitle=orange, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{extbox}[2][]{
+	colback=yellow!5, colframe=yellow,colbacktitle=yellow, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+
+\newtcolorbox{rmkbox}[2][]{
+	colback=lightred!5, colframe=red,colbacktitle=red, coltitle=white,title={#2},fonttitle=\bfseries,breakable
+}
+	
+\newcounter{index}[subsection]
+\setcounter{index}{0}
+\newenvironment*{df}[1]{\begin{defbox}{Definition \thesection.\stepcounter{index}\theindex\ (#1).}}{\end{defbox}\par}
+
+\newenvironment*{eg}{\begin{egbox}{Example \thesection.\stepcounter{index}\theindex}}{\par\end{egbox}}
+
+\newenvironment*{thm}[1]{\begin{thmbox}{Theorem \thesection.\stepcounter{index}\theindex\ #1}}{\par\end{thmbox}}
+
+\newenvironment*{cor}[1]{\begin{extbox}{\bf Corollary \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{lem}[1]{\begin{extbox}{\bf Lemma \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{ax}[1]{\begin{extbox}{\bf Axiom \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{prop}[1]{\begin{extbox}{\bf Proposition \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{conj}[1]{\begin{extbox}{\bf Conjecture \thesection.\stepcounter{index}\theindex\ #1}}{\end{extbox}}
+\newenvironment*{nota}[1]{\begin{defbox}{\bf Notation \thesection.\stepcounter{index}\theindex\ #1}}{\end{defbox}}
+
+
+\newcounter{nprf}[subsection]
+\setcounter{nprf}{0}
+\newenvironment*{prf}{\begin{prfbox}{\textit\bf Proof \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+\newenvironment*{dis}{\begin{prfbox}{\textit\bf Disproof \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+\newenvironment*{sol}{\begin{prfbox}{\textit\bf Solution \stepcounter{nprf}\thenprf.}}{\hfill$\blacksquare$\par\end{prfbox}}
+
+\newcounter{nrmk}[section]
+\setcounter{nrmk}{0}
+\newenvironment*{rmk}{\begin{rmkbox}{\bf Remark \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
+\newenvironment*{hint}{\begin{rmkbox}{\bf Hint \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
+\newenvironment*{ext}{\begin{rmkbox}{\bf Extension \stepcounter{nrmk}\thenrmk\ }}{\end{rmkbox}}
+
+\rhead{\thepage}
+\linespread{1.15}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\RE{{\mathrm{Re}}}
+\def\IM{{\mathrm{Im}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+	

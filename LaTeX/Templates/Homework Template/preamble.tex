@@ -1,0 +1,66 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem}
+%%% Algorithm %%%
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+
+\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+\hypersetup{
+	colorlinks = true,
+	bookmarks = true,
+	bookmarksnumbered = true,
+	pdfborder = 001,
+	linkcolor = blue
+}
+
+%%% For coding homeworks%%%
+\usepackage{listings}
+\definecolor{blue}{rgb}{0,0.45,1.14}
+\definecolor{red}{rgb}{0.77,0.12,0.23}
+\definecolor{grey}{rgb}{0.49,0.38,0.29}
+\definecolor{orange}{rgb}{2.07,0.69,0.32}
+\definecolor{purple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\lstset{basicstyle = \ttfamily\small,commentstyle = \color{mygreen}\textit, deletekeywords = {...}, escapeinside = {\%*}{*)}, frame = single, framesep = 0.5em, keywordstyle = \bfseries\color{blue}, morekeywords = {*}, emph = {self}, emphstyle=\bfseries\color{red}, numbers = left, numbersep = 1.5em, numberstyle = \ttfamily\small\color{grey},  rulecolor = \color{black}, showstringspaces = false, stringstyle = \ttfamily\color{purple}, tabsize = 4, columns = flexible}
+
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremstyle{definition}
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{conj}{Conjecture}[subsection]
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{df}{Definition}[subsection]
+\newtheorem{eg}{Example}[subsection]
+\newtheorem*{rmk}{\indent Remark}
+\newtheorem*{ext}{\indent Extension}
+\newcounter{nq}[section]
+\setcounter{nq}{0}
+\newenvironment*{question}{\noindent\emph{\stepcounter{nq}\thenq.$\quad $}\noindent\ttfamily}{}
+\newcounter{np}[section]
+\setcounter{np}{0}
+\newenvironment*{prf}{\par\noindent\textbf{\textit{Proof \stepcounter{np}\thenp. }}\par}{\par\hfill $\blacksquare$\par}
+\newenvironment*{ans}{\par\indent\textbf{\textit{Answer \stepcounter{np}\thenp. }}\par}{\par\hfill{$\square$}\par}
+\newenvironment*{dis}{\par\noindent\textbf{\textit{Disproof \stepcounter{np}\thenp. }}\par}{\par\hfill $\blacksquare$\par}
+
+\linespread{1.3}
+
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+\def\dsst{\displaystyle}
+\def\epsilon{\varepsilon}
+\def\emptyset{\varnothing}
+\def\phi{\varphi}
