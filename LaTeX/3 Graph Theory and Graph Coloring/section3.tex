@@ -1,0 +1,175 @@
+\section{Coloring of Graphs}
+\subsection{Vertex Colorings and Upper Bounds}
+\subsection{Structure of $k$-chromatic Graphs}
+\subsection{Review of Terms}
+\begin{df}{Graphs, Vertices, Edges}
+	A \textit{graph} $G$ is a set $V=V(G)$ of \textit{vertices} and a set $E=E(G)$ of \textit{edges}, each linking a pair of vertices, its endpoints, which are adjacent. 	
+\end{df}
+\begin{rmk}
+	An edge is an unordered pair of vertices and thus our graphs have no loops or multiple edges.	
+\end{rmk}
+\begin{df}{$k$-Coloring}
+	A \textit{$k$-coloring of the vertices} of a graph $G$ is an assignment of $k$ colors ($1,\dots,k\in\Z$) to the vertices of $G$ such that no two adjacent vertices get the same color.	
+\end{df}
+\begin{df}{Chromatic Number}
+	The \textit{chromatic number} of $G$, denoted $\chi(G)$, is the minimum $k$ for which there is a $k$-coloring of the vertices of $G$. 
+\end{df}
+\begin{df}{Color Class}
+	The set $S_j$ of vertices receiving color $j$ is a \textit{color class} and induces a graph with no edges. i.e., it is a \textit{stable set} or an \textit{independent set}. 
+\end{df}
+\begin{df}{$k$-Coloring}
+	A \textit{$k$-coloring of the edges} of a graph $G$ is an assignment of $k$ colors to the edges of $G$ such that no two incident edges get the same color. The \textit{chromatic index} of $G$, $\chi_e(G)$, is the minimum $k$ such that there is a $k$-coloring of the edges of $G$. The set $M_j$ of vertices receiving color $j$ is a \textit{color class}, and it is a set of edges no two of which share an endpoint (i.e., are matched).
+\end{df}
+\begin{df}{Total $k$-coloring}
+	A \textit{total $k$-coloring} of a graph $G$ is an assignment of $k$ colors to the vertices and edges of $G$ such that no two adjacent vertices get the same color, no two incident edges get the same color, and no edges gets the same color as one of its endpoints. The \textit{total chromatic number} of $G$, $\chi_T(G)$, is the minimum $k$ such that there is a total $k$-coloring of $G$. The set $T_j$ of vertices and edges receiving color $j$ is a color class, and it consists of a stable set $S_j$ and a matching $M_j$, none of whose edges have endpoints in $S_j$. It is also called a \textit{total stable set}.	
+\end{df}
+\begin{rmk}
+	A $k$-coloring of $V(G)\cup E(G)$ is simply a partition of $V(G)\cup E(g)$ into $k$ total stable sets and $\chi_T(G)$ is the minimum number of stable sets required to partition $V(G)\cup E(G)$.	
+\end{rmk}
+\begin{df}{Partial $k$-Coloring}
+	A \textit{partial $k$-coloring} of a graph is an assignment of $k$ colors (often $1,\dots,k\in\Z$) to a (possibly empty) subset of the vertices of $G$ such that no two adjacent vertices get the same color. This definition can be extended to partial edge coloring and partial total coloring.	
+\end{df}
+\begin{df}{Line Grpah}
+	The \textit{line graph}, $L(G)$, is the graph whose vertex set corresponds to the edge set of $G$ and in which two vertices are adjacent precisely if the corresponding edges of $G$ are incident.	
+\end{df}
+\begin{cor}{}
+	$\chi_e(G)=\chi(L(G))$.
+\end{cor}
+\begin{prop}{}
+	For any graph $G$, we can construct a graph $T(G)$, \textit{the total graph of $G$}, whose chromatic number is the total chromatic number of $G$. i.e., $\chi(T(G))=\chi_T(G)$.	
+\end{prop}
+\begin{prf}	
+	To obtain such $T(G)$, make a copy of $G$ and $L(G)$, and then add an edge between a vertex $x$ of $G$ and a vertex $y$ of $L(G)$ precisely if $x$ is an endpoint of the edge of $G$ corresponding to $y$.
+\end{prf}
+
+\subsection{Introduction to Brooks' Theorem}
+\begin{ax}{}
+	$\chi(G)=0\iff G$ has no vertices.	
+\end{ax}
+\begin{ax}{}
+	$\chi(G)=1\iff G$ has vertices but no edges.
+\end{ax}
+\begin{prop}{Fact: }
+	A graph has chromatic number at most $2$, i.e., is \textit{bipartite}, if and only if it contains on odd cycles.	
+\end{prop}
+\begin{prf}
+	Chromatic number of every odd cycles is three. \textit{WTS: graph without	odd cycles is two colorable.} Assume $G$ is connect. Choose some vertices $v$ of $G$, assign it to color $1$. Grow it to form a bipartite subgraph of $G$, say $H$. Then, we have different cases: 
+	\begin{itemize}
+		\item $H$ is $G$, then we are done.
+		\item $H$ is not $G$. As $G$ is connected, there exists vertex $x\in G-H$ such that $x$ is adjacent to a vertex in $H$.
+		\begin{itemize}
+			\item If $x$ is connected to a vertex colored by $1$, color $x$ by $2$, and add it to $H$.
+			\item If $x$ is connected with a vertex colored by $2$, color $x$ by $1$, and add it to $H$.
+			\item If $x$ is connected with a vertex $y$ by $1$ and a vertex $z$ by $2$. Let $P$ be some $yz$ path in the connected graph $H$. Since, by assumption, $H$ is bipartite, $P$ has an even number of vertices, and so $P+x$ is an odd cycle.
+		\end{itemize}
+	\end{itemize}
+\end{prf}
+\begin{rmk}
+	This proof yields an ordering on $V(G)$: 
+	\begin{enumerate}
+		\item If we label the vertices of $H$ in the order in which they are added to $H$, then $v_1=v$ and for all $j>1$, $v_j$ has a neighbor $v_j$ with $j>i$.
+		\item Any vertex $x$ in a connected graph, by doing the reverse of, we have an ordering $w_1,\dots,w_n=x$ such that for all $j<n$, $w_j$ has a neighbor $w_i$ with $i>j$.
+	\end{enumerate}	
+\end{rmk}
+\begin{df}{Clique, $\omega(G)$}
+	A \textit{clique} is a set of pairwise adjacent vertices. $\omega(G)$ denotes the \textit{clique number of $G$}. i.e., the number of vertices in the largest clique in $G$.
+\end{df}
+\begin{cor}{}
+	$\chi(G)\geq\omega(G)$.	
+\end{cor}
+\begin{df}{Degree of a Vertex, $\Delta(G)$, $\delta(G)$, Neighborhood}
+	The \textit{degree} of a vertex $v$ in a graph $G$ is the number of edges of $G$ to which $v$ is incident and id denoted by $d_G(v)$ and $d(v)$. $\Delta(G)$ or $\Delta$ denotes the maximum $d(v)$ in $G$, and $\delta(G)$ or $\delta$ denotes the minimum $d(v)$. The \textit{neighborhood} of a vertex $v$ in a graph $G$ is the set of vertices of $G$ to which $v$ is adjacent and is denoted $N_G(v)$ or $N(v)$. Members of $N(v)$ are \textit{neighbors} of $v$.
+\end{df}
+\begin{lem}{}
+	For all $G$, $\chi(G)\leq\Delta(G)+1$.	
+\end{lem}
+\begin{prf}
+	Arbitrarily order the vertices of $G$ as $v_1,\dots,v_n$. For each $v_i$, color it with the lowest integer not used on any of its neighbors. Every vertex will receive a color between $1$ and $\Delta+1$ as desired. 
+\end{prf}
+\begin{thm}{Brooks' Theorem}
+	$\chi(G)\leq\Delta$ unless some component of $G$ is a clique with $\Delta+1$ vertices or $\Delta=2$ and some component of $G$ is an add cycle.	
+\end{thm}
+\begin{rmk}
+	We will prove the Brooks' Theorem in Section \ref{sec:provingBrook}. Here, we will present some facts relating to $\chi(G)$ and $\Delta$.
+	\begin{enumerate}
+		\item Most graphs with $n$ vertices satisfy $\omega(G)\leq2\log_2(n)$, $\Delta(G)\geq\dfrac{n}{2}$, and $\chi(G)\approx\dfrac{n}{2\log_2n}$.
+		\item Considering a maximum degree vertex of $G$, we then have \[\chi_e(G)=\chi(L(G))\geq\omega(L(G))\geq\Delta(G),\] where the last inequality is tight unless $G$ is a graph of maximum degree $2$ containing a triangle.
+		\item Not all graphs have a chromatic index $\Delta$.
+	\end{enumerate}
+\end{rmk}
+\begin{thm}{Vizing's Theorem}
+	For all $G$, $\chi_e(G)\leq\Delta(G)+1$.	
+\end{thm}
+\begin{rmk}
+	With Vizing's Theorem, we now have $\chi_e(G)\geq\Delta(G)$ and $\chi_e(G)\leq\Delta(G)+1$. Therefore, determining $\chi_e(G)$ becomes deciding if $\chi_e(G)=\Delta$ or $\chi_e(G)=\Delta+1$.	
+\end{rmk}
+
+\subsection{Open Questions}
+\begin{conj}{The Fundamental Open Problem in Graph Coloring}
+	If the total chromatic number can be approximate to within $1$. 	
+\end{conj}
+\begin{rmk}
+	Here we give some observations on why this conjecture could be correct. Note that $\chi_T(G)\geq\Delta(G)+1$, so we have \[\chi_T(G)=\chi(T(G))\geq\omega(T(G))\geq\Delta(G)+1,\] where the second inequality is tight unless $G$ is a graph of maximum degree $1$.
+\end{rmk}
+\begin{conj}{The total Coloring Conjecture}
+		$\chi_T(G)\leq\Delta(G)+2$. 
+\end{conj}
+\begin{rmk}
+	However, the best bound on $\chi_T(G)$ was that given by Brooks' Theorem: $2\Delta(G)$. Now, let's verify that $\Delta(T(G))=2\Delta(G)$.
+	\begin{prf}
+		The maximum case is that a vertex $n$ is connected to every other vertices. So, $\Delta(G)$ number of edges is added when complete the total graph $T(G)$. Therefore, $\Delta(T(G))=\Delta(G)+\Delta(G)=2\Delta(G)$.
+	\end{prf}
+\end{rmk}
+\begin{df}{Multigraph}
+	A \textit{multigraph} is a graph that there may be more than one edge between the same pair of vertices. All definitions of $k$-coloring, chromatic numbers, chromatic index, are extended. 	
+\end{df}
+\begin{df}{$\alpha(G)$, stability number}
+	A \textit{stable set} is a set of pairwise non-adjacent vertices, we use $\alpha(G)$ to denote the \textit{stability number} of $G$. That is, the number of vertices in the largest stable set in $G$.	
+\end{df}
+\begin{df}{$\beta(G),\ \beta^*(G)$}
+	\[\beta(G)\coloneqq\ceil{\dfrac{\qty|V(G)|}{\alpha(G)}}.\] $\beta^*(G)$ is the maximum $\beta(H)$ over all subgraphs $H$ of $G$. So, $\omega(G)\leq\beta^*(G)\chi(G)$.
+\end{df}
+\begin{prf}
+	$\omega(G)\leq\beta^*(G)$ because a clique has a stability number of $1$. $\chi(G)\geq\beta(G)$ because coloring is a partition of $G$ into stable sets. Since the chromatic number of $G$ is as large as that of any its subgraphs, $\chi(G)\geq\beta^*(G)$.	
+\end{prf}
+\begin{df}{$\mu(G)$}
+	For a multigraph $G$, $\mu(G)$ is the maximum over all subgraphs $H\subseteq G$ of the quantity \[\ceil{\dfrac{\qty|E(H)|}{\qty|V(H)|/2}}.\]
+\end{df}
+\begin{rmk}
+	Observe that $\beta^*(L(G))\geq\mu(G)$. Since $\omega(L(G))\geq\Delta(G),$ $\beta^*(L(G))\geq\max\qty{\Delta(G),\mu(G)}$.	
+\end{rmk}
+\begin{conj}{The Goldberg-Symar Conjecture}
+	For every multigraph $G$, we have the following inequality: $\chi_e(G)\leq\max\qty{\mu(G),\Delta+1}$.
+\end{conj}
+\begin{df}{Perfect Graph}
+	A graph is \textit{perfect} if every induced subgraph $H$ of $G$ satisfies $\chi(H)=\omega(H)$. 
+\end{df}
+\begin{rmk}
+	A perfect graph cannot contain a subgraph $H$ which is an induced odd cycle with more than five vertices for then $\chi(H)=3$ and $\omega(H)=2$. To verify this, the complement of an add cycle on $2k+1\geq5$ nodes satisfy $\omega=k$ and $\chi=k+1$.
+\end{rmk}
+\begin{conj}{The Strong Perfect Graph Conjecture}
+	A graph is perfect iff it contains no induced subgraph isomorphic to either an odd cycle on at least five vertices or the complement of such a cycle. 	
+\end{conj}
+\begin{df}{Minor}
+	$K_k$ is a \textit{minor} of $G$ if $G$ contains $k$ vertex disjoint connected subgraphs between every two of which there is an edge.	
+\end{df}
+\begin{conj}{Hadwiger's Conjecture}
+	Every graph $G$ satisfies the following condition: $\chi(G)\leq k_G=\max\qty{k\mid K_K\text{ is a minor of }G}$
+\end{conj}
+\begin{df}{Contract/Minor}
+	We \textit{contract} an edge $xy$ in a graph $G$ to obtain a new graph $G_{xy}$ with vertex set $V(G_{xy})=V(G)-x-y+(x*y)$ and edge set $E(G_{xy})=E(G-y-x)\cup\qty{(x*y)z\mid xz\text{ or }yz\in E(G)}$. $H$ is a \textit{minor} of $G$ if $H$ can be obtained $G$ via a sequence of edge deletions, edge contractions, and vertex deletions.	
+\end{df}
+\begin{rmk}
+	$k_G=\max\qty{\omega(H)\mid H\text{ is a minor of }G}$.	
+\end{rmk}
+\begin{conj}{Reed}
+	For any graph $G$, $\chi\leq\ceil{\dfrac{1}{2}\omega+\dfrac{1}{2}(\Delta+1)}$.
+	
+\end{conj}
+
+
+
+
+
+\subsection{List Chromatic Number}
+\subsection{Proving Brooks' Theorem}\label{sec:provingBrook}
