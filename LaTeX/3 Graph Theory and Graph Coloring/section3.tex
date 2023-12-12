@@ -164,12 +164,76 @@
 \end{rmk}
 \begin{conj}{Reed}
 	For any graph $G$, $\chi\leq\ceil{\dfrac{1}{2}\omega+\dfrac{1}{2}(\Delta+1)}$.
-	
 \end{conj}
-
-
-
-
+\begin{df}{$d$-regular}
+	A graph in which all the vertices have the same degree of $d$ is called a \textit{$d$-regular}.	
+\end{df}
+\begin{rmk}
+	Construction to embed a graph of maximum degree $\Delta$ into a $\Delta$-regular. 
+	\begin{itemize}
+		\item Take two copies of $G$ and join the two copies of any vertex not of maximum degree $\Delta$.
+		\item If $G$ is not regular, the previous step increases its minimum degree by $1$ without changing the maximum degree. Repeat the previous step until the desired result. 
+	\end{itemize}	
+	With this construction, we can extend results on $d$-regular graphs to graphs with maximum degree $d$. 
+\end{rmk}
 
 \subsection{List Chromatic Number}
+\begin{df}{List Chromatic Number}
+	Given a list $L_v$ of colors for each vertex of $G$, we say that a vertex coloring is \textit{acceptable} if every vertex is colored with a color on its list. The \textit{list chromatic number} of a graph, denoted $\chi^\l(G)$ is the minimum $r$ which satisfies: if every list has at least $r$ colors, then there is an acceptable coloring. 
+\end{df}
+\begin{df}{List Chromatic Index}
+	Given a list of colors for each edge  of $G$, we say that an edge coloring is \textit{acceptable} if every edge is colored with a color on its list. The \textit{list chromatic index} of a graph, $\chi_e^\l(G)$, is the minimum $r$ which satisfies: if every list has at least $r$ colors, then there is an acceptable coloring. 	
+\end{df}
+\begin{conj}{The List Coloring Conjecture}
+	Every graph $G$ satisfies: $\chi_e^\l(G)=\chi_e(G)$.	
+\end{conj}
+\begin{conj}{Dinitz's Conjecture}
+	$\chi_e^\l(K_{n,n})=n$.	
+\end{conj}
+
 \subsection{Proving Brooks' Theorem}\label{sec:provingBrook}
+\begin{lem}{}
+	Any partial $\Delta+1$ coloring of $G$ can be extended to a $\Delta+1$ coloring of $G$.	
+\end{lem}
+\begin{prf}
+	Let $H$ be some subgraph of $G$ that is $\Delta+1$ colored. Let $\l$ be the last vertex colored in $H$. Perform coloring on $v_{\l+1}$, we can complete the coloring. 
+\end{prf}
+\begin{df}{Coloring Number}
+	The \textit{coloring number} of $G$, denoted $\col(G)$, is the maximum over all subgraphs $H$ of $G$ of $\delta(H)+1$.
+\end{df}
+\begin{prf}
+	We will show this definition makes sense. Choose an ordering of $V(G)$, beginning with $v_n$, by repeatedly setting $v_i$ to be the minimum degree vertex of $H=G-\qty{v_{i+1},\dots,v_n}$. Then, when we come to $v_i$, we will use a color in $\qty{1,\dots,\delta(H_i)+1}$.
+\end{prf}
+\begin{thm}{The Greedy Coloring Algorithm}
+	The process which colors $V(G)$ by coloring the vertices in some given order, always using the first available color (under some arbitrary ordering of the colors). Also use the term for the analogous process for extending a partial coloring. 
+\end{thm}
+\begin{thm}{Recall: Brook's Theorem}
+	$\chi(G)\leq\Delta$ unless some component of $G$ is a clique with $\Delta+1$ vertices or $\Delta=2$ and some component of $G$ is an odd cycle. 	
+\end{thm}
+\begin{prf}
+	Since $G$ is bipartite unless it contains an odd cycle, the Theorem holds when $\Delta=2$.
+	\begin{lem}{}
+		Any $2$-connected graph $G$ of maximum degree at least three which is not a clique contains $3$ vertices $x,y,z\st$ $xy,xz\in E(G)$, $yz\notin E(G)$, and $G-y-z$ is connected. 
+	\end{lem}
+	\begin{cor}{}
+		Let $G$ be a $2$-connected graph which has maximum degree $\Delta\geq3$ and is not a clique. Then, we can order the vertices of $G$ as $v_1,\dots,v_n$ so that $v_1,v_2\in E(G)$, $v_1v_n, v_2v_n\in E(G)$, and $\forall j$ between $3$ and $n-1$, $v_j$ has at most $\Delta-1$ neighbors in $\qty{v_1,\dots,v_{j-1}}$.	
+	\end{cor}
+	\begin{prf*}
+		Choose $x,y,z$ as in Lemma 3.7.5. Set $v_1=y$ and $v_2=z$. We can order $G-y-z$ as $v_3,\dots,v_n=x$ so that for each $i<n$, $v_i$ has a neighbor $v_j$ with $j>i$.
+	\end{prf*}
+	Now, consider a graph $G$ and ordering as in Corollary 3.7.6. Applying the Greedy Coloring Algorithm, assign color $1$ to $v_1$ and $v_2$. For each $i\in\qty{3,\dots,n-1}$, $v_i$ receives a color between $1$ and $\Delta$ since it has a neighbor $v_j$ with $j>i$, and so at most $\Delta-1$ of its neighbors have been colored. Since $v_n$ is connected to $v_1$ and $v_2$ (who is colored by $1$), $v_n$ will also be colored by a color between $1$ and $\Delta$. \par 
+	Therefore, $\exists\ \Delta$-coloring of $G$. Brook's Theorem holds for $\Delta\geq3$.
+\end{prf}
+\begin{eg}
+	Let $G$ be a graph of maximum degree $\Delta$ and $r\in\Z$. Suppose we can color a subset of the vertices of $G$ using $\Delta+1-r$ colors so that no two adjacent vertices are colored with the same color and for every $v\in V$, there are at least $r$ colors which are used on two or more neighbors of $v$. Show that $G$ has a $\Delta+1-r$ coloring. 
+\end{eg}
+\begin{prf}
+	Suppose $S$ is the subset described in the problem. Suppose we have a partial proper coloring of $G$, where $S\cup T$ is the subset we colored so far ($S\cap T=\emptyset$). Let $v\in V(G)\backslash V(S\cup T)$. 
+	\begin{clm}
+		We can extend the coloring to $S\cup T\cup\qty{v}$.
+	\end{clm}
+	By assumption, there exist colors $\alpha,\dots,\alpha_r\st v$ has at least two neighbors, say $x_i,y_i\in S$, with color $\alpha_i$ for all $i\in\qty{1,\dots,r}$. Since $d(V)\leq\Delta$, $N(v)$ receives at most $r+(\Delta-2r)=\Delta-r$ colors. That is, $x_1y_1,x_2y_2,\dots,x_ry_r,z_{r+1},\dots,z_{\Delta}$. So, some color between $1$ and $\Delta+1-r$ is not used.  
+\end{prf}
+
+
+

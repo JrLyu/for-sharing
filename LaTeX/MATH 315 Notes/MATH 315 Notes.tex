@@ -458,7 +458,7 @@ b(p) = b(k);
 	\end{itemize}	
 \end{df}
 \begin{prf}
-	In this prove, we want to show the $1-$norm is a proper norm.
+	In this proof, we want to show the $1-$norm is a proper norm.
 	\begin{itemize}
 		\item \textbf{Positive Definiteness}: Note that $\|x\|_1=\qty|x_1++\cdots+\qty|x_n|\geq0$ since each $\qty|x_j|\geq0$. If one $x_i\neq0$, $\qty|x_i|\geq0$, then $\|x\|_1>0$. So, if $\|x\|_1=0$, it must be $x=0$. $\pqed$
 		\item \textbf{Positive Homogeneity}: \begin{align*}\|cx\|_1&=\qty|cx_1|+\qty|cx_2|+\cdots+\qty|cx_n|\\&=\qty|c|\qty|x_1|+\qty|c|\qty|x_2|+\cdots+\qty|c|\qty|x_n|\\&=\qty|c|\qty(\qty|x_1|+\qty|x_2|+\cdots+\qty|x_n|)\\&=\qty|c|\|x\|_1.\pqed\end{align*}
@@ -492,7 +492,7 @@ b(p) = b(k);
 \end{prf}
 \begin{eg}{}
 	Given that $\A=\mqty[-1&2\\-12&9]$, find $\|\A\|_1$ and $\|\A\|_\infty$.
-	\[\|\A\|_1=\text{maximum column sum}=\max_{j=1,\dots,n}\|\A(:.j)\|_1=13.\]
+	\[\|\A\|_1=\text{maximum column sum}=\max_{j=1,\dots,n}\|\A(:,j)\|_1=13.\]
 	\[\|\A\|_\infty=\text{maximum row sum}=21.\]
 \end{eg}
 \begin{thm}{Submultiplicativity of Induced Norm}
@@ -944,7 +944,7 @@ b(p) = b(k);
 	\end{itemize}	
 \end{thm}
 \begin{df}{Midpoint Rule}
-	\[\int_{x_{i-1}}^{x_{i}} f(x)\ \d{x}\approx\int_{x_{i-1}}^{x_i}f\qty(\dfrac{x_{i-1}+x_i}{2})\ \d{x}=\qty(x_i-x_{i-1})f\qty(\dfrac{x_{i-1}-x_i}{2}).\]
+	\[\int_{x_{i-1}}^{x_{i}} f(x)\ \d{x}\approx\int_{x_{i-1}}^{x_i}f\qty(\dfrac{x_{i-1}+x_i}{2})\ \d{x}=\qty(x_i-x_{i-1})f\qty(\dfrac{x_{i-1}+x_i}{2}).\]
 	\begin{center}
 		\tikzset{every picture/.style={line width=0.75pt}} 
 		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1525,7 +1525,7 @@ b(p) = b(k);
 	\caption{Bracket Refinement}
 	\KwIn{a bracket $[a,b]$ and two search points $c,d$.}
 	If $f(c)\leq f(d)$, then $[a,d]$ is a bracket for the minimum\;
-	If $f(c)\geq f(d)$, then $[c,d]$ is a bracket for the minimum\;
+	If $f(c)\geq f(d)$, then $[c,b]$ is a bracket for the minimum\;
 \end{algorithm}
 \begin{algorithm}
 	\caption{Golden Section Search}
@@ -1546,19 +1546,19 @@ Advancement of the Golden Section Search
 \begin{thm}{Condition to Stop the Golden Section Search}
 	\begin{enumerate}
 		\item Function has a similar value at all four points
-		\item Brackets is small: \[\qty|b-a|\leq\sqrt{\dfrac{\epsilon}{L}},\] where $\epsilon$ is the working precision, and $l$ is some constant. 
+		\item Brackets is small: \[\qty|b-a|\leq\sqrt{\dfrac{\epsilon}{L}},\] where $\epsilon$ is the working precision, and $L$ is some constant. 
 	\end{enumerate}	
 	\begin{rmk}
 		For example, if we want five digits of precision, $\epsilon$ should be around $10^{-6}$ or $10^{-5}$, but generally, the smaller $\epsilon$, the more iterations we need. 
 	\end{rmk}
 \end{thm}
 \begin{prf}
-	Here, we offer some intuition of why that condition for small brackets will work. \par If $f$ is continuously differentiable, then we have \[\qty|\dfrac{f(x)-f\qty(x_m)}{x-x_m}|\leq L,\] where $l$ is the Lipschitz constant. This inequality shows that for all $x\in[a,b]$ and $x\neq x_m$, the slope is bounded: \[\qty|f(x)-f(x_m)|\leq L\qty|x-x_m|\leq L\abs{b-a}\leq\text{some upper bound}\]
+	Here, we offer some intuition of why that condition for small brackets will work. \par If $f$ is continuously differentiable, then we have \[\qty|\dfrac{f(x)-f\qty(x_m)}{x-x_m}|\leq L,\] where $L$ is the Lipschitz constant. This inequality shows that for all $x\in[a,b]$ and $x\neq x_m$, the slope is bounded: \[\qty|f(x)-f(x_m)|\leq L\qty|x-x_m|\leq L\abs{b-a}\leq\text{some upper bound}\]
 	\begin{rmk}	
 	So, if $f$ is a very steep function, $L$ needs to be large to bound the slope. We therefore need small brackets. Then, more iterations are needed to refine the brackets. On the other hand, if $f$ is a very flat function, $L$ can be small but still bound the slope. We could have relatively large brackets, and so less iterations are needed. 
 	\end{rmk}\par 
 	\[\underbrace{L(b-a)^2}_{\text{upper bound of }\qty|f(x)-f(x_m)|\text{ (computed vs. true)}}\leq\overbrace{\epsilon}^{\text{upper bound of }\frac{|F(x)-f(x)|}{|f(x)|}\text{ rounding error, user-defined level of precision}}\]
-	Now, let's discuss the role of $L$, the Lipschitz constant. Assume $f$ is second-order differentiable. We can approximate $x_m$ with x by using the Taylor's series: \begin{align*}f(x)&\approx f(x_m)+\underbrace{f'(x_m)(x-x_m)}_{0}+\dfrac{f''(x_m)}{2}\qty(x-x_m)^2\\\underbrace{f(x)}_\text{computed}&\approx\underbrace{f(x_m)}_\text{true}\underbrace{\qty(1+\psi)}_\text {relative error}\end{align*} So, we would have \begin{align*}\psi&\equiv\dfrac{f''(x_m)}{2f(x_m)}(x-_m)^2\\\qty|\psi|&\leq\abs{\dfrac{f''(x_m)}{2f(x_m)}}(b-a)^2=L(b-a)^2\end{align*} Therefore, we know $L$ depends on the curvature of $f''(x_m)$ and the value of $f(x_m)$.
+	Now, let's discuss the role of $L$, the Lipschitz constant. Assume $f$ is second-order differentiable. We can approximate $x_m$ with x by using the Taylor's series: \begin{align*}f(x)&\approx f(x_m)+\underbrace{f'(x_m)(x-x_m)}_{0}+\dfrac{f''(x_m)}{2}\qty(x-x_m)^2\\\underbrace{f(x)}_\text{computed}&\approx\underbrace{f(x_m)}_\text{true}\underbrace{\qty(1+\psi)}_\text {relative error}\end{align*} So, we would have \begin{align*}\psi&\equiv\dfrac{f''(x_m)}{2f(x_m)}(x-x_m)^2\\\qty|\psi|&\leq\abs{\dfrac{f''(x_m)}{2f(x_m)}}(b-a)^2=L(b-a)^2\end{align*} Therefore, we know $L$ depends on the curvature of $f''(x_m)$ and the value of $f(x_m)$.
 \end{prf}
 \begin{rmk}
 		In practice, we don't always know $x_m$ and the derivatives, so $L$ would just be some numbers to pick.	
@@ -1594,7 +1594,7 @@ Advancement of the Golden Section Search
 	\caption{Cubic Interpolation Search II: Power Series}
 	Define $P_3(x)=A(x-c)^3+B(x-c)^2+C(x-c)+D$, where $c=\dfrac{a+b}{2}$\;
 	Solve the system we get \[A=\dfrac{[d(f'(b)-f'(a))-(f(b)-f(a))]}{4d^3};\quad B=\dfrac{[f'(b)-f'(a)]}{4d}\]\[C=\dfrac{[3(f(b)-f(a))-d(f'(b)+f'(a))]}{4d};\quad D=\dfrac{[f(a)+f(b)]}{2}-\dfrac{d[f'(b)-f'(a)]}{4},\] where $d=\dfrac{b-a}{2}$, and so $a+d=c$ and $b-d=c$\;
-	Solve $p_3'(x)=0$ to find the minimizer: $\text{roots}=\dfrac{a+b}{2}+\dfrac{-B\pm\sqrt{B^2-3AC}}{3A}$, and the root of smaller magnitude will be chosen as the new search point. Repeat\;
+	Solve $P_3'(x)=0$ to find the minimizer: $\text{roots}=\dfrac{a+b}{2}+\dfrac{-B\pm\sqrt{B^2-3AC}}{3A}$, and the root of smaller magnitude will be chosen as the new search point. Repeat\;
 \end{algorithm}
 \begin{rmk}
 	The cubic interpolation search ensures that a root of $P_3'(x)=0$ exists in $(a,b)$ (by the Intermediate value theorem) and there is only one root in $(a,b)$. 
