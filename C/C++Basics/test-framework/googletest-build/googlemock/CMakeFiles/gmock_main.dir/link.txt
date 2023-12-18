@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/lib/libgmock_main.a CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib /Users/richardlyu/Documents/GitHub/Enrichment/C/C++Basics/cmake-build-debug/lib/libgmock_main.a
