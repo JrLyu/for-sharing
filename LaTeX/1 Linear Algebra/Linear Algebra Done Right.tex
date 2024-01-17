@@ -2247,23 +2247,269 @@
 	Suppose $T\in\L(V)$ and $\lambda\in\F$. Then, \[G\qty(\lambda, T)=\Null\qty(T-\lambda I)^{\dim V}.\]	
 \end{thm}
 \begin{prf}
-		
+	\par ($\subseteq$): Let $v\in G(\lambda, T)$. Then, $\exists\ j\in\N^+\st $\[v\in\Null(T-\lambda I)^j.\] Since $\Null(T-\lambda I)^j\subseteq\Null(T-\lambda)^{j+1}\subseteq\cdots\subseteq\Null(T-\lambda I)^{\dim V}$, we have $v\in\Null(T-\lambda I)^{\dim V}$. So, $G(\lambda, T)\subseteq\Null(T-\lambda I)^{\dim V}$.
+	\par ($\supseteq$): Conversely, suppose $v\in\Null(T-\lambda I)^{\dim V}.$ Then, \[(T-\lambda I)^{\dim V}v=0.\] By definition, $v$ is a generalized eigenvector, and so $v\in G(\lambda, T)$. Then, $\Null(T-\lambda I)^{\dim V}\subseteq G(\lambda, T)$.
 \end{prf}
-
+\begin{thm}{}
+	Let $T\in\L(V)$. Suppose $\lambda_1,\dots,\lambda_m$ are distinct eigenvalues of $T$ and $v_1,\dots,v_m$ are corresponding generalized eigenvectors. Then, $v_1,\dots,v_m$ is $\LI$.
+\end{thm}
+\begin{prf}
+	Let $a_1,\dots,a_m\in\C\st $\begin{equation}\label{eq19}0=a_1v_1+\cdots+a_mv_m.\end{equation} Let $k$ be the largest non-negative integer such that $(T-\lambda_1I)^kv_1\neq0$. Let $w=(T-\lambda_1)^kv_1$, then \[\begin{aligned}(T-\lambda_1I)w&=(T=\lambda_1I)(T-\lambda_1I)^kv=0\\&=(T-\lambda_1I)^{k+1}v=0\end{aligned}\] So, $w$ is an eigenvector, and \begin{equation}\label{eq20}Tw=\lambda_1w.\end{equation} Minus $\lambda w$ from both sides of Equation (\ref{eq20}), we have \[(T-\lambda I)w=(\lambda_1-\lambda)w\qquad\forall v\in\F\] Then, $(T-\lambda I)^nw=(\lambda_1-\lambda)^nw,\ \lambda\in\F,\ n=\dim V$. Apply the operator $(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^m$ to both sides of Equation (\ref{eq19}), we have \[\begin{aligned}0&=(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^n(a_1v_1+\cdots+a_mv_m)\\&=(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^n(a_mv_m)+\cdots+(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^n(a_1v_1)\\&=(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^n(a_1v_1)\\&=a_1(T-\lambda_2I)^n\cdots(T-\lambda_mI)^nw\\&=a_1\underbrace{(T-\lambda_1I)^k(T-\lambda_2I)^n\cdots(T-\lambda_mI)^n}_{\neq0}\underbrace{w}_{\neq0}\end{aligned}\] So, it must be $a_1=0$. Apply the same rationale, we can show $a_1=\cdots=a_m=0$. Therefore, $v_1,\dots,v_m$ is $\LI$ by definition. 
+\end{prf}
+\begin{df}{Nilpotent}
+	An operator is called \textit{nilpotent} if some power of it equals $0$.	
+\end{df}
+\begin{thm}{}
+	Suppose $N\in\L(V)$ is nilpotent. Then, $N^{\dim V}=0$.	
+\end{thm}
+\begin{prf}
+	Note that $\Null(N-0I)^{\dim V}=G(0,N)=V$. So, we have proven $N^{\dim V}=0$.	
+\end{prf}
+\begin{lem}{}
+	Suppose $N\in\L(V)$ has a basis such that $\M(N)$ is an upper-triangular matrix with its diagonal all $0$. Then, $N$ is nilpotent. 
+\end{lem}
+\begin{prf}
+	Suppose the basis is $v_1,\dots,v_n$ and \[A=\M(N)=\mqty(0&&*\\&\ddots&\\&&0).\] Then, \[\begin{aligned}Nv_1&=0\\Nv_2&=A_{1,2}v_1+0,\quad N^2v_2=A_{1,2}Nv_1=0\\\vdots\\Nv_n&=A_{1,n}v_1+\cdots+A_{n-1,n}v_{n-1}+0.\end{aligned}\] So, $N^nv_n=A_{1,n}N^{n-1}v_1+A_{2,n}N^{n-1}v_2+\cdots+A_{n-1,n}N^{n-1}v_{n-1}=0$. That is, $N^n=0$. So, we've shown that $N$ is nilpotent. 
+\end{prf}
+\begin{thm}{Matrix of a Nilpotent Operator}
+	Suppose $N$ is a nilpotent operator on $V$. Then, $\exists$ a basis of $V$ with respect to which the matrix of $N$ has the form \[\mqty(0&&*\\&\ddots&\\0&&0);\]	where all entries on and below the diagonal are $0$'s.
+\end{thm}
+\begin{prf}
+	Let $k\in\N\cup\qty{0}$ be the smallest such that $N^k=0$. So, we have $\Null N^k=V$ and $k\leq n$. So, $N^j\neq0\quad\forall j<k$. So, we have \[\qty{0}=\Null N^0\subsetneq\Null N^1\subsetneq \Null N^2\subsetneq\cdots\subsetneq\Null N^k.\] Select $v_1^1,\dots,v_n^1,v_1^2,\dots,v_{n_2}^2,\dots,v_1^k,\dots,v_{n_k}^k$ as a basis of $N$. It can be also written as $v_1,\dots,v_n$. 
+	\begin{enumerate}
+		\item Let $j$ be an index such that $v_j\in\Null N$. Then, $Nv_j=0$.
+		\item Let $j$ be an index such that $v_j\in\Null N^2$. Then, $N^2(v_j)=N(Nv_j)=0$. So, $Nv_j\in\Null N$.
+	\end{enumerate}
+	So, $\dsst Nv_j=\sum_{\qty{i\mid v_i\in\Null N}}A_{i,j}v_j,\quad i<j$.
+\end{prf}
+\begin{thm}{}
+	Let $T\in\L(V)\st T$ is no nilpotent. Suppose $\dim V=n$. Then, $V=\Null T^{n-1}\oplus\range T^{n-1}$.
+\end{thm}
+\begin{prf}
+	Since $T$ is not nilpotent, $N^n\neq0$. So, $\Null N^n\subsetneq V$. That is, \[0\subseteq\Null T\subseteq\Null T^2\subseteq\cdots\subseteq\Null T^{n-1}\subseteq\Null T^n\subsetneq V.\] So, it must be the case that $\Null T^{n-1}=\Null T^n$. \par Suppose $v\in\qty(\Null T^{n-1})\cap\qty(\range T^{n-1})$. Then, $\exists u\in V\st T^{n-1}u=v$. Note that \[T^{n-1}v=T^{n-1}\qty(T^{n-1}u)=T^{2n-2}u=T^nu=0.\] So, $u\in\Null T^n=\Null T^{n-1}$. That is, $T^{n-1}u=0$. So, $v=0$. Then, $\qty(\Null T^{n-1})\cap\qty(\range T^{n-1})=\qty{0}$, and thus $V=\Null T^{n-1}\oplus\range T^{n-1}$.
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$, $\alpha,\beta\in\F$ with $\alpha\neq\beta$. Then, \[G(\alpha, T)\cap G(\beta, T)=\qty{0}.\]	
+\end{thm}
+\begin{prf}
+	Let $v\in G(\alpha, T)\cap G(\beta, T)$ with $v\neq0$. Then, we know $v$ is a generalized eigenvector of $\alpha$ and $\beta$ at the same time. However, given $\alpha\neq\beta$, their corresponding generalized eigenvectors should be $\LI$. $\divideontimes$ This contradicts with the fact that $v$ cannot be $\LI$ with $v$. Then, our assumption is wrong, and $G(\alpha, T)\cap G(\beta, T)=\qty{0}$.
+\end{prf}
 
 \newpage
 \subsection{Decomposition of an Operator}
-
+\begin{thm}{}
+	Suppose $T\in\L(V)$ and $p=\P(\F)$. Then, $\Null p(T)$ and $\range p(T)$ are invariant under $T$.
+\end{thm}
+\begin{prf}
+	Let $v\in\Null p(T)$. Then, $p(T)(Tv)=T(p(T)v)=T(0)=0.$	 So, $\Null p(T)$ is invariant under $T$. Suppose $v\in\range p(T)$, then $\exists u\in V\st p(T)u=v$. Then, $Tv=T(p(T)u)=p(T)(Tu)\in\range p(T)$. So, $\range p(T)$ is also invariant under $T$. 
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Let $\lambda_1,\dots,\lambda_m$ be the distinct eigenvalues of $T$. Then, 
+	\begin{enumerate}
+		\item $V=G(\lambda_1, T)\oplus\cdots\oplus G(\lambda_m, T)$.
+		\item each $G(\lambda_j,T)$ is invariant under $T$.
+		\item each $(T-\lambda_jI)\mid_{G(\lambda_j,T)}$ is nilpotent. 
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item We will prove it by induction. Obviously, the conclusion follows when $n=1$. Now, consider $n>1$. Suppose the conclusion holds for all spaces with dimension $\leq n-1$.\par 
+		\textit{WTS: the conclusion is true for $\dim V=n$}.\par Consider $V=\Null(T-\lambda_1I)^n\oplus\range(T-\lambda_1I)^n=G(\lambda_1,T)\oplus U$ if we fix $U=\range(T-\lambda_1I)^n$. Obviously ,$G(\lambda_1,T)\neq\qty{0}$. So, $\dim U<n$, and so our inductive hypothesis is applicable to $U$. Note that $G(\lambda_i,T)\cap G(\lambda_j, T)=\qty{0}$ if $i\neq j$. Then, $\lambda_2,\dots,\lambda_m$ are eigenvalues of $T\mid_U$. So, $U=G(\lambda_2,T\mid_U)\oplus\cdots\oplus G(\lambda_m,T\mid_U)$. Then, $V=G(\lambda_1,T)\oplus G(\lambda_2,T\mid_U)\oplus\cdots\oplus G(\lambda_m,T\mid_U)$.\par 
+		\textit{WTS: $G(\lambda_j, T\mid_U)=G(\lambda_j,T)$}\par Note that $G(\lambda_j,T\mid_U)\subseteq G(\lambda_j,T)$ is evident. Conversely, suppose $v\in G(\lambda_k,T)\subseteq V$. Then, $v=v_1+u$ for some $v_1\in G(\lambda_1,T)$ and $u\in U$. Further, by our inductive hypothesis, we have \[u=v_2+\cdots+v_m\quad\text{for some}\quad v_j\in G(\lambda_j,T\mid_U)\subseteq G(\lambda_j,T).\] Then, $v=v_1+u=v_1+v_2+\cdots+v_m\in G(\lambda_k,T)$. That is, $v_1+\cdots+(v_k-v)+\cdots+v_m=0$. Then, $v_1\in G(\lambda_1,T),\dots,v_k-v\in G(\lambda_k,T),\dots,v_m\in G(\lambda_m,T)$. Therefore, $v_1,\dots,v_k-v,\dots,v_m$ are $\LI$. So, it must be that $v_1=\cdots=v_k-2=\cdots=v_m=0$. So, $v=v_1+u=0+u=u$. Then, $v\in U$. So, $v\in G(\lambda_k,T)\cap U=G(\lambda_k,T\mid_U)$. As $k$ was arbitrary, we've shown $G(\lambda_k,U)\subseteq G(\lambda_k,T\mid_U)$. So, $G(\lambda_j,T\mid_U)=G(\lambda_j,T)$. We complete our proof. 
+		\item Note that $G(\lambda_j,T)=\Null(T-\lambda_jI)^n=\Null p(T)$ if $p(z)=(z-\lambda_j)^n$. By Theorem 7.2.1, $\Null p(T)$ is invariant under $T$. So, it follows that $G(\lambda_j, T)$ is also invariant under $T$. $\pqde$
+		\item By definition, we have $G(\lambda_j,T)=\Null(T-\lambda_jI)^n$. Then, $\qty[(T-\lambda_jI)\mid_{G(\lambda_j,T)}]^n=0$. So, by definition, $(T-\lambda_jI)\mid_{G(\lambda_j,T)}$ is nilpotent.
+	\end{enumerate}	
+\end{prf}
+\begin{cor}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Then, $\exists$ a basis of $V$ consisting of generalized eigenvectors of $T$. 
+\end{cor}
+\begin{df}{Multiplicity}
+	Suppose $T\in\L(V)$. The \textit{(algebraic) multiplicity} of an eigenvalue $\lambda$ of $T$ is defined to be the dimension of the corresponding generalized eigenspace $G(\lambda, T)$. In other words, the multiplicity of an eigenvalue $\lambda$ of $T$ equals $\dim\Null(T-\lambda I)^{\dim V}$. The \textit{geometric multiplicity} of an eigenvalue $\lambda$ of $T$ is $\dim E(\lambda, T)$.
+\end{df}
+\begin{thm}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Then, the sum of the multiplicities of all eigenvalues of $T$ equals $\dim V$.	
+\end{thm}
+\begin{prf}
+	By Theorem 7.2.2 (1), we know $V=G(\lambda_1,T)\oplus\cdots\oplus G(\lambda_m,T)$. So, we have \[\dim V=\dim G(\lambda_1,T)+\cdots+\dim G(\lambda_m, T).\]
+\end{prf}
+\begin{df}{Block Diagonal Matrix}
+	A \textit{block diagonal matrix} is a square matrix of the form \[\mqty(A_1&&0\\&\ddots&\\0&&A_m),\] where $A_1,\dots,A_m$ are square matrices lying along the diagonal and all the other entries of the matrix equal $0$. 
+\end{df}
+\begin{thm}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Let $\lambda_1,\dots,\lambda_m$ be the distinct eigenvalues of $T$, with multiplicities $d_1,\dots,d_m$. Then, $\exists$ a basis of $V$ with respect to which $T$ has a black diagonal matrix of the form \[\mqty(A_1&&0\\&\ddots&\\0&&A_m),\] where each $a_j$ is $d_j$-by-$d_j$ upper-triangular matrix of the form \[A_j=\mqty(\lambda_j&&*\\&\ddots&\\0&&\lambda_j).\]
+\end{thm}
+\begin{prf}
+	Note that $Tv_k=A_{1,k}v_1+\cdots+A_{k,k}v_k+\cdots+A_{n,k}v_n$. Also, $(T-\lambda_jI)\mid_{G(\lambda_j,T)}$ is nilpotent. For each $G(\lambda_j,T)$, choose a basis of $G(\lambda_j,T)$ and $\dim G(\lambda_j,T)=d_j$. Then, \[\M\qty((T-\lambda_jI)\mid_{G(\lambda_j,T)})=\mqty(0&&*\\&\ddots&\\0&&0).\] Since $\M\qty((T-\lambda_jI)\mid_{G(\lambda_j, T)})=\M\qty(T\mid_{G(\lambda_j, T)})-\M\qty(\lambda_jI)$, we have \[\begin{aligned}\M\qty(T\mid_{G(\lambda_j,T)})&=\mqty(0&&*\\&\ddots&\\0&&0)+\M\qty(\lambda_jI)\\&=\mqty(0&&*\\&\ddots&\\0&&0)+\mqty(\lambda_j&&*\\&\ddots&\\0&&\lambda_j)\\&=\mqty(\lambda_j&&*\\&\ddots&\\0&&\lambda_j).\end{aligned}\] Put all the bases of $G(\lambda_j,T)$ together, we have completed the proof. 
+\end{prf}
 
 \newpage
 \subsection{Characteristic and Minimal Polynomials}
+\begin{df}{Characteristic Polynomial}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Let $\lambda_1,\dots,\lambda_m$ denote the distinct eigenvalues of $T$, with multiplicities $d_1,\dots,d_m$. The polynomial \[(z-\lambda_1)^{d_1}\cdots(z-\lambda_m)^{d_m}\]	is called the \textit{characteristic polynomial} of $T$. 
+\end{df}
+\begin{thm}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Then, 
+	\begin{enumerate}
+		\item the characteristic polynomial of $T$ has degree $\dim V$;
+		\item the zeros of the characteristic polynomial of $T$ are eigenvalues of $T$. 
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Note that $V=G(\lambda_1,T)\oplus\cdots\oplus G(\lambda_m,T)$. So, $\dim V=d_1+\cdots+d_m$. That is, the characteristic polynomial of $T$ has degree $\dim V$. $\pqde$
+		\item By the definition of characteristic polynomial, it is evidently true. 
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{Cayley-Hamilton Theorem}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. Let $q$ denote the characteristic polynomial of $T$. Then, $q(T)=0$.
+\end{thm}
+\begin{prf}
+	Suppose $\lambda_1,\dots,\lambda_m$ are distinct eigenvalues of $T$ and $d_1,\dots,d_m$ are their corresponding multiplicities. For each $j=1,\dots,m$, we have $(T-\lambda_jI)\mid_{G(\lambda_j,T)}$ is nilpotent. Then, $(T-\lambda_jI)^{d_j}\mid_{G(\lambda_j,T)}=0$. Since $q(z)=(z-\lambda_1)^{d_1}\cdots(z-\lambda_m)^{d_m}$, we know $q(T)=(T-\lambda_1I)^{d_1}\cdots(T-\lambda_mI)^{d_m}$. Consider $v\in V$. Since $V=G(\lambda_1,T)\oplus\cdots\oplus G(\lambda_m, T)$, then $v=a_1v_1+\cdots+a_mv_m$, where $v_j\in G(\lambda_j,T)$. Then, \[\begin{aligned}q(T)v&=q(T)(a_1v_1+\cdots+a_mv_m)\\&=a_1q(T)v_1+\cdots+a_mq(T)v_m.\end{aligned}\] For simplicity, consider \[\begin{aligned}q(T)v_j&=(T-\lambda_1I)^{d_1}\cdots(T-\lambda_mI)^{d_m}v_j\\&=(T-\lambda_1I)^{d_1}\cdots(T-\lambda_mI)^{d_m}(T-\lambda_jI)^{d_j}v_j.\end{aligned}\] Since $v_j\in G(\lambda_j, T)$, we know $(T-\lambda_jI)^{d_j}v_j=0$. Then, $q(T)v_j=0$ for each $j=1,\dots,m$. So, $q(T)v=0$. That is, $q(T)=0$.
+\end{prf}
+\begin{df}{Monic Polynomial}
+	A \textit{monic polynomial} is a polynomial whose highest-degree coefficient equals $1$. 	
+\end{df}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. Then, $\exists$ a unique monic polynomial $p$ of smallest degree such that $p(T)=0$.	
+\end{thm}
+\begin{prf}
+	Let $\dim V=n$. Then, the list $I, T, T^2,\dots,T^{n^2}$ is not $\LI$ in $\L(V)$ because $\L(V)$ has dimension $n^2$ and we have a list of length $n^2+1$. Let $m$ be the smallest positive integer such that the list $I, T, T^2, \dots, T^m$ is linearly dependent. Then, by the Linear Dependence Lemma, $T^m$ is a linear combination of $I, T,\dots, T^{m-1}$. So, we have \begin{equation}\label{eq21} a_0I+a_1T+a_2T^2+\cdots+a_{m-1}T^{m-1}+T^m=0\end{equation} Define a monic $p\in\P(\F)$ as $p(z)=a_0+z_1z+a_2z^2+\cdots+a_{m-1}z^{m-1}+z^m$. Then, Equation (\ref{eq21}) implies $p(T)=0$. Now, we will prove the uniqueness. Suppose $\exists$ a monic $q\in\P(\F)$ with $\deg q=m\st q(T)=0$. Then, $(p-q)(T)=p(T)-q(T)=0$ and $\deg(p-q)<m$. Hence, $p=q$.
+\end{prf}
+\begin{df}{Minimal Polynomial}
+	Suppose $T\in\L(V)$. Then, the \textit{minimal polynomial} of $T$ is the unique monic polynomial $p$ of smallest degree such that $p(T)=0$.	
+\end{df}
+\begin{cor}{}
+	By the Cayley-Hamilton Theorem, the minimal polynomial of each $T\in\L(V)$ has degree $\leq\dim V$.
+\end{cor}
+\begin{thm}{Division Algorithm of Polynomials}
+	Suppose $p,s\in\P(\F)$ with $s\neq0$. Then, $\exists$ unique $q,r\in\P(\F)\st p=sq+r$ and $\deg r<\deg s$.	
+\end{thm}
+\begin{prf}
+	Let $\deg p=n$ and $\deg s=m$. If $n<m$, then $q=0$ and $r=p$. Now, we assume $n\geq m$. Define $T:\P_{n-m}(\F)\times\P_{m-1}(\F)\to\P_n(\F)$ as $T(q,r)=sq+r$. It is easy to verify that $T$ is a linear map. If $(q,r)\in\Null T$, then $sq+r=0$. So, $q=r=0$. That is, $\dim\Null T=0$ and $T$ is injective. Further, note that $\dim(\P_{n-m}(\F)\times\P_{m-1}(\F))=(n-m+1)+(m-1+1)=n+1$ and $\dim\range T=n+1=\dim\P_n(\F)$. Since $\range T\subseteq\P_n(\F)$ and $\dim\range T=\dim\P_n(\F)$, we have $\range T=\P_n(\F)$. Therefore, $T$ is surjective.
+\end{prf}
+\begin{thm}{}
+	Suppose $T\in\L(V)$ and $q\in\P(\F)$. Then, $q(T)=0$ if and only if $q$ is a polynomial multiple of the minimal polynomial of $T$. 
+\end{thm}
+\begin{prf}
+	Let $p$ be the minimal polynomial of $T$. \par 
+	($\Leftarrow$): Suppose $q=sp$. Then, $q(T)=s(T)p(T)=0$.$\pqde$\par 
+	($\Rightarrow$): Suppose $q(T)=0$. By division algorithm of polynomials, $q=sp+r$ with $\deg r<\deg p$. Then, $q(T)=s(T)p(T)+r(T)=0$. Note that $p(T)=0$, so $r(T)=0$. Then, $r=0$. It must be $q=sp$.	
+\end{prf}
+\begin{thm}{Characteristic Polynomial and Minimal Polynomial}
+	Suppose $\F=\C$ and $T\in\L(V)$. Then, the characteristic polynomial of $T$ is a polynomial multiple of the minimal polynomial of $T$. 	
+\end{thm}
+\begin{prf}
+	Suppose $q$ is a characteristic polynomial of $T$. Then, by Cayley-Hamilton Theorem, $q(T)=0$. Further by Theorem 7.3.9, $q$ is a polynomial multiple of the minimal polynomial of $T$. 
+\end{prf}
+\begin{thm}{}
+	Let $T\in\L(V)$. Then, the zeros of the minimal polynomial of $T$ are precisely the eigenvalues of $T$. 
+\end{thm}
+\begin{rmk}
+	``Precisely'' means ``is and only is.''	 So, we need to prove the theorem from two directions. 
+\end{rmk}
+\begin{prf}
+	Suppose $p(z)=a_0+a_1z+a_2z^2+\cdots+a_{m-1}z^{m-1}+z^m$ is the minimal polynomial of $T$. 
+	\par ($\Rightarrow$): Suppose $p(\lambda)=0$. $\quad$\textit{WTS: $\lambda$ is the eigenvalue}.$\quad$ Since $p(\lambda)=0$, we have $p(z)=(z-\lambda)q(z)$. Then, $p(T)=(T-\lambda I)q(T)=0$. Then, $\deg q<\deg p$ and $p(T)v=(T-\lambda I)q(T)v=0\quad\forall v\in V$. So, $\exists v\in V\st q(T)v\neq0$. So, it must be that $T-\lambda I$ is not injective, and thus $\lambda$ is an eigenvalue of $T$. $\pqde$
+	\par ($\Leftarrow$): Suppose $\lambda\in\F$ is an eigenvalue of $T$. Then, $\exists v\in V\st Tv=\lambda v$ with $v\neq0$. Consider $T^jv=\lambda^jv$. Then, \[\begin{aligned}p(T)V&=(a_0I+a_1T+\cdots+a_{m-1}T^{m-1}+T^m)v\\&=(a_0+a_1\lambda+\cdots+a_{m-1}\lambda^{m-1}+\lambda^m)v\\&=p(\lambda)v=0\end{aligned}\] Since $v\neq0$, it must be $p(\lambda)=0$.
+\end{prf}
+\begin{eg}
+	Suppose $T\in\L(\C^3)$ be defined as \[T(z_1,z_2,z_3)=(6z_1+3z_2+4z_3,6z_2+2z_3,7z_3).\]	 Then, \[\M(T)=\mqty(6&3&4\\0&6&2\\0&0&7).\] Find the minimal polynomial of $T$. 
+	\begin{sol}
+		Since $\M(T)=\mqty(6&3&4\\0&6&2\\0&0&7)$, the eigenvalues of $T$ are $6, 6, 7$. The multiplicity of $6$ is $2$ and that of $7$ is $1$. So, the characteristic polynomial of $T$ is $q(z)=(z-6)^2(z-7)$. Then, the minimal polynomial is polynomial multiple of $(z-6)(z-7)$. So, the minimal polynomial of $T$ should be $(z-6)(z-7)$ or $(z-6)^2(z-7)$. Note that \[\begin{aligned}\M\qty[(T-6I)^2(T-7I)]&=(\M(T-6I))^2\M(T-7I)\\&=\mqty(0&010\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\\&=\end{aligned}\] and \[\M\qty[(T-6I)(T-7I)]=\mqty(0&3&4\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\neq0.\] So, $(z-6)^2(z-7)$ is the minimal polynomial of $T$. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Find the minimal polynomial of operator $T\in\L(\C^3)$ defined by $T(z_1,z_2,z_3)=(6z_1,6z_2,7z_3)$.
+	\begin{sol}
+		Note that \[\M(T)=\mqty(6&0&0\\0&6&0\\0&0&7).\] Then, the characteristic polynomial is $q(z)=(z-6)^2(z-7)$. The minimal polynomial could be $(z-6)^2(z-7)$ or $(z-6)(z-7)$. Since \[\begin{aligned}\M[(T-6I)(T-7I)]&=\M(T-6I)\M(T-7I)\\&=\mqty(0&0&0\\0&0&0\\0&0&1)\mqty(-1&0&0\\0&-1&0\\0&0&0)=0,\end{aligned}\] the minimal polynomial of $T$ is $(z-6)(z-7)$.
+	\end{sol}
+\end{eg}
+\begin{thm}{}
+	Suppose $T\in\L(V)$. $T$ is invertible if and only if the constant term in the minimal polynomial of $T$ is non-zero. 	
+\end{thm}
+\begin{prf}
+	Let $p(z)=a_0+a_1z+\cdots+a_{m-1}z^{m-1}+z^m$ be the minimal polynomial of $T$. 
+	\par ($\Rightarrow$) We will prove the contrapositive: ``If $a_0=0$, then $T$ is not invertible.'' Suppose $a_0=0$. Then, \[p(z)=a_1z+\cdots+a_{m-1}z^{m-1}+z^m.\] Then, $p(0)=0$. So, $0$ is an eigenvalue of $T$. That is, $Tv=0$ for some $v\neq0$. Then, $T$ is not injective, and thus is not invertible. $\pqde$
+	\par ($\Leftarrow$) We will prove the contrapositive: ``If $T$ is not invertible, then $a_0=0$.'' Suppose $T$ is not invertible. Then, $T$ is not injective. So, $\exists v\neq0\st Tv=0$. That is, $Tv=0\cdot v$ or $0$ is an eigenvalue of $T$. So, $p(z)=zq(z)$, and thus $a_0=0$.
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a complex vector space and $T\in\L(V)$. $V$ has a basis consisting of eigenvectors of $T$ if and only if the minimal polynomial of $T$ has no repeated roots. 
+\end{thm}
 
 \newpage
 \subsection{Jordan Form}
+\begin{eg}
+	Let $N\in\L(\F^4)$ be the nilpotent operator $N(z_1,z_2,z_3,z_4)=(0,z_1,z_2,z_3)$. Let $v=(1,0,0,0)$. Then, $Nv=(0,1,0,0)$, $N^2v=(0,0,1,0)$, and $N^3v=(0,0,0,1)$. Note that $v, Nv, N^2v, N^3v$ is a basis of $\F^4$, and the matrix of $N$ with respect to this basis is \[\mqty(0&1&0&0\\0&0&1&0\\0&0&0&1\\0&0&0&0).\]	
+\end{eg}
+\begin{eg}
+	Let $N\in\L(\F^6)$ be the nilpotent operator defined by \[N(z_1,z_2,z_3,z_4,z_5,z_6)=(0,z_1,z_2,0,z_4,0).\] Let $v_1=(1,0,0,0,0,0)$, $v_2=(0,0,0,1,0,0)$, and $v_3=(0,0,0,0,0,1)$. Then, we have $N^2v_1$, $Nv_1$, $Nv_2$, $v_2$, $v_3$ to be a basis of $\F^6$. The matrix of $N$ with respect to this basis is \[\mqty(\mqty(0&1&0\\0&0&1\\0&0&0)&\begin{array}{cc}0&0\\0&0\\0&0\end{array}&\begin{array}{c}0\\0\\0\end{array}\\\begin{array}{ccc}0&0&0\\0&0&0\end{array}&\mqty(0&1\\0&0)&\begin{array}{c}0\\0\\\end{array}\\\begin{array}{ccc}0&0&0\end{array}&\begin{array}{cc}0&0\end{array}&\mqty(0))\]
+\end{eg}
+\begin{thm}{}
+	Suppose $N\in\L(V)$ is nilpotent. Then, $\exists v_1,\dots,v_n\in V$ and $m_1,\dots,m_n\in\N^+$ such that 
+	\begin{enumerate}
+		\item $N^{m_1}v_1,\dots,Nv_1,v_1,\dots,N^{m_n}v_n,\dots,Nv_n,v_n$ is a basis of $V$;
+		\item $N^{m_1+1}v_1=\cdots=N^{m_n+1}v_n=0$.
+	\end{enumerate}
+\end{thm}
+\begin{prf}
+	We will prove by induction on $\dim V$.\par 
+	$\boxed{\text{Base Case}}$ When $\dim V=1$, the conclusions obviously hold. \par 
+	$\boxed{\text{Inductive Steps}}$ Assume $\dim V>1$ and the conclusions hold for all spaces with dimension smaller than $\dim V$. Since $N$ is nilpotent, it is not injective and thus is not surjective. So, $\range N\subsetneq V$. That is, $\dim\range N<\dim V$. Since $N$ is nilpotent, it is not injective and thus is not surjective. So, $\range N\subsetneq V$. that is, $\dim\range N<\dim V$. Apply the inductive hypothesis on $\range N$. Consider $N\mid_{\range N}\in\L(\range N)$, then $\exists v_1,\dots,v_n\in\range N$ and $m_1,\dots,m_n\in\N^+$ such that \begin{equation}\label{eq22} N^{m_1}v_1,\dots, Nv_1,v_1,\dots,N^{m_n}v_n,\dots,Nv_n,v_n.\end{equation} is a basis of $\range N$, and $N^{m_1+1}v_1=\cdots=N^{m_n+1}v_n=0$. For each $j$, $v_j\in\range N$. Then, $\exists u_j\in V\st v_j=Nu_j$. So, $N^{k+1}u_j=N^{k}v_j\quad\forall k\in\N^+$. We now claim the following list of vectors is $\LI$: \begin{equation}\label{eq23}N^{m_1+1}u_1,\dots,Nu_1,u_1,\dots,N^{m_n+1}u_n,\dots,Nu_n,u_n\end{equation} Let $a_1^{m_1+1}N^{m_1+1}u_1+\cdots+a_1^1Nu_1+a_1^0u_1+\cdots+a_n^{m_n+1}N^{m_n+1}u_n+\cdots+a_n^1Nu_n+a_n^0u_n=0$. Then, \begin{equation}\label{eq24}a_1^{m_1+1}N^{m_1}v_1+\cdots+a_1^1v_1+a_1^0u_1+\cdots+a_n^{m_n+1}N^{m_n}v_n+\cdots+a_n^1v_n+a_n^0u_n=0.\end{equation} Apply $N$ to both sides of the Equation (\ref{eq24}), \[\underbrace{a_1^{m_1+1}N^{m_1+1}v_1}_{0}+\cdots+a_1^1Nv_1+a_1^0\underbrace{Nu_1}_{v_1}+\cdots+\underbrace{a_n^{m_n+1}N^{m_n+1}v_n}_{0}+\cdots+a_n^1Nv_n+a_n^0\underbrace{Nu_n}_{v_n}=0.\] So, \[a_1^{m_1}N^{m_1}v_1+\cdots+a_1^1Nv_1+a_1^0v_1+\cdots+a_n^{m_n}N^{m_n}v_n+\cdots+a_n^1Nv_n+a_n^0v_n=0.\] Since Equation (\ref{eq22}) is a basis, it must be all the coefficients equal to $0$. Meanwhile, reconsider Equation (\ref{eq24}). It becomes \[a_1^{m_1+1}N^{m_1}v_1+\cdots+a_n^{m_n+1}N^{m_n}v_n=0.\] As $N^{m_1},\dots,N^{m_n}$ is included in the list of vector stated in Equation (\ref{eq22}), they must also be $\LI$. Thus, we have $a_1^{m_1+1}=\cdots=a_n^{m_n+1}=0$. So, we have proven the claim by showing Equation (\ref{eq23}) is indeed a list of $\LI$ vectors. Now, extend Equation (\ref{eq23}) into a bassi of $V$: \begin{equation}\label{eq25}N^{m_1+1}u_1,\dots,Nu_1,u_1,\dots,N^{m_n+1}u_n,\dots,Nu_n,u_n,w_1,\dots,w_p\end{equation} Then, each $Nw_j\in\range N=\span(\text{Equation (\ref{eq22})})\st Nw_j=Nx_j$. Now, suppose $u_{n+j}=w_j-x_j$, and we have $Nu_{n+j}=0$. Hence, \begin{equation}\label{eq26}N^{m_1+1}u_1,\dots,Nu_1,u_1,\dots,N^{m_n+1}u_n,\dots,Nu_n,u_n,u_{n+1},\dots,u_{n+p}\end{equation} spans $V$ because it contains each $x_j$ and $u_{n+j}$ and thus $w_j$. Since Equation (\ref{eq25}) and Equation (\ref{eq26}) have the same length, Equation (\ref{eq26}) is a basis of $V$ satisfying the desired condition.
+\end{prf}
+\begin{df}{Jordan Basis}
+	Suppose $T\in\L(V)$. A basis of $V$ is called a \textit{Jordan basis} of $T$ if $\M(T)$ with respect to this basis has a block diagonal matrix \[\mqty(A_1&&0\\&\ddots&\\0&&A_p),\] where each $A_j$ is an upper-triangular matrix of the form \[\mqty(\lambda_j&1&&0\\&\ddots&\ddots&\\&&\ddots&1\\0&&&\lambda_j).\]
+\end{df}
+\begin{thm}{Jordan Form}
+	Suppose $V$ is a complex vector space. If $T\in\L(V)$, then $\exists$ a basis of $V$ that is a Jordan basis for $T$. 
+\end{thm}
+\begin{prf}
+	First consider a nilpotent operator $N\in\L(V)$. Suppose $v_1,\dots,v_n\in\L(V)$ satisfy the condition in Theorem 7.4.3. For each $j$, note that the list of vectors $N^{m_j}v_j,N^{m_{j-1}}v_j,\dots,Nv_j,v_j$ correspond to a matrix of $N$ as \[\mqty(0&1&&0\\&\ddots&\ddots&\\&&\ddots&1\\0&&&0.)\] Hence, the conclusion holds for a nilpotent operator. Assume $T\in\L(V)$. Let $\lambda_1,\dots,\lambda_m$ be distinct eigenvalues of $T$. Then, we have the generalized eigenspace decomposition: \[V=G(\lambda_1,T)\oplus\cdots\oplus G(\lambda_m,T),\] where each $(T-\lambda_jI)\mid_{G(\lambda_j,T)}$ is nilpotent. Thus, some basis of each $G(\lambda_j, T)$ is a Jordan basis of $T-\lambda_jI$. So, \[\M\qty((T-\lambda_jI)\mid_{G(\lambda_j,T)})=\mqty(0&1&&0\\&\ddots&\ddots&\\&&\ddots&1\\0&&&0)\] and \[\M\qty(T\mid_{G(\lambda_j, T)})=\mqty(\lambda_j&1&&0\\&\ddots&\ddots&\\&&\ddots&1\\0&&&\lambda_j).\] Also, the dimension of the matrix is $\dim G(\lambda_j, T)$.
+\end{prf}
 
 \newpage
 \section{Operators on Real Vectors Spaces}
 \subsection{Complexification}
+\begin{df}{Complexification of $V$/$V_\C$}
+	Suppose $V$ is a real vector space. The \textit{complexification} of $V$, denoted $V_\C$, equals $V\times V$. An element of $V_\C$ is an ordered pair $(u, v)$, where $u,v\in V$, but we will write this as $u+\i v$.	
+\end{df}
+\begin{df}{Addition \& Multiplication on $V_\C$}
+	\begin{enumerate}
+		\item \textit{Addition} on $V_\C$ is defined by \[(u_1+\i v_1)+(u_2+\i v_2)=(u_1+u_2)+\i(v_1+v_2).\] for $u_1,u_2,v_1,v_2\in V$.
+		\item \textit{Complex Scalar Multiplication} on $V_\C$ is defined by \[(a+b\i)(u+\i v)=(au-bv)+\i(av+bu)\] for $a,b\in\R$ and $u,v\in V$.
+	\end{enumerate}	
+\end{df}
+\begin{thm}{}
+	Suppose $V$ is a real vector space. Then, with the definition of addition and scalar multiplication as above, $V_\C$ is a complex vector space.	
+\end{thm}
+\begin{prf}
+	\begin{enumerate}
+		\item Addition. Let $u_j+\i v_j\in\C$. 
+		\begin{enumerate}
+			\item commutativity: \[\begin{aligned}(u_1+\i v_1)+(u_2+\i v_2)&=(u_1+u_2)+\i(v_1+v_2)\\&=(u_2+u_1)+\i(v_2+v_1)\\&=(u_2+\i v_2)+(u_1+\i v_1).\pqde\end{aligned}\]
+			\item associativity: \[\begin{aligned}((u_1,v_1)+(u_2,v_2))+(u_3,v_3)&=(u_1+u_2,v_1+v_2)+(u_3,v_3)\\&=(u_1+u_2+u_3,v_1+v_2+v_3)\\&=(u_1+(u_2+u_3),v_1+(v_2+v_3))\\&=(u_1,v_1)+((u_2,v_2)+(u_3,v_3)).\pqde\end{aligned}\]
+			\item identity: \[\begin{aligned}(0,0)+(u,v)=(0+u,0+v)&=(u+0,v+0)\\&=(u,v)+(0,0)\\&=(u,v).\pqde\end{aligned}\]
+			\item inverse: \[\begin{aligned}(-u,-v)+(u,v)=(-u+u,-v+v)=(0,0).\pqde\end{aligned}\]
+		\end{enumerate}
+		\item Scalar Multiplication: Let $(u,v)\in V_\C$, $a+b\i$ and $c+d\i\in\C$.
+		\begin{enumerate}
+			\item identity: \[(1+0\i)(u+\i v)=u+\i v+0\i u-0v=u+\i v.\pqde\]
+			\item associativity: can be easily verified. omitted.
+			\item distributivity: can be easily verified. omitted.
+		\end{enumerate}
+	\end{enumerate}	
+\end{prf}
+\begin{thm}{}
+	Suppose $V$ is a real vector space.
+	\begin{enumerate}
+		\item If $v_1\dots,v_n$ is a basis of $V$ (as a real vector space), then $v_1,\dots,v_n$ is a basis of $V_\C$ (as a complex vector space).
+		\item The dimension of $V_\C$ (as a complex vector space) equals the dimension of $V$ (as a real vector space).
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	
+\end{prf}
+
+
 
 \newpage
 \subsection{Operators on Real Inner Product Spaces}
@@ -2275,132 +2521,5 @@
 \newpage
 \subsection{Determinant}
 
-\newpage
-\section{Exercises}
-\subsection{Span and Linear Independence}
-\begin{enumerate}
-	\item Suppose $v_1,v_2,v_3,v_4$ spans $V$. Prove that the list $v_1-v_2,v_2-v_3,v_3-v_4,v_4$ also spans $V$.
-	\item Prove that if $\C$ is a vector space on $\R$, then the list $1+\i,1-\i$ is $\LI$. 
-	\item Prove that if $\C$ is a vector space on $\C$, then the list $1+\i,1-\i$ is linearly dependent.
-	\item Prove or give a counterexample: Suppose $v_1,v_2,\cdots,v_m$ is $\LI$ in $V$ and $\lambda\in\F$ with $\lambda\neq0.$ Then $\lambda v_1,\lambda v_2,\cdots,\lambda v_m$ is $\LI$.
-	\item Suppose $v_1,\cdots,v_m$ is $\LI$ in $V$ and $w\in V$. Prove that if $v_1+w,\cdots,v_m+w$ is linearly dependent, then $w\in\span(v_1,\cdots,v_m).$
-\end{enumerate}
-\subsection{Bases}
-\begin{enumerate}
-	\item Find all the vectors spaces that consist of only one basis. \begin{hint}$\qty{0}.$\end{hint}
-	\item Suppose $U$ is a subspace of $\R^5\st U=\qty{(x_1,x_2,x_3,x_4,x_5)\in\R^5\mid x_1=3x_2,x_3=7x_4}.$ Find a basis of $U$. Extend this basis into a basis of $\R^5.$ Then, find a subspace $W$ of $\R^5\st\R^5=U\oplus W.$
-	\item Suppose $v_1,v_2,v_3,v_4$ is a basis of $V$. Prove that $v_1+v_2,v_2+v_3,v_3+v_4,v_4$ is also a basis of $V$.
-	\item \textbf{Prove} or disprove: $\P_3(\F)$ has a basis $p_0,p_1,p_2,p_3\st$ no one from $p_0,p_1,p_2,p_3$ has a degree of $2$. \begin{hint}Use the conclusion from \#3.\end{hint}
-	\item Prove or \textbf{give a counterexample}: If $v_1,v_2,v_3,v_4$ is a basis of $V$ and $U$ is a subspace of $V\st v_1,v_2\in U,v_3\notin U,v_4\notin U,$ then $v_1,v_2$ is basis of $U$.
-\end{enumerate}
-\subsection{Dimension}
-\begin{enumerate}
-	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V\st\dim U=\dim V$. Prove that $U=V$.
-	\item Prove that the subspaces of $\R^2$ are exactly the following: $\qty{0},$ $\R^2$, and all the lines passing through the origin in $\R^2$.
-	\item Suppose $v_1,\cdots,v_m$ is $\LI$ in $V$ and $w\in V.$ Prove $\dim\span(v_1+w,\cdots,v_m+w)\geq m-1.$
-	\item Suppose $p_0,p_1,\cdots,p_m\in\P(\F)\st \deg p_j=j$. Prove $p_0,p_1,\cdots,p_m$ is a basis of $\P_m(\F).$
-	\item Suppose $U$ and $W$ are subspaces of $\R^8\st\dim U=3,\dim W=5,$ and $U+W=\R^8.$ Prove that $\R^8=U\oplus W.$
-	\item Suppose $U$ and $W$ are $5$-dimensional subspaces of $\R^9.$ Prove $U\cap W\neq\qty{0}.$
-	\item Suppose $U$ and $W$ are $4$-dimensional subspaces of $\C^6$. Prove that $\exists$ two vectors in $U\cap W\st$ any one of which is not a scalar multiple of another one.
-	\item Suppose $U_1,\cdots,U_m$ are $\FD$ vector spaces of $V$. Prove that $U_1+\cdots+U_m$ is $\FD$ and \[\dim(U_1+\cdots+U_m)\leq\dim U_1+\cdots+\dim U_m.\]
-	\item Suppose $V$ is $\FD$ and $\dim V=n\geq1.$ Prove that $\exists$ $1$-dimensional subspaces of $V$, $U_1,\cdots,U_n\st$\[V=U_1\oplus\cdots\oplus U_n.\]
-	\item Suppose $U_1,\cdots,U_m$ are $\FD$ vector subspaces of $V\st U_1+\cdots+U_m$ is a direct sum. Prove that $U_1\oplus\cdots\oplus U_m$ is $\FD$ and \[\dim U_1\oplus\cdots\oplus U_m=\dim U_1+\cdots+\dim U_m.\]\begin{hint}Use mathematical induction.\end{hint}\begin{rmk}This problem deepens the analogy between direct sums of subspaces and disjoint unions of subsets. Specifically, compare this problem to the following obvious statement: if a set is written as a disjoint union of finite subsets, then the number of elements in the set equals the sum of the numbers of elements in the disjoint subsets. \end{rmk}
-	\item Prove or give a counter example: \[\begin{aligned}\dim(U_1+U_2+U_3)=&\dim U_1+\dim U_2+\dim U_3\\&-\dim(U_1\cap U_2)-\dim(U_1\cap U_3)-\dim(U_2\cap U_3)\\&+\dim(U_1\cap U_2\cap U_3).\end{aligned}\] \begin{hint}Consider $U_1=\qty{(x,0)\mid x\in\R},\ U_2=\qty{(0,y)\mid y\in\R},\ U_3=\qty{(x,x)\mid x\in\R}.$\end{hint}
-\end{enumerate}
-\subsection{The Vector Space of Linear Maps}
-\begin{enumerate}
-	\item Suppose $T\in\L(V,W)$ and $v_1,\cdots,v_m$ is a vector list in $V\st Tv_1,\cdots,Tv_m$ is $\LI$ in $W$. Prove that $v_1,\cdots,v_m$ is $\LI$.
-	\item Prove that $\L(V,W)$ is a vector space.
-	\item Prove the algebraic properties of products of linear maps. 
-	\item Show that every linear map from a $1$-dimensional vector space to itself is multiplication by some scalar. More precisely, prove that if $\dim V=1$ and $T\in\L(V,V)$, then $\exists\lambda\in\F\st Tv=\lambda v\quad\forall v\in V$.
-\end{enumerate}
-\subsection{Null Spaces and Range}
-\begin{enumerate}
-	\item Suppose $V$ is a vector space and $S,T\in\L(V,V)\st\range S\subset\Null T.$ Prove that $(ST)^2=0.$
-	\item Prove that $\nexists$ a linear map $T:\R^5\to\R^5\st\range T=\Null T.$
-	\item Suppose $T\in\L(V,W)$ is injective and $v_1,\cdots,v_n$ is $\LI$ in $V$. Prove that $Tv_1,\cdots,Tv_n$ is $\LI$ in $W$.
-	\item Suppose $v_1,\cdots,v_n$ spans $V$ and $T\in\L(V,W).$ Prove that $Tv_1,\cdots,Tv_n$ spans $\range T.$
-	\item Suppose $U$ is a $3$-dimensional subspace of $\R^8$ and $T$ is a linear map from $\R^8$ to $\R^5\st \Null T=U.$ Prove that $T$ is surjective. 
-	\item Suppose $V$ and $W$ are $\FD$. Prove that $\exists$ an injective linear map from $V$ to $W\iff\dim V\leq\dim W$.
-	\item Suppose $U$ and $V$ are $\FD$ vector spaces, $S\in\L(V,W),$ and $T\in\L(U,V).$ Prove \[\dim\Null ST\leq\dim\Null S+\dim\Null T.\]
-	\item Suppose $U$ and $V$ are $\FD$ vector spaces, $S\in\L(V,W),$ and $T\in\L(U,V).$ Prove \[\dim\range ST\leq\min\qty{\dim\range S,\dim\range T}.\]
-	\item Suppose $D\in\L(\P(\R),\P(\R))\st \deg Dp=(\deg p)-1\ \forall$ non-constant polynomial $p\in\P(\R).$ \begin{rmk}The notation $D$ is used above to remind you of the differentiation map that sends a polynomial $p$ to $p'$. Without knowing the formula for the derivative of a polynomial (except that it reduces the degree by $1$), you can use the exercise above to show that for every polynomial $q\in\P(\R)$, $\exists$ a polynomial $p\in\P(\R)\st p'=q$.\end{rmk}
-	\item Suppose $p\in\P(\R).$ Prove that $\exists q\in\P(\R)\st 5q''+3q'=p.$\begin{rmk}This problem can be solved without using knowledge in Linear Algebra, but it is more interesting to solve with Linear Algebra.\end{rmk}
-	\item Suppose $T\in\L(V,W)$ and let $w_1,\cdots,w_m$ be a basis of $\range T.$ Prove that $\exists\ \phi_1,\cdots,\phi_m\in\L(V,\F)\st Tv=\phi_1(v)w_1+\cdots+\phi_m(v)w_m\quad\forall v\in V.$
-\end{enumerate}
-\subsection{Matrices}
-\begin{enumerate}
-	\item Suppose $V$ and $W$ are $\FD$ and $T\in\L(V,W)$. Prove that for any basis in $V$ and $W$, the matrix for $T$ has at least $\dim\range T$ non-zero entries. 
-	\item If $S,T\in\L(V,W),$ then $\M(S+T)=\M(S)+\M(T).$
-	\item Suppose $\lambda\in\F$ and $T\in\L(V,W).$ Then, $\M(\lambda T)=\lambda\M(T).$
-\end{enumerate}
-\subsection{Invertibility and Isomorphism}
-\begin{enumerate}
-	\item Suppose $T\in\L(U,V)$ and $S\in\L(V,W)$ are invertible linear maps. Prove that $ST\in\L(U,W)$ is invertible and $(ST)^{-1}=T^{-1}S^{-1}.$
-	\item Suppose $V$ is $\FD$ and $\dim V>1.$ Prove that the set of non-invertible operators on $V$ is not a subspace of $\L(V).$
-	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Let $S\in\L(U,V).$ Prove that $\exists$ invertible operator $T\in\L(V)\st Tu=Su\quad\forall u\in U\iff S$ is injective. 
-	\item Suppose $W$ is $\FD$ and $T_1,T_2\in\L(V,W).$ Prove that $\Null T_1=\Null T_2\iff\exists$ invertible operator $S\in\L(W)\st T_1=ST_2.$
-	\item Suppose $V$ is $\FD$ and $T_1,T_2\in\L(V,W).$ Prove that $\range T_1=\range T_2\iff\exists$ invertible operator $S\in\L(V)\st T_1=T_2S.$
-	\item Suppose $V$ is $\FD$ and $S,T\in\L(V).$ Prove that $ST$ is invertible $\iff$ both $S$ and $T$ are invertible.
-	\item Suppose $V$ is $\FD$ and $S,T\in\L(V).$ Prove $ST=I\iff TS=I.$
-	\item Suppose $V$ is $\FD$ and $S,T,U\in\L(V)\st STU=I.$ Prove $T$ is invertible and $T^{-1}=US.$
-	\item Suppose $V$ is $\FD$ and $R,S,T\in\L(V)\st RST$ is a surjection. Prove that $S$ is an injection. 
-	\item Suppose $v_1,\cdots,v_n$ is a basis of $V$. Define a linear map $T:V\to\F^{n,1}$ as $Tv=\M(v),$ where $\M(v)$ is the matrix of $v\in V$ with respect to the basis $v_1,\cdots,v_n$. Prove that $T$ is an isomorphism from $V$ to $\F^{n,1}.$
-	\item Prove that $V\cong\L(\F,V).$
-\end{enumerate}
-\subsection{Duality}
-\begin{enumerate}
-	\item Let $V$ be $\FD$ and $U$ is a subspace of $V\st U\neq V$. Prove that $\exists\ \phi\in V'\st\forall u\in U,\ \phi(u)=0$ but $\phi\neq0$.
-	\item Suppose $V$ is $\FD$, $v_1,\cdots,v_m\in V$. Define a linear map $\Gamma:V'\to\F^m$ as follows: \[\Gamma(\phi)=(\phi(v_1),\cdots,\phi(v_m).\]\begin{enumerate}\item Prove that $v_1,\cdots,v_m$ spans $V$ if and only if $\Gamma$ is injective. \item Prove that $v_1,\cdots,v_m$ is $\LI$ if and only if $\Gamma$ is surjective. \end{enumerate}
-	\item Suppose $v_1,\cdots,v_n$ is a basis of $V$ and $\phi_1,\cdots,\phi_n$ is the corresponding dual basis of $v'$. Suppose $\psi\in V'$. Prove that \[\psi=\psi(v_1)\phi_1+\cdots+\psi(v_n)\phi_n.\]
-	\item Suppose $W$ is $\FD$ and $T\in\L(V,W)$. Prove that $T'=0$ if and only if $T=0$.
-	\item Suppose $V$ and $W$ are $\FD$. Prove that the linear map from $T\in\L(V,W)$ to $T'\in\L(W',V')$ is an isomorphism between $L(V,W)$ and $L(W',V')$.
-	\item Suppose $V$ is $\FD$ and $U\subset V$. Prove that $U=\qty{0}$ if and only if $U^0=V'$.
-	\item Suppose $V$ is $\FD$ and $U$ is a subspace of $V$. Prove that $U=V$ if and only if $U^0=\qty{0}$.
-	\item Suppose $U$ and $V$ are subsets of $V$ with $U\subset W$. Prove that $W^0\subset U^0$.
-	\item Suppose $V$ is $\FD$ and $U$ and $W$ are subspaces of $V$ with $W^0\subset U^0$. Prove that $U\subseteq W$.
-	\item Suppose $U$ and $W$ are subspaces of $V$. Prove that $(U+W)^0=U^0\cap W^0$.
-	\item Suppose $V$ is $\FD$ and $U$ and $W$ are subspaces of $V$. Prove that $(U\cap W)^0=U^0+W^0$.
-\end{enumerate}
-\subsection{Quotient Space}
-\begin{enumerate}
-	\item Suppose $v,x\in V$ and $U$ and $W$ are subspaces of $V\st v+U=x+W$. Prove that $U=W$. 
-\end{enumerate}
-\subsection{Invariant Spaces}
-\begin{enumerate}
-	\item Suppose $T\in\L(V)$ and $U$ is the subspace of $V$. \begin{enumerate}\item Prove that if $U\subset\Null T$, then $U$ is invariant under $T$. \item Prove that if $\range T\subset U$ then $U$ is invariant under $T$. \end{enumerate}
-	\item Suppose $S,T\in\L(V)\st ST=TS$. Prove that $\Null S$ is invariant under $T$. 
-	\item Suppose $S,T\in\L(V)\st ST=TS$. Prove that $\range S$ is invariant under $T$. 
-	\item Suppose $T\in\L(V)$ and $U_1,\cdots,U_m$ are invariant subspaces of $V$ under $T$. Prove that $U_1+\cdots+U_m$ are invariant under $T$. 
-	\item Suppose $T\in\L(V)$. Prove that the intersection of any collection of invariant subspaces of $V$ under $T$ is also invariant under $T$. 
-	\item Prove or give a counterexample: If $V$ is $\FD$ and $U$ is a subspace of $V\st U$ is invariant under every operators of $V$, then $U=\qty{0}$ or $U=V$.
-	\item Define $T\in\L(\R^2)$ as $T(x,y)=(-3y,x)$. Find the eigenvalues of $T$.
-	\item Define $T\in\L(\F^2)$ as $T(w,z)=(z,w)$. Find all the eigenvalues and eigenvectors of $T$.
-	\item Define $T\in\L(\F^3)$ as $T(z_1,z_2,z_3)=(2z_2,0,5z_3)$, Find all the eigenvalues and eigenvectors of $T$. 
-	\item Suppose $T\in\L(V)$. Let $S\in\L(V)$ is invertible. \begin{enumerate}\item Prove that $T$ and $S^{-1}TS$ have identical eigenvalues. \item What is the relationship between the eigenvectors of $T$ and the eigenvectors of $S^{-1}TS$? \end{enumerate}
-	\item Define $T\in\L(\C^\infty)$ as $T(z_1,z_2,\cdots)=(0,z_1,z_2,\cdots).$ Prove that $T$ has no eigenvalues.
-	\item Suppose $T\in\L(V)$ is invertible. \begin{enumerate}\item Suppose $\lambda\in\F$ and $\lambda\neq0$. Prove that $\lambda$ is an eigenvalue of $T$ if and only if $\dfrac{1}{\lambda}$ is an eigenvalue of $\T$. \item Prove that $T$ and $\T$ have identical eigenvectors. \end{enumerate}
-	\item Suppose $T\in\L(V)$ and $\exists$ nonzero $v,w\in V\st Tv=3w$ and $Tw=3v$. Prove that $3$ or $-3$ is an eigenvalue of $T$.
-	\item Suppose $V$ is $\FD$ and $S,T\in\L(V)$. Prove that $ST$ and $TS$ have identical eigenvalues. 
-\end{enumerate}
-\subsection{Eigenvalues and Upper-Triangular Matrices}
-\begin{enumerate}
-	\item Suppose $T\in\L(V)$ and $\exists n\in\Zp\st T^n=0$. \begin{enumerate}\item Prove that $(I-T)$ is invertible and $(I-T)^{-1}=I+T+\cdots+T^{n-1}$.\item Give a rationale of coming up with the formula above. \end{enumerate}
-	\item Suppose $T\in\L(V)$ and $(T-2I)(T-3I)(T-4I)=0$. Suppose $\lambda$ is an eigenvalue of $T$. Prove that $\lambda=2$, $\lambda=3$, or $\lambda=4$.
-	\item Suppose $T\in\L(V)$, $T^2=I$, and $-1$ is not an eigenvalue of $T$. Prove that $T=I$.
-	\item Suppose $P\in\L(V)$ and $P^2=P$. Prove that $V=\Null P\oplus\range P.$
-	\item Suppose $T\in\L(V)$. Prove that $9$ is an eigenvalue of $T^2$ if and only if $3$ or $-3$ is an eigenvalue of $T$.
-	\item Find a $T\in\L(\R^2)\st T^4=-I$.
-	\item Suppose $T\in\L(V)$ and $v$ is the eigenvector of $T$ corresponding to the eigenvalue $\lambda$. Let $p\in\P(\F).$ Prove that $p(T)v=p(\lambda)v$. 
-\end{enumerate}
-\subsection{Eigenspace and Diagonal Matrices}
-\begin{enumerate}
-	\item Suppose $T\in\L(V)$ is diagonalizable. Prove that $V=\Null T\oplus\range T$.
-	\item Suppose $V$ is $\FD$ and $T\in\L(V)$. Prove that the following conditions are equivalent: \begin{enumerate}\item $V=\Null T\oplus\range T$; \item $V=\Null T+\range T$; \item $\Null T\cap\range T=\qty{0}$. \end{enumerate}
-	\item Suppose $V$ is $\FD$, $T\in\L(V)$ has $\dim V$ distinct eigenvalues, and $S\in\L(V)$ has identical eigenvectors with $T$ (but not necessarily corresponding to the same eigenvalues). Prove that $ST=TS$.
-	\item Suppose $T\in\L(V)$ has a diagonal matrix corresponding to some basis of $V$, denoted as $A$. Let $\lambda\in\F$. Prove that $\lambda$ will appear on the diagonal of $A$ exactly $\dim E(\lambda,T)$ times. 
-	\item Suppose $T\in\L(\F^5)$ and $\dim E(8,T)=4$. Prove that $(T-2I)$ or $(T-6I)$ is invertible.
-	\item Suppose $T\in\L(V)$ is invertible. Prove that for every nonzero $\lambda\in\F$, we have $E(\lambda,T)=\qty(\dfrac{1}{\lambda},\T)$.
-	\item Suppose $V$ is $\FD$ and $T\in\L(V)$. Let $\lambda_1,\cdots,\lambda_m$ be distinct nonzero eigenvalues. Prove that \[\dim E(\lambda_1,T)+\cdots+\dim E(\lambda_m,T)\leq\dim\range T.\]
-\end{enumerate}
+
 \end{document}
