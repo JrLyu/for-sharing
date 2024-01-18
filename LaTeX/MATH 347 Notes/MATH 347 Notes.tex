@@ -1,0 +1,97 @@
+\include{preamble}
+
+\title{Emory University\\\textbf{MATH 347 Non Linear Optimization}\\ Learning Notes}
+\author{Jiuru Lyu}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Math Preliminaries}
+\subsection{Introduction to Optimization}
+\begin{df}{Optimization Problem}
+	The main optimization problem can be stated as follows \begin{equation}\label{eq1}\min_{x\in S}f(x),\end{equation} where 
+	\begin{itemize}
+		\item $x$ is the \textit{optimization variable},
+		\item $S$ is the \textit{feasible set}, and 
+		\item $f$ is the \textit{objective function}.
+	\end{itemize}
+\end{df}
+\begin{rmk}
+	$\dsst\max_{x\in S}f(x)=-\min_{x\in S}-f(x)$. Hence, we will only study minimization problems.
+\end{rmk}
+\begin{thm}{Solving an Optimization Problem}
+	\begin{itemize}
+		\item Theoretical Analysis: analytic solution
+		\item Numerical solution/optimization
+	\end{itemize}	
+\end{thm}
+\begin{df}{Solution Methods depend on the type of $x$, $S$, and $f$}
+	\begin{itemize}
+		\item When $x$ is continuous (e.g., $\R$, $\R^n$, $\R^{m\times n}$, $\dots$), then the optimization problem stated in Eq. (\ref{eq1}) is a \textit{continuous optimization problem}. $_\textit{It will also be the focus of this class.}$ \par Opposite to continuous optimization problems, we have \textit{discrete optimization problem} if $x$ is discrete. \par If $x$ has both types of components, then we call the problem \textit{mixed}.
+		\item Depending on $S$, we can have 
+		\begin{itemize}
+			\item \textit{Unconstrained problems}: where $S=\R^n$, $S=\R^{m\times n}$, $\dots$ ($m,n$ are fixed).
+			\item \textit{Constrained problems}: where $S\subsetneq\R^n$, $S\subsetneq\R^{m\times n}$, $\dots$. \par $_\textit{Both types of problems will be studied.}$
+		\end{itemize}
+		\item Depending on $f$, we have 
+		\begin{itemize}
+			\item \textit{Smooth optimization problems}: $f$ has first and/or second order derivatives. \par $_\textit{Only smooth optimization problems will be studied.}$
+			\item \textit{Non-smooth optimization problems}: $f$ is not differentiable. 
+		\end{itemize}
+	\end{itemize}	
+\end{df}
+
+\begin{df}{Linear Optimization/Program}
+	If $f$ is linear and $S$ consists of linear constrains, then the optimization problem is called a \textit{linear problem/program}.	
+\end{df}
+\begin{eg}{Classification of Optimization Problems}
+	\begin{enumerate}
+		\item Consider the following problem \[\min_{x_1,x_2,x_3}x_1^2-4x_1x_2+3x_2x_3+\sin{x_3}\]
+		\begin{sol}
+			\begin{itemize}
+				\item Optimization variable: $x=(x_1,x_2,x_3)\in\R^3$. $\longrightarrow$ continuous.
+				\item Feasible set: $S=\R^3$. $\longrightarrow$ unconstrained.
+				\item Objective function: $f(x_1,x_2,x_3)=x_1^2-4x_1x_2+3x_2x_3+\sin{x_3}$. $\longrightarrow$ smooth but non-linear. 
+			\end{itemize}	
+		\end{sol}
+		\item Consider the following problem \[\max_{\substack{4x_1+7x_2+3x_3\leq1 \\ x_1,x_2,x_3\geq0}}x_1+2x_2+3x_3\]
+		\begin{sol}
+			\begin{itemize}
+				\item Optimization variable: $x=(x_1,x_2,x_3)\in\R^3$. $\longrightarrow$ continuous.
+				\item Feasible set: $S=\qty{(x_1,x_2,x_3):x_1,x_2,x_3\geq0, 4x_1+7x_2+3x_3\leq 1}\subsetneq\R^3$. $\qquad\longrightarrow$ constrained.
+				\item Objective function: $f(x_1,x_2,x_3)=x_1+2x_2+3x_3$. $\longrightarrow$ smooth and linear. 
+			\end{itemize}	
+		\end{sol}
+		\begin{rmk}
+			This problem can be considered as the budget constrained optimization problem in Economics. 	
+		\end{rmk}
+
+		\item Consider the following problem \[\min_{x_1,x_2\geq0}4x_1-3\qty|x_2|+\sin(x_1^2-2x_2)\]
+		\begin{sol}
+			\begin{itemize}
+				\item Optimization variable: $x=(x_1,x_2)\in\R^2$. $\longrightarrow$ continuous. 
+				\item Feasible set: $S=\qty{(x_1,x_2):x_1,x_2\geq0}\subsetneq\R62$. $\longrightarrow$ constrained.
+				\item Objective function: $f(x_1,x_2)=4x_1-3\qty|x_2|+\sin(x_1^2-2x_2)$. $\longrightarrow$ non-smooth and non-linear.
+			\end{itemize}	
+		\end{sol}
+		\begin{rmk}
+			In this particular problem, $x_2\geq0$, and so $f(x_1,x_2)=4x_1-3x_2+\sin\qty(x_1^2-2x_2)$ on the feasible set. Hence, this problem can be equivalently written as \[\min_{x_1,x_2\geq0}4x_1-3x_2+\sin\qty(x_1^2-2x_2),\] which is a smooth optimization problem. 
+		\end{rmk}
+	\end{enumerate}
+\end{eg}
+
+
+\newpage
+\section{Unconstrained Optimization}
+
+\newpage
+\section{Least Square}
+
+\newpage
+\section{Constrained Optimization}
+
+\end{document}
