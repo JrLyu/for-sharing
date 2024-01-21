@@ -1,0 +1,66 @@
+\include{preamble}
+
+\title{Emory University\\\textbf{QTM 220 Regression Analysis}\\ Learning Notes}
+\author{Jiuru Lyu}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Descriptive Statistics and Binary Covariates}
+\begin{df}{Location}
+	The \textit{location} of the data is where it is. It is about approximating the data by a constant. \[Y_i\approx\mu,\quad\text{for }i=1,\dots,n\]	
+\end{df}
+\begin{eg}
+	Different ways to summarize location: mean, median
+\end{eg}
+\begin{df}{Spread}
+	The \textit{spread} of the data is how far it tends to be from is location. 	
+\end{df}
+\begin{df}{Residuals}
+	Spread summarizes the size of the \textit{residuals} left over after constant approximation. We use $\hat\epsilon$ to denote residuals. \[\residual_i\coloneqq Y_i-\hat\mu.\]
+\end{df}
+\begin{df}{Median Absolute Deviation and Standard Deviation}
+	\begin{itemize}
+		\item The \textit{median absolute deviation (MAD)} is the median size of residuals.
+		\item The \textit{standard deviation (sd)} is the square root of the mean squared size of residuals. 
+		\begin{rmk}The standard deviation is a sort of average in which big residuals count more than smaller ones. \end{rmk}
+	\end{itemize}
+\end{df}
+\begin{df}{Distribution}
+	We use \textit{histograms} to summarize the \textit{distribution} of the data. 
+\end{df}
+\begin{rmk}
+	Distribution of the data tells us more information than location and spread, but less than dot plot. \emph{For example, in this context, dot plot also include the identities of the individuals in addition to the number of people having salary in the range. }
+\end{rmk}
+\begin{df}{Binary Data}
+	\textit{Binary data} only have two options, and we usually denote those two options as $1$'s and $0$'s. 	
+\end{df}
+\begin{cor}{}
+	Hence, when drawing a dot plot, everyone falls into either of the two lines representing $1$ and $0$.
+\end{cor}
+\begin{thm}{Location of Binary Data}
+	The median is whichever outcome is the most common, and the mean is the proportion of $1$'s in the data. 
+\end{thm}
+\begin{rmk}
+	Hence, a histogram tells us no more information than $\hat\mu$.	
+\end{rmk}
+\begin{thm}{Spread of Binary Data}
+	\begin{itemize}
+		\item Median absolute deviation will always be $0$ in a binary case.
+		\item The standard deviation is the square root of the mean squared distance from the mean, and \[\text{sd}=\sqrt{\hat\mu\qty(1-\hat\mu)}.\]
+	\end{itemize}
+\end{thm}
+\begin{prf}
+	The claim concerning MAD is trivial. \textit{Hint: there's only two possible values in the data, so median and MAD should always be the same.}\par Now, let's consider the claim on standard deviation. \begin{align*}\sd^2&=\dfrac{1}{n}\sum_{i=1}^n\qty(Y_i-\hat\mu)^2\\&=\dfrac{1}{n}\sum_{y:\qty{0,1}}\sum_{i:Y_i=y}\qty(Y_i-\hat\mu)^2\\&=\dfrac{1}{n}\qty{N_1\qty(1-\hat\mu^2)+\qty(n-N_1)\qty(0-\hat\mu^2)}&[N_1=\text{number of }1\text{'s}]\\&=\dfrac{1}{n}\qty{N_1\qty(1-2\hat\mu+\hat\mu^2)+\qty(n-N_1)\hat\mu^2}\\&=\dfrac{1}{n}\qty{N_1-2N_1\hat\mu+n\hat\mu^2}\\&=\dfrac{1}{n}\qty{n\hat\mu-2n\hat\mu\cdot\hat\mu+n\hat\mu^2}&[N_1=n\hat\mu]\\&=\dfrac{1}{n}\qty{n\hat\mu-n\hat\mu^2}\\&=\hat\mu-\hat\mu^2=\hat\mu\qty(1-\hat\mu).\end{align*} Therefore, we know \[\sd=\sqrt{\hat\mu\qty(1-\hat\mu)}.\]
+\end{prf}
+\begin{rmk}
+	In binary data, knowing the mean $\equiv$ knowing everything else. 
+\end{rmk}
+
+
+
+\end{document}
