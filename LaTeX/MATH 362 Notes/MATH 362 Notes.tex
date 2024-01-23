@@ -10,6 +10,69 @@
 \tableofcontents
 
 \newpage
-\section{}
+\section{Estimation}
+\subsection{Introduction}
+\begin{df}{Model}
+	A \textit{model} is a distribution with certain parameters.	
+\end{df}
+\begin{eg}
+	The normal distribution: $N(\mu,\sigma^2)$.	
+\end{eg}
+\begin{df}{Population}
+	The \textit{population}	is all the objects in the experiment.
+\end{df}
+\begin{df}{Data, Sample, and Random Sample}
+	\textit{Data} refers to observed value from sample. The \textit{sample}	is a subset of the population. A \textit{random sample} is a sequence of independent, identical ($\iid$) random variables.
+\end{df}
+\begin{df}{Statistics}
+	\textit{Statistics} refers to a function of the random sample.
+\end{df}
+\begin{eg}
+	The sample mean is a function of the sample: \[\bar{Y}=\dfrac{1}{n}\qty(Y_1+\cdots+Y_n).\]	
+\end{eg}
+\begin{eg} 
+	Central Limit Theorem\par 
+	We randomly toss $n=200$ fair coins on the table. Calculate, using the central limit theorem, the probability that at least $110$ coins have turned on the same side. 
+	\[\bar{X}=\dfrac{X_1+\cdots+X_{200}}{200}\quad\widesim{\text{CLT}}\quad N\qty(\mu,\sigma^2),\] where \[\mu=\E\qty(\bar{X})=\dfrac{\dsst\sum_{i=1}^{200}\E\qty(X_i)}{200},\] \[\sigma^2=\Var\qty(\bar{X})=\Var\qty(\dfrac{X_1+\cdots+X_{200}}{200})=\dfrac{\dsst\sum_{i=1}^{200}\Var\qty(X_i)}{200^2}.\]
+\end{eg}
+\begin{df}{Statistical Inference}
+	The process of \textit{statistical inference} is defined to be the process of using data from a sample to gain information about the population.	
+\end{df}
+\begin{eg}
+	Goals in statistical inference
+	\begin{enumerate}
+		\item \begin{df}{Estimation} To obtain values of the parameters from the data. \end{df}
+		\item \begin{df}{Hypothesis Testing} To test a conjecture about the parameters. \end{df}
+		\item \begin{df}{Goodness of Fit} How well does the data fit a given distribution. \end{df}
+		\item Linear Regression
+	\end{enumerate}	
+\end{eg}
+
+
+\subsection{The Method of Maximum Likelihood and the Method of Moments}
+\begin{eg}
+	Given an unfair coin, or $p$-coin, such that \[X=\begin{cases}1\quad\text{head with probability }p,\\0\quad\text{tail with probability }1-p.\end{cases}\]	How can we determine the value $p$?
+	\begin{sol}
+		\begin{enumerate}
+			\item Try to flip the coin several times, say, three times. Suppose we get HHT. 
+			\item Draw a conclusion from the experiment. 
+		\end{enumerate}	
+		\textbf{Key idea: The choice of the parameter $p$ should be the value that maximizes the probability of the sample.}
+		\[\P\qty(X_1=1,X_2=1,X_3=0)=\P\qty(X_1=1)\P(X_2=1)\P(X_3=0)=p^2(1-p)\coloneqq f(p).\] Solving the optimization problem $\dsst\max_{p>0}f(p)$, we find it is most likely that $p=\dfrac{2}{3}$. This method is called the \textit{likelihood maximization method}.
+	\end{sol}
+\end{eg}
+\begin{df}{Likelihood Function}
+	For a random sample of size $n$ from the discrete (or continuous) pdf $p_X(k;\theta)$ (or $f_Y(y;\theta)$), the \textit{likelihood function}, $L(\theta)$, is the product of the pdf evaluated at $X_i=k_i$ (or $Y_i=y_i$). That is, \[L(\theta)\coloneqq\prod_{i=1}^np_X\qty(k_i;\theta)\quad\text{or}\quad L(\theta)\coloneqq\prod_{i=1}^nf_Y\qty(y_i;\theta).\]	
+\end{df}
+\begin{df}{Maximum Likelihood Estimate}
+	Let $L(\theta)$ be as defined in Definition 1.2.2. If $\theta_e$ is a value of the parameter such that $L\qty(\theta_e)\geq L(\theta)$ for all possible values of $\theta$, then we call $\theta_e$ the \textit{maximum likelihood estimate} for $\theta$.
+\end{df}
+\begin{thm}{The Method of Maximum Likelihood}
+	Given random samples $X_1,\dots,X_N$ and a density function $p_X(x)$ (or $f_X(x)$), then we have the likelihood function defined as \begin{align*}L(\theta)=p_X(X;\theta)&=\P(X_1,X_2,\dots,X_N)\\&=\P(X_1)\P(X_2)\cdots\P(X_N)&[independent]\\&=\prod_{i=1}^Np_X(X_i;\theta)&[identical]\end{align*} Then, the maximum likelihood estimate for $\theta$ is given by \[\theta^*=\argmax_\theta L(\theta),\] where \[L\qty(\argmax_\theta L(\theta))=L^*(\theta)=\max_\theta L(\theta).\]
+\end{thm}
+\begin{eg}
+	Consider the Poisson distribution $X=0,1,\dots,$ with $\lambda>0$. Then, the pdf is given by \[p_X(k,\lambda)=e^{-\lambda}\dfrac{\lambda^k}{k!},\quad k=0,1,\dots\] Given data $k_1,\dots,k_n$, we have the likelihood function \[L(\lambda)=\prod_{i=1}^np_X\qty(X=k;\lambda)=\prod_{i=1}^ne^{-\lambda}=\dfrac{\lambda^{k_i}}{k_i!}=e^{-n\lambda}\dfrac{\lambda^{\sum{k_i}}}{k_1!\cdots k_n!}\] Then, to find the maximum likelihood estimate of $\lambda$, we need to $\dsst\max_{\lambda}L(\lambda)$. That is to solve $\dsst\pdv{L(\lambda)}{\lambda}=0$ and $\dsst\pdv[2]{L(\lambda)}{\lambda}<0$.
+\end{eg}
+
 
 \end{document}

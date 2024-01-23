@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, letterpaper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
@@ -8,7 +8,7 @@
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
 
-\geometry{a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm}
+\geometry{letterpaper, left=2cm, right=2cm, bottom=2cm, top=2cm}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -37,17 +37,17 @@
 
 \newcounter{index}[subsection]
 \setcounter{index}{0}
-\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesection.\stepcounter{index}\theindex\ (#1).}}{\par}
+\newenvironment*{df}[1]{\par\noindent\textbf{Definition \thesubsection.\stepcounter{index}\theindex\ (#1).}}{\par}
 
-\newenvironment*{eg}{\begin{framed}\par\noindent\textbf{Example \thesection.\stepcounter{index}\theindex}}{\par\end{framed}}
+\newenvironment*{eg}[1]{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex\ #1}\par }{\par\end{framed}}
 
-\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
+\newenvironment*{thm}[1]{\begin{tcolorbox}\par\noindent\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ #1} \par}{\par\end{tcolorbox}}
 
-\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
-\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
-\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
-\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
+\newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
@@ -62,22 +62,28 @@
 
 \linespread{1.15}
 
-\def\Z{\mathbb{Z}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\Q{\mathbb{Q}}
-\def\N{\mathbb{N}}
-\def\d{\mathrm{d}}
+\newcommand{\inprod}[2]{\left\langle #1, #2 \right\rangle}
+\def\Z{{\mathbb{Z}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+\def\Q{{\mathbb{Q}}}
+\def\E{{\mathbb{E}}}
+\def\d{{\mathrm{d}}}
+\def\i{{\mathrm{i}}}
+\def\Arg{{\mathrm{Arg}}}
+\def\cis{\mathrm{cis}}
+\def\dsst{\displaystyle}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
 \def\phi{\varphi}
-\def\dsst{\displaystyle}
-\def\st{\ s.t.\ }
+\def\st{\emph{\ s.t.\ }}
+\def\fs{\emph{\ f.s.\ }}
+\def\l{\ell}
+\def\sd{\mathrm{sd}}
 \def\bar{\overline}
 \def\E{\vb{E}}
 \def\Var{\vb{Var}}
 \def\Cov{\vb{Cov}}
 \def\P{\vb{P}}
 \def\M{\vb{M}}
-\def\residual{\hat\epsilon}
-\def\sd{\text{sd}}
+\def\iid{i.i.d.}

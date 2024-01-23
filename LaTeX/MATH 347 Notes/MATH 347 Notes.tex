@@ -84,6 +84,87 @@
 	\end{enumerate}
 \end{eg}
 
+\subsection{Linear Algebra Review}
+\begin{eg}{Why linear algebra for optimization?}
+	Consider $\dsst\min_{x\in\R}f(x)$, where $f(x)=c+bx+ax^2,\ a,b,c\in\R$. 
+	\begin{itemize}
+		\item $a>0$: $x^*=-\dfrac{b}{2a}$ is a global minimum and $f(x^*)=c-\dfrac{b^2}{4a}$.
+		\item $a<0$: no minimum exists.
+		\item $a=0$: $f(x)=c+bx$.
+		\begin{itemize}
+			\item $b\neq0$: no minimum exists.
+			\item $b=0$: $f(x)=c$, and every $x$ is a minimum point.
+		\end{itemize}
+	\end{itemize}
+	We can approximate any smoothing function using Taylor's approximation and make them simple into the case discussed above. 
+\end{eg}
+\begin{thm}{Taylor's Approximation}
+	\[f(x)=\underbrace{f(x_0)+f'(x_0)(x-x_0)+\dfrac{f''(x_0)}{2}(x-x_0)^2}_{q(x)}+\underbrace{\epsilon(x-x_0)(x-x_0)^2}_\text{error},\] where $\dsst\lim_{x\to x_0}\epsilon(x-x_0).$
+\end{thm}
+\begin{rmk}
+	The hope is that the quadratic approximation will inform us on the behavior of $f$ near $x_0$	and be useful for instance in referring $x_0$ on the subject of optimality. 
+\end{rmk}
+\begin{df}{Quadratic Approximation in Higher Dimensions}
+	When $d>1$, we consider $\dsst\min_{x\in\R^d}f(x)$. Then, the \textit{quadratic approximation} of $f$ is defined as \[q(x)\coloneqq c+\langle b,x\rangle+\langle x,Ax\rangle,\] where $c\in\R$, $b\in\R^d$, $A\in\R^{d\times d}$.
+\end{df}
+\begin{rmk}
+	Then, to know if a minimum exists, we need information on the matrix $A$ and the vector $b$.	
+\end{rmk}
+\begin{df}{Vector, $\R^d$}
+	We define a vector in $\R^d$ as a column vector. \[x=\mqty(x_1\\\vdots\\x_d)\in\R^d,\ x_i\in\R.\] On $\R^d$, we also have the following operations defined
+	\begin{itemize}
+		\item Addition: \[\mqty(x_1\\\vdots\\x_d)+\mqty(y_1\\\vdots\\y_d)=\mqty(x_1+y_1\\\vdots\\x_d+y_d),\ x_i,y_i\in\R\]
+		\item Scalar multiplication: \[\alpha\mqty(x_1\\\vdots\\x_d)=\mqty(\alpha x_1\\\vdots\\\alpha x_d),\alpha,x_i\in\R\]
+	\end{itemize}
+\end{df}
+\begin{df}{Basis of $\R^d$}
+	A collection of vectors $v_1\dots,v_d\in\R^d$ is a basis in $\R^d$ if $\forall\ x\in\R^d$, $\exists!\ \alpha_1,\dots,\alpha_d\in\R\st x=\alpha_1v_1+\cdots+\alpha_dv_d$.	
+\end{df}
+\begin{eg}{The Standard Basis}
+	The standard basis is defines as \[e_i=\mqty(0\\\vdots\\1\\\vdots\\0),\]	 where $1$ is at the $i$-th position for $1\leq i\leq d$. Note that $\forall x\in\R^d,\ x=x_1e_1+\cdots+x_de_d$.
+\end{eg}
+\begin{nota}
+	\[0_d=\mqty(0\\\vdots\\0).\]	
+\end{nota}
+\begin{df}{Inner Product}
+	$\inprod{\cdot}{\cdot}:\R^d\times\R^d\to\R$ is an inner product if
+	\begin{itemize}
+		\item (symmetry) $\langle x,y\rangle=\langle y,x\rangle\quad\forall x,y\in\R^d$
+		\item (additivity) $\langle x,y+z\rangle=\langle x,y\rangle+\langle x,z\rangle\quad\forall x,y,z\in\R^d$
+		\item (homogeneity) $\langle\lambda x,y\rangle=\lambda\langle x,y\rangle\quad\forall x,y\in\R^d,\ \lambda\in\R$
+		\item (positive definiteness) $\langle x,x\rangle\geq\quad\forall x\in\R^d$ and $\langle x,x\rangle=0\iff x=0$
+	\end{itemize}
+\end{df}
+\begin{eg}{Examples of Inner Products}
+	\begin{enumerate}
+		\item \begin{df}{Dot Product} The \textit{dot product} of $x,y\in\R^d$ is defined as \[\langle x,y\rangle=x_1y_1+\cdots+x_dy_d=\sum_{i=1}^dx_iy_i\quad\forall x,y\in\R^d.\] It is also referred as the \textit{standard inner product}, and we often use the notation $x\cdot y$ to denote it. \end{df}
+		\item \begin{df}{Weighted Dot Product} The \textit{weighted dot product} of $x,y\in\R^d$ with some weight $w$ is defined as \[\langle x,y\rangle_w=\sum_{i=1}^dw_ix_iy_i,\] where $w_1,\dots,w_d>0$ are called \textit{weights}.\end{df}
+	\end{enumerate}	
+	\begin{rmk}
+		When $d=2$, then $\langle x,y\rangle=\abs{x}\abs{y}\cos\angle(x,y)$. Dot product measure how correlated are two vectors (with respect to their directions). 	
+	\end{rmk}
+\end{eg}
+\begin{df}{Vector Norm}
+	$\norm{\cdot}:\R^d\to\R$ is a norm if
+	\begin{itemize}
+		\item (non-negativity) $\norm{x}\geq0\quad\forall x\in\R^d$ and $\norm{x}=0\iff x=0$
+		\item (positive homogeneity) $\norm{\lambda x}=\abs{\lambda}\norm{x}\quad\forall\lambda\in\R,\ x\in\R^d$
+		\item (triangular inequality) $\norm{x+y}\leq\norm{x}+\norm{y}\quad\forall x,y\in\R^d$.
+	\end{itemize}
+\end{df}
+\begin{rmk}
+	Vector norm introduces the notion of length of vectors in $\R^d$.	
+\end{rmk}
+\begin{eg}{Examples of Vector Norms}
+	\begin{itemize}
+		\item If $\inprod{\cdot}{\cdot}$ is an inner product on $\R^d$, then \[\norm{x}=\sqrt{\inprod{x}{x}}\quad\forall x\in\R^d\] is a norm. For instance, \[\norm{x}_2=\sqrt{x\cdot x}=\qty(\sum_{i=1}^dx_i^2)^{\frac{1}{2}}.\] This norm is called the \textit{standard (Euclidean)} or $\l_2$ norm in $\R^d$.
+		\item \begin{df}{$\l_p$ Norms} Suppose $p\geq1$, then \[\norm{x}_p\coloneqq\qty(\sum_{i=1}^dx_i^p)^{\frac{1}{p}}.\]\end{df}
+		\item \begin{df}{$\infty$-Norms}\[\norm{x}_\infty\coloneqq\max_{1\leq i\leq d}\abs{x_i}\quad\forall x\in\R^d.\]\end{df}
+	\end{itemize}
+	\begin{rmk}
+		$\dsst\lim_{p\to\infty}\norm{x}_p=\norm{x}_{\infty}$.
+	\end{rmk}
+\end{eg}
 
 \newpage
 \section{Unconstrained Optimization}
