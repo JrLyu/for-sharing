@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[hidelinks]{hyperref}
-\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia}
+\usepackage{mathtools, amssymb, amsmath, cleveref, fancyhdr, geometry, tcolorbox, graphicx, float, subfigure, arydshln, url, setspace, framed, pifont, physics, ntheorem, utopia, dsfont}
 %%% for coding %%%
 \usepackage{listings}
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
@@ -62,15 +62,13 @@
 
 \linespread{1.25}
 
-\newcommand{\widesim}[2][1.5]{
-  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
-}
 \def\Z{\mathbb{Z}}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\Q{\mathbb{Q}}
 \def\N{\mathbb{N}}
 \def\d{\mathrm{d}}
+\def\1{\mathds{1}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}
 \def\phi{\varphi}
@@ -85,3 +83,4 @@
 \def\iid{i.i.d.}
 \def\argmax{\arg\max}
 \def\argmin{\arg\min}
+\def\l{\ell}

@@ -33,7 +33,7 @@
 \begin{eg} 
 	Central Limit Theorem\par 
 	We randomly toss $n=200$ fair coins on the table. Calculate, using the central limit theorem, the probability that at least $110$ coins have turned on the same side. 
-	\[\bar{X}=\dfrac{X_1+\cdots+X_{200}}{200}\quad\widesim{\text{CLT}}\quad N\qty(\mu,\sigma^2),\] where \[\mu=\E\qty(\bar{X})=\dfrac{\dsst\sum_{i=1}^{200}\E\qty(X_i)}{200},\] \[\sigma^2=\Var\qty(\bar{X})=\Var\qty(\dfrac{X_1+\cdots+X_{200}}{200})=\dfrac{\dsst\sum_{i=1}^{200}\Var\qty(X_i)}{200^2}.\]
+	\[\bar{X}=\dfrac{X_1+\cdots+X_{200}}{200}\quad\stackrel{\text{CLT}}{\sim}\quad N\qty(\mu,\sigma^2),\] where \[\mu=\E\qty(\bar{X})=\dfrac{\dsst\sum_{i=1}^{200}\E\qty(X_i)}{200},\] \[\sigma^2=\Var\qty(\bar{X})=\Var\qty(\dfrac{X_1+\cdots+X_{200}}{200})=\dfrac{\dsst\sum_{i=1}^{200}\Var\qty(X_i)}{200^2}.\]
 \end{eg}
 \begin{df}{Statistical Inference}
 	The process of \textit{statistical inference} is defined to be the process of using data from a sample to gain information about the population.	
@@ -72,6 +72,41 @@
 \end{thm}
 \begin{eg}
 	Consider the Poisson distribution $X=0,1,\dots,$ with $\lambda>0$. Then, the pdf is given by \[p_X(k,\lambda)=e^{-\lambda}\dfrac{\lambda^k}{k!},\quad k=0,1,\dots\] Given data $k_1,\dots,k_n$, we have the likelihood function \[L(\lambda)=\prod_{i=1}^np_X\qty(X=k;\lambda)=\prod_{i=1}^ne^{-\lambda}=\dfrac{\lambda^{k_i}}{k_i!}=e^{-n\lambda}\dfrac{\lambda^{\sum{k_i}}}{k_1!\cdots k_n!}\] Then, to find the maximum likelihood estimate of $\lambda$, we need to $\dsst\max_{\lambda}L(\lambda)$. That is to solve $\dsst\pdv{L(\lambda)}{\lambda}=0$ and $\dsst\pdv[2]{L(\lambda)}{\lambda}<0$.
+\end{eg}
+\begin{eg}
+	Waiting Time. \par 
+	Consider the exponential distribution $f_Y(y)=\lambda e^{-\lambda y}$ for $y\geq 0$. Find the MLE $\lambda_e$ of $\lambda$.
+	\begin{sol}
+		The likelihood function of the exponential distribution is given by
+		\[L(\lambda)=\prod_{i=1}^n\lambda e^{-\lambda y_i}=\lambda^n\exp\qty(-\lambda\sum_{i=1}^ny_i).\] Now, define \[\l(\lambda)=\ln L(\lambda)=n\ln\lambda-\lambda\sum_{i=1}^ny_i.\] To optimize $\l(\lambda)$, we compute \[\dv{\lambda}\l(\lambda)=\dfrac{n}{\lambda}-\sum_{i=1}^ny_i\stackrel{set}{=}0\] So, \[\dfrac{n}{\lambda}=\sum_{i=1}^ny_i\implies\lambda_e=\dfrac{n}{\dsst\sum_{i=1}^ny_i}\eqqcolon\dfrac{1}{\bar{y}},\] where $\bar{y}$ is the sample mean. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Given the exponential distribution $f_Y(y)=\lambda e^{-\lambda y}$ for $y\geq0$. Find the MLE of $\lambda^2$.
+	\begin{sol}
+		Define $\tau=\lambda^2$. Then, $\lambda=\sqrt{\tau}$, and so \[f_Y(y)=\sqrt{\tau}e^{-\sqrt{\tau}y},\quad y\geq0.\] Then, the likelihood function becomes \[L(\tau)=\prod_{i=1}^nf_Y(y)=\tau^{\frac{n}{2}}\exp\qty(-\sqrt{\tau}\sum_{i=1}^ny_i).\] Similarly, after maximization, we find \[\tau_e=\dfrac{1}{\qty(\bar{y})^2}.\]
+	\end{sol}
+\end{eg}
+\begin{thm}{Invariant Property for MLE}
+	Suppose $\lambda_e$	is the MLE of $\lambda$. Define $\tau\coloneqq h(\lambda)$. Then, $\tau_e=h(\lambda_e)$.
+\end{thm}
+\begin{prf}
+	In this proof, we will prove the case when $h$ is a one-to-one function. The case of $h$ being a many-to-one function is beyond the scope of this course. \par 
+	Suppose $h(\cdot)$ is a one-to-one function. Then, $\lambda=h^{-1}(\tau)$ is well-defined. Then, \[\max_{\lambda}L(\lambda;y_1,\dots,y_n)=\max_{\tau}L\qty(h^{-1}(\tau);y_1,\dots,y_n)=\max_{\tau}L(\tau;y_1,\dots,y_n).\]	
+\end{prf}
+\begin{eg}
+	Waiting Time with an unknown Threshold.\par 
+	Let $\lambda=1$ in exponential but there is an unknown threshold $\theta$, that, is $f_Y(y)=e^{-(y-\theta)}$ for $y\geq\theta,\ \theta>0$.	
+	\begin{sol}
+		Note that the likelihood function is given by \begin{align*}L(\theta;y_1,\dots,y_n)=\prod_{i=1}^nf_Y(y_1)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta)),\quad y_i\geq\theta,\ \theta>0\\&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_i\geq0,\ \theta>0]},\end{align*} where \[\1_{x\in A}=\begin{cases}1\quad\text{if }x\in A\\0\quad\text{if }x\notin A.\end{cases}\] Using order statistics, \[L(\theta)=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_{(n)}\geq y_{(n-1)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}\] Define \[\l(\theta;y_1,\dots,y_n)=\ln L(\theta)=-\sum_{i=1}^n(y_i-\theta).\]
+		\textit{incomplete}
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Suppose $Y_1,\dots,Y_n\sim\text{Uniform}[0,a]$. That is, $f_Y(y;a)=\dfrac{1}{a}$ for $y\in[0,a]$. Find MLE $a_e$ of $a$. 
+	\begin{sol}
+		Note that \begin{align*}f_Y(y;a)&=\dfrac{1}{a}\cdot\1_{\qty{y\in[0,a]}}\\&=\dfrac{1}{a}\cdot\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}&\text{where } y_{(1)}=\min y_i\text{ and } y_{(n)}=\max y_i\end{align*} Then, \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}\] Maximize, we find \[a_e=y_{(n)}.\]
+	\end{sol}
 \end{eg}
 
 

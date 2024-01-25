@@ -111,23 +111,23 @@
 	Then, to know if a minimum exists, we need information on the matrix $A$ and the vector $b$.	
 \end{rmk}
 \begin{df}{Vector, $\R^d$}
-	We define a vector in $\R^d$ as a column vector. \[x=\mqty(x_1\\\vdots\\x_d)\in\R^d,\ x_i\in\R.\] On $\R^d$, we also have the following operations defined
+	We define a \textit{vector} in $\R^d$ as a column vector. \[x=\mqty(x_1\\\vdots\\x_d)\in\R^d,\ x_i\in\R.\] On $\R^d$, we also have the following operations defined
 	\begin{itemize}
 		\item Addition: \[\mqty(x_1\\\vdots\\x_d)+\mqty(y_1\\\vdots\\y_d)=\mqty(x_1+y_1\\\vdots\\x_d+y_d),\ x_i,y_i\in\R\]
 		\item Scalar multiplication: \[\alpha\mqty(x_1\\\vdots\\x_d)=\mqty(\alpha x_1\\\vdots\\\alpha x_d),\alpha,x_i\in\R\]
 	\end{itemize}
 \end{df}
 \begin{df}{Basis of $\R^d$}
-	A collection of vectors $v_1\dots,v_d\in\R^d$ is a basis in $\R^d$ if $\forall\ x\in\R^d$, $\exists!\ \alpha_1,\dots,\alpha_d\in\R\st x=\alpha_1v_1+\cdots+\alpha_dv_d$.	
+	A collection of vectors $v_1\dots,v_d\in\R^d$ is a \textit{basis} in $\R^d$ if $\forall\ x\in\R^d$, $\exists!\ \alpha_1,\dots,\alpha_d\in\R\st x=\alpha_1v_1+\cdots+\alpha_dv_d$.	
 \end{df}
 \begin{eg}{The Standard Basis}
-	The standard basis is defines as \[e_i=\mqty(0\\\vdots\\1\\\vdots\\0),\]	 where $1$ is at the $i$-th position for $1\leq i\leq d$. Note that $\forall x\in\R^d,\ x=x_1e_1+\cdots+x_de_d$.
+	The \textit{standard basis} is defines as \[e_i=\mqty(0\\\vdots\\1\\\vdots\\0),\]	 where $1$ is at the $i$-th position for $1\leq i\leq d$. Note that $\forall x\in\R^d,\ x=x_1e_1+\cdots+x_de_d$.
 \end{eg}
 \begin{nota}
 	\[0_d=\mqty(0\\\vdots\\0).\]	
 \end{nota}
 \begin{df}{Inner Product}
-	$\inprod{\cdot}{\cdot}:\R^d\times\R^d\to\R$ is an inner product if
+	$\inprod{\cdot}{\cdot}:\R^d\times\R^d\to\R$ is an \textit{inner product} if
 	\begin{itemize}
 		\item (symmetry) $\langle x,y\rangle=\langle y,x\rangle\quad\forall x,y\in\R^d$
 		\item (additivity) $\langle x,y+z\rangle=\langle x,y\rangle+\langle x,z\rangle\quad\forall x,y,z\in\R^d$
@@ -145,7 +145,7 @@
 	\end{rmk}
 \end{eg}
 \begin{df}{Vector Norm}
-	$\norm{\cdot}:\R^d\to\R$ is a norm if
+	$\norm{\cdot}:\R^d\to\R$ is a \textit{norm} if
 	\begin{itemize}
 		\item (non-negativity) $\norm{x}\geq0\quad\forall x\in\R^d$ and $\norm{x}=0\iff x=0$
 		\item (positive homogeneity) $\norm{\lambda x}=\abs{\lambda}\norm{x}\quad\forall\lambda\in\R,\ x\in\R^d$
@@ -165,6 +165,73 @@
 		$\dsst\lim_{p\to\infty}\norm{x}_p=\norm{x}_{\infty}$.
 	\end{rmk}
 \end{eg}
+\begin{thm}{Cauchy-Schwarz Inequality}
+	Assume that $\inprod{\cdot}{\cdot}:\R^d\times\R^d\to\R$ is an inner product, then \[\qty|\inprod{x}{y}|^2\leq\inprod{x}{x}\cdot\inprod{y}{y}\quad\forall x,y\in\R^d.\] In particular, if $\|x\|=\sqrt{\inprod{x}{x}}$, then \[\qty|\inprod{x}{y}|\leq\|x\|\cdot\|y\|\quad\forall x,y\in\R^d.\] For the standard inner product, we have \[\qty|\sum_{i=1}^nx_iy_i|\leq\|x\|_2\cdot\|y\|_2\quad\forall x,y\in\R^d.\] The equality holds when $x$ and $y$ are linearly dependent.
+\end{thm}
+\begin{df}{Matrix}
+	Let $d,m\in\N$. We say that $A\in\R^{d\times m}$ is a \textit{$d\times m$ matrix} if \[A=\mqty(a_{11}&a_{12}&\cdots&a_{1m}\\a_{21}&a_{22}&\cdots&a_{2m}\\\vdots&\vdots&\ddots&\vdots\\a_{d1}&a_{d2}&\cdots&a_{dm})=\mqty(a_{ij})_{i=1,j=1}^{d,m}\]
+\end{df}
+\begin{df}{Operations with Matrices}
+	\begin{itemize}
+		\item Let $A,B\in\R^{d\times m}$, then $\mqty(A+B)_{i,j}=a_{ij}+b_{ij}\quad\forall i,j$.
+		\item Let $A\in\R^{d\times m}$ and $\alpha\in\R$, then $\mqty(\alpha A)_{ij}=\alpha a_{ij}\quad\forall i,j$.
+		\item Let $A\in\R^{d\times m}$ and $B\in\R^{m,n}$, then $AB\in\R^{d\times n}$, and $\dsst\mqty(AB)_{ij}=\sum_{k=1}^ma_{ik}b_{kj}\quad\forall i,j$.
+	\end{itemize}	
+\end{df}
+\begin{rmk}
+	Matrix multiplication is not commutative. In fact, if $A\in\R^{d\times m}$ and $B\in\R^{m\times n}$, then $BA$ is defined if and only if $n=d$. In that case, $AB\in\R^{d\times d}$ and $BA\in\R^{m\times m}$, and so if $m\neq d$, $AB$ and $BA$ have different sizes. Finally, even if $m=d=n$, $AB\neq BA$ in general. 	
+\end{rmk}
+\begin{df}{Linear Transformation}
+	The mapping $\L:\R^m\to\R^d$ is called \textit{linear} if $\L(\alpha x_1+\beta x_2)=\alpha\L(x_1)+\beta\L(x_2)$.	
+\end{df}
+\begin{thm}{Matrices and Linear Transformation}
+	$\forall A\in\R^{d\times m}$, $\L_A(x)=Ax$ is a linear mapping from $\R^m$ to $\R^d$. Moreover, $\forall\L:\R^m\to\R^d$ linear, $\exists!A\in\R^{d\times m}\st\L=\L_A$.
+\end{thm}
+\begin{prf}
+	Here, we offer an intuition on why this is true. Suppose $A\in\R^{d\times m}$ and $x\in\R^{m}\st$ \[A=\mqty(a_{11}&\cdots&a_{1m}\\\vdots&\ddots&\vdots\\a_{d1}&\cdots&a_{dm})\quad\text{and}\quad x\in\mqty(x_1\\\vdots\\x_m)\in\R^{m\times1}.\]	 Then, $Ax\in\R^{d\times1}$ is the following \[Ax=\mqty(a_{11}&\cdots&a_{1m}\\\vdots&\ddots&\vdots\\a_{d1}&\cdots&a_{dm})\mqty(x_1\\\vdots\\x_m)=\mqty(a_{11}x_1+\cdots+a_{1m}x_m\\\vdots\\a_{d1}x_1+\cdots+a_{dm}x_m)\in\R^{d\times1}.\] So, if $\L_A(x)=Ax$ for $x\in\R^m$, then $\L_A:\R^m\to\R^d$ is linear. 
+\end{prf}
+\begin{thm}{Matrix Multiplication as Composite Linear Transformations}
+	Suppose $\L_A:\R^m\to\R^d$ and $\L_B:\R^n\to\R^m$, where $A\in\R^{d\times m}$ and $B\in\R^{m\times n}$. Define $\L(x)=\L_A\circ\L_B(x)=\L_A(\L_B(x))\quad\forall x\in\R^n$	. Then, $\L:\R^n\to\R^d$. Since $\L_A$ and $\L_B$ are linear, we found that $\L$ is also linear. Hence, $\L=\L_C\fs C\in\R^{d\times n}$. It turns out that $C=AB$.
+\end{thm}
+\begin{df}{Transpose of Matrix}
+	Let $A\in\R^{d\times m}$, then its transpose $A^T\in\R^{m\times d}$, and \[\mqty(A^T)_{ij}=a_{ji}.\]	
+\end{df}
+\begin{cor}{}
+	If $x,y\in\R^d$, then $\inprod{x}{y}=\dsst\sum_{i=1}^dx_iy_i=x^Ty=xy^T$.
+\end{cor}
+\begin{prf}
+	Suppose $x=\mqty(x_1\\\vdots\\x_d)$, then $x^T=\mqty(x_1&\cdots&x_d)$.\[x^Ty=\mqty(x_1&\cdots&x_d)\mqty(y_1\\\vdots\\y_d)=x_1y_1+\cdots+x_dy_d.\]	
+\end{prf}
+\begin{cor}{Cauchy-Schwarz}
+	$\qty|x^Ty|\leq\|x\|_2\|y\|_2$.	
+\end{cor}
+\begin{df}{Trace of a Matrix}
+	Assume that $A\in\R^{d\times d}$, the \textit{trace} of $A$, denoted as $\Tr(A)$, is defined as \[\Tr(A)=\sum_{i=1}^da_{ii}.\]	
+\end{df}
+\begin{df}{Determinant of a Matrix}
+	Assume that $A\in\R^{d\times d}$, the \textit{determinant} of $A$, denoted as $\det(A)$, is defined as \[\det(A)=\sum_{\sigma\in S_d}(-1)^{i(\sigma)}a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{d\sigma(d)},\] where $S_d$ is the set of all possible permutation of size $d$ and $i(\sigma)$ denotes the sign of the permutation. 
+\end{df}
+\begin{df}{Eigenvalue and Eigenvector}
+	Assume that	$A\in\R^{d\times d}$. We say that $\lambda$ is an \textit{eigenvalue} for $A$ if $\exists x\in\R^d\backslash\qty{0}\st Ax=\lambda x$. In this case, $x$ is called an \textit{eigenvector}.
+\end{df}
+\begin{df}{Diagonalizability}
+	A matrix $A\in\R^{d\times d}$ is called \textit{diagonalizable} if $\exists$ basis $v_1,\dots,v_d\st Av_i=\lambda v_i\quad\forall1\leq i\leq d$. 
+\end{df}
+\begin{thm}{Diagonalization, Singular Value Decomposition (SVD) of Squared Matrices}
+	Assume that $A$ is diagonalizable and \[V=\mqty(v_1&v_2&\cdots&v_d).\] Then, $A=VDV^{-1}$, where $D$ is a diagonal matrix such that \[D=\mqty(\lambda_1&&0\\&\ddots&\\0&&\lambda_d).\]
+\end{thm}
+\begin{eg}{Application of Diagonalization}
+	\[A^2=\qty(VDV^{-1})\qty(VDV^{-1})=VD\underbrace{V^{-1}V}_IDV^{-1}=VD^2V^{-1}.\] Generally, \[A^n=VD^nV^{-1}=V\mqty(\lambda_1^n&&0\\&\ddots&\\0&&v_d^n)V^{-1}.\]
+\end{eg}
+\begin{rmk} Remarks on Diagonalization
+	\begin{itemize}
+		\item There might be repeating eigenvalues. Typically, we enumerate $\lambda$'s $\st\lambda_1\geq\lambda_2\geq\cdots\geq\lambda_d$.
+		\item In general, it is hard to decide whether $A$ is diagonalizable. \emph{For example, rotation matrices have no eigenvectors nor eigenvalues.}
+		\item If $A$ is symmetric; that is $A=A^T$, then $A$ is diagonalizable. Moreover, we can choose basis $v_1,\dots,v_d \st$ \[v_i^Tv_j=\begin{cases}0,\quad i\neq j\\1,\quad i=j\end{cases}.\] Such bases are called \emph{orthonormal}. In matrix form, if $V=\mqty(v_1&v_2&\cdots&v_d)$, then \[V^TV=\mqty(v_1^T\\\vdots\\v_d^T)\mqty(v_1&\cdots&v_d)=I.\] That is, $V^T=V^{-1}$, and hence $A=VDV^{-1}=VDV^{T}$.
+	\end{itemize}	
+\end{rmk}
+
+
 
 \newpage
 \section{Unconstrained Optimization}
