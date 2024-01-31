@@ -98,16 +98,44 @@
 	Waiting Time with an unknown Threshold.\par 
 	Let $\lambda=1$ in exponential but there is an unknown threshold $\theta$, that, is $f_Y(y)=e^{-(y-\theta)}$ for $y\geq\theta,\ \theta>0$.	
 	\begin{sol}
-		Note that the likelihood function is given by \begin{align*}L(\theta;y_1,\dots,y_n)=\prod_{i=1}^nf_Y(y_1)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta)),\quad y_i\geq\theta,\ \theta>0\\&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_i\geq0,\ \theta>0]},\end{align*} where \[\1_{x\in A}=\begin{cases}1\quad\text{if }x\in A\\0\quad\text{if }x\notin A.\end{cases}\] Using order statistics, \[L(\theta)=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_{(n)}\geq y_{(n-1)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}\] Define \[\l(\theta;y_1,\dots,y_n)=\ln L(\theta)=-\sum_{i=1}^n(y_i-\theta).\]
-		\textit{incomplete}
+		Note that the likelihood function is given by \begin{align*}L(\theta;y_1,\dots,y_n)=\prod_{i=1}^nf_Y(y_1)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta)),\quad y_i\geq\theta,\ \theta>0\\&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_i\geq0,\ \theta>0]},\end{align*} where \[\1_{x\in A}=\begin{cases}1\quad\text{if }x\in A\\0\quad\text{if }x\notin A.\end{cases}\] Using order statistics, \begin{align*}L(\theta)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_{(n)}\geq y_{(n-1)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}\\&=\exp\qty(-\sum_{i=1}^ny_i+n\theta)\1_{\qty[y_{(n)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}.\end{align*}
+		So, we know $\theta\leq y_{(1)}=y_{\min}$. \par 
+		To maximize the likelihood function, we want to maximize $-\sum y_i+n\theta$. That is, to maximize $\theta$, as $\theta\leq y_{\min}$, it must be that $\theta_{\max}=y_{\min}$. Therefore, the MLE is $\theta^*=y_{\min}.$
 	\end{sol}
 \end{eg}
 \begin{eg}
 	Suppose $Y_1,\dots,Y_n\sim\text{Uniform}[0,a]$. That is, $f_Y(y;a)=\dfrac{1}{a}$ for $y\in[0,a]$. Find MLE $a_e$ of $a$. 
 	\begin{sol}
-		Note that \begin{align*}f_Y(y;a)&=\dfrac{1}{a}\cdot\1_{\qty{y\in[0,a]}}\\&=\dfrac{1}{a}\cdot\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}&\text{where } y_{(1)}=\min y_i\text{ and } y_{(n)}=\max y_i\end{align*} Then, \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}\] Maximize, we find \[a_e=y_{(n)}.\]
+		Note that \begin{align*}f_Y(y;a)&=\dfrac{1}{a}\cdot\1_{\qty{y\in[0,a]}}\\&=\dfrac{1}{a}\cdot\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}&\text{where } y_{(1)}=\min y_i\text{ and } y_{(n)}=\max y_i\end{align*} Then, \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}\] To maximize $L(a)$, we want to minimize $a^n$. Since $a\geq y_{(n)}$, it must be that $a_e=y_{(n)}$. 
+		Here, we call $a_e=y_{(n)}$ an \textit{estimate}, and $\hat{a_{\text{MLE}}}=Y_{(n)}$ an \textit{estimator}.
 	\end{sol}
 \end{eg}
-
+\begin{eg}
+	\textbf{MLE that Does Not Esist}
+	\par Suppose $f_Y(y;a)=\dfrac{1}{a},\quad y\in[0, a)$. Find the MLE.
+	\begin{sol}
+		The likelihood function is the same: \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}<a}}.\] However, since $[0,a)$ is not a closed set, the optimization problem $\dsst\max_{a\in[0,a)}L(a)$ does not have a solution. Hence, the estimate does not exist. 
+	\end{sol}
+\end{eg}
+\begin{rmk}
+	MLE may not be unique all the time.	
+\end{rmk}
+\begin{eg}
+	\textbf{Multiple MLE Values}
+	\par Suppose  $X_1,\dots,X_n\sim\text{Uniform}\qty[a-\dfrac{1}{2},a+\dfrac{1}{2}]$, where $f_X(x;a)=1,\ x\in\qty[a-\dfrac{1}{2}, a+\dfrac{1}{2}]$. Find the MLE. 
+	\begin{sol}
+		In the indicator function notation, we can rewrite the pdf to be \[f_X(x;a)=\1_{\qty{a-\frac{1}{2}\leq x\leq a+\frac{1}{2}}}=\1_\qty{a-\frac{1}{2}\leq x_{(1)}\leq\cdots\leq x_{(n)}\leq a+\frac{1}{2}}.\] So, the likelihood function will be \[L(a)=\prod_{i=1}^nf_x(x_i;a)=\begin{cases}1,\quad a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]\\0,\quad \text{otherwise}.\end{cases}\] So, the $L(a)$ will be maximized whenever $a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Therefore, MLE can be any value in the range $\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Say, \[a_e=x_{(n)}-\dfrac{1}{2}\quad\text{or}\quad a_e=x_{(1)}-\frac{1}{2}\quad\text{or}\quad a_e=\dfrac{x_{(n)}-\frac{1}{2}+x_{(1)}+\frac{1}{2}}{2}=\dfrac{x_{(n)}+x_{(1)}}{2}.\]
+	\end{sol}
+\end{eg}
+\begin{thm}{MLE for Multiple Parameters}
+	In general, we have the likelihood function $L(\theta)$, where $\theta=\qty(\theta_1,\dots,\theta_p)$. To find the MLE, we need \[\pdv{L(\theta)}{\theta_i}=0\quad i=1,\dots,p,\] and the Hessian matrix \[\mqty(\dsst\pdv[2]{L(\theta)}{\theta_i}{\theta_j})_{i,j=1,\dots,p}\coloneqq\mqty(\dsst\pdv[2]{L(\theta)}{\theta_1}&\cdots&\dsst\pdv[2]{L(\theta)}{\theta_1}{\theta_p}\\\vdots&\ddots&\vdots\\\dsst\pdv[2]{L(\theta)}{\theta_p}{\theta_1}&\cdots&\dsst\pdv[2]{L(\theta)}{\theta_p})\] should be negative dfinite. 
+\end{thm}
+\begin{eg}
+	\textbf{MLE for Multiple Parameters: Normal Distribution}
+	\par Suppose $Y_1,\dots,Y_n\sim N(\mu,\sigma)$. Then, \[f_{Y_i}(u;\mu,\sigma)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\qty(y_i-\mu)^2/\qty(2\sigma^2)}.\] Find the MLE for $\mu$ and $\sigma$.
+	\begin{sol}
+		The likelihood function will be \[L(\mu,\sigma)=\prod_{i=1}^n\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\qty(y_i-\mu)^2/\qty(2\sigma^2)}.\] Then, we define \[\l(\mu,\sigma)=\ln L(\mu,\sigma)=-\dfrac{n}{2}\ln2\pi-\dfrac{n}{2}\ln\sigma^2-\dfrac{1}{2}\qty(\sigma^2)^-1\sum_{i=1}^n\qty(y_i-\mu)^2.\] Set \[\begin{cases}\dsst\pdv{\l(\mu,\sigma)}{\mu}=0\quad\quad\text{\ding{172}}\\\dsst\pdv{\l(\mu,\sigma)}{\sigma}=0\qquad\text{\ding{173}}\end{cases}\] From \ding{172}, we have \begin{align*}\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_1-\mu)&=0\\\sum_{i=1}^ny_i&=n\mu\implies\boxed{\mu_e=\dfrac{\sum y_i}{n}=\bar{y}}\end{align*} From \ding{173}, by the invariant property of MLE, we instead set \begin{align*}\dsst\pdv{\l(\mu,\sigma)}{\sigma^2}&=0\\-\dfrac{n}{2}\cdot\dfrac{1}{\sigma^2}+\dfrac{1}{2}\qty(\dfrac{1}{\sigma^2})^2\sum_{i=1}^n\qty(y_i-\mu)^2&=0\\\dfrac{1}{2\sigma^2}\qty(-n+\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_i-\mu)^2)&=0\\-n\sigma^2+\sum_{i=1}^n\qty(y_i-\mu)^2&=0\qquad\qquad(\mu_e=\bar{y})\\\sum_{i=1}^n\qty(y_i-\bar{y})^2&=n\sigma^2\\\sigma_e^2=\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2&\implies\boxed{\sigma_e=\sqrt{\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2}}\end{align*}
+	\end{sol}
+\end{eg}
 
 \end{document}
