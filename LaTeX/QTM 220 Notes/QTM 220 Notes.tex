@@ -10,7 +10,8 @@
 \tableofcontents
 
 \newpage
-\section{Descriptive Statistics and Binary Covariates}
+\section{Statistical Inference}
+\subsection{Descriptive Statistics and Binary Covariates}
 \begin{df}{Location}
 	The \textit{location} of the data is where it is. It is about approximating the data by a constant. \[Y_i\approx\mu,\quad\text{for }i=1,\dots,n\]	
 \end{df}
@@ -61,6 +62,51 @@
 	In binary data, knowing the mean $\equiv$ knowing everything else. 
 \end{rmk}
 
+\subsection{Population Inference for a Proportion}
+\begin{df}{Sampling Distribution}
+	The \textit{sampling distribution} is the distribution of estimates we'd get if we \textbf{replicated} our experiment over and over. 
+\end{df}
+\begin{itemize}
+	\item Think of lots of people rolling the dice and reporting what they got. 
+	\item We consider this because it actually tells us something: it gives us an \textbf{interval} we can expect the proportion is in, and a statement about how much \textbf{confidence} we should have about it. 
+\end{itemize}
+\begin{eg}{Connecting Sample and Population}
+	For each call $i$, we randomly select a voter with an id we'll call $J_i$. And we record as the call's outcome the turnout of the voter: $Y_i=y_{J_i}$. We can run this simulation using \texttt{R}. 
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{figs/SamplingDistribution.png}	
+	\end{center}
+	\begin{itemize}
+		\item The \textit{mean of the sampling distribution} is the solid blue line.
+		\item The middle 2/3 of the sampling distribution lies between the dashed blue lines.
+		\item The middle 95\% of the sampling distribution lies between the dotted blue lines. 
+		\item Also, the population proportion is drawn as a wide green line. 
+		\item The question is ``Could we predict how close we can get from the sampling before the election happened?'' -- Yes!
+		\begin{itemize}
+			\item We will use an \textbf{interval estimate}: a \textit{range of values} the population proportion is likely to be in.
+			\item The \textbf{width} of this interval speaks to the ``how close'' question.
+			\item The \textbf{coverage probability} (the probability we are right) qualifies this answer.
+			\begin{itemize}
+				\item Our \textbf{point estimate} of the population proportion is the sample proportion $\bar{Y_n}$, where $n$ is the size of the sample. 
+				\item Now, we will try with some size of the interval. Say, $x$. Then, we are interested in the range of data $\bar{Y_n}\pm\dfrac{x}{2}$ (since the interval can be two-tailed).
+				\item Repeat the sampling process multiple times, say $M$ times, and we notice that out of $t$ times our interval ``touches'' the population proportion. 
+				\item Then, we can define the coverage probability as follows: \[\text{coverage probability}=\dfrac{t}{M}=\P\qty(\bar{Y}_n\in\bar{y}_N\pm \dfrac{x}{2}),\] where $\bar{Y}_n$ is our point estimate, $\bar{y}_N$ is the population proportion, and $x$ is the width of the interval. 
+			\end{itemize} 
+		\end{itemize}
+		\item Most of the time, we would like a 95\% coverage probability, which means we will need to use a wider interval. 
+		\item Therefore, what we want to do is to choose a coverage probability and calculate the right width. An interval estimate like this (to ensure a given coverage) is called a \textbf{confidence interval}.
+		\item The following figure shows a 95\% coverage probability: \begin{center}\includegraphics[width=0.7\textwidth]{figs/95ConfidenceInterval.png}\end{center}
+		\begin{itemize}
+			\item Our sample proportion $0.68$ is close to the population proportion $0.69$. Did we get luck? \textit{No! In a million runs, almost all are within 0.05}.
+			\item Could we have predicted how close we would get before seeing the $0.69$? \textit{Yes! We can use a calibrated interval estimate -- a Confidence Interval}.
+		\end{itemize}
+		\item However, notice that this approach is not perfect: we cannot calibrate intervals like this in real life. 
+		\begin{itemize}
+			\item When we run our pool, we get a single point estimate $\bar{Y}_n$ based on our sample. 
+			\item We don't know the sampling distribution of this point estimate until the election day.
+			\item However, what we actually do is almost the same: we will use an estimate of the sampling distribution in place of the thing itself. 
+		\end{itemize} 
+	\end{itemize}
+\end{eg}
 
 
 \end{document}
