@@ -74,7 +74,7 @@
 		\begin{sol}
 			\begin{itemize}
 				\item Optimization variable: $x=(x_1,x_2)\in\R^2$. $\longrightarrow$ continuous. 
-				\item Feasible set: $S=\qty{(x_1,x_2):x_1,x_2\geq0}\subsetneq\R62$. $\longrightarrow$ constrained.
+				\item Feasible set: $S=\qty{(x_1,x_2):x_1,x_2\geq0}\subsetneq\R^2$. $\longrightarrow$ constrained.
 				\item Objective function: $f(x_1,x_2)=4x_1-3\qty|x_2|+\sin(x_1^2-2x_2)$. $\longrightarrow$ non-smooth and non-linear.
 			\end{itemize}	
 		\end{sol}
@@ -333,6 +333,57 @@
 		\item $U=(0,1]\implies bd(U)=\qty{0,1}$.
 	\end{itemize}	
 \end{eg}
+\begin{df}{Compact Set}
+	A set $C\in\R^n$ is called \textit{compact} if it is \textbf{closed} and \textbf{\textit{bounded}}. The latter means that $\exists\ M>0\st\|x\|\leq M\quad\forall x\in C$.	
+\end{df}
+
+\subsection{Continuity and Differentiability}
+\begin{df}{Continuity}
+	Let $S\subseteq\R^n,\ f:S\to\R, x\in S$. We say that $f$ is \textit{continuous at $x$} if \[\lim_{\substack{z\to x\\ z\in S}} f(z) = f(x).\]\par	 If $f$ is continuous at all points $x\in S$, we simply say $f$ is \textit{continuous} on $S$. We also use the notation $f\in\C(S)$.
+\end{df}
+\begin{thm}{Weierstrass Theorem}
+	Assume that $S\subseteq\R^n$ is a compact set, and $f: S\to\R$ is a continuous function. Then $\exists\ x_{\min}, x_{\max}\in S\st$ \[f(x)\geq f\qty(x_{\min})\quad\forall x\in S\quad\text{and}\quad f(x)\leq f\qty(x_{\max})\quad\forall x\in S.\] In other words, $\dsst\min_{x\in S}f(x)$ and $\dsst\max_{x\in S}f(x)$ problems are guaranteed to have solutions.
+\end{thm}
+\begin{eg}{Classes of Continuous Functions}
+	\begin{enumerate}
+		\item Polynomials.
+		\item $\sin(x)$ and $\cos(x)$; $\tan(x)$ and $\cot(x)$ at certain domain.
+		\item Exponents: $e^{ax},\ a\in\R$.
+		\item Logarithm: $\ln{x},\ x>0$.
+		\item \ \par \begin{thm}{Building Continuous Functions} \begin{itemize}\item If $f$ and $g$ are continuous, then $f\cdot g$, $f+g$, and $af$ are continuous $\forall a\in\R$. \item If $f$ and $g$ are continuous, then $\dfrac{f}{g}$ is continuous for $x\st g(x)\neq0$.\item If $f,g$ are continuous and $h=f\circ g$ makes sense, then $h$ is continuous. \end{itemize}\end{thm}
+	\end{enumerate}
+\end{eg}
+\begin{df}{Differentiability}
+	Let $S\subseteq\R^n$, $x\in int(S)$, and $f:S\to\R$. Then, the \textit{$i$-th partial derivative of $f$ at $x$} is the limit (if it exists) \[\pdv{f(x)}{x_i}=\lim_{t\to0}\dfrac{f(x+te_i)-f(x)}{t},\quad\text{where }e_i\text{ is the standard basis}.\]\par If all partial derivatives exist, then we assemble them in a column vector called \textit{gradient}. \[\grad{f(x)}=\mqty(\dsst\pdv{f(x)}{x_1}&\cdots&\dsst\pdv{f(x)}{x_n})^T\]\par We say that $f$ is \textit{continuously differentiable} on $S$ if $\exists\ U$ open set $\st S\subseteq U$ and $\grad{f(x)}$ exists $\forall x\in U$ and is continuous. In this case, we write $f\in\C^1(S)$.
+\end{df}
+\begin{eg}{Continuous Function that is not Continuously Differentiable}
+	Consider $f(x)=\abs{x}$. Then we know its derivative \[f'(x)=\begin{cases}1&x>0\\-1&x<0\\\text{undefined}&x=0.\end{cases}\] So, $f\in\C(\R)$ but $f\notin\C^1(\R)$.
+\end{eg}
+\begin{df}{Directional Derivative}
+	Let $f\in\R^n\backslash\qty{0}$. Then, the \textit{directional derivative of $f$ at $x$} is the limit (if it exists) \[f'(x;d)=\lim_{t\to0^+}\dfrac{f(x+td)-f(x)}{t}.\]
+\end{df}
+\begin{rmk}
+	If $f\in\C^1(S)$, then \[f'(x;d)=\grad{f(x)}^T\cdot d.\]\par However, the converse is not true in general. Indeed, for $f(x)=\abs{x}$, we have that $f'(0;1)=1$ (the positive direction), and $f'(0;-1)=-1$ (the negative direction). But $f'(0)$ does not exist. 
+\end{rmk}
+\begin{df}{Second-Order Differentiability}
+	The \textit{$(i,j)$-th partial derivative of $f$ at $x$} is \[\pdv[2]{f}{x_i}{x_j}=\pdv{x_i}\qty(\pdv{f(x)}{x_j}).\]\par If all second order partial derivatives exist and are continuous on $S$, we say that $f$ is \textit{twice continuously differentiable} on $S$ and write $f\in\C^2(S)$.\par If $f\in\C^2(S)$, then \[\pdv[2]{f}{x_i}{x_j}=\pdv[2]{f}{x_j}{x_i}\quad\forall i,j.\]\par If $f$ has all second-order partial derivatives at $x$, then we denote the \textit{Hessian of $f$} at $x$ by the matrix \[\grad^2f(x)=\mqty(\dsst\pdv[2]{f}{x_i}{x_j})_{i,j=1}^n\]\par If $f\in\C^2(S)$, then $\grad^2f(x)$ is \textit{symmetric} for all $x\in S$.
+\end{df}
+\begin{df}{Small-O Notation}
+	$o(r)$ is the \textit{small-o notation} and means that this quantity is much smaller than $r$. For example, $o(\norm{y-x})$ is any quantity $\st$\[\lim_{y\to x}\dfrac{o(\norm{y-x})}{\norm{y-x}}=0.\]
+\end{df}
+\begin{thm}{Taylor Approximation I}
+	If $f$ is differentiable at $x$, then \[f(y)=f(x)+\grad{f(x)}^T(y-x)+o\qty(\norm{y-x}).\]
+\end{thm}
+	\begin{thm}{Taylor Approximation II} 
+If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{1}{2}(y-x)^T\grad^2f(x)(y-x)+\underbrace{o\qty(\norm{y-x}^2)}_\text{small error}.\]
+\end{thm}
+\begin{thm}{Taylor Approximation III}
+	If $f$ is twice differentiable at $x$, then \[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{1}{2}(y-x)^T\grad^2f(c)(y-x)\text{ for some }c(x,y,f\dots),\] where the point $c$ is dependent on $x$, $y$, and $f$, but we do not know exactly what $c$ is.
+\end{thm}
+\begin{rmk}
+	From Taylor Approximation II to III, we improve our approximation from an expression with a small error, to an exact equation. However, the trade-off here is that we have to introduce a new constant $c$, which we do not have any information about. 	
+\end{rmk}
+
 
 
 
