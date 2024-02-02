@@ -108,5 +108,46 @@
 	\end{itemize}
 \end{eg}
 
+\subsection{Calibrating Interval Estimates}
+\begin{thm}{}
+	An interval estimate covers the population proportion $\iff$ the corresponding point estimate is between the population proportion's arms.	
+\end{thm}
+
+\begin{rmk}
+	With this Theorem, in Example 1.2.2, instead of looking at every interval and its arms to calculate coverage, we can draw arms of the same width around the population proportion. \par Equivalently, we can calculate the \textbf{mass of the histogram} between the population proportion's arms. \par However, even with this Theorem, the problem still exists: unless we've seen the population, we cannot run simulations. Hence, in reality we will do calibration using an \textbf{estimate of the sampling distribution}.
+\end{rmk}
+\begin{eg}{}
+	Here, we use our sample to estimate the sampling distribution. Compared with the actual population mean, the sample mean is a bit lower. Will this impact our estimation?
+	\begin{center}\includegraphics[width=0.7\textwidth]{figs/EstimationOfDistribution.png}\end{center}
+	\begin{sol}
+		It will not because we are not putting arms on draws from the estimated sampling distribution. We are putting arms on our point estimate, which is a draws from the actual sampling distribution. All that matters is the \textbf{width} of the estimated sampling distribution, and not the center. It turns out that the width calculated from the estimated sampling distribution and the population distribution should be the same (or close to the same). 
+	\end{sol}
+\end{eg}
+\begin{thm}{Binomial Distribution Estimation}
+	For a binary data type, we collected $Y_1,\cdots,Y_n$ as our sample. The distribution of the sample should follow a \textit{Binomial Distribution}: \[Y_i\sim\text{Binomial}(n,p).\]
+\end{thm}
+\begin{rmk}
+	In theory, $p$ should be calculated from the population. However, in the case of estimation, we will use our sample to estimate $p$. In the binary case, $p=\bar{Y}$.
+\end{rmk}
+\begin{lstlisting}[title=Binomial Distribution]{language=r}
+	dbinom(x, n, p) 
+	# x = number of heads, n = number of flips, p = probability of heads
+\end{lstlisting}
+\begin{lstlisting}[title=Binomial Sample]{language=r}
+	# To draw samples from estimated sampling distribution
+	samples <- rbinom(num, n, p)
+	# num = total number of draws, 
+	# n = number of elements per drawing, 
+	# p = probability of head
+\end{lstlisting}
+\begin{eg}{How does the estimation work}
+	\begin{center}\includegraphics[width=0.7\textwidth]{figs/BinomialDistribution.png}\end{center}	
+	The Binomial distribution is \textit{continuous} as a function of $p$, so when $p$ cahgnes little, the distribution changes little. That is to say that if we are not far off in the proportion, the estimated and actual sampling distributions are similar. The relevant difference (after centering) is even smaller because the way the binomial changes is mostly location. \par 
+	This can be thought of a sort of ``confidence interval'' for our estimate of the sampling distribution. 95\% of the time, we will get an estimate somewhere between the {\color{red}{red}} and {\color{blue}{blue}} ones. As a result, a width of our interval estimate somewhere between the red and blue widths. 
+\end{eg}
+\begin{eg}{The Bootstrap Interpretation}
+	Let's revisit our distribution: \[\text{Binomial}(n,p)/n.\]	This sample distribution indicates the proportion of $1$'s if we poll a sample of $n$ object among whom the proportion of $1$'s is exactly $\bar{Y}=p$. This means that we can get a draw from our estimated sampling distribution by running a ``poll'' of the objects in our sample: rolling a $n$-sided die $n$ times, calling up the corresponding object in our sample, and counting up the $1$'s we observe.  
+\end{eg}
+
 
 \end{document}

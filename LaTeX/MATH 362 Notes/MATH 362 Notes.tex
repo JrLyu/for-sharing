@@ -138,4 +138,57 @@
 	\end{sol}
 \end{eg}
 
+\subsection{The Method of Moment}
+\begin{df}{Moment Generating Function}
+	The \textit{Moment Generating Function (MGF)} is defined as \[\M_X(t)=\E\qty[e^{tX}],\] and it uniquely determines a probability distribution.
+\end{df}
+\begin{df}{Moment}
+	The \textit{$k$-th order moment} of $X$ is $\E\qty[X^k]$.	
+\end{df}
+\begin{eg}{Meaning of Different Moments}
+	\begin{itemize}
+		\item $\E[X]$: location of a distribution
+		\item $\E\qty[X^2]=\Var(X)-\E[X]^2$: width of a distribution
+		\item $\E\qty[X^3]$: skewness -- positively skewed / negatively skewed
+		\item $\E\qty[X^4]$: kurtosis / tailedness -- speed decaying to $0$.
+	\end{itemize}	
+\end{eg}
+\begin{eg} 
+	\textbf{Moment Estimate: Moments of Population and Sample}
+	\begin{center}
+	\begin{tabular}{c|c}
+		\textbf{Population}&\textbf{Sample, $X_1,\dots,X_n$}\\\hline\\
+		$\E[X]=\mu$&$\hat\mu=\bar X=\dfrac{X_1+\cdots+X_n}{n}$\\\\
+		$\E\qty[X^2]=\mu^2+\sigma^2$&$\hat\mu^2+\hat\sigma^2=\dfrac{X_1^2+\cdots+X_n^2}{n}$\\
+		$\vdots$&$\vdots$\\
+		$\E\qty[X^k]$&$\dfrac{X_1^k+\cdots+X_n^k}{n}$
+	\end{tabular}
+	\end{center}
+	\textbf{Rationale}: The population moments should be close to the sample moments. 
+\end{eg}
+\begin{eg}
+	\begin{itemize}
+		\item Consider $N(\mu,\sigma^2)$, where $\sigma$ is given. Estimate $\mu$.\par By the method of moment estimate, we have $\mu_e=\bar{X}$.
+		\item Consider $N(\mu,\sigma^2)$. Estimate $\mu$ and $\sigma$.\par We have $\mu_e=\bar X$ and $\mu_e^2+\sigma_e^2=\dfrac{X_1^2+\cdots+X_n^2}{n}$.
+		\item Consider $N(\theta,\sigma^2)$. Given $\E\qty(X^4)=3\sigma^4$, estimate $\mu$ and $\sigma$.\par We have $\mu_e=\bar X$, $\mu_e^2+\sigma_e^2=\dfrac{X_1^2+\cdots+X_n^2}{n}$, and $3\sigma^4=\dfrac{X_1^4+\cdots+X_n^4}{n}$. We have three equations but only two unknowns, then a solution is not guaranteed. So, we need some restrictions on this method (see Remark 1.2). 
+	\end{itemize}
+\end{eg}
+\begin{thm}{Method of Moments Estimates}
+	For a random sample of size $n$ from the discrete (or continuous) population/pdf $p_X(k;\theta_1,\dots,\theta_s)$ (or $f_Y(y;\theta_1,\dots,\theta_s)$), solutions to the system \[\begin{cases}\E(Y)=\dfrac{1}{n}\dsst\sum_{i=1}^ny_i\\\qquad\vdots\\\E\qty(Y^s)=\dfrac{1}{n}\dsst\sum_{i=1}^ny_i^s\end{cases}\] which are denoted by $\theta_{1e},\dots,\theta_{se}$, are called the \textbf{method of moments estimates} of $\theta_1,\dots,\theta_s$.
+\end{thm}
+\begin{rmk}
+	To estimate $k$ parameters with the method of moments estimates, we will only match the first $k$ orders of moments. 
+\end{rmk}
+\begin{eg}
+	Consider the Gamma distribution: \[f_Y(y;r,\lambda)=\dfrac{\lambda^r}{\Gamma(r)}y^{r-1}e^{-\lambda y}\quad\text{for }y\geq0.\] Given $\E(Y)=\dfrac{r}{\lambda}$ and $\E\qty(Y^2)=\dfrac{r}{\lambda^2}+\dfrac{r^2}{\lambda^2}$. Estimate $r$ and $\lambda$.
+	\begin{sol}
+		\[\E\qty(Y)=\dfrac{r}{\lambda}\implies\dfrac{r_e}{\lambda_e}=\dfrac{y_1+\cdots+y_n}{n}=\bar{y}\qquad\text{\ding{172}}\] \[\E\qty(Y^2)=\dfrac{r}{\lambda^2}+\dfrac{r^2}{\lambda^2}\implies\dfrac{r_e}{\lambda_e^2}+\dfrac{r_e^2}{\lambda_e^2}=\dfrac{y_1^2+\cdots+y_n^2}{n}\qquad\text{\ding{173}}\] Substitute \ding{172} into \ding{173}, we have \[\dfrac{\bar{y}}{\lambda_e}+\qty(\bar{y})^2=\dfrac{1}{n}\sum_{i=1}^ny_i^2\implies \boxed{\lambda_e=\dfrac{\bar{y}}{\frac{1}{n}\sum y_i^2-\bar{y}^2}}\qquad\text{\ding{174}}\] Substitute \ding{174} into \ding{172}, we have \[r_e=\bar{y}\lambda_e=\boxed{\dfrac{\bar{y}^2}{\frac{1}{n}\sum y_i^2-\bar{y}^2}}.\]
+	\end{sol}
+\end{eg}
+\begin{rmk}
+	The \emph{sample variance} is defined as \begin{align*}\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2&=\dfrac{1}{n}\sum_{i=1}^n\qty(y_i^2-2y_i\bar{y}+\bar{y}^2)\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-2\bar{y}\cdot\dfrac{\sum y_i}{n}+\dfrac{1}{n}\cdot n\bar{y}^2\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-2\bar{y}^2+\bar{y}^2&\bar{y}=\dfrac{\sum y_i}{n}\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-\bar{y}^2.\end{align*} So, in Example 1.3.7, if we define $\hat{\sigma}^2$ to be the sample variance, we can further simply our estimate as follows: \[\lambda_e=\dfrac{\bar{y}}{\hat{\sigma}^2},\qquad r_e=\dfrac{\bar{y}^2}{\hat{\sigma}^2}.\]
+\end{rmk}
+
+
+
 \end{document}
