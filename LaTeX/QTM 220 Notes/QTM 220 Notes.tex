@@ -148,6 +148,45 @@
 \begin{eg}{The Bootstrap Interpretation}
 	Let's revisit our distribution: \[\text{Binomial}(n,p)/n.\]	This sample distribution indicates the proportion of $1$'s if we poll a sample of $n$ object among whom the proportion of $1$'s is exactly $\bar{Y}=p$. This means that we can get a draw from our estimated sampling distribution by running a ``poll'' of the objects in our sample: rolling a $n$-sided die $n$ times, calling up the corresponding object in our sample, and counting up the $1$'s we observe.  
 \end{eg}
+\begin{lstlisting}[title=Bootstrap Sample]{language=r}
+bootstrap.samples = array(dim=10000)
+for (rr in 1:10000) {
+	Y.boot = Y[sample(1:n, n, replace=TRUE] # Boostraping
+	bootstrap.samples[rr] = sum(Y.boot)/n
+} 
+\end{lstlisting}
+\begin{thm}{Bootstrapping}
+	The usual way of sampling is to use a sample to approximate the population. Since one sample can only generate one estimate, we need many samples. However, we cannot do this in reality. Instead, we only have one sample, so we will use bootstrapping. In that way, we resample the sample multiple times to general different estimates. Using the resampling distribution, we can eventually approximate the population. 
+\end{thm}
+\begin{df}{Normal Distribution}
+	The normal distribution is a function of two parameters: its mean and its standard deviation: \[p_{\mu,\sigma}(x)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\dfrac{(x-\mu)^2}{2\sigma^2}}\]
+\end{df}
+\begin{thm}{Central Limit Theorem}
+	The sampling distribution and the bootstrap sampling distribution is approximately normal, and this is a consequence of the Central Limit Theorem. 
+\end{thm}
+
+
+\newpage
+\section{Labs}
+\subsection{Probability Review}
+\begin{thm}{Properties of Expectations}
+	\begin{description}
+		\item[Linearity of Expectation] Suppose $Y,Z$ are random variables and $a,b\in\R$. Then \[\E\qty(aY+bZ)=\E\qty(aY)+\E\qty(bZ)=a\E(Y)+b\E(Z).\] 
+		\item[Multiplication Rules] Suppose $Y,Z$ are \emph{independent} random variables, then \[\E(Y\cdot Z)=\E(Y)\cdot\E(Z).\]
+	\end{description}	
+\end{thm}
+\begin{rmk}
+	Without special notice, we assume random variables are independent in this course.	
+\end{rmk}
+\begin{cor}{}
+	If $Y,Z$ are independent, then $\Var(Y+Z)=\Var(Y)+\Var(Z).$	
+\end{cor}
+\begin{prf}
+	\begin{align*}\Var(Y+Z)&=\E\qty[\qty(Y+Z)^2]-\E\qty(Y+Z)^2\\&=\E\qty(Y^2+Z^2+2YZ)-\qty[\E(Y)+\E(Z)]^2\\\text{Linearity}&=\E\qty(Y^2)+\E(Z^2)+2\E(YZ)-\E(Y)^2-\E(Z)^2-2\E(Y)\E(Z)\\\text{Independence}&=\qty(\E(Y^2)-\E(Y)^2)+\qty(\E(Z^2)-\E(Z)^2)+2\E(YZ)-2\E(YZ)\\&=\Var(Y)+\Var(Z).\end{align*}	
+\end{prf}
+\begin{thm}{Binomial Expection and Variance}
+	If $Y\sim\text{Binomial}(n,p)$, then \[\E\qty(\bar{Y})=\E\qty[\dfrac{1}{n}\sum_{i=1}^n\qty(Y_i)]=p\] and \[\Var\qty(\bar{Y})=\dfrac{p(1-p)}{n}.\] The proof of these two quantities are omitted. 
+\end{thm}
 
 
 \end{document}

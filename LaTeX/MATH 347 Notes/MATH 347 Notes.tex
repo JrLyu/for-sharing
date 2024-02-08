@@ -280,18 +280,18 @@
 	The boundary is not included in an open ball.	
 \end{rmk}
 \begin{df}{Interior Point}
-	Assume that $U\in\R^n$. We say that $x\in U$ is an \textit{interior point} if $\exists\ r>0\st B(x,r)\subseteq U$. The set of all interior points of $U$ is denoted by $int(U)$	
+	Assume that $U\in\R^n$. We say that $x\in U$ is an \textit{interior point} if $\exists\ r>0\st B(x,r)\subseteq U$. The set of all interior points of $U$ is denoted by $\operatorname{int}(U)$	
 \end{df}
 \begin{eg}{Interior Point Example}
-	Suppose $U=[0,1]$. Prove that $int(U)=(0,1)$.
+	Suppose $U=[0,1]$. Prove that $\operatorname{int}(U)=(0,1)$.
 	\begin{prf}
-		To prove this, we have to show $int(U)\subseteq(0,1)$ and $(0,1)\subseteq int(U)$.\par 
-		($\supseteq$): Let $x\in(0,1)$. \textit{WTS: $x\in int(U)$.} Take $r=\min\qty{x,1-x}$, then the open ball $B(x,r)\subseteq U$. \textit{proof omitted. } So, $x\in int(U)$, and thus $(0,1)\subseteq int(U). \pqde$\par 
-		($\subseteq$): Let $x\in int(U)$. \textit{WTS: $x\in(0,1)$.} \textit{omitted.}
+		To prove this, we have to show $\operatorname{int}(U)\subseteq(0,1)$ and $(0,1)\subseteq\operatorname{int}(U)$.\par 
+		($\supseteq$): Let $x\in(0,1)$. \textit{WTS: $x\in\operatorname{int}(U)$.} Take $r=\min\qty{x,1-x}$, then the open ball $B(x,r)\subseteq U$. \textit{proof omitted. } So, $x\in\operatorname{int}(U)$, and thus $(0,1)\subseteq\operatorname{int}(U). \pqde$\par 
+		($\subseteq$): Let $x\in\operatorname{int}(U)$. \textit{WTS: $x\in(0,1)$.} \textit{omitted.}
 	\end{prf}
 \end{eg}
 \begin{df}{Open Set}
-	A set $U\subseteq\R^n$ is called \textit{open} if $int(U)=U$.	
+	A set $U\subseteq\R^n$ is called \textit{open} if $\operatorname{int}(U)=U$.	
 \end{df}
 \begin{eg}{Open Set Counterexample}
 	$U=[0,1]$ in Example 1.3.4 is not an open set.	
@@ -325,12 +325,12 @@
 	A set can be neither open nor closed.	
 \end{rmk}
 \begin{df}{Boundary Points}
-	A point $x$ is a \textit{boundary point} for $U$ if $\forall\ r>0,\ B(x,r)$ contains points from both $U$ and its complement. The set of all boundary points of $U$ is denoted by $bd(U)$.
+	A point $x$ is a \textit{boundary point} for $U$ if $\forall\ r>0,\ B(x,r)$ contains points from both $U$ and its complement. The set of all boundary points of $U$ is denoted by $\operatorname{bd}(U)$.
 \end{df}
 \begin{eg}{Boundary Pooints}
 	\begin{itemize}
-		\item $U=[0,1]\implies bd(U)=\qty{0,1}$.
-		\item $U=(0,1]\implies bd(U)=\qty{0,1}$.
+		\item $U=[0,1]\implies\operatorname{bd}(U)=\qty{0,1}$.
+		\item $U=(0,1]\implies\operatorname{bd}(U)=\qty{0,1}$.
 	\end{itemize}	
 \end{eg}
 \begin{df}{Compact Set}
@@ -385,12 +385,148 @@ If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{
 \end{rmk}
 
 
-
-
-
-
 \newpage
 \section{Unconstrained Optimization}
+\subsection{Global and Local Optima}
+\begin{df}{Global Minimum and Maximum}
+	Let $f:S\to\R$ be defined on a set $S\subseteq\R^n$. Then, $x^*\in S$ is called a
+	\begin{itemize}
+		\item \textit{global minimum point} of $f$ over $S$ if $f(x)\geq f(x^*)$ for any $x\in S$.
+		\item \textit{strict global minimum point} of $f$ over $S$ if $f(x)>f(x^*)$ for any $x^*\neq x\in S$.
+		\item \textit{global maximum point} of $f$ over $S$ if $f(x)\leq f(x^*)$ for any $x\in S$.
+		\item \textit{strict global maximum point} of $f$ over $S$ if $f(x)<f(x^*)$ for any $x^*\neq x\in S$.
+	\end{itemize}
+\end{df}
+\begin{df}{Feasible Set and Feasible Solution}
+	The set $S$ on which the optimization of $f$ is performed is called the \textit{feasible set}, and any only $x\in S$ is called a \textit{feasible solution}.
+\end{df}
+\begin{df}{Minimizer and Maximizer}
+	We refer to a global minimum point as a \textit{minimizer} or a \textit{global minimizer}, and a global maximum point as a \textit{maximizer} or a \textit{global maximizer}. A vector $x^*\in S$ is called a \textit{global optimum} of $f$ over $S$ if it is either a global minimum or a global maximum. 
+\end{df}
+\begin{df}{Maximal and Minimal Value}
+	The \textit{maximal value} of $f$ over $S$ is defined as the supremum of $f$ over $S$: \[\max\qty{f(x):x\in S}=\sup\qty{f(x):x\in S}.\] If $x^*\in S$ is a global maximum of $f$ over $S$, then the maximum value of $f$ over $S$ is $f(x^*)$. The \textit{minimal value} of $f$ over $S$ is the infimum of $f$ over $S$, \[\min\qty{f(x):x\in S}=\inf\qty{f(x):x\in S},\] and is equal to $f(x^*)$ when $x^*$ is a global minimizer of $f$ over $S$. 
+\end{df}
+\begin{rmk}[Difference between $\min$ and $\inf$] For $A\subseteq\R$, $\min A=y^*$ if $y^*\in A$, and $y^*\leq y\quad\forall y\in A$. On the other hand, $\inf A=y^*$ if  $y^*\leq y\quad\forall y\in A$, and any $y'>y^*$ is NOT a lower bound for $A$. 
+\end{rmk}
+\begin{rmk}
+	There could be several global minimum points, but there could be only one minimal value. 	
+\end{rmk}
+\begin{df}{Set of Global Minimizers and Global Maximizers}
+	The set of \textit{all global minimizers} of $f$ over $S$ is denoted by \[\arg\min\qty{f(x):x\in S}\] and the set of all global maximizers of $f$ over $S$ is denoted by \[\arg\max\qty{f(x):x\in S}.\]
+\end{df}
+\begin{df}{Local Minima and Maxima}
+	Let $f:S\to\R$ be defined on a set $S\subseteq\R^n$. Then, $x^*\in S$ is called a 
+	\begin{itemize}
+		\item \textit{local minimum point} of $f$ over $S$ if there exists $r>0$ for which $f(x^*)\leq f(x)$ for any $x\in S\cap B(x^*, r)$.
+		\item \textit{strict local minimum point} of $f$ over $S$ if there exists $r>0$ for which $f(x^*)<f(x)$ for any $x^*\neq x\in S\cap B(x^*,r)$.
+		\item \textit{local maximum point} of $f$ over $S$ if there exists $r>0$ for which $f(x^*)\geq f(x)$ for any $x\in S\cap B(x^*,r)$.
+		\item \textit{strict local maximum point} of $f$ over $S$ if there exists $r>0$ for which $f(x^*)>f(x)$ for any $x^*\neq x\in S\cap B(x^*, r)$.
+	\end{itemize}
+\end{df}
+\begin{lem}{Fermat's Theorem}
+	For a one-dimensional function $f$ defined and differentiable over an interval $(a,b)$, if a point $x^*\in(a,b)$ is a local maximum or minimum, then $f'(x^*)=0$.
+\end{lem}
+\begin{rmk}
+	Moving into multidimensional extension of this Lemma, the result states that the gradient is zero at local optimum points. We refer to such an optimality condition as a \emph{first order optimality condition}	.
+\end{rmk}
+\begin{thm}{First Order Optimality Condition for Local Optima Points}
+	Let $f:U\to\R$ be a function defined on a set $U\subseteq\R^n$. Suppose that $x^*\in\operatorname{int}(U)$ is a local optimum point and that all the partial derivatives of $f$ exist at $x^*$. Then, $\grad f(x^*)=0$.
+\end{thm}
+\begin{prf}
+	Let $i\in\qty{1,2,\dots,n}$ and consider the one-dimensional function $g(t)=f(x^*+te_i)$, where $e_i$ is the standard basis. Note that $g$ is differentiable at $t=0$ and that $g'(0)=\dsst\pdv{f}{x_i} (x^*)$. Since $x^*$ is a local optimum point of $f$, it follows that $t=0$ is a local optimum of $g$, which immediately implies that $g'(0)=0$. The latter equality is exactly the same as $\dsst\pdv{f}{x_i} (x^*)=0$. Since this is true for any $i\in\qty{1,2,\dots,n}$, the result $\grad f(x^*)=0$ follows. 
+\end{prf}
+\begin{rmk}
+	Our proof of the multidimensional First Order Condition relies on the first order optimality condition for one-dimensional functions. 
+\end{rmk}
+\begin{rmk}
+	Theorem 2.1.8 presents a \emph{necessary} optimality condition: the gradient vanishes at all local optimum points, which are interior points of the domain of the function; however, the reverse claim is not true since there could be points which are not local optimum points whose gradient is zero. 	
+\end{rmk}
+\begin{df}{Stationary Points}
+	Let $f:U\to\R$ be a function defined on a set $U\subseteq\R^n$. Suppose that $x^*\in\operatorname{int}(U)$ and that $f$ is differentiable over some neighborhood of $x^*$. Then, $x^*$ is called a \textit{stationary point} of $f$ if $\grad f(x^*)=0$.
+\end{df}
+\begin{rmk}
+	Theorem 2.1.8 essentially states that local optimum points are necessarily stationary points. However, again, stationary points are not necessarily local optimum points. 	
+\end{rmk}
+
+\subsection{Classification of Matrices}
+\begin{df}{Positive Definiteness, Negative Definiteness}
+	A \underline{symmetric matrix} $A\in\R^{n\times n}$	 is called 
+	\begin{itemize}
+		\item \textit{positive semidefinite}, denoted by $A\succeq0$, if $x^TAx\geq0$ for every $x\in\R^n$.
+		\item \textit{positive definite}, denoted by $A\succ0$, if $x^TAx>0$ for every $x\neq0\in\R^n$.
+		\item \textit{negative semidefinite}, denoted by $A\preceq0$, if $x^TAx\leq0$ for every $x\in\R^n$.
+		\item \textit{negative definite}, denoted by $A\prec0$, if $x^TAx<0$ for every $x\neq0\in\R^n$.
+		\item \textit{indefinite} if there exist $x$ and $y\in\R^n$ such that $x^TAx>0$ and $y^TAy<0$.
+	\end{itemize}
+\end{df}
+\begin{rmk}	
+	A matrix is negative (semi)definite if and only if $-A$ is positive (semi)definite.
+\end{rmk}
+\begin{lem}{Necessary Condition for Definiteness of Matrices}
+	If $A\in\R^{n\times n}$	is a positive definite matrix, then its diagonal elements are positive. If $A\in\R^{n\times n}$ is a semidefinite matrix, then its diagonal elements are nonnegative. Similarly, if $A$ is a negative definite matrix, then its diagonal elements are negative. If $A$ is a negative semidefinite matrix, then tis diagonal elements are nonpositive. 
+\end{lem}
+\begin{rmk}
+	Note that Lemma 2.2.2 gives a necessary condition for a positive definite matrix. It is not sufficient. That is, one can easily generate a matrix with positive diagonal entries that is not positive definite. 	
+\end{rmk}
+\begin{lem}{}
+	Let $A$ be a symmetric $n\times n$ matrix. If there exists positive and negative elements in the diagonal of $A$, then $A$ is indefinite. 
+\end{lem}
+
+\begin{thm}{Eigenvalue Characterization Theorem}
+	Let $A$ be a symmetric $n\times n$ matrix. Then, 
+	\begin{itemize}
+		\item $A$ is positive definite if and only if all its eigenvalues are positive.
+		\item $A$ is positive semidefinite if and only if all its eigenvalues are nonnegative.
+		\item $A$ is negative definite if and only if all its eigenvalues are negative.
+		\item $A$ is negative semidefinite if and only if all its eigenvalues are nonpositive.
+		\item $A$ is indefinite if and only if it has both positive and negative eigenvalues. 
+	\end{itemize}	
+\end{thm}
+\begin{cor}{}
+	Let $A$ be a positive semidefinite (definite) matrix. Then, $\tr(A)$ and $\det(A)$ are nonnegative (positive). 
+\end{cor}
+\begin{lem}
+	Let $D=\operatorname{diag}(d_1,d_2,\dots,d_n)$. Then, $D$ is
+	\begin{itemize}
+		\item positive definite if and only if $d_i>0\quad\forall i$.
+		\item positive semidefinite if and only if $d_i\geq0\quad\forall i$.
+		\item negative definite if and only if $d_i<0\quad\forall i$.
+		\item negative semidefinite if and only if $d_i\leq0\quad\forall i$.
+		\item indefinite if and only if $\exists\ i,j\st d_i>0, d_j<0$.
+	\end{itemize}
+\end{lem}
+\begin{prop}{}
+	Let $A$ be a symmetric $2\times2$ matrix. Then, $A$ is positive semidefinite (definite) if and only if both $\tr(A)\geq0$ and $\det(A)\geq0$ ($\tr(A)>0$ and $\det(A)>0$).
+\end{prop}
+\begin{eg}{Square Root of Matrices}
+	For any positive semidefinite matrix $A$, we can define the square root of matrix $A^{1/2}$. Let $A=UDU^T$ by the spectral decomposition. Then, $D=\operatorname{diag}(d_1,d_2,\dots,d_n)$, where $d_i$'s are eigenvalues of $A$. Since $A$ is positive semidefinite, we have $d_1,\dots,d_n\geq0$. Now, define \[A^{1/2}=UEU^T,\] where $E=\operatorname{diag}(\sqrt{d_1},\dots,\sqrt{d_n})$. Then \[A^{1/2}A^{1/2}=UEU^TUEU^T=UEEU^T=UDU^T=A.\] The matrix $A^{1/2}$ is also known as the \textit{positive semidefinite square root}.
+\end{eg}
+\begin{df}{Principal Minor}
+	Given an $n\times n$ matrix, the determinant of the upper left $k\times k$ sub-matrix is called the \textit{$k$-th principal minor} and is denoted by $D_k(A)$.
+\end{df}
+\begin{eg}{Principal Minor}
+	Consider a $3\times 3$ matrix \[A=\mqty(a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}).\]	Then the principal minors are \[D_1(A)=a_{11},\ D_2(A)=\mqty|a_{11}&a_{12}\\a_{21}&a_{22}|,\ D_3(A)=\mqty|a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}|.\]
+\end{eg}
+\begin{thm}{Principal Minors Criterion}
+	Let $A$ be an $n\times n$ symmetric matrix. Then, $A$ is positive definite if and only if all its principal minors are positive. That is, $D_1(A)>0,\dots,D_n(A)>0$.
+\end{thm}
+\begin{rmk}
+	When the matrix becomes large, computing its determinant will be hard. So, other method to determine the definiteness of a matrix shall be introduced. 	
+\end{rmk}
+\begin{df}{Diagonally Dominant Matrices}
+	Let $A$ be a symmetric $n\times n$ matrix. Then, 
+	\begin{itemize}
+		\item $A$ is \textit{diagonally dominant} if \[\qty|A_{ii}|\geq\sum_{j\neq i}\qty|A_{ij}|,\quad\text{for }i=1,2,\dots,n.\]
+		\item $A$ is called \textit{strictly diagonally dominant} if \[\qty|A_{ii}|>\sum_{j\neq i}\qty|A_{ij}|,\quad\text{for }i=1,2,\dots,n.\]
+	\end{itemize}	
+\end{df}
+\begin{thm}{Positive (Semi)Definiteness of Diagonally Dominant Matrices}
+	\begin{itemize}
+		\item Let $A$ be a symmetric $n\times n$ diagonally dominant matrix whose diagonal elements are nonnegative. Then, $A$ is positive semidefinite.
+		\item Let $A$ be a symmetric $n\times n$ strictly diagonally dominant matrix whose diagonal elements are positive. Then, $A$ is positive definite. 
+	\end{itemize}	
+\end{thm}
+
 
 \newpage
 \section{Least Square}

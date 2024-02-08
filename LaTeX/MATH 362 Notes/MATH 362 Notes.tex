@@ -189,6 +189,82 @@
 	The \emph{sample variance} is defined as \begin{align*}\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2&=\dfrac{1}{n}\sum_{i=1}^n\qty(y_i^2-2y_i\bar{y}+\bar{y}^2)\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-2\bar{y}\cdot\dfrac{\sum y_i}{n}+\dfrac{1}{n}\cdot n\bar{y}^2\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-2\bar{y}^2+\bar{y}^2&\bar{y}=\dfrac{\sum y_i}{n}\\&=\dfrac{1}{n}\sum_{i=1}^ny_i^2-\bar{y}^2.\end{align*} So, in Example 1.3.7, if we define $\hat{\sigma}^2$ to be the sample variance, we can further simply our estimate as follows: \[\lambda_e=\dfrac{\bar{y}}{\hat{\sigma}^2},\qquad r_e=\dfrac{\bar{y}^2}{\hat{\sigma}^2}.\]
 \end{rmk}
 
+\subsection{Interval Estimation}
+\begin{eg}{}
+	Estimate $\mu$, where $X\sim N(\mu, 1)$.\par 
+	We take some samples and compute their sample means: \[\bar{X}^1=\dfrac{x_1+\cdots+x_n}{n},\bar{X}^2=\dfrac{\widetilde{x_1}+\cdots+\widetilde{x_n}}{n},\cdots\] Finding the distribution of $\bar{X}$, we can find an interval $\qty[\hat\theta_L,\hat\theta_U]$ such that \[\P\qty(\hat\theta_L\leq\bar X\leq\hat\theta_U)=1-\alpha.\]
+\end{eg}
+\begin{rmk}
+	By using the variance of the estimator, one can construct an interval such that with a high probability that the interval contains the unknown parameter. 	
+\end{rmk}
+\begin{df}{Confidence Interval}
+	The interval, $\qty[\hat\theta_L,\hat\theta_U]$	is called the \textit{confidence interval}, and the high probability is $1-\alpha$, where $\alpha$ is given. 
+\end{df}
+\begin{rmk}
+	Take $\alpha=5\%$, then $\qty[\hat\theta_L,\hat\theta_U]$ is the $95\%$ confidence interval of $\mu$. It does not mean that $\mu$ has $95\%$ chance to be in $\qty[\hat\theta_L,\hat\theta_U]$. However, if we construct $1000$ such intervals, $950$ of them will contain $\mu$.
+\end{rmk}
+\begin{eg}
+	A random sample of size $4$, $\qty(Y_1=6.5,\ Y_2=9.2,\ Y_3=9.9,\ Y_4=12.4)$, from a normal population: \[f_Y(y;\mu)=\dfrac{1}{\sqrt{2\pi}0.8}e^{-\dfrac{1}{2}\qty(\dfrac{y-\mu}{0.8})^2}\sim N(\mu, \sigma^2=0.64).\] Both MLE and MME give $\mu_e=\bar y=9.5$. The estimator $\hat{\mu}=\bar{Y}$ follows normal distribution. Construct $95\%$-confidence interval for $\mu$.
+	\begin{sol}
+		$\E\qty(\bar Y)=\mu$ and $\Var\qty(\bar Y)=\dfrac{\sigma^2}{n}=\dfrac{0.64}{4}$. By the Central Limit Theorem, $\bar{Y}$ approximately follow $N\qty(\mu,\dfrac{\sigma^2}{n})$. So, $\dfrac{\bar Y-\mu}{\sqrt{\frac{\sigma^2}{n}}}\sim N(0,1)$. Then, \[\P\qty(z_1\leq\dfrac{\bar Y-\mu}{\sqrt{\frac{\sigma^2}{n}}}\leq z_2)=0.95\implies\P\qty(\bar Y-z_2\sqrt{\dfrac{\sigma^2}{n}}\leq\mu\leq\bar Y-z_1\sqrt{\dfrac{\sigma^2}{n}})=0.95\] There are infinite many ways to construct a confidence interval by selecting different $z_1$ and $z_2$. However, since we don't have any prior knowledge on $\mu$, it is good for us to choose $z_1$ and $z_2$ symmetrically. Moreover, symmetric $z_1$ and $z_2$ will yield a smaller interval. We know the symmetric $z_1,z_2$ pair will be $z_1=-1.96$ and $z_2=1.96$. Therefore, \[\P\qty(\bar Y-1.96\sqrt{\dfrac{0.64}{4}}\leq\mu\leq\bar Y+1.96\sqrt{\dfrac{0.64}{4}})=0.95.\] Then, $95\%$ confidence interval is $\qty[9.5-1.96\times0.4,\ 9.5+1.96\times0.4]$. 
+	\end{sol}
+\end{eg}
+\begin{thm}{Confidence Interval}
+	In general, for a normal population with $\sigma$ known, the $100(1-\alpha)\%$ \textit{two-sided confidence interval} for $\mu$ is \[\qty(\bar{y}-z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}},\ \bar{y}+z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}})\]
+\end{thm}
+\begin{thm}{Variation of Confidence Interval}
+	\begin{itemize}
+		\item One-sided interval: \[\qty(\bar{y}-z_{\alpha}\dfrac{\sigma}{\sqrt{n}},\ \bar{y})\text{ or }\qty(\bar{y},\ \bar{y}+z_{\alpha}\dfrac{\sigma}{\sqrt{n}})\]
+		\item $\sigma$ is unknown and sample size is small: $z$-score $\to$ $t$-score.
+		\item $\sigma$ is unknown and sample size is large: $z$-score by CLT.
+		\item Non Gaussian population but sample size is large: $z$-score by CLT. 
+	\end{itemize}	
+\end{thm}
+\begin{thm}{}
+	Let $k$ be the number of successes in $n$ independent trials, where $n$ is large and $p=\P(\text{success})$ is unknown. An approximate $100(1-\alpha)\%$ confidence interval for $p$ is the set of numbers \[\qty(\dfrac{k}{n}-z_{\alpha/2}\sqrt{\dfrac{(k/n)(1-k/n)}{n}},\ \dfrac{k}{n}+z_{\alpha/2}\sqrt{\dfrac{(k/n)(1-k/n)}{n}}).\]
+\end{thm}
+\begin{df}{Margin of Error}
+	The \textit{margin of error}, denoted by $d$, is the quantity\[d=z_{\alpha/2}\sqrt{\dfrac{(k/n)(1-k/n)}{n}}.\]	
+\end{df}
+\begin{rmk}
+	Stating the sample mean and the margin of error is equivalent to stating the confidence interval. Note that $\operatorname{C.I.}=\hat p\pm d$.	
+\end{rmk}
+\begin{thm}{Estimate Margin of Error}
+	When $p$ is close to $\dfrac{1}{2}$, then $d\approx d_m=\dfrac{z_{\alpha/2}}{2\sqrt{n}}$, which is 	equivalent to $\sigma_n\approx\dfrac{1}{2\sqrt{n}}$. However, if $p$ is away from $\dfrac{1}{2}$, $d$ and $d_m$ are very different.
+\end{thm}
+\begin{rmk}
+	Theorem 1.4.8 gives aconservative estimation of the margin of error, which is $d_m$.	
+\end{rmk}
+\begin{prop}{}
+	Given $d$, we can estimate the sample size. 
+	\begin{prf}
+		\[d=z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}\implies n\approx\hat{p}(1-\hat{p})/\qty(\dfrac{d}{z_{\alpha/2}})^2.\] However, since $n$ is unknown, $\hat{p}$ is also unknown. We, therefore, need information on the actual $p$ to conclude an estimation of the sample size.
+		\begin{itemize}
+			\item If $p$ is known, \[n=\dfrac{p(1-p)}{\qty(\frac{d}{z_{\alpha/2}})^2}.\]
+			\item If $p$ is unknown. Let $f(p)=p(1-p)$. $f$ will be maximized when $p=0.5$. So, $f(p)=p(1-p)\leq0.25$. Then, \[n\leq\dfrac{0.25}{\qty(\frac{d}{z_{\alpha/2}})^2}.\] Since we are conservative, take $n=\dfrac{\frac{1}{4}z_{\alpha/2}^2}{d^2}=\dfrac{z_{\alpha/2}^2}{4d^2}$. This estimation is a conservative estimation of the sample size. 
+		\end{itemize}
+	\end{prf}
+\end{prop}
+
+\subsection{Properties of Estimation}
+The main question is that estimators are not unique in general. How do we choose a good estimator? 
+\begin{df}{Unbiasedness}
+	Given a random sample of size $n$ when whose population distribution depends on an unknown parameter $\theta$. Let $\hat\theta$ be an estimator of $\theta$. Then, 
+	\begin{itemize}
+		\item $\hat\theta$ is called \textit{unbiased} if $\E(\hat\theta)=\theta$.
+		\item $\hat\theta$ is called \textit{asymptotically unbiased} if $\dsst\lim_{n\to\infty}\E(\hat\theta)=\theta$.
+		\item If $\theta$ is biased, then the \textit{bias} is given by the quantity $\E(\hat\theta)-\theta$.
+	\end{itemize}
+\end{df}
+\begin{eg}
+	Consider the exponential distribution: $f_Y(y;\lambda)=\lambda e^{-\lambda y}$ for $y\geq0$. Determine if the estimator $\hat\lambda=\dfrac{1}{\bar Y}$ is biased or not. \newline\textit{Hint: $n\bar Y=\dsst\sum_{i=1}^nY_i\sim\text{Gamma}(n,\lambda)$.}
+	\begin{sol}
+		Recall that $\E[g(x)]\dsst=\int_xg(x)f_X(x)\ \d{x}$. Define $X=\dsst\sum_{i=1}^nY_i\sim\text{Gamma}(n,\lambda)$. Also, recall the following facts: \[\Gamma(n)=(n-1)!=(n-1)\Gamma(n-1)\] and the integration over any probability density function will yield a result of $1$ by definition. \par  Then, \begin{align*}\E(\hat\lambda)=\E\qty(\dfrac{1}{\bar Y})=\E\qty(\dfrac{n}{\sum Y_i})&=n\E\qty(\dfrac{1}{\sum Y_i})\\&=n\E\qty(\dfrac{1}{X})\\&=n\int_x\dfrac{1}{x}\cdot\dfrac{\lambda^n}{\Gamma(n)}x^{n-1}e^{-\lambda x}\ \d{x}\\&=n\int_x\dfrac{\lambda^n}{(n-1)!}x^{n-2}e^{-\lambda x}\ \d{x}\\&=\dfrac{n\lambda}{(n-1)}\underbrace{\int_x\dfrac{\lambda^{n-1}}{\Gamma(n-1)}x^{n-2}e^{-\lambda x}\ \d{x}}_{=1}\\&=\dfrac{n}{n-1}\lambda.\end{align*} Therefore, $\E(\hat\lambda)\neq\lambda$, and so $\hat\lambda$ is biased. However, note that \[\lim_{n\to\infty}\E(\hat\lambda)=\lim_{n\to\infty}\dfrac{n}{n-1}\lambda=\lambda.\] By definition, then $\hat\lambda$ is asymptotically unbiased. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Consider the exponential distribution $f(y;\theta)=\dfrac{1}{\theta}e^{-y/\theta}$ for $y\geq0$. Then, $\hat\theta=\bar Y$ is unbiased. 	
+\end{eg}
 
 
 \end{document}
