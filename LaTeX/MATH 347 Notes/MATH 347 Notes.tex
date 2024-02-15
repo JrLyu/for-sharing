@@ -527,6 +527,41 @@ If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{
 	\end{itemize}	
 \end{thm}
 
+\subsection{Second Order Optimality Conditions}
+\begin{thm}{Necessary Second Order Optimality Condition}
+	Let $f:U\to\R$ be a function defined on an open set $U\subseteq\R^n$. Suppose that $f$ is twice continuously differentiable over $U$ and that $x^*$ is a stationary point. Then, the following hold: 
+	\begin{itemize}
+		\item If $x^*$ is a local minimum point of $f$ over $U$, then $\grad^2f(x^*)\succeq0$.
+		\item If $x^*$ is a local maximum point of $f$ over $U$, then $\grad^2f(x^*)\preceq0$.
+	\end{itemize}
+\end{thm}
+\begin{prf}
+	Proving the second condition, we just need to employ the result from the first condition on the function $-f$. So, we will only prove the first condition here. \par Since $x^*$ is a local minimum point, $\exists$ a ball $B(x^*,r)\subseteq U$ for which $f(x)\geq f(x^*)$ for all $x\in B(x^*,r)$. Let $d\in\R^n$ be a nonzero vector. For any $0<a<\dfrac{r}{\norm{d}}$, we have $x_\alpha^*=x^*+\alpha d\in B(x^*,r)$, and hence for any such $\alpha$, \begin{equation}\label{eq2}f(x_\alpha^*)\geq f(x^*).\end{equation}\par On the other hand, by the linear approximation theorem (Taylor's approximation), it follows that $\exists$ a vector $z_\alpha\in[x^*, x^*_\alpha]$ such that \[f(x_\alpha^*)-f(x^*)=\grad f(x^*)^\top(x_\alpha^*-x^*)+\dfrac{1}{2}(x_\alpha^*-x^*)^\top\grad^2f(z_\alpha)(x_\alpha^*-x^*).\] Since $x^*$ is a stationary point of $f$, and by the definition of $x^*_\alpha$, the equation can be reduced to \begin{equation}\label{eq3}f(x_\alpha^*)-f(x^*)=\dfrac{\alpha^2}{2}d^\top\grad^2f(z_\alpha)d.\end{equation}\par Combining Eq. (\ref{eq2}) and Eq. (\ref{eq3}), it follows that for any $\alpha\in\qty(0,\dfrac{r}{\norm{d}})$, the following inequality holds: \[d^\top\grad^2f(z_\alpha)d\geq0.\]\par Finally, using the fact that $z_\alpha\to x^*$ as $\alpha\to0^+$, and the continuity of the Hessian, we obtain that $d^\top\grad^2f(x^*)d\geq0$. Since the inequality holds for any $d\in\R^n$, the desired result is established. 
+\end{prf}
+\begin{thm}{Sufficient Second Order Optimal Condition}
+	Let $f:U\to\R$ be a function defined on an open set $U\subseteq\R^n$. Suppose that $f$ is twice continuously differentiable over $U$ and that $x^*$ is a stationary point. The following hold: 
+	\begin{itemize}
+		\item If $\grad^2f(x^*)\succ0$, then $x^*$ is a strict local minimum point of $f$ over $U$.
+		\item If $\grad^2f(x^*)\prec0$, then $x^*$ is a strict local maximum point of $f$ over $U$. 
+	\end{itemize}
+\end{thm}
+\begin{df}{Saddle Point}
+	Let $f:U\to\R$ be a function defined on an open set $U\subseteq\R^n$. Suppose that $f$ is continuously differentiable over $U$. A stationary point	$x^*$ is called a \textit{saddle point} of $f$ over $U$ if it is neither a local minimum point nor a local maximum point of $f$ over $U$.
+\end{df}
+\begin{thm}{Sufficient Condition for a Saddle Point}
+	Let $f:U\to\R$ be a function defined on an open set $U\subseteq\R^n$. Suppose that $f$ is twice continuously differentiable over $U$ and that $x^*$ is a stationary point. If $\grad^2f(x^*)$ is an indefinite matrix, then $x^*$ is a saddle point of $f$ over $U$. 
+\end{thm}
+\begin{rmk}Recall the Weierstrass Theorem (Theorem 1.4.2), which states that a function defined over a compact set must attain its maximum and minimum value at some point. However, if we loose the condition on the compact set, we will not get this nice property. Therefore, we wonder if we can come up with some condition on the objective function to ensure the maximum and minimum values are attained. This motivates the following definition of coerciveness. 	
+\end{rmk}
+\begin{df}{Coerciveness}
+	Let $f:\R^n\to\R$ be a continuous function defined over $\R^n$. The function $f$ is called \textit{coercive}	if \[\lim_{\norm{x}\to\infty}f(x)=\infty.\]
+\end{df}
+\begin{thm}{Attainment Under Coerciveness}
+	Let $f:\R^n\to\R$ be a continuous and coercive function and let $S\subseteq\R^n$ be a nonempty closed set. Then, $f$ has a global minimum point over $S$. 
+\end{thm}
+
+
+
 
 \newpage
 \section{Least Square}
