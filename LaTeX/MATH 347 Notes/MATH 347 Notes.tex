@@ -485,7 +485,7 @@ If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{
 \begin{cor}{}
 	Let $A$ be a positive semidefinite (definite) matrix. Then, $\tr(A)$ and $\det(A)$ are nonnegative (positive). 
 \end{cor}
-\begin{lem}
+\begin{lem}{}
 	Let $D=\operatorname{diag}(d_1,d_2,\dots,d_n)$. Then, $D$ is
 	\begin{itemize}
 		\item positive definite if and only if $d_i>0\quad\forall i$.
@@ -560,8 +560,34 @@ If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{
 	Let $f:\R^n\to\R$ be a continuous and coercive function and let $S\subseteq\R^n$ be a nonempty closed set. Then, $f$ has a global minimum point over $S$. 
 \end{thm}
 
-
-
+\subsection{Global Optimality Condition and Quadratic Functions}
+\begin{thm}{Global Optimality Condition}
+	Let $f$ be a twice continuously differentiable function defined over $\R^n$. Suppose that $\grad^2f(x)\succeq0$ for any $x\in\R^n$. Let $x^*\in\R^n$ be a stationary point of $f$. Then, $x^*$ is a global minimum point of $f$. 
+\end{thm}
+\begin{prf}
+	By the linear approximation theorem, it follows that for any $x\in\R^n$, there exists a vector $z_x\in[x^*,x]$ for which \[f(x)-f(x^*)=\dfrac{1}{2}(x-x^*)^\top\grad^2f(z_x)(x-x^*).\] Since $\grad^2f(z_x)\succeq0$, we have that $f(x)\geq f(x^*)$, establishing the fact that $x^*$ is a global minimum point of $f$. 
+\end{prf}
+\begin{df}{Quadratic Function}
+	A \textit{quadratic function} over $\R^n$ is a function of the form \[f(x)=x^\top Ax+2b^\top x+c,\] where $A\in\R^{n\times n}$ is symmetric, $b\in\R^n$, and $c\in\R$. The matrix $A$ will be referred as the matrix \textit{associated} with the quadratic function $f$. The gradient and Hessian of a quadratic function have simple analytic formulas: \[\grad f(x)=2Ax+2b;\quad\grad^2f(x)=2A.\]
+\end{df}
+\begin{lem}{}
+	Let	$f(x)=x^\top Ax+2b^\top x+c$, where $A\in\R^{n\times n}$ is symmetric, $b\in\R^n$, and $c\in\R$. Then, 
+	\begin{itemize}
+		\item $x$ is a stationary point of $f$ if and only if $Ax=-b$.
+		\item if $A\succeq0$, then $x$ is a global minimum point of $f$ if and only if $Ax=-b$.
+		\item if $A\succ0$, then $x=-A^{-1}b$ is a strict global minimum point of $f$.
+	\end{itemize}
+\end{lem}
+\begin{lem}{Coerciveness of Quadratic Functions}
+	Let $f(x)=x^\top Ax+2b^\top x+c$, where $A\in\R^{n\times n}$ symmetric, $b\in\R^n$, and $c\in\R$. Then, $f$ is coercive if and only if $A\succ0$.
+\end{lem}
+\begin{thm}{Characterization of the non-negativity of quadratic functions}
+	Let $f(x)=x^\top Ax+2b^\top x+c$, where $A\in\R^{n\times n}$ symmetric, $b\in\R^n$, and $c\in\R$. Then, the following two claims are equivalent: 
+	\begin{itemize}
+		\item $f(x)\equiv x^\top Ax+2b^\top x+c\geq0$ for all $x\in\R^n$.
+		\item $\mqty(A&b\\b^\top&c)\succeq0$.
+	\end{itemize}
+\end{thm}
 
 \newpage
 \section{Least Square}
