@@ -35,6 +35,14 @@
             </RMarkdownRenderProfile>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/MATH362/IntervalEstimate.rmd">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="lastOutput" value="$PROJECT_DIR$/MATH362/IntervalEstimate.nb.html" />
+              <option name="outputDirectoryUrl" value="file://$PROJECT_DIR$/MATH362" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
