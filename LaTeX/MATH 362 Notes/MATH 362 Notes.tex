@@ -62,29 +62,29 @@
 	\end{sol}
 \end{eg}
 \begin{df}{Likelihood Function}
-	For a random sample of size $n$ from the discrete (or continuous) pdf $p_X(k;\theta)$ (or $f_Y(y;\theta)$), the \textit{likelihood function}, $L(\theta)$, is the product of the pdf evaluated at $X_i=k_i$ (or $Y_i=y_i$). That is, \[L(\theta)\coloneqq\prod_{i=1}^np_X\qty(k_i;\theta)\quad\text{or}\quad L(\theta)\coloneqq\prod_{i=1}^nf_Y\qty(y_i;\theta).\]	
+	For a random sample of size $n$ from the discrete (or continuous) pdf $p_X(k;\theta)$ (or $f_Y(y;\theta)$), the \textit{likelihood function}, $\L(\theta)$, is the product of the pdf evaluated at $X_i=k_i$ (or $Y_i=y_i$). That is, \[\L(\theta)\coloneqq\prod_{i=1}^np_X\qty(k_i;\theta)\quad\text{or}\quad \L(\theta)\coloneqq\prod_{i=1}^nf_Y\qty(y_i;\theta).\]	
 \end{df}
 \begin{df}{Maximum Likelihood Estimate}
-	Let $L(\theta)$ be as defined in Definition 1.2.2. If $\theta_e$ is a value of the parameter such that $L\qty(\theta_e)\geq L(\theta)$ for all possible values of $\theta$, then we call $\theta_e$ the \textit{maximum likelihood estimate} for $\theta$.
+	Let $\L(\theta)$ be as defined in Definition 1.2.2. If $\theta_e$ is a value of the parameter such that $\L\qty(\theta_e)\geq \L(\theta)$ for all possible values of $\theta$, then we call $\theta_e$ the \textit{maximum likelihood estimate} for $\theta$.
 \end{df}
 \begin{thm}{The Method of Maximum Likelihood}
-	Given random samples $X_1,\dots,X_N$ and a density function $p_X(x)$ (or $f_X(x)$), then we have the likelihood function defined as \begin{align*}L(\theta)=p_X(X;\theta)&=\P(X_1,X_2,\dots,X_N)\\&=\P(X_1)\P(X_2)\cdots\P(X_N)&[independent]\\&=\prod_{i=1}^Np_X(X_i;\theta)&[identical]\end{align*} Then, the maximum likelihood estimate for $\theta$ is given by \[\theta^*=\argmax_\theta L(\theta),\] where \[L\qty(\argmax_\theta L(\theta))=L^*(\theta)=\max_\theta L(\theta).\]
+	Given random samples $X_1,\dots,X_N$ and a density function $p_X(x)$ (or $f_X(x)$), then we have the likelihood function defined as \begin{align*}\L(\theta)=p_X(X;\theta)&=\P(X_1,X_2,\dots,X_N)\\&=\P(X_1)\P(X_2)\cdots\P(X_N)&[independent]\\&=\prod_{i=1}^Np_X(X_i;\theta)&[identical]\end{align*} Then, the maximum likelihood estimate for $\theta$ is given by \[\theta^*=\argmax_\theta L(\theta),\] where \[\L\qty(\argmax_\theta L(\theta))=\L^*(\theta)=\max_\theta \L(\theta).\]
 \end{thm}
 \begin{eg}
-	Consider the Poisson distribution $X=0,1,\dots,$ with $\lambda>0$. Then, the pdf is given by \[p_X(k,\lambda)=e^{-\lambda}\dfrac{\lambda^k}{k!},\quad k=0,1,\dots\] Given data $k_1,\dots,k_n$, we have the likelihood function \[L(\lambda)=\prod_{i=1}^np_X\qty(X=k;\lambda)=\prod_{i=1}^ne^{-\lambda}=\dfrac{\lambda^{k_i}}{k_i!}=e^{-n\lambda}\dfrac{\lambda^{\sum{k_i}}}{k_1!\cdots k_n!}\] Then, to find the maximum likelihood estimate of $\lambda$, we need to $\dsst\max_{\lambda}L(\lambda)$. That is to solve $\dsst\pdv{L(\lambda)}{\lambda}=0$ and $\dsst\pdv[2]{L(\lambda)}{\lambda}<0$.
+	Consider the Poisson distribution $X=0,1,\dots,$ with $\lambda>0$. Then, the pdf is given by \[p_X(k,\lambda)=e^{-\lambda}\dfrac{\lambda^k}{k!},\quad k=0,1,\dots\] Given data $k_1,\dots,k_n$, we have the likelihood function \[\L(\lambda)=\prod_{i=1}^np_X\qty(X=k;\lambda)=\prod_{i=1}^ne^{-\lambda}\dfrac{\lambda^{k_i}}{k_i!}=e^{-n\lambda}\dfrac{\lambda^{\sum{k_i}}}{k_1!\cdots k_n!}\] Then, to find the maximum likelihood estimate of $\lambda$, we need to $\dsst\max_{\lambda}\L(\lambda)$. That is to solve $\dsst\pdv{\L(\lambda)}{\lambda}=0$ and $\dsst\pdv[2]{\L(\lambda)}{\lambda}<0$.
 \end{eg}
 \begin{eg}
 	Waiting Time. \par 
 	Consider the exponential distribution $f_Y(y)=\lambda e^{-\lambda y}$ for $y\geq 0$. Find the MLE $\lambda_e$ of $\lambda$.
 	\begin{sol}
 		The likelihood function of the exponential distribution is given by
-		\[L(\lambda)=\prod_{i=1}^n\lambda e^{-\lambda y_i}=\lambda^n\exp\qty(-\lambda\sum_{i=1}^ny_i).\] Now, define \[\l(\lambda)=\ln L(\lambda)=n\ln\lambda-\lambda\sum_{i=1}^ny_i.\] To optimize $\l(\lambda)$, we compute \[\dv{\lambda}\l(\lambda)=\dfrac{n}{\lambda}-\sum_{i=1}^ny_i\stackrel{set}{=}0\] So, \[\dfrac{n}{\lambda}=\sum_{i=1}^ny_i\implies\lambda_e=\dfrac{n}{\dsst\sum_{i=1}^ny_i}\eqqcolon\dfrac{1}{\bar{y}},\] where $\bar{y}$ is the sample mean. 
+		\[\L(\lambda)=\prod_{i=1}^n\lambda e^{-\lambda y_i}=\lambda^n\exp\qty(-\lambda\sum_{i=1}^ny_i).\] Now, define \[\l(\lambda)=\ln\L(\lambda)=n\ln\lambda-\lambda\sum_{i=1}^ny_i.\] To optimize $\l(\lambda)$, we compute \[\dv{\lambda}\l(\lambda)=\dfrac{n}{\lambda}-\sum_{i=1}^ny_i\stackrel{set}{=}0\] So, \[\dfrac{n}{\lambda}=\sum_{i=1}^ny_i\implies\lambda_e=\dfrac{n}{\dsst\sum_{i=1}^ny_i}\eqqcolon\dfrac{1}{\bar{y}},\] where $\bar{y}$ is the sample mean. 
 	\end{sol}
 \end{eg}
 \begin{eg}
 	Given the exponential distribution $f_Y(y)=\lambda e^{-\lambda y}$ for $y\geq0$. Find the MLE of $\lambda^2$.
 	\begin{sol}
-		Define $\tau=\lambda^2$. Then, $\lambda=\sqrt{\tau}$, and so \[f_Y(y)=\sqrt{\tau}e^{-\sqrt{\tau}y},\quad y\geq0.\] Then, the likelihood function becomes \[L(\tau)=\prod_{i=1}^nf_Y(y)=\tau^{\frac{n}{2}}\exp\qty(-\sqrt{\tau}\sum_{i=1}^ny_i).\] Similarly, after maximization, we find \[\tau_e=\dfrac{1}{\qty(\bar{y})^2}.\]
+		Define $\tau=\lambda^2$. Then, $\lambda=\sqrt{\tau}$, and so \[f_Y(y)=\sqrt{\tau}e^{-\sqrt{\tau}y},\quad y\geq0.\] Then, the likelihood function becomes \[\L(\tau)=\prod_{i=1}^nf_Y(y)=\tau^{\frac{n}{2}}\exp\qty(-\sqrt{\tau}\sum_{i=1}^ny_i).\] Similarly, after maximization, we find \[\tau_e=\dfrac{1}{\qty(\bar{y})^2}.\]
 	\end{sol}
 \end{eg}
 \begin{thm}{Invariant Property for MLE}
@@ -92,13 +92,13 @@
 \end{thm}
 \begin{prf}
 	In this proof, we will prove the case when $h$ is a one-to-one function. The case of $h$ being a many-to-one function is beyond the scope of this course. \par 
-	Suppose $h(\cdot)$ is a one-to-one function. Then, $\lambda=h^{-1}(\tau)$ is well-defined. Then, \[\max_{\lambda}L(\lambda;y_1,\dots,y_n)=\max_{\tau}L\qty(h^{-1}(\tau);y_1,\dots,y_n)=\max_{\tau}L(\tau;y_1,\dots,y_n).\]	
+	Suppose $h(\cdot)$ is a one-to-one function. Then, $\lambda=h^{-1}(\tau)$ is well-defined. Then, \[\max_{\lambda}\L(\lambda;y_1,\dots,y_n)=\max_{\tau}\L\qty(h^{-1}(\tau);y_1,\dots,y_n)=\max_{\tau}\L(\tau;y_1,\dots,y_n).\]	
 \end{prf}
 \begin{eg}
 	Waiting Time with an unknown Threshold.\par 
 	Let $\lambda=1$ in exponential but there is an unknown threshold $\theta$, that, is $f_Y(y)=e^{-(y-\theta)}$ for $y\geq\theta,\ \theta>0$.	
 	\begin{sol}
-		Note that the likelihood function is given by \begin{align*}L(\theta;y_1,\dots,y_n)=\prod_{i=1}^nf_Y(y_1)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta)),\quad y_i\geq\theta,\ \theta>0\\&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_i\geq0,\ \theta>0]},\end{align*} where \[\1_{x\in A}=\begin{cases}1\quad\text{if }x\in A\\0\quad\text{if }x\notin A.\end{cases}\] Using order statistics, \begin{align*}L(\theta)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_{(n)}\geq y_{(n-1)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}\\&=\exp\qty(-\sum_{i=1}^ny_i+n\theta)\1_{\qty[y_{(n)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}.\end{align*}
+		Note that the likelihood function is given by \begin{align*}\L(\theta;y_1,\dots,y_n)=\prod_{i=1}^nf_Y(y_1)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta)),\quad y_i\geq\theta,\ \theta>0\\&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_i\geq0,\ \theta>0]},\end{align*} where \[\1_{x\in A}=\begin{cases}1\quad\text{if }x\in A\\0\quad\text{if }x\notin A.\end{cases}\] Using order statistics, \begin{align*}\L(\theta)&=\exp\qty(-\sum_{i=1}^n(y_i-\theta))\cdot\1_{\qty[y_{(n)}\geq y_{(n-1)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}\\&=\exp\qty(-\sum_{i=1}^ny_i+n\theta)\1_{\qty[y_{(n)}\geq\cdots\geq y_{(1)}\geq\theta,\ \theta>0]}.\end{align*}
 		So, we know $\theta\leq y_{(1)}=y_{\min}$. \par 
 		To maximize the likelihood function, we want to maximize $-\sum y_i+n\theta$. That is, to maximize $\theta$, as $\theta\leq y_{\min}$, it must be that $\theta_{\max}=y_{\min}$. Therefore, the MLE is $\theta^*=y_{\min}.$
 	\end{sol}
@@ -106,7 +106,7 @@
 \begin{eg}
 	Suppose $Y_1,\dots,Y_n\sim\text{Uniform}[0,a]$. That is, $f_Y(y;a)=\dfrac{1}{a}$ for $y\in[0,a]$. Find MLE $a_e$ of $a$. 
 	\begin{sol}
-		Note that \begin{align*}f_Y(y;a)&=\dfrac{1}{a}\cdot\1_{\qty{y\in[0,a]}}\\&=\dfrac{1}{a}\cdot\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}&\text{where } y_{(1)}=\min y_i\text{ and } y_{(n)}=\max y_i\end{align*} Then, \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}\] To maximize $L(a)$, we want to minimize $a^n$. Since $a\geq y_{(n)}$, it must be that $a_e=y_{(n)}$. 
+		Note that \begin{align*}f_Y(y;a)&=\dfrac{1}{a}\cdot\1_{\qty{y\in[0,a]}}\\&=\dfrac{1}{a}\cdot\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}&\text{where } y_{(1)}=\min y_i\text{ and } y_{(n)}=\max y_i\end{align*} Then, \[\L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}\leq a}}\] To maximize $\L(a)$, we want to minimize $a^n$. Since $a\geq y_{(n)}$, it must be that $a_e=y_{(n)}$. 
 		Here, we call $a_e=y_{(n)}$ an \textit{estimate}, and $\hat{a_{\text{MLE}}}=Y_{(n)}$ an \textit{estimator}.
 	\end{sol}
 \end{eg}
@@ -114,7 +114,7 @@
 	\textbf{MLE that Does Not Esist}
 	\par Suppose $f_Y(y;a)=\dfrac{1}{a},\quad y\in[0, a)$. Find the MLE.
 	\begin{sol}
-		The likelihood function is the same: \[L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}<a}}.\] However, since $[0,a)$ is not a closed set, the optimization problem $\dsst\max_{a\in[0,a)}L(a)$ does not have a solution. Hence, the estimate does not exist. 
+		The likelihood function is the same: \[\L(a)=\dfrac{1}{a^n}\1_{\qty{0\leq y_{(1)}\leq\cdots\leq y_{(n)}<a}}.\] However, since $[0,a)$ is not a closed set, the optimization problem $\dsst\max_{a\in[0,a)}\L(a)$ does not have a solution. Hence, the estimate does not exist. 
 	\end{sol}
 \end{eg}
 \begin{rmk}
@@ -124,17 +124,17 @@
 	\textbf{Multiple MLE Values}
 	\par Suppose  $X_1,\dots,X_n\sim\text{Uniform}\qty[a-\dfrac{1}{2},a+\dfrac{1}{2}]$, where $f_X(x;a)=1,\ x\in\qty[a-\dfrac{1}{2}, a+\dfrac{1}{2}]$. Find the MLE. 
 	\begin{sol}
-		In the indicator function notation, we can rewrite the pdf to be \[f_X(x;a)=\1_{\qty{a-\frac{1}{2}\leq x\leq a+\frac{1}{2}}}=\1_\qty{a-\frac{1}{2}\leq x_{(1)}\leq\cdots\leq x_{(n)}\leq a+\frac{1}{2}}.\] So, the likelihood function will be \[L(a)=\prod_{i=1}^nf_x(x_i;a)=\begin{cases}1,\quad a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]\\0,\quad \text{otherwise}.\end{cases}\] So, the $L(a)$ will be maximized whenever $a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Therefore, MLE can be any value in the range $\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Say, \[a_e=x_{(n)}-\dfrac{1}{2}\quad\text{or}\quad a_e=x_{(1)}-\frac{1}{2}\quad\text{or}\quad a_e=\dfrac{x_{(n)}-\frac{1}{2}+x_{(1)}+\frac{1}{2}}{2}=\dfrac{x_{(n)}+x_{(1)}}{2}.\]
+		In the indicator function notation, we can rewrite the pdf to be \[f_X(x;a)=\1_{\qty{a-\frac{1}{2}\leq x\leq a+\frac{1}{2}}}=\1_\qty{a-\frac{1}{2}\leq x_{(1)}\leq\cdots\leq x_{(n)}\leq a+\frac{1}{2}}.\] So, the likelihood function will be \[\L(a)=\prod_{i=1}^nf_x(x_i;a)=\begin{cases}1,\quad a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]\\0,\quad \text{otherwise}.\end{cases}\] So, the $\L(a)$ will be maximized whenever $a\in\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Therefore, MLE can be any value in the range $\qty[x_{(n)}-\dfrac{1}{2}, x_{(1)}+\dfrac{1}{2}]$. Say, \[a_e=x_{(n)}-\dfrac{1}{2}\quad\text{or}\quad a_e=x_{(1)}-\frac{1}{2}\quad\text{or}\quad a_e=\dfrac{x_{(n)}-\frac{1}{2}+x_{(1)}+\frac{1}{2}}{2}=\dfrac{x_{(n)}+x_{(1)}}{2}.\]
 	\end{sol}
 \end{eg}
 \begin{thm}{MLE for Multiple Parameters}
-	In general, we have the likelihood function $L(\theta)$, where $\theta=\qty(\theta_1,\dots,\theta_p)$. To find the MLE, we need \[\pdv{L(\theta)}{\theta_i}=0\quad i=1,\dots,p,\] and the Hessian matrix \[\mqty(\dsst\pdv[2]{L(\theta)}{\theta_i}{\theta_j})_{i,j=1,\dots,p}\coloneqq\mqty(\dsst\pdv[2]{L(\theta)}{\theta_1}&\cdots&\dsst\pdv[2]{L(\theta)}{\theta_1}{\theta_p}\\\vdots&\ddots&\vdots\\\dsst\pdv[2]{L(\theta)}{\theta_p}{\theta_1}&\cdots&\dsst\pdv[2]{L(\theta)}{\theta_p})\] should be negative dfinite. 
+	In general, we have the likelihood function $\L(\theta)$, where $\theta=\qty(\theta_1,\dots,\theta_p)$. To find the MLE, we need \[\pdv{\L(\theta)}{\theta_i}=0\quad i=1,\dots,p,\] and the Hessian matrix \[\mqty(\dsst\pdv[2]{\L(\theta)}{\theta_i}{\theta_j})_{i,j=1,\dots,p}\coloneqq\mqty(\dsst\pdv[2]{\L(\theta)}{\theta_1}&\cdots&\dsst\pdv[2]{\L(\theta)}{\theta_1}{\theta_p}\\\vdots&\ddots&\vdots\\\dsst\pdv[2]{\L(\theta)}{\theta_p}{\theta_1}&\cdots&\dsst\pdv[2]{\L(\theta)}{\theta_p})\] should be negative dfinite. 
 \end{thm}
 \begin{eg}
 	\textbf{MLE for Multiple Parameters: Normal Distribution}
 	\par Suppose $Y_1,\dots,Y_n\sim N(\mu,\sigma)$. Then, \[f_{Y_i}(u;\mu,\sigma)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\qty(y_i-\mu)^2/\qty(2\sigma^2)}.\] Find the MLE for $\mu$ and $\sigma$.
 	\begin{sol}
-		The likelihood function will be \[L(\mu,\sigma)=\prod_{i=1}^n\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\qty(y_i-\mu)^2/\qty(2\sigma^2)}.\] Then, we define \[\l(\mu,\sigma)=\ln L(\mu,\sigma)=-\dfrac{n}{2}\ln2\pi-\dfrac{n}{2}\ln\sigma^2-\dfrac{1}{2}\qty(\sigma^2)^-1\sum_{i=1}^n\qty(y_i-\mu)^2.\] Set \[\begin{cases}\dsst\pdv{\l(\mu,\sigma)}{\mu}=0\quad\quad\text{\ding{172}}\\\dsst\pdv{\l(\mu,\sigma)}{\sigma}=0\qquad\text{\ding{173}}\end{cases}\] From \ding{172}, we have \begin{align*}\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_1-\mu)&=0\\\sum_{i=1}^ny_i&=n\mu\implies\boxed{\mu_e=\dfrac{\sum y_i}{n}=\bar{y}}\end{align*} From \ding{173}, by the invariant property of MLE, we instead set \begin{align*}\dsst\pdv{\l(\mu,\sigma)}{\sigma^2}&=0\\-\dfrac{n}{2}\cdot\dfrac{1}{\sigma^2}+\dfrac{1}{2}\qty(\dfrac{1}{\sigma^2})^2\sum_{i=1}^n\qty(y_i-\mu)^2&=0\\\dfrac{1}{2\sigma^2}\qty(-n+\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_i-\mu)^2)&=0\\-n\sigma^2+\sum_{i=1}^n\qty(y_i-\mu)^2&=0\qquad\qquad(\mu_e=\bar{y})\\\sum_{i=1}^n\qty(y_i-\bar{y})^2&=n\sigma^2\\\sigma_e^2=\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2&\implies\boxed{\sigma_e=\sqrt{\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2}}\end{align*}
+		The likelihood function will be \[\L(\mu,\sigma)=\prod_{i=1}^n\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\qty(y_i-\mu)^2/\qty(2\sigma^2)}.\] Then, we define \[\l(\mu,\sigma)=\ln \L(\mu,\sigma)=-\dfrac{n}{2}\ln2\pi-\dfrac{n}{2}\ln\sigma^2-\dfrac{1}{2}\qty(\sigma^2)^-1\sum_{i=1}^n\qty(y_i-\mu)^2.\] Set \[\begin{cases}\dsst\pdv{\l(\mu,\sigma)}{\mu}=0\quad\quad\text{\ding{172}}\\\dsst\pdv{\l(\mu,\sigma)}{\sigma}=0\qquad\text{\ding{173}}\end{cases}\] From \ding{172}, we have \begin{align*}\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_1-\mu)&=0\\\sum_{i=1}^ny_i&=n\mu\implies\boxed{\mu_e=\dfrac{\sum y_i}{n}=\bar{y}}\end{align*} From \ding{173}, by the invariant property of MLE, we instead set \begin{align*}\dsst\pdv{\l(\mu,\sigma)}{\sigma^2}&=0\\-\dfrac{n}{2}\cdot\dfrac{1}{\sigma^2}+\dfrac{1}{2}\qty(\dfrac{1}{\sigma^2})^2\sum_{i=1}^n\qty(y_i-\mu)^2&=0\\\dfrac{1}{2\sigma^2}\qty(-n+\dfrac{1}{\sigma^2}\sum_{i=1}^n\qty(y_i-\mu)^2)&=0\\-n\sigma^2+\sum_{i=1}^n\qty(y_i-\mu)^2&=0\qquad\qquad(\mu_e=\bar{y})\\\sum_{i=1}^n\qty(y_i-\bar{y})^2&=n\sigma^2\\\sigma_e^2=\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2&\implies\boxed{\sigma_e=\sqrt{\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-\bar{y})^2}}\end{align*}
 	\end{sol}
 \end{eg}
 
@@ -253,7 +253,7 @@ The main question is that estimators are not unique in general. How do we choose
 	\begin{itemize}
 		\item $\hat\theta$ is called \textit{unbiased} if $\E(\hat\theta)=\theta$.
 		\item $\hat\theta$ is called \textit{asymptotically unbiased} if $\dsst\lim_{n\to\infty}\E(\hat\theta)=\theta$.
-		\item If $\theta$ is biased, then the \textit{bias} is given by the quantity $\E(\hat\theta)-\theta$.
+		\item If $\theta$ is biased, then the \textit{bias} is given by the quantity $\B(\hat\theta)=\E(\hat\theta)-\theta$.
 	\end{itemize}
 \end{df}
 \begin{eg}
@@ -264,6 +264,92 @@ The main question is that estimators are not unique in general. How do we choose
 \end{eg}
 \begin{eg}
 	Consider the exponential distribution $f(y;\theta)=\dfrac{1}{\theta}e^{-y/\theta}$ for $y\geq0$. Then, $\hat\theta=\bar Y$ is unbiased. 	
+\end{eg}
+\begin{rmk}
+	Suppose $\qty{X_1,\dots,X_n}$ are $\iid$ random variables, and $\E(X_i)=\mu$ for $i=1,\dots,n$	. Then, $\bar X$, the sample mean, is always an unbiased estimator: \[\E(\bar X)=\E\qty(\dfrac{1}{n}\sum_{i=1}^nX_i)=\dfrac{1}{n}\sum_{i=1}^n\E(X_i)=\dfrac{1}{n}\cdot n\cdot \mu=\mu.\]
+\end{rmk}
+\begin{thm}{Sample Variance is Biased}
+	Suppose $\qty{X_1,\dots,X_n}$ are $\iid$ random variables, and $\E(X_i)=\mu,\ \Var(X_i)=\sigma^2$ for $i=1,\dots,n$. Then, the sample variance $\dsst\hat\sigma^2=\dfrac{1}{n}\sum_{i=1}^n\qty(X_i-\bar X)^2$ is biased. 
+\end{thm}
+\begin{prf}
+	Note that \begin{align*}
+		\E(\hat\sigma^2)&=\E\qty(\dfrac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2)\\&=\E\qty(\dfrac{1}{n}\sum_{i=1}^n\qty(X_i-\mu+\mu-\bar{X})^2)\\&=\dfrac{1}{n}\sum_{i=1}^n\E\qty[\qty(X_i-\mu)^2+\qty(\mu-\bar X)^2+2\qty(X_i-\mu)(\mu-\bar X)]\\&=\dfrac{1}{n}\sum_{i=1}^n\qty{\underbrace{\E(X_i-\mu)^2}_{\Var(X_i)}+\E\qty(\mu-\bar X)^2+2\E\qty[(\mu-\bar X)(X_i-\mu)]}\\&\ \ \ \bigg|\quad\textit{Hint: }\dfrac{1}{n}\sum_{i=1}^n(X_i-\mu)=\dfrac{1}{n}\sum_{i=1}^nX_i-\dfrac{1}{n}\sum_{i=1}^n\mu=\bar X-\mu\\&=\dfrac{1}{n}\sum_{i=1}^n\Var(X_i)+\dfrac{1}{n}\cdot n\E\qty(\mu-\bar{X})^2+2\E\qty[(\mu-\bar X)\dfrac{1}{n}\sum_{i=1}^n\qty(X_i-\mu)]\\&=\dfrac{1}{n}\sum_{i=1}^n\sigma^2+\E\qty(\mu-\bar X)^2+2\E\qty[(\mu-\bar X)(\bar X-\mu)]\\&=\dfrac{1}{n}\cdot n\cdot\sigma^2+\E\qty(\mu-\bar X)^2-2\E\qty[(\mu-\bar X)^2]\\&=\sigma^2-\E\qty(\mu-\bar X)^2\\&=\sigma^2-\underbrace{\E\qty(\bar X-\mu)^2}_{=\Var(\bar X)}\\&=\sigma^2-\dfrac{\sigma^2}{n}=\dfrac{n-1}{n}\sigma^2\neq\sigma^2
+	\end{align*}
+	Therefore, $\hat\sigma^2$ is not an unbiased estimator. 
+\end{prf}
+\begin{thm}{Adjusted Sample Variance is Unbiased}
+	With the same set up in Theorem 1.5.4, define the adjusted sample variance to be \[S^2=\dfrac{n}{n-1}\hat\sigma^2=\dfrac{1}{n-1}\sum_{i=1}^n\qty(X_i-\bar X)^2.\] Then, $S^2$ is an unbiased estimator of $\sigma^2$.
+\end{thm}
+
+\begin{df}{Decision Theory}
+	Minimize the error of an estimator (sample statistics) relative to the true parameter (population parameter) using a loss function.
+\end{df}
+\begin{df}{Mean Squared Error}
+	The \textit{mean squared error} (MSE) is defined by \[\MSE(\hat\theta)=\E\qty[(\hat\theta-\theta)^2]\]	
+\end{df}
+\begin{thm}{Decomposition of MSE}
+	Generally, \[\MSE(\theta)=\Var(\hat\theta)+\B\qty(\hat\theta)^2\] If $\hat\theta$ is unbiased, $\MSE(\hat\theta)=\Var(\hat\theta)$. $\Var(\theta)$ measures the precision of the estimator. 
+\end{thm}
+\begin{prf}
+	Note that we will the following: \begin{align*}
+		\MSE(\hat\theta)&=\E\qty[(\hat\theta-\theta)^2]\\&=\E(\hat\theta^2+\theta^2-2\hat\theta\theta)\\&=\E(\hat\theta)-2\theta\E(\hat\theta)+\theta^2\\&=\underbrace{\E(\hat\theta^2)-\E(\hat\theta)^2}+\underbrace{\E(\hat\theta)^2-2\theta\E(\hat\theta)+\theta^2}\\&=\Var(\hat\theta)+\qty[\E(\hat\theta)-\theta]^2\\&=\Var(\theta)+\B(\hat\theta)^2
+	\end{align*}	
+	If $\hat\theta$ is unbiased, $\B(\hat\theta)=0$, and so $\MSE(\hat\theta)=\Var(\hat\theta)$.
+\end{prf}
+\begin{df}{Efficiency}
+	Let $\hat\theta_1$ and $\hat\theta_2$ be two unbiased estimators for a parameter $\theta$. If we have $\Var(\hat\theta_1)<\Var(\hat\theta_2)$, then we say that $\hat\theta_1$ is \textit{more efficient} than $\hat\theta_2$. The \textit{relative efficiency} of $\hat\theta_1$ with respect to $\hat\theta_2$ is the ratio $\dfrac{\Var(\hat\theta_2)}{\Var(\hat\theta_1)}$.
+\end{df}
+
+\subsection{Best Unbiased Estimator}
+\begin{df}{Best/Minimum-Variance Estimator}
+	Let $\Theta$ be the set of all estimators $\hat\theta$ that are unbiased for the parameter $\theta$. We way that $\hat\theta^*$ is a \textit{best} or \textit{minimum-variance estimator} (MVE) if $\hat\theta^*\in\Theta$ and $\Var(\hat\theta^*)\leq\Var(\hat\theta)\quad\forall\ \hat\theta\in\Theta$.
+\end{df}
+\begin{df}{Fisher's Information}
+	The \textit{Fisher's information} of a continuous random variable $Y$ with pdf $f_Y(y;\theta)$ is defined as \[\I(\theta)=\E\qty[\qty(\pdv{\ln f_Y(y;\theta)}{\theta})^2]=-\E\qty[\pdv[2]{\theta}\ln f_Y(y;\theta)].\]
+\end{df}
+\begin{rmk}
+	The Fisher's information measures the amount of information that a sample $Y$ contains about the unknown parameter $\theta$. If $\I(\theta)$ is big, then the curvature of $f_Y(y;\theta)$ is big, and thus it is more likely that we can find a region where $\hat\theta$ is concentrated. 
+\end{rmk}
+\begin{ext}[Joint Fisher's Information]
+	Suppose	$Y_1,\dots,Y_n$ are continuous $\iid$ random variables, each has a Fisher's information of $\I(\theta)$. Then, \[\E\qty[\qty(\pdv{\theta}\ln f_{Y_1,\dots,Y_n}(y_1,\dots,y_n;\theta))^2]=n\I(\theta).\]
+\end{ext}
+\begin{thm}{Properties of Fisher's Information}
+	Define the \textit{Fisher's Score Function}	$\dsst\pdv{\theta}\ln f_Y(y;\theta)$. Then, \[\E_Y\qty[\pdv{\theta}\ln f_Y(y;\theta)]=0.\]
+\end{thm}
+\begin{prf}
+	Note that by chain rule, we have \begin{align*}
+		\E_Y\qty[\pdv{\theta}\ln f_Y(y;\theta)]&=\int_Y\qty(\pdv{\theta}\ln f_Y(y;\theta))f_Y(y;\theta)\ \d{y}\\&=\int_Y\dfrac{1}{f_Y(y;\theta)}\qty(\pdv{\theta}f_Y(y;\theta))f_Y(y;\theta)\ \d{y}\\&=\int_Y\pdv{\theta}f_Y(y;\theta)\ \d{y}\\&=\pdv{\theta}\int_Yf_Y(y;\theta)\ \d{y}=\pdv{\theta}(1)=0.
+	\end{align*}
+\end{prf}
+\begin{cor}{}
+	\[\I(\theta)=\Var\qty(\pdv{\theta}\ln f_Y(y;\theta)).\]
+\end{cor}
+\begin{prf}
+	By definition, we have \begin{align*}
+		\Var\qty(\pdv{\theta}\ln f_Y(y;\theta))&=\E\qty[\qty(\pdv{\theta}\ln f_Y(y;\theta))^2]-\qty(\underbrace{\E\qty(\pdv{\theta}\ln f_Y(y;\theta))}_{=0,\text{ by Theorem 1.6.3.}})^2\\&=\E\qty[\qty(\pdv{\theta}\ln f_Y(y;\theta))^2]\\&=\I(\theta).
+	\end{align*}
+\end{prf}
+\begin{thm}{Cramér-Rao Inequality}
+	Under regular condition, let $Y_1,\dots,Y_n$ be a random sample of size $n$ form the continuous population pdf $f_Y(y;\theta)$. Let $\hat\theta=\hat\theta(Y_1,\dots,Y_n)$ be any unbiased estimator for $\theta$. Then, \[\Var(\hat\theta)\geq\dfrac{1}{n\I(\theta)}.\]
+\end{thm}
+\begin{rmk} A similar statement holds for the discrete case $p_X(k;\theta)$. \end{rmk}
+\begin{df}{Efficiency of Unbiased Estimator}
+	An unbiased estimator $\hat\theta$ is \textit{efficient} if $\Var(\hat\theta)$ is equal to the Cramér-Rao lower bound. That is, $\Var(\hat\theta)=\qty(n\I(\theta))^{-1}$. Such an estimator is the MVE defined in Definition 1.6.1. The \textit{efficiency} of an unbiased estimator $\hat\theta$ is defined to be the quantity \[\qty(n\I(\theta)\Var(\hat\theta))^{-1}.\]
+\end{df}
+\begin{eg}
+	Suppose $X\sim\text{Bernoulli}(p)$. Is $\hat p=\bar X$ efficient? 
+	\begin{sol}
+		Note that we have the following\begin{align*}
+			f_X(x;p)&=p^x(1-p)^{1-x},\quad x=0,1\\\ln f_X(x;p)&=x\ln p+(1-x)\ln(1-p)\\\pdv{p}\ln f_X(x;p)&=\dfrac{x}{p}-\dfrac{1-x}{1-p}\\\pdv[2]{p}\ln f_X(x;p)&=-\dfrac{x}{p^2}-\dfrac{1-x}{(1-p)^2}\end{align*} 
+		Therefore, the Fisher's information can be computed by \begin{align*}\I(p)=-\E\qty[\pdv[2]{p}\ln f_X(x;p)]&=-\E\qty[-\dfrac{x}{p^2}-\dfrac{1-x}{(1-p)^2}]\\&=\E\qty[\dfrac{x}{p^2}]+\E\qty[\dfrac{1-x}{(1-p)^2}]\\&=\dfrac{\E(x)}{p^2}+\dfrac{1-\E(x)}{(1-p)^2}\\&=\dfrac{p}{p^2}+\dfrac{1-p}{(1-p)^2}=\dfrac{1}{p}+\dfrac{1}{1-p}=\dfrac{1}{p(1-p)}.\end{align*} 
+		Note that \[\Var(\bar X)=\Var\qty(\dfrac{1}{n}\sum_{i=1}^nX_i)=\dfrac{1}{n^2}\sum_{i=1}^n\Var(X_i)=\dfrac{1}{n}\Var(X_i)=\dfrac{1}{n}\cdot p(1-p).\] So, we have \[\Var(\bar X)=\dfrac{p(1-p)}{n}=\dfrac{1}{n\qty(\frac{1}{p(1-p)})}=\dfrac{1}{n\I(p)}.\] Therefore, $\hat p$ is efficient. 
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Suppose $X\sim N(\mu,\sigma^2)$, with $\sigma^2$ is known. What is $\I(\mu)$?
+	\begin{sol}
+		Note that \[\dv[2]{\mu}\ln f_X(x;\mu)=-\dfrac{1}{\sigma^2}.\] Then, \[\I(\mu)=-\E\qty[\dv[2]{\mu}\ln f_X(x;\mu)]=-\E\qty[-\dfrac{1}{\sigma^2}]=\dfrac{1}{\sigma^2}.\]
+	\end{sol}
 \end{eg}
 
 
