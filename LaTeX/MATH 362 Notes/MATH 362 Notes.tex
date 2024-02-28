@@ -352,5 +352,49 @@ The main question is that estimators are not unique in general. How do we choose
 	\end{sol}
 \end{eg}
 
+\subsection{Sufficiency}
+\begin{rmk} Use Likelihood Function to Define Fisher's Information
+\begin{itemize}
+	\item We can define the \emph{score function} as $\dsst\pdv{\ln \L\qty(Y_1,\dots,y_n;\theta)}{\theta}=0\implies$ MLE.
+	\item $\E\qty[\dsst\pdv{\ln\L(Y;\theta)}{\theta}]=0$
+	\item $\I(\theta)=\E\qty[\dsst\qty(\pdv{\ln\L(Y;\theta)}{\theta})^2]=-\E_Y\qty[\dsst\pdv[2]{\ln\L(Y;\theta)}{\theta}]$
+	\item $-\E_Y\qty[\dsst\pdv[2]{\ln\L(Y_1,\dots,Y_n;\theta)}{\theta}]=n\I(\theta)$.
+	\begin{prf}
+		\begin{align*}
+			-\E_Y\qty[\dsst\pdv[2]{\ln\L(Y_1,\dots,Y_n;\theta)}{\theta}]&=-\E_Y\qty[\pdv[2]{\theta}\ln\L\qty(Y_1,\dots,Y_m;\theta)]\\&=-\E_Y\qty[\pdv[2]{\theta}\ln\qty(\prod_{i=1}^nf_Y\qty(Y_i;\theta))]\\&=-\E_Y\qty[\pdv[2]{\theta}\sum_{i=1}^nf_Y\qty(y_i;\theta)]=\sum_{i=1}^n\qty(-\E_Y\qty[\pdv[2]{\theta}f_Y(y_i;\theta)])=n\I(\theta)
+		\end{align*}
+	\end{prf}
+	\item $\hat{\theta_\text{MLE}}\xrightarrow{n\to\infty}N\qty(\theta,\dfrac{1}{\I(\theta)})$. Note that $\dfrac{1}{\I(\theta)}$ is the C-R lower bound. We see that $\hat{\theta_\text{MLE}}$ is asymptotically efficient. 
+\end{itemize}
+\end{rmk}
+\begin{rmk}[Sufficiency Intuition]
+	Sufficiency tells us how much information can we get out of the data. 
+	\begin{description}
+		\item[Rationale] Let $\hat\theta$ be an estimator to the unknown parameter $\theta$. Does $\hat\theta$ contain all information about $\theta$? \emph{e.g., The data itself is a sufficient estimator. }
+	\end{description}	
+\end{rmk}
+\begin{df}{Sufficiency}
+	Let $(X_1,\dots,X_n)$ be a random sample of size $n$ from a continuous population with an unknown parameter $\theta$. We call $\theta$ is \textit{sufficient} if \[f_{Y_1,\dots,Y_n\mid\hat\theta}\qty(Y_1,\dots,Y_n\mid\hat\theta=\theta_e)=b(y_1,\dots,y_n),\] where $b(y_1,\dots,y_n)$ is independent of $\theta$ ($\independ\theta$). Also, $\hat\theta=h\qty(Y_1,\dots,Y_n)$ and $\theta_e=h\qty(y_1,\dots,y_n)$. In this case, $\hat\theta$ contains all the information about $\theta$ from $\qty{y_1,\dots,y_n}$.
+\end{df}
+\begin{eg}
+	\begin{itemize}
+		\item Toss a coin $5$ times and get $3$ heads. Estimate $p=$ probability of $H$.
+		\begin{sol}
+			\[\P\qty(HHHTT\mid p_e=\dfrac{3}{5})=\dfrac{1}{\dsst\binom{3}{5}}\independ p\implies\text{sufficient}\]
+		\end{sol}
+		\item A random sample of size $n$ from Bernoulli$(p)$. Check the sufficiency of $p=\dsst\sum_{i=1}^nX_i$.
+		\begin{sol}
+			Suppose the random sample is $\qty{X_1,\dots,X_n}$. Then, consider \[\P(X_1=x_1,\dots,X_n=x_n,\dsst\sum_{i=1}^nX_i=C\mid\hat p=C)=\dfrac{\P(X_1=x_1,\dots,X_n=x_n,\dsst\sum_{i=1}^nX_i=C)}{\P\qty(\hat{p}=C)}.\] What new information can $\dsst\sum_{i=1}^nX_i=C$ tell us? $X_n=C-\dsst\sum_{i=1}^{n-1}X_i$.\par 
+			Note that $\P(\hat{p}=C)=\P\qty(\dsst\sum_{i=1}^nX_i=C)$. Since the summation of Bernoulli($p$) random variables is a Binomial$(n,p)$ random variable, we have $\P(\hat{p}=C)=\dsst\binom{n}{C}p^C(1-p)^{n-C}$.\par 
+			$\boxed{\text{Case I}}$ Suppose $\dsst\sum_{i=1}^nX_i=C$. Then, \begin{align*}&\dfrac{\P(X_1=x_1,\dots,X_n=x_n,\dsst\sum_{i=1}^nX_i=C)}{\P\qty(\hat{p}=C)}\\&=\dfrac{\qty(\dsst\prod_{i=1}^{n-1})p^{X_i}(1-p)^{1-X_i}p^{C-\dsst\sum_{i=1}^{n-1}X_i}(1-p)^{\qty(1-C+\dsst\sum_{i=1}^{n-1}X_i)}}{\dsst\binom{n}{C}p^C(1-p)^{n-C}}\\&=\dfrac{p^{\dsst\sum_{i=1}^{n-1}X_i+C-\sum_{i=1}^{n-1}X_i}(1-p)^{(n-1)-\dsst\sum_{i=1}^{n-1}X_i+1-C+\sum_{i=1}^{n-1}X_i}}{\dsst\binom{n}{C}p^C(1-p)^{n-C}}\\&=\dfrac{p^C(1-p)^{n-C}}{\dsst\binom{n}{C}p^C(1-p)^{n-C}}=\dfrac{1}{\dsst\binom{n}{C}}\independ p\implies\text{sufficient}\end{align*}\par 
+			$\boxed{\text{Case II}}$ Suppose $\dsst\sum_{i=1}^nX_i\neq C$. Then, \[\dfrac{\P(X_1=x_1,\dots,X_n=x_n,\dsst\sum_{i=1}^nX_i=C)}{\P\qty(\hat{p}=C)}=\dfrac{0}{\P(\hat{p}=C)}=0\independ{p}\implies\text{sufficient}\]
+		\end{sol}
+	\end{itemize}	
+\end{eg}
+\begin{thm}{Factorization Property}
+	$\hat\theta$ is sufficient if and only if the likelihood can be factorized as \[\L(\theta)=\underbrace{g(\theta_e;\theta)}_{\theta_e\ \&\ \theta}\cdot \underbrace{u(y_1,\dots,y_n}_{\independ\theta}.\]	
+\end{thm}
+
+
 
 \end{document}
