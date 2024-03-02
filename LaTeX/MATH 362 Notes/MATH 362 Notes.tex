@@ -395,6 +395,37 @@ The main question is that estimators are not unique in general. How do we choose
 	$\hat\theta$ is sufficient if and only if the likelihood can be factorized as \[\L(\theta)=\underbrace{g(\theta_e;\theta)}_{\theta_e\ \&\ \theta}\cdot \underbrace{u(y_1,\dots,y_n}_{\independ\theta}.\]	
 \end{thm}
 
+\subsection{Consistency}
+\begin{df}{Consistency}
+	An estimator $\hat\theta_n=h\qty(W_1,\dots,W_n)$ is said to be \textit{consistent} if it converges to $\theta$ in probability; i.e., for any $\epsilon>0$, \[\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}<\epsilon)=1.\]
+\end{df}
+\begin{rmk}
+\begin{enumerate}
+	\item Consistency is an asymptotical property (defined in a large sample limit).
+	\item $n$= sample size. $\abs{\hat\theta_n-\theta}$ is the distance between estimator and true $\theta$.
+\end{enumerate}	
+\end{rmk}
+\begin{lem}{Markov Inequality}
+	Suppose $X\geq0$ is a random variable and $a>0$ is a constant. Then, \[\P(X\geq a)\leq\dfrac{\E(X)}{a}.\]
+\end{lem}
+\begin{rmk}
+	Markov inequality is good for determining extreme values. If $\E(X)$ is small, then it is very unlikely that $X$ will take some extremely large numbers. 	
+\end{rmk}
+\begin{thm}{Chebyshev Inequality}
+	Let $W$ be some random variable with finite mean $\mu$ and variance $\sigma^2$. Then, for any $\epsilon>0$, we have \[\P\qty(\qty|W-\mu|<\epsilon)\leq 1-\dfrac{\sigma^2}{\epsilon^2}\] or, equivalently, \[\P\qty(\qty|W-\mu|\geq\epsilon)\leq\dfrac{\sigma^2}{\epsilon^2}.\]
+\end{thm}
+\begin{prf}
+	Consider the random variable $\abs{W-\mu}$. Then, by Markov Inequality, \begin{align*}\P\qty(\abs{X-\mu}\geq\epsilon)&=\P\qty(\abs{X-\mu}^2\geq\epsilon^2)\\&=\P\qty(\qty(X-\mu)^2\geq\epsilon^2)\leq\dfrac{\E\qty[(X-\mu)^2]}{\epsilon^2}=\dfrac{\sigma^2}{\epsilon^2}\end{align*}	
+\end{prf}
+\begin{cor}{}
+	The sample mean $\hat\mu_n=\dfrac{1}{n}\dsst\sum_{i=1}^nW_i$ is a consistent estimator for $\E(W)=\mu$, provided that the population $W$ has finite mean $\mu$ and variance $\sigma^2$.	
+\end{cor}
+\begin{prop}{}
+	If $\hat\theta_n$ is an unbiased estimator of $\theta$, then $\hat\theta_n$ is consistent if \[\lim_{n\to\infty}\Var\qty(\hat\theta_n)=0.\]	
+\end{prop}
+\begin{prf}
+	Suppose $\hat\theta_n$ is an unbiased estimator of $\theta$. Then, $\E\qty(\hat\theta_n)=\theta$. So, by Chebyshev Inequality, we have \[\P\qty(\abs{\hat\theta_n\theta}\geq\epsilon)=\P\qty(\abs{\hat\theta_n-\E\qty(\hat\theta_n)}\geq\epsilon)\leq\dfrac{\E\qty[\qty(\hat\theta_n-\E\qty(\hat\theta_n))^2]}{\epsilon^2}=\dfrac{\Var\qty(\hat\theta_n)}{\epsilon^2}.\] If we have $\Var\qty(\hat\theta_n)\to0$ when $n\to\infty$, then \[\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)\leq\lim_{n\to\infty}\dfrac{\Var\qty(\hat\theta_n)}{\epsilon^2}=\dfrac{0}{\epsilon}=0.\] Therefore, it must be that $\dsst\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)=0$ as probability cannot take negative values. Hence, \begin{align*}\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}<\epsilon)&=\lim_{n\to\infty}\qty(1-\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon))\\&=1-\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)\\&=1-0=1.\end{align*} Then, by definition, $\hat\theta_n$ is consistent. 
+\end{prf}
 
 
 \end{document}
