@@ -15,7 +15,7 @@
 \begin{df}{Location}
 	The \textit{location} of the data is where it is. It is about approximating the data by a constant. \[Y_i\approx\mu,\quad\text{for }i=1,\dots,n\]	
 \end{df}
-\begin{eg}
+\begin{eg}{}
 	Different ways to summarize location: mean, median
 \end{eg}
 \begin{df}{Spread}
@@ -168,6 +168,37 @@ for (rr in 1:10000) {
 \end{thm}
 
 \subsection{Normal Approximation and Power Analysis}
+Previously, we have being talking about the context of estimating a \textbf{difference in proportions}. The difference does not have a sampling distribution with a simple parametric form (e.g., the binomial distribution), but we could use the bootstrapping to approximate its sampling distribution. 
+\begin{thm}{Approximation using a Normal Distribution}
+	A normal approximation $f_{\mu,\sigma}(x)$ for $\mu=p$ and $\sigma=\sqrt{\dfrac{p(1-p)}{n}}$ with $p=\bar{y}$ has a corresponding estimate using the sample: \[\mu=\hat{p},\quad\hat\sigma=\sqrt{\dfrac{\hat p(1-\hat p)}{n}},\quad\text{with}\hat{p}=\bar{Y}.\]
+\end{thm}
+\begin{thm}{The Width of Normal Distributions}
+	\begin{center}
+	\begin{tabular}{c|c}
+		Data Proportion & $\mu\pm\lambda\sigma$\\
+		\hline
+		$68.3\%$ & $\mu\pm1\sigma$\\
+		$95.4\%$ & $\mu\pm2\sigma$\\
+		$99.7\%$ & $\mu\pm3\sigma$\\
+		$95\%$ & $\mu\pm1.96\sigma$
+	\end{tabular}
+	\end{center}
+\end{thm}
+\begin{eg}{$95\%$ Proportion}
+By the CLT, we know $\bar{Y}\sim{N}(\mu,\sigma)$ for $\mu=\bar{y}$ and $\sigma=\sqrt{\bar{y}(1-\bar{y})/n}$. So, in roughly $95\%$ of the polls, our estimate $\bar{Y}$ will be within $1.96$ standard deviations of the population proportion $\bar{y}$. Converly, the population proportion $\bar{y}$ will be within 1.96 standard deviations of our estimate $\bar{Y}$. Or, mathematically, \begin{equation}\label{eq1}\mu\in\bar{Y}\pm1.96\sigma\quad\text{for }\sigma=\sqrt{\bar{y}(1-\bar{y})/n}\text{ in roughly 95\% of polls}.\end{equation}\par 
+However, Eq. (\ref{eq1}) is not usable because we do not know the true $\bar{y}$. Therefore, we turn everything into estimate: \begin{equation}\label{eq2; 95 CI}\mu\in\bar{Y}\pm1.96\hat\sigma\quad\text{for }\hat\sigma=\sqrt{\bar{Y}(1-\bar{Y})/n}\text{ in roughly 95\% of polls}.\tag{95\% C.I.}
+\end{equation}\par 
+With Eq. (\ref{eq2; 95 CI}), we can avoid spending time doing bootstrap. That is, without bootstrapping, we can construct a 95\% confidence interval from the sample mean. 
+\end{eg}
+\begin{df}{Power Analysis}
+	Given the confidence interval (or, margin of error), we can find out the sample size needed.	
+\end{df}
+\begin{thm}{}
+	Suppose we want the estimate $\hat\mu$ with a 95\% confidence interval has a margin of error of $d$. Then, the smallest sample size to achieve so will be $n=\dfrac{1.96^2}{4d^2}$.
+\end{thm}
+\begin{prf}
+	Suppose we want the estimate $\hat\mu$ with a 95\% confidence interval has a margin of error of $d$, then we know $\mu\in\bar{Y}\pm d=\bar{Y}\pm1.96\sqrt{\hat{p}(1-\hat{p})/n}$. Then, we know \begin{equation}\label{eq2} d=1.96\sqrt{\hat{p}(1-\hat{p})/n}.\end{equation} Here, though we are using $\bar{Y}$ to estimate $\hat{p}$, it will not be accurate as different samples will have different $\bar{Y}$'s. So, we have to figure out another way to estimate $\hat{p}$. Before we going to estimating $\hat{p}$, let solve for $n$ from Eq. (\ref{eq2}) first: \[\sqrt{\hat{p}(1-\hat{p})/n}=\dfrac{d}{1.96}\implies\hat{p}(1-\hat{p})/n=\qty(\dfrac{d}{1.96})^2\implies n = \dfrac{1.96^2\hat{p}(1-\hat{p})}{d^2}.\] Now, let's consider $f(\hat{p})=\hat{p}(1-\hat{p})$, a simple quadratic function, which will be maximized when $\hat{p}=\dfrac{1}{2}$. Since we are conservative in our estimation, we want to find the ``smallest'' $n$ that ensures the margin of error, so we take $\max f(\hat{p})=\dfrac{1}{4}$, and thus \[n=\dfrac{1.96^2}{4d^2}.\]
+\end{prf}
 
 \newpage
 \section{Probability: Expectation and Variance}
@@ -202,11 +233,266 @@ for (rr in 1:10000) {
 \end{thm}
 
 \subsection{Working with Expectations}
+Before we going into any details, let's review and introduce some notations.
+\begin{nota}
+	\begin{itemize}
+		\item The mean of our population: $\dsst\mu=\dfrac{1}{m}\sum_{j=1}^my_j$.
+		\item The mean of sample: $\hat\mu=\dfrac{1}{n}\dsst\sum_{i=1}^nY_i$.
+		\item We use $y$ to denote a number from the list, and $Y$ to represent a random variable. 
+		\item To represent the subpopulation, we use $X_i=x$. 
+		\item The mean of the subpopulation $X_i=x$ is $\mu(x)=\dfrac{1}{m_x}\dsst\sum_{j:x_j=x}y_j$ where $m_x=\dsst\sum_{j:x_j=x}1$.
+		\item The mean of the subsample $X_i=x$ is $\hat\mu(x)=\dfrac{1}{N_x}\dsst\sum_{X_i=x}Y_i$, where $N_x=\dsst\sum_{i:X_i=x}1$.
+	\end{itemize}
+\end{nota}
+\begin{df}{Expectations}
+	The \textit{expected value} of a random variable $Y_i$ is the \textbf{probability-weighted average} of the values it can take on. \[\E\qty[Y_i]=\sum_y\P\qty(Y_i=y)\times y=\sum_y\qty(\sum_{j:y_j=y}\dfrac{1}{m})\times y=\dfrac{1}{m}\sum_y\sum_{j:y_j=y}y=\dfrac{1}{m}\sum_{j=1}^my_j.\]
+\end{df}
+\begin{df}{Independence}
+	We say random variables or \textit{independent} ($\independ$) if knowing the value of one does not tell us anything about the value of the other. 	
+\end{df}
+\begin{cor}{}
+	If $Y_1$ and $Y_2$ are independent, \[\P(Y_1=y_1\text{ and }Y_2=y_2)=\P(Y_1=y_1)\P(Y_2=y_2).\]
+\end{cor}
+\begin{rmk}
+	When we draw a sample $Y_1,\dots,Y_n$, we claim $Y_1,\dots,Y_n$ are independent and identically distributed ($\iid$).	
+\end{rmk}
+\begin{thm}{The Law of Iterated Expectations}
+	For any random variables $X$ and $Y$, \[\E(Y)=\E\qty{\E(Y\mid X)}.\]
+\end{thm}
+\begin{thm}{Irrelevance of Independent Conditional Variables}
+	If $X'$ is unrelated to $X$ and $Y$, holding it constant does not affect the relationship between them. Suppose $X'$ is independent of $X$ and $Y$, then \[\E(Y\mid X,X')=\E(Y\mid X).\]	
+\end{thm}
+\begin{thm}{Linearity of Expectations}
+	For random variables $Y$ and $Z$, and numbers $a$ and $b$, \[\E(aY+bZ)=\E(aY)+\E(bZ)=a\E(Y)+b\E(Z).\]
+\end{thm}
+\begin{prf}
+	\begin{align*}
+		\E(aY+bZ)&=\sum_y\sum_z(ay+bz)\P(Y=y,Z=z)&\text{def of expectation}\\
+		&=\sum_y\sum_zay\P(Y=y,Z=z)+\sum_z\sum_ybz\P(Y=y,Z=z)\\
+		&=\sum_yay\sum_z\P(Y=y,Z=z)+\sum_zbz\sum_y\P(Y=y,Z=z)\\
+		&=\sum_yay\P(Y=y)+\sum_zbz\sum_y\P(Z=z)\\
+		&=a\sum_yy\P(Y=y)+\sum_zz\sum_y\P(Z=z)\\
+		&=a\E(Y)+b\E(Z)
+	\end{align*}
+\end{prf}
+\begin{thm}{Linearity of Conditional Expectations}
+	For random variables $X$, $Y$, $Z$, and some functions $a$ and $b$ of $X$, \begin{align*}\E\qty{a(X)Y+b(X)Z\mid X}&=\E\qty{a(X)Y\mid X}+\E\qty{b(X)Z\mid X}\\&=a(X)\E(Y\mid X)+b(X)\E(Z\mid X)\end{align*}
+\end{thm}
+\begin{cor}{}
+	When $Y\independ Z$, then $\E\qty[YZ]=\E[Y]\E[Z]$.
+\end{cor}
+\begin{prf}
+	\begin{align*}
+		\text{LHS}&=\E[YZ]\\
+		&=\E\qty{\E[YZ\mid Z]}&\text{Law of Iterated Expectation}\\
+		&=\E\qty[Z\cdot\E\qty[Y\mid Z]]\\
+		&=\E\qty[Z\cdot\underbrace{\E[Y]}_\text{constant}]&\text{Indepence}\\
+		&=\E[Y]\E[Z]=\text{RHS}&\text{Linearity}
+	\end{align*}	
+\end{prf}
+
+\begin{thm}{Indicator Trick}
+	When $X$ is binary, we have \[\E\qty[X\mu(X)]=\E\qty[X\mu(1)]=\mu(1)\E[X].\] Similarly, \[\E[(1-X)\mu(X)]=\E\qty[(1-X)\mu(0)]=\mu(0)\E(1-X).\]
+\end{thm}
+\begin{df}{Bias}
+	The \textit{bias} of an estimator is the difference between its expected value and the value of the thing it's estimating. When an estimator attains a bias of $0$, we call it an \textit{unbiased} estimator.
+\end{df}
+\begin{clm}{}
+	The sample mean is an unbiased estimator of the population mean:  $\E\qty[\hat{\mu}]=\mu$.
+\end{clm}
+\begin{prf}
+	\[\E\qty[\dfrac{1}{n}\sum_{i=1}^nY_i]=\dfrac{1}{n}\sum_{i=1}^n\E[Y_i] (\text{by linearity})=\dfrac{1}{n}\sum_{i=1}^n\mu=\dfrac{1}{n}\times n\times\mu=\mu.\]
+\end{prf}
+\begin{clm}
+	The subsample mean is unbiased for the subpopulation mean: $\E\qty[\hat{\mu}(1)]=\mu(1).$
+\end{clm}
+\begin{prf}
+	Note that by definition, $\sum_{i=1}^nX_iY_i=\begin{cases}Y_i\quad\text{if }X_i=0\\0\quad\text{if }X_i=0\end{cases}$, so, $\hat{\mu}(1)=\dfrac{\dsst\sum_{i=1}^nX_iY_i}{\dsst\sum_{i=1}^nX_i}$. Then, 
+	\begin{align*}
+		\E\qty[\hat{\mu}(1)]&=\E\qty[\dfrac{\dsst\sum_{i=1}^nX_iY_i}{\dsst\sum_{i=1}^nX_i}]\\
+		&=\E\qty{\E\qty[\dfrac{\dsst\sum X_iY_i}{\underbrace{\sum X_i}_\text{constant}}]\bigg|X_1,\dots,X_n}&\text{Law of Iterated Expectation}\\
+		&=\E\qty{\dfrac{\E\qty[\sum X_iY_i\mid X_1,.\dots,X_n]}{\sum X_i}}&\text{Linearity}\\
+		&=\E\qty{\dfrac{\sum\qty(X_i\E\qty[Y_i\mid X_1,\dots,X_n])}{\sum X_i}}&\text{Linearity}\\
+		&=\E\qty{\dfrac{\sum\qty(X_i\overbrace{\E\qty[Y_i\mid X_i]}^{=\mu(X_i)})}{\sum X_i}}&\text{Irrelavent Expectation: }Y_i\depend X_i \text{ only}\\
+		&=\E\qty{\dfrac{\sum\qty(X_i\mu(X_i))}{\sum X_i}}\\
+		&=\E\qty{\dfrac{\sum\qty(X_i\mu(1))}{\sum X_i}}&\text{Indicator Trick}\\
+		&=\E\qty{\dfrac{\mu(1)\sum X_i}{\sum X_i}}&\text{Linearity}\\
+		&=\E\qty(\mu(1))=\mu(1)\implies\text{unbiasedness}
+	\end{align*}
+\end{prf}
+\begin{clm}
+	The difference in subsample means is unbiased for the difference in subpopulation means: $\E\qty[\hat{\mu}(1)-\hat{\mu}(0)]=\mu(1)-\mu(0)$.
+\end{clm}
+\begin{prf}
+	This follows from the linearity of expectations and unbiasedness of the subsample means. \[\E\qty[\hat\mu(1)-\hat\mu(0)]=\E\qty[\hat\mu(1)]-\E\qty[\hat\mu(0)]=\mu(1)-\mu(0).\]
+\end{prf}
 
 \subsection{Working with Variance}
+\begin{df}{Spread and Variance}
+	To summarize the \textit{spread} of a distribution, we talk about variance. The \textit{variance}	is an expectation: it is the \textbf{expected squared difference} between a random variable and its expectation: \[\V(Y)=\E\qty[\qty{Y-\E(Y)}^2].\]
+\end{df}
+\begin{df}{Standard Deviation}
+	Standard deviation is the square root of the variance: \[\sd=\sqrt{\V(Y)}.\]
+\end{df}
+\begin{thm}{Variance as Excess}
+	We can think of variance in the idea of spread (the mean square of a centered version of $Y$), but variance can also be defined as the excess: the average amount $Y^2$ exceeds the square of its mean. So, variance can also be defined as \[\V(Y)=\E\qty(Y^2)-\qty{\E(Y)}^2.\]
+\end{thm}
+\begin{prf}
+	\begin{align*}
+		\E\qty[\qty{Y-\E(Y)}^2]&=\E\qty[Y^2+\E(Y)^2-2Y\E(Y)]&\text{Complete Square}\\
+		&=\E\qty(Y^2)+\E\qty(\underbrace{\E(Y)^2}_\text{constant})-2\E\qty(Y\underbrace{\E(Y)}_\text{constant})&\text{Linearity}\\
+		&=\E\qty(Y^2)+\E(Y)^2-2\E(Y)\E(Y)&\text{Linearity}\\
+		&=\E\qty(Y^2)+\E(Y)^2-2\E(Y)^2\\
+		&=\E\qty(Y^2)-\E(Y)^2.
+	\end{align*}	
+\end{prf}
+\begin{df}{Conditional Variance}
+	The \textit{conditional variance} describes the spread of one random variable within groups. The \textit{conditional variance function} is defined as \[\sigma^2(x)\coloneqq\V(Y\mid X=x)=\E\qty[\qty{Y-\E(Y\mid X)}^2\mid X=x]\]
+	\begin{itemize}
+		\item This is the variance of $Y$, within the subpopulation $X=x$.
+		\item It is the conditional expectation function of random variable $\qty{Y-\E(Y\mid X)}^2$.
+		\item We call it \textit{the conditional variance of $Y$ given $X=x$}.
+	\end{itemize}
+	Therefore, the \textit{conditional variance} is defined by \[\sigma^2(X)\coloneqq\V(Y\mid X)=\E\qty[\qty{Y-\E(Y\mid X)}^2\mid X].\]
+	\begin{itemize}
+		\item This is the variance of $Y$ within a random subpopulation of people.
+		\begin{itemize}
+			\item It is the conditional variance function evaluated at the random variable $X$.
+			\item And the conditional expectation of the random variable $\qty{Y-\E(Y\mid X)}^2$.
+		\end{itemize}
+		\item We call it \textit{the conditional variance of $Y$ given $X$}.
+	\end{itemize}
+\end{df}
+\begin{thm}{Law of Total Variance}
+	The law of total variance relates conditional and unconditional variance: \[\V[Y]=\E\qty{\V(Y\mid X)}+\V\qty{\E(Y\mid X)}.\] This is a useful way to decompose the variance of a random variable. 	
+\end{thm}
+\begin{prf}
+	\begin{align*}
+		\text{RHS}&=\E\qty[\E\qty(Y^2\mid X)-\qty{\E(Y\mid X)}^2]+\E\qty(\qty{\E(Y\mid X)}^2)-\qty[\E\qty(\E\qty(Y\mid X))]^2\\
+		&=\E\qty(\E\qty(Y^2\mid X))-\E\qty(\E\qty(Y\mid X)^2)+\E\qty(Y\mid X)^2-\qty[\E(\E(Y\mid X))]^2\\
+		&=\E\qty(\E\qty(Y^2\mid X))-\E\qty(Y\mid X)^2+\E\qty(Y\mid X)^2-\qty[\E(\E(Y\mid X))]^2\\
+		&=\E(Y^2)-\E(Y)^2\qquad[\text{Law of Iterated Expectation}]\\
+		&=\V[Y]=\text{LHS}
+	\end{align*}	
+\end{prf}
+\begin{thm}{The Variance of the Mean}
+	Suppose $\bar Y$ is the sample mean, $n$ is the sample size, and $\sigma$ is the population standard deviation, then  $\V\qty(\bar Y)=\dfrac{\sigma^2}{n}$.
+\end{thm}
+\begin{prf}
+	\begin{align*}
+		\V\qty(\bar{Y})&=\E\qty[\qty{\dfrac{1}{n}\sum_iY_i-\E\qty(\dfrac{1}{n}\sum_iY_i)}^2]&\text{definition}\\
+		&=\E\qty[\qty{\dfrac{1}{n}\sum_i\qty(Y_i-\E\qty(Y_i))}^2]&\text{Linearity}\\
+		&=\E\qty[\qty{\dfrac{1}{n}\sum_iZ_i}^2]&\text{define }Z_i\equiv Y_i-\E\qty(Y_i)\\
+		&=\E\qty[\dfrac{1}{n^2}\sum_i\sum_jZ_iZ_j]&\text{Complete Square}
+	\end{align*}
+	\begin{lem*} If $Z_i\independ Z_j$, then $\E\qty[Z_iZ_j]=\E[Z_i]\E[Z_j]=0$.
+	\begin{prf*}
+		\begin{align*}
+			\E\qty[Z_iZ_j]&=\E[Z_i]\E[Z_j]&\text{Independence}\\
+			&=\E\qty[Y_i-\E\qty(Y_i)]\E\qty[Y_j-\E\qty(Y_j)]&\text{Definition of $Z_i$}\\
+			&=\qty(\E\qty[Y_i]-\E\qty[\overbrace{\E\qty(Y_i)}^\text{constant}])\qty(\E\qty[Y_j]-\E\qty[\overbrace{\E\qty(Y_j)}^\text{constant}])\\
+			&=\qty(\E(Y_i)-\E(Y_i))\qty(\E(Y_j)-\E(Y_j))\\
+			&=0.
+		\end{align*}
+		 The proof is thereby completed.
+	\end{prf*}
+	\end{lem*}
+Further note that \begin{align*}
+	\V\qty(\bar{Y})&=\E\qty[\dfrac{1}{n^2}\sum_i\sum_jZ_iZ_j]\\
+	&=\dfrac{1}{n^2}\sum_i\sum_j\E[Z_iZ_j]&\text{Linearity}\\
+	&=\dfrac{1}{n^2}\sum_i\qty(\sum_{j\neq i}\E\qty[Z_i^2]+\E[Z_iZ_j])&\text{Take out terms with $i=j$}\\
+	&=\dfrac{1}{n^2}\sum_i\qty(\sum_{j\neq i}\E\qty[Z_i^2]+\E[Z_i]\E[Z_j])
+\end{align*}
+By the Lemma, we know $\E[Z_i]\E[Z_j]=0$ as $Z_i\independ Z_j$ whenever $i\neq j$. Therefore, \begin{align*}
+	\V\qty(\bar{Y})&=\dfrac{1}{n^2}\sum_i\qty(\sum_{j\neq i}\E\qty[Z_i^2]+0)&\text{By Lemma}\\
+	&=\dfrac{1}{n^2}\sum_i\qty(\sum_{j\neq i}\E\qty[Z_i^2])&\text{Not related to $j$}\\
+	&=\dfrac{1}{n^2}\sum_i\E\qty[Z_i^2]\\
+	&=\dfrac{1}{n^2}\cdot n\cdot\E\qty[\qty(Y_i-\E[Y_i])^2]&\text{Definition of $Z_i$}\\
+	&=\dfrac{1}{n}\V\qty(Y_i)&\text{Definition of Variance}\\
+	&=\dfrac{\sigma^2}{n}.
+\end{align*}
+\end{prf}
+\begin{clm}
+	The Variance of our point estimate is the \textbf{expected value} of the subpopulation variance divided by the number of poeple in the sub sample. That is, \[\V\qty[\hat\mu(1)]=\E\qty[\dfrac{\sigma^2(1)}{N_1}]\quad\text{for}\quad N_1=\sum_{i=1}^nX_i.\]	
+\end{clm}
+\begin{prf}
+	Recall that $\hat\mu(1)$ is conditionally unbiased. That is, $\E\qty(\hat\mu(1)\mid X_1,\dots,X_n)=\mu(1)$. So, by the law of total variance, 
+	\begin{align*}
+		\V\qty[\hat\mu(1)]&=\E\qty[\V\qty{\hat\mu(1)\mid X_1,\dots,X_n}]+\V\qty[\E\qty{\hat\mu(1)\mid X_1,\dots,X_n}]\\
+		&=\E\qty[\V\qty{\hat\mu(1)\mid X_1,\dots,X_n}]+\V\qty[\underbrace{\mu(1)}_\text{constant}]\\
+		&=\E\qty[\V\qty{\hat\mu(1)\mid X_1,\dots,X_n}]&\text{variance of constants=0}\\
+		&=\E\qty[\E\qty{\qty(\hat\mu(1)-\mu(1))^2\mid X_1,\dots,X_n}]&\text{definition of variance}\\
+		&=\E\qty[\E\qty{\qty(\dfrac{\sum X_iY_i}{\sum X_i}-\dfrac{\mu(1)\sum X_i}{\sum X_i})^2\mid X_1,\dots,X_n}]\\
+		&=\E\qty[\E\qty{\qty(\dfrac{\sum X_i(Y_i-\mu(1))^2}{\sum X_i})^2\mid X_1,\dots,X_n}]\\
+		&=\E\qty[\dfrac{\E\qty{\qty[\sum X_i(Y_i-\mu(1)]^2}\mid X_1,\dots,X_n}{\qty(\sum X_i)^2}]
+	\end{align*}
+	Define $Z_i=X_i\qty{Y_i-\mu(1)}$, then \[\qty(\sum_iZ_i)^2=\qty(\sum_iZ_i)\qty(\sum_jZ_j)=\sum_i\sum_jZ_iZ_j.\] Then, \begin{align*}
+		\V\qty[\hat\mu(1)]&=\E\qty[\dfrac{\E\qty{\qty[\sum X_i(Y_i-\mu(1)]^2}\mid X_1,\dots,X_n}{\qty(\sum X_i)^2}]\\
+		&=\E\qty[\dfrac{\dsst\E\qty{\qty(\sum_iZ_i)^2\mid X_1,\dots,X_n}}{\qty(\sum X_i)^2}]\\
+		&=\E\qty[\dfrac{\dsst\E\qty{\sum_i\sum_jZ_iZ_j\mid X_1,\dots,X_n}}{\qty(\sum X_i)^2}]\\
+		&=\E\qty[\dfrac{\dsst\sum_i\sum_i\E\qty(Z_iZ_j\mid X_1,\dots,X_n)}{\qty(\sum X_i)^2}]&\text{Linearity}\\
+		&=\E\qty[\dfrac{\dsst\sum_i\sum_j\E\qty(Z_iZ_j\mid X_i,X_j)}{\qty(\sum X_i)^2}]&\text{Condition on Irrelevance}
+	\end{align*}
+	\begin{lem*}
+		Suppose $Z_j=Y_j-\mu(X_j)$, then $\E\qty(Z_j\mid X_j)=0$.
+		\begin{prf*}
+			\begin{align*}
+				\E(Z_j\mid X_j)&=\E\qty[X_j(Y_j-\mu(X_j)]\\
+				&=\E\qty{\E\qty[X_j(Y_j-\mu(1)\mid X_j]}\\
+				&=\E\qty{X_j\E\qty{[Y_j\mid X_j]-\mu(X_j}}\\
+				&=\E\qty{X_j\cdot\qty{\mu(X_j)-\mu(X_j}}=0
+			\end{align*}
+		The lemma is therefore proved as desired.
+	\end{prf*}	
+	\end{lem*}
+	\begin{clm*}
+		Suppose $Z_j=Y_j-\mu(X_j)$, then $\E\qty{Z_iZ_j\mid X_i,X_j}=0$.
+	\begin{prf*}
+		\begin{align*}
+			\E\qty{Z_iZ_j\mid X_i,X_j}&=\E\qty{\E\qty{Z_iZ_j\mid Z_i,X_i,X_j}}&\text{Law of Iterated Expectation}\\
+			&=\E\qty{Z_i\E\qty{Z_j\mid X_i,X_j}}&\text{Constant}\\
+			&=\E\qty{Z_i\E\qty{Z_j\mid X_j}}&\text{Independence}\\
+			&=\E\qty{Z_i\cdot0}=0&\text{By Lemma}
+		\end{align*}
+		Hence, the proof is completed. 
+	\end{prf*}
+	\end{clm*}
+	Therefore, 
+	\begin{align*}
+		\V\qty(\hat\mu(1)) &=\E\qty[\dfrac{\dsst\sum_i\sum_j\E\qty(Z_iZ_j\mid X_i,X_j)}{\qty(\sum X_i)^2}]&Z_i=Y_i-\mu(X_i)\\
+		&=\E\qty[\dfrac{\sum\E\qty(Z_i^2\mid X_i)}{\qty(\sum X_i)^2}]&\text{By Claim, Corss-Terms=0}
+	\end{align*}
+	\begin{clm*}
+		Suppose $Z_i=X_i\qty(Y_i-\mu(X_i))$, then $\E\qty(Z_i^2\mid X_i)=X_i\sigma^2(1)$.
+		\begin{prf*}
+			\begin{align*}
+				\E\qty(Z_i^2\mid X_i)&=\E\qty[X_i\qty{Y_i-\mu(X_i)}^2\mid X_i]\\
+				&=X_i\E\qty[\qty(Y_i-\mu(X_i))^2\mid X_i]\\
+				&=X_i\V\qty(Y_i\mid X_i)\\
+				&=X_i\sigma^2\qty(X_i)\\
+				&=X_i\sigma^2(1).
+			\end{align*}
+			The claim is therefore proved.
+		\end{prf*}
+	\end{clm*}
+	Then, by the Claim and Linearity of Expectation, we have \begin{align*}
+		\V\qty(\hat\mu(1))=\E\qty[\dfrac{\sum\E\qty(Z_i^2\mid X_i)}{\qty(\sum X_i)^2}]&=\E\qty[\dfrac{\sum X_i\overbrace{\sigma^2(1)}^\text{constant}}{\qty(\sum X_i)^2}]\\
+		&=\E\qty[\dfrac{\sigma^2(1)\sum X_i}{\qty(\sum X_i)^2}]\\
+		&=\E\qty[\dfrac{\sigma^2(1)}{\sum X_i}].
+	\end{align*}
+	Recall that $\sum X_i=N_1$, substitute, by the Linearity of Expectation, we have \[\V\qty(\hat\mu(1))=\E\qty[\dfrac{\overbrace{\sigma^2(1)}^\text{constant}}{N_1}]=\sigma^2(1)\cdot\E\qty[\dfrac{1}{N_1}].\]
+\end{prf}
+\begin{clm}
+	The variance of the difference in subsample means is the \textbf{sum} of the variances of the subsample means themselves. \[\V\qty[\hat\mu(1)-\hat\mu(0)]=\E\qty[\dfrac{\sigma^2(1)}{N_1}+\dfrac{\sigma^2(0)}{N_0}]\quad\text{for } N_x=\sum_{i=1}^n\1_x(X_i),\text{ where }\1_x=\begin{cases}1\quad\text{if } X_i=x\\0\quad\text{o/w}\end{cases}\]	
+\end{clm}
+\begin{rmk}
+	This claim is crucial for power calculations and analysis.
+\end{rmk}
+
 
 \newpage
 \section{Causal Inference}
 \subsection{Introduction to Randomized Experiments}
+
 
 \end{document}
