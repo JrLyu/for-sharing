@@ -57,7 +57,6 @@
 \newenvironment*{ax}[1]{\par\noindent\textbf{Axiom \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
-\newenvironment*{nota}{\par\noindent\textbf{Notation \thesection.\stepcounter{index}\theindex.}}{\par}
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
@@ -72,6 +71,8 @@
 \newtheorem{hint}{Hint}[section]
 \newtheorem{rmk}{Remark}[section]
 \newtheorem{ext}{Extension}[section]
+\newtheorem{nota}{Notation}[section]
+
 
 \newtheorem*{df*}{Definition}
 \newtheorem*{thm*}{Theorem}
@@ -81,7 +82,6 @@
 \newtheorem*{ax*}{Axiom}
 \newtheorem*{prop*}{Proposition}
 \newtheorem*{conj*}{Conjecture}
-\newtheorem*{nota*}{Notation}
 
 \linespread{1.25}
 
@@ -120,3 +120,4 @@
 \def\depend{\leftrightsquigarrow}
 \def\residual{\varepsilon}
 \def\sd{\mathrm{sd}}
+\def\ATE{\mathrm{ATE}}
