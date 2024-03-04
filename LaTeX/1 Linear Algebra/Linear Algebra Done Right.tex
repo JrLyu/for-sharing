@@ -2415,7 +2415,7 @@
 \begin{eg}
 	Suppose $T\in\L(\C^3)$ be defined as \[T(z_1,z_2,z_3)=(6z_1+3z_2+4z_3,6z_2+2z_3,7z_3).\]	 Then, \[\M(T)=\mqty(6&3&4\\0&6&2\\0&0&7).\] Find the minimal polynomial of $T$. 
 	\begin{sol}
-		Since $\M(T)=\mqty(6&3&4\\0&6&2\\0&0&7)$, the eigenvalues of $T$ are $6, 6, 7$. The multiplicity of $6$ is $2$ and that of $7$ is $1$. So, the characteristic polynomial of $T$ is $q(z)=(z-6)^2(z-7)$. Then, the minimal polynomial is polynomial multiple of $(z-6)(z-7)$. So, the minimal polynomial of $T$ should be $(z-6)(z-7)$ or $(z-6)^2(z-7)$. Note that \[\begin{aligned}\M\qty[(T-6I)^2(T-7I)]&=(\M(T-6I))^2\M(T-7I)\\&=\mqty(0&010\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\\&=\end{aligned}\] and \[\M\qty[(T-6I)(T-7I)]=\mqty(0&3&4\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\neq0.\] So, $(z-6)^2(z-7)$ is the minimal polynomial of $T$. 
+		Since $\M(T)=\mqty(6&3&4\\0&6&2\\0&0&7)$, the eigenvalues of $T$ are $6, 6, 7$. The multiplicity of $6$ is $2$ and that of $7$ is $1$. So, the characteristic polynomial of $T$ is $q(z)=(z-6)^2(z-7)$. Then, the minimal polynomial is polynomial multiple of $(z-6)(z-7)$. So, the minimal polynomial of $T$ should be $(z-6)(z-7)$ or $(z-6)^2(z-7)$. Note that \[\begin{aligned}\M\qty[(T-6I)^2(T-7I)]&=(\M(T-6I))^2\M(T-7I)\\&=\mqty(0&0&10\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\\&=\end{aligned}\] and \[\M\qty[(T-6I)(T-7I)]=\mqty(0&3&4\\0&0&2\\0&0&1)\mqty(-1&3&4\\0&-1&2\\0&0&0)\neq0.\] So, $(z-6)^2(z-7)$ is the minimal polynomial of $T$. 
 	\end{sol}
 \end{eg}
 \begin{eg}
