@@ -613,12 +613,100 @@ If $f$ is twice differentiable at $x$, then\[f(y)=f(x)+\grad f(x)^T(y-x)+\dfrac{
 	The least square approach can be used also in nonlinear fitting. Suppose, for example, that we are given a set of points in $\R^2:\qty(u_i,y_i),\ i=1,2,\dots,m$, and that we know a priori that these points are approximately related via a polynomial of degree at most $d$; i.e., there exists $a_0,\dots,a_d$ such that \[\sum_{j=0}^da_ju_i^j\approx y_i,\quad i=1,\dots,m.\] The least squares approach to this problem seeks $a_0,a_1,\dots,a_d$ that are the least squares solution to the linear system \[\underbrace{\mqty(1&u_1&u_1^2&\cdots&u_1^d\\1&u_2&u_2^2&\cdots&u_2^d\\\vdots&\vdots&\vdots&\ddots&\vdots\\1&u_m&u_m^2&\cdots&u_m^d)}_{U}\mqty(a_0\\a_1\\\vdots\\a_d)=\mqty(y_0\\y_1\\\vdots\\y_m).\]
 	Note that, the matrix $U$ is also called the \textit{Vandermonde matrix}.
 \end{df}
+\begin{lstlisting}[title=Data Fitting, language=matlab]
+d = linspace(0, 1, 30)';
+e = 2 * d + 1 + 0.1 * randn(30, 1);
+plot(d, e, "*");
+u = [d, ones(30,1)]\e;
+a = u(1), b = u(2);
+>>> a = 
+		2.0616
+>>> b = 
+		0.9725
+\end{lstlisting}
 
 \subsection{Regularized Least Squares}
+When $A$ is underdetermined, that is, when there are fewer equations than variables, there are several optimal solutions to the least squares problem, and it is unclear which of these optimal solutions is the one that should be considered.
+\begin{eg}{}
+	Consider $A=\mqty(0&|&|&&|\\\vdots&|&|&\cdots&|\\0&|&|&&|)$. Then, consider \[Ax=\mqty(0&|&|&&|\\\vdots&|&|&\cdots&|\\0&|&|&&|)\mqty(x_1\\\vdots\\x_n)=b.\] There will be no $x_1$ in $b$. Therefore, changing $x_1$ will not alter the value $\norm{Ax-b}^2$.
+\end{eg}
+\begin{thm}{}
+	Suppose that $b=Ax_0$. Consider all $x\neq x_0\st Ax=Ax_0$, then $A(x-x_0)=0$. So, $x-x_0\in\operatorname{null}(A)$, $x\in x_0+\operatorname{null}(A)$.
+\end{thm}
+\begin{df}{Regularized Least Square}
+	Consider a penalized problem in which a \textit{regularization function} $R(\cdot)$ is added to the objective function. The \textit{regularized least square (RLS)} problem has the form \begin{equation}\label{RLS}\min_x\norm{Ax-b}^2+\lambda R(x). \tag{RLS}\end{equation} The positive constant $\lambda$ is the \textit{regularization parameter}. As $\lambda$ gets larger, more weight is given to the regularization function. 
+\end{df}
+
+In many cases, the regularization is taken to be \textit{quadratic}. In particular, $R(x)=\norm{Dx}^2$, where $D\in\R^{p\times n}$ is a given matrix. Then, (\ref{RLS}) can be written as \[\min_x\norm{Ax-b}^2+\lambda\norm{Dx}^2.\] To find the optimal solution, we can equivalently write the problem as \[\min_x\qty{f_\text{RLS}(x)\equiv x^\top\qty(A^\top A+\lambda D^\top D)x-2b^\top Ax+\norm{b}^2}.\] Since the Hessian of the objective function $\grad^2f_\text{RLS}(x)=2(A^\top A+\lambda D^\top D)\succeq0$, any stationary point is a global minimum point. The stationary points are those satisfying $\grad f_\text{RLS}(x)=0$, that is \[\qty(A^\top A+\lambda D^\top D)x=A^\top b.\] Therefore, if $A^\top A+\lambda D^\top D\succ0$, then the RLS solution is given by \[x_\text{RLS}=\qty(A^\top A+\lambda D^\top D)^{-1}A^\top b.\] If we control the norm of the solution, we add the quadratic regularization function $\norm{x}^2$, then \[x_\text{RLS}=\qty(A^\top A+\lambda I)^{-1}A^\top b.\]
+
+\begin{rmk}
+	The regularization is to find the smallest norm possible. That is, $x_\text{RLS}$ is the one orthogonal to the null space of $A$. 	
+\end{rmk}
+\begin{eg}{}
+	Suppose $B\in\R^{2\times3}$. Then, $A=B^\top B$ is rank deficient: \[\rank(A)=\rank(B^\top)\rank(B)\leq\min\qty{\rank(B^\top), \rank(B)}.\] As $\rank(B)\leq2$, $\dim(\operatorname{null}(A))=3-\dim(\rank(B))\geq1$.
+\end{eg}
+\begin{eg}{}
+	Suppose $A$	is invertible. $Ax_\text{true}=b_\text{true}$ and $Ax_\text{noisy}=b_\text{noisy}$. Then, \begin{align*}A\qty(x_\text{true}-x_\text{noisy})&=b_\text{true}-b_\text{noisy}\\x_\text{true}-x_\text{noisy}&=A^{-1}\qty(b_\text{true}-b_\text{noisy}).\end{align*} Suppose $A=\mqty(\lambda_1&0&0\\0&\lambda_2&0\\0&0&\lambda_3)$ with $\lambda_i>0$. Then, \[A^{-1}=\mqty(1/\lambda_1&0&0\\0&\lambda_2&0\\0&0&1/\lambda_3).\] If $\lambda_3$ is small, $A^{-1}\qty(b_\text{true}-b_\text{noisy})$ will still be large. 
+\end{eg}
 
 \subsection{Denoising}
+One application of regularization is \textit{denoising}. Suppose that a noisy measurement of a signal $x\in\R^n$ is given as \[b=x+w.\] Here $x$ is an unknown signal, $w$ is an unknown noise vector, and $b$ is the known measurements vector.
+\begin{description}
+	\item[Denoising Problem:] Given $b$, find a ``good'' estimate of $x$. The least squares problem associated with the approximate equation $x\approx b$ is \[\min\norm{x-b}^2.\] In this case, though $x=b$ is the obvious solution of the problem, it is meaningless. 
+	\item[Solution:] Considering the signal is smooth, we can add a penalty on the problem. That is, \[\int_a^b\qty[x'(t)]^2\ \d{t}<\infty\quad\xrightarrow{\text{Discretization}}\quad\sum_{i=1}^{n-1}\qty(x_i-x_{i+1})^2,\quad\text{using }x'(t)\approx\dfrac{x_{i+1}-x_i}{\Delta t}.\] This penalty is equivalent as using the matrix representation $R(x)=\norm{Lx}^2$, where $L\in\R^{(n-1)\times n}$ is given by \[L=\mqty(1&-1&0&0&\cdots&0&0\\0&1&-1&0&\cdots&0&0\\0&0&1&-1&\cdots&0&0\\\vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\0&0&0&0&\cdots&1&-1).\] The resulting RLS problem is \[\min_x\underbrace{\norm{x-b}^2}_\text{fidelity}+\overbrace{\lambda\underbrace{\norm{Lx}^2}_\text{regularity}}^{\lambda\sum(x_i-x_{i+1})^2},\] and the optimal solution is given by \[x_\text{RLS}(\lambda)=\qty(I+\lambda L^\top L)^{-1}b.\]
+\end{description}
+\begin{rmk}
+	$\lambda$ controls how smooth we want and how noisy we want. However, note that there is a trade-off between smoothness and accuracy. 	
+\end{rmk}
 
 \subsection{Nonlinear Least Squares}
+\begin{description}
+	\item[Problem] Assume that we have data $\qty{(x_1,y_1),\dots,(x_n,y_n)}$, where $x_i\in\R^d, y\in\R$. 
+	\item[Goal] Find $f\st y_i\approx f(x_i)\quad\forall i$ \textit{we are searching a function}. Mathematically, we solve this problem as follows: \begin{equation}\label{eq4}\min_{f\in\mathcal{H}}\dfrac{1}{n}\sum_{i=1}^n\qty(y_i-f(x_i))^2,\end{equation} where $\mathcal{H}$ is the hypothesis set, and $\dsst \dfrac{1}{n}\sum_{i=1}^n\qty(y_i-f(x_i))^2$ is the loss function. 
+\end{description}
+\subsubsection*{$\mathcal{H}$ is linear}
+Suppose $\mathcal{H}$ is a linear space: $\mathcal{H}\in\operatorname{span}\qty{\phi_1,\phi_2,\dots,\phi_m}$. We know that $\forall\ f\in\mathcal{H},\ \exists\ \alpha_1,\dots,\alpha_m\in\R\st \alpha_1\phi_1+\alpha_1\phi_2+\cdots+\alpha_m\phi_m$. Hence, (\ref{eq4}) is reduced to \begin{equation}\label{eq5}\min_{\alpha_1,\dots,\alpha_m}\dfrac{1}{n}\sum_{i=1}^n\qty\Big(y_i-\underbrace{\sum_{j=1}^m\alpha_j\phi_j(x_j)}_{f(x_i)})^2\end{equation} In terms of least square: \[y=\mqty(y_1\\y_2\\\vdots\\y_n), \quad\Phi=\mqty(\phi_1(x_1)&\cdots&\phi_m(x_1)\\\phi_1(x_2)&\cdots&\phi_m(x_2)\\\vdots&\ddots&\vdots&\\\phi_1(x_n)&\cdots&\phi_m(x_n)),\quad\alpha=\mqty(\alpha_1\\\alpha_2\\\vdots\\\alpha_m). \] Then, (\ref{eq5}) reduces to \begin{equation}\label{eq6}\min_\alpha\norm{y-\Phi\alpha}^2,\end{equation} where $\phi_1,\dots,\phi_n$ are called \textit{features}, and $\Phi$ is called a \textit{feature matrix}. \textit{Example of features: polynomials, trigonometric polynomials, etc.}
+
+\subsubsection*{$\mathcal{H}$ is nonlinear}
+Suppose $\mathcal{H}$ is not a linear subspace: $\mathcal{H}=\qty{\phi(\cdot;\alpha):\alpha\in\R^n}$. So, $f(x)=\phi(x;\alpha)$, which is a set of parametric function. Once $\alpha$ is fixed, we can evaluate $f(x)$. Note, generally, $\alpha\mapsto\phi(x;\alpha)$ is not linear. When $\mathcal{H}$ is a linear space with features $\phi_1,\dots,\phi_m$, then \[\phi(x;\alpha)=\alpha_1\phi_1(x)+\alpha_2\phi_2(x)+\cdots+\alpha_m\phi_m(x),\] and then we are back into the $\mathcal{H}$ is linear case. \par 
+For example, we can have a one-layer Neural Network as follows, where $\sigma:\R\to\R$ is called the \textit{activation function}. Then, \[\phi(x;\underbrace{w_1,\dots,w_m,\overbrace{b_1,\dots,b_m}^\text{biases},\alpha_1,\dots,\alpha_m}_\text{weights})-\alpha_1\underbrace{\sigma(x\cdot w_1+b_1)}_{\phi_1(x)}+\alpha_2\underbrace{\sigma(x\cdot w_2+b_2)}_{\phi_2(x)}+\cdots+\alpha_m\underbrace{\sigma(x\cdot w_m+b_m)}_{\phi_m(x)}.\] Compare with the case when $\mathcal{H}$ is a linear subspace, we are now having $\phi_i(x)$ is also dependent on $w_i$ and $b_i$. We let the machine to learn the most efficient basis for the problem. So, this approach will be more adaptable in different contexts. 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (120.7,148.65) .. controls (120.7,138.35) and (129.05,130) .. (139.35,130) .. controls (149.65,130) and (158,138.35) .. (158,148.65) .. controls (158,158.95) and (149.65,167.3) .. (139.35,167.3) .. controls (129.05,167.3) and (120.7,158.95) .. (120.7,148.65) -- cycle ;
+\draw   (225,83.62) .. controls (225,72.23) and (234.23,63) .. (245.62,63) .. controls (257.01,63) and (266.24,72.23) .. (266.24,83.62) .. controls (266.24,95.01) and (257.01,104.24) .. (245.62,104.24) .. controls (234.23,104.24) and (225,95.01) .. (225,83.62) -- cycle ;
+\draw   (225,138.89) .. controls (225,127.5) and (234.23,118.27) .. (245.62,118.27) .. controls (257.01,118.27) and (266.24,127.5) .. (266.24,138.89) .. controls (266.24,150.28) and (257.01,159.51) .. (245.62,159.51) .. controls (234.23,159.51) and (225,150.28) .. (225,138.89) -- cycle ;
+\draw   (225.82,224.68) .. controls (225.82,213.29) and (235.06,204.06) .. (246.45,204.06) .. controls (257.84,204.06) and (267.07,213.29) .. (267.07,224.68) .. controls (267.07,236.07) and (257.84,245.3) .. (246.45,245.3) .. controls (235.06,245.3) and (225.82,236.07) .. (225.82,224.68) -- cycle ;
+\draw   (329.73,150.44) .. controls (329.73,139.05) and (338.97,129.82) .. (350.36,129.82) .. controls (361.74,129.82) and (370.98,139.05) .. (370.98,150.44) .. controls (370.98,161.83) and (361.74,171.06) .. (350.36,171.06) .. controls (338.97,171.06) and (329.73,161.83) .. (329.73,150.44) -- cycle ;
+\draw    (158,148.65) -- (225,83.62) ;
+\draw    (158,148.65) -- (225,138.89) ;
+\draw    (158,148.65) -- (225.82,224.68) ;
+\draw    (266.24,83.62) -- (329.73,150.44) ;
+\draw    (266.24,138.89) -- (329.73,150.44) ;
+\draw    (267.07,224.68) -- (329.73,150.44) ;
+\draw (134,139.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\draw (238,175.4) node [anchor=north west][inner sep=0.75pt]    {$\vdots $};
+\draw (240,72.4) node [anchor=north west][inner sep=0.75pt]    {$\sigma $};
+\draw (241,129.4) node [anchor=north west][inner sep=0.75pt]    {$\sigma $};
+\draw (241,215.4) node [anchor=north west][inner sep=0.75pt]    {$\sigma $};
+\draw (344,142.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+\draw (171,93.4) node [anchor=north west][inner sep=0.75pt]    {$w_{1}$};
+\draw (193.5,147.17) node [anchor=north west][inner sep=0.75pt]    {$w_{2}$};
+\draw (174.5,187.17) node [anchor=north west][inner sep=0.75pt]    {$w_{3}$};
+\draw (259,48.4) node [anchor=north west][inner sep=0.75pt]    {$b_{1}$};
+\draw (259,152.4) node [anchor=north west][inner sep=0.75pt]    {$b_{2}$};
+\draw (293,93.4) node [anchor=north west][inner sep=0.75pt]    {$\alpha _{1}$};
+\draw (263,237.4) node [anchor=north west][inner sep=0.75pt]    {$b_{3}$};
+\draw (285,150.4) node [anchor=north west][inner sep=0.75pt]    {$\alpha _{2}$};
+\draw (300.4,190.96) node [anchor=north west][inner sep=0.75pt]    {$\alpha _{3}$};
+\end{tikzpicture}
+\end{center} \par 
+More generally, the least square problem when $\mathcal{H}$ is nonlinear can be written as \begin{equation}\label{eq7} \min_\alpha\dfrac{1}{n}\sum_{i=1}^n\qty\Big(y_i-\underbrace{\phi(x_i;\alpha)}_\text{nonlinear})\end{equation}
+As $\phi(x;\alpha)$ is nonlinear, we cannot write it as a matrix-vector product as given in (\ref{eq6}). \par 
+(\ref{eq7}) is called a \textit{nonlinear least square problem}.
+\begin{rmk}
+	We obtain nonlinear least square problems when we fit data with square loss and nonlinear model. 
+\end{rmk}
 
 \subsection{Circle Fitting}
 
