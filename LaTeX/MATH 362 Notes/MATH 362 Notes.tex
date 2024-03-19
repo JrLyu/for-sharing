@@ -427,5 +427,32 @@ The main question is that estimators are not unique in general. How do we choose
 	Suppose $\hat\theta_n$ is an unbiased estimator of $\theta$. Then, $\E\qty(\hat\theta_n)=\theta$. So, by Chebyshev Inequality, we have \[\P\qty(\abs{\hat\theta_n\theta}\geq\epsilon)=\P\qty(\abs{\hat\theta_n-\E\qty(\hat\theta_n)}\geq\epsilon)\leq\dfrac{\E\qty[\qty(\hat\theta_n-\E\qty(\hat\theta_n))^2]}{\epsilon^2}=\dfrac{\Var\qty(\hat\theta_n)}{\epsilon^2}.\] If we have $\Var\qty(\hat\theta_n)\to0$ when $n\to\infty$, then \[\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)\leq\lim_{n\to\infty}\dfrac{\Var\qty(\hat\theta_n)}{\epsilon^2}=\dfrac{0}{\epsilon}=0.\] Therefore, it must be that $\dsst\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)=0$ as probability cannot take negative values. Hence, \begin{align*}\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}<\epsilon)&=\lim_{n\to\infty}\qty(1-\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon))\\&=1-\lim_{n\to\infty}\P\qty(\abs{\hat\theta_n-\theta}\geq\epsilon)\\&=1-0=1.\end{align*} Then, by definition, $\hat\theta_n$ is consistent. 
 \end{prf}
 
+\subsection{Bayesian Estimator}
+\begin{thm}{Bayes' Rule}
+	\[\P(A\mid B)=\dfrac{\P(B\mid A)\P(A)}{\P(B\mid A)\P(A)+\P(B\mid A^C)\P(A^C)}.\]
+	\[\P(A\mid B^C)=1-\P(A\mid B)=\dfrac{\P(B^C\mid A)\P(A)}{\P(B^C\mid A)\P(A)+\P(B^C\mid A^C)\P(A^C)}.\]	
+\end{thm}
+\begin{description}
+	\item[Rationale] Let $W$ be an estimator dependent on a parameter $\theta$.
+	\begin{enumerate}
+		\item Frequentists view $\theta$ as a parameter whose exact value to be estimated (\textit{$\theta$} is fixed).
+		\item Bayesians view $\theta$ is the value of a random variable $\Theta$. (\textit{$\theta$ is uncertain and has its known parameter distribution}).
+	\end{enumerate}
+	\item[Data Generation] The following procedure generates data with an additional layer of randomness.
+	\begin{enumerate}
+		\item $\theta$ is sampled from a distribution. 
+		\item Under this $\theta$, we sample the data.
+	\end{enumerate}
+\end{description}
+\begin{df}{Prior distribution, Posterior distribution}
+	Our prior knowledge on $\Theta$ is called the \textit{prior distribution}: $p_\Theta(\theta)$. The conditional distribution of the data given the parameter is the \textit{likelihood}: $p\qty(X\mid\Theta)$. Then, the Bayes' Rule will be \[\underbrace{\P\qty(\Theta\mid X)}_\text{posterior distribution given the observation}=\dfrac{\overbrace{\P(X\mid\Theta)}^\text{likelihood}\cdot\overbrace{\P(\Theta)}^\text{prior distribution}}{\underbrace{\P(X)}_\text{margin distirbution of data}}\]	
+\end{df}
+\begin{thm}{Bayesian Estimator}
+	\[g_\Theta(\theta\mid W=w)=\begin{cases}\dfrac{p_W(w\mid\Theta=\theta)p_\Theta(\theta)}{p_W(w)}&\text{if }W\text{ and }\Theta\text{ are discrete}\\\\\dfrac{f_W(w\mid\Theta=\theta)f_\Theta(\theta)}{f_W(w)}&\text{if }W\text{ and }\Theta\text{ are constinuous},\end{cases}\]	
+	where \begin{align*}f_W(x)&=\int_Hf_{W,\Theta}(w,\theta)\ \d{\theta}\quad\text{for }\theta\in H\\&=\int_Hf_W(w\mid\Theta=\theta)f_\Theta(\theta)\ \d{\theta}.\end{align*} Further, let $A=f_W(w)=\dsst\int_Hf_W(w\mid\Theta=\theta)f_\Theta(\theta)\ \d{\theta}$. Then, $A$ normalizes $\mathrm{likelihood}\times\mathrm{prior}$: \[1=\int\dfrac{f_W(w\mid\Theta=\theta)f_\Theta(\theta)}{A}\ \d{\theta}.\] So, \[g_\Theta(\theta\mid W=w)=\text{constant}\cdot f_W(w\mid\Theta=\theta)f_\Theta(\theta)\quad\text{or}\quad\mathrm{posterior}\propto\mathrm{likelihood}\times\mathrm{prior}.\]
+\end{thm}
+\begin{eg}
+	A call center. Let $X=$number of calls 	
+\end{eg}
 
 \end{document}
