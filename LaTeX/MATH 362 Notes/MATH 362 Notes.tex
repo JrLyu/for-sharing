@@ -452,7 +452,66 @@ The main question is that estimators are not unique in general. How do we choose
 	where \begin{align*}f_W(x)&=\int_Hf_{W,\Theta}(w,\theta)\ \d{\theta}\quad\text{for }\theta\in H\\&=\int_Hf_W(w\mid\Theta=\theta)f_\Theta(\theta)\ \d{\theta}.\end{align*} Further, let $A=f_W(w)=\dsst\int_Hf_W(w\mid\Theta=\theta)f_\Theta(\theta)\ \d{\theta}$. Then, $A$ normalizes $\mathrm{likelihood}\times\mathrm{prior}$: \[1=\int\dfrac{f_W(w\mid\Theta=\theta)f_\Theta(\theta)}{A}\ \d{\theta}.\] So, \[g_\Theta(\theta\mid W=w)=\text{constant}\cdot f_W(w\mid\Theta=\theta)f_\Theta(\theta)\quad\text{or}\quad\mathrm{posterior}\propto\mathrm{likelihood}\times\mathrm{prior}.\]
 \end{thm}
 \begin{eg}
-	A call center. Let $X=$number of calls 	
+	A call center. Let $X=$number of calls coming into the center. Then we know that $X\sim\text{Poisson}(\lambda)$. This particular call center believes that $\Lambda$ is distributed with pdf \[p_\Lambda(8)=0.25\quad\text{and}\quad p_\Lambda(10)=0.75.\] The call center believes that the number of calls coming into the center has recently changed, so they pick an hour and observe that $X=7$ calls come in. 
+	\begin{sol}
+		We want to find: $\P(\Lambda=8\mid X=7)$ and $\P(\Lambda=10\mid X=7)$. By Bayes' Rule: \begin{align*}
+			\P(\Lambda=8\mid X=7)&=\dfrac{\P(X=7\mid \Lambda=8)\P(\Lambda=8)}{\P(X=7)}\\&=\dfrac{\P(X=7\mid \Lambda=8)\P(\Lambda=8)}{\P(X=7\mid \Lambda=8)\P(\Lambda=8)+\P(X=7\mid \Lambda=10)\P(\Lambda=10)}\\&=\dfrac{e^{-8}\qty(\dfrac{8^7}{7!})(0.25)}{e^{-8}\qty(\dfrac{8^7}{7!})(0.25)+e^{-10}\qty(\dfrac{10^7}{7!})(0.75)}\approx0.66
+		\end{align*}
+		Then, $\P(\Lambda=10\mid X=7)=1-\P(\Lambda=8\mid X=7)=1-0.66=0.34$. Or, alternatively, we can use the Bayes' Rule again. 
+	\end{sol}
 \end{eg}
+\begin{table}[H]
+\caption{Convention of Picking a Prior Distribution}
+\begin{center}
+\begin{tabular}{c|c}	
+	Parameter&Prior Distribution\\\hline
+	$\text{Bernoulli}(p)$&Beta\\
+	$\text{Binomial}(p)$&Beta\\
+	$\text{Poisson}(\lambda)$&Gamma\\
+	$\text{Exponential}(\lambda)$&Gamma\\
+	$\text{Normal}(\mu)$&Normal\\
+	$\text{Normal}(\sigma^2)$&Inverse Gamma
+\end{tabular}
+\end{center}
+\end{table}
+\begin{rmk}
+	When we have no prior knowledge on the belief, we choose a uniform distribution.	
+\end{rmk}
+\begin{eg}
+	Consider an unfair coin $\Theta$ (a random variable indicating the probability of getting head). Flip the coin $n$ times, $X=$ number of heads. Find the posterior distribution. 
+	\begin{sol}
+		By the Bayes' rule, \[f_{\Theta\mid X}(\theta\mid X=x)=\dfrac{f_\Theta(\theta)\P(X=k\mid\theta)}{\P(X=k)}.\] We know $\theta\in[0,1]$, so $\Theta\sim\text{Uniform}[0,1]$ and $f_\Theta(\theta)=1$. So, \[f_{\Theta\mid X}(\theta\mid X=x)=\dfrac{1\cdot\dsst\binom{n}{k}\cdot\theta^k(1-\theta)^{n-k}}{\P(X=k)}=\underbrace{\dfrac{1\cdot\dsst\binom{n}{k}}{\P(X=k)}}_\text{constant}\theta^k(1-\theta)^{n-k}\]
+		\begin{df}{Beta Distribution}
+			For a distribution $\text{Beta}(\alpha,\beta)$, the pdf is given by \[f_Y(y;\alpha,\beta)=\dfrac{y^{\alpha-1}(1-y)^{\beta-1}}{\B(\alpha,\beta)}\quad\text{for }y\in[0,1]\text{ and }\alpha,\beta>0,\] where \[\B(\alpha,\beta)\coloneqq\int_0^1y^{\alpha-1}(1-y)^{\beta-1}\ \d{y}=\dfrac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)},\quad\alpha,\beta>0.\] The expectation of $X\sim\text{Beta}(\alpha,beta)$ is given by \[\E(X)=\dfrac{\alpha}{\alpha+\beta}.\]
+		\end{df}
+		Disregarding the constant, $\theta^k(1-\theta)^{n-k}$ is part of the Beta distribution with $\alpha=k+1$ and $\beta=n-k+1$. So, $\Theta\sim\text{Beta}(k+1,n-k+1)$. To form a distribution, the constant must, therefore, be \begin{align*}\dfrac{\dsst\binom{n}{k}}{\P(X=k)}=\dfrac{1}{\B(k+1,n-k+1)}&=\dfrac{\Gamma(k+1+n-k+1)}{\Gamma(k+1)\Gamma(n-k+1)}\\&=\dfrac{\Gamma(n+2)}{\Gamma(k+1)\Gamma(n-k+1)}\\&=\dfrac{(n+1)!}{k!(n-k)!}&If\ n\in\N,\ then\ \Gamma(n)=(n-1)!\end{align*}
+		Note that \underline{$\text{Beta}(\alpha=1,\beta=1)=\text{Unform}(0,1)$}. So, in this example, \[\text{Beta}(1,1)\xrightarrow{\text{ Data }}\text{Beta}(k+1,n-k+1).\]
+		Moreover, $\E(\Theta)=\dfrac{k+1}{k+1+n-k+1}=\dfrac{k+1}{n+2}$.
+	\end{sol}
+\end{eg}
+\begin{eg}
+	Let $X_1,\dots,X_n$ be a random sample form $\text{Bernoulli}(\theta)$: $p_X(k;\theta)=\theta^k(1-\theta)^{1-k}$ for $k=0,1$. Let $X=\dsst\sum_{i=1}^nX_i$. Then, $X$ follows $\text{Binomial}(n,\theta)$. Consider the prior distribution $\Theta\sim\text{Beta}(r,s)$, i.e., $f_\Theta(\theta)=\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\theta^{r-1}(1-\theta)^{s-1}$ for $\theta\in[0,1]$. Then, the posterior distribution is \[\Theta\mid X\sim\text{Beta}(r+k, s+n-k).\]
+\end{eg}
+\begin{df}{Conjugate Prior}
+	If the posterior distributions $p(\Theta\mid X)$ are in the sample probability distribution family as the prior probability distribution $p(\Theta)$, the prior and posterior are called \textit{conjugate distributions} and the prior is called a \textit{conjugate prior} for the likelihood function.	
+\end{df}
+\begin{rmk}
+	Common Conjugate Priors
+	\begin{itemize}
+		\item Beta distributions are conjugate priors for Bernoulli, Binomial, Negative binomial, and Geometric likelihood.
+		\item Gamma distributions are conjugate priors for Poisson and Exponential likelihood
+	\end{itemize}	
+\end{rmk}
+\begin{df}{Bayesian Point Estimation}
+	Given the posterior $f_{\Theta\mid W}(\theta\mid W=w)$, how can one calculate the appropriate point estimate $\theta_e$?
+\end{df}
+\begin{df}{Loss Function}
+	Let $\theta_e$ be an estimate for $\theta$ based on a statistic $W$. The \textit{loss function} associated with $\theta_e$ is denoted $\L(\theta_e,\theta)$, where $\L(\theta_e,\theta)\geq0$ and $\L(\theta,\theta)=0$.	
+\end{df}
+\begin{itemize}
+	\item The lost function is $\E\qty[\L(\hat\theta,\theta)]$.
+	\item The MSE, mean square error, is $\E\qty[\qty(\hat\theta-\theta)^2]$.
+	\item A Baysian point estimate is the expectation of the posterior: $\E\qty[\theta\mid X=x]$.
+\end{itemize}
 
 \end{document}

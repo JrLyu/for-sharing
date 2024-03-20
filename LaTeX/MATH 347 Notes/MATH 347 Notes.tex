@@ -811,9 +811,179 @@ As $\phi(x;\alpha)$ is nonlinear, we cannot write it as a matrix-vector product 
 	\item[Nonlinearly Separable Classification] If the classes are not linearly separable, neither \eqref{eq8} nor \eqref{eq9} will work. We need to transform them into a higher dimension. For example, consider the following mapping: $(x,y)\mapsto(x,y,x^2+y^2)$. The map that makes data linearly separable is the \textit{feature mapping}. Find a feature mapping can be very difficult. 
 \end{description}
 
-\subsection{Circle Fitting}
-
 \newpage
 \section{Constrained Optimization}
+\begin{description}
+	\item[Goal:] Constrained Optimal Problem
+	\begin{itemize}
+		\item figure out necessary conditions for optimality
+		\item figure out sufficient conditions for optimality
+		\item existence
+		\item \texttt{MATLAB} function \texttt{fmincon}
+	\end{itemize}
+	\item[We will mostly discuss:] $\dsst\min_{x\in C}f(x)$, where$C$ is closed and convex, and $f$ can be either convex or non-convex. 
+\end{description}
+\subsection{Convexity}
+\begin{df}{Convex Set}
+	A set $C\subseteq\R^d$ is \textit{convex} if $\forall\ x,y\in C$ and $\lambda\in(0,1)$, we have that $(1-\lambda)x+\lambda y\in C$.
+	\begin{rmk}
+		Convexity essentially means that if we know two points are in the set, then everything on the line connecting the two points is also in the set. 	
+	\end{rmk}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (100,125.32) .. controls (100,122.94) and (101.94,121) .. (104.32,121) .. controls (106.71,121) and (108.65,122.94) .. (108.65,125.32) .. controls (108.65,127.71) and (106.71,129.65) .. (104.32,129.65) .. controls (101.94,129.65) and (100,127.71) .. (100,125.32) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (215,89.32) .. controls (215,86.94) and (216.94,85) .. (219.32,85) .. controls (221.71,85) and (223.65,86.94) .. (223.65,89.32) .. controls (223.65,91.71) and (221.71,93.65) .. (219.32,93.65) .. controls (216.94,93.65) and (215,91.71) .. (215,89.32) -- cycle ;
+	\draw    (104.32,125.32) -- (219.32,89.32) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.5,107.32) .. controls (157.5,104.94) and (159.44,103) .. (161.82,103) .. controls (164.21,103) and (166.15,104.94) .. (166.15,107.32) .. controls (166.15,109.71) and (164.21,111.65) .. (161.82,111.65) .. controls (159.44,111.65) and (157.5,109.71) .. (157.5,107.32) -- cycle ;
+	\draw (106.32,128.72) node [anchor=north west][inner sep=0.75pt]    {$x\ ( \lambda =0)$};
+	\draw (221.32,92.72) node [anchor=north west][inner sep=0.75pt]    {$y\ ( \lambda =1)$};
+	\draw (163.82,110.72) node [anchor=north west][inner sep=0.75pt]    {$( 1-\lambda ) x+\lambda y$};
+	\end{tikzpicture}
+	\end{center}
+\end{df}
+\begin{eg}{Example of convex and non-convex sets}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw   (95,149.82) .. controls (95,103.53) and (132.53,66) .. (178.82,66) .. controls (225.12,66) and (262.65,103.53) .. (262.65,149.82) .. controls (262.65,196.12) and (225.12,233.65) .. (178.82,233.65) .. controls (132.53,233.65) and (95,196.12) .. (95,149.82) -- cycle ;
+	\draw    (180.65,110.3) -- (124.65,174.3) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (120.82,174.3) .. controls (120.82,172.19) and (122.54,170.48) .. (124.65,170.48) .. controls (126.76,170.48) and (128.47,172.19) .. (128.47,174.3) .. controls (128.47,176.41) and (126.76,178.13) .. (124.65,178.13) .. controls (122.54,178.13) and (120.82,176.41) .. (120.82,174.3) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (176.82,110.3) .. controls (176.82,108.19) and (178.54,106.48) .. (180.65,106.48) .. controls (182.76,106.48) and (184.47,108.19) .. (184.47,110.3) .. controls (184.47,112.41) and (182.76,114.13) .. (180.65,114.13) .. controls (178.54,114.13) and (176.82,112.41) .. (176.82,110.3) -- cycle ;
+	\draw    (193.68,123.52) -- (169.62,205.08) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (166.15,206.68) .. controls (165.26,204.77) and (166.1,202.49) .. (168.02,201.61) .. controls (169.94,200.72) and (172.21,201.56) .. (173.09,203.48) .. controls (173.98,205.4) and (173.14,207.67) .. (171.22,208.56) .. controls (169.3,209.44) and (167.03,208.6) .. (166.15,206.68) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (190.21,125.12) .. controls (189.32,123.2) and (190.16,120.93) .. (192.08,120.04) .. controls (194,119.16) and (196.27,120) .. (197.15,121.92) .. controls (198.04,123.83) and (197.2,126.11) .. (195.28,126.99) .. controls (193.36,127.88) and (191.09,127.04) .. (190.21,125.12) -- cycle ;
+	\draw    (226.85,165.38) -- (198.45,85.22) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (200.32,81.89) .. controls (202.16,82.92) and (202.82,85.25) .. (201.78,87.09) .. controls (200.75,88.94) and (198.42,89.59) .. (196.57,88.56) .. controls (194.73,87.52) and (194.08,85.19) .. (195.11,83.35) .. controls (196.14,81.51) and (198.48,80.85) .. (200.32,81.89) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (228.73,162.04) .. controls (230.57,163.08) and (231.22,165.41) .. (230.19,167.25) .. controls (229.16,169.09) and (226.82,169.75) .. (224.98,168.71) .. controls (223.14,167.68) and (222.48,165.35) .. (223.52,163.51) .. controls (224.55,161.66) and (226.88,161.01) .. (228.73,162.04) -- cycle ;
+	\draw   (496.63,115.01) .. controls (501.14,124.24) and (503.65,134.5) .. (503.65,145.3) .. controls (503.65,185.78) and (468.36,218.59) .. (424.82,218.59) .. controls (381.29,218.59) and (346,185.78) .. (346,145.3) .. controls (346,104.82) and (381.29,72) .. (424.82,72) -- (424.82,145.3) -- cycle ;
+	\draw    (372.74,139.1) -- (434.56,197.5) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (434.42,201.32) .. controls (432.31,201.24) and (430.66,199.46) .. (430.74,197.35) .. controls (430.82,195.24) and (432.6,193.59) .. (434.71,193.67) .. controls (436.82,193.76) and (438.46,195.53) .. (438.38,197.64) .. controls (438.3,199.75) and (436.53,201.4) .. (434.42,201.32) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (372.59,142.93) .. controls (370.48,142.84) and (368.84,141.07) .. (368.92,138.96) .. controls (369,136.85) and (370.77,135.2) .. (372.88,135.28) .. controls (374.99,135.36) and (376.64,137.14) .. (376.56,139.25) .. controls (376.48,141.36) and (374.7,143.01) .. (372.59,142.93) -- cycle ;
+	\draw    (416.63,84.82) -- (442.67,165.78) ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (440.7,169.06) .. controls (438.89,167.97) and (438.31,165.62) .. (439.39,163.81) .. controls (440.48,162) and (442.83,161.41) .. (444.64,162.5) .. controls (446.45,163.59) and (447.04,165.94) .. (445.95,167.75) .. controls (444.86,169.56) and (442.51,170.14) .. (440.7,169.06) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (414.66,88.1) .. controls (412.85,87.01) and (412.26,84.66) .. (413.35,82.85) .. controls (414.44,81.04) and (416.79,80.46) .. (418.6,81.54) .. controls (420.41,82.63) and (420.99,84.98) .. (419.91,86.79) .. controls (418.82,88.6) and (416.47,89.19) .. (414.66,88.1) -- cycle ;
+	\draw (232.19,170.65) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\draw (476.19,169.65) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\end{tikzpicture}
+	\end{center}
+\end{eg}
+\begin{eg}{Show that $C=\qty{x:\norm{x-x_0}\leq r}=B_{x_0}(r)$ is convex.}
+\begin{prf}
+	Let $x,y\in C$ and $\lambda\in(0,1)$. \par\textit{
+	We have: $\norm{x-x_0}\leq r$ and $\norm{y-x_0}\leq r$.
+	We want: $\norm{(1-\lambda)x+\lambda y-x_0}\leq r$.}\par 
+	Note that \begin{align*}
+		\norm{(1-\lambda)x+\lambda y-x_0}&=\norm{\underbrace{(1-\lambda)(x-x_0)}_a+\underbrace{\lambda(y-x_0)}_b}\\
+		&=\norm{(1-\lambda)(x-x_0)}+\norm{\lambda(y-x_0)}&triangular\ inequality\\
+		&=(1-\lambda)\norm{x-x_0}+\lambda\norm{y-x_0}&homogeneity\\
+		&\leq(1-\lambda)r+\lambda r=r
+	\end{align*}
+	We've shown $\norm{(1-\lambda)x+\lambda y-x_0}\leq r$, implying $C$ is convex.
+\end{prf}
+\end{eg}
+\begin{rmk}
+	In this example, $\norm{\cdot}$ is an arbitrary norm. So, any $B_{x_0}(r)$ defined with an arbitrary norm is convex.
+\end{rmk}
+\begin{eg}{Unit Balls are Convex}
+	\begin{itemize}
+		\item $\norm{x}_1=\dsst\sum_{i=1}^d\abs{x_i}$, $x_0=(0,\dots,0)$, $r=1$, then the $\l_1$ unit ball is defined by the following convex set $C=\qty{(x_1,x_2):\abs{x_1}+\abs{x_2}\leq1}$.
+		\item $\norm{x}_2=\qty(\dsst\sum_{i=1}^dx_i^2)^{1/2}$, $x_0=(0,\dots,0)$, $r=1$, and the $\l_2$ unit ball (also known as the unit circle) is defined by $C=\qty{(x_1,x_2):x_1^2+x_2^2\leq1}$ convex.
+		\item $\norm{x}_\infty=\dsst\max_{1\leq i\leq n}\abs{x_i}$, $x_0=(0,\dots,0)$, $r=1$. The $\l_\infty$ unit ball is defined by the following set $C=\qty{(x_1,x_2):\max\qty{\abs{x_1}, \abs{x_2}}\leq1}$.
+	\end{itemize}
+	If we put the unit balls together, $\l_1$-ball is the smallest and $\l_\infty$-ball is the largest. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (79,159.3) -- (322.65,159.3)(200.65,35) -- (200.65,278.65) (315.65,154.3) -- (322.65,159.3) -- (315.65,164.3) (195.65,42) -- (200.65,35) -- (205.65,42)  ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (266,159.82) .. controls (266,157.71) and (267.71,156) .. (269.82,156) .. controls (271.94,156) and (273.65,157.71) .. (273.65,159.82) .. controls (273.65,161.94) and (271.94,163.65) .. (269.82,163.65) .. controls (267.71,163.65) and (266,161.94) .. (266,159.82) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (197,90.82) .. controls (197,88.71) and (198.71,87) .. (200.82,87) .. controls (202.94,87) and (204.65,88.71) .. (204.65,90.82) .. controls (204.65,92.94) and (202.94,94.65) .. (200.82,94.65) .. controls (198.71,94.65) and (197,92.94) .. (197,90.82) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (126,159.82) .. controls (126,157.71) and (127.71,156) .. (129.82,156) .. controls (131.94,156) and (133.65,157.71) .. (133.65,159.82) .. controls (133.65,161.94) and (131.94,163.65) .. (129.82,163.65) .. controls (127.71,163.65) and (126,161.94) .. (126,159.82) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (197,230.82) .. controls (197,228.71) and (198.71,227) .. (200.82,227) .. controls (202.94,227) and (204.65,228.71) .. (204.65,230.82) .. controls (204.65,232.94) and (202.94,234.65) .. (200.82,234.65) .. controls (198.71,234.65) and (197,232.94) .. (197,230.82) -- cycle ;
+	\draw   (201.74,89.56) -- (273.65,159.3) -- (201.74,229.04) -- (129.82,159.3) -- cycle ;
+	\draw   (129.82,160.82) .. controls (129.82,122.17) and (161.17,90.82) .. (199.82,90.82) .. controls (238.48,90.82) and (269.82,122.17) .. (269.82,160.82) .. controls (269.82,199.48) and (238.48,230.82) .. (199.82,230.82) .. controls (161.17,230.82) and (129.82,199.48) .. (129.82,160.82) -- cycle ;
+	\draw   (129.82,91) -- (269.82,91) -- (269.82,230.82) -- (129.82,230.82) -- cycle ;
+	\draw (271.82,163.22) node [anchor=north west][inner sep=0.75pt]    {$( 1,0)$};
+	\draw (131.82,163.22) node [anchor=north west][inner sep=0.75pt]    {$( -1,0)$};
+	\draw (202.82,234.22) node [anchor=north west][inner sep=0.75pt]    {$( 0,-1)$};
+	\draw (202.82,94.22) node [anchor=north west][inner sep=0.75pt]    {$( 0,1)$};
+	\draw (323.82,162.22) node [anchor=north west][inner sep=0.75pt]    {$x_{1}$};
+	\draw (207.82,32.22) node [anchor=north west][inner sep=0.75pt]    {$x_{2}$};
+	\end{tikzpicture}	
+	\end{center}
+\end{eg}
+\begin{rmk}
+	When solving the regularization problem $\dsst\min_{x\in C}f(x)+\norm{x}^\alpha$, we can choose different types of norms. The shape of the unit ball of the norms will inform which solution is selected. Usually, the solution will be on the boundary of the unit ball. $\l_1$-ball gives sparse solution and using $\l_1$-norm is called the LASSO method. 
+\end{rmk}
+\begin{df}{Convex Function}
+	A function $f:\R^d\to\R$ is called \textit{convex} if $\forall x, y\in\R^d$ and $\lambda\in(0,1)$, we have that $f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y)$. \textit{Note that this condition is equivalent to saying that $f$ has positive second order derivatives}. 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (108,231.78) -- (296.65,231.78)(126.86,62) -- (126.86,250.65) (289.65,226.78) -- (296.65,231.78) -- (289.65,236.78) (121.86,69) -- (126.86,62) -- (131.86,69)  ;
+	\draw    (80.65,95.3) .. controls (155.65,254.3) and (258.65,132.3) .. (289.65,68.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (158.65,173.3) -- (158.65,231.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (237.65,140.3) -- (237.65,231.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (158.65,173.3) -- (127.65,173.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (237.65,140.3) -- (127.65,140.3) ;
+	\draw    (158.65,173.3) -- (237.65,140.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (190.65,160.3) -- (190.65,231.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (190.65,169.3) -- (127.65,169.3) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (256.65,159.8) -- (166.65,159.8) ;
+	\draw    (190.65,231.3) .. controls (184.14,237.81) and (193.2,250.37) .. (198.52,257.73) ;
+	\draw [shift={(199.65,259.3)}, rotate = 234.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  (426.35,231.48) -- (615,231.48)(445.22,61.7) -- (445.22,250.35) (608,226.48) -- (615,231.48) -- (608,236.48) (440.22,68.7) -- (445.22,61.7) -- (450.22,68.7)  ;
+	\draw [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.15 ]   (399,95) .. controls (474,254) and (577,132) .. (608,68) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (477,173) -- (477,231) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (556,140) -- (556,231) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (477,173) -- (446,173) ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (556,140) -- (446,140) ;
+	\draw    (477,173) -- (556,140) ;
+	\draw    (521,99) .. controls (560.6,69.3) and (494.01,84) .. (531.48,55.19) ;
+	\draw [shift={(532.65,54.3)}, rotate = 143.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (291,78.4) node [anchor=north west][inner sep=0.75pt]    {$f$};
+	\draw (152,232.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (232,233.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (152.65,260.7) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$( 1-\lambda ) x+\lambda y$};
+	\draw (94,176.4) node [anchor=north west][inner sep=0.75pt]    {$f( x)$};
+	\draw (10.65,156.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$f(( 1-\lambda ) x+\lambda y)$};
+	\draw (260.65,149.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$( 1-\lambda ) f( x) +\lambda f( y)$};
+	\draw (94,131.4) node [anchor=north west][inner sep=0.75pt]    {$f( y)$};
+	\draw (609.35,78.1) node [anchor=north west][inner sep=0.75pt]    {$f$};
+	\draw (470.35,232.1) node [anchor=north west][inner sep=0.75pt]    {$x$};
+	\draw (550.35,233.1) node [anchor=north west][inner sep=0.75pt]    {$y$};
+	\draw (412.35,176.1) node [anchor=north west][inner sep=0.75pt]    {$f( x)$};
+	\draw (412.35,131.1) node [anchor=north west][inner sep=0.75pt]    {$f( y)$};
+	\draw (511,21.4) node [anchor=north west][inner sep=0.75pt]    {$\epi( f) :\text{epigraph, convex}$};
+	\end{tikzpicture}
+	\end{center}
+\end{df}
+\begin{rmk}
+	The definition of a convex function is to say that the graph of the function is below the straight line of connecting any two points on the graph. 	
+\end{rmk}
+\begin{df}{Epigraph of $f$}
+	Define $\epi(f)\coloneqq\qty{(x,z)\in\R^{d+1}:z\geq f(x)}$. \textit{Note that ``epi'' means ``up'' in greek.}	
+\end{df}
+\begin{thm}{Duality of Convexity}
+	A function $f:\R^d\to\R$ is convex if and only if $\epi(f)$ is convex.	
+\end{thm}
+\begin{eg}{A Nonexample}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,227.77) -- (288.65,227.77)(73.86,70) -- (73.86,245.3) (281.65,222.77) -- (288.65,227.77) -- (281.65,232.77) (68.86,77) -- (73.86,70) -- (78.86,77)  ;
+	\draw [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.15 ]   (41,116) .. controls (80.65,118.3) and (109.65,264.3) .. (150.65,174.3) .. controls (191.65,84.3) and (185.65,206.3) .. (223.65,176.3) .. controls (261.65,146.3) and (243.65,132.3) .. (281.65,91.3) ;
+	\draw    (139.65,194.3) -- (209.65,181.3) ;
+	\draw (283.65,94.7) node [anchor=north west][inner sep=0.75pt]    {$f$};
+	\draw (168,191.4) node [anchor=north west][inner sep=0.75pt]    {$\text{not in} \ \mathrm{epi}( f)$};
+	\end{tikzpicture}
+	\end{center}	
+\end{eg}
+\begin{prf}
+	($\Rightarrow$) Suppose $f$ is convex. Let $(x,z),(y,w)\in\epi(f)$ and $\lambda\in(0,1)$. Our goal is to show that $(1-\lambda)(x,z)+\lambda(y,w)\in\epi(f)$ as well. Note that \[(1-\lambda)(x,z)+\lambda(y,w)=((1-\lambda)x+\lambda y, (1-\lambda)x+\lambda w).\] Since $(x,z),(y,w)\in\epi(f)$, we have $z\geq f(x)$ and $w\geq f(y)$. Therefore \begin{align*}(1-\lambda)z+\lambda w&\geq(1-\lambda)f(x)+\lambda f(y)\\&\geq f((1-\lambda)x+\lambda y)&by\ convexity\ of\ f\pqde
+	\end{align*}\par 
+	($\Leftarrow$) Suppose $\epi(f)$ is a convex set. Note that $\forall x,y\in\R^d$, by definition of $\epi(f)$, we have $(x,f(x))\in\epi(f)$ and $(y,f(y))\in\epi(f)$. Then, by convexity, we know \[(1-\lambda)(x,f(x))+\lambda(y,f(y))=((1-\lambda)x+\lambda y,(1-\lambda)f(x)+\lambda f(y))\in\epi(f).\] Again, by definition of $\epi(f)$, we have \[f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y).\] Therefore, $f$ is convex. 
+\end{prf}
+
 
 \end{document}
