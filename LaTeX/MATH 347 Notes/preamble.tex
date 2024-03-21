@@ -49,12 +49,15 @@
 \newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesubsection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesection.\stepcounter{index}\theindex.}}{\par}
+\newenvironment*{clm}{\par\noindent\textbf{Claim \thesection.\stepcounter{index}\theindex}}{\par}
+\newenvironment*{clm*}{\par\textbf{Claim.}}{\par}
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
 \newenvironment*{prf}{\par\indent\textbf{\textit{Proof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{dis}{\par\indent\textbf{\textit{Disproof \stepcounter{nprf}\thenprf.}}}{\hfill$\blacksquare$\par}
 \newenvironment*{sol}{\par\indent\textbf{\textit{Solution \stepcounter{nprf}\thenprf.}}\par}{\hfill{$\square$}\par}
+\newenvironment*{proof}{{\textit{Proof.}}}{{$\pqde$}\par}
 
 \newtheorem{hint}{Hint}[section]
 \newtheorem{rmk}{Remark}[section]
@@ -81,3 +84,5 @@
 \def\L{\mathcal{L}}
 \def\pqde{\quad\square}
 \def\epi{\operatorname{epi}}
+\def\Lev{\operatorname{Lev}}
+\def\dom{\operatorname{dom}}

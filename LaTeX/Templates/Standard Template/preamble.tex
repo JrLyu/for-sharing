@@ -53,9 +53,7 @@
 
 \newenvironment*{eg}[1]{\begin{framed}\par\noindent\textbf{Example \thesubsection.\stepcounter{index}\theindex\ #1}\par }{\par\end{framed}}
 
-\newenvironment*{thm}[1]{\begin{tcolorbox}[colback=lightblue!5,colframe=darkblue!90, title=\textit{\textbf{Theorem \thesubsection.\stepcounter{index}\theindex}\ {#1}}]}{\par\end{tcolorbox}}
-
-\newenvironment*{clm}{\begin{tcolorbox}[colback=mygreen!10, colframe=green, title=\textit{\textbf{Claim \thesubsection.\stepcounter{index}\theindex}}]}{\par\end{tcolorbox}}
+\newenvironment*{thm}[1]{\begin{tcolorbox}{\textbf{Theorem \thesubsection.\stepcounter{index}\theindex\ {#1}}}\par}{\par\end{tcolorbox}}
 
 \newenvironment*{cor}[1]{\par\noindent\textbf{Corollary \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{lem}[1]{\par\noindent\textbf{Lemma \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
@@ -63,6 +61,8 @@
 \newenvironment*{prop}[1]{\par\noindent\textbf{Proposition \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{conj}[1]{\par\noindent\textbf{Conjecture \thesection.\stepcounter{index}\theindex\ #1:}}{\par}
 \newenvironment*{nota}{\par\noindent\textbf{Notation \thesection.\stepcounter{index}\theindex.}}{\par}
+\newenvironment*{clm}{\par\noindent\textbf{Claim \thesection.\stepcounter{index}\theindex}}{\par}
+
 
 \newcounter{nprf}[subsection]
 \setcounter{nprf}{0}
@@ -98,14 +98,7 @@
 \def\E{{\mathbb{E}}}
 \def\d{{\mathrm{d}}}
 \def\i{{\mathrm{i}}}
-
-\newcommand{\inprod}[2]{\left\langle #1, #2 \right\rangle}
-\def\Z{\mathbb{Z}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\Q{\mathbb{Q}}
 \def\N{\mathbb{N}}
-\def\d{\mathrm{d}}
 \def\1{\mathds{1}}
 \def\epsilon{\varepsilon}
 \def\emptyset{\varnothing}

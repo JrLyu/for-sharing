@@ -984,6 +984,102 @@ As $\phi(x;\alpha)$ is nonlinear, we cannot write it as a matrix-vector product 
 	\end{align*}\par 
 	($\Leftarrow$) Suppose $\epi(f)$ is a convex set. Note that $\forall x,y\in\R^d$, by definition of $\epi(f)$, we have $(x,f(x))\in\epi(f)$ and $(y,f(y))\in\epi(f)$. Then, by convexity, we know \[(1-\lambda)(x,f(x))+\lambda(y,f(y))=((1-\lambda)x+\lambda y,(1-\lambda)f(x)+\lambda f(y))\in\epi(f).\] Again, by definition of $\epi(f)$, we have \[f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y).\] Therefore, $f$ is convex. 
 \end{prf}
+\begin{df}{$\alpha$-Level Set}
+	Let $f:\R^d\to\R$ be an arbitrary function and $\alpha\in\R$. Then, the \textit{$\alpha$-level set} of $f$ is $\Lev(f,\alpha)\coloneqq\qty{x:\in\R^d:f(x)\leq\alpha}$. 
+\end{df}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  (50,209.17) -- (265.65,209.17)(71.56,55) -- (71.56,226.3) (258.65,204.17) -- (265.65,209.17) -- (258.65,214.17) (66.56,62) -- (71.56,55) -- (76.56,62)  ;
+\draw  (317,210.17) -- (532.65,210.17)(338.56,56) -- (338.56,227.3) (525.65,205.17) -- (532.65,210.17) -- (525.65,215.17) (333.56,63) -- (338.56,56) -- (343.56,63)  ;
+\draw    (42,102) .. controls (133.65,258.3) and (212.65,128.3) .. (244.65,69.3) ;
+\draw    (333.65,86.3) .. controls (378.65,221.3) and (395.65,193.3) .. (404.65,102.3) .. controls (413.65,11.3) and (432.65,179.3) .. (457.65,175.3) .. controls (482.65,171.3) and (487.65,129.3) .. (509.65,77.3) ;
+\draw    (37.65,129.3) -- (560.65,129.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (59.65,128.3) -- (59.65,210.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (206.65,129.3) -- (206.65,205.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (348.65,130.3) -- (348.65,212.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (401.65,129.3) -- (401.65,211.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (432.65,129.3) -- (432.65,211.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (490.65,129.3) -- (490.65,211.3) ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=0.17 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.28 ][line width=3.75]    (59.65,209.3) -- (206.65,209.3) ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=0.17 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.28 ][line width=3.75]    (348.65,210.3) -- (401.65,210.3) ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=0.17 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.28 ][line width=3.75]    (432.65,210.3) -- (490.65,210.3) ;
+\draw    (375.15,210.3) .. controls (377.59,210.3) and (375.75,221.71) .. (386.78,241.74) ;
+\draw [shift={(387.65,243.3)}, rotate = 240.26] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (458.15,215.3) .. controls (471.24,222.09) and (470.7,228.88) .. (456.96,242.06) ;
+\draw [shift={(455.65,243.3)}, rotate = 316.97] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw (568,131.4) node [anchor=north west][inner sep=0.75pt]    {$\alpha $};
+\draw (246.65,72.7) node [anchor=north west][inner sep=0.75pt]    {$f_{1}$};
+\draw (511.65,80.7) node [anchor=north west][inner sep=0.75pt]    {$f_{2}$};
+\draw (103,215.4) node [anchor=north west][inner sep=0.75pt]    {$\mathrm{Lev}( f_{1} ,\alpha )$};
+\draw (389.65,246.7) node [anchor=north west][inner sep=0.75pt]    {$\mathrm{Lev}( f_{2} ,\alpha )$};
+\end{tikzpicture}
+\end{center}
+\begin{thm}{}
+	If $f$ is convex, then $\Lev(f,\alpha)$ are convex $\forall\ \alpha\in\R$.
+\end{thm}
+\begin{rmk}
+	By convention, we consider empty set as convex as well	
+\end{rmk}
+\begin{prf}
+	Let $x,y\in\Lev(f,\alpha)$ and $\lambda\in(0,1)$. \par \textit{WTS: $(1-\lambda)x+\lambda y\in\Lev(f,\alpha)\quad\Longleftarrow\quad f((1-\lambda)x+\lambda y)\leq\alpha$}.\par As $x,y\in\Lev(f,\alpha)$, then $f(x)\leq\alpha$ and $f(y)\leq\alpha$. So, \[(1-\lambda)f(x)+\lambda f(y)\leq (1-\lambda)\alpha+\lambda\alpha=\alpha.\] By convexity of $f$, we know \[f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y)\leq\alpha.\] So, $(1-\lambda)x+\lambda y\in\Lev(f,\alpha)$.
+\end{prf}
+\begin{rmk}
+	Often, we have $\dsst\min_{f(x)\leq\alpha}g(x)$. In this case, $C=\qty{x:f(x)\leq\alpha}=\Lev(f,\alpha)$. In fact, every $\Lev(f,\alpha)$ is corresponding to a certain convex function. Therefore, Theorem 4.1.10 can be strengthen into an if-and-only-if statement.
+\end{rmk}
+\begin{eg}{Example 4.1.3 Revisit}
+	Consider $B_r(x_0)=\qty{x\in\R^d:\norm{x-x_0}\leq r}$. If $f(x)=\norm{x-x_0}$, $x\in\R^d$, then $B_r(x_0)=\Lev(f,r)$. Show that $B_r(x_0)$ is convex. 
+	\begin{prf}
+		To prove the statement, we first consider the convexity of $f(x)$: 
+		\begin{clm*}
+			$f$ is convex.
+		\end{clm*}
+		\begin{proof}\textit{
+			Let $x,y\in\R^d$ and $\lambda\in(0,1)$. WTS: $\norm{(1-\lambda)x+\lambda y}\leq(1-\lambda)\norm{x}+\lambda\norm{y}$.\newline Note that \begin{align*}
+			\norm{(1-\lambda)x+\lambda y}&\leq\norm{(1-\lambda)x}+\norm{\lambda y}&triangular\ inequality\\&=(1-\lambda)\norm{x}+\lambda\norm{y}&homogeneity\end{align*} So, $f$ is convex.} 
+		\end{proof}
+		As $f$ is convex and $B_r(x_0)=\Lev(f,r)$, by Theorem 4.1.10, $B_r(x_0)$ is convex. 
+	\end{prf}
+\end{eg}
+\begin{rmk}
+	Example 4.1.11 offers another approach to prove a set is convex other than applying the definition: proving it is the level set of a convex function. This is a more powerful approach and can be applied into different types of questions.
+\end{rmk}
+\begin{thm}{Operations Preserving Convexity I}
+	Assume that $f_1,f_2,\dots,f_p$ are convex functions. Then, 
+	\begin{enumerate}
+		\item $\alpha_1f_1+\alpha_2f_2+\cdots+\alpha_pf_p$ is convex $\forall\ \alpha_1,\dots,\alpha_p\geq0$.
+		\item $f(x)=\max\qty{f_1(x),f_2(x),\dots,f_p(x)}$ is a convex function.
+	\end{enumerate}	
+\end{thm}
+\begin{prf}
+	Here, we will offer a proof of Theorem 4.1.12 (2). Let $x,y\in\R^d$ and $\lambda\in(0,1)$. \textit{We want to show $f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y)$.} Note that \begin{align*}f_i((1-\lambda)x+\lambda y)&\leq(1-\lambda)f_i(x)+\lambda f_i(y)&convexity\ of\ f_i\\&\leq(1-\lambda)f(x)+\lambda f(x),\quad\forall\ i&definition\ of\ f: f_i(x)\leq f(x)\end{align*} So, \[\max_if_i((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(x).\] By definition of $f$, that is, $f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y)$.
+\end{prf}
+\begin{thm}{Operations Preserving Convexity II}
+	Let $f$ be a convex function. Then, $g(y)=f(Ay+b)$ is also convex, where $A$ is a matrix and $b$ is a vector. 	
+\end{thm}
+\begin{prf}
+	Let $y,z\in\dom(g)$, the domain of $g$. Then, \begin{align*}g((1-\lambda)y+\lambda z)&=f(A((1-\lambda)y+\lambda z)+b)\\&=f((1-\lambda)Ay+\lambda Az+(1-\lambda)b+\lambda b)&linearity\ of\ A\\&=f((1-\lambda)(Ay+b)+\lambda(Az+b))\\&\leq(1-\lambda)f(Ay+b)+\lambda f(Az+b)&convexity\ of\ f\\&=(1-\lambda)g(y)+\lambda g(z)&definition\ of\ g\end{align*} As $g((1-\lambda)y+\lambda z)\leq(1-\lambda)g(y)+\lambda g(z)$, $g$ is convex. 
+\end{prf}
+\begin{thm}{Operations Preserving Convexity III}
+	Assume $f:\R^d\to\R$ is convex and $g:\R\to\R$ is an increasing convex function. Then, $h(x)=(g\circ f)(x)=g(f(x))$ is also convex.
+\end{thm}
+\begin{prf}
+	Let $x,y\in\R^d$ and $\lambda\in(0,1)$. Then, by the convexity of $f$, we have \[f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y).\] Further, due to $g$ being monotonically increasing, \[g(f((1-\lambda)x+\lambda y))\leq g((1-\lambda)f(x)+\lambda f(y)).\] Therefore, \begin{align*}h((1-\lambda)x+\lambda y)=g(f((1-\lambda)x+\lambda y))&\leq g((1-\lambda)f(x)+\lambda f(y))\\&\leq (1-\lambda)g(f(x))+\lambda g(f(y))&convexity\ of\ g\\&=(1-\lambda)h(x)+\lambda h(y)& definition\ of\ h\end{align*} As $h((1-\lambda)x+\lambda y)\leq(1-\lambda)h(x)+\lambda h(y)$, $h$ is convex.
+\end{prf}
+\begin{clm}
+	Let $C_1,C_2,\dots,C_p$ be convex sets. Then, $C=\dsst\bigcap_{i=1}^p=C_1\cap C_2\cap\cdots\cap C_p$ is also convex. 
+\end{clm}
+\begin{rmk}
+	The union of convex sets, $C=\dsst\bigcup_{i=1}^pC_i=C_1\cup C_2\cup\cdots\cup C_p$	might not be a convex set. 
+\end{rmk}
+\begin{cor}{}
+	Let $f_1,f_2,\dots,f_p$ be convex functions and $\alpha_1,\alpha_2,\dots,\alpha_p\in\R$. Then, \begin{align*}C&=\qty{x:f_1(x)\leq\alpha_1,f_2(x)\leq\alpha_2,\dots,f_p(x)\leq\alpha_p}\\&=\Lev(f_1,\alpha_1)\cap\Lev(f_2,\alpha_2)\cap\cdots\cap\Lev(f_p,\alpha_p)\\&=\bigcap_{i=1}^p\Lev(f_i,\alpha_i)\end{align*} is also convex.
+\end{cor}
+\begin{rmk}
+	Consider an optimization problem $\dsst\min_{\substack{f_1(x)\leq\alpha_1\\f_2(x)\leq\alpha_2\\\cdots\\f_p(x)\leq\alpha_p}}g(x)$. If $f_i$ are convex, then the constrain set of this problem is also convex as a result of Corollary 4.1.16.
+\end{rmk}
+
+
 
 
 \end{document}
