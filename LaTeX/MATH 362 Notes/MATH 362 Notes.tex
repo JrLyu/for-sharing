@@ -491,6 +491,10 @@ The main question is that estimators are not unique in general. How do we choose
 \end{eg}
 \begin{eg}
 	Let $X_1,\dots,X_n$ be a random sample form $\text{Bernoulli}(\theta)$: $p_X(k;\theta)=\theta^k(1-\theta)^{1-k}$ for $k=0,1$. Let $X=\dsst\sum_{i=1}^nX_i$. Then, $X$ follows $\text{Binomial}(n,\theta)$. Consider the prior distribution $\Theta\sim\text{Beta}(r,s)$, i.e., $f_\Theta(\theta)=\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\theta^{r-1}(1-\theta)^{s-1}$ for $\theta\in[0,1]$. Then, the posterior distribution is \[\Theta\mid X\sim\text{Beta}(r+k, s+n-k).\]
+	\begin{prf}
+		Note that \begin{align*}f_{\Theta\mid X}(\theta\mid X=x)&=\dfrac{p_X(X=k\mid\theta)f_{\Theta}(\theta)}{\dsst\int_0^1p_X(X=k\mid\theta)f_{\Theta}(\theta)\ \d{\theta}}\\&=\dfrac{\dsst\binom{n}{k}\theta^k(1-\theta)^{n-k}\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\theta^{r-1}(1-\theta)^{s-1}}{\dsst\int_0^1\dsst\binom{n}{k}\theta^k(1-\theta)^{n-k}\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\theta^{r-1}(1-\theta)^{s-1}\ \d{\theta}}\\&=\dfrac{\dsst\binom{n}{k}\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\theta^{k+r-1}(1-\theta)^{n-k+s-1}}{\dsst\binom{n}{k}\dfrac{\Gamma(r+s)}{\Gamma(r)\Gamma(s)}\int_0^1\theta^{k+r-1}(1-\theta)^{n-k+s-1}\ \d{\theta}}\end{align*}
+		Note that $\theta^{k+r-1}(1-\theta)^{n-k+s-1}$ is part of $\text{Beta}(k+r,n-k+s)$.  So, \begin{align*}1&=\int_0^1\dfrac{\Gamma(k+r+n-k+s)}{\Gamma(k+r)\Gamma(n-k+s)}\theta^{k+r-1}(1-\theta)^{n-k+s-1}\ \d{\theta}\\1&=\dfrac{\Gamma(r+n+s)}{\Gamma(k+r)\Gamma(n-k+s)}\int_0^1\theta^{k+r-1}(1-\theta)^{n-k+s-1}\ \d{\theta}\\\int_0^1\theta^{k+r-1}(1-\theta)^{n-k+s-1}\ \d{\theta}&=\dfrac{\Gamma(k+r)\Gamma(n-k+s)}{\Gamma(r+n+s)}.\end{align*} Therefore, \[f_{\Theta\mid X}(\theta\mid X=x)=\dfrac{\theta^{k+r-1}(1-\theta)^{n-k+s-1}}{\dfrac{\Gamma(k+r)\Gamma(n-k+s)}{\Gamma(r+n+s)}}=\dfrac{\Gamma(r+n+s)}{\Gamma(k+r)\Gamma(n-k+s)}\theta^{k+r-1}(1-\theta)^{n-k+s-1}.\] This is exactly a Beta distribution with parameter $\alpha=k+r$ and $\beta=n-k+s$.
+	\end{prf}
 \end{eg}
 \begin{df}{Conjugate Prior}
 	If the posterior distributions $p(\Theta\mid X)$ are in the sample probability distribution family as the prior probability distribution $p(\Theta)$, the prior and posterior are called \textit{conjugate distributions} and the prior is called a \textit{conjugate prior} for the likelihood function.	
@@ -511,7 +515,61 @@ The main question is that estimators are not unique in general. How do we choose
 \begin{itemize}
 	\item The lost function is $\E\qty[\L(\hat\theta,\theta)]$.
 	\item The MSE, mean square error, is $\E\qty[\qty(\hat\theta-\theta)^2]$.
-	\item A Baysian point estimate is the expectation of the posterior: $\E\qty[\theta\mid X=x]$.
+	\begin{enumerate}
+		\item If we have not data, then notice that \[\E\qty[(\theta-c)^2]=\E\qty(\theta^2)+\E\qty(c^2)-2c\E(\theta)\] is minimized at $c=\E(\theta)$. Therefore, \[\min\E\qty[(\theta-\hat\theta)^2]=\E\qty[(\theta-\E(\theta))]^2=\Var(\theta).\] So, $\hat\theta^*=\E(\theta)$, the prior expectation.
+		\item If we have data $X=x$, then \[\min\E\qty[(\theta-\hat\theta)^2\mid X=x]\implies\hat\theta^*=\E\qty[\theta\mid X=x].\] This $\hat\theta^*$ is called the posterior expectation. 
+	\end{enumerate}
 \end{itemize}
+\begin{thm}{Squared-Loss Bayesian Estimation}
+	\begin{description}
+		\item[Step 1.] Solve the posterior distribution.
+		\item[Step 2.] Calculate the posterior expectation. 
+	\end{description}
+	Generally, if we know the posterior pdf $f_\Theta(\theta\mid X=x)$, the point estimate is \[\E[\theta\mid X=x]=\int_\Theta\theta f_\Theta(\theta\mid X=x)\ \d{\theta}.\]
+\end{thm}
+\begin{thm}{}
+	Let $f_\Theta(\theta\mid W=w)$ be the posterior distribution of the random variable $\Theta$.
+	\begin{itemize}
+		\item If $\L(\theta_e,\theta)=\abs{\theta_e-\theta}$, then the Bayesian point estimate for $\theta$ is the median of the posterior distribution $f_\Theta(\theta\mid W=w)$;
+		\item If $\L(\theta_e,\theta)=(\theta_e-\theta)^2$, then the Bayesian point estimate for $\theta$ is the mean of the posterior distribution $f_\Theta(\theta\mid W=w)$.
+	\end{itemize}	
+\end{thm}
+
+\newpage
+\section{Inference Based on Normal}
+\subsection{Sample Variance and Chi-Square Distribution}
+Recall that if $Y\sim\text{Normal}(\mu,\sigma^2)$, we have MLEs defined as \[\hat\mu=\bar Y\quad\text{and}\quad\hat\sigma^2=\dfrac{1}{n}\sum_{i=1}^n\qty(Y_i-\bar Y)^2.\] If $\sigma$ is known, we can do the interval estimation: \[Z\coloneqq\dfrac{\bar Y-\E(\bar Y)}{\sqrt{\Var(\bar Y)}}\sim N(0,1).\] However, what if we don't know $\sigma$? We will have to estimate it with a sample variance. 
+\begin{df}{Sample Variance}
+	To estimate $\sigma^2$, we define the following unbiased \textit{sample variance}: \[S^2=\dfrac{1}{n-1}\sum_{i=1}^n(Y_i-\bar Y)^2.\]	
+\end{df}
+\begin{rmk}
+	We often compute $S^2$ using the fact that \[\sum_{i=1}^n(y_i-\bar y)^2=\sum_{i=1}^ny_i^2-n\bar y^2\quad\text{i.e., }S^2=\dfrac{1}{n-1}\qty[\sum_{i=1}^ny_i^2-n\bar y^2]\]	
+\end{rmk}
+\begin{df}{Chi-Squared Distribution}
+	Suppose $W_k\sim\chi^2(k)$, the \textit{chi-squared distribution with degree of freedom $k$}. Then, \[W_k=Z_1^2+Z_2^2+\cdots+Z_k^2,\text{ where }Z_i\stackrel{\iid}{\sim}N(0,1).\] $k$ is called the \textit{degree of freedom} of the chi-squared distribution and is denoted as $df=k$.
+\end{df}
+\begin{thm}{Chi-Squared Distribution and Gamma Distribution}
+	$\chi^2(1)$	 is equivalent to $\text{Gamma}\qty(\dfrac{1}{2},\dfrac{1}{2})$. Hence, $\chi^2(n)$ is equivalent to $\text{Gamma}\qty(\dfrac{n}{2},\dfrac{1}{2})$.
+\end{thm}
+\begin{prf}
+	Recall: For $Y_1\sim\text{Gamma}(n,\lambda)$ and $Y_2\sim\text{Gamma}(m,\lambda)$, we have the following sum rule \[Y_1+Y_2\sim\text{Gamma}(n+m,\lambda).\] Then, as $Z_1^2\sim\chi^2(1)=\text{Gamma}\qty(\dfrac{1}{2},\dfrac{1}{2})$, we have \[Z_1^2+Z_2^2+\cdots+Z_n^2\sim\chi^2(n)=\text{Gamma}\qty(\dfrac{1}{2}+\cdots+\dfrac{1}{2},\dfrac{1}{2})=\text{Gamma}\qty(\dfrac{n}{2},\dfrac{1}{2}).\]
+\end{prf}
+\begin{thm}{Expectation and Variance of $\chi^2(n)$}
+	If $W_n\sim\chi^2(n)$, then \[\E(W_n)=n=df\quad\text{and}\quad\Var(W_n)=2n\]	
+\end{thm}
+\begin{prf}
+	For $Y\sim\text{Gamma}(n,\lambda)$, $\E(Y)=\dfrac{n}{\lambda}$ and $\Var(Y)=\dfrac{n}{\lambda^2}$. As $W_n\sim\chi^2(n)=\text{Gamma}\qty(\dfrac{n}{2},\dfrac{1}{2})$, we have \[\E(W_n)=\dfrac{n/2}{1/2}=n\quad\text{and}\quad\Var(W_n)=\dfrac{n/2}{1/4}=2n.\]
+\end{prf}
+\begin{thm}{}
+	Consider a random sample $Y_1,\dots,Y_n$ drawn from $N(0,1)$. Let $S^2$	be the sample variance and $\bar Y$ be the sample mean. Then, 
+	\begin{itemize}
+		\item $S^2$ and $\bar Y$ are independent;
+		\item $\dfrac{(n-1)}{\sigma^2}S^2\sim\chi^2(n-1)$
+	\end{itemize}
+\end{thm}
+\begin{rmk}
+	We can think of the second bullet point as the following rationale: knowing $\bar Y$, we only need $(n-1)$ data, and we can calculate $Y_n$ from $\bar Y$ and $Y_1,\dots,Y_{n-1}$. This explains why the chi-squared distribution is of $df=n-1$.	
+\end{rmk}
+
 
 \end{document}
