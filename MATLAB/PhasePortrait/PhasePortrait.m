@@ -1,7 +1,7 @@
 %% Plot the Phase Portrait
 clear; clc;
 
-f = @(t, Y) [-3*Y(1)+4*Y(2); 4*Y(1)-3*Y(2)];
+f = @(t, Y) [5*Y(1)+0*Y(2); 5*Y(1)+5*Y(2)];
 
 y1 = linspace(-10,10,20);
 y2 = linspace(-10,10,20);
@@ -47,4 +47,4 @@ for y20 = [5]
     plot(ys(1,1),ys(1,2),'bo') % starting point
     plot(ys(end,1),ys(end,2),'ks') % ending point
 end
-hold off
+
