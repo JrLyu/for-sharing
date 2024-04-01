@@ -1078,8 +1078,142 @@ As $\phi(x;\alpha)$ is nonlinear, we cannot write it as a matrix-vector product 
 \begin{rmk}
 	Consider an optimization problem $\dsst\min_{\substack{f_1(x)\leq\alpha_1\\f_2(x)\leq\alpha_2\\\cdots\\f_p(x)\leq\alpha_p}}g(x)$. If $f_i$ are convex, then the constrain set of this problem is also convex as a result of Corollary 4.1.16.
 \end{rmk}
+\begin{eg}{Techniques to Prove Convexity I: Turn ``$\geq$'' into ``$\leq$''}
+	Consider $\dsst\min_{\substack{x_1^2+x_2^2\leq1\\2x_1-x_2\geq0}} L(x_1,x_2)$. The constrain set $C=C_1\cap C_2\st$ \[C_1=\qty{(x_1,x_2):x_1^2+x_2^2\leq1}\quad\text{and}\quad C_2=\qty{(x_1,x_2):2x_1-x_2\geq0}.\] Find the convexity of $C$. 
+	\begin{sol}
+		Define $f_1(x_1,x_2)=x_1^2+x_2^2$. Then, $C_1$ is a level set: \[C_1=\qty{(x_1,x_2):f_1(x_1,x_2)\leq1}.\] Note that $\grad^2f_1(x_1,x_2)=\mqty[2&0\\0&2]\succ0,$ so $f_1(x_1,x_2)$ is convex and so is $C_1$.\par 
+		Define $f_2(x_1,x_2)=-2x_1+x_2$. Then, $C_2$ is also a level set: \[C_2=\qty{(x_1,x_2):-2x_1+x_2\leq0}=\qty{(x_1,x_2):f_2(x_1,x_2)\leq0}\quad [a\geq0\iff -a\leq0]\] Note that $\grad^2f_2(x_1,x_2)=\mqty[0&0\\0&0]\succeq0$. Thus, $f_2(x_1,x_2)$ is convex and so is $C_2$.\par Hence, $C=C_1\cap C_2$ is also convex. 
+	\end{sol}
+\end{eg}
+\begin{rmk}
+	Every linear function $f(x)=c_0+c_1x_1+c_2x_2+\cdots+c_dx_d$ always has Hessian semidefinite, and so they are all convex. Having a strict positive definition Hessian implies a strict convexity. 	
+\end{rmk}
+\begin{eg}{Techniques to Prove Convexity II: Turn ``$=$'' into ``$\leq$''}
+	Consider $\dsst\min_{\substack{e^{x_1}+x_2-x_3\leq1\\4x_1-2x_2+7x_3=2}}L(x_1,x_2,x_3)$.\par Let $C$ be the constrain set. Determine the convexity of $C$. 
+	\begin{sol}
+		Note that $C=C_1\cap C_2\st$ \[C_1=\qty{(x_1,x_2,x_3):f_1(x_2,x_2,x_3)\leq1}\quad\text{where }f_1(x_1,x_2,x_3)=e^{x_1}+x_2-x_3\] and  \[C_2=\qty{(x_1,x_2,x_3):f_2(x_2,x_2,x_3)=2}\quad\text{where }f_2(x_1,x_2,x_3)=4x_1-2x_2+7x_3.\] In fact, we can decompose $C_2$ into the following conditions: \[C_2=\qty{(x_1,x_2,x_3):f_2(x_2,x_2,x_3)\leq2}\quad\text{where }f_2(x_1,x_2,x_3)=4x_1-2x_2+7x_3.\] and \[C_3=\qty{(x_1,x_2,x_3):f_3(x_2,x_2,x_3)\leq-2}\quad\text{where }f_3(x_1,x_2,x_3)=-4x_1+2x_2-7x_3.\] Therefore, $C=C_1\cap C_2\cap C_3$, with $C_1,C_2,C_3$ both level sets.\par 
+		 For $C_1$, note that \[\grad^2f_1(x_1,x_2,x_3)=\mqty[e^{x_1}&0&0\\0&0&0\\0&0&0]\succeq0.\] So, $f_1$ is convex and so is $C_1$. \par 
+		 \textit{Alternatively, $e^{x_1}$ is convex and $x_2-x_3$ is also convex. So, $f_1(x_1,x_2,x_3)$ is a sum of two convex functions.}\par 
+		  For $C_2$ and $C_3$, $f_2$ is linear, and so $f_2$ and $f_3=-f_2$ are both linear and so convex. Then, $C_2$ and $C_3$ are convex.\par 
+		   Therefore, $C=C_1\cap C_2\cap C_3$ is convex. 
+	\end{sol}
+\end{eg}
 
+\subsection{Conditions for Constrained Optimal Problems}
+\begin{description}
+	\item[Problem] \begin{equation}\label{P}
+		\text{Consider }\min_{x\in C}f(x),\text{ where }C\subseteq\R^d\text{ is a convex set}.\tag{P}
+	\end{equation} 
+\end{description}
+\begin{df}{Stationary Point}
+	A point $x^*\in C$ is called a \textit{stationary point} for \eqref{P} if \[\grad f(x^*)^\top(x-x^*)\geq0\quad\forall x\in C.\]
+\end{df}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw   (114,131.32) .. controls (114,89.17) and (148.17,55) .. (190.32,55) .. controls (232.48,55) and (266.65,89.17) .. (266.65,131.32) .. controls (266.65,173.48) and (232.48,207.65) .. (190.32,207.65) .. controls (148.17,207.65) and (114,173.48) .. (114,131.32) -- cycle ;
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (262.82,131.32) .. controls (262.82,129.21) and (264.54,127.5) .. (266.65,127.5) .. controls (268.76,127.5) and (270.47,129.21) .. (270.47,131.32) .. controls (270.47,133.44) and (268.76,135.15) .. (266.65,135.15) .. controls (264.54,135.15) and (262.82,133.44) .. (262.82,131.32) -- cycle ;
+\draw    (266.65,131.32) -- (246.7,163.6) ;
+\draw [shift={(245.65,165.3)}, rotate = 301.72] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (266.65,131.32) -- (170.6,153.84) ;
+\draw [shift={(168.65,154.3)}, rotate = 346.81] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (266.65,131.32) -- (159.55,96.91) ;
+\draw [shift={(157.65,96.3)}, rotate = 17.81] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw  [draw opacity=0] (260.25,140.77) .. controls (256.68,139.5) and (254.17,135.54) .. (254.37,130.96) .. controls (254.42,129.6) and (254.72,128.31) .. (255.2,127.15) -- (262.82,131.32) -- cycle ; \draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (260.25,140.77) .. controls (256.68,139.5) and (254.17,135.54) .. (254.37,130.96) .. controls (254.42,129.6) and (254.72,128.31) .. (255.2,127.15) ;  
+\draw  [draw opacity=0] (256.15,148.31) .. controls (252.58,147.04) and (250.07,143.08) .. (250.27,138.51) .. controls (250.32,137.15) and (250.62,135.86) .. (251.1,134.69) -- (258.73,138.87) -- cycle ; \draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (256.15,148.31) .. controls (252.58,147.04) and (250.07,143.08) .. (250.27,138.51) .. controls (250.32,137.15) and (250.62,135.86) .. (251.1,134.69) ;  
+\draw (268.65,134.72) node [anchor=north west][inner sep=0.75pt]    {$x^{*}$};
+\draw (247.65,168.7) node [anchor=north west][inner sep=0.75pt]    {$\nabla f\left( x^{*}\right)$};
+\draw (170.65,157.7) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$x_{1}$};
+\draw (159.65,99.7) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$x_{2}$};
+\draw (239,135.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\alpha $};
+\draw (278,105.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\alpha \leq 90^{\circ } =\dfrac{\pi }{2}$};
+\end{tikzpicture}	
+\end{center}
+\begin{thm}{Necessary Condition for Constrained Optimization}
+	If $x^*$ is a solution of \eqref{P}, then $x^*$ is a stationary point.
+\end{thm}
+\begin{prf}
+	Assume that $x^*$ is a solution of \eqref{P}, but $\exists\ x\in C\st\grad f(x^*)^\top(x-x^*)<0$.\par 
+	Consider $\phi(t)=f(x^*+t(x-x^*))$. Note that \begin{align*}\phi'(0)=\lim_{t\to0}\dfrac{\phi(t)-\phi(0)}{t}&=\lim_{t\to0}\dfrac{f(x^*+t(x-x^*))-f(x^*)}{t}\\ [Directional\ derivative\ of\ f\ in\ direction\ of\ x-x^*]&=f'(x^*;x-x^*)\\&=\grad f(x^*)^\top\cdot(x-x^*)<0.\end{align*}	 So, $\phi'(0)=\grad f(x^*)^\top\cdot(x-x^*)<0$ by our assumption. So, $\exists\ t^*\in(0,1)\st\phi(t^*)<\phi(0)$. That is, \begin{align*}f(x^*+t^*(x-x^*))&<f(x^*)\\f((1-t^*)x^*+t^*x)&<f(x^*)\end{align*} Denote $(1-t^*)x^*+t^*x=x'$, we know $x'\in C$ by convexity of $C$. So, we've found a $x'\in C\st$ \[f(x')<f(x^*).\]\par  $\divideontimes$ This contradicts with our assumption that $x^*$ is a solution of \eqref{P}. Hence, our assumption is incorrect, and the proof is complete. 
+\end{prf}
+\begin{rmk}
+	When $x^*\in\operatorname{int}(C)$, then $x^*$ is stationary if and only if $\grad f(x^*)=0$. In particular, when $C=\R^d$, all $x^*\in\operatorname{int}(C)$ and stationary means $\grad f(x^*)=0$.
+\end{rmk}
+\begin{eg}{Use the Necessary Condition to Derive a KKT Condition}
+	Consider $C=\R_+^d=\qty{(x_1,\dots,x_d):x_i\geq0\quad\forall\ i}$. Show that $x^*$ is a stationary point if and only if $\forall\ i$, \[\pdv{f}{x_i} (x^*)\geq0,\quad x_i^*\geq0,\quad\pdv{f}{x_i} (x^*)x_i^*=0.\]
+	\begin{prf}
+		The necessary condition for $x^*\in C$ to be stationary is given by \begin{align*}\grad f(x^*)^\top(x-x^*)&\geq0\quad\forall\ x\in\R^d_+\\\grad f(x^*)^\top x-\grad f(x^*)^\top x^*&\geq0.\end{align*}
+		\begin{clm*}
+		$a^\top x+b\geq0\quad\forall\ x\in\R_+^d$ if and only if $a\geq0$ and $b\geq0$.
+		\end{clm*}
+		Using the Claim, we have that $x^*$ is a stationary point if and only if \[\pdv{f}{x_i} (x^*)\geq0\quad\forall\ i\] and \[\grad f(x^*)^\top x^*=\sum_{i=1}^d\pdv{f}{x_i} (x^*)x_i^*\leq0.\] Hence, $x^*$ is a stationary point if and only if \[\forall\ i,\quad\pdv{f}{x_i} (x^*)\geq0,\quad x_i^*\geq0,\quad \pdv{f}{x_i} (x^*)x_i^*=0.\] The three conditions, altogether, is called the \textit{Karush–Kuhn–Tucker (KKT) Condition} for $C=\R^d_+$. The last condition, $\dsst\pdv{f}{x_i} (x^*)x_i^*=0\quad\forall\ i$ is called the \textit{Complementary Slackness Condition}, which indicates that for each $i$, either \[\pdv{f}{x_i} (x^*)=0\quad\longrightarrow x^*\in\operatorname{int}(C)\quad\text{or}\quad x_i^*=0\quad\longrightarrow x^*\text{ is on the boundary}\]
+	\end{prf}
+\end{eg}
+\begin{thm}{First-Order Characterization of a Convex Function}
+	$f\in\C^1(\R^d)$ is convex if and only if $f(y)\geq\underbrace{f(x)+\grad f(x)^\top(y-x)}_\text{first-order approximation},\quad\forall\ x,y\in\R^d.$
+\end{thm}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.75,xscale=1]
+\draw  (50,209.17) -- (265.65,209.17)(71.56,55) -- (71.56,226.3) (258.65,204.17) -- (265.65,209.17) -- (258.65,214.17) (66.56,62) -- (71.56,55) -- (76.56,62)  ;
+\draw  (352,210.17) -- (567.65,210.17)(373.56,56) -- (373.56,227.3) (560.65,205.17) -- (567.65,210.17) -- (560.65,215.17) (368.56,63) -- (373.56,56) -- (378.56,63)  ;
+\draw    (42,102) .. controls (133.65,258.3) and (212.65,128.3) .. (244.65,69.3) ;
+\draw    (368.65,86.3) .. controls (413.65,221.3) and (430.65,193.3) .. (439.65,102.3) .. controls (448.65,11.3) and (467.65,179.3) .. (492.65,175.3) .. controls (517.65,171.3) and (522.65,129.3) .. (544.65,77.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (154.65,171.3) -- (154.65,209.3) ;
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (436.65,129.3) -- (436.65,211.3) ;
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (219.65,111.3) -- (219.65,209.3) ;
+\draw    (259.65,132.3) -- (104.65,191.3) ;
+\draw    (451.65,32.3) -- (426.65,199.3) ;
+\draw (246.65,72.7) node [anchor=north west][inner sep=0.75pt]    {$f_{1}$};
+\draw (546.65,80.7) node [anchor=north west][inner sep=0.75pt]    {$f_{2}$};
+\draw (149.65,211.7) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\draw (213.65,210.7) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$y$};
+\draw (231.65,143.7) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$f_{1}( x) +( y-x)^{\top } \nabla f_{1}( x)$};
+\draw (430.65,210.7) node [anchor=north west][inner sep=0.75pt]    {$x$};
+\draw (453.65,35.7) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$f_{2}( x) +( y-x)^{\top } \nabla f_{2}( x)$};
+\end{tikzpicture}
+\end{center}
+\begin{prf}
+	($\Rightarrow$)	Suppose $f\in\C^1(\R^d)$ is convex. Fix some $x,y\in\R^d$. \par If $x=y$, then $f(y)\geq f(x)+\grad f(x)^\top(y-x)$ is trivially true. So, WLOG, we can assume $x\neq y$. By convexity, \begin{align*}f((1-\lambda)x+\lambda y)&\leq(1-\lambda)f(x)+\lambda f(y)&\forall\ \lambda\in(0,1)\\f(x+\lambda(y-x))&\leq f(x)+\lambda(f(y)-f(x))\\f(y)-f(x)&\geq\dfrac{f(x+\lambda(y-x))-f(x)}{\lambda}&\forall\ \lambda\in(0,1)\\\underbrace{\lim_{\lambda\to0^+}\dfrac{f(x+\lambda(y-x))-f(x)}{\lambda}}_{\text{Direction derivative along }y-x}&\leq f(y)-f(x)\\f'(x;y-x)&\leq f(y)-f(x)\\\grad f(x)^\top(y-x)&\leq f(y)-f(x)&f\ is\ smooth\\f(y)&\geq f(x)+\grad f(x)^\top(y-x).\pqde\end{align*}\par 
+	($\Leftarrow$) Assume $f(y)\geq f(x)+\grad f(x)^\top(y-x)$ is true. \textit{WTS: $f((1-\lambda)x+\lambda y)\leq (1-\lambda)f(x)+\lambda f(y)$}. Denote $z\coloneqq(1-\lambda)x+\lambda y$, then by assumption, \begin{equation}\label{eq10}f(x)\geq f(z)+\grad f(z)^\top(x-z)\end{equation} and \begin{equation}\label{eq11}f(y)\geq f(z)+\grad f(z)^\top(y-z)\end{equation} Then, $(1-\lambda)\eqref{eq10}+\lambda\eqref{eq11}$ for some $\lambda\in(0,1)$ gives us \begin{align*}(1-\lambda)f(x)+\lambda f(y)&\geq(1-\lambda)f(z)+(1-\lambda)\grad f(x)^\top(x-z)+\lambda f(z)+\lambda\grad f(z)^\top(y-z)\\(1-\lambda)f(x)+\lambda f(y)&\geq f(z)+\grad f(x)^\top((1-\lambda)(x-z)+\lambda(y-z)).\end{align*} Note that \begin{align*}(1-\lambda)(x-z)+\lambda(y-z)&=(1-\lambda)(x-(1-\lambda)x-\lambda y)+\lambda(y-(1-\lambda)x-\lambda y)\\&=(1-\lambda)\lambda(x-y)+\lambda(1-\lambda)(y-x)\\&=(1-\lambda)\lambda(x-y)-(1-\lambda)\lambda(x-y)\\&=0\end{align*} So, \[(1-\lambda)f(x)+\lambda f(y)\geq f(z)+0=f((1-\lambda)x+\lambda y).\]
+\end{prf}
+\begin{rmk}
+	The zero-order characterization of the convex function is the definition \[f((1-\lambda)x+\lambda y)\leq(1-\lambda)f(x)+\lambda f(y).\]	The second-order characterization of a convex function is the Hessian being semidefinite. These three characterizations are equivalent. 
+\end{rmk}
+\begin{thm}{Sufficient Condition for Constrained Optimization}
+	Assume that $C$ is convex, $f$ is convex, and $x^*\in C$ is a stationary point for \eqref{P}. Then, $x^*$ is a minimum point or solution. 	
+\end{thm}
+\begin{prf}
+	Let $x\in C$. By convexity, we have that \[f(x)\geq f(x^*)+\grad f(x^*)^\top(x-x^*).\] Since $x^*$ is a stationary point, we have that, by definition, \[\grad f(x^*)^\top(x-x^*)\geq0.\] So, \[f(x)\geq f(x^*)+\grad f(x^*)^\top(x-x^*)\geq f(x^*).\]
+\end{prf}
+\begin{rmk}[View Convexity from Another Perspective]
+	If $f$ is linear (affine), stationary points satisfy: \[\grad f(x^*)^\top(x-x^*)=f(x)-f(x^*)\geq0\implies x^*\text{ is minimum}.\]	If $f$ is nonlinear, 
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw  (50,229.58) -- (230.65,229.58)(68.06,67) -- (68.06,247.65) (223.65,224.58) -- (230.65,229.58) -- (223.65,234.58) (63.06,74) -- (68.06,67) -- (73.06,74)  ;
+	\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.12 ] (76.41,223.18) .. controls (43.41,189.56) and (52.35,127.25) .. (96.39,84.02) .. controls (140.43,40.78) and (202.89,32.99) .. (235.9,66.62) .. controls (268.91,100.24) and (259.96,162.54) .. (215.92,205.78) .. controls (171.88,249.01) and (109.42,256.8) .. (76.41,223.18) -- cycle ;
+	\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (96,175.32) .. controls (96,172.94) and (97.94,171) .. (100.32,171) .. controls (102.71,171) and (104.65,172.94) .. (104.65,175.32) .. controls (104.65,177.71) and (102.71,179.65) .. (100.32,179.65) .. controls (97.94,179.65) and (96,177.71) .. (96,175.32) -- cycle ;
+	\draw  [dash pattern={on 4.5pt off 4.5pt}]  (100.32,175.32) -- (100.32,233.3) ;
+	\draw    (100.32,175.32) -- (281.65,162.3) ;
+	\draw    (100.32,175.32) .. controls (226.65,161.3) and (243.65,125.3) .. (259.65,52.3) ;
+	\draw (255,135.4) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\draw (261.65,55.7) node [anchor=north west][inner sep=0.75pt]    {$f( x)$};
+	\draw (248,159.4) node [anchor=north west][inner sep=0.75pt]    {$L( x) =f\left( x^{*}\right) +\nabla f\left( x^{*}\right)^{\top }\left( x-x^{*}\right)$};
+	\draw (106,211.4) node [anchor=north west][inner sep=0.75pt]    {$x^{*}$};
+	\end{tikzpicture}
+	\end{center}
+	Let $L(x)$ be the affine function $\st$ $L(x^*)=f(x^*)$ and $\grad L(x^*)=\grad f(x^*)$.\par  Now, consider $\dsst\min_{x\in C}L(x)$: \begin{align*}\grad L(x^*)^\top(x-x^*)&\geq0\quad\forall x\in C\\\grad f(x^*)^\top(x-x^*)&\geq0\quad\forall x\in C.\end{align*} So, $x^*$ is the minimum of $f$ if and only if it is also the minimum of $L$, \par Further, as $x^*$ is a minimum of $L$, \[\grad L(x^*)^\top(x-x^*)=L(x)-L(x^*)\geq0\implies L(x)\geq L(x^*)\quad\forall x\in C.\] Now, the convexity of $f$ guarantees that $f(x)\geq L(x)$. So, we have \[f(x)\geq L(x)\geq L(x^*)=f(x^*).\]
+\end{rmk}
 
+\subsection{The Karush-Kuhn-Tucker (KKT) Conditions}
+\subsubsection{KKT Conditions for Linear Inequality Constrains}
+\begin{description}
+	\item[Constrain Set:] $C=\qty{x\in\R^d:a_i^\top x\leq b_i,\quad i=1,2,\dots,m}$.
+\end{description}
+\begin{eg}{Informal Discussion}
+		
+\end{eg}
 
 
 \end{document}
