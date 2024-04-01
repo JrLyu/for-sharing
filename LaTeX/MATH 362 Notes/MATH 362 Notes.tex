@@ -570,6 +570,72 @@ Recall that if $Y\sim\text{Normal}(\mu,\sigma^2)$, we have MLEs defined as \[\ha
 \begin{rmk}
 	We can think of the second bullet point as the following rationale: knowing $\bar Y$, we only need $(n-1)$ data, and we can calculate $Y_n$ from $\bar Y$ and $Y_1,\dots,Y_{n-1}$. This explains why the chi-squared distribution is of $df=n-1$.	
 \end{rmk}
+\begin{prf}(informally)
+	\begin{enumerate}
+		\item We will prove the case when $n=2$. \par $S^2=\dfrac{1}{n-1}\sum_{i=1}^n\qty(Y_i-\bar{Y})^2$. If $n=2$, $\bar{Y}=\dfrac{Y_1+Y_2}{2}$, then \begin{align*}S^2&=\qty(Y_1-\bar{Y})^2+\qty(Y_2-\bar{Y})^2\\&=\qty(Y_1-\dfrac{Y_1+Y_2}{2})^2+\qty(Y_2-\dfrac{Y_1+Y_2}{2})\\&=\qty(\dfrac{Y_1-Y_2}{2})^2+\qty(\dfrac{Y_2-Y_1}{2})^2\\&=\dfrac{1}{2}\qty(Y_1-Y_2)^2.\end{align*}
+		\begin{clm*}
+			Recall that if $X_1$ and $X_2$ are independent, then \begin{equation}\label{eq1}\E(X_1X_2)=\E(X_1)\E(X_2).\end{equation} The backward implication is not true in general, but specially for normal distributions. That is, if  \eqref{eq1} holds and $X_1,\ X_2$ normal are normal, then $X_1\independ X_2$.
+		\end{clm*}
+		As $Y_1-Y_2$ and $Y_1+Y_2$ are both normal distributed, to show they are independent of each other, we only need to show that \[\E\qty[(Y_1-Y_2)(Y_1+Y_2)]=\E(Y_1-Y_2)\E(Y_1+Y_2).\] The detailed proof is omitted, but the equality holds. 
+		\item Show that $\dfrac{(n-1)}{\sigma^2}S^2\sim\chi_{n-1}^2$. Note that $Y_i\sim N(\mu,\sigma)$. Then, \[\dfrac{Y_i-\mu}{\sigma}\sim N(0,1)\quad\text{and}\quad\dfrac{\bar Y-\mu}{\sqrt{\sigma^2/n}}\sim N(0,1).\] So, \[\dfrac{(Y_i-\mu)^2}{\sigma^2}\sim\chi_1^2\implies\dfrac{\dsst\sum_{i=1}^n(Y_i-\mu)^2}{\sigma^2}\sim \chi_n^2\quad\text{and}\quad\dfrac{(\bar Y-\mu)^2}{\sigma^2/n}\sim\chi_1^2.\]
+		\begin{clm*}
+			If $U_1\sim\chi^2(m)$ and $U_2\sim\chi^2(n)$ with $U_1\independ U_2$, then $U_1+U_2\sim\chi^2(m+n)$ by the summation rule of Gamma.	
+		\end{clm*}
+		Therefore, by the Claim, we have \begin{align*}\dfrac{\dsst\sum_{i=1}^n\qty(Y_i-\mu)^2}{\sigma^2}&=\dfrac{\dsst\sum_{i=1}^n\qty(Y_i-\bar Y+\bar Y-\mu)^2}{\sigma^2}\\&\sim\dfrac{\dsst\sum_{i=1}^n(Y_i-\bar Y)^2+\sum_{u=1}^n(\bar Y-\mu)^2}{\sigma^2}\\&=\dfrac{(n-1)S^2}{\sigma^2}+\dfrac{\dsst\sum_{i=1}^n(\bar Y-\mu)^2}{\sigma^2}.\end{align*} Note that $\dfrac{\dsst\sum_{i=1}^n\qty(Y_i-\mu)^2}{\sigma^2}\sim\chi_n^2$ and $\dfrac{\dsst\sum_{i=1}^n(\bar Y-\mu)^2}{\sigma^2}\sim \chi_1^2$. So, it must be that $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi_{m-1}^2$.
+	\end{enumerate}	
+\end{prf}
+
+\subsection{Inference on $\mu$ and $\sigma$}
+\begin{df}{Sampling Distribution}
+	The \textit{sampling distributions} are defined as the distributions of functions of random sample of given size. 	
+\end{df}
+\begin{description}
+	\item[Aim:] Determine distributions for the following statistics: 
+	\begin{center}
+	\begin{tabular}{c|c}
+		Statistics&Distribution\\\hline
+		(Sample Variance) $S^2\coloneqq\dfrac{1}{n-1}\dsst\sum_{n=1}^n(Y_1-\bar Y)^2$&Chi-square distribution\\\\
+		$T\coloneqq \dfrac{\bar Y-\mu}{S/\sqrt{n}}$&Student $t$ distribution\\\\
+		$\dfrac{S_1^2}{\sigma_1^2}\Big/\dfrac{S_2^2}{\sigma_2^2}$&$F$ distribution
+	\end{tabular}
+	\end{center}
+\end{description}
+\begin{df}{The Test Statistic}
+	The \textit{test statistic} is defined as \[T\coloneqq\dfrac{\bar Y-\mu}{S/\sqrt{n}},\]	 with $\bar Y=\dfrac{1}{n}\dsst\sum_{i=1}^n Y_i$ and $S^2=\dsst\dfrac{1}{n-1}\sum_{i=1}^n\qty(Y_i-\bar Y)^2$.
+\end{df}
+\begin{df}{Student $t$-Ratio}
+	Consider \begin{itemize}
+		\item $Z\coloneqq\dfrac{\sqrt{\mu}}{\sigma}(\bar Y-\mu)\sim N(0,1)$
+		\item $V\sim\chi_n^2$
+		\item $Z\independ V$
+	\end{itemize}	
+	Then, we define the \textit{student $t$-ratio} with $n$ degrees of freedom as \[T_n\coloneqq\dfrac{Z}{\sqrt{V/n}}.\] Note that $Z\sim N(0,1)$ and $\sqrt{V/n}\sim\sqrt{\dfrac{\chi_n^2}{n}}$.
+\end{df}
+\begin{thm}{Distribution of $\dfrac{\bar Y-\mu}{S/\sqrt{n}}$}
+	Consider $Y_1,\dots,Y_n\stackrel{\iid}{\sim}N(\mu,\sigma^2)$. Let $S^2$ to be the sample variance. Then, \[\dfrac{\bar Y-\mu}{S/\sqrt{n}}\sim T_{n-1}.\]
+\end{thm}
+\begin{prf}
+	Note that \begin{equation}\label{eq2}\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\end{equation} and \begin{equation}\label{eq3}\dfrac{(n-1)S^2}{\sigma^2}\sim\chi_{n-1}^2\end{equation} Then, consider \begin{align*}\dfrac{\bar Y-\mu}{S/\sqrt{n}}=\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}\cdot\dfrac{\sigma}{S}&=\dfrac{\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}}{\sqrt{\dfrac{S^2}{\sigma^2}}}\\&=\dfrac{\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}}{\sqrt{\dfrac{(n-1)S^2}{\sigma^2}}\cdot\dfrac{1}{\sqrt{n-1}}}\\&=\dfrac{\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}\sim N(0,1)}{\sqrt{\dfrac{(n-1)S^2/\sigma^2}{n-1}}\sim\chi_{n-1}^2}&S^2\independ\bar Y\\&\sim T_{n-1}.\end{align*}
+\end{prf}
+\begin{thm}{Connection Between $N(0,1)$ and $t$}
+	$T$ distribution is flatter/more spread out than $N(0,1)$. It has heavier tails. 	
+\end{thm}
+\begin{prf}
+	Note that \begin{itemize}
+		\item $S_n^2=\dfrac{1}{n-1}\dsst\sum_{i=1}^n(Y_i-\bar Y)^2$ is an unbiased estimator of $\sigma^2$.
+		\item $S_n^2$ is a consistent estimator of $\sigma^2$.
+	\end{itemize}
+	So, $\Var(S_n^2)\to0$ as $n\to\infty$. This implies that the difference between $T$ and $N(0,1)$ is significant when $n$ is small. 
+\end{prf}
+\begin{thm}{Inference on $\mu$}
+	If $\sigma^2$ is known, we inference $\mu$ using $Z=\dfrac{\bar Y-\mu}{\sigma/\sqrt{n}}$. We use $z$-score and $z_\alpha$ table to construct the $100(1-\alpha)\%$ CI as $\qty(\bar y-z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}},\bar y+z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}})$. Alternatively, if $\sigma^2$ is unknown, we use $T_{n-1}=\dfrac{\bar Y-\mu}{S/\sqrt{n}}$. We apply $t_{n-1}$ score and $t_{\alpha,n-1}$ table to construct a similar CI.
+\end{thm}
+\begin{thm}{Inference on $\sigma$}
+	A two-sided $100(1-\alpha)\%$ CI on $\sigma$ will be given 	by \[\qty(\sqrt{\dfrac{(n-1)S^2}{\chi_{1-\alpha/2,n-1}^2}},\sqrt{\dfrac{(n-1)S^2}{\chi_{\alpha/2,n-1}^2}}).\]
+\end{thm}
+\begin{prf}
+	Note that \[X_n\coloneqq\dfrac{(n-1)S^2}{\sigma^2}\sim\chi_{n-1}^2.\] Then, \[\P(x_a\leq X_n\leq x_b)=100(1-\alpha)\%.\] To construct a two-sided CI, since chi-square distribution is not symmetric, we can choose the two points that have the same density value (this will ensure a short CI). However, this method is very numerically expensive. To save computational cost, we will still choose the two points that covers the $\alpha/2\%$ and $(1-\alpha/2)\%$ distribution. It is also known as to find $\chi_{\alpha/2,n-1}^2$ from the $\chi^2$ table. Hence, \begin{align*}\P(\chi_{\alpha/2,n-1}^2\leq X_n\leq \chi_{1-\alpha/2,n-1}^2)&=100(1-\alpha)\%\\\P(\chi_{\alpha/2,n-1}^2\leq \dfrac{(n-1)S^2}{\sigma^2}\leq \chi_{1-\alpha/2,n-1}^2)&=100(1-\alpha)\%\\\implies\dfrac{(n-1)S^2}{\chi_{1-\alpha/2,n-1}^2}\leq\sigma^2\leq&\dfrac{(n-1)S^2}{\chi_{\alpha/2,n-1}^2}\end{align*}So, $100(1-\alpha)\%$ CI of $\sigma^2$ is \[\qty(\dfrac{(n-1)S^2}{\chi_{1-\alpha/2,n-1}^2},\dfrac{(n-1)S^2}{\chi_{\alpha/2,n-1}^2})\] and a $100(1-\alpha)\%$ CI of $\sigma$ is \[\qty(\sqrt{\dfrac{(n-1)S^2}{\chi_{1-\alpha/2,n-1}^2}},\sqrt{\dfrac{(n-1)S^2}{\chi_{\alpha/2,n-1}^2}}).\]
+\end{prf}
 
 
 \end{document}
