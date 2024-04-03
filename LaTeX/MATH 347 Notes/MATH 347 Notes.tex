@@ -1212,8 +1212,123 @@ As $\phi(x;\alpha)$ is nonlinear, we cannot write it as a matrix-vector product 
 	\item[Constrain Set:] $C=\qty{x\in\R^d:a_i^\top x\leq b_i,\quad i=1,2,\dots,m}$.
 \end{description}
 \begin{eg}{Informal Discussion}
-		
+	Let's consider $C=\qty{x\in\R^d:a_1^\top x\leq b_1, a_2^\top x\leq b_2}$.
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}}
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	\draw    (100,108) -- (285.65,243.3) ;
+	\draw    (86.65,228.3) -- (355.65,100.3) ;
+	\draw    (323.65,115.3) -- (308.57,86.08) ;
+	\draw [shift={(307.65,84.3)}, rotate = 62.7] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (251.65,218.3) -- (231.78,247.22) ;
+	\draw [shift={(230.65,248.87)}, rotate = 304.49] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.18 ] (194.92,177) -- (356.12,100.53) -- (285.65,243.3) -- cycle ;
+	\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (266,180.82) .. controls (266,178.71) and (267.71,177) .. (269.82,177) .. controls (271.94,177) and (273.65,178.71) .. (273.65,180.82) .. controls (273.65,182.94) and (271.94,184.65) .. (269.82,184.65) .. controls (267.71,184.65) and (266,182.94) .. (266,180.82) -- cycle ;
+	\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (248,149.82) .. controls (248,147.71) and (249.71,146) .. (251.82,146) .. controls (253.94,146) and (255.65,147.71) .. (255.65,149.82) .. controls (255.65,151.94) and (253.94,153.65) .. (251.82,153.65) .. controls (249.71,153.65) and (248,151.94) .. (248,149.82) -- cycle ;
+	\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (219,198.82) .. controls (219,196.71) and (220.71,195) .. (222.82,195) .. controls (224.94,195) and (226.65,196.71) .. (226.65,198.82) .. controls (226.65,200.94) and (224.94,202.65) .. (222.82,202.65) .. controls (220.71,202.65) and (219,200.94) .. (219,198.82) -- cycle ;
+	\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (191.09,177) .. controls (191.09,174.89) and (192.81,173.17) .. (194.92,173.17) .. controls (197.03,173.17) and (198.74,174.89) .. (198.74,177) .. controls (198.74,179.11) and (197.03,180.82) .. (194.92,180.82) .. controls (192.81,180.82) and (191.09,179.11) .. (191.09,177) -- cycle ;
+	\draw    (194.92,177) -- (179.84,147.78) ;
+	\draw [shift={(178.92,146)}, rotate = 62.7] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw    (194.92,177) -- (175.05,205.92) ;
+	\draw [shift={(173.92,207.57)}, rotate = 304.49] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (222.82,198.82) -- (189.83,243.69) ;
+	\draw [shift={(188.65,245.3)}, rotate = 306.33] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (251.82,149.82) -- (218.63,91.04) ;
+	\draw [shift={(217.65,89.3)}, rotate = 60.55] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (194.92,177) -- (107.65,179.25) ;
+	\draw [shift={(105.65,179.3)}, rotate = 358.52] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+	\draw (287.65,246.7) node [anchor=north west][inner sep=0.75pt]    {$a_{2}^{\top } x=b_{2}$};
+	\draw (364.65,94.4) node [anchor=north west][inner sep=0.75pt]    {$a_{1}^{\top } x=b_{1}$};
+	\draw (313.65,66.4) node [anchor=north west][inner sep=0.75pt]    {$a_{1}$};
+	\draw (232.65,248.7) node [anchor=north west][inner sep=0.75pt]    {$a_{2}$};
+	\draw (336,179.4) node [anchor=north west][inner sep=0.75pt]    {$C$};
+	\draw (271.82,180.4) node [anchor=north west][inner sep=0.75pt]    {$x_{I}^{*}$};
+	\draw (183.65,132.4) node [anchor=north west][inner sep=0.75pt]    {$a_{1}$};
+	\draw (167.65,209.4) node [anchor=north west][inner sep=0.75pt]    {$a_{2}$};
+	\draw (258.82,141.22) node [anchor=north west][inner sep=0.75pt]    {$x_{II}^{*}$};
+	\draw (230.82,185.22) node [anchor=north west][inner sep=0.75pt]    {$x_{III}^{*}$};
+	\draw (187.82,182.22) node [anchor=north west][inner sep=0.75pt]    {$x_{IV}^{*}$};
+	\draw (225.82,80.22) node [anchor=north west][inner sep=0.75pt]    {$-\nabla f\left( x_{II}^{*}\right)$};
+	\draw (159.82,249.22) node [anchor=north west][inner sep=0.75pt]    {$-\nabla f\left( x_{III}^{*}\right)$};
+	\draw (59.82,182.4) node [anchor=north west][inner sep=0.75pt]    {$-\nabla f\left( x_{IV}^{*}\right)$};
+	\end{tikzpicture}	
+	\end{center}
+	\begin{itemize}
+		\item[]
+	\begin{itemize}
+		\item[$\boxed{\text{Case I}}$] $a_1^\top x_I^*<b_1$ and $a_2^\top x_I^*<b_2$.\par Recall that the gradient should form all acute angles with all possible directions such that we can more from $x^*$. So, the possible way is to take gradient $=0$. So, stationary means \[\grad f(x_I^*)=0.\]
+		\item[$\boxed{\text{Case II}}$] $a_1^\top x_{II}^*=b_1$ and $a_2^\top x_{II}^*<b_2$.\par Again, the only possible way for the gradient to form acute angles is to take gradient orthogonal to the hyperplane $a_1^\top x=b_1$. Note that $a_1$ is also orthogonal to the hyperplane. So, stationary means $a_1$ and $-\grad f(x_{II}^*)$ are collinear, \[-\grad f(x_{II}^*)=\lambda_1a_1,\quad\lambda_1\geq0.\]
+		\item[$\boxed{\text{Case III}}$] $a_1^\top x_{III}^*<b_1$ and $a_2^\top x_{III}^*=b_2$.\par Similar to Case II, we have $-\grad f(_{III}^*)=\lambda_2a_2,\quad \lambda_2\geq0$.
+		\item[$\boxed{\text{Case IV}}$] $a_1^\top x_{III}^*=b_1$ and $a_2^\top x_{III}^*=b_2$. \par Being stationary means: \[-\grad f(x_{IV}^*)=\lambda_1a_1+\lambda_2a_2,\quad\lambda_1,\lambda_2\geq0.\]
+	\end{itemize}
+	\end{itemize}
+	In call cases, we have \begin{tcolorbox}[title=KKT Conditions]\[-\grad f(x^*)=\lambda_1a_1+\lambda_2a_2,\quad\lambda_1,\lambda_2\geq0.\]\[\underbrace{\boxed{\lambda_1\qty(b_1-a_1^\top x^*)=\lambda_2\qty(b_2-a_2^\top x^*)=0}}_\text{Complementary Slackness Condition}\] \begin{center}\textit{This indicates that whichever inequality is strict, its coefficient ($\lambda$) should be $0$. }\end{center} \[b_1-a_1^\top x^*\geq0,\quad b_2-a_2^\top x^*\geq0.\]\end{tcolorbox}
 \end{eg}
+\begin{df}{Active Constrain}
+	If $a_i^\top x=b_i$, we say that this constrain is \textit{active}.	
+\end{df}
+\begin{description}
+	\item[Problem: ] We consider the following optimization problem: \begin{equation}\label{p1}\min_{x\in C}f(x),\quad C=\qty{x\in\R^d:a_i^\top x\leq b_i,\ i=1,\dots,m}\tag{P}\end{equation} We know that if $x^*$ is a solution of \eqref{p1}, then $x^*$ is a stationary point satisfying: \begin{equation}\label{s}\grad f(x^*)^\top(x-x^*)\geq0\quad\forall x\in C.\tag{S}\end{equation}
+	\item[Goal: ] Simply \eqref{s} for linear inequality constrains. 
+\end{description}
+\begin{eg}{Intuition of Farkas' Lemma}
+	Consider the set of inequalities $\begin{cases}x_1+5x_2\leq0\\-x_1+2x_2\leq0\end{cases}$. Does it imply $-x_1+9x_2\leq0$?
+	\begin{sol}
+		It does. Noe that \[(x_1+5x_2)+2(-x_1+2x_2)=-x_1+9x_2\leq0.\]
+		In another perspective, let's denote $a_1=\mqty[1\\5],\quad a_2=\mqty[-1\\2],\quad c=\mqty[-1\\9],\quad x=\mqty[x_1\\x_2].$ Then, we can rewrite the problem into:
+		\begin{description}
+			\item[Problem: ] ``Do $a_1^\top x\leq0$ and $a_2^\top x\leq0$ imply $c^\top x\leq0$?''
+		\end{description}
+		Our previous work show that it does since \[c=a_1+2a_2=\mqty[1\\5]+2\mqty[-1\\2]=\mqty[-1\\9].\] So, it seems that if $c=\lambda_1a_1+\lambda_2a_2$, with $\lambda_1,\lambda_2$ positive, then $a_1^\top x\leq0$ and $a_2^\top x\leq0$ imply $c^\top x\leq0$. We can extend this conclusion and form the Farkas' Lemma. 
+	\end{sol}	
+\end{eg}
+\begin{lem}{Farkas' Lemma}
+	Let $a_1,\dots,a_m,c\in\R^d$. Then, exactly one of the following statement is true: 
+	\begin{itemize}
+		\item $c=\lambda_1a_1+\lambda_2a_2+\cdots+\lambda_ma_m,\quad\lambda_i>0\quad\forall i=1,2,\dots,m$.
+		\item $\exists x\in\R^d\st a_i^\top x\leq0\quad\forall i=1,2,\dots,m$ and $c^\top x>0$.
+	\end{itemize}	
+\end{lem}
+\begin{rmk}
+	Farkas' Lemma does not impose any condition on $a_i$'s. If the first statement is true, then $a_i^\top x\leq0\quad\forall 1,2,\dots,m\implies c^\top x\leq0$. If the second statement is true, then we know $c$ is not a linear combination of $a_i$'s with positive coefficients.
+\end{rmk}
+\begin{rmk}
+	With Farkas's Lemma, we can regard \eqref{s} as a series of inequalities imply another: \[a_i^\top x\leq b_i\quad(x\in C)\implies\grad f(x^*)^\top(x-x^*)\geq0.\]
+\end{rmk}
+\begin{thm}{KKT Conditions for Linear Inequality Constrains}
+	Let $x^*\in\R^d$ be a solution of \eqref{p1}. Then, $\exists\lambda_1,\lambda_2,\dots,\lambda_m\geq0\st$
+	\begin{tcolorbox}[colframe=blue!40!mygreen, colback=mygreen!30!blue!5, title=KKT Conditions]
+	\[-\grad f(x^*)=\sum_{i=1}^m\lambda_ia_i,\]
+	\begin{equation}(a_i^\top x^*-b_i)\lambda_i=0\quad\forall i=1,2,\dots,m,\tag{Complementary Slackness Conditions}\end{equation}
+	\[\lambda_1,\lambda_2,\dots,\lambda_m\geq0,\] 
+	\[a_i^\top x^*-b_i\leq0.\]
+	\end{tcolorbox}
+	In this case, we say that $i$-th constraint is \textit{active} if $a_i^\top x^*=b_i$. Hence, $-\grad f(x^*)$ is a linear combination of $a_i$'s corresponding to activated constriants. 
+\end{thm}
+\begin{prf}
+	We know that $x^*$ must be a stationary point; that is, \[\grad f(x^*)^\top(x-x^*)\geq0\quad\forall\ x\st a_i^\top x\leq b_i\quad\forall\ i=1,\dots,m.\]	Define $y=x-x^*$. \textit{(Change of variable so Farkas' Lemma is applicable).} Then, \[-\grad f(x^*)^\top y\leq0\quad\forall\ y\st a_i^\top y\leq b_i-a_i^\top x^*\quad\forall i=1,\dots,m.\]\par 
+	Denote $I(x^*)=\qty{i:b_i-a_i^\top x^*=0}$. So, if $i\notin I(x^*)$, $b_i-a_i^\top x^*>0$. When $i\in I(x^*)$, then $a_i^\top y\leq b_i-a_i^\top x^*$ means $a_i^\top y\leq0$. Summarizing, we have that \[\begin{cases}a_i^\top y\leq0,\quad\forall\ i\in I(x^*)\\a_i^\top y\leq b_i-a_i^\top x^*,\quad\forall\ i\notin I(x^*)\end{cases}\implies-\grad f(x^*)^\top y\leq0.\]\par 
+	\begin{framed}
+	\begin{clm}
+		$a_i^\top y\leq0\quad\forall\ i\in I(x^*)\implies-\grad f(x^*)^\top y\leq0.$
+	\end{clm}
+	\textit{This claim is asserting that we only need those $i\in I(x^*)$ to attain $-\grad f(x^*)^\top y\leq0$. Once this claim is proved, we can apply Farkars' Lemma to conclude that $-\grad f(x^*)$ is a linear combinations of $a_i$'s.}\par 
+	\begin{proof} (of the claim).
+		Let $y$ be such that $a_i^\top y\leq0\quad\forall i\in I(x^*)$.\par 
+		 Since $b_i-a_i^\top x^*>0\quad\forall\ i\notin I(x^*)$, we know that $\exists\ \alpha>0\st$ \[a_i^\top(\alpha y)\leq b_i-a_i^\top x^*,\quad\forall\ i\notin I(x^*).\] So, for $\alpha>0$ small enough, we have that \[a_i^\top(\alpha y)\leq0\quad\forall\ i\in I(x^*)\quad \text{and}\quad a_i^\top(\alpha y)\leq b_i-a_i^\top x^*\quad\forall\ i\notin I(x^*).\] But then, $-\grad f(x^*)^\top(\alpha y)\leq0\implies-\grad f(x^*)^\top y\leq0$. 
+	\end{proof}
+	\end{framed}
+	Thus, by Farkas' Lemma, $\exists\ \lambda_i>0,\quad\forall\ i\in I(x^*)\st $ \[-\grad f(x^*)=\sum_{i\in I(x^*)}\lambda_ia_i.\]\par For $i\notin I(x^*)$, simply take $\lambda_i=0$. Hence, \[\boxed{-\grad f(x^*)=\sum_{i=1}^m\lambda_ia_i}.\] This is the first condition in KKT. \par 
+	By construction, we have that $\boxed{\lambda_i\geq0,\quad\forall\ i=1,\dots,m}$, which is the third condition in KKT. \par 
+	If $i\in I(x^*)$, then $a_i^\top x^*-b_i=0$, and so $\lambda_i\qty(a_i^\top x^*-b_i)=0$. If $i\notin I(x^*)$, then $\lambda_i=0$, and $\lambda_i\qty(a_i^\top x^*-b_i)=0$ as well. Hence, $\boxed{\lambda_i\qty(a_i^\top x^*-b_i)=0,\quad\forall\ i=1,\dots,m}$. This is the second condition in KKT.\par 
+	Finally, the fourth condition is just the feasibility condition of $x^*$. This means that $x^*\in C$. We hereby complete the proof. 
+\end{prf}
+\begin{rmk}
+	Those $\lambda_i$'s are also called the \emph{Lagrange Multipliers}.	
+\end{rmk}
+
+
+
 
 
 \end{document}
