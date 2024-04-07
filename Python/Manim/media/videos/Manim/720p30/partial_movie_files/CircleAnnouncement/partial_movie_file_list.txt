@@ -1,5 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CircleAnnouncement/1342159004_2320525110_223132457.mp4'
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CircleAnnouncement/1353618911_329969645_2067532227.mp4'
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CircleAnnouncement/1353618911_1261208866_3343351395.mp4'
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CircleAnnouncement/1353618911_3020758977_2775651515.mp4'

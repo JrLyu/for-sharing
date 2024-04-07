@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CauchyIntegralFormula/1342159004_2700497838_223132457.mp4'
-file 'file:/Users/richardlyu/Documents/GitHub/Enrichment/Python/Manim/media/videos/Manim/720p30/partial_movie_files/CauchyIntegralFormula/1353618911_329969645_2744926857.mp4'
